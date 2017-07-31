@@ -1,0 +1,78 @@
+{
+  "name": "rebilly-js-sdk",
+  "version": "0.1.0",
+  "description": "Official Rebilly API JS library for the browser and Node",
+  "browser": "./dist/rebilly-js-sdk.js",
+  "main": "./dist/rebilly-js-sdk.node.js",
+  "scripts": {
+    "clean": "rimraf dist && rimraf coverage",
+    "build:prod": "npm run clean && webpack --env=prod",
+    "build:dev": "npm run clean && webpack --env=dev",
+    "prepublish": "npm run build:prod",
+    "unit": "mocha --compilers js:babel-core/register --require babel-polyfill --colors ./test/unit/specs/*.spec.js",
+    "unit:watch": "mocha --watch --compilers js:babel-core/register --require babel-polyfill --colors ./test/unit/specs/*.spec.js",
+    "coverage": "npm run clean && cross-env NODE_ENV=test nyc npm run unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rebilly/rebilly-js-sdk.git"
+  },
+  "keywords": [
+    "Rebilly",
+    "js",
+    "sdk",
+    "library",
+    "node"
+  ],
+  "files": [
+    "index.js",
+    "version.js",
+    "dist"
+  ],
+  "author": "Andrei Moldoveanu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Rebilly/rebilly-js-sdk/issues"
+  },
+  "homepage": "https://github.com/Rebilly/rebilly-js-sdk#readme",
+  "devDependencies": {
+    "axios-mock-adapter": "^1.9.0",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-istanbul": "^4.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.1.0",
+    "coveralls": "^2.13.1",
+    "cross-env": "^5.0.1",
+    "dotenv": "^4.0.0",
+    "faker": "^4.1.0",
+    "mocha": "^3.4.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.0.3",
+    "rimraf": "^2.6.1",
+    "webpack": "^3.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "babel-runtime": "^6.25.0"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "exclude": [
+      "src/resources",
+      "test"
+    ]
+  }
+}
