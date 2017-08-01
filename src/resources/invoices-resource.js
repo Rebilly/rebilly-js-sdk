@@ -15,6 +15,10 @@ export default function InvoicesResource({apiHandler}) {
             return await apiHandler.getAll(`invoices`, params);
         },
 
+        async getAllMatchedRules({id}) {
+            return await apiHandler.getAll(`invoices/${id}/matched-rules`);
+        },
+
         async get({id}) {
             return await apiHandler.get(`invoices/${id}`);
         },

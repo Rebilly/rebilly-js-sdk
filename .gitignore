@@ -10,5 +10,3 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .nyc_output
-# NPM 5 package lock
-package-lock.json
