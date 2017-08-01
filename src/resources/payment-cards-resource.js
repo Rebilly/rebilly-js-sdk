@@ -10,6 +10,10 @@ export default function PaymentCardsResource({apiHandler}) {
             return await apiHandler.getAll(`payment-cards`, params);
         },
 
+        async getAllMatchedRules({id}) {
+            return await apiHandler.getAll(`payment-cards/${id}/matched-rules`);
+        },
+
         async get({id}) {
             return await apiHandler.get(`payment-cards/${id}`);
         },

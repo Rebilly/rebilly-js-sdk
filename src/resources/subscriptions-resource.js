@@ -15,6 +15,10 @@ export default function SubscriptionsResource({apiHandler}) {
             return await apiHandler.getAll(`subscriptions`, params);
         },
 
+        async getAllMatchedRules({id}) {
+            return await apiHandler.getAll(`subscriptions/${id}/matched-rules`);
+        },
+
         async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
