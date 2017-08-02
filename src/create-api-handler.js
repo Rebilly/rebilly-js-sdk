@@ -275,7 +275,7 @@ export default function createApiHandler({options}) {
     function post(url, data, flags = {}) {
         let config = {};
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
-        if (!flags.authenticate) {
+        if (flags.authenticate === false) {
             //copy headers from default config
             config = {headers: {...instance.defaults.headers}};
             //temporarily remove authentication headers
