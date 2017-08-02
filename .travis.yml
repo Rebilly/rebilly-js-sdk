@@ -5,6 +5,7 @@ node_js:
 branches:
   only:
   - master
+  - /^v\d+\./
 deploy:
   - provider: npm
     skip_cleanup: true
