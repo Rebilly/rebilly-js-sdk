@@ -27,7 +27,6 @@
   ],
   "files": [
     "index.js",
-    "version.js",
     "dist"
   ],
   "author": "Andrei Moldoveanu",
