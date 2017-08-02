@@ -1,10 +1,11 @@
 export default function PaymentCardsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
+                filter,
                 q
             };
             return await apiHandler.getAll(`payment-cards`, params);
