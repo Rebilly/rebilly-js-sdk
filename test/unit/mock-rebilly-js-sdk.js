@@ -1,4 +1,3 @@
-import libraryVersion from '../../version';
 import createApiTestHandler from './create-api-test-handler';
 import createApiInstance from '../../src/create-api-instance';
 
@@ -15,10 +14,9 @@ export default function MockRebillyAPI({apiKey = null, version = null, sandbox =
 
     /**
      * Internal configuration options
-     * @type {{version: string, apiKey: string|null, apiVersion: string, isSandbox: boolean, requestTimeout: number, jwt: string|null}}
+     * @type {{apiKey: string|null, apiVersion: string, isSandbox: boolean, requestTimeout: number, jwt: string|null}}
      */
     const options = {
-        version: libraryVersion,
         apiEndpoints: baseEndpoints,
         apiKey: apiKey,
         apiVersion: version,

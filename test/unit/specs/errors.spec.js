@@ -10,7 +10,7 @@ describe('when using the Errors object', () => {
         expect(Errors).to.have.property('RebillyRequestError');
         expect(Errors).to.have.property('RebillyValidationError');
         expect(Errors).to.have.property('RebillyNotFoundError');
-        expect(Errors).to.have.property('RebillyInvalidOperationError');
+        expect(Errors).to.have.property('RebillyConflictError');
         expect(Errors).to.have.property('RebillyForbiddenError');
         expect(Errors).to.have.property('RebillyMethodNotAllowedError');
         expect(Errors).to.have.property('RebillyTimeoutError');
@@ -62,15 +62,15 @@ describe('when throwing errors', () => {
 
     it('should return the response status text when present', () => {
         const response = {
-            data: {error: 'Generic Error', details: ['Invalid Operation']},
+            data: {error: 'Generic Error', details: ['Conflict']},
             status: 409,
             statusText: 'Generic Error'
         };
         try {
-            throw new Errors.RebillyInvalidOperationError({response});
+            throw new Errors.RebillyConflictError({response});
         } catch (err) {
             expect(err.message).to.be.equal(response.data.error);
-            expect(err.name).to.be.equal('RebillyInvalidOperationError');
+            expect(err.name).to.be.equal('RebillyConflictError');
             expect(err.response).to.be.deep.equal(response);
             expect(err.statusText).to.be.equal(response.statusText);
         }
