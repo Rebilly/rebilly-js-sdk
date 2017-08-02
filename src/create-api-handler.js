@@ -210,8 +210,8 @@ export default function createApiHandler({options}) {
                     throw new Errors.RebillyNotFoundError(error);
                 case 405: //method not allowed
                     throw new Errors.RebillyMethodNotAllowedError(error);
-                case 409: //invalid operation
-                    throw new Errors.RebillyInvalidOperationError(error);
+                case 409: //conflict
+                    throw new Errors.RebillyConflictError(error);
                 case 422: //validation error
                     throw new Errors.RebillyValidationError(error);
                 default:
@@ -319,7 +319,7 @@ export default function createApiHandler({options}) {
      * @param url {string}
      * @param id {string}
      * @param data {Object}
-     * @throws Errors.RebillyInvalidOperationError
+     * @throws Errors.RebillyConflictError
      * @returns {Member} member
      */
     async function create(url, id, data) {
@@ -330,7 +330,7 @@ export default function createApiHandler({options}) {
             try {
                 const item = await wrapRequest(instance.get(url));
                 if (item.response.status === 200) {
-                    throw new Errors.RebillyInvalidOperationError({message: 'Member already exists. Please use a different ID.'});
+                    throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
                 }
             }
             catch(error) {

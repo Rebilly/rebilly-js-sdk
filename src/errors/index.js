@@ -47,7 +47,7 @@ const Errors = {
     RebillyRequestError,
     RebillyValidationError,
     RebillyNotFoundError,
-    RebillyInvalidOperationError,
+    RebillyConflictError,
     RebillyForbiddenError,
     RebillyMethodNotAllowedError,
     RebillyTimeoutError

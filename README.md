@@ -66,7 +66,7 @@ import {RebillyErrors} from 'rebilly-js-sdk';
 | `RebillyForbiddenError` | `401` | Indicates an invalid API key or expired session token. |
 | `RebillyNotFoundError` | `404` | Requested resource was not found. |
 | `RebillyMethodNotAllowedError` | `405` | Request method not allowed on this resource. |
-| `RebillyInvalidOperationError` | `409` | Requested operation was invalid or triggered a conflict. |
+| `RebillyConflictError` | `409` | Requested operation triggered a conflict. |
 | `RebillyValidationError` | `422` | The request payload triggered a validation error (see error details). |
 
 ### Configuration
