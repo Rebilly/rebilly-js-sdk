@@ -252,7 +252,7 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function get(url, params = {}) {
-        return wrapRequest(instance.get(url, cleanUpParameters(params)));
+        return wrapRequest(instance.get(url, cleanUpParameters({params})));
     }
 
     /**
@@ -262,7 +262,7 @@ export default function createApiHandler({options}) {
      * @returns {Collection} collection
      */
     function getAll(url, params) {
-        return wrapRequest(instance.get(url, cleanUpParameters(params)), {isCollection: true});
+        return wrapRequest(instance.get(url, cleanUpParameters({params})), {isCollection: true});
     }
 
     /**
@@ -327,17 +327,12 @@ export default function createApiHandler({options}) {
             return wrapRequest(instance.post(url, data));
         }
         else {
-            try {
-                const item = await wrapRequest(instance.get(url));
-                if (item.response.status === 200) {
-                    throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
-                }
+            const item = await wrapRequest(instance.get(url));
+            if (item.response.status === 200) {
+                throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
             }
-            catch(error) {
-                if (error.name === 'RebillyNotFoundError') {
-                    return wrapRequest(instance.put(url, data));
-                }
-                return error;
+            if (item.response.status === 404) {
+                return wrapRequest(instance.put(url, data));
             }
         }
     }
