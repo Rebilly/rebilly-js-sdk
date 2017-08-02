@@ -18,9 +18,9 @@ class RebillyNotFoundError extends RebillyError {
     }
 }
 
-class RebillyInvalidOperationError extends RebillyError {
+class RebillyConflictError extends RebillyError {
     constructor(error) {
-        super({error, name: 'RebillyInvalidOperationError'});
+        super({error, name: 'RebillyConflictError'});
     }
 }
 
