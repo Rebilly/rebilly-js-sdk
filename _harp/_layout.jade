@@ -1,14 +1,14 @@
 doctype
 html
-  head
-    script(src="assets/jquery-3.2.1.min.js" defer)
-    script(src="assets/semantic.min.js" defer)
-    link(rel="stylesheet" href="main.css")
-    title #{ title }
-  body
-      != partial("_menu")
-    div.pusher
-        div.ui.container
-            != yield
-            #footer
-                p Copyright (c) 2017, Rebilly, Inc.
+    head
+        script(src="#{ relativeAssets }assets/jquery-3.2.1.min.js" defer)
+        script(src="#{ relativeAssets }assets/semantic.min.js" defer)
+        link(rel="stylesheet" href="#{ relativeAssets }main.css")
+        title #{ title }
+    body
+        != partial("_menu")
+        div.pusher
+            div.ui.container
+                != yield
+                footer.ui.basic.segment
+                    p Copyright (c) 2017, Rebilly, Inc.

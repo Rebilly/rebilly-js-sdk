@@ -1,4 +1,4 @@
-The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.
+The [Rebilly](https://www.rebilly.com/) JS SDK library allows you to consume the Rebilly API using either Node or the browser.
 
 <div class="ui message">The library is not production ready yet. Version 1.0.0 will be the first stable release.</div>
 

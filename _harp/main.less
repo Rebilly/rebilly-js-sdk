@@ -1,14 +1,23 @@
 @import "assets/semantic.min.css";
 
-body{
-  //font-family: "Helvetica";
-  //text-align: center;
-  //padding: 50px 20px 0;
-  //background: #f4f4f7;
-  //color: #444;
-  //margin: 0;
+@code-bg-color: #f8f8f9;
+@code-box-shadow: 0 0 0 1px rgba(34, 36, 38, .22) inset, 0 0 0 0 transparent;
+
+@border-radius: .28571429rem;
+
+.pusher {
+  > .ui.container {
+    margin-top: 3em;
+  }
 }
 
-.pusher > .ui.container {
-  margin-top:3em;
+pre {
+  > code {
+    padding: 1em;
+    background-color: @code-bg-color;
+    box-shadow: @code-box-shadow;
+    border-radius: @border-radius;
+    margin: 1em 0;
+    display: block;
+  }
 }
