@@ -1,5 +1,44 @@
-div.ui.basic.segment
-    h1 Rebilly JS SDK Library Reference
-    != partial("_introduction")
-    div.ui.section.hidden.divider
-    != partial("_installing")
+include _includes/_runkit
+    
+h1.ui.header
+    | Rebilly JS SDK Library Reference
+    .sub.header The <a href="https://www.rebilly.com/">Rebilly</a> JS SDK library allows you to consume the Rebilly API using either Node or the browser.
+div.ui.hidden.divider
+div.ui.yellow.icon.message
+    i.warning.sign.icon
+    .content
+        .header Pre-Release
+        p The library is not production ready yet. Version <strong>1.0.0</strong> will be the first stable release.
+.badges
+    a(href='https://travis-ci.org/Rebilly/rebilly-js-sdk')
+        img(src='https://travis-ci.org/Rebilly/rebilly-js-sdk.svg?branch=master', alt='Build Status')
+    a(href='https://david-dm.org/Rebilly/rebilly-js-sdk')
+        img(src='https://david-dm.org/Rebilly/rebilly-js-sdk/status.svg', alt='dependencies Status')
+    a(href='https://david-dm.org/Rebilly/rebilly-js-sdk?type=dev')
+        img(src='https://david-dm.org/Rebilly/rebilly-js-sdk/dev-status.svg', alt='devDependencies Status')
+    a(href='https://npm.runkit.com/rebilly-js-sdk')
+        img(src='https://badge.runkitcdn.com/rebilly-js-sdk.svg', alt='Try rebilly-js-sdk on RunKit')
+div.ui.section.hidden.divider
+
+h3 PCI Compliance Note
+p If you need to handle raw payment card data, you should use the <a href="https://my.rebilly.com/api/jsdoc/">Rebilly Token library</a> to generate tokens for your server-side logic.
+
+h3 Rebilly API Spec
+p The library is a semantic representation of the <a href="https://rebilly.github.io/RebillyAPI/">Rebilly API spec</a>. A secondary [experimental API spec for reports](https://rebilly.github.io/RebillyReportsAPI/) is also available.
+
+div.ui.section.hidden.divider
+h2 Installing
+p Using npm simply run:
+pre
+    code npm install rebilly-js-sdk --save
+
+h2 Usage
+p To create an instance, you need to provide your secret API key that is available in Rebilly in the [Developer > API Keys](https://app.rebilly.com/api-keys) menu.
+
+div.ui.floating.olive.message Every resource method returns a chainable Promise.
+h4 ES7 usage example:
++runKitNotebook('es7-usage', 'import RebillyAPI from \\\'rebilly-js-sdk\\\';\\r\\n\\r\\nconst api = RebillyAPI({apiKey: \\\'secret-api-key\\\'});\\r\\n\\r\\ntry {\\r\\n    const transactions = await api.transactions.getAll();\\r\\n    transactions.items.forEach(transaction => {\\r\\n        \\/\\/transaction.fields\\r\\n    });\\r\\n} catch (err) {\\r\\n    console.error(err.name);\\r\\n}')
+h4 ES5 usage example:
++runKitNotebook('es5-usage', 'var RebillyAPI = require(\\\'rebilly-js-sdk\\\').default;\\r\\nvar api = RebillyAPI({apiKey: \\\'secret-api-key\\\'});\\r\\n\\r\\napi.transactions.getAll()\\r\\n    .then(function(transactions) {\\r\\n        transactions.items.forEach(transaction => {\\r\\n         \\/\\/transaction.fields\\r\\n        });\\r\\n    })\\r\\n    .catch(function(err) {\\r\\n        console.error(err.name);\\r\\n    });')
+
+

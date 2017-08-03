@@ -14,5 +14,5 @@ harp compile _harp ./
 
 Running a local server at http://localhost:9000/:
 ```
-harp server --port 9000
+harp server .\_harp\ --port 9000
 ```

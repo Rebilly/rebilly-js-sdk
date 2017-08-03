@@ -3,6 +3,7 @@ html
     head
         script(src="#{ relativeAssets }assets/jquery-3.2.1.min.js" defer)
         script(src="#{ relativeAssets }assets/semantic.min.js" defer)
+        script(src="https://embed.runkit.com")
         link(rel="stylesheet" href="#{ relativeAssets }main.css")
         title #{ title }
     body
@@ -11,4 +12,7 @@ html
             div.ui.container
                 != yield
                 footer.ui.basic.segment
-                    p Copyright (c) 2017, Rebilly, Inc.
+                    .ui.small.header
+                        p Copyright (c) 2017, Rebilly, Inc.
+
+
