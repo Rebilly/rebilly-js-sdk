@@ -45,11 +45,30 @@ export default function FilesResource({apiHandler}) {
             return await apiHandler.get(`files/${id}/download`);
         },
 
-        async link({data}) {
+        async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                q
+            };
+            return await apiHandler.getAll(`attachments`, params)
+        },
+
+        async getAttachment({id}) {
+            return await apiHandler.get(`attachments${id}`);
+        },
+
+        async updateAttachment({id, data}) {
+            return await apiHandler.put(`attachments/${id}`, data);
+        },
+
+        async attach({data}) {
             return await apiHandler.post(`attachments`, data);
         },
 
-        async unlink({id}) {
+        async detach({id}) {
             return await apiHandler.delete(`attachments/${id}`)
         }
     };
