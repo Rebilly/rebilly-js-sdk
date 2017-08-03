@@ -48,6 +48,10 @@ export default function TransactionsResource({apiHandler}) {
             return await apiHandler.getAll(`queue/payments`, params);
         },
 
+        async updateScheduled({id, data}) {
+            return await apiHandler.put(`queue/payments/${id}`, data);
+        },
+
         async get({id}) {
             return await apiHandler.get(`transactions/${id}`);
         },
