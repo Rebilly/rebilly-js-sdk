@@ -19,13 +19,16 @@ export default function InvoicesResource({apiHandler}) {
             return await apiHandler.getAll(`invoices/${id}/matched-rules`);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`invoices/${id}`);
+        async get({id, expand = null}) {
+            const params = {
+                expand
+            };
+            return await apiHandler.get(`invoices/${id}`, params);
         },
 
         async downloadPDF({id}) {
             const config = {
-                header: pdfHeader,
+                headers: pdfHeader,
                 responseType: 'arraybuffer'
             };
             return await apiHandler.download(`invoices/${id}`, config);
