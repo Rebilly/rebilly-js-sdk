@@ -327,12 +327,17 @@ export default function createApiHandler({options}) {
             return wrapRequest(instance.post(url, data));
         }
         else {
-            const item = await wrapRequest(instance.get(url));
-            if (item.response.status === 200) {
-                throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
+            try {
+                const item = await wrapRequest(instance.get(url));
+                if (item.response.status === 200) {
+                    throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
+                }
             }
-            if (item.response.status === 404) {
-                return wrapRequest(instance.put(url, data));
+            catch (error) {
+                if (error.name === 'RebillyNotFoundError') {
+                    return wrapRequest(instance.put(url, data));
+                }
+                return error;
             }
         }
     }
