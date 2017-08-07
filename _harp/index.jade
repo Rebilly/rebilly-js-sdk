@@ -1,4 +1,5 @@
 include _includes/_runkit
+include _includes/_secondaryHeading
 
 h1.ui.header
     | Rebilly JS SDK Library Reference
@@ -27,23 +28,94 @@ h3 Rebilly API Spec
 p The library is a semantic representation of the #[a(href="https://rebilly.github.io/RebillyAPI/") Rebilly API spec]. A secondary #[a(href="https://rebilly.github.io/RebillyReportsAPI/") experimental API spec for reports] is also available.
 
 div.ui.section.hidden.divider
-h2 Installing
+
+
+//Installing
++secondaryHeading('Installing')
 p Using npm simply run:
 pre
     code npm install rebilly-js-sdk --save
 
-h2 Usage
+//Usage
++secondaryHeading('Usage')
 p To create an instance, you need to provide your secret API key that is available in Rebilly in the #[a(href="https://app.rebilly.com/api-keys") Developer > API Keys] menu.
 
-div.ui.floating.olive.message Every resource method returns a chainable Promise.
+div.ui.violet.icon.message
+    i.exchange.icon
+    .content
+        .header Promise Based
+        p Every resource method returns a chainable Promise.
 h4 ES7 usage example:
 +runKitNotebook('es7-usage', 'import RebillyAPI from \\\'rebilly-js-sdk\\\';\\r\\n\\r\\nconst api = RebillyAPI({apiKey: \\\'secret-api-key\\\'});\\r\\n\\r\\ntry {\\r\\n    const transactions = await api.transactions.getAll();\\r\\n    transactions.items.forEach(transaction => {\\r\\n        \\/\\/transaction.fields\\r\\n    });\\r\\n} catch (err) {\\r\\n    console.error(err.name);\\r\\n}')
 h4 ES5 usage example:
 +runKitNotebook('es5-usage', 'var RebillyAPI = require(\\\'rebilly-js-sdk\\\').default;\\r\\nvar api = RebillyAPI({apiKey: \\\'secret-api-key\\\'});\\r\\n\\r\\napi.transactions.getAll()\\r\\n    .then(function(transactions) {\\r\\n        transactions.items.forEach(transaction => {\\r\\n         \\/\\/transaction.fields\\r\\n        });\\r\\n    })\\r\\n    .catch(function(err) {\\r\\n        console.error(err.name);\\r\\n    });')
 
+//Configuration
++secondaryHeading('Configuration')
+p The library authentication can be provided by the #[code apiKey] or a session token (JWT). All instantiation parameters are #[em optional].
+h4 Example:
+pre
+    code const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
 
-.ui.secondary.large.menu
-    .right.menu
-        .header.item Next Topic
-        .item
-            a.ui.primary.button(href='/authentication') Authentication
+table.ui.padded.table
+    thead
+        tr
+            th Option
+            th Type
+            th Description
+    tbody
+        tr
+            td #[code apiKey]
+            td #[code string]
+            td Your secret API key. To be used only for server-side integration. See #[a(href="https://app.rebilly.com/api-keys") Developer > API Keys].
+        tr
+            td #[code sandbox]
+            td #[code boolean]
+            td Flag used to enable sandbox mode for the instance. This allows you to run requests without processing real transactions on your account. Defaults to #[code false].
+        tr
+            td #[code timeout]
+            td #[code integer]
+            td Define the timeout in milliseconds for API requests. Defaults to #[code 6000].
+        tr
+            td #[code version]
+            td #[code string]
+            td Define the version of the API to use. Defaults to #[code v2.1]. This configuration option does not apply to #[code RebillyExperimentalAPI].
+
+
+//Exposed Modules
++secondaryHeading('Exposed Modules')
+
+p The library exposes three modules: the main API, the experimental API and the different errors types.
+
+pre
+    code import RebillyAPI, {RebillyExperimentalAPI, RebillyErrors} from 'rebilly-js-sdk';
+
+
+table.ui.padded.table
+    thead
+        tr
+            th Module
+            th Description
+    tbody
+        tr
+            td RebillyAPI
+            td Main API wrapper. Used for all common actions except reporting and certain statistics. Based on the #[a(href="https://rebilly.github.io/RebillyAPI/", target="_blank") Rebilly API spec].
+        tr
+            td RebillyExperimentalAPI
+            td Secondary API wrapper. Reserved for experimental endpoints like reports and statistics. #[strong This API can break backward-compatibility]. Based on the #[a(href="https://rebilly.github.io/RebillyReportsAPI/", target="_blank") Rebilly Experimental Reports API spec].
+        tr
+            td RebillyErrors
+            td Exposes the different errors returned by both API wrappers.
+
+
+//bottom navigation
+div.ui.yellow.icon.message
+    i.terminal.icon
+    .content
+        .header Importing without Webpack
+        p When importing in an environment without #[strong Webpack], the #[code RebillyAPI] module wil be exposed as #[code default].
+        pre
+            code var RebillyAPI = require('rebilly-js-sdk').default;
+                | var RebillyExperimentalAPI = require('rebilly-js-sdk').RebillyExperimentalAPI;
+
+!= partial('_topic_nav', {next: 'authentication'})

@@ -1,6 +1,16 @@
 {
   "globals": {
     "title": "Rebilly JS SDK Documentation",
-    "relativeAssets": ""
+    "relativeAssets": "",
+    "pages": {
+      "introduction": {
+        "location": "/",
+        "label": "Introduction"
+      },
+      "authentication": {
+        "location": "./authentication",
+        "label": "Authentication"
+      }
+    }
   }
 }
