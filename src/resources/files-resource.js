@@ -15,8 +15,12 @@ export default function FilesResource({apiHandler}) {
             return await apiHandler.get(`files/${id}`);
         },
 
-        async upload({fileObject, data = {description: '', tags: ['']}}) {
-            const file = await apiHandler.post(`files`, fileObject);
+        async upload({fileObject}) {
+            return await apiHandler.post(`files`, fileObject);
+        },
+
+        async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
+            const file = await this.upload(fileObject);
             const params = {
                 name: file.name,
                 extension: file.extension,
@@ -32,17 +36,24 @@ export default function FilesResource({apiHandler}) {
         },
 
         async delete({id}) {
+            return await apiHandler.delete(`files/${id}`);
+        },
+
+        async detachAndDelete({id}) {
             const params = {
                 filter: `fileId:${id}`
             };
-            const attachments = await apiHandler.getAll(`attachments`, params);
-            const promises = attachments.items.map(attachment => apiHandler.delete(`attachments/${attachment.fields.id}`));
+            const attachments = await this.getAllAttachments(params);
+            const promises = attachments.items.map(attachment => this.detach({id: `attachments/${attachment.fields.id}`}));
             await Promise.all(promises);
             return await apiHandler.delete(`files/${id}`);
         },
 
         async download({id}) {
-            return await apiHandler.get(`files/${id}/download`);
+            const config = {
+                responseType: 'arraybuffer'
+            };
+            return await apiHandler.download(`files/${id}/download`, config);
         },
 
         async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
