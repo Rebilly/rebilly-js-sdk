@@ -20,7 +20,7 @@ export default function FilesResource({apiHandler}) {
         },
 
         async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
-            const file = await this.upload(fileObject);
+            const file = await this.upload({fileObject});
             const params = {
                 name: file.name,
                 extension: file.extension,
