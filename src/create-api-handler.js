@@ -2,7 +2,7 @@ import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
 import Errors from './errors';
-import _ from 'underscore.deepclone';
+import cloneDeep from 'clone-deep';
 
 /**
  * Creates an API handler for the current instance with the provided options.
@@ -71,7 +71,7 @@ export default function createApiHandler({options}) {
     function cloneInstanceHeaders() {
         //axios instance share their configuration as of 0.16.2
         //see axios issue https://github.com/mzabriskie/axios/issues/385
-        return _.deepClone(instance.defaults.headers);
+        return cloneDeep(instance.defaults.headers);
     }
 
     /**
