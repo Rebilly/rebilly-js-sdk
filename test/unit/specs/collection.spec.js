@@ -8,7 +8,12 @@ describe('when I get a collection', () => {
     let customers;
 
     before(async () => {
-        customers = await api.customers.getAll();
+        try {
+            customers = await api.customers.getAll();
+        }
+        catch(err) {
+            console.log(err);
+        }
     });
     it('should define a property called total', () => {
         expect(customers.total).to.not.be.undefined;
