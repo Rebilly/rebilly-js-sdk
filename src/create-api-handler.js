@@ -2,6 +2,7 @@ import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
 import Errors from './errors';
+import _ from 'underscore.deepclone';
 
 /**
  * Creates an API handler for the current instance with the provided options.
@@ -9,10 +10,11 @@ import Errors from './errors';
  * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setApiConsumer: setApiConsumer, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
  */
 export default function createApiHandler({options}) {
-    let instance = createInstance();
+    const instance = createInstance();
 
     /**
      * Create an Axios instance for Rebilly.
+     * @returns {AxiosInstance}
      */
     function createInstance() {
         return axios.create(getInstanceOptions());
@@ -61,6 +63,18 @@ export default function createApiHandler({options}) {
     }
 
     /**
+     * Return a clone of the axios instance headers to prevent shared configuration between all instances.
+     * Affects axios 0.16.2.
+     * @link https://github.com/mzabriskie/axios/issues/385
+     * @returns {*}
+     */
+    function cloneInstanceHeaders() {
+        //axios instance share their configuration as of 0.16.2
+        //see axios issue https://github.com/mzabriskie/axios/issues/385
+        return _.deepClone(instance.defaults.headers);
+    }
+
+    /**
      * Define the default timeout delay in milliseconds for the current API instance.
      * @param timeout number timeout delay in milliseconds
      */
@@ -73,11 +87,13 @@ export default function createApiHandler({options}) {
      * Define a consumer identification Header string for use with Rebilly. This allows you to identify your app in the API logs.
      * @param consumerId {string} a string to identify your application or plugin request
      * @example
-     * const api = new RebillyAPI();
+     * const api = RebillyAPI();
      * api.setApiConsumer('Acme Application v1.0.1');
      */
     function setApiConsumer(consumerId) {
-        instance.defaults.headers.common['REB-API-CONSUMER'] = consumerId;
+        const headers = cloneInstanceHeaders();
+        headers.common['REB-API-CONSUMER'] = consumerId;
+        instance.defaults.headers = headers;
     }
 
     /**
@@ -85,10 +101,12 @@ export default function createApiHandler({options}) {
      * @param token string
      */
     function setSessionToken(token) {
+        const headers = cloneInstanceHeaders();
         options.apiKey = null;
         options.jwt = token;
-        delete instance.defaults.headers.common['REB-APIKEY'];
-        instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        delete headers.common['REB-APIKEY'];
+        headers.common['Authorization'] = `Bearer ${token}`;
+        instance.defaults.headers = headers;
     }
 
     /**
@@ -112,7 +130,7 @@ export default function createApiHandler({options}) {
      * @param live {string}
      * @param sandbox
      * @example
-     * const api = new RebillyAPI();
+     * const api = RebillyAPI();
      * api.setEndpoints({live: 'https://api-test.rebilly.com'});
      */
     function setEndpoints({live = null, sandbox = null}) {
@@ -277,7 +295,7 @@ export default function createApiHandler({options}) {
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
         if (flags.authenticate === false) {
             //copy headers from default config
-            config = {headers: {...instance.defaults.headers}};
+            config = {headers: cloneInstanceHeaders()};
             //temporarily remove authentication headers
             delete config.headers.common['REB-APIKEY'];
             delete config.headers.common['Authorization'];

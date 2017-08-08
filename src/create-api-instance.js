@@ -65,7 +65,17 @@ export function createExperimentalApiInstance({apiHandler}) {
         histograms: ExperimentalResources.HistogramsResource({apiHandler}),
         reports: ExperimentalResources.ReportsResource({apiHandler}),
         customers: ExperimentalResources.CustomersResource({apiHandler}),
+
+        //expose apiHandler methods to the API instance
+        addRequestInterceptor: apiHandler.addRequestInterceptor,
+        removeRequestInterceptor: apiHandler.removeRequestInterceptor,
+        addResponseInterceptor: apiHandler.addResponseInterceptor,
+        removeResponseInterceptor: apiHandler.removeResponseInterceptor,
+        setTimeout: apiHandler.setTimeout,
+        setProxyAgent: apiHandler.setProxyAgent,
+        setSessionToken: apiHandler.setSessionToken,
+        setApiConsumer: apiHandler.setApiConsumer,
         setEndpoints: apiHandler.setEndpoints,
-        setTimeout: apiHandler.setTimeout
+        getCancellationToken: apiHandler.getCancellationToken
     };
 }

@@ -15,7 +15,7 @@ describe('when I use an API handler', () => {
         jwt: null
     };
     const apiHandler = createApiTestHandler({options});
-    const api = new MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
+    const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
 
     it('should allow the timeout to be set to a different value', () => {
         const timeout = 1234;
@@ -76,5 +76,16 @@ describe('when I use an API handler', () => {
     it('should return a promise when I make a DELETE request', () => {
         const gatewayAccount = api.gatewayAccounts.delete({id: '1234', data: {}});
         expect(gatewayAccount.then).to.be.a('function');
+    });
+
+    it('should not share configuration values between different axios instances', () => {
+        //see axios issue https://github.com/mzabriskie/axios/issues/385
+        const handlerOne = createApiTestHandler({options});
+        const handlerTwo = createApiTestHandler({options});
+        handlerOne.setSessionToken('firstToken');
+        handlerTwo.setSessionToken('secondToken');
+        const firstToken = handlerOne.getInstance().defaults.headers.common['Authorization'];
+        const secondToken = handlerTwo.getInstance().defaults.headers.common['Authorization'];
+        expect(firstToken).to.not.be.equal(secondToken);
     });
 });

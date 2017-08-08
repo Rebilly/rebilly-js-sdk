@@ -4,7 +4,7 @@ import MockRebillyAPI from '../mock-rebilly-js-sdk';
 const expect = chai.expect;
 
 describe('when I get member', () => {
-    const api = new MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
+    const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
     let customer;
     before(async () => {
         customer = await api.customers.get({id: 'f9171662-0585-44ac-a8a1-874c8de9db85'});
