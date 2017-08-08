@@ -63,6 +63,6 @@ export default function CustomEventsResource({apiHandler}) {
 
         async deleteScheduled({id}) {
             return await apiHandler.delete(`queue/custom-events/${id}`);
-        },
+        }
     };
 };

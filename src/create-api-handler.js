@@ -355,7 +355,8 @@ export default function createApiHandler({options}) {
                 if (error.name === 'RebillyNotFoundError') {
                     return wrapRequest(instance.put(url, data));
                 }
-                return error;
+                //throw unexpected errors
+                throw error;
             }
         }
     }
