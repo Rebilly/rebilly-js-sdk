@@ -78,7 +78,15 @@ describe('when I create an API instance', () => {
     });
 
     it('should expose resource experimental helper method', () => {
-        expect(apiInstanceExperimental.setEndpoints).to.be.an('function');
-        expect(apiInstanceExperimental.setTimeout).to.be.an('function');
+        expect(apiInstanceExperimental.setSessionToken).to.be.a('function');
+        expect(apiInstanceExperimental.addRequestInterceptor).to.be.a('function');
+        expect(apiInstanceExperimental.removeRequestInterceptor).to.be.a('function');
+        expect(apiInstanceExperimental.addResponseInterceptor).to.be.a('function');
+        expect(apiInstanceExperimental.removeResponseInterceptor).to.be.a('function');
+        expect(apiInstanceExperimental.setTimeout).to.be.a('function');
+        expect(apiInstanceExperimental.setProxyAgent).to.be.a('function');
+        expect(apiInstanceExperimental.setApiConsumer).to.be.a('function');
+        expect(apiInstanceExperimental.setEndpoints).to.be.a('function');
+        expect(apiInstanceExperimental.getCancellationToken).to.be.a('function');
     });
 });

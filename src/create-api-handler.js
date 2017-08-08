@@ -2,6 +2,7 @@ import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
 import Errors from './errors';
+import _ from 'underscore.deepclone';
 
 /**
  * Creates an API handler for the current instance with the provided options.
@@ -9,13 +10,17 @@ import Errors from './errors';
  * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setApiConsumer: setApiConsumer, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
  */
 export default function createApiHandler({options}) {
-    let instance = createInstance();
+    const instance = createInstance();
 
     /**
      * Create an Axios instance for Rebilly.
      */
     function createInstance() {
-        return axios.create(getInstanceOptions());
+        const instance = axios.create(getInstanceOptions());
+        //clone axios defaults to prevent shared configurations throughout all instances
+        //see axios bug https://github.com/mzabriskie/axios/issues/385
+        instance.defaults = _.deepClone(axios.defaults);
+        return instance;
     }
 
     /**
