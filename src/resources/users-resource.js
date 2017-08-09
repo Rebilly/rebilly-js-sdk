@@ -35,7 +35,7 @@ export default function UsersResource({apiHandler}) {
             return await apiHandler.post(`users/reset-password/${token}`, data);
         },
 
-        async resetTotpSecret({id, data}) {
+        async resetTotp({id, data}) {
             return await apiHandler.post(`users/${id}/totp-reset`, data);
         }
     };
