@@ -3,6 +3,7 @@ import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
 import BlacklistsResource from './blacklists-resource';
 import CheckoutPagesResource from './checkout-pages-resource';
+import ContactsResource from './contacts-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
@@ -42,6 +43,7 @@ const Resources = {
     BankAccountsResource,
     BlacklistsResource,
     CheckoutPagesResource,
+    ContactsResource,
     CouponsResource,
     CredentialHashesResource,
     CustomerAuthenticationResource,
