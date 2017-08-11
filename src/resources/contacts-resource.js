@@ -1,3 +1,5 @@
+import {csvHeader} from '../request-headers';
+
 export default function ContactsResource({apiHandler}) {
     return {
         async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
@@ -8,6 +10,22 @@ export default function ContactsResource({apiHandler}) {
                 filter
             };
             return await apiHandler.getAll(`contacts`, params);
+        },
+
+        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+            const config = {
+                params: {
+                    limit,
+                    offset,
+                    sort,
+                    expand,
+                    filter,
+                    q,
+                    criteria
+                },
+                headers: csvHeader
+            };
+            return await apiHandler.download(`contacts`, config);
         },
 
         async get({id}) {
