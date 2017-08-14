@@ -14,6 +14,10 @@ export default function AccountResource({apiHandler}) {
 
         async forgotPassword({data}) {
             return await apiHandler.post(`forgot-password`, data, {authenticate: false});
+        },
+
+        async resetSandbox() {
+            return await apiHandler.post(`reset-sandbox`);
         }
     };
 };
