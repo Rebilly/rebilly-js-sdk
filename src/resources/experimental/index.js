@@ -1,11 +1,13 @@
-import ReportsResource from './reports-resource';
-import HistogramsResource from './histograms-resource';
 import CustomersResource from './customers-resource';
+import ExportsResource from './exports-resource';
+import HistogramsResource from './histograms-resource';
+import ReportsResource from './reports-resource';
 
 const ExperimentalResources = {
-    ReportsResource,
+    CustomersResource,
+    ExportsResource,
     HistogramsResource,
-    CustomersResource
+    ReportsResource
 };
 
 export default ExperimentalResources;

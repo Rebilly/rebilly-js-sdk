@@ -56,7 +56,7 @@ export default function TransactionsResource({apiHandler}) {
             const params = {
                 expand
             };
-            return await apiHandler.get(`transactions/${id}`);
+            return await apiHandler.get(`transactions/${id}`, params);
         },
 
         async create({id = '', data}) {
