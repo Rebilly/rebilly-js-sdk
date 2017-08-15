@@ -72,7 +72,7 @@ export default function TransactionsResource({apiHandler}) {
         },
 
         async getGatewayLogs({id}) {
-            return await apiHandler.get(`transactions/${id}/gateway-logs`);
+            return await apiHandler.getAll(`transactions/${id}/gateway-logs`);
         },
 
         async getLeadSource({id}) {
