@@ -22,7 +22,7 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/cumulative-subscriptions-plans`, params);
+            return await apiHandler.getAll(`reports/cumulative-subscriptions-plans`, params);
         },
 
         async getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
@@ -209,7 +209,7 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/transactions-plan`, params);
+            return await apiHandler.getAll(`reports/transactions-plan`, params);
         },
 
         async getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
