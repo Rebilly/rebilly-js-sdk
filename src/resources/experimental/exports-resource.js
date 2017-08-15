@@ -1,6 +1,6 @@
 export default function ExportsResource({apiHandler}) {
     return {
-        async getAll({resource, sort = null, filter = null, q = null, criteria = null}) {
+        async getAll({resource, sort = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 sort,
                 filter,
