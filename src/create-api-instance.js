@@ -63,9 +63,10 @@ export default function createApiInstance({apiHandler}) {
 
 export function createExperimentalApiInstance({apiHandler}) {
     return {
+        customers: ExperimentalResources.CustomersResource({apiHandler}),
+        exports: ExperimentalResources.ExportsResource({apiHandler}),
         histograms: ExperimentalResources.HistogramsResource({apiHandler}),
         reports: ExperimentalResources.ReportsResource({apiHandler}),
-        customers: ExperimentalResources.CustomersResource({apiHandler}),
 
         //expose apiHandler methods to the API instance
         addRequestInterceptor: apiHandler.addRequestInterceptor,
