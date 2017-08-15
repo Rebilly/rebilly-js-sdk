@@ -31,8 +31,11 @@ export default function CustomersResource({apiHandler}) {
             return await apiHandler.download(`customers`, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`customers/${id}`);
+        async get({id, expand = null}) {
+            const params = {
+                expand
+            };
+            return await apiHandler.get(`customers/${id}`, params);
         },
 
         async create({id = '', data}) {

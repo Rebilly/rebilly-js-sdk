@@ -52,7 +52,10 @@ export default function TransactionsResource({apiHandler}) {
             return await apiHandler.put(`queue/payments/${id}`, data);
         },
 
-        async get({id}) {
+        async get({id, expand = null}) {
+            const params = {
+                expand
+            };
             return await apiHandler.get(`transactions/${id}`);
         },
 
