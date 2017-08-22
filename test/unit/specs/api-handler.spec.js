@@ -78,6 +78,11 @@ describe('when I use an API handler', () => {
         expect(gatewayAccount.then).to.be.a('function');
     });
 
+    it('should consider 303 to be a valid status code', () => {
+        expect(apiHandler.getInstance().defaults.validateStatus(304)).to.equal(false);
+        expect(apiHandler.getInstance().defaults.validateStatus(303)).to.equal(true);
+    });
+
     it('should not share configuration values between different axios instances', () => {
         //see axios issue https://github.com/mzabriskie/axios/issues/385
         const handlerOne = createApiTestHandler({options});
