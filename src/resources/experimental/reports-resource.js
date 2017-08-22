@@ -140,10 +140,12 @@ export default function ReportsResource({apiHandler}) {
             return await apiHandler.get(`reports/retention-value`, params);
         },
 
-        async getRetryTransaction({periodStart, periodEnd, filter = null, criteria = null, tz = null} = {}) {
+        async getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
+                limit,
+                offset,
                 filter,
                 criteria,
                 tz
@@ -191,12 +193,14 @@ export default function ReportsResource({apiHandler}) {
             return await apiHandler.get(`reports/subscription-renewal`, params);
         },
 
-        async getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate} = {}) {
+        async getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate, limit = null, offset = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 type,
-                subaggregate
+                subaggregate,
+                limit,
+                offset
             };
             return await apiHandler.get(`reports/time-series-transaction`, params);
         },
