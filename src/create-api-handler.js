@@ -34,6 +34,9 @@ export default function createApiHandler({options}) {
      */
     function getInstanceOptions() {
         return {
+            validateStatus: (status) => {
+                return status >= 200 && status < 304;
+            },
             baseURL: getBaseURL(),
             timeout: options.requestTimeout,
             headers: getRequestHeaders()
