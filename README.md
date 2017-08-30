@@ -48,7 +48,7 @@ var api = RebillyAPI({apiKey: 'secret-api-key'});
 
 api.transactions.getAll()
     .then(function(transactions) {
-        transactions.items.forEach(transaction => {
+        transactions.items.forEach(function(transaction) {
             //transaction.fields
         });
     })
