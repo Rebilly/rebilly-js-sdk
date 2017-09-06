@@ -1,0 +1,107 @@
+[
+  {
+    "name": "RebillyAPI",
+    "filePath": "src/index.js",
+    "lines": [
+      {
+        "lineNumber": 12,
+        "line": "/**\r"
+      },
+      {
+        "lineNumber": 13,
+        "line": " * Create an instance of the Rebilly API\r"
+      },
+      {
+        "lineNumber": 14,
+        "line": " * @param apiKey {string} private API key; if provided will be used for all requests\r"
+      },
+      {
+        "lineNumber": 15,
+        "line": " * @param version {string} specify a different version of the API to use than the current stable release\r"
+      },
+      {
+        "lineNumber": 16,
+        "line": " * @param sandbox {boolean} whether to use the sandbox endpoint or the live\r"
+      },
+      {
+        "lineNumber": 17,
+        "line": " * @param timeout {number} timeout in milliseconds\r"
+      },
+      {
+        "lineNumber": 18,
+        "line": " * @returns {{account, apiKeys, bankAccounts, blacklists, checkoutPages, coupons, customers, customerAuthentication, customEvents, customFields, credentialHashes, disputes, events, files, gatewayAccounts, invoices, layouts, lists, notes, organizations, paymentCards, paymentTokens, paypalAccounts, plans, previews, products, profile, sessions, shippingZones, status, subscriptions, tracking, transactions, threeDSecure, users, webhooks, websites, addRequestInterceptor, removeRequestInterceptor, addResponseInterceptor, removeResponseInterceptor, setTimeout, setProxyAgent, setSessionToken, setApiConsumer, setEndpoints, getCancellationToken}}\r"
+      },
+      {
+        "lineNumber": 19,
+        "line": " * @constructor\r"
+      },
+      {
+        "lineNumber": 20,
+        "line": " */\r"
+      },
+      {
+        "lineNumber": 21,
+        "line": "export default function RebillyAPI({apiKey = null, version = baseApiVersion, sandbox = false, timeout = baseTimeoutMs} = {}) {\r"
+      }
+    ],
+    "codeParams": [
+      "*"
+    ],
+    "docParams": [
+      "apiKey",
+      "version",
+      "sandbox",
+      "timeout"
+    ]
+  },
+  {
+    "name": "RebillyExperimentalAPI",
+    "filePath": "src/index.js",
+    "lines": [
+      {
+        "lineNumber": 39,
+        "line": "/**\r"
+      },
+      {
+        "lineNumber": 40,
+        "line": " * Create an instance of the experimental Rebilly API\r"
+      },
+      {
+        "lineNumber": 41,
+        "line": " * @param apiKey {string} private API key; if provided will be used for all requests\r"
+      },
+      {
+        "lineNumber": 42,
+        "line": " * @param sandbox {boolean} whether to use the sandbox endpoint or the live\r"
+      },
+      {
+        "lineNumber": 43,
+        "line": " * @param timeout {number} timeout in milliseconds\r"
+      },
+      {
+        "lineNumber": 44,
+        "line": " * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}\r"
+      },
+      {
+        "lineNumber": 45,
+        "line": " * @constructor\r"
+      },
+      {
+        "lineNumber": 46,
+        "line": " */\r"
+      },
+      {
+        "lineNumber": 47,
+        "line": "function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs} = {}) {\r"
+      }
+    ],
+    "codeParams": [
+      "*"
+    ],
+    "docParams": [
+      "apiKey",
+      "sandbox",
+      "timeout"
+    ]
+  }
+]
