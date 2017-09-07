@@ -42,6 +42,10 @@ export default function CouponsResource({apiHandler}) {
 
         async redeem({data}) {
             return await apiHandler.post(`coupons-redemptions`, data);
+        },
+
+        async setExpiry({redemptionCode = '', data}) {
+            return await apiHandler.post(`coupons/${redemptionCode}/expiration`, data);
         }
     };
 };
