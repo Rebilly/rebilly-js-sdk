@@ -15,7 +15,7 @@ describe('when using the Errors object', () => {
         expect(Errors).to.have.property('RebillyForbiddenError');
         expect(Errors).to.have.property('RebillyMethodNotAllowedError');
         expect(Errors).to.have.property('RebillyTimeoutError');
-        expect(Errors).to.have.property('RebillyCancelledError');
+        expect(Errors).to.have.property('RebillyCanceledError');
     });
 });
 

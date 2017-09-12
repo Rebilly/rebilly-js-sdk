@@ -226,7 +226,7 @@ export default function createApiHandler({options}) {
     function processError(error) {
         if (axios.isCancel(error)) {
             //the request was manually cancelled by a token
-            throw new Errors.RebillyCancelledError(error);
+            throw new Errors.RebillyCanceledError(error);
         }
         else if (error.response) {
             switch (Number(error.response.status)) {

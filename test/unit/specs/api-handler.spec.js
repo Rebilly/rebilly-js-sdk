@@ -100,7 +100,7 @@ describe('when I use an API handler', () => {
             expect(true).to.be.equal(false);
         }
         catch (error) {
-            expect(error.name).to.be.equal('RebillyCancelledError');
+            expect(error.name).to.be.equal('RebillyCanceledError');
             expect(error.message).to.be.equal(reason);
         }
 
