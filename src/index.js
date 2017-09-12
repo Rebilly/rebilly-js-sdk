@@ -16,7 +16,7 @@ const baseTimeoutMs = 6000;
  * @param version {string} specify a different version of the API to use than the current stable release
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param timeout {number} timeout in milliseconds
- * @returns {{account, apiKeys, bankAccounts, blacklists, checkoutPages, coupons, customers, customerAuthentication, customEvents, customFields, credentialHashes, disputes, events, files, gatewayAccounts, invoices, layouts, lists, notes, organizations, paymentCards, paymentTokens, paypalAccounts, plans, previews, products, profile, sessions, shippingZones, status, subscriptions, tracking, transactions, threeDSecure, users, webhooks, websites, addRequestInterceptor, removeRequestInterceptor, addResponseInterceptor, removeResponseInterceptor, setTimeout, setProxyAgent, setSessionToken, setApiConsumer, setEndpoints, getCancellationToken}}
+ * @returns {Object}
  * @constructor
  */
 export default function RebillyAPI({apiKey = null, version = baseApiVersion, sandbox = false, timeout = baseTimeoutMs} = {}) {
@@ -42,7 +42,7 @@ export default function RebillyAPI({apiKey = null, version = baseApiVersion, san
  * @param apiKey {string} private API key; if provided will be used for all requests
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param timeout {number} timeout in milliseconds
- * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
+ * @returns {Object}
  * @constructor
  */
 function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs} = {}) {
