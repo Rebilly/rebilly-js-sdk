@@ -179,7 +179,7 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/subscription-renewal-list`, params);
+            return await apiHandler.getAll(`reports/subscription-renewal-list`, params);
         },
 
         async getSubscriptionRenewal({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {

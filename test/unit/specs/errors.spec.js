@@ -1,5 +1,6 @@
 import Errors from '../../../src/errors';
 import chai from 'chai';
+import MockRebillyAPI from '../mock-rebilly-js-sdk';
 
 const expect = chai.expect;
 
@@ -14,10 +15,13 @@ describe('when using the Errors object', () => {
         expect(Errors).to.have.property('RebillyForbiddenError');
         expect(Errors).to.have.property('RebillyMethodNotAllowedError');
         expect(Errors).to.have.property('RebillyTimeoutError');
+        expect(Errors).to.have.property('RebillyCanceledError');
     });
 });
 
 describe('when throwing errors', () => {
+    const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
+
     it('should create an instance with default properties', () => {
         try {
             throw new Errors.RebillyError({error: {message: 'base error'}});
@@ -89,6 +93,22 @@ describe('when throwing errors', () => {
             expect(err.name).to.be.equal('RebillyMethodNotAllowedError');
             expect(err.response).to.be.deep.equal(response);
             expect(err.statusText).to.be.equal(response.statusText);
+        }
+    });
+
+    it('should detect a network error and return the correct type', async () => {
+        try {
+            await api.customers.get({id: 'network-error-customer-id'});
+        } catch (error) {
+            expect(error.name).to.be.equal('RebillyRequestError');
+        }
+    });
+
+    it('should detect a timeout and return the correct error type', async () => {
+        try {
+            await api.customers.get({id: 'timeout-customer-id'});
+        } catch (error) {
+            expect(error.name).to.be.equal('RebillyTimeoutError');
         }
     });
 });

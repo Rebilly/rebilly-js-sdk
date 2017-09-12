@@ -13,7 +13,7 @@ import deepFreeze from './deep-freeze';
  * @prop response {Object}
  * @prop getJSON {Function: Object}
  * @example
- * const api = new RebillyAPI();
+ * const api = RebillyAPI();
  * const customers = api.customers.getAll();
  * const rawData = customers.getJSON();
  * const totalCount = customers.total;
