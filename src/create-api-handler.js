@@ -68,7 +68,7 @@ export default function createApiHandler({options}) {
      * Return a clone of the axios instance headers to prevent shared configuration between all instances.
      * Affects axios 0.16.2.
      * @link https://github.com/mzabriskie/axios/issues/385
-     * @returns {*}
+     * @returns {Object}
      */
     function cloneInstanceHeaders() {
         //axios instance share their configuration as of 0.16.2
@@ -194,7 +194,7 @@ export default function createApiHandler({options}) {
      * Wraps an Axios request to handle both the response and errors and return wrapped objects.
      * @param request {Promise}
      * @param isCollection {boolean} defines whether the request is done to a collection or a member of the API
-     * @returns {Promise.<*>}
+     * @returns {Promise<Member, Collection, Errors>}
      */
     async function wrapRequest(request, {isCollection = false} = {}) {
         try {
@@ -347,7 +347,7 @@ export default function createApiHandler({options}) {
     /**
      * Trigger a DELETE request on the target URL.
      * @param url {string}
-     * @returns {null|*}
+     * @returns {null|Member}
      */
     function del(url) {
         return wrapRequest(instance.delete(url, getRequestConfig()));
@@ -387,7 +387,7 @@ export default function createApiHandler({options}) {
      * @link https://github.com/mzabriskie/axios#request-config
      * @param url {string}
      * @param config {Object}
-     * @returns {Promise.<*>}
+     * @returns {Promise<Member, Collection, Errors>}
      */
     async function download(url, config) {
         try {
