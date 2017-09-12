@@ -88,4 +88,21 @@ describe('when I use an API handler', () => {
         const secondToken = handlerTwo.getInstance().defaults.headers.common['Authorization'];
         expect(firstToken).to.not.be.equal(secondToken);
     });
+
+    it('should allow requests to be canceled', async () => {
+        const token = api.getCancellationToken();
+        const reason = 'Cancelled request manually';
+        expect(token.cancel).to.be.a('function');
+        try {
+            setTimeout(() => token.cancel(reason), 500);
+            await api.customers.get({id: 'cancellable-customer-id'});
+            //this assertion should never run
+            expect(true).to.be.equal(false);
+        }
+        catch (error) {
+            expect(error.name).to.be.equal('RebillyCancelledError');
+            expect(error.message).to.be.equal(reason);
+        }
+
+    });
 });

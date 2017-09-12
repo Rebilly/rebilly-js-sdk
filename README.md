@@ -68,6 +68,7 @@ import {RebillyErrors} from 'rebilly-js-sdk';
 |---|---|---|
 | `RebillyRequestError` | `-` | Generic error when no response is available. |
 | `RebillyTimeoutError` | `-` | The request timed out. |
+| `RebillyCancelledError` | `-` | The request was cancelled before being completed. |
 | `RebillyForbiddenError` | `401` | Indicates an invalid API key or expired session token. |
 | `RebillyNotFoundError` | `404` | Requested resource was not found. |
 | `RebillyMethodNotAllowedError` | `405` | Request method not allowed on this resource. |

@@ -73,5 +73,11 @@ export default function customersMock({adapter}) {
 
     adapter
         .onGet('/customers').reply(200, customers, headers)
-        .onGet('/customers/f9171662-0585-44ac-a8a1-874c8de9db85').reply((config) => [200, customers[0]]);
+        .onGet('/customers/f9171662-0585-44ac-a8a1-874c8de9db85').reply((config) => [200, customers[0]])
+        //delayed response for a specific ID
+        .onGet('/customers/cancellable-customer-id').reply(() => new Promise((resolve) => setTimeout(() => resolve([200, customers[1]]), 1000)));
+    //special cases
+    adapter.onGet('/customers/timeout-customer-id').timeout();
+    adapter.onGet('/customers/network-error-customer-id').networkError();
+
 };

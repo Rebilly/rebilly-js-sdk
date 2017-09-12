@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
+import File from './file';
 import Errors from './errors';
 import cloneDeep from 'clone-deep';
 
@@ -11,6 +12,7 @@ import cloneDeep from 'clone-deep';
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
+    let cancellationToken = null;
 
     /**
      * Create an Axios instance for Rebilly.
@@ -145,11 +147,13 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Returns a cancellation token for the active instance.
-     * @ignore
+     * Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal.
+     * @returns {axios.CancelToken}
      */
     function getCancellationToken() {
-        throw 'Method not implemented';
+        const tokenFactory = axios.CancelToken;
+        cancellationToken = tokenFactory.source();
+        return cancellationToken;
     }
 
     /**
@@ -220,7 +224,11 @@ export default function createApiHandler({options}) {
      * @param error {Object}
      */
     function processError(error) {
-        if (error.response) {
+        if (axios.isCancel(error)) {
+            //the request was manually cancelled by a token
+            throw new Errors.RebillyCancelledError(error);
+        }
+        else if (error.response) {
             switch (Number(error.response.status)) {
                 case 401: //unauthorized
                     throw new Errors.RebillyForbiddenError(error);
@@ -264,13 +272,26 @@ export default function createApiHandler({options}) {
     }
 
     /**
+     * Combines parameters with other configurations settings for all requests. If present the cancellation token will be injected.
+     * @param configuration
+     * @returns {Object}
+     */
+    function getRequestConfig(configuration = {}) {
+        let config = cleanUpParameters(configuration);
+        if (cancellationToken) {
+            config = {...config, cancelToken: cancellationToken.token};
+        }
+        return config;
+    }
+
+    /**
      * Trigger a GET request on the target URL and return the member received in the response.
      * @param url {string}
      * @param params {Object=}
      * @returns {Member} member
      */
     function get(url, params = {}) {
-        return wrapRequest(instance.get(url, cleanUpParameters({params})));
+        return wrapRequest(instance.get(url, getRequestConfig({params})));
     }
 
     /**
@@ -280,7 +301,7 @@ export default function createApiHandler({options}) {
      * @returns {Collection} collection
      */
     function getAll(url, params) {
-        return wrapRequest(instance.get(url, cleanUpParameters({params})), {isCollection: true});
+        return wrapRequest(instance.get(url, getRequestConfig({params})), {isCollection: true});
     }
 
     /**
@@ -300,7 +321,7 @@ export default function createApiHandler({options}) {
             delete config.headers.common['REB-APIKEY'];
             delete config.headers.common['Authorization'];
         }
-        return wrapRequest(instance.post(url, data, config));
+        return wrapRequest(instance.post(url, data, getRequestConfig(config)));
     }
 
     /**
@@ -310,7 +331,7 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function put(url, data) {
-        return wrapRequest(instance.put(url, data));
+        return wrapRequest(instance.put(url, data, getRequestConfig()));
     }
 
     /**
@@ -320,7 +341,7 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function patch(url, data) {
-        return wrapRequest(instance.patch(url, data));
+        return wrapRequest(instance.patch(url, data, getRequestConfig()));
     }
 
     /**
@@ -329,7 +350,7 @@ export default function createApiHandler({options}) {
      * @returns {null|*}
      */
     function del(url) {
-        return wrapRequest(instance.delete(url));
+        return wrapRequest(instance.delete(url, getRequestConfig()));
     }
 
     /**
@@ -342,18 +363,18 @@ export default function createApiHandler({options}) {
      */
     async function create(url, id, data) {
         if (id === '') {
-            return wrapRequest(instance.post(url, data));
+            return post(url, data);
         }
         else {
             try {
-                const item = await wrapRequest(instance.get(url));
+                const item = await get(url);
                 if (item.response.status === 200) {
                     throw new Errors.RebillyConflictError({message: 'Member already exists. Please use a different ID.'});
                 }
             }
             catch (error) {
                 if (error.name === 'RebillyNotFoundError') {
-                    return wrapRequest(instance.put(url, data));
+                    return put(url, data);
                 }
                 //throw unexpected errors
                 throw error;
@@ -362,7 +383,7 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Trigger a get call to the specified URL without converting the response into a Member. Use the config object to specify headers and desired response type.
+     * Returns a File by triggering a get call to the specified URL without converting the response into a Member. Use the config object to specify headers and desired response type.
      * @link https://github.com/mzabriskie/axios#request-config
      * @param url {string}
      * @param config {Object}
@@ -370,15 +391,8 @@ export default function createApiHandler({options}) {
      */
     async function download(url, config) {
         try {
-            const response = await instance.get(url, cleanUpParameters(config));
-            return {
-                response: {
-                    status: response.status,
-                    statusText: response.statusText,
-                    headers: response.headers
-                },
-                data: response.data
-            };
+            const response = await instance.get(url, getRequestConfig(config));
+            return new File(response);
         }
         catch (error) {
             return processError(error);

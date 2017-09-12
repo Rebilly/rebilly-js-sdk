@@ -8,7 +8,7 @@ export default function createApiTestHandler({options}) {
     const instance = apiHandler.getInstance();
     //setup an adapter on the current instance
     const adapter = new MockAdapter(instance);
-    //set up mocks on the current adapter
+    //setup mocks on the current adapter
     Object.values(mocks).forEach(mock => mock({adapter}));
     return apiHandler;
 };

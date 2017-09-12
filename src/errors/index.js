@@ -42,6 +42,12 @@ class RebillyTimeoutError extends RebillyError {
     }
 }
 
+class RebillyCancelledError extends RebillyError {
+    constructor(error) {
+        super({error, name: 'RebillyCancelledError'});
+    }
+}
+
 const Errors = {
     RebillyError,
     RebillyRequestError,
@@ -50,7 +56,8 @@ const Errors = {
     RebillyConflictError,
     RebillyForbiddenError,
     RebillyMethodNotAllowedError,
-    RebillyTimeoutError
+    RebillyTimeoutError,
+    RebillyCancelledError
 };
 
 export default Errors;
