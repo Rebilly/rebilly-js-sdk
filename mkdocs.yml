@@ -1,2 +1,30 @@
+#project information
 site_name: Rebilly JS SDK
+site_description: Official Rebilly JS SDK Documentation
+
+#theme
 theme_dir: 'mkdocs-material/material'
+
+#repo information
+repo_name: 'Rebilly JS SDK'
+repo_url: 'https://github.com/Rebilly/rebilly-js-sdk'
+
+# Copyright
+copyright: 'Copyright &copy; 2017 Rebilly Inc.'
+
+#extensions
+markdown_extensions:
+  - admonition
+  - codehilite
+  - meta
+  - toc(permalink=true)
+  - pymdownx.inlinehilite
+  - pymdownx.critic
+  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+
+#page tree
+pages:
+  - Introduction: index.md
+  - Getting Started: getting-started.md
