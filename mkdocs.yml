@@ -28,3 +28,13 @@ markdown_extensions:
 pages:
   - Introduction: index.md
   - Getting Started: getting-started.md
+  - Reference:
+    - RebillyAPI: reference/rebilly-api.md
+    - RebillyExperimentalAPI: reference/rebilly-experimental-api.md
+    - RebillyErrors: reference/rebilly-errors.md
+    - Resources:
+      - Accounts: reference/resources/accounts.md
+    - Experimental:
+          - Accounts: reference/resources/experimental/accounts.md
+  - License: license.md
+
