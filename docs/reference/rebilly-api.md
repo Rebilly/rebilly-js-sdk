@@ -57,12 +57,12 @@ Removes a specific request interceptor from the current API instance.
 **Example**
 
 ```js
-//set reference to interceptor
+// set reference to interceptor
 const interceptor = api.addRequestInterceptor({thenDelegate: (config) => {
     config.params['extra-query-param'] = 'foobar';
     return config;
 }});
-//remove via reference
+// remove via reference
 api.removeRequestInterceptor(interceptor);
 ```
 
@@ -81,7 +81,7 @@ Adds a response interceptor to the current API instance. Wrapped around Axios' r
 
 ```js
 api.addResponseInterceptor({thenDelegate: (response) => {
-    //modify reponse data before having it processed by the API client
+    // modify reponse data before having it processed by the API client
     response.data.shift(); //removed first element
     return response;
 }});
@@ -103,12 +103,12 @@ Removes a specific response interceptor from the current API instance.
 **Example**
 
 ```js
-//set reference to interceptor
+// set reference to interceptor
 const interceptor = api.addResponseInterceptor({thenDelegate: (response) => {
     response.data.shift();
     return config;
 }});
-//remove via reference
+// remove via reference
 api.removeResponseInterceptor(interceptor);
 ```
 
@@ -119,6 +119,41 @@ api.removeResponseInterceptor(interceptor);
 | interceptor | Function | - | The reference to the previously added response interceptor that should be removed from the current instance. |
 
 ### getCancellationToken
+<div class="method"><code><strong>getCancellationToken</strong>() -> <span class="return">{CancelToken}</span></code></div>
+
+Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal. Can be used to cancel any ongoing request. This feature is useful for stopping requests that are no longer required to complete.
+
+==Since 0.12.0==
+
+**Example**
+
+```js
+// once created the token will be used for each subsequent API request
+const token = api.getCancellationToken();
+// when cancelling the request, a message can be provided
+token.cancel('Cancelled request manually');
+
+// any ongoing request will be canceled by the same token
+try {
+    // trigger a request
+    await api.customers.get({id: 'cancellable-customer-id'});
+} catch(error) {
+    // you can detect if a request was canceled by checking 
+    // the error.name
+    if (error.name === 'RebillyCanceledError') {
+        // the message provided to 'token.cancel' will be reflected here
+        console.log(error.message) // returns 'Cancelled request manually'     
+    } else {
+       // normal error handling 
+    }
+}
+```
+
+**Returns**
+
+The global cancellation token. An instance of `axios.CancelToken`. Exposes method `cancel(message)`.
+
+Type `CancelToken`
 
 ### setTimeout
 <div class="method"><code><strong>setTimeout</strong>(<span class="prop">timeout</span>)</code></div>
@@ -138,10 +173,65 @@ api.setTimeout(10000);
 | timeout | number | - | Timeout delay in milliseconds. |
 
 ### setSessionToken
+<div class="method"><code><strong>setSessionToken</strong>(<span class="prop">token</span>)</code></div>
+
+Use a JWT session token to identify the API requests. This removes the private API key header if present. This method of authentication should be applied instead of the *private API key* when the client is used in a browser.
+
+To retrieve a session token, first initialize the API client without an API key and use the sign in resource to login the user to Rebilly. The token will be available in the response fields.
+
+**Example**
+
+```js
+// instantiate an unauthorized API client
+const api = RebillyAPI();
+
+// build the sign in payload
+const payload = {data: {email, password, expiredTime}};
+
+// the 'signIn' method does not require API authorization to complete
+const response = await api.account.signIn(payload);
+
+// set the session token for future API requests that require
+// an authorization using the response fields
+api.setSessionToken(response.fields.token);
+
+// this request will be authorized using the token
+const customers = await api.customers.getAll();
+```
 
 ### setEndpoints
+<div class="method"><code><strong>setEndpoints</strong>({<span class="prop">live</span><span class="optional" title="optional">opt</span>, <span class="prop">sandbox</span><span class="optional" title="optional">opt</span>})</code></div>
+
+Update the endpoints URL for live, sandbox or both mode in the current API instance's active URL. This is useful for testing a different version of the API.
+
+!!! warning "Securing Communications"
+    When modifying the API endpoints always use **HTTPS** for a production environment. 
+
+**Example**
+
+```js
+api.setEndpoints({live: 'https://api.rebilly.com/experimental/version/url'});
+```
+
+**Parameters**
+
+| Name | Type | Attribute | Description |
+| - | - | - | - |
+| live | string | optional | URL for the live API mode. |
+| sandbox | string | optional | URL for the sandbox API mode. |
 
 ### setProxyAgent
+<div class="method"><code><strong>setProxyAgent</strong>({<span class="prop">host</span>, <span class="prop">port</span>, <span class="prop">auth</span>})</code></div>
+
+Define a proxy for the current API instance. Authorized using **HTTP Basic** credentials.
+
+**Parameters**
+
+| Name | Type | Attribute | Description |
+| - | - | - | - |
+| host | string | - | Hostname of the proxy server. |
+| port | number | - | Port of the proxy server. |
+| auth | Object | - | Basic credentials to connect to the proxy server. |
 
 ### setApiConsumer
 

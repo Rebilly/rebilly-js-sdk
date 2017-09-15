@@ -26,6 +26,7 @@ markdown_extensions:
   - pymdownx.betterem(smart_enable=all)
   - pymdownx.smartsymbols
   - pymdownx.superfences
+  - pymdownx.mark
 
 #page tree
 pages:

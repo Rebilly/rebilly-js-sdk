@@ -16,4 +16,9 @@ div.method .optional {
     font-size: 75%;
     font-weight: 800;
     color: #ec407a;
+    padding-right:0.5em;
+}
+
+div.method .return {
+    color: #ec407a;
 }
