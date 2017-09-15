@@ -223,7 +223,23 @@ api.setEndpoints({live: 'https://api.rebilly.com/experimental/version/url'});
 ### setProxyAgent
 <div class="method"><code><strong>setProxyAgent</strong>({<span class="prop">host</span>, <span class="prop">port</span>, <span class="prop">auth</span>})</code></div>
 
-Define a proxy for the current API instance. Authorized using **HTTP Basic** credentials.
+Define a proxy for the current API instance. Authorized using **HTTP Basic** credentials. 
+
+**Example**
+
+```js
+const config = {
+    host: '127.0.0.1',
+    port: 9000,
+    auth: {
+        //HTTP Basic
+        username: 'foobar',
+        password: 'fuubar'
+    }
+};
+//all subsequent API requests will pass through the proxy
+api.setProxyAgent(config);
+```
 
 **Parameters**
 
@@ -231,9 +247,24 @@ Define a proxy for the current API instance. Authorized using **HTTP Basic** cre
 | - | - | - | - |
 | host | string | - | Hostname of the proxy server. |
 | port | number | - | Port of the proxy server. |
-| auth | Object | - | Basic credentials to connect to the proxy server. |
+| auth | Object | - | Basic credentials to connect to the proxy server. <br><br> **Properties**<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>username</td><td>string</td><td>The username required for basic authentication.</td></tr><tr><td>password</td><td>string</td><td>The password required for basic authentication.</td></tr></tbody></table> |
 
 ### setApiConsumer
+<div class="method"><code><strong>setApiConsumer</strong>(<span class="prop">consumerId</span>)</code></div>
 
+Define a consumer identification **HTTP header** string for use with Rebilly. This allows you to identify your app in the API logs.
 
+!!! tip
+    Defining an API consumer is useful for filtering your integration API logs from those who use Rebilly's user interface.
 
+**Example**
+
+```js
+api.setApiConsumer('Acme Inc 1.0.4');
+``` 
+
+**Parameters**
+
+| Name | Type | Attribute | Description |
+| - | - | - | - |
+| consumerId | string | optional | A string used to identify your application in the API logs. |
