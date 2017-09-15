@@ -4,6 +4,8 @@ site_description: Official Rebilly JS SDK Documentation
 
 #theme
 theme_dir: 'mkdocs-material/material'
+extra_css:
+  - 'styles/extra.css'
 
 #repo information
 repo_name: 'Rebilly JS SDK'
@@ -18,6 +20,7 @@ markdown_extensions:
   - codehilite
   - meta
   - toc(permalink=true)
+  - attr_list
   - pymdownx.inlinehilite
   - pymdownx.critic
   - pymdownx.betterem(smart_enable=all)

@@ -1,0 +1,19 @@
+div.method {
+    padding: 10px;
+    background-color: #eee;
+}
+
+div.method .prop {
+    color: #3f51b5
+}
+
+div.method .optional {
+    font-style: italic;
+    text-transform: uppercase;
+    vertical-align: baseline;
+    position: relative;
+    bottom: -0.5em;
+    font-size: 75%;
+    font-weight: 800;
+    color: #ec407a;
+}
