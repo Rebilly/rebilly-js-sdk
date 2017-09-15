@@ -1,9 +1,10 @@
 export default function WebhooksResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null} = {}) {
+        async getAll({limit = null, offset = null, filter = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                filter
             };
             return await apiHandler.getAll(`webhooks`, params);
         },
