@@ -1,6 +1,6 @@
 # RebillyExperimentalAPI
 
-Experimental Rebilly API client that can break backward-compatibility.
+Experimental Rebilly API client that can break backward-compatibility. This client contains compute-heavy features like reports and statistics and is bound to change over time.
 
 **API Spec**
 
@@ -14,7 +14,7 @@ All client API configuration parameters are optional. However a secret API key c
 
 ##### Parameters
 ```js
-const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
+const api = RebillyExperimentalAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
 ```
 
 | Option | Type | Default | Description |
@@ -186,7 +186,7 @@ To retrieve a session token, first initialize the API client without an API key 
 
 ```js
 // instantiate an unauthorized API client
-const api = RebillyAPI();
+const api = RebillyExperimentalAPI();
 
 // build the sign in payload
 const payload = {data: {email, password, expiredTime}};
