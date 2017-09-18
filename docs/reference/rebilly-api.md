@@ -5,6 +5,13 @@ Standard Rebilly API client that will be backward-compatible within each major r
 
 See the [Rebilly API spec](https://rebilly.github.io/RebillyAPI/) for full details on the different API calls exposed within this client.
 
+## Importing
+The `RebillyAPI` factory is the default export of the `rebilly-js-sdk` package.
+
+```js
+import RebillyAPI from 'rebilly-js-sdk';
+```
+
 ## Configuration
 All client API configuration parameters are optional. However a secret API key can only be provided at instantiation.
 
@@ -124,6 +131,8 @@ api.removeResponseInterceptor(interceptor);
 Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal. Can be used to cancel any ongoing request. This feature is useful for stopping requests that are no longer required to complete.
 
 ==Since 0.12.0==
+
+> See [RebillyErrors][78]
 
 **Example**
 
@@ -280,13 +289,13 @@ Resources are accessible at the root of the API client and represent a domain fo
 api.customers.getAll({offset: 100});
 ```
 
-### Accounts
-`:::js api.accounts`
+### Account
+`:::js api.account`
 
 Allows a new user to sign in or sign up to Rebilly. Also exposes methods for activating a new user account, triggering a password reset or a sandbox mode reset. 
 
 !!! info ""
-    See the [**Accounts resource**][1] for detailed method information.
+    See the [**Account resource**][1] for detailed method information.
     
 ### API Keys
 `:::js api.apiKeys`
@@ -631,24 +640,25 @@ Create and manage websites. The website is related to each invoice and each paym
     See the [**Websites resource**][1] for detailed method information.
 
 
-[1]: ../reference/resources/account
-[2]: ../reference/resources/account
-[3]: ../reference/resources/account
-[4]: ../reference/resources/account
-[5]: ../reference/resources/account
-[6]: ../reference/resources/account
-[7]: ../reference/resources/account
-[8]: ../reference/resources/account
-[9]: ../reference/resources/account
-[10]: ../reference/resources/account
-[11]: ../reference/resources/account
-[12]: ../reference/resources/account
-[13]: ../reference/resources/account
-[14]: ../reference/resources/account
-[15]: ../reference/resources/account
-[16]: ../reference/resources/account
-[17]: ../reference/resources/account
-[18]: ../reference/resources/account
-[19]: ../reference/resources/account
-[20]: ../reference/resources/account
-[77]: ../reference/resources/account#signin
+[1]: ./resources/account
+[2]: ./resources/account
+[3]: ./resources/account
+[4]: ./resources/account
+[5]: ./resources/account
+[6]: ./resources/account
+[7]: ./resources/account
+[8]: ./resources/account
+[9]: ./resources/account
+[10]: ./resources/account
+[11]: ./resources/account
+[12]: ./resources/account
+[13]: ./resources/account
+[14]: ./resources/account
+[15]: ./resources/account
+[16]: ./resources/account
+[17]: ./resources/account
+[18]: ./resources/account
+[19]: ./resources/account
+[20]: ./resources/account
+[77]: ./resources/account#signin
+[78]: ./rebilly-errors

@@ -27,5 +27,10 @@ Or using NPM:
 npm install rebilly-js-sdk --save
 ```
 
+Then import the library into your project:
+```js
+import RebillyAPI from 'rebilly-js-sdk';
+```
+
 ## Semver
 The JS SDK is released following [Semver 2.0.0](http://semver.org/) guidelines. Each minor and patch version will be backward-compatible and we will strive to introduce incompatible changes using major releases only.

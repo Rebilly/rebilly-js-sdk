@@ -6,6 +6,13 @@ Experimental Rebilly API client that can break backward-compatibility. This clie
 
 See the [Rebilly Reports API spec ](https://rebilly.github.io/RebillyReportsAPI/)  for full details on the different API calls exposed within this client.
 
+## Importing
+The `RebillyExperimentalAPI` factory is part of the `rebilly-js-sdk` package as a *non-default* export.
+
+```js
+import {RebillyExperimentalAPI} from 'rebilly-js-sdk';
+```
+
 ## Configuration
 All client API configuration parameters are optional. However a secret API key can only be provided at instantiation.
 

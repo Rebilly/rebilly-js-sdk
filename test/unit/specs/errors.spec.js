@@ -111,5 +111,10 @@ describe('when throwing errors', () => {
             expect(error.name).to.be.equal('RebillyTimeoutError');
         }
     });
+
+    it('should expose the error name for any given error type', () => {
+        expect(Errors.RebillyNotFoundError.name).to.be.equal('RebillyNotFoundError');
+        expect(Errors.RebillyCanceledError.name).to.be.equal('RebillyCanceledError');
+    });
 });
 
