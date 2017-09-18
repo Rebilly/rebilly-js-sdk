@@ -1,6 +1,7 @@
 #project information
 site_name: Rebilly JS SDK
 site_description: Official Rebilly JS SDK Documentation
+site_favicon: 'images/favicon.ico'
 
 #theme
 theme_dir: 'mkdocs-material/material'
@@ -37,7 +38,7 @@ pages:
     - RebillyExperimentalAPI: reference/rebilly-experimental-api.md
     - RebillyErrors: reference/rebilly-errors.md
     - Resources:
-      - Accounts: reference/resources/accounts.md
+      - Accounts: reference/resources/account.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

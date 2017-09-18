@@ -179,7 +179,7 @@ Use a JWT session token to identify the API requests. This removes the private A
 
 To retrieve a session token, first initialize the API client without an API key and use the sign in resource to login the user to Rebilly. The token will be available in the response fields.
 
-> See [api.accounts.signIn][77]
+> See [api.account.signIn][77]
 
 **Example**
 
@@ -631,24 +631,24 @@ Create and manage websites. The website is related to each invoice and each paym
     See the [**Websites resource**][1] for detailed method information.
 
 
-[1]: ../reference/resources/accounts
-[2]: ../reference/resources/accounts
-[3]: ../reference/resources/accounts
-[4]: ../reference/resources/accounts
-[5]: ../reference/resources/accounts
-[6]: ../reference/resources/accounts
-[7]: ../reference/resources/accounts
-[8]: ../reference/resources/accounts
-[9]: ../reference/resources/accounts
-[10]: ../reference/resources/accounts
-[11]: ../reference/resources/accounts
-[12]: ../reference/resources/accounts
-[13]: ../reference/resources/accounts
-[14]: ../reference/resources/accounts
-[15]: ../reference/resources/accounts
-[16]: ../reference/resources/accounts
-[17]: ../reference/resources/accounts
-[18]: ../reference/resources/accounts
-[19]: ../reference/resources/accounts
-[20]: ../reference/resources/accounts
-[77]: ../reference/resources/accounts#signin
+[1]: ../reference/resources/account
+[2]: ../reference/resources/account
+[3]: ../reference/resources/account
+[4]: ../reference/resources/account
+[5]: ../reference/resources/account
+[6]: ../reference/resources/account
+[7]: ../reference/resources/account
+[8]: ../reference/resources/account
+[9]: ../reference/resources/account
+[10]: ../reference/resources/account
+[11]: ../reference/resources/account
+[12]: ../reference/resources/account
+[13]: ../reference/resources/account
+[14]: ../reference/resources/account
+[15]: ../reference/resources/account
+[16]: ../reference/resources/account
+[17]: ../reference/resources/account
+[18]: ../reference/resources/account
+[19]: ../reference/resources/account
+[20]: ../reference/resources/account
+[77]: ../reference/resources/account#signin

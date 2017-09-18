@@ -22,3 +22,13 @@ div.method .optional {
 div.method .return {
     color: #ec407a;
 }
+
+.warning-block {
+    margin: 0 .25em;
+    padding:  1.0rem;
+    border-radius: .2rem;
+    background-color: rgba(255,235,59,.3);
+    box-shadow: 0.25em 0 0 rgba(255,235,59,.3), -0.25em 0 0 rgba(255,235,59,.3);
+    word-break: break-word;
+    font-size:75%;
+}
