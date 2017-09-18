@@ -252,7 +252,7 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter
             };
-            return await apiHandler.get(`reports/payments-success-by-decline-reason`, params);
+            return await apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
         }
     };
 };
