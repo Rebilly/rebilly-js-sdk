@@ -16,7 +16,7 @@ npm install rebilly-js-sdk --save
 
 ## Usage 
 
-### Importing form the package
+### Importing from the package
 Two different API clients are exposed within the library, the standard client (`RebillyAPI`), and the experimental client (`RebillyExperimentalAPI`). The default package export is `RebillyAPI`.
 #### ES6 or newer
 ```js

@@ -306,7 +306,7 @@ Allows you to manage your API keys. Create or modify existing ones with differen
     For client-side requests using the JS SDK, you must use the session token returned by `:::js api.account.signIn()`. See the [**Accounts resource**][1] for more details.
 
 !!! info ""
-    See the [**API Keys resource**][1] for detailed method information.
+    See the [**API Keys resource**][2] for detailed method information.
     
 ### Bank Accounts
 `:::js api.bankAccounts`
@@ -318,7 +318,7 @@ Bank Accounts are a type of payment instrument used to collect ACH (echeck) paym
 See Payment Instruments. 
 
 !!! info ""
-    See the [**Bank Accounts resource**][1] for detailed method information.
+    See the [**Bank Accounts resource**][3] for detailed method information.
     
 ### Blacklists
 `:::js api.blacklists`
@@ -641,8 +641,8 @@ Create and manage websites. The website is related to each invoice and each paym
 
 
 [1]: ./resources/account
-[2]: ./resources/account
-[3]: ./resources/account
+[2]: ./resources/api-keys
+[3]: ./resources/bank-accounts
 [4]: ./resources/account
 [5]: ./resources/account
 [6]: ./resources/account

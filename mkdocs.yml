@@ -25,9 +25,10 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.critic
   - pymdownx.betterem(smart_enable=all)
-  - pymdownx.smartsymbols
   - pymdownx.superfences
   - pymdownx.mark
+  - pymdownx.snippets(base_path=docs)
+  #  - pymdownx.smartsymbols
 
 #page tree
 pages:
@@ -39,11 +40,15 @@ pages:
     - RebillyErrors: reference/rebilly-errors.md
     - Resources:
       - Accounts: reference/resources/account.md
+      - API Keys: reference/resources/api-keys.md
+      - Bank Accounts: reference/resources/bank-accounts.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
       - Member: reference/types/member.md
       - Collection: reference/types/collection.md
       - File: reference/types/file.md
+  - Guides:
+    - Filters: guides/filters.md
   - License: license.md
 

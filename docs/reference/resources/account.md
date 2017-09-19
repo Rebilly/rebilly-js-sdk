@@ -1,6 +1,6 @@
 # Account <small>`:::js api.account`</small>
 
-> Member of [`RebillyAPI`][1]
+> Member of [`RebillyAPI`][goto-rebillyapi]
 
 Allows a new user to sign in or sign up to Rebilly. Also exposes methods for activating a new user account, triggering a password reset or a sandbox mode reset.
 
@@ -35,12 +35,12 @@ console.log(user.fields.id);
 
 A member exposing the newly created user information.
 
-Type [`Member`][2]
+Type [`Member`][goto-member]
 
 
 **API Spec**
 
-See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
 
 ## signIn
 <div class="method"><code><strong>signIn</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -51,7 +51,7 @@ Optionally you can provide the expired time of the session using `expiredTime` a
 
 <div class="warning-block"><strong>Important</strong>&nbsp;&nbsp;This request does not require API authentication and can be completed as a guest.</div>
 
-> See [api.setSessionToken][4]
+> See [api.setSessionToken][2]
 
 **Example**
 
@@ -78,12 +78,12 @@ console.log(session.fields.token);
 
 A member exposing the session information.
 
-Type [`Member`][2]
+Type [`Member`][goto-member]
 
 
 **API Spec**
 
-See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
 
 ## activate
 <div class="method"><code><strong>activate</strong>({<span class="prop">token</span>}) -> <span class="return">{Member}</span></code></div>
@@ -108,12 +108,12 @@ console.log(activation.response.status); // 204
 
 An empty member without fields. Check the `response` property to validate the expected status code.
 
-Type [`Member`][2]
+Type [`Member`][goto-member]
 
 
 **API Spec**
 
-See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
 ## forgotPassword
 <div class="method"><code><strong>forgotPassword</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -140,25 +140,21 @@ console.log(request.response.status); // 204
 
 An empty member without fields. Check the `response` property to validate the expected status code.
 
-Type [`Member`][2]
+Type [`Member`][goto-member]
 
 
 **API Spec**
 
-See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
 ## resetSandbox
 <div class="method"><code><strong>resetSandbox</strong>() -> <span class="return">{Member}</span></code></div>
 
-Sends an email with a link containing a token to reset user password.
+Reset the contents of the sandbox mode. This is useful for testing and developing your integration with Rebilly.
 
 **Example**
 
 ```js
-const data = {
-    email: 'acme+test@rebilly.com'
-};
-
 const request = await api.account.resetSandbox();
 
 // the request does not return any fields but
@@ -170,13 +166,13 @@ console.log(request.response.status); // 204
 
 An empty member without fields. Check the `response` property to validate the expected status code.
 
-Type [`Member`][2]
+Type [`Member`][goto-member]
 
 
-[1]: ../rebilly-api
-[2]: ../types/member
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1signup%2Fpost
-[4]: ../rebilly-api/#setsessiontoken
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1signin%2Fpost
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1activation~1%7Btoken%7D%2Fpost
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1forgot-password%2Fpost
+[goto-rebillyapi]: ../rebilly-api
+[goto-member]: ../types/member
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1signup%2Fpost
+[2]: ../rebilly-api/#setsessiontoken
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1signin%2Fpost
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1activation~1%7Btoken%7D%2Fpost
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1forgot-password%2Fpost
