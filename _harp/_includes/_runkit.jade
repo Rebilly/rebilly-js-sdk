@@ -1,7 +1,0 @@
-mixin runKitNotebook(id, code)
-    div(id=id)
-    script.
-        (function(){var notebook = RunKit.createNotebook({
-            element: document.getElementById("#{id}"),
-            source: "!{code}"
-        })})()
