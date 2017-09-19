@@ -132,7 +132,7 @@ Returns a cancellation token for the active instance. Based on the withdrawn can
 
 ==Since 0.12.0==
 
-> See [RebillyErrors][78]
+> See [RebillyErrors][goto-errors]
 
 **Example**
 
@@ -188,7 +188,7 @@ Use a JWT session token to identify the API requests. This removes the private A
 
 To retrieve a session token, first initialize the API client without an API key and use the sign in resource to login the user to Rebilly. The token will be available in the response fields.
 
-> See [api.account.signIn][77]
+> See [api.account.signIn][goto-account-signin]
 
 **Example**
 
@@ -336,7 +336,7 @@ Rebilly has blacklists of customer Ids, emails, ip addresses, bins and payment c
 Create and manage checkout pages. Fully hosted by Rebilly, checkout pages allow your customers to easily complete transactions using your plans without any programming requirements.
 
 !!! info ""
-    See the [**Checkout Pages resource**][1] for detailed method information.
+    See the [**Checkout Pages resource**][5] for detailed method information.
     
 ### Contacts
 `:::js api.contacts`
@@ -344,7 +344,7 @@ Create and manage checkout pages. Fully hosted by Rebilly, checkout pages allow 
 Define contact information for your customers. Manage multiple addresses for the same customer.
 
 !!! info ""
-    See the [**Contacts resource**][1] for detailed method information.
+    See the [**Contacts resource**][6] for detailed method information.
 
 ### Coupons
 `:::js api.coupons`
@@ -352,7 +352,7 @@ Define contact information for your customers. Manage multiple addresses for the
 Create permanent, time or usage restricted discount coupons for your customers to apply to invoices, subscriptions and plans.
 
 !!! info ""
-    See the [**Checkout Pages resource**][1] for detailed method information.
+    See the [**Checkout Pages resource**][7] for detailed method information.
 
 ### Credential Hashes
 `:::js api.credentialHashes`
@@ -360,7 +360,7 @@ Create permanent, time or usage restricted discount coupons for your customers t
 Generate credential hashes to authorize your webhooks or emails in various parts of Rebilly. 
 
 !!! info ""
-    See the [**Credential Hashes resource**][1] for detailed method information.
+    See the [**Credential Hashes resource**][8] for detailed method information.
 
 ### Custom Events
 `:::js api.customEvents`
@@ -370,7 +370,7 @@ Create custom events to be triggered when certain system events happen in Rebill
 See Rules Engine.  
 
 !!! info ""
-    See the [**Custom Events resource**][1] for detailed method information.
+    See the [**Custom Events resource**][9] for detailed method information.
 
 ### Custom Fields
 `:::js api.customFields`
@@ -378,7 +378,7 @@ See Rules Engine.
 Create and manage custom fields to be added to other Resources. A variety of fields are supported from datetime to booleans.
 
 !!! info ""
-    See the [**Custom Fields resource**][1] for detailed method information.
+    See the [**Custom Fields resource**][10] for detailed method information.
 
 ### Customer Authentication
 `:::js api.customerAuthentication`
@@ -386,7 +386,7 @@ Create and manage custom fields to be added to other Resources. A variety of fie
 Create and manage login credentials for your customers. This feature can be used to integrate Rebilly directly into your own website and display your customers their subscription or product information. 
 
 !!! info ""
-    See the [**Custom Fields resource**][1] for detailed method information.
+    See the [**Custom Fields resource**][11] for detailed method information.
 
 ### Customers
 `:::js api.customers`
@@ -394,7 +394,7 @@ Create and manage login credentials for your customers. This feature can be used
 Create and manage your customers and their lead sources. Customers are associated with payment cards, subscriptions, invoices and other miscellaneous relationship models.
 
 !!! info ""
-    See the [**Customers resource**][1] for detailed method information.
+    See the [**Customers resource**][12] for detailed method information.
 
 ### Disputes
 `:::js api.disputes`
@@ -402,7 +402,7 @@ Create and manage your customers and their lead sources. Customers are associate
 Manage disputes for your customers' transactions and track the progress of existing disputes internally. It is a term that collectively means chargebacks and retrievals in Rebilly.
 
 !!! info ""
-    See the [**Disputes resource**][1] for detailed method information.
+    See the [**Disputes resource**][13] for detailed method information.
     
 ### Events
 `:::js api.events`
@@ -414,7 +414,7 @@ The actions vary depending on the event triggered. From automatic gateway accoun
 See Rules Engine.  
 
 !!! info ""
-    See the [**Events resource**][1] for detailed method information.
+    See the [**Events resource**][14] for detailed method information.
 
 ### Files
 `:::js api.files`
@@ -422,7 +422,7 @@ See Rules Engine.
 Upload and attach files to specific Resources. This feature is useful for adding important information related to customers and their life cycle within your business.  
 
 !!! info ""
-    See the [**Files resource**][1] for detailed method information.
+    See the [**Files resource**][15] for detailed method information.
 
 ### Gateway Accounts
 `:::js api.gatewayAccounts`
@@ -434,7 +434,7 @@ A payment gateway is an e-commerce application service provider service that aut
 See Supported Gateway Accounts.
 
 !!! info ""
-    See the [**Gateway Accounts resource**][1] for detailed method information.
+    See the [**Gateway Accounts resource**][16] for detailed method information.
 
 ### Invoices
 `:::js api.invoices`
@@ -449,7 +449,7 @@ See also:
 - Issuing an Invoice
 
 !!! info ""
-    See the [**Invoices resource**][1] for detailed method information.
+    See the [**Invoices resource**][17] for detailed method information.
 
 ### Layouts
 `:::js api.layouts`
@@ -457,7 +457,7 @@ See also:
 Create and manage your plan layouts. Layouts are a collection of plans, in a specific order, which you may present to a customer (or prospective customer) on a *pricing* or *plans* page integrated into your website.  
 
 !!! info ""
-    See the [**Layouts resource**][1] for detailed method information.
+    See the [**Layouts resource**][18] for detailed method information.
 
 ### Lists (Rules Engine)
 `:::js api.lists`
@@ -465,7 +465,7 @@ Create and manage your plan layouts. Layouts are a collection of plans, in a spe
 Create and manage your lists. A *list* in an array of values that are stored in the database. The main purpose of a *list* is its usage in Rules Engine, to provide a way to change a *rule* criteria without having to change the *rule* itself.  
 
 !!! info ""
-    See the [**Lists resource**][1] for detailed method information.
+    See the [**Lists resource**][19] for detailed method information.
     
 ### Notes
 `:::js api.notes`
@@ -473,7 +473,7 @@ Create and manage your lists. A *list* in an array of values that are stored in 
 Leave notes on a customer record to have a handy location to share with others who may interface with the customer. It's great for customer service.    
 
 !!! info ""
-    See the [**Notes resource**][1] for detailed method information.
+    See the [**Notes resource**][20] for detailed method information.
     
 ### Organizations
 `:::js api.organizations`
@@ -484,7 +484,7 @@ Organizations include the name and address of the entities related to your accou
     Organizations are shared between the *Live* and *Sandbox* modes.    
 
 !!! info ""
-    See the [**Organizations resource**][1] for detailed method information.
+    See the [**Organizations resource**][21] for detailed method information.
 
 ### Payment Cards
 `:::js api.paymentCards`
@@ -494,7 +494,7 @@ Used to create new payment cards and attach them to an existing customer. Can al
 See Payment Instruments. 
 
 !!! info ""
-    See the [**Payment Cards resource**][1] for detailed method information.
+    See the [**Payment Cards resource**][22] for detailed method information.
 
 ### Payment Tokens
 `:::js api.paymentTokens`
@@ -506,7 +506,7 @@ Payment tokens are used to reduce the scope of PCI DSS compliance. A payment tok
 See Rebilly.js library    
 
 !!! info ""
-    See the [**Payment Tokens resource**][1] for detailed method information.
+    See the [**Payment Tokens resource**][23] for detailed method information.
 
 ### Paypal Accounts
 `:::js api.paypalAccounts`
@@ -516,7 +516,7 @@ Used to attach Paypal accounts to an existing customer. Can also deactivate Payp
 See Payment Instruments. 
 
 !!! info ""
-    See the [**Paypal Accounts resource**][1] for detailed method information.
+    See the [**Paypal Accounts resource**][24] for detailed method information.
 
 ### Plans
 `:::js api.plans`
@@ -524,7 +524,7 @@ See Payment Instruments.
 Create and manage plans. Used to describe a subscription. A plan may have optional setup fees, an optional trial period and fees, and an optional recurring fees and frequency. A plan may also expire, or be valid only for a limited number of recurrences. 
 
 !!! info ""
-    See the [**Plans resource**][1] for detailed method information.
+    See the [**Plans resource**][25] for detailed method information.
 
 ### Previews
 `:::js api.previews`
@@ -532,7 +532,7 @@ Create and manage plans. Used to describe a subscription. A plan may have option
 Preview the result of event triggered actions like webhooks and emails both globally and in the Rules Engine. 
 
 !!! info ""
-    See the [**Previews resource**][1] for detailed method information.
+    See the [**Previews resource**][26] for detailed method information.
 
 ### Products
 `:::js api.products`
@@ -540,7 +540,7 @@ Preview the result of event triggered actions like webhooks and emails both glob
 Create and manage products. You may attach them to plans. Products can have a tax category, accounting code and may require shipping.
 
 !!! info ""
-    See the [**Products resource**][1] for detailed method information.
+    See the [**Products resource**][27] for detailed method information.
 
 ### Profile
 `:::js api.profile`
@@ -548,7 +548,7 @@ Create and manage products. You may attach them to plans. Products can have a ta
 Manage the profile of the current user. When using a secret API key the profile is attached to the owner of the API key, while when using a session token the profile is attached to the authenticated user via sign in.
 
 !!! info ""
-    See the [**Profile resource**][1] for detailed method information.
+    See the [**Profile resource**][28] for detailed method information.
 
 ### Sessions
 `:::js api.sessions`
@@ -558,7 +558,7 @@ Create and manage sessions. Session tokens are an alternate method to API authen
 This token can be used to authenticate to the API. In addition, the session can be set to expire at a particular time, and has very granular control over permissions. Use the token to then authenticate for further requests to the Rebilly API.
 
 !!! info ""
-    See the [**Sessions resource**][1] for detailed method information.
+    See the [**Sessions resource**][29] for detailed method information.
 
 ### Shipping Zones
 `:::js api.shippingZones`
@@ -566,7 +566,7 @@ This token can be used to authenticate to the API. In addition, the session can 
 Create and manage shipping zones. Products that require shipping will automatically have shipping priced base on the shipping zone that matches the destination. Each contains regions and countries that you ship to, and has its own shipping rates.
 
 !!! info ""
-    See the [**Shipping Zones resource**][1] for detailed method information.
+    See the [**Shipping Zones resource**][30] for detailed method information.
 
 ### Status (API)
 `:::js api.status`
@@ -577,7 +577,7 @@ Get the current status of the Rebilly API.
     You can poll this endpoint on interval to check the status of the API.
 
 !!! info ""
-    See the [**Status resource**][1] for detailed method information.
+    See the [**Status resource**][31] for detailed method information.
 
 ### Subscriptions
 `:::js api.subscriptions`
@@ -585,7 +585,7 @@ Get the current status of the Rebilly API.
 Create and manage subscriptions. A subscription is an instance of a plan for a specific customer and website combination.
 
 !!! info ""
-    See the [**Subscriptions resource**][1] for detailed method information.
+    See the [**Subscriptions resource**][32] for detailed method information.
 
 ### Three D Secure (3DS)
 `:::js api.threeDSecure`
@@ -595,7 +595,7 @@ Create and list 3DS entries. 3D Secure is a way to authenticate and protect tran
 The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchant’s site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
 
 !!! info ""
-    See the [**Three D Secure resource**][1] for detailed method information.
+    See the [**Three D Secure resource**][33] for detailed method information.
 
 ### Tracking
 `:::js api.tracking`
@@ -603,7 +603,7 @@ The merchant chooses whether or not to use 3D secure, and this is usually done v
 Inspect tracking data. Tracking is a layer for accessing all the activity (API requests, subscriptions, webhooks, events, etc.), thus providing easier debugging and issues auditing.
 
 !!! info ""
-    See the [**Tracking resource**][1] for detailed method information.
+    See the [**Tracking resource**][34] for detailed method information.
 
 ### Transactions
 `:::js api.transactions`
@@ -611,7 +611,7 @@ Inspect tracking data. Tracking is a layer for accessing all the activity (API r
 Create and manage transactions. A transaction is an instance of an action regarding a payment. It is always related to a customer and a payment method, and can be related to another transaction. Transactions can be scheduled to happen in the future.
 
 !!! info ""
-    See the [**Transactions resource**][1] for detailed method information.
+    See the [**Transactions resource**][35] for detailed method information.
 
 ### Users
 `:::js api.users`
@@ -619,7 +619,7 @@ Create and manage transactions. A transaction is an instance of an action regard
 Create and manage users. A *user* represents a person who can login to Rebilly, and take actions subject to their granted permissions.
 
 !!! info ""
-    See the [**Users resource**][1] for detailed method information.
+    See the [**Users resource**][36] for detailed method information.
 
 ### Webhooks
 `:::js api.webhooks`
@@ -629,7 +629,7 @@ Create and manage webhooks. Webhooks are designed to notify your systems when ce
 They allow you to collect information about those events. Rebilly can send this information to an URL of your choice.
 
 !!! info ""
-    See the [**Webhooks resource**][1] for detailed method information.
+    See the [**Webhooks resource**][37] for detailed method information.
     
 ### Websites
 `:::js api.websites`
@@ -637,14 +637,14 @@ They allow you to collect information about those events. Rebilly can send this 
 Create and manage websites. The website is related to each invoice and each payment gateway account. This feature would allow you to have gateway accounts that are related to multiple websites, or exclusive to particular websites. And gives you more control over your business.
 
 !!! info ""
-    See the [**Websites resource**][1] for detailed method information.
+    See the [**Websites resource**][38] for detailed method information.
 
 
 [1]: ./resources/account
 [2]: ./resources/api-keys
 [3]: ./resources/bank-accounts
 [4]: ./resources/blacklists
-[5]: ./resources/account
+[5]: ./resources/checkout-pages.md
 [6]: ./resources/account
 [7]: ./resources/account
 [8]: ./resources/account
@@ -660,5 +660,24 @@ Create and manage websites. The website is related to each invoice and each paym
 [18]: ./resources/account
 [19]: ./resources/account
 [20]: ./resources/account
-[77]: ./resources/account#signin
-[78]: ./rebilly-errors
+[21]: ./resources/account
+[22]: ./resources/account
+[23]: ./resources/account
+[24]: ./resources/account
+[25]: ./resources/account
+[26]: ./resources/account
+[27]: ./resources/account
+[28]: ./resources/account
+[29]: ./resources/account
+[30]: ./resources/account
+[31]: ./resources/account
+[32]: ./resources/account
+[33]: ./resources/account
+[34]: ./resources/account
+[35]: ./resources/account
+[36]: ./resources/account
+[37]: ./resources/account
+[38]: ./resources/account
+
+[goto-account-signin]: ./resources/account#signin
+[goto-errors]: ./rebilly-errors

@@ -43,6 +43,7 @@ pages:
       - API Keys: reference/resources/api-keys.md
       - Bank Accounts: reference/resources/bank-accounts.md
       - Blacklists: reference/resources/blacklists.md
+      - Checkout Pages: reference/resources/checkout-pages.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

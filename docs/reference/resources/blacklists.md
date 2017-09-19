@@ -132,10 +132,11 @@ Delete a blacklist item by using its `id`. This will remove any restrictions on 
 **Example**
 
 ```js
-const blacklistItem = await api.blacklists.delete({id: 'my-second-key'});
+const request = await api.blacklists.delete({id: 'my-second-key'});
 
-// the blacklist item status will be updated to reflect the modification
-console.log(blacklistItem.fields.status);
+// the request does not return any fields but
+// you can confirm the success using the status code
+console.log(request.response.status); // 204
 ```
 
 

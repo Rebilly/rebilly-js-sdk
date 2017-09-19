@@ -120,7 +120,7 @@ const data = {
     description: 'A better description'
 };
 
-const apiKey = await api.apiKeys.create({id: 'my-second-key', data});
+const apiKey = await api.apiKeys.update({id: 'my-second-key', data});
 ```
 
 
