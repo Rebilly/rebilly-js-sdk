@@ -18,12 +18,14 @@ npm install rebilly-js-sdk --save
 
 ### Importing from the package
 Two different API clients are exposed within the library, the standard client (`RebillyAPI`), and the experimental client (`RebillyExperimentalAPI`). The default package export is `RebillyAPI`.
-#### ES6 or newer
+
+**ES6 or newer**
 ```js
 import RebillyAPI from 'rebilly-js-sdk';
 ```
 
-#### ES5
+**ES5**
+
 The main API client is exposed as `default` in CommonJS.
 ```js
 var RebillyAPI = require('rebilly-js-sdk').default;
@@ -61,6 +63,8 @@ const api = RebillyAPI();
 //then set it as the session token for the current instance
 api.setSessionToken(token);
 ```
+
+> See [api.setSessionToken][goto-setsessiontoken]
 
 ### Configuration
 All client API configuration parameters are optional. However a secret API key can only be provided at instantiation.
@@ -122,3 +126,5 @@ api.customers.getAll()
         console.error(err.message);
     });
 ```
+
+[goto-setsessiontoken]: ./reference/rebilly-api#setsessiontoken

@@ -278,3 +278,9 @@ api.setApiConsumer('Acme Inc 1.0.4');
 | Name | Type | Attribute | Description |
 | - | - | - | - |
 | consumerId | string | optional | A string used to identify your application in the API logs. |
+
+## Resources
+Resources are accessible at the root of the API client and represent a domain for specific API endpoints. Methods within each domain are semantically named and expect a single argument as an object literal with different keys.
+
+!!! tip "Promises"
+    All resource methods return chainable Promises.

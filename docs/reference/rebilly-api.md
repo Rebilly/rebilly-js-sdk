@@ -283,6 +283,9 @@ api.setApiConsumer('Acme Inc 1.0.4');
 ## Resources
 Resources are accessible at the root of the API client and represent a domain for specific API endpoints. Methods within each domain are semantically named and expect a single argument as an object literal with different keys.
 
+!!! tip "Promises"
+    All resource methods return chainable Promises.
+
 **Example**
 ```js
 //get the latest 100 customers starting from the 100th one
@@ -352,7 +355,7 @@ Define contact information for your customers. Manage multiple addresses for the
 Create permanent, time or usage restricted discount coupons for your customers to apply to invoices, subscriptions and plans.
 
 !!! info ""
-    See the [**Checkout Pages resource**][7] for detailed method information.
+    See the [**Coupons resource**][7] for detailed method information.
 
 ### Credential Hashes
 `:::js api.credentialHashes`
@@ -646,7 +649,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [4]: ./resources/blacklists
 [5]: ./resources/checkout-pages.md
 [6]: ./resources/contacts.md
-[7]: ./resources/account
+[7]: ./resources/coupons.md
 [8]: ./resources/account
 [9]: ./resources/account
 [10]: ./resources/account

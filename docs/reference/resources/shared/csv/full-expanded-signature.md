@@ -8,6 +8,6 @@
         <span class="prop">filter</span><span class="optional" title="optional">opt</span>,
         <span class="prop">q</span><span class="optional" title="optional">opt</span>,
         <span class="prop">criteria</span><span class="optional" title="optional">opt</span>
-        }) -> <span class="return">{Collection}</span>
+        }) -> <span class="return">{File}</span>
     </code>
 </div>

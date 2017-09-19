@@ -45,6 +45,7 @@ pages:
       - Blacklists: reference/resources/blacklists.md
       - Checkout Pages: reference/resources/checkout-pages.md
       - Contacts: reference/resources/contacts.md
+      - Coupons: reference/resources/coupons.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
