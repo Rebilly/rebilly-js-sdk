@@ -645,7 +645,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [3]: ./resources/bank-accounts
 [4]: ./resources/blacklists
 [5]: ./resources/checkout-pages.md
-[6]: ./resources/account
+[6]: ./resources/contacts.md
 [7]: ./resources/account
 [8]: ./resources/account
 [9]: ./resources/account

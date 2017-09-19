@@ -44,6 +44,7 @@ pages:
       - Bank Accounts: reference/resources/bank-accounts.md
       - Blacklists: reference/resources/blacklists.md
       - Checkout Pages: reference/resources/checkout-pages.md
+      - Contacts: reference/resources/contacts.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
@@ -51,6 +52,7 @@ pages:
       - Collection: reference/types/collection.md
       - File: reference/types/file.md
   - Guides:
+    - Criteria: guides/criteria.md
     - Filters: guides/filters.md
   - License: license.md
 
