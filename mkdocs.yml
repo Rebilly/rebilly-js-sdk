@@ -8,6 +8,11 @@ theme_dir: 'mkdocs-material/material'
 extra_css:
   - 'styles/extra.css'
 
+extra:
+  palette:
+    primary: 'indigo'
+    accent: 'deep purple'
+
 #repo information
 repo_name: 'Rebilly JS SDK'
 repo_url: 'https://github.com/Rebilly/rebilly-js-sdk'
