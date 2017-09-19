@@ -7,7 +7,8 @@ Allows you to manage your API keys. Create or modify existing ones with differen
 
 
 ## getAll
-<div class="method"><code><strong>getAll</strong>({<span class="prop">limit</span><span class="optional" title="optional">opt</span>, <span class="prop">offset</span><span class="optional" title="optional">opt</span>, <span class="prop">sort</span><span class="optional" title="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
+
+--8<----- "reference/resources/shared/base-signature.md"
 
 Get a collection of API keys. Each entry will be a member.
 
