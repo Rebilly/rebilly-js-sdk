@@ -328,7 +328,7 @@ Manage blacklist items by creating new entries or deleting existing items. Black
 Rebilly has blacklists of customer Ids, emails, ip addresses, bins and payment cards.  A greylist is just like a blacklist, but with an expiration date.
 
 !!! info ""
-    See the [**Blacklists resource**][1] for detailed method information.
+    See the [**Blacklists resource**][4] for detailed method information.
     
 ### Checkout Pages
 `:::js api.checkoutPages`
@@ -643,7 +643,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [1]: ./resources/account
 [2]: ./resources/api-keys
 [3]: ./resources/bank-accounts
-[4]: ./resources/account
+[4]: ./resources/blacklists
 [5]: ./resources/account
 [6]: ./resources/account
 [7]: ./resources/account
