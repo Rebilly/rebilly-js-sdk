@@ -4,7 +4,7 @@ site_description: Official Rebilly JS SDK Documentation
 site_favicon: 'images/favicon.ico'
 
 #theme
-theme_dir: 'mkdocs-material/material'
+theme: 'material'
 extra_css:
   - 'styles/extra.css'
 
