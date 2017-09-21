@@ -368,7 +368,9 @@ Generate credential hashes to authorize your webhooks or emails in various parts
 ### Custom Events
 `:::js api.customEvents`
 
-Create custom events to be triggered when certain system events happen in Rebilly using a schedule. This is useful for sending reminders or completing additional actions based on the schedule. For example, a custom event could be used to send you an email before a customer's subscription is about to expire.
+Create custom events to be triggered when certain system events happen in Rebilly using a schedule. This is useful for sending reminders or completing additional actions based on the schedule. 
+
+For example, a custom event could be used to send you an email before a customer's subscription is about to expire.
 
 See Rules Engine.  
 
@@ -442,7 +444,7 @@ See Supported Gateway Accounts.
 ### Invoices
 `:::js api.invoices`
 
-Issue invoices to your customers and manage their lead sources. Issuing an invoice allows you to calculate or recalculate an invoice’s shipping, taxes, and customer’s redeemed coupons (as applicable, according to coupon configuration and restrictions), and apply them to the invoice.
+Issue invoices to your customers and manage their lead sources. Issuing an invoice allows you to calculate or recalculate an invoiceâs shipping, taxes, and customerâs redeemed coupons (as applicable, according to coupon configuration and restrictions), and apply them to the invoice.
 
 See also:
 
@@ -595,7 +597,7 @@ Create and manage subscriptions. A subscription is an instance of a plan for a s
 
 Create and list 3DS entries. 3D Secure is a way to authenticate and protect transactions. Typically, it's only possible to protect the initial transaction in a subscription with 3D Secure.
 
-The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchant’s site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
+The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchantâs site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
 
 !!! info ""
     See the [**Three D Secure resource**][33] for detailed method information.
@@ -650,8 +652,8 @@ Create and manage websites. The website is related to each invoice and each paym
 [5]: ./resources/checkout-pages.md
 [6]: ./resources/contacts.md
 [7]: ./resources/coupons.md
-[8]: ./resources/account
-[9]: ./resources/account
+[8]: ./resources/credential-hashes.md
+[9]: ./resources/custom-events.md
 [10]: ./resources/account
 [11]: ./resources/account
 [12]: ./resources/account
