@@ -368,7 +368,9 @@ Generate credential hashes to authorize your webhooks or emails in various parts
 ### Custom Events
 `:::js api.customEvents`
 
-Create custom events to be triggered when certain system events happen in Rebilly using a schedule. This is useful for sending reminders or completing additional actions based on the schedule. For example, a custom event could be used to send you an email before a customer's subscription is about to expire.
+Create custom events to be triggered when certain system events happen in Rebilly using a schedule. This is useful for sending reminders or completing additional actions based on the schedule. 
+
+For example, a custom event could be used to send you an email before a customer's subscription is about to expire.
 
 See Rules Engine.  
 
@@ -651,7 +653,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [6]: ./resources/contacts.md
 [7]: ./resources/coupons.md
 [8]: ./resources/credential-hashes.md
-[9]: ./resources/account
+[9]: ./resources/custom-events.md
 [10]: ./resources/account
 [11]: ./resources/account
 [12]: ./resources/account

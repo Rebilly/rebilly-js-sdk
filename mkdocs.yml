@@ -52,6 +52,7 @@ pages:
       - Contacts: reference/resources/contacts.md
       - Coupons: reference/resources/coupons.md
       - Credential Hashes: reference/resources/credential-hashes.md
+      - Custom Events: reference/resources/custom-events.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
