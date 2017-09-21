@@ -14,6 +14,18 @@ export default function TrackingResource({apiHandler}) {
             return await apiHandler.getAll(`tracking/api`, params);
         },
 
+        async getAllWebhookTrackingLogs({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                q,
+                criteria
+            };
+            return await apiHandler.getAll(`tracking/webhooks`, params);
+        },
+
         async downloadApiLogsCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
@@ -31,6 +43,10 @@ export default function TrackingResource({apiHandler}) {
 
         async getApiLog({id}) {
             return await apiHandler.get(`tracking/api/${id}`);
+        },
+
+        async getWebhookTrackingLog({id}) {
+            return await apiHandler.get(`tracking/webhooks/${id}`);
         },
 
         async getAllSubscriptionLogs({limit = null, offset = null, sort = null, filter = null} = {}) {
