@@ -21,7 +21,7 @@ Get a collection of blacklist items. Each entry will be a member.
 // all parameters are optional
 const firstCollection = await api.blacklists.getAll();
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
 const secondCollection = await api.blacklists.getAll(params);
 

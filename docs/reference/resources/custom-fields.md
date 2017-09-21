@@ -18,7 +18,7 @@ Get a collection of custom fields for a specific `resource`. Each entry will be 
 // all parameters except `resource` are optional
 const firstCollection = await api.customFields.getAll({resource: 'customers'});
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {resource: 'customers', limit: 20, offset: 100}; 
 const secondCollection = await api.customFields.getAll(params);
 

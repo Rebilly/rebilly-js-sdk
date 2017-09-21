@@ -20,7 +20,7 @@ Get a collection of custom events. Each entry will be a member.
 // all parameters are optional
 const firstCollection = await api.customEvents.getAll();
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
 const secondCollection = await api.customEvents.getAll(params);
 
@@ -402,7 +402,7 @@ Get a collection of scheduled custom events. Each entry will be a member.
 // all parameters are optional
 const firstCollection = await api.customEvents.getAllScheduled();
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100}; 
 const secondCollection = await api.customEvents.getAllScheduled(params);
 

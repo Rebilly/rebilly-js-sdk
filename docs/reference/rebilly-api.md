@@ -391,7 +391,7 @@ Create and manage custom fields to be added to other Resources. A variety of fie
 Create and manage login credentials for your customers. This feature can be used to integrate Rebilly directly into your own website and display your customers their subscription or product information. 
 
 !!! info ""
-    See the [**Custom Fields resource**][11] for detailed method information.
+    See the [**Customer Authentication resource**][11] for detailed method information.
 
 ### Customers
 `:::js api.customers`
@@ -655,7 +655,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [8]: ./resources/credential-hashes.md
 [9]: ./resources/custom-events.md
 [10]: ./resources/custom-fields.md
-[11]: ./resources/account
+[11]: ./resources/customer-authentication.md
 [12]: ./resources/account
 [13]: ./resources/account
 [14]: ./resources/account

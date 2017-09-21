@@ -18,7 +18,7 @@ Get a collection of contacts. Each entry will be a member.
 // all parameters are optional
 const firstCollection = await api.contacts.getAll();
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
 const secondCollection = await api.contacts.getAll(params);
 
@@ -83,7 +83,7 @@ Get a collection of contacts in CSV format. The first row of data will include t
 // all parameters are optional
 const firstFile = await api.contacts.downloadCSV();
 
-// alternatively you can speciy one or more of them
+// alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
 const secondFile = await api.contacts.downloadCSV(params);
 
