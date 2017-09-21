@@ -654,7 +654,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [7]: ./resources/coupons.md
 [8]: ./resources/credential-hashes.md
 [9]: ./resources/custom-events.md
-[10]: ./resources/account
+[10]: ./resources/custom-fields.md
 [11]: ./resources/account
 [12]: ./resources/account
 [13]: ./resources/account
