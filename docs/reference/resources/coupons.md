@@ -154,6 +154,8 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 
 Get a collection of coupon redemptions. Each entry will be a member. 
 
+A coupon redemption represents an instance where a coupon was activated for a customer.
+
 
 **Example**
 
@@ -190,6 +192,8 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 <div class="method"><code><strong>getRedemption</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
 Get a coupon redemption by its `id`.
+
+A coupon redemption represents an instance where a coupon was activated for a customer.
 
 
 **Example**
