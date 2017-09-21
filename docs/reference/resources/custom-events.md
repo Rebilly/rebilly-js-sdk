@@ -78,7 +78,9 @@ Create a custom event derived from a system event with a specific schedule and c
 Optionally provide a specific `id` to use, or let Rebilly generate one.
 
 !!! info "Custom Event Queue"
-    When created, a new custom event will be queued for integration. This is a *temporary status* while Rebilly processes events. Until the queue is cleared the custom event will not be available for `get` or `getAll` requests.
+    When created, a new custom event will be queued for integration. This is a *temporary state* while Rebilly processes events. Until the queue is cleared the custom event will not be available for `get` or `getAll` requests.
+    
+    Use [customEvents.getScheduled][goto-getscheduled] to view the details of an event still in the queue.
 
 Supported `eventType` values: 
 
@@ -293,7 +295,7 @@ See the [detailed API spec][6]{: target="_blank"} for all payload fields and res
 ## getRulesHistory
 <div class="method"><code><strong>getRulesHistory</strong>({<span class="prop">id</span>, <span class="prop">limit</span><span class="optional">opt</span>, <span class="prop">offset</span><span class="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
 
-Retrieve the change history of the set of rules for the selected custom event. The history is updated each time you change the rules.
+Retrieve the change history of the set of rules for the selected custom event using its `id`. The history is updated each time you change the rules.
 
 !!! info "Version History"
     This method does not return the rulesets for each version. It will only provide you with the time each version was created at. 
@@ -309,26 +311,184 @@ Retrieve the change history of the set of rules for the selected custom event. T
 **Example**
 
 ```js
-const ruleset = await api.customEvents.getRulesHistory({id: 'foobar-001'});
-//the rules are contained within the ruleset
-console.log(ruleset.fields.rules);
+// get the latest 20 versions for this event ID
+const history = await api.customEvents.getRulesVersionNumber({id: 'foobar-001', limit: 20});
+// each item exposes the version and `createdTime`
+history.items.forEach(edit => console.log(edit.fields.version))
 ```
 
 
 **Returns**
 
-A collection exposing the custom event fields.
+A collection exposing the custom event history.
 
-Type [`Member`][goto-member]
+Type [`Collection`][goto-collection]
 
 
 **API Spec**
 
 See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
+## getRulesVersionNumber
+<div class="method"><code><strong>getRulesVersionNumber</strong>({<span class="prop">id</span>, <span class="prop">version</span>}) -> <span class="return">{Member}</span></code></div>
+
+Retrieve the version details of the rules for the selected custom event using its `id`.
+
+!!! info "Version History"
+    This method does not return the rulesets for the requested version. It will only provide you with the time the version was created at. If you need to view the ruleset attached to this version use [customEvents.getRulesVersionDetail][goto-versiondetail].
+
+
+**Example**
+
+```js
+// get version #2 details for this event ID
+const history = await api.customEvents.getRulesVersionNumber({id: 'foobar-001', version: 2});
+// the history exposes the version number and its `createdTime`
+console.log(history.fields.createdTime);
+```
+
+
+**Returns**
+
+A member exposing the version details.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
+
+## getRulesVersionDetail
+<div class="method"><code><strong>getRulesVersionDetail</strong>({<span class="prop">id</span>, <span class="prop">version</span>}) -> <span class="return">{Member}</span></code></div>
+
+Retrieve the ruleset of a specific `version` of the rules for the selected custom event using its `id`.
+
+!!! tip "Ruleset Version"
+    Use this method to retrieve the ruleset of an event at a specific version number.
+
+**Example**
+
+```js
+// get version #2 for this event ID
+const version = await api.customEvents.getRulesVersionDetail({id: 'foobar-001', version: 2});
+// the version exposes the ruleset 
+console.log(version.fields.rules);
+```
+
+**Returns**
+
+A member exposing the version fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][9]{: target="_blank"} for all payload fields and response data.
+
+## getAllScheduled
+
+<div class="method"><code><strong>getAllScheduled</strong>({<span class="prop">limit</span><span class="optional">opt</span>, <span class="prop">offset</span><span class="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
+
+Get a collection of scheduled custom events. Each entry will be a member.
+
+!!! info "Temporary State"
+    Each time a custom event is created it is inserted in an integration queue. It will temporarily remain in the queue until it is processed by Rebilly, at which point it will no longer be visible as a scheduled event.
+
+**Example**
+
+```js
+// all parameters are optional
+const firstCollection = await api.customEvents.getAllScheduled();
+
+// alternatively you can speciy one or more of them
+const params = {limit: 20, offset: 100}; 
+const secondCollection = await api.customEvents.getAllScheduled(params);
+
+// access the collection items, each item is a Member
+secondCollection.items.forEach(customEvent => console.log(customEvent.fields.eventType));
+```
+
+**Parameters**
+
+| Name | Type | Attribute | Description |
+| - | - | - | - |
+| limit | number | Optional | The amount of members to return per request.<br>Defaults to `100`. |
+| offset | number | Optional | Member index from which to start returning results. <br>Defaults to `0`. |
+
+
+**Returns**
+
+A collection of scheduled custom events.
+
+Type [`Collection`][goto-collection]
+
+
+**API Spec**
+
+See the [detailed API spec][10]{: target="_blank"} for all payload fields and response data.
+
+## getScheduled
+<div class="method"><code><strong>getScheduled</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+
+Get a scheduled custom event by its `id`.
+
+!!! info "Temporary State"
+    Scheduled custom events are temporarily in the integration queue until Rebilly processes them.
+
+**Example**
+
+```js
+const scheduledEvent = await api.customEvents.getScheduled({id: 'foobar-002'});
+console.log(scheduledEvent.fields.title);
+```
+
+
+**Returns**
+
+A member exposing the scheduled custom event fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][11]{: target="_blank"} for all payload fields and response data.
+
+## deleteScheduled
+<div class="method"><code><strong>deleteScheduled</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+
+Delete a scheduled custom event by using its `id`.  
+
+
+**Example**
+
+```js
+const request = await api.customEvents.deleteScheduled({id: 'foobar-002'});
+
+// the request does not return any fields but
+// you can confirm the success using the status code
+console.log(request.response.status); // 204
+```
+
+
+**Returns**
+
+An empty member without fields. Check the response property to validate the expected status code.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][12]{: target="_blank"} for all payload fields and response data.
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
+[goto-versiondetail]: #getrulesversiondetail
+[goto-getscheduled]: #getscheduled
 [1]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events%2Fget
 [2]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D%2Fget
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events%2Fpost
@@ -336,3 +496,8 @@ See the [detailed API spec][7]{: target="_blank"} for all payload fields and res
 [5]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules%2Fget
 [6]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules%2Fput
 [7]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1history%2Fget
+[8]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1history~1%7Bversion%7D%2Fget
+[9]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1versions~1%7Bversion%7D%2Fget
+[10]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events%2Fget
+[11]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events~1%7Bid%7D%2Fget
+[12]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events~1%7Bid%7D%2Fdelete
