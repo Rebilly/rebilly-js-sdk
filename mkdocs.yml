@@ -57,6 +57,7 @@ pages:
       - Customers: reference/resources/customers.md
       - Customer Authentication: reference/resources/customer-authentication.md
       - Disputes: reference/resources/disputes.md
+      - Events: reference/resources/events.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
