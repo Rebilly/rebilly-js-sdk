@@ -136,7 +136,7 @@ const data = {
 const firstContact = await api.contacts.create({data});
 
 // or you can provide one
-const secondContact= await api.contacts.create({id: 'my-second-id', data});
+const secondContact = await api.contacts.create({id: 'my-second-id', data});
 ```
 
 
