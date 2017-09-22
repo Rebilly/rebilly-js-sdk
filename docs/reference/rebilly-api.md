@@ -385,14 +385,6 @@ Create and manage custom fields to be added to other Resources. A variety of fie
 !!! info ""
     See the [**Custom Fields resource**][10] for detailed method information.
 
-### Customer Authentication
-`:::js api.customerAuthentication`
-
-Create and manage login credentials for your customers. This feature can be used to integrate Rebilly directly into your own website and display your customers their subscription or product information. 
-
-!!! info ""
-    See the [**Customer Authentication resource**][11] for detailed method information.
-
 ### Customers
 `:::js api.customers`
 
@@ -400,6 +392,14 @@ Create and manage your customers and their lead sources. Customers are associate
 
 !!! info ""
     See the [**Customers resource**][12] for detailed method information.
+    
+### Customer Authentication
+`:::js api.customerAuthentication`
+
+Create and manage login credentials for your customers. This feature can be used to integrate Rebilly directly into your own website and display your customers their subscription or product information. 
+
+!!! info ""
+    See the [**Customer Authentication resource**][11] for detailed method information.
 
 ### Disputes
 `:::js api.disputes`
@@ -656,7 +656,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [9]: ./resources/custom-events.md
 [10]: ./resources/custom-fields.md
 [11]: ./resources/customer-authentication.md
-[12]: ./resources/account
+[12]: ./resources/customers.md
 [13]: ./resources/account
 [14]: ./resources/account
 [15]: ./resources/account
