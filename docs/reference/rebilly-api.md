@@ -659,7 +659,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [12]: ./resources/customers.md
 [13]: ./resources/disputes.md
 [14]: ./resources/events.md
-[15]: ./resources/account
+[15]: ./resources/files.md
 [16]: ./resources/account
 [17]: ./resources/account
 [18]: ./resources/account
