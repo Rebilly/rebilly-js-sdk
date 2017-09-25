@@ -340,8 +340,6 @@ See the [detailed API spec][8]{: target="_blank"} for all payload fields and res
 
 Attach a file to a resource. To create an attachment you must provide the resource `relatedType` (e.g. customers), the `relatedId` of an instance of that type (e.g. a customer's id), and finally the `fileId` of the file previously uploaded.
 
-A file can be attached to more than one resource at a time.
-
 Allowed `relatedType` values: 
 
 - `customer`
@@ -353,6 +351,9 @@ Allowed `relatedType` values:
 - `product`
 - `subscription`
 - `transaction`
+
+!!! info "Shared File"
+    A file can be attached to more than one resource at a time.
 
 **Example**
 

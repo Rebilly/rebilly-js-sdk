@@ -59,6 +59,7 @@ pages:
       - Disputes: reference/resources/disputes.md
       - Events: reference/resources/events.md
       - Files: reference/resources/files.md
+      - Gateway Accounts: reference/resources/gateway-accounts.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
