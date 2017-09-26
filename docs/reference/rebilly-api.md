@@ -485,7 +485,7 @@ Leave notes on a resource member to have a handy location to share with others w
 
 Organizations include the name and address of the entities related to your account. An account may be multi-national, and support multiple organizations.
 
-!!! note
+!!! note "Shared Modes"
     Organizations are shared between the *Live* and *Sandbox* modes.    
 
 !!! info ""
@@ -526,7 +526,7 @@ See Payment Instruments.
 ### Plans
 `:::js api.plans`
 
-Create and manage plans. Used to describe a subscription. A plan may have optional setup fees, an optional trial period and fees, and an optional recurring fees and frequency. A plan may also expire, or be valid only for a limited number of recurrences. 
+Create and manage plans. Plans are used to describe a subscription. A plan may have optional setup fees, an optional trial period and fees, and an optional recurring fees and frequency. A plan may also expire, or be valid only for a limited number of recurrences. 
 
 !!! info ""
     See the [**Plans resource**][25] for detailed method information.
@@ -669,7 +669,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [22]: ./resources/payment-cards.md
 [23]: ./resources/payment-tokens.md
 [24]: ./resources/paypal-accounts.md
-[25]: ./resources/account
+[25]: ./resources/plans.md
 [26]: ./resources/account
 [27]: ./resources/account
 [28]: ./resources/account
