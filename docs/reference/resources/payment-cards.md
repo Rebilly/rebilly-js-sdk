@@ -91,7 +91,7 @@ const data = {
           label: 'main',
           value: 'johnny+test@grr.la',
           primary: true
-      }],  
+      }]  
     },
     // the customer ID for which
     // we are adding a payment card

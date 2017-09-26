@@ -508,7 +508,7 @@ Tokens are an encrypted string representing a payment instrument. A token expire
 
 Payment tokens are used to reduce the scope of PCI DSS compliance. A payment token can be made using a different authentication scheme , which allows you to create a payment token directly from the browser, bypassing the need to send sensitive cardholder info to your servers. We recommend using this with our Rebilly.js library, which helps you wire a form into this API resource and create payment tokens.
 
-See Rebilly.js library    
+See [Rebilly.js][goto-rebillyjs] library    
 
 !!! info ""
     See the [**Payment Tokens resource**][23] for detailed method information.
@@ -667,7 +667,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [20]: ./resources/notes.md
 [21]: ./resources/organizations.md
 [22]: ./resources/payment-cards.md
-[23]: ./resources/account
+[23]: ./resources/payment-tokens.md
 [24]: ./resources/account
 [25]: ./resources/account
 [26]: ./resources/account
@@ -686,3 +686,4 @@ Create and manage websites. The website is related to each invoice and each paym
 
 [goto-account-signin]: ./resources/account#signin
 [goto-errors]: ./rebilly-errors
+[goto-rebillyjs]: https://help.rebilly.com/20221-development/rebillyjs

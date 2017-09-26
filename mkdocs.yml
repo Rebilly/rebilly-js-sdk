@@ -66,6 +66,7 @@ pages:
       - Notes: reference/resources/notes.md
       - Organizations: reference/resources/organizations.md
       - Payment Cards: reference/resources/payment-cards.md
+      - Payment Tokens: reference/resources/payment-tokens.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
