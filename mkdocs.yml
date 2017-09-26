@@ -63,6 +63,7 @@ pages:
       - Invoices: reference/resources/invoices.md
       - Layouts: reference/resources/layouts.md
       - Lists: reference/resources/lists.md
+      - Notes: reference/resources/notes.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

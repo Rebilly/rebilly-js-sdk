@@ -124,17 +124,6 @@ Type [`Member`][goto-member]
 See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
 
 
-**Returns**
-
-A member exposing the event fields.
-
-Type [`Member`][goto-member]
-
-
-**API Spec**
-
-See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
-
 ## createRules
 <div class="method"><code><strong>createRules</strong>({<span class="prop">eventType</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -185,7 +174,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
 ## updateRules
 <div class="method"><code><strong>updateRules</strong>({<span class="prop">eventType</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -240,7 +229,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
 ## getRulesHistory
 <div class="method"><code><strong>getRulesHistory</strong>({<span class="prop">eventType</span>, <span class="prop">limit</span><span class="optional">opt</span>, <span class="prop">offset</span><span class="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
@@ -275,7 +264,7 @@ Type [`Collection`][goto-collection]
 
 **API Spec**
 
-See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
 ## getRulesVersionNumber
 <div class="method"><code><strong>getRulesVersionNumber</strong>({<span class="prop">eventType</span>, <span class="prop">version</span>}) -> <span class="return">{Member}</span></code></div>
@@ -305,7 +294,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
 ## getRulesVersionDetail
 <div class="method"><code><strong>getRulesVersionDetail</strong>({<span class="prop">eventType</span>, <span class="prop">version</span>}) -> <span class="return">{Member}</span></code></div>
@@ -333,7 +322,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][9]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
 
 [goto-rebillyapi]: ../rebilly-api
@@ -341,15 +330,11 @@ See the [detailed API spec][9]{: target="_blank"} for all payload fields and res
 [goto-member]: ../types/member
 [goto-versiondetail]: #getrulesversiondetail
 [goto-getscheduled]: #getscheduled
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Events%2Fpaths%2F~1events%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Events%2Fpaths%2F~1events~1%7BeventType%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Events%2Fpaths%2F~1events~1%7BeventType%7D~1rules%2Fget
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D%2Fdelete
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules%2Fget
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules%2Fput
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1history%2Fget
-[8]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1history~1%7Bversion%7D%2Fget
-[9]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1custom-events~1%7Bid%7D~1rules~1versions~1%7Bversion%7D%2Fget
-[10]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events%2Fget
-[11]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events~1%7Bid%7D%2Fget
-[12]: https://rebilly.github.io/RebillyAPI/#tag/Custom-Events%2Fpaths%2F~1queue~1custom-events~1%7Bid%7D%2Fdelete
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events%2Fget
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D%2Fget
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules%2Fget
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules%2Fput
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1history%2Fget
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1history~1%7Bversion%7D%2Fget
+[7]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1versions~1%7Bversion%7D%2Fget
+

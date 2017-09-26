@@ -475,7 +475,7 @@ Create and manage your lists. A list in an array of values that are stored in th
 ### Notes
 `:::js api.notes`
 
-Leave notes on a customer record to have a handy location to share with others who may interface with the customer. It's great for customer service.    
+Leave notes on a resource member to have a handy location to share with others who may interface with the customer. It's great for customer service.    
 
 !!! info ""
     See the [**Notes resource**][20] for detailed method information.
@@ -664,7 +664,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [17]: ./resources/invoices.md
 [18]: ./resources/layouts.md
 [19]: ./resources/lists.md
-[20]: ./resources/account
+[20]: ./resources/notes.md
 [21]: ./resources/account
 [22]: ./resources/account
 [23]: ./resources/account

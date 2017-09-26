@@ -518,11 +518,32 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][11]{: target="_blank"} for all payload fields and response data.
 
+## getAllMatchedRules
+<div class="method"><code><strong>getAllMatchedRules</strong>({<span class="prop">id</span>}) -> <span class="return">{Collection}</span></code></div>
+
+Get all previously matched event rules for a dispute `id`. The rules are defined within system events and are part of the Rules Engine.
+
+> See [events][goto-events]
+
+**Example**
+
+```js
+const rules = await api.invoices.getAllMatchedRules({id: 'foobar-001'});
+```
+
+
+**Returns**
+
+A collection of matched rules for this dispute.
+
+Type [`Collection`][goto-collection]
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-file]: ../types/file
 [goto-arraybuffer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer
+[goto-events]: ./events
 [1]: https://rebilly.github.io/RebillyAPI/#tag/Invoices%2Fpaths%2F~1invoices%2Fget
 [2]: https://rebilly.github.io/RebillyAPI/#tag/Invoices%2Fpaths%2F~1invoices~1%7Bid%7D%2Fget
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Invoices%2Fpaths%2F~1invoices~1%7Bid%7D%2Fput
