@@ -88,10 +88,7 @@ secondCollection.items.forEach(token => console.log(token.fields.username));
 **Parameters**
 
 
-| Name | Type | Attribute | Description |
-| - | - | - | - |
-| limit | number | Optional | The amount of members to return per request.<br>Defaults to `100`. |
-| offset | number | Optional | Member index from which to start returning results. <br>Defaults to `0`. |
+--8<----- "reference/resources/shared/paged-get-all.md"
 
 
 **Returns**
@@ -225,10 +222,7 @@ secondCollection.items.forEach(credential => console.log(credential.fields.custo
 **Parameters**
 
 
-| Name | Type | Attribute | Description |
-| - | - | - | - |
-| limit | number | Optional | The amount of members to return per request.<br>Defaults to `100`. |
-| offset | number | Optional | Member index from which to start returning results. <br>Defaults to `0`. |
+--8<----- "reference/resources/shared/paged-get-all.md"
 
 
 **Returns**
@@ -390,10 +384,7 @@ secondCollection.items.forEach(token => console.log(token.fields.token));
 **Parameters**
 
 
-| Name | Type | Attribute | Description |
-| - | - | - | - |
-| limit | number | Optional | The amount of members to return per request.<br>Defaults to `100`. |
-| offset | number | Optional | Member index from which to start returning results. <br>Defaults to `0`. |
+--8<----- "reference/resources/shared/paged-get-all.md"
 
 
 **Returns**

@@ -662,7 +662,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [15]: ./resources/files.md
 [16]: ./resources/gateway-accounts.md
 [17]: ./resources/invoices.md
-[18]: ./resources/account
+[18]: ./resources/layouts.md
 [19]: ./resources/account
 [20]: ./resources/account
 [21]: ./resources/account
