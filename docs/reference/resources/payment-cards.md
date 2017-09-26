@@ -2,7 +2,7 @@
 
 > Member of [`RebillyAPI`][goto-rebillyapi]
 
-A form of payment instrument, the payment cards enable customers to do transactions when buying your products.
+A form of payment instrument, payment cards enable customers to do transactions when buying your products.
 
 
 

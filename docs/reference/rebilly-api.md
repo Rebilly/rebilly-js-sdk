@@ -494,7 +494,7 @@ Organizations include the name and address of the entities related to your accou
 ### Payment Cards
 `:::js api.paymentCards`
 
-A form of payment instrument, the payment cards enable customers to do transactions when buying your products. 
+A form of payment instrument, payment cards enable customers to do transactions when buying your products. 
 
 See Payment Instruments. 
 
@@ -516,7 +516,7 @@ See [Rebilly.js][goto-rebillyjs] library
 ### Paypal Accounts
 `:::js api.paypalAccounts`
 
-Used to attach Paypal accounts to an existing customer. Can also deactivate Paypal accounts on a customer's account. Paypal serves as both an acquirer and an alternate payment method. 
+A form of payment instrument, paypal accounts enable customers to do transactions when buying your products. 
 
 See Payment Instruments. 
 
@@ -668,7 +668,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [21]: ./resources/organizations.md
 [22]: ./resources/payment-cards.md
 [23]: ./resources/payment-tokens.md
-[24]: ./resources/account
+[24]: ./resources/paypal-accounts.md
 [25]: ./resources/account
 [26]: ./resources/account
 [27]: ./resources/account

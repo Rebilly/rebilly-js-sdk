@@ -67,6 +67,7 @@ pages:
       - Organizations: reference/resources/organizations.md
       - Payment Cards: reference/resources/payment-cards.md
       - Payment Tokens: reference/resources/payment-tokens.md
+      - Paypal Accounts: reference/resources/paypal-accounts.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
