@@ -20,7 +20,7 @@ Get a collection of layouts. Each entry will be a member.
 const firstCollection = await api.layouts.getAll();
 
 // alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
+const params = {limit: 20, offset: 100}; 
 const secondCollection = await api.layouts.getAll(params);
 
 // access the collection items, each item is a Member
@@ -47,7 +47,7 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 ## get
 <div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Get an layout by its `id`.
+Get a layout by its `id`.
 
 
 **Example**
@@ -72,7 +72,7 @@ See the [detailed API spec][2]{: target="_blank"} for all payload fields and res
 ## create
 <div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Create an layout of plans. Optionally provide a specific `id` to use, or let Rebilly generate one. 
+Create a layout of plans. Optionally provide a specific `id` to use, or let Rebilly generate one. 
 
 !!! warning "Plans"
     You must have existing plans before you can create a layout.  
@@ -127,7 +127,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## update
 <div class="method"><code><strong>update</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Update an layout by using its `id`. 
+Update a layout by using its `id`. 
 
 
 **Example**
@@ -170,7 +170,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## delete
 <div class="method"><code><strong>delete</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Delete an layout by using its `id`. 
+Delete a layout by using its `id`. 
 
 
 **Example**

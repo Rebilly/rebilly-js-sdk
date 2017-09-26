@@ -665,7 +665,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [18]: ./resources/layouts.md
 [19]: ./resources/lists.md
 [20]: ./resources/notes.md
-[21]: ./resources/account
+[21]: ./resources/organizations.md
 [22]: ./resources/account
 [23]: ./resources/account
 [24]: ./resources/account
