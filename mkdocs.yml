@@ -65,6 +65,7 @@ pages:
       - Lists: reference/resources/lists.md
       - Notes: reference/resources/notes.md
       - Organizations: reference/resources/organizations.md
+      - Payment Cards: reference/resources/payment-cards.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

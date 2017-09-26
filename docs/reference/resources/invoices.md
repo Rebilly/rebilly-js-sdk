@@ -521,7 +521,7 @@ See the [detailed API spec][11]{: target="_blank"} for all payload fields and re
 ## getAllMatchedRules
 <div class="method"><code><strong>getAllMatchedRules</strong>({<span class="prop">id</span>}) -> <span class="return">{Collection}</span></code></div>
 
-Get all previously matched event rules for a dispute `id`. The rules are defined within system events and are part of the Rules Engine.
+Get all previously matched event rules for an invoice `id`. The rules are defined within system events and are part of the Rules Engine.
 
 > See [events][goto-events]
 

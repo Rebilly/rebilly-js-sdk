@@ -494,7 +494,7 @@ Organizations include the name and address of the entities related to your accou
 ### Payment Cards
 `:::js api.paymentCards`
 
-Used to create new payment cards and attach them to an existing customer. Can also deactivate payment cards. 
+A form of payment instrument, the payment cards enable customers to do transactions when buying your products. 
 
 See Payment Instruments. 
 
@@ -666,7 +666,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [19]: ./resources/lists.md
 [20]: ./resources/notes.md
 [21]: ./resources/organizations.md
-[22]: ./resources/account
+[22]: ./resources/payment-cards.md
 [23]: ./resources/account
 [24]: ./resources/account
 [25]: ./resources/account
