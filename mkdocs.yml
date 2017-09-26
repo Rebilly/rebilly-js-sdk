@@ -62,6 +62,7 @@ pages:
       - Gateway Accounts: reference/resources/gateway-accounts.md
       - Invoices: reference/resources/invoices.md
       - Layouts: reference/resources/layouts.md
+      - Lists: reference/resources/lists.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

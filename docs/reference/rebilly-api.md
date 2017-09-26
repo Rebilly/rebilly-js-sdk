@@ -467,7 +467,7 @@ Create and manage your plan layouts. Layouts are a collection of plans, in a spe
 ### Lists (Rules Engine)
 `:::js api.lists`
 
-Create and manage your lists. A *list* in an array of values that are stored in the database. The main purpose of a *list* is its usage in Rules Engine, to provide a way to change a *rule* criteria without having to change the *rule* itself.  
+Create and manage your lists. A list in an array of values that are stored in the database. The main purpose of a list is its usage in Rules Engine, to provide a way to change a rule criteria without having to change the rule itself.  
 
 !!! info ""
     See the [**Lists resource**][19] for detailed method information.
@@ -663,7 +663,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [16]: ./resources/gateway-accounts.md
 [17]: ./resources/invoices.md
 [18]: ./resources/layouts.md
-[19]: ./resources/account
+[19]: ./resources/lists.md
 [20]: ./resources/account
 [21]: ./resources/account
 [22]: ./resources/account
