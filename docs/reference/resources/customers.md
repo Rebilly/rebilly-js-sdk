@@ -23,7 +23,7 @@ const params = {limit: 20, offset: 100, sort: '-createdTime'};
 const secondCollection = await api.customers.getAll(params);
 
 // access the collection items, each item is a Member
-secondCollection.items.forEach(contact => console.log(contact.fields.firstName));
+secondCollection.items.forEach(customer => console.log(customer.fields.primaryAddress.firstName));
 ```
 
 **Parameters**
@@ -61,7 +61,7 @@ console.log(customer.fields.primaryAddress.firstName);
 
 **Returns**
 
-A member exposing the contact fields.
+A member exposing the customer fields.
 
 Type [`Member`][goto-member]
 

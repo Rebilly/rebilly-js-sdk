@@ -444,7 +444,7 @@ See Supported Gateway Accounts.
 ### Invoices
 `:::js api.invoices`
 
-Issue invoices to your customers and manage their lead sources. Issuing an invoice allows you to calculate or recalculate an invoiceâs shipping, taxes, and customerâs redeemed coupons (as applicable, according to coupon configuration and restrictions), and apply them to the invoice.
+An invoice is a commercial document issued by a seller (merchant) to a buyer (customer), relating to a sale transaction and indicating the products, quantities, and agreed prices for products or services the seller has provided the buyer.  Payment terms are usually stated on the invoice.
 
 See also:
 
@@ -597,7 +597,7 @@ Create and manage subscriptions. A subscription is an instance of a plan for a s
 
 Create and list 3DS entries. 3D Secure is a way to authenticate and protect transactions. Typically, it's only possible to protect the initial transaction in a subscription with 3D Secure.
 
-The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchantâs site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
+The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchant's site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
 
 !!! info ""
     See the [**Three D Secure resource**][33] for detailed method information.
@@ -661,7 +661,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [14]: ./resources/events.md
 [15]: ./resources/files.md
 [16]: ./resources/gateway-accounts.md
-[17]: ./resources/account
+[17]: ./resources/invoices.md
 [18]: ./resources/account
 [19]: ./resources/account
 [20]: ./resources/account
