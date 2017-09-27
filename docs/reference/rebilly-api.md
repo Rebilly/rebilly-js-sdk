@@ -552,6 +552,8 @@ Create and manage products. You may attach them to plans. Products can have a ta
 
 Manage the profile of the current user. When using a secret API key the profile is attached to the owner of the API key, while when using a session token the profile is attached to the authenticated user via sign in.
 
+The profile includes information about the currently authenticated user like his name, email and preferences.
+
 !!! info ""
     See the [**Profile resource**][28] for detailed method information.
 
@@ -672,7 +674,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [25]: ./resources/plans.md
 [26]: ./resources/previews.md
 [27]: ./resources/products.md
-[28]: ./resources/account
+[28]: ./resources/profile.md
 [29]: ./resources/account
 [30]: ./resources/account
 [31]: ./resources/account

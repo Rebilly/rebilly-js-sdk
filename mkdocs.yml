@@ -71,6 +71,7 @@ pages:
       - Plans: reference/resources/plans.md
       - Previews: reference/resources/previews.md
       - Products: reference/resources/products.md
+      - Profile: reference/resources/profile.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
