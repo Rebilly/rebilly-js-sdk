@@ -578,7 +578,7 @@ Create and manage shipping zones. Products that require shipping will automatica
 ### Status (API)
 `:::js api.status`
 
-Get the current status of the Rebilly API.
+Get the current status of the Rebilly API. This feature can be used to confirm whether the API is functioning normally or not.
 
 !!! tip 
     You can poll this endpoint on interval to check the status of the API.
@@ -677,7 +677,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [28]: ./resources/profile.md
 [29]: ./resources/sessions.md
 [30]: ./resources/shipping-zones.md
-[31]: ./resources/account
+[31]: ./resources/status.md
 [32]: ./resources/account
 [33]: ./resources/account
 [34]: ./resources/account
