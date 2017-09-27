@@ -97,7 +97,7 @@ The `auth` object structure is needed to define the authorization credentials fo
     </tbody>
 </table>
 
-!!! warning
+!!! warning "Immutable Credentials"
     The authorization details for a credential hash cannot be modified once created. You will have to generate a new credential hash if the authorization values change.
 
 **Example**
@@ -172,7 +172,7 @@ The `auth` object structure is needed to define the authorization credentials fo
     </tbody>
 </table>
 
-!!! warning
+!!! warning "Immutable Credentials"
     The authorization details for a credential hash cannot be modified once created. You will have to generate a new credential hash if the authorization values change.
 
 **Example**

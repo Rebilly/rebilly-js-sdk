@@ -670,7 +670,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [23]: ./resources/payment-tokens.md
 [24]: ./resources/paypal-accounts.md
 [25]: ./resources/plans.md
-[26]: ./resources/account
+[26]: ./resources/previews.md
 [27]: ./resources/account
 [28]: ./resources/account
 [29]: ./resources/account
