@@ -70,6 +70,7 @@ pages:
       - Paypal Accounts: reference/resources/paypal-accounts.md
       - Plans: reference/resources/plans.md
       - Previews: reference/resources/previews.md
+      - Products: reference/resources/products.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
