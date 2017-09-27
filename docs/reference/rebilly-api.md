@@ -679,7 +679,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [30]: ./resources/shipping-zones.md
 [31]: ./resources/status.md
 [32]: ./resources/subscriptions.md
-[33]: ./resources/account
+[33]: ./resources/three-d-secure.md
 [34]: ./resources/account
 [35]: ./resources/account
 [36]: ./resources/account
