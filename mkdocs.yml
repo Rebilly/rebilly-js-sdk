@@ -73,6 +73,7 @@ pages:
       - Products: reference/resources/products.md
       - Profile: reference/resources/profile.md
       - Sessions: reference/resources/sessions.md
+      - Shipping Zones: reference/resources/shipping-zones.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

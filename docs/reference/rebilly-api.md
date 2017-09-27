@@ -570,7 +570,7 @@ This token can be used to authenticate to the API. In addition, the session can 
 ### Shipping Zones
 `:::js api.shippingZones`
 
-Create and manage shipping zones. Products that require shipping will automatically have shipping priced base on the shipping zone that matches the destination. Each contains regions and countries that you ship to, and has its own shipping rates.
+Create and manage shipping zones. Products that require shipping will automatically have shipping priced base on the shipping zone that matches the destination. Each zone contains regions and countries that you ship to, and has its own shipping rates.
 
 !!! info ""
     See the [**Shipping Zones resource**][30] for detailed method information.
@@ -676,7 +676,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [27]: ./resources/products.md
 [28]: ./resources/profile.md
 [29]: ./resources/sessions.md
-[30]: ./resources/account
+[30]: ./resources/shipping-zones.md
 [31]: ./resources/account
 [32]: ./resources/account
 [33]: ./resources/account
