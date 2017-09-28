@@ -81,6 +81,7 @@ pages:
       - Transactions: reference/resources/transactions.md
       - Users: reference/resources/users.md
       - Webhooks: reference/resources/webhooks.md
+      - Websites: reference/resources/websites.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:
