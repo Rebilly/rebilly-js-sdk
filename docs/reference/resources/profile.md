@@ -100,7 +100,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## resetTotp
 <div class="method"><code><strong>resetTotp</strong>() -> <span class="return">{Member}</span></code></div>
 
-Renew the user's Totp Secret (Time-based One-time Password). This feature is only used for two-factor authentication when enabled.
+Renew the user's Totp Secret (Time-based One-time Password). This feature is only used for two-factor authentication.
 
 
 **Example**

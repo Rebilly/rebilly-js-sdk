@@ -43,9 +43,9 @@ Type [`Collection`][goto-collection]
 See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
 
 ## get
-<div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>get</strong>({<span class="prop">id</span>, <span class="prop">expand</span><span class="optional">opt</span>}) -> <span class="return">{Member}</span></code></div>
 
-Get a transaction by its `id`.
+Get a transaction by its `id`. Define `expand` to include additional data
 
 **Example**
 
@@ -161,7 +161,7 @@ Type [`Collection`][goto-collection]
 
 **API Spec**
 
-See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
 
 ## updateScheduled
 <div class="method"><code><strong>updateScheduled</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -198,7 +198,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
 ## create
 <div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -244,7 +244,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
 ## cancel
 <div class="method"><code><strong>cancel</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -268,7 +268,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
 ## refund
 <div class="method"><code><strong>refund</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -299,7 +299,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
 ## getGatewayLogs
 <div class="method"><code><strong>getGatewayLogs</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Collection}</span></code></div>
@@ -322,7 +322,7 @@ Type [`Collection`][goto-collection]
 
 **API Spec**
 
-See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
 
 ## getLeadSource
 <div class="method"><code><strong>getLeadSource</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
@@ -346,7 +346,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][9]{: target="_blank"} for all payload fields and response data.
 
 ## createLeadSource
 <div class="method"><code><strong>createLeadSource</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -388,7 +388,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][10]{: target="_blank"} for all payload fields and response data.
 
 ## updateLeadSource
 <div class="method"><code><strong>updateLeadSource</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -427,7 +427,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][10]{: target="_blank"} for all payload fields and response data.
 
 ## deleteLeadSource
 <div class="method"><code><strong>deleteLeadSource</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
@@ -455,7 +455,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][11]{: target="_blank"} for all payload fields and response data.
 
 ## getAllMatchedRules
 <div class="method"><code><strong>getAllMatchedRules</strong>({<span class="prop">id</span>}) -> <span class="return">{Collection}</span></code></div>
@@ -484,11 +484,14 @@ Type [`Collection`][goto-collection]
 [goto-arraybuffer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer
 [goto-events]: ./events
 [goto-scheduled-getall]: #getallscheduled
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fput
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1switch%2Fpost
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fget
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fput
-[8]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fdelete
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions%2Fget
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D%2Fget
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Payments%2Fpaths%2F~1queue~1payments%2Fget
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Payments%2Fpaths%2F~1queue~1payments~1%7Bid%7D%2Fput
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Payments%2Fpaths%2F~1payments%2Fpost
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1cancel%2Fpost
+[7]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1refund%2Fpost
+[8]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1gateway-logs%2Fget
+[9]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1lead-source%2Fget
+[10]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1lead-source%2Fput
+[11]: https://rebilly.github.io/RebillyAPI/#tag/Transactions%2Fpaths%2F~1transactions~1%7Bid%7D~1lead-source%2Fdelete
