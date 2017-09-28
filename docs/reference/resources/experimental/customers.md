@@ -2,6 +2,8 @@
 
 > Member of [`RebillyExperimentalAPI`][goto-rebillyapix]
 
+==Experimental== 
+
 Access customer lifetime metrics. 
 
 ## getCustomerLifetimeSummaryMetrics

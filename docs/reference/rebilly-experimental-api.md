@@ -293,5 +293,13 @@ Access customer lifetime metrics.
 !!! info ""
     See the [**Customers resource**][1] for detailed method information.
     
+### Exports
+`:::js api.exports`
+
+Queue data exports for resources and download the result in CSV format. There is no limit to the amount of data that can be exported. 
+
+!!! info ""
+    See the [**Exports resource**][1] for detailed method information.
     
 [1]: ./resources/experimental/customers.md
+[1]: ./resources/experimental/exports.md

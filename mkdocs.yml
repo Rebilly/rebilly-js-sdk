@@ -84,6 +84,7 @@ pages:
       - Websites: reference/resources/websites.md
     - Experimental:
       - Customers: reference/resources/experimental/customers.md
+      - Exports: reference/resources/experimental/exports.md
     - Response Types:
       - Member: reference/types/member.md
       - Collection: reference/types/collection.md
