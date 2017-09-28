@@ -683,7 +683,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [34]: ./resources/tracking.md
 [35]: ./resources/transactions.md
 [36]: ./resources/users.md
-[37]: ./resources/account
+[37]: ./resources/webhooks.md
 [38]: ./resources/account
 
 [goto-account-signin]: ./resources/account#signin
