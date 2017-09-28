@@ -78,6 +78,7 @@ pages:
       - Subscriptions: reference/resources/subscriptions.md
       - Three D Secure (3DS): reference/resources/three-d-secure.md
       - Tracking: reference/resources/tracking.md
+      - Transactions: reference/resources/transactions.md
     - Experimental:
       - Accounts: reference/resources/experimental/accounts.md
     - Response Types:

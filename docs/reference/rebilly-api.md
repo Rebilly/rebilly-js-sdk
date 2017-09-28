@@ -681,7 +681,7 @@ Create and manage websites. The website is related to each invoice and each paym
 [32]: ./resources/subscriptions.md
 [33]: ./resources/three-d-secure.md
 [34]: ./resources/tracking.md
-[35]: ./resources/account
+[35]: ./resources/transactions.md
 [36]: ./resources/account
 [37]: ./resources/account
 [38]: ./resources/account
