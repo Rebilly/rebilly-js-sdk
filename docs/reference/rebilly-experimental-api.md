@@ -284,3 +284,14 @@ Resources are accessible at the root of the API client and represent a domain fo
 
 !!! tip "Promises"
     All resource methods return chainable Promises.
+
+### Customers
+`:::js api.customers`
+
+Access customer lifetime metrics. 
+
+!!! info ""
+    See the [**Customers resource**][1] for detailed method information.
+    
+    
+[1]: ./resources/experimental/customers.md
