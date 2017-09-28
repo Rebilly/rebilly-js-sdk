@@ -309,8 +309,15 @@ Histograms are for a particular kinds of reports with cohorts and periods.
 !!! info ""
     See the [**Histograms resource**][3] for detailed method information.
     
+### Reports
+`:::js api.reports`
 
+Retrieve summary information about your customers, subscriptions, transactions, and more. 
+
+!!! info ""
+    See the [**Reports resource**][4] for detailed method information.
     
 [1]: ./resources/experimental/customers.md
 [2]: ./resources/experimental/exports.md
 [3]: ./resources/experimental/histograms.md
+[4]: ./resources/experimental/reports.md
