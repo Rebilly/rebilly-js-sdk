@@ -299,7 +299,18 @@ Access customer lifetime metrics.
 Queue data exports for resources and download the result in CSV format. There is no limit to the amount of data that can be exported. 
 
 !!! info ""
-    See the [**Exports resource**][1] for detailed method information.
+    See the [**Exports resource**][2] for detailed method information.
+    
+### Histograms
+`:::js api.histograms`
+
+Histograms are for a particular kinds of reports with cohorts and periods. 
+
+!!! info ""
+    See the [**Histograms resource**][3] for detailed method information.
+    
+
     
 [1]: ./resources/experimental/customers.md
-[1]: ./resources/experimental/exports.md
+[2]: ./resources/experimental/exports.md
+[3]: ./resources/experimental/histograms.md

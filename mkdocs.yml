@@ -85,6 +85,7 @@ pages:
     - Experimental:
       - Customers: reference/resources/experimental/customers.md
       - Exports: reference/resources/experimental/exports.md
+      - Histograms: reference/resources/experimental/histograms.md
     - Response Types:
       - Member: reference/types/member.md
       - Collection: reference/types/collection.md
