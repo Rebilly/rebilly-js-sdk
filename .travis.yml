@@ -46,4 +46,6 @@ after_deploy:
   - git config user.name "Andrei Moldoveanu"
   - git config user.email "andrei.moldoveanu@gmail.com"
   - git remote add gh-token "https://${GH_TOKEN}@github.com/Rebilly/rebilly-js-sdk.git";
+  - git fetch gh-token;
+  - git fetch gh-token gh-pages:gh-pages;
   - mkdocs gh-deploy -v --clean --remote-name gh-token;
