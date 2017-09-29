@@ -2,13 +2,13 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Rebilly JS SDK Library (Pre-Release)\n\n\nThe Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.\n\n\n\n\nThe library is not production ready yet. Version 1.0.0 will be the first stable release.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPCI Compliance Note\n\n\nIf you need to handle raw payment card data, you should use the \nRebilly Token library\n to generate tokens for your server-side logic.\n\n\nRebilly API Spec\n\n\nThe library is a semantic representation of the \nRebilly API spec\n. A secondary \nexperimental API spec for reports\n is also available.\n\n\nQuick Start\n\n\nInstall the latest version of the SDK with \nYarn\n:\n\nyarn add rebilly-js-sdk\n\n\n\nOr using NPM:\n\nnpm install rebilly-js-sdk --save\n\n\n\nThen import the library into your project:\n\nimport\n \nRebillyAPI\n \nfrom\n \nrebilly-js-sdk\n;\n\n\n\n\nSemver\n\n\nThe JS SDK is released following \nSemver 2.0.0\n guidelines. Each minor and patch version will be backward-compatible and incompatible changes will be introduced using major releases only.", 
+            "text": "Rebilly JS SDK Library\n\n\nThe Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.\n\n\n\n\n\n\n\n\n\n\n\n\nPCI Compliance Note\n\n\nIf you need to handle raw payment card data, you should use the \nRebilly Token library\n to generate tokens for your server-side logic.\n\n\nRebilly API Spec\n\n\nThe library is a semantic representation of the \nRebilly API spec\n. A secondary \nexperimental API spec for reports\n is also available.\n\n\nQuick Start\n\n\nInstall the latest version of the SDK with \nYarn\n:\n\nyarn add rebilly-js-sdk\n\n\n\nOr using NPM:\n\nnpm install rebilly-js-sdk --save\n\n\n\nThen import the library into your project:\n\nimport\n \nRebillyAPI\n \nfrom\n \nrebilly-js-sdk\n;\n\n\n\n\nSemver\n\n\nThe JS SDK is released following \nSemver 2.0.0\n guidelines. Each minor and patch version will be backward-compatible and incompatible changes will be introduced using major releases only.", 
             "title": "Introduction"
         }, 
         {
-            "location": "/#rebilly-js-sdk-library-pre-release", 
-            "text": "The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.   The library is not production ready yet. Version 1.0.0 will be the first stable release.", 
-            "title": "Rebilly JS SDK Library (Pre-Release)"
+            "location": "/#rebilly-js-sdk-library", 
+            "text": "The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.", 
+            "title": "Rebilly JS SDK Library"
         }, 
         {
             "location": "/#pci-compliance-note", 
