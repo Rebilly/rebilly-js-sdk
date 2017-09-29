@@ -33,3 +33,10 @@ div.method .return {
     word-break: break-word;
     font-size:75%;
 }
+
+mark.deprecated{
+    margin: 0 .25em;
+    padding: .0625em 0;
+    background-color: #fdd;
+    box-shadow: 0.25em 0 0 #fdd, -0.25em 0 0 #fdd, 0 1px 3px 0 #e3a9a9;
+}

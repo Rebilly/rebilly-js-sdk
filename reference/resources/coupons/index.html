@@ -27,6 +27,8 @@
     
       <link rel="stylesheet" href="../../../assets/stylesheets/application-a20f419c8e.css">
       
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-23f75ab9c7.palette.css">
+      
     
     
       
@@ -47,7 +49,7 @@
   
   
   
-    <body>
+    <body data-md-color-primary="indigo" data-md-color-accent="deep-purple">
   
     <svg class="md-svg">
       <defs>
@@ -426,8 +428,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete" title="delete" class="md-nav__link">
-    delete
+  <a href="#getallredemptions" title="getAllRedemptions" class="md-nav__link">
+    getAllRedemptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getredemption" title="getRedemption" class="md-nav__link">
+    getRedemption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelredemption" title="cancelRedemption" class="md-nav__link">
+    cancelRedemption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redeem" title="redeem" class="md-nav__link">
+    redeem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setexpiry" title="setExpiry" class="md-nav__link">
+    setExpiry
   </a>
   
 </li>
@@ -438,6 +468,378 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../credential-hashes/" title="Credential Hashes" class="md-nav__link">
+      Credential Hashes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-events/" title="Custom Events" class="md-nav__link">
+      Custom Events
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom-fields/" title="Custom Fields" class="md-nav__link">
+      Custom Fields
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../customers/" title="Customers" class="md-nav__link">
+      Customers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../customer-authentication/" title="Customer Authentication" class="md-nav__link">
+      Customer Authentication
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../disputes/" title="Disputes" class="md-nav__link">
+      Disputes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events" class="md-nav__link">
+      Events
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../files/" title="Files" class="md-nav__link">
+      Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gateway-accounts/" title="Gateway Accounts" class="md-nav__link">
+      Gateway Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../invoices/" title="Invoices" class="md-nav__link">
+      Invoices
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../layouts/" title="Layouts" class="md-nav__link">
+      Layouts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../lists/" title="Lists" class="md-nav__link">
+      Lists
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../notes/" title="Notes" class="md-nav__link">
+      Notes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../organizations/" title="Organizations" class="md-nav__link">
+      Organizations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../payment-cards/" title="Payment Cards" class="md-nav__link">
+      Payment Cards
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../payment-tokens/" title="Payment Tokens" class="md-nav__link">
+      Payment Tokens
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../paypal-accounts/" title="Paypal Accounts" class="md-nav__link">
+      Paypal Accounts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../plans/" title="Plans" class="md-nav__link">
+      Plans
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../previews/" title="Previews" class="md-nav__link">
+      Previews
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../products/" title="Products" class="md-nav__link">
+      Products
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../profile/" title="Profile" class="md-nav__link">
+      Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sessions/" title="Sessions" class="md-nav__link">
+      Sessions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shipping-zones/" title="Shipping Zones" class="md-nav__link">
+      Shipping Zones
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../status/" title="Status" class="md-nav__link">
+      Status
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../subscriptions/" title="Subscriptions" class="md-nav__link">
+      Subscriptions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../three-d-secure/" title="Three D Secure (3DS)" class="md-nav__link">
+      Three D Secure (3DS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../tracking/" title="Tracking" class="md-nav__link">
+      Tracking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transactions/" title="Transactions" class="md-nav__link">
+      Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../users/" title="Users" class="md-nav__link">
+      Users
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../webhooks/" title="Webhooks" class="md-nav__link">
+      Webhooks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../websites/" title="Websites" class="md-nav__link">
+      Websites
+    </a>
   </li>
 
         
@@ -471,8 +873,44 @@
 
 
   <li class="md-nav__item">
-    <a href="../experimental/accounts/" title="Accounts" class="md-nav__link">
-      Accounts
+    <a href="../experimental/customers/" title="Customers" class="md-nav__link">
+      Customers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../experimental/exports/" title="Exports" class="md-nav__link">
+      Exports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../experimental/histograms/" title="Histograms" class="md-nav__link">
+      Histograms
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../experimental/reports/" title="Reports" class="md-nav__link">
+      Reports
     </a>
   </li>
 
@@ -656,8 +1094,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#delete" title="delete" class="md-nav__link">
-    delete
+  <a href="#getallredemptions" title="getAllRedemptions" class="md-nav__link">
+    getAllRedemptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getredemption" title="getRedemption" class="md-nav__link">
+    getRedemption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancelredemption" title="cancelRedemption" class="md-nav__link">
+    cancelRedemption
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redeem" title="redeem" class="md-nav__link">
+    redeem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setexpiry" title="setExpiry" class="md-nav__link">
+    setExpiry
   </a>
   
 </li>
@@ -685,27 +1151,26 @@
 <h2 id="getall">getAll<a class="headerlink" href="#getall" title="Permanent link">&para;</a></h2>
 <div class="method">
     <code>
-        <strong>getAll</strong>
-        ({<span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
+        <strong>getAll</strong>({
+        <span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
         <span class="prop">offset</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">sort</span><span class="optional" title="optional">opt</span>,
-        <span class="prop">filter</span><span class="optional" title="optional">opt</span>,
-        <span class="prop">q</span><span class="optional" title="optional">opt</span>
+        <span class="prop">sort</span><span class="optional" title="optional">opt</span>
+        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
         }) -> <span class="return">{Collection}</span>
     </code>
 </div>
 
-<p>Get a collection of checkout pages. Each entry will be a member.</p>
+<p>Get a collection of coupons. Each entry will be a member.</p>
 <p><strong>Example</strong></p>
 <div class="codehilite"><pre><span></span><span class="c1">// all parameters are optional</span>
-<span class="kr">const</span> <span class="nx">firstCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">getAll</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">firstCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">getAll</span><span class="p">();</span>
 
-<span class="c1">// alternatively you can speciy one or more of them</span>
+<span class="c1">// alternatively you can specify one or more of them</span>
 <span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span><span class="nx">limit</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">offset</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">sort</span><span class="o">:</span> <span class="s1">&#39;-createdTime&#39;</span><span class="p">};</span> 
-<span class="kr">const</span> <span class="nx">secondCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">secondCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">getAll</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
 
 <span class="c1">// access the collection items, each item is a Member</span>
-<span class="nx">secondCollection</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">checkoutPage</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">checkoutPage</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
+<span class="nx">secondCollection</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">coupon</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">coupon</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
 </pre></div>
 
 <p><strong>Parameters</strong></p>
@@ -743,97 +1208,208 @@
 <td>Optional</td>
 <td>A list of one or more member fields and their values, used to filter the collection results.<br>Example: <code class="codehilite"><span class="n">status</span><span class="o">:</span><span class="n">active</span></code>.<br> See the <a href="../../../guides/filters/">filters guide</a> for more details.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>A collection of coupons.</p>
+<p>Type <a href="../../types/collection"><code class="codehilite">Collection</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="get">get<a class="headerlink" href="#get" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>get</strong>({<span class="prop">redemptionCode</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Get a coupon by its <code class="codehilite">redemptionCode</code>.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">coupon</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="nx">redemptionCode</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">coupon</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the coupon fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons~1%7BredemptionCode%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="create">create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>create</strong>({<span class="prop">redemptionCode</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Create a coupon for a specific plan and website. Optionally provide a specific <code class="codehilite">id</code> to use, or let Rebilly generate one.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// first set the required properties for the new coupon</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;a new coupon&#39;</span><span class="p">,</span>
+    <span class="nx">issuedTime</span><span class="o">:</span> <span class="s1">&#39;2017-09-19T20:46:44Z&#39;</span><span class="p">,</span>
+    <span class="nx">discount</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;percent&#39;</span><span class="p">,</span>
+        <span class="nx">value</span><span class="o">:</span> <span class="mi">12</span>
+    <span class="p">},</span>
+    <span class="nx">restrictions</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;discounts-per-redemption&#39;</span><span class="p">,</span>
+        <span class="nx">quantity</span><span class="o">:</span> <span class="mi">12</span>
+    <span class="p">}]</span>
+<span class="p">};</span>
+
+<span class="c1">// the ID is optional</span>
+<span class="kr">const</span> <span class="nx">firstKey</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">data</span><span class="p">});</span>
+
+<span class="c1">// or you can provide one</span>
+<span class="kr">const</span> <span class="nx">secondKey</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">redemptionCode</span><span class="o">:</span> <span class="s1">&#39;my-second-id&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">});</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the created coupon fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons~1%7BredemptionCode%7D%2Fput" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="update">update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>update</strong>({<span class="prop">redemptionCode</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Update a coupon using its <code class="codehilite">redemptionCode</code>.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// define the values to update</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;a small update&#39;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">coupon</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">redemptionCode</span><span class="o">:</span> <span class="s1">&#39;my-second-id&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">});</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the updated coupon fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons~1%7BredemptionCode%7D%2Fput" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="getallredemptions">getAllRedemptions<a class="headerlink" href="#getallredemptions" title="Permanent link">&para;</a></h2>
+<div class="method">
+    <code>
+        <strong>getAllRedemptions</strong>({
+        <span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
+        <span class="prop">offset</span><span class="optional" title="optional">opt</span>, 
+        <span class="prop">sort</span><span class="optional" title="optional">opt</span>
+        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
+        }) -> <span class="return">{Collection}</span>
+    </code>
+</div>
+
+<p>Get a collection of coupon redemptions. Each entry will be a member. </p>
+<p>A coupon redemption represents an instance where a coupon was activated for a customer.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// all parameters are optional</span>
+<span class="kr">const</span> <span class="nx">firstCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">getAllRedemptions</span><span class="p">();</span>
+
+<span class="c1">// alternatively you can specify one or more of them</span>
+<span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span><span class="nx">limit</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">offset</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">sort</span><span class="o">:</span> <span class="s1">&#39;-createdTime&#39;</span><span class="p">};</span> 
+<span class="kr">const</span> <span class="nx">secondCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">getAllRedemptions</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+
+<span class="c1">// access the collection items, each item is a Member</span>
+<span class="nx">secondCollection</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">coupon</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">coupon</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">status</span><span class="p">));</span>
+</pre></div>
+
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
 <tr>
-<td>q</td>
+<th>Name</th>
+<th>Type</th>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>limit</td>
+<td>number</td>
+<td>Optional</td>
+<td>The amount of members to return per request.<br>Defaults to <code class="codehilite">100</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>number</td>
+<td>Optional</td>
+<td>Member index from which to start returning results. <br>Defaults to <code class="codehilite">0</code>.</td>
+</tr>
+<tr>
+<td>sort</td>
 <td>string</td>
 <td>Optional</td>
-<td>A string to search for within the indexed member fields. This is useful for members that have any field match the search value.</td>
+<td>The member field on which to sort on. Sorting is ascending by default. Use <code class="codehilite">-</code> (dash) to make it descending.<br>Example: <code class="codehilite">createdTime</code> and <code class="codehilite">-createdTime</code>.</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>string</td>
+<td>Optional</td>
+<td>A list of one or more member fields and their values, used to filter the collection results.<br>Example: <code class="codehilite"><span class="n">status</span><span class="o">:</span><span class="n">active</span></code>.<br> See the <a href="../../../guides/filters/">filters guide</a> for more details.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Returns</strong></p>
-<p>A collection of checkout pages.</p>
+<p>A collection of coupon redemptions.</p>
 <p>Type <a href="../../types/collection"><code class="codehilite">Collection</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Checkout-Pages%2Fpaths%2F~1checkout-pages%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
-<h2 id="get">get<a class="headerlink" href="#get" title="Permanent link">&para;</a></h2>
-<p><div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
-<p>Get a checkout page by its <code class="codehilite">id</code>.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons-redemptions%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="getredemption">getRedemption<a class="headerlink" href="#getredemption" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>getRedemption</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Get a coupon redemption by its <code class="codehilite">id</code>.</p>
+<p>A coupon redemption represents an instance where a coupon was activated for a customer.</p>
 <p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">checkoutPage</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span><span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">checkoutPage</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">redemption</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">getRedemption</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redemption</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 </pre></div>
 
 <p><strong>Returns</strong></p>
-<p>A member exposing the checkout page fields.</p>
+<p>A member exposing the coupon redemption fields.</p>
 <p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Checkout-Pages%2Fpaths%2F~1checkout-pages~1%7Bid%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
-<h2 id="create">create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h2>
-<p><div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
-<p>Create a checkout page for a specific plan and website. Optionally provide a specific <code class="codehilite">id</code> to use, or let Rebilly generate one.</p>
-<p>The final URL of the checkout page will be the combination of Rebilly's domain, followed by the website's  <code class="codehilite">checkoutPageUri</code> and your checkout page's <code class="codehilite">uriPath</code>.</p>
-<p>Example: 
-<div class="codehilite"><pre><span></span>https://checkout.rebilly.com/my-website-checkout-uri/my-page-uri-path
-</pre></div></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>You must have at least one plan and one website (with a <code class="codehilite">checkoutPageUri</code> defined) before being able to create checkout pages.</p>
-</div>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons-redemptions~1%7Bid%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="cancelredemption">cancelRedemption<a class="headerlink" href="#cancelredemption" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>cancelRedemption</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Cancel a coupon redemption by its <code class="codehilite">id</code>.</p>
 <p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="c1">// first set the required properties for the new checkout page</span>
-<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">uriPath</span><span class="o">:</span> <span class="s1">&#39;my-first-checkout&#39;</span><span class="p">,</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Main checkout page&#39;</span><span class="p">,</span>
-    <span class="nx">planId</span><span class="o">:</span> <span class="s1">&#39;my-plan-id&#39;</span><span class="p">,</span>
-    <span class="nx">websiteId</span><span class="o">:</span> <span class="s1">&#39;my-website-id&#39;</span>
-<span class="p">};</span>
-
-<span class="c1">// the ID is optional</span>
-<span class="kr">const</span> <span class="nx">firstKey</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">data</span><span class="p">});</span>
-
-<span class="c1">// or you can provide one</span>
-<span class="kr">const</span> <span class="nx">secondKey</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;my-second-id&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">});</span>
-</pre></div>
-
-<p><strong>Returns</strong></p>
-<p>A member exposing the created checkout page fields.</p>
-<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
-<p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Checkout-Pages%2Fpaths%2F~1checkout-pages~1%7Bid%7D%2Fput" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
-<h2 id="update">update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h2>
-<p><div class="method"><code><strong>update</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
-<p>Update a checkout page using its <code class="codehilite">id</code>.</p>
-<p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="c1">// define the values to update</span>
-<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Best checkout page&#39;</span>
-<span class="p">};</span>
-
-<span class="kr">const</span> <span class="nx">checkoutPage</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;my-second-id&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">});</span>
-</pre></div>
-
-<p><strong>Returns</strong></p>
-<p>A member exposing the updated checkout page fields.</p>
-<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
-<p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Checkout-Pages%2Fpaths%2F~1checkout-pages~1%7Bid%7D%2Fput" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
-<h2 id="delete">delete<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h2>
-<p><div class="method"><code><strong>delete</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
-<p>Delete a checkout page by using its <code class="codehilite">id</code>.  </p>
-<p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">checkoutPages</span><span class="p">.</span><span class="k">delete</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;my-second-key&#39;</span><span class="p">});</span>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">cancellation</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">cancelRedemption</span><span class="p">({</span><span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span><span class="p">});</span>
 
 <span class="c1">// the request does not return any fields but</span>
 <span class="c1">// you can confirm the success using the status code</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span> <span class="c1">// 204</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">cancellation</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span> <span class="c1">// 201</span>
 </pre></div>
 
 <p><strong>Returns</strong></p>
 <p>An empty member without fields. Check the response property to validate the expected status code.</p>
 <p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Checkout-Pages%2Fpaths%2F~1checkout-pages~1%7Bid%7D%2Fdelete" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons-redemptions~1%7Bid%7D~1cancel%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="redeem">redeem<a class="headerlink" href="#redeem" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>redeem</strong>({<span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Redeem a coupon using its <code class="codehilite">redemptionCode</code> for a specific customer.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// build the redemption data</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">redemptionCode</span><span class="o">:</span> <span class="s1">&#39;my-best-coupon&#39;</span><span class="p">,</span>
+  <span class="nx">customerId</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">redemption</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">redeem</span><span class="p">({</span><span class="nx">data</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redemption</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the coupon redemption fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons-redemptions%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="setexpiry">setExpiry<a class="headerlink" href="#setexpiry" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>setExpiry</strong>({<span class="prop">redemptionCode</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Set the exiry time of a coupon using its <code class="codehilite">redemptionCode</code>. Pass <code class="codehilite">null</code> as the <code class="codehilite">expiredTime</code> to instantly expire the coupon. Once expired the status of the coupon will change to <code class="codehilite">expired</code>.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// build the expiry data</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">expiredTime</span><span class="o">:</span> <span class="s1">&#39;2017-09-19T20:46:44Z&#39;</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">coupon</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">coupons</span><span class="p">.</span><span class="nx">setExpiry</span><span class="p">({</span><span class="nx">redemptionCode</span><span class="o">:</span> <span class="s1">&#39;my-best-coupon&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redemption</span><span class="p">.</span><span class="nx">coupon</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the coupon  fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Coupons%2Fpaths%2F~1coupons~1%7BredemptionCode%7D~1expiration%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
                 
                   
                 
@@ -867,13 +1443,13 @@
           </a>
         
         
-          <a href="../experimental/accounts/" title="Accounts" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../credential-hashes/" title="Credential Hashes" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Accounts
+                Credential Hashes
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
