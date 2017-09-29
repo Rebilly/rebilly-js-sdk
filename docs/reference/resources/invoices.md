@@ -120,7 +120,7 @@ Type [`File`][goto-file]
 See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
 
 ## downloadPDF
-<div class="method"><code><strong>downloadPDF</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>downloadPDF</strong>({<span class="prop">id</span>}) -> <span class="return">{File}</span></code></div>
 
 Get an invoice PDF by the invoice's `id`. Returns an [ArrayBuffer][goto-arraybuffer].
 
