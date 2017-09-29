@@ -1,7 +1,5 @@
-# Rebilly JS SDK Library (Pre-Release)
+# Rebilly JS SDK Library 
 The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.
-
-> The library is not production ready yet. Version 1.0.0 will be the first stable release.
 
 [![npm](https://img.shields.io/npm/v/rebilly-js-sdk.svg)](https://www.npmjs.com/package/rebilly-js-sdk)
 [![Build Status](https://travis-ci.org/Rebilly/rebilly-js-sdk.svg?branch=master)](https://travis-ci.org/Rebilly/rebilly-js-sdk)
@@ -10,16 +8,24 @@ The Rebilly JS SDK library allows you to consume the Rebilly API using either No
 [![Try rebilly-js-sdk on RunKit](https://badge.runkitcdn.com/rebilly-js-sdk.svg)](https://npm.runkit.com/rebilly-js-sdk)
 
 ### PCI Compliance Note
-If you need to handle raw payment card data, you should use the [Rebilly Token library](https://my.rebilly.com/api/jsdoc/) to generate tokens for your server-side logic.
+If you need to handle raw payment card data, you should use the [Rebilly Token library](https://help.rebilly.com/20221-development/rebillyjs) to generate tokens for your server-side logic.
 
 ### Rebilly API Spec
 The library is a semantic representation of the [Rebilly API spec](https://rebilly.github.io/RebillyAPI/). A secondary [experimental API spec for reports](https://rebilly.github.io/RebillyReportsAPI/) is also available.
 
 ## Installation
-Install the package with:
+Install the latest version of the SDK with [Yarn](https://yarnpkg.com/en/):
+```
+yarn add rebilly-js-sdk
+```
+
+Or using NPM:
 ```
 npm install rebilly-js-sdk --save
 ```
+
+## Documentation
+Visit the [GitHub pages](https://rebilly.github.io/rebilly-js-sdk/) for detailed documentation.
 
 ## Usage
 To create an instance, you need to provide your secret API key that is available in Rebilly in the [Developer > API Keys](https://app.rebilly.com/api-keys) menu.

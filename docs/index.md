@@ -1,7 +1,5 @@
-# Rebilly JS SDK Library (Pre-Release)
+# Rebilly JS SDK Library
 The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.
-
-> The library is not production ready yet. Version 1.0.0 will be the first stable release.
 
 [![npm](https://img.shields.io/npm/v/rebilly-js-sdk.svg)](https://www.npmjs.com/package/rebilly-js-sdk)
 [![Build Status](https://travis-ci.org/Rebilly/rebilly-js-sdk.svg?branch=master)](https://travis-ci.org/Rebilly/rebilly-js-sdk)
