@@ -33,4 +33,4 @@ import RebillyAPI from 'rebilly-js-sdk';
 ```
 
 ## Semver
-The JS SDK is released following [Semver 2.0.0](http://semver.org/) guidelines. Each minor and patch version will be backward-compatible and we will strive to introduce incompatible changes using major releases only.
+The JS SDK is released following [Semver 2.0.0](http://semver.org/) guidelines. Each minor and patch version will be backward-compatible and incompatible changes will be introduced using major releases only.
