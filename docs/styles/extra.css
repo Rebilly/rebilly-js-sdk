@@ -1,0 +1,42 @@
+div.method {
+    padding: 10px;
+    background-color: #eee;
+    box-shadow:inset 0 1px 5px -2px rgba(0,0,0,0.2), 0 -1px 0 0 #3f51b5;
+}
+
+div.method .prop {
+    color: #3f51b5
+}
+
+div.method .optional {
+    font-style: italic;
+    text-transform: uppercase;
+    vertical-align: baseline;
+    position: relative;
+    bottom: -0.5em;
+    font-size: 75%;
+    font-weight: 800;
+    color: #ec407a;
+    padding-right:0.5em;
+}
+
+div.method .return {
+    color: #ec407a;
+}
+
+.warning-block {
+    margin: 0 .25em;
+    padding:  1.0rem;
+    border-radius: .2rem;
+    background-color: rgba(255,235,59,.3);
+    box-shadow: 0.25em 0 0 rgba(255,235,59,.3), -0.25em 0 0 rgba(255,235,59,.3);
+    word-break: break-word;
+    font-size:75%;
+}
+
+mark.deprecated{
+    margin: 0 .25em;
+    padding: .0625em 0;
+    background-color: #fdd;
+    box-shadow: 0.25em 0 0 #fdd, -0.25em 0 0 #fdd, 0 1px 3px 0 #e3a9a9;
+}

@@ -2,12 +2,15 @@ import {csvHeader} from '../request-headers';
 
 export default function ContactsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, expand, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
-                filter
+                expand,
+                filter,
+                q,
+                criteria
             };
             return await apiHandler.getAll(`contacts`, params);
         },

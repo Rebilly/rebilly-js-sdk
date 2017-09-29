@@ -14,7 +14,7 @@ export default function WebsitesResource({apiHandler}) {
             return await apiHandler.getAll(`websites`, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
