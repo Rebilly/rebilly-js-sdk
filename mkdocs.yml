@@ -7,8 +7,6 @@ site_favicon: 'images/favicon.ico'
 theme: 'material'
 extra_css:
   - 'styles/extra.css'
-extra_javascript:
-  - 'scripts/extra.js'
 
 extra:
   palette:
