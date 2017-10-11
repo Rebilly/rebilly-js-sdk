@@ -1,6 +1,8 @@
 import chai from 'chai';
 import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
+import jsBase64 from 'js-base64';
+import crypto from 'crypto';
 
 const expect = chai.expect;
 
@@ -103,6 +105,20 @@ describe('when I use an API handler', () => {
             expect(error.name).to.be.equal('RebillyCanceledError');
             expect(error.message).to.be.equal(reason);
         }
+    });
 
+    it('should generate a signature for server-side payment token creation', () => {
+        const apiUser = '0pou/FjPq';
+        const apiKey = `${apiUser}1234567890123`;
+        const signature = apiHandler.generateSignature({apiUser, apiKey});
+        const decoded = JSON.parse(jsBase64.Base64.decode(signature));
+        const user = decoded['REB-APIUSER'];
+        expect(user).to.be.equal(apiUser);
+        const nonce = decoded['REB-NONCE'];
+        const ts = decoded['REB-TIMESTAMP'];
+        const hash = decoded['REB-SIGNATURE'];
+        const data = `${user}${nonce}${ts}`;
+        const result = crypto.createHmac('sha1', apiKey).update(data).digest('hex');
+        expect(hash).to.be.equal(result);
     });
 });

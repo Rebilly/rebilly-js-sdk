@@ -68,6 +68,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.setApiConsumer).to.be.a('function');
         expect(apiInstance.setEndpoints).to.be.a('function');
         expect(apiInstance.getCancellationToken).to.be.a('function');
+        expect(apiInstance.generateSignature).to.be.a('function');
     });
 
     it('should expose resource experimental methods', () => {
