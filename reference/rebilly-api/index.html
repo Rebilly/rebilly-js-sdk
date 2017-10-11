@@ -14,7 +14,7 @@
       
         <link rel="shortcut icon" href="../../images/favicon.ico">
       
-      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.1">
+      <meta name="generator" content="mkdocs-0.16.3, mkdocs-material-1.10.3">
     
     
       
@@ -25,7 +25,7 @@
       <script src="../../assets/javascripts/modernizr-e826f8942a.js"></script>
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-a20f419c8e.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-9011e2d3f8.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/application-23f75ab9c7.palette.css">
       
@@ -146,6 +146,7 @@
 </header>
     
     <div class="md-container">
+      
       
       
       <main class="md-main">
@@ -332,6 +333,13 @@
           <li class="md-nav__item">
   <a href="#getcancellationtoken" title="getCancellationToken" class="md-nav__link">
     getCancellationToken
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generatesignature" title="generateSignature" class="md-nav__link">
+    generateSignature
   </a>
   
 </li>
@@ -1456,6 +1464,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#generatesignature" title="generateSignature" class="md-nav__link">
+    generateSignature
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#settimeout" title="setTimeout" class="md-nav__link">
     setTimeout
   </a>
@@ -2013,6 +2028,29 @@
 <p><strong>Returns</strong></p>
 <p>The global cancellation token. An instance of <code class="codehilite">axios.CancelToken</code>. Exposes method <code class="codehilite">cancel(message)</code>.</p>
 <p>Type <code class="codehilite">CancelToken</code></p>
+<h3 id="generatesignature">generateSignature<a class="headerlink" href="#generatesignature" title="Permanent link">&para;</a></h3>
+<p><div class="method"><code><strong>generateSignature</strong>({<span class="prop">apiUser</span>, <span class="prop">apiKey</span>}) -&gt; <span class="return">{string}</span></code></div></p>
+<p>Generates a signature used to authenticate payment token creation requests. This should be used in conjunction with the <a href="https://rebilly.github.io/rebilly-js-token/" target="_blank">Rebilly JS Token library</a>, which powers your checkout form and removes the need to send sensitive customer information directly to your servers.</p>
+<div class="admonition warning">
+<p class="admonition-title">Server-side Only</p>
+<p>You should use the signature generation method only on the server-side as it will otherwise expose your secret <code class="codehilite">apiKey</code> to the browser.</p>
+</div>
+<p><mark>Since 1.1.0</mark></p>
+<blockquote>
+<p>See <a href="https://rebilly.github.io/rebilly-js-token/" target="_blank">Rebilly JS Token Library</a></p>
+</blockquote>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">credentials</span> <span class="o">=</span> <span class="p">{</span><span class="nx">apiUser</span><span class="o">:</span><span class="s1">&#39;foobar&#39;</span><span class="p">,</span> <span class="nx">apiKey</span><span class="o">:</span> <span class="s1">&#39;01234567890&#39;</span><span class="p">};</span>
+<span class="kr">const</span> <span class="nx">signature</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">generateSignature</span><span class="p">(</span><span class="nx">credentials</span><span class="p">);</span>
+
+<span class="c1">// in your checkout page authenticate your requests</span>
+<span class="c1">// using the Rebilly.js token library</span>
+<span class="nx">Rebilly</span><span class="p">.</span><span class="nx">setAuth</span><span class="p">(</span><span class="sb">`the signature&#39;s content`</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A signature that can be used to authenticate <a href="https://rebilly.github.io/rebilly-js-token/" target="_blank">Rebilly JS token</a> creation for use in a checkout page.</p>
+<p>Type <code class="codehilite">string</code></p>
 <h3 id="settimeout">setTimeout<a class="headerlink" href="#settimeout" title="Permanent link">&para;</a></h3>
 <p><div class="method"><code><strong>setTimeout</strong>(<span class="prop">timeout</span>)</code></div></p>
 <p>Define the default timeout delay in milliseconds for the current API instance.</p>
@@ -2349,7 +2387,7 @@
 <p><code class="codehilite"><span class="nx">api</span><span class="p">.</span><span class="nx">paymentTokens</span></code></p>
 <p>Tokens are an encrypted string representing a payment instrument. A token expires within 24 hours.</p>
 <p>Payment tokens are used to reduce the scope of PCI DSS compliance. A payment token can be made using a different authentication scheme , which allows you to create a payment token directly from the browser, bypassing the need to send sensitive cardholder info to your servers. We recommend using this with our Rebilly.js library, which helps you wire a form into this API resource and create payment tokens.</p>
-<p>See <a href="https://help.rebilly.com/20221-development/rebillyjs">Rebilly.js</a> library    </p>
+<p>See <a href="https://rebilly.github.io/rebilly-js-token/">Rebilly.js</a> library    </p>
 <div class="admonition info">
 <p>See the <a href="../resources/payment-tokens/"><strong>Payment Tokens resource</strong></a> for detailed method information.</p>
 </div>
