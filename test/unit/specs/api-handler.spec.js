@@ -111,7 +111,6 @@ describe('when I use an API handler', () => {
         const apiUser = '0pou/FjPq';
         const apiKey = `${apiUser}1234567890123`;
         const signature = apiHandler.generateSignature({apiUser, apiKey});
-        console.log(signature);
         const decoded = JSON.parse(jsBase64.Base64.decode(signature));
         const user = decoded['REB-APIUSER'];
         expect(user).to.be.equal(apiUser);
