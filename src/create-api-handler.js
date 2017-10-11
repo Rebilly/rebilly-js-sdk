@@ -161,8 +161,8 @@ export default function createApiHandler({options}) {
     /**
      * Generate an authentication signature for payment token creation.
      * @since 1.1.0
-     * @param apiUser
-     * @param apiKey
+     * @param apiUser {string} your API user value found in Rebilly
+     * @param apiKey {string} your secret API key found in Rebilly
      * @returns {string}
      */
     function generateSignature({apiUser, apiKey}) {

@@ -109,7 +109,7 @@ describe('when I use an API handler', () => {
 
     it('should generate a signature for server-side payment token creation', () => {
         const apiUser = '0pou/FjPq';
-        const apiKey = '0pou/FjPqisTSAZtkQOBTGnQd1veA1gdYmTUd0H';//`${apiUser}1234567890123`;
+        const apiKey = `${apiUser}1234567890123`;
         const signature = apiHandler.generateSignature({apiUser, apiKey});
         console.log(signature);
         const decoded = JSON.parse(jsBase64.Base64.decode(signature));
