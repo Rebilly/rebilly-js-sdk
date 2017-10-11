@@ -176,13 +176,13 @@ export default function createApiHandler({options}) {
         const timestamp = Date.now();
         const data = `${apiUser}${nonce}${timestamp}`;
         const signature = createHmac('sha1', apiKey).update(data).digest('hex');
-        const paypload = {
+        const payload = {
             'REB-APIUSER': apiUser,
             'REB-NONCE': nonce,
             'REB-TIMESTAMP': timestamp,
             'REB-SIGNATURE': signature
         };
-        return jsBase64.Base64.encode(JSON.stringify(paypload));
+        return jsBase64.Base64.encode(JSON.stringify(payload));
     }
 
     /**
