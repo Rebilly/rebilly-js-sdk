@@ -9,7 +9,7 @@
     "build:prod": "npm run clean && webpack --env=prod",
     "build:dev": "npm run clean && webpack --env=dev",
     "prepublish": "npm run build:prod",
-    "unit": "mocha --compilers js:babel-core/register --require babel-polyfill --colors ./test/unit/specs/*.spec.js",
+    "unit": "mocha --require babel-register --require babel-polyfill --colors ./test/unit/specs/*.spec.js",
     "unit:watch": "npm run unit -- --watch",
     "coverage": "npm run clean && cross-env NODE_ENV=test nyc npm run unit",
     "test": "npm run unit"
