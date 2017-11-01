@@ -123,7 +123,7 @@ export default function ReportsResource({apiHandler}) {
             return await apiHandler.get(`reports/retention-percentage`, params);
         },
 
-        async getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, sort = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -133,6 +133,7 @@ export default function ReportsResource({apiHandler}) {
                 includeDisputes,
                 limit,
                 offset,
+                sort,
                 filter,
                 criteria,
                 tz
