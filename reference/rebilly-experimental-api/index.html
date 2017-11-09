@@ -30,7 +30,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.2">
+      <meta name="generator" content="mkdocs-0.17.1, mkdocs-material-2.0.4">
     
     
       
@@ -38,7 +38,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/application-5b1b46901f.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application-709eec9410.css">
       
     
     
@@ -381,13 +381,6 @@
           <li class="md-nav__item">
   <a href="#setproxyagent" title="setProxyAgent" class="md-nav__link">
     setProxyAgent
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#setapiconsumer" title="setApiConsumer" class="md-nav__link">
-    setApiConsumer
   </a>
   
 </li>
@@ -1254,13 +1247,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#setapiconsumer" title="setApiConsumer" class="md-nav__link">
-    setApiConsumer
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1675,36 +1661,6 @@
 </tr>
 </tbody>
 </table>
-<h3 id="setapiconsumer">setApiConsumer<a class="headerlink" href="#setapiconsumer" title="Permanent link">&para;</a></h3>
-<p><div class="method"><code><strong>setApiConsumer</strong>(<span class="prop">consumerId</span>)</code></div></p>
-<p>Define a consumer identification <strong>HTTP header</strong> string for use with Rebilly. This allows you to identify your app in the API logs.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Defining an API consumer is useful for filtering your integration API logs from those who use Rebilly's user interface.</p>
-</div>
-<p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="nx">api</span><span class="p">.</span><span class="nx">setApiConsumer</span><span class="p">(</span><span class="s1">&#39;Acme Inc 1.0.4&#39;</span><span class="p">);</span>
-</pre></div>
-
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>consumerId</td>
-<td>string</td>
-<td>optional</td>
-<td>A string used to identify your application in the API logs.</td>
-</tr>
-</tbody>
-</table>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p>Resources are accessible at the root of the API client and represent a domain for specific API endpoints. Methods within each domain are semantically named and expect a single argument as an object literal with different keys.</p>
 <div class="admonition tip">
@@ -1808,7 +1764,7 @@
       
     </div>
     
-      <script src="../../assets/javascripts/application-84693e5e49.js"></script>
+      <script src="../../assets/javascripts/application-8e4952e681.js"></script>
       
       <script>app.initialize({version:"0.17.1",url:{base:"../.."}})</script>
       

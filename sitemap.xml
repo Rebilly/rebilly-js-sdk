@@ -4,7 +4,7 @@
     
     <url>
      <loc>/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
      <loc>/getting-started/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -21,19 +21,19 @@
         
     <url>
      <loc>/reference/rebilly-api/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/rebilly-experimental-api/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/reference/rebilly-errors/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -61,13 +61,13 @@
         
     <url>
      <loc>/guides/criteria/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>/guides/filters/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -76,7 +76,7 @@
     
     <url>
      <loc>/license/</loc>
-     <lastmod>2017-11-01</lastmod>
+     <lastmod>2017-11-09</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
