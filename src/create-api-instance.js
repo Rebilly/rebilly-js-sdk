@@ -55,7 +55,6 @@ export default function createApiInstance({apiHandler}) {
         setTimeout: apiHandler.setTimeout,
         setProxyAgent: apiHandler.setProxyAgent,
         setSessionToken: apiHandler.setSessionToken,
-        setApiConsumer: apiHandler.setApiConsumer,
         setEndpoints: apiHandler.setEndpoints,
         getCancellationToken: apiHandler.getCancellationToken,
         generateSignature: apiHandler.generateSignature
@@ -77,7 +76,6 @@ export function createExperimentalApiInstance({apiHandler}) {
         setTimeout: apiHandler.setTimeout,
         setProxyAgent: apiHandler.setProxyAgent,
         setSessionToken: apiHandler.setSessionToken,
-        setApiConsumer: apiHandler.setApiConsumer,
         setEndpoints: apiHandler.setEndpoints,
         getCancellationToken: apiHandler.getCancellationToken
     };
