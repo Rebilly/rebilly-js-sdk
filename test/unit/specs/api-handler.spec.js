@@ -3,6 +3,7 @@ import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import jsBase64 from 'js-base64';
 import crypto from 'crypto';
+import {version} from '../../../package.json';
 
 const expect = chai.expect;
 
@@ -23,12 +24,6 @@ describe('when I use an API handler', () => {
         const timeout = 1234;
         apiHandler.setTimeout(timeout);
         expect(apiHandler.getInstance().defaults.timeout).to.equal(timeout);
-    });
-
-    it('should allow the API consumer to be set to a different value', () => {
-        const consumer = 'Rebilly Tests';
-        apiHandler.setApiConsumer(consumer);
-        expect(apiHandler.getInstance().defaults.headers.common['REB-API-CONSUMER']).to.equal(consumer);
     });
 
     it('should set the Authorization token and delete the API key', () => {
@@ -120,5 +115,10 @@ describe('when I use an API handler', () => {
         const data = `${user}${nonce}${ts}`;
         const result = crypto.createHmac('sha1', apiKey).update(data).digest('hex');
         expect(hash).to.be.equal(result);
+    });
+
+    it('should define an API consumer header based on the package version', () => {
+        const headers = apiHandler.getInstance().defaults.headers;
+        expect(headers['REB-API-CONSUMER']).to.be.equal(`RebillySDK/JS-SDK ${version}`);
     });
 });

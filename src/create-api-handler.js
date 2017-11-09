@@ -6,11 +6,12 @@ import Errors from './errors';
 import cloneDeep from 'clone-deep';
 import jsBase64 from 'js-base64';
 import createHmac from 'create-hmac';
+import {version} from '../package.json';
 
 /**
  * Creates an API handler for the current instance with the provided options.
  * @param options
- * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setApiConsumer: setApiConsumer, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
+ * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
@@ -60,7 +61,8 @@ export default function createApiHandler({options}) {
     function getRequestHeaders() {
         if (options.apiKey) {
             return {
-                'REB-APIKEY': options.apiKey
+                'REB-APIKEY': options.apiKey,
+                'REB-API-CONSUMER': `RebillySDK/JS-SDK ${version}`
             };
         }
         return {};
@@ -85,19 +87,6 @@ export default function createApiHandler({options}) {
     function setTimeout(timeout) {
         options.requestTimeout = Number(timeout);
         instance.defaults.timeout = options.requestTimeout;
-    }
-
-    /**
-     * Define a consumer identification Header string for use with Rebilly. This allows you to identify your app in the API logs.
-     * @param consumerId {string} a string to identify your application or plugin request
-     * @example
-     * const api = RebillyAPI();
-     * api.setApiConsumer('Acme Application v1.0.1');
-     */
-    function setApiConsumer(consumerId) {
-        const headers = cloneInstanceHeaders();
-        headers.common['REB-API-CONSUMER'] = consumerId;
-        instance.defaults.headers = headers;
     }
 
     /**
@@ -437,7 +426,6 @@ export default function createApiHandler({options}) {
         setTimeout,
         setProxyAgent,
         setSessionToken,
-        setApiConsumer,
         setEndpoints,
         getCancellationToken,
         generateSignature,

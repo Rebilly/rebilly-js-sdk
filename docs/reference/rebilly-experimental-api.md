@@ -259,26 +259,6 @@ api.setProxyAgent(config);
 | port | number | - | Port of the proxy server. |
 | auth | Object | - | Basic credentials to connect to the proxy server. <br><br> **Properties**<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody><tr><td>username</td><td>string</td><td>The username required for basic authentication.</td></tr><tr><td>password</td><td>string</td><td>The password required for basic authentication.</td></tr></tbody></table> |
 
-### setApiConsumer
-<div class="method"><code><strong>setApiConsumer</strong>(<span class="prop">consumerId</span>)</code></div>
-
-Define a consumer identification **HTTP header** string for use with Rebilly. This allows you to identify your app in the API logs.
-
-!!! tip
-    Defining an API consumer is useful for filtering your integration API logs from those who use Rebilly's user interface.
-
-**Example**
-
-```js
-api.setApiConsumer('Acme Inc 1.0.4');
-``` 
-
-**Parameters**
-
-| Name | Type | Attribute | Description |
-| - | - | - | - |
-| consumerId | string | optional | A string used to identify your application in the API logs. |
-
 ## Resources
 Resources are accessible at the root of the API client and represent a domain for specific API endpoints. Methods within each domain are semantically named and expect a single argument as an object literal with different keys.
 
