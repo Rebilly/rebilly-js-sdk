@@ -59,13 +59,13 @@ export default function createApiHandler({options}) {
      * @returns {Object}
      */
     function getRequestHeaders() {
+        const headers = {
+            'REB-API-CONSUMER': `RebillySDK/JS-SDK ${version}`
+        };
         if (options.apiKey) {
-            return {
-                'REB-APIKEY': options.apiKey,
-                'REB-API-CONSUMER': `RebillySDK/JS-SDK ${version}`
-            };
+            headers['REB-APIKEY'] = options.apiKey;
         }
-        return {};
+        return headers;
     }
 
     /**
