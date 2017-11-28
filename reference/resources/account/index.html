@@ -30,7 +30,7 @@
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.0.4">
+      <meta name="generator" content="mkdocs-0.17.2, mkdocs-material-2.2.0">
     
     
       
@@ -38,11 +38,11 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application-709eec9410.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.5d3fffba.css">
       
     
     
-      <script src="../../../assets/javascripts/modernizr-e826f8942a.js"></script>
+      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       
@@ -85,22 +85,18 @@
         <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
-        <span class="md-flex__ellipsis md-header-nav__title">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             
-              
-                <span class="md-header-nav__parent">
-                  Reference
-                </span>
-              
-                <span class="md-header-nav__parent">
-                  Resources
-                </span>
-              
+              <span class="md-header-nav__topic">
+                Rebilly JS SDK
+              </span>
+              <span class="md-header-nav__topic">
+                Accounts
+              </span>
             
-            Accounts
           
-        </span>
+        </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
@@ -160,6 +156,9 @@
 </header>
     
     <div class="md-container">
+      
+        
+      
       
       <main class="md-main">
         <div class="md-main__inner md-grid" data-md-component="container">
@@ -346,6 +345,13 @@
         <li class="md-nav__item">
   <a href="#signin" title="signIn" class="md-nav__link">
     signIn
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logout" title="logout" class="md-nav__link">
+    logout
   </a>
   
 </li>
@@ -1061,6 +1067,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#logout" title="logout" class="md-nav__link">
+    logout
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#activate" title="activate" class="md-nav__link">
     activate
   </a>
@@ -1161,6 +1174,26 @@
 <p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
 <p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1signin%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="logout">logout<a class="headerlink" href="#logout" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>logout</strong>() -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Logs out the current authenticated user and destroys his active session. This will invalidate the session token. </p>
+<div class="admonition warning">
+<p class="admonition-title">Session Expiry</p>
+<p>A session will expire automatically if you do not logout the user. However <strong>we recommend you logout the user</strong> programmatically whenever his session should expire. </p>
+</div>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">logout</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">account</span><span class="p">.</span><span class="nx">logout</span><span class="p">();</span>
+
+<span class="c1">// the request does not return any fields but</span>
+<span class="c1">// you can confirm the success using the status code</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">logout</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span> <span class="c1">// 204</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>An empty member without fields. Check the <code class="codehilite">response</code> property to validate the expected status code.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1logout%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="activate">activate<a class="headerlink" href="#activate" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>activate</strong>({<span class="prop">token</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Activate a user account with the token he received by email when the user signed up to Rebilly. </p>
@@ -1276,9 +1309,9 @@
           </div>
         
         powered by
-        <a href="http://www.mkdocs.org" title="MkDocs">MkDocs</a>
+        <a href="http://www.mkdocs.org">MkDocs</a>
         and
-        <a href="http://squidfunk.github.io/mkdocs-material/" title="Material for MkDocs">
+        <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
       </div>
       
@@ -1290,7 +1323,7 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/application-8e4952e681.js"></script>
+      <script src="../../../assets/javascripts/application.6cdc17f0.js"></script>
       
       <script>app.initialize({version:"0.17.2",url:{base:"../../.."}})</script>
       
