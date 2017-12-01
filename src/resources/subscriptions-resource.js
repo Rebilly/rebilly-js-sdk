@@ -35,8 +35,11 @@ export default function SubscriptionsResource({apiHandler}) {
             return await apiHandler.download(`subscriptions`, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`subscriptions/${id}`);
+        async get({id, expand = null}) {
+            const params = {
+                expand
+            };
+            return await apiHandler.get(`subscriptions/${id}`, params);
         },
 
         async create({id = '', data}) {
