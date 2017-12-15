@@ -1,10 +1,10 @@
 export default function SubscriptionsResource({apiHandler}) {
     return {
-        async getSubscriptionSummaryMetrics({susbcriptionId = ''} = {}) {
+        async getSubscriptionSummaryMetrics({subscriptionId = ''} = {}) {
             const params = {
-                susbcriptionId,
+                subscriptionId,
             };
-            return await apiHandler.get(`subscriptions/${susbcriptionId}/summary-metrics`, params);
+            return await apiHandler.get(`subscriptions/${subscriptionId}/summary-metrics`, params);
         }
     };
 };
