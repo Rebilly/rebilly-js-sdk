@@ -26,6 +26,14 @@ export default function GatewayAccountsResource({apiHandler}) {
 
         async delete({id}) {
             return await apiHandler.delete(`gateway-accounts/${id}`);
-        }
+        },
+
+        async enable({id}) {
+            return await apiHandler.post(`gateway-accounts/${id}/enable`);
+        },
+
+        async disable({id}) {
+            return await apiHandler.post(`gateway-accounts/${id}/disable`);
+        },
     };
 };
