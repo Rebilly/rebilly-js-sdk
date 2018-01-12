@@ -19,6 +19,14 @@ export default function ExportSchedulesResource({apiHandler}) {
 
         async create({resource, data}) {
             return await apiHandler.post(`export-schedules/${resource}`, data);
+        },
+
+        async update({resource, id, data}) {
+            return await apiHandler.put(`export-schedules/${resource}/${id}`, data);
+        },
+
+        async delete({resource, id}) {
+            return await apiHandler.delete(`export-schedules/${resource}/${id}`);
         }
     };
 };
