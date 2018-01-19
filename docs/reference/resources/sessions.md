@@ -8,44 +8,6 @@ This token can be used to authenticate to the API. In addition, the session can 
 
 > See [account.signIn][goto-signin]
 
-## getAll
-
---8<----- "reference/resources/shared/paged-signature.md"
-
-Get a collection of sessions. Each entry will be a member.
-
-
-**Example**
-
-```js
-// all parameters are optional
-const firstCollection = await api.sessions.getAll();
-
-// alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100}; 
-const secondCollection = await api.sessions.getAll(params);
-
-// access the collection items, each item is a Member
-secondCollection.items.forEach(session => console.log(session.fields.name));
-```
-
-**Parameters**
-
-
---8<----- "reference/resources/shared/paged-get-all.md"
-
-
-**Returns**
-
-A collection of sessions.
-
-Type [`Collection`][goto-collection]
-
-
-**API Spec**
-
-See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
-
 ## get
 <div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 

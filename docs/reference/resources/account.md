@@ -85,6 +85,35 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
 
+## logout
+<div class="method"><code><strong>logout</strong>() -> <span class="return">{Member}</span></code></div>
+
+Logs out the current authenticated user and destroys his active session. This will invalidate the session token. 
+
+!!! warning "Session Expiry"
+    A session will expire automatically if you do not logout the user. However **we recommend you logout the user** programmatically whenever his session should expire. 
+
+**Example**
+
+```js
+const logout = await api.account.logout();
+
+// the request does not return any fields but
+// you can confirm the success using the status code
+console.log(logout.response.status); // 204
+```
+
+**Returns**
+
+An empty member without fields. Check the `response` property to validate the expected status code.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+
 ## activate
 <div class="method"><code><strong>activate</strong>({<span class="prop">token</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -176,3 +205,4 @@ Type [`Member`][goto-member]
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1signin%2Fpost
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1activation~1%7Btoken%7D%2Fpost
 [5]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1forgot-password%2Fpost
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1logout%2Fpost

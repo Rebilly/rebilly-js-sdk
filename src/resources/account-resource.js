@@ -8,6 +8,10 @@ export default function AccountResource({apiHandler}) {
             return await apiHandler.post(`signin`, data, {authenticate: false});
         },
 
+        async logout() {
+            return await apiHandler.post(`logout`);
+        },
+
         async activate({token}) {
             return await apiHandler.post(`activation/${token}`, null, {authenticate: false});
         },
