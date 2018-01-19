@@ -12,6 +12,7 @@ import CustomEventsResource from './custom-events-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
 import EventsResource from './events-resource';
+import EmailNotificationResource from './email-notification-resource';
 import FilesResource from './files-resource';
 import GatewayAccountsResource from './gateway-accounts-resource';
 import InvoicesResource from './invoices-resource';
@@ -52,6 +53,7 @@ const Resources = {
     CustomFieldsResource,
     DisputesResource,
     EventsResource,
+    EmailNotificationResource,
     FilesResource,
     GatewayAccountsResource,
     InvoicesResource,

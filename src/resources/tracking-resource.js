@@ -86,6 +86,21 @@ export default function TrackingResource({apiHandler}) {
 
         async getWebhookTrackingLog({id}) {
             return await apiHandler.get(`tracking/webhooks/${id}`);
+        },
+
+        async getAllEmailNotifications({limit = null, offset = null, sort = null, filter = null, criteria = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                criteria
+            };
+            return await apiHandler.getAll(`tracking/email-notifications`, params);
+        },
+
+        async getEmailNotification({id}) {
+            return await apiHandler.get(`tracking/email-notifications/${id}`)
         }
     };
 };
