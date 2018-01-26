@@ -1,4 +1,4 @@
-export default function ExportsResource({apiHandler}) {
+export default function DataExportsResource({apiHandler}) {
     return {
         async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
@@ -19,6 +19,14 @@ export default function ExportsResource({apiHandler}) {
 
         async queue({data}) {
             return await apiHandler.post('data-exports', data);
+        },
+
+        async update ({id, data}) {
+            return await apiHandler.put(`data-exports/${id}`, data);
+        },
+
+        async delete({id}) {
+            return await apiHandler.delete(`data-exports/${id}`);
         }
     };
 };
