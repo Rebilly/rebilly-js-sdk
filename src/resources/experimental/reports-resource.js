@@ -254,6 +254,16 @@ export default function ReportsResource({apiHandler}) {
                 filter
             };
             return await apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
-        }
+        },
+
+        async getDashboardMetrics({periodStart = null, periodEnd = null, criteria = null, tz = 0, data} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+                criteria,
+                tz
+            };
+            return await apiHandler.post(`reports/dashboard`, data, {params});
+        },
     };
 };

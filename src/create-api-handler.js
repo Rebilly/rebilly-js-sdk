@@ -326,18 +326,22 @@ export default function createApiHandler({options}) {
      * Trigger a POST request on the target URL with the provided data payload, and return the member received in the response.
      * @param url {string}
      * @param data {Object}
-     * @param flags {Object}
+     * @param options {Object}
      * @returns {Member} member
      */
-    function post(url, data, flags = {}) {
+    function post(url, data, options = {}) {
         let config = {};
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
-        if (flags.authenticate === false) {
+        if (options.authenticate === false) {
             //copy headers from default config
             config = {headers: cloneInstanceHeaders()};
             //temporarily remove authentication headers
             delete config.headers.common['REB-APIKEY'];
             delete config.headers.common['Authorization'];
+        }
+        // allow param definition for particular POST cases
+        if (options.params) {
+            config.params = {...options.params};
         }
         return wrapRequest(instance.post(url, data, getRequestConfig(config)));
     }
