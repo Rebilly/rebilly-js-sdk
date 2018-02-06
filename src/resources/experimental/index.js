@@ -4,7 +4,6 @@ import HistogramsResource from './histograms-resource';
 import ReportsResource from './reports-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TransactionsResource from './transactions-resource';
-import DashboardResource from './dashboard-resource';
 
 const ExperimentalResources = {
     CustomersResource,
@@ -12,8 +11,7 @@ const ExperimentalResources = {
     HistogramsResource,
     ReportsResource,
     SubscriptionsResource,
-    TransactionsResource,
-    DashboardResource
+    TransactionsResource
 };
 
 export default ExperimentalResources;

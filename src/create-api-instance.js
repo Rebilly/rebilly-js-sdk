@@ -70,7 +70,6 @@ export function createExperimentalApiInstance({apiHandler}) {
         reports: ExperimentalResources.ReportsResource({apiHandler}),
         subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
         transactions: ExperimentalResources.TransactionsResource({apiHandler}),
-        dashboard: ExperimentalResources.DashboardResource({apiHandler}),
 
         //expose apiHandler methods to the API instance
         addRequestInterceptor: apiHandler.addRequestInterceptor,
