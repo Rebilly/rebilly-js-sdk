@@ -263,7 +263,7 @@ export default function ReportsResource({apiHandler}) {
                 tz,
                 settings
             };
-            return await apiHandler.get(`reports/dashboard`, params);
+            return await apiHandler.getAll(`reports/dashboard`, params);
         },
     };
 };
