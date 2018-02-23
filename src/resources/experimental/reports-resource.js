@@ -256,12 +256,12 @@ export default function ReportsResource({apiHandler}) {
             return await apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
         },
 
-        async getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, settings = {}} = {}) {
+        async getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, segments = {}} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 tz,
-                settings
+                segments
             };
             return await apiHandler.getAll(`reports/dashboard`, params);
         },
