@@ -69,6 +69,7 @@ export function createExperimentalApiInstance({apiHandler}) {
         histograms: ExperimentalResources.HistogramsResource({apiHandler}),
         reports: ExperimentalResources.ReportsResource({apiHandler}),
         subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
+        timelines: ExperimentalResources.TimelinesResource({apiHandler}),
         transactions: ExperimentalResources.TransactionsResource({apiHandler}),
 
         //expose apiHandler methods to the API instance
