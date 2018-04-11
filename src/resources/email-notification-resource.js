@@ -1,95 +1,49 @@
 export default function EmailNotificationResource({apiHandler}) {
     return {
         /**
-         * Retrieve a list of customer email notifications
-         * @returns {Promise}
-         */
-        async getAllCustomerNotifications() {
-            return await apiHandler.getAll(`customer-notifications`);
-        },
-
-        /**
-         * Retrieve a customer email notification settings
-         * @param eventType
-         * @returns {Promise}
-         */
-        async getCustomerNotificationSettings({eventType}) {
-            return await apiHandler.get(`customer-notifications/${eventType}`);
-        },
-
-        /**
-         * Create Customer Email notification settings for specified event
-         * @param eventType
-         * @param body
-         * @returns {Promise}
-         */
-        async createCustomerNotificationSettings({eventType, body}) {
-            return await apiHandler.put(`customer-notifications/${eventType}`, body);
-        },
-
-        /**
-         * Update Customer Email notification settings for specified event
-         * @param eventType
-         * @param body
-         * @returns {Promise}
-         */
-        async updateCustomerNotificationSettings({eventType, body}) {
-            return await apiHandler.put(`customer-notifications/${eventType}`, body);
-        },
-
-        /**
          * Retrieve a list of email notifications
          * @returns {Promise}
          */
-        async getAllOrderNotifications() {
-            return await apiHandler.getAll(`order-notifications`);
+        async getAll() {
+            return await apiHandler.getAll('email-notifications');
         },
 
         /**
-         * Retrieve an order email notification settings
-         * @param eventType
+         * Retrieve a email notification
+         * @param id
          * @returns {Promise}
          */
-        async getOrderNotificationSettings({eventType}) {
-            return await apiHandler.get(`order-notifications/${eventType}`);
+        async get({id}) {
+            return await apiHandler.get(`email-notifications/${id}`);
         },
 
         /**
-         * Create Order Email notification settings for specified event
-         * @param eventType
-         * @param body
+         * Create a email notification
+         * @param id
+         * @param data
          * @returns {Promise}
          */
-        async createOrderNotificationSettings({eventType, body}) {
-            return await apiHandler.put(`order-notifications/${eventType}`, body);
+        async create({id = '', data}) {
+            return await apiHandler.create(`email-notifications/${id}`, id, data);
         },
 
         /**
-         * Update Order Email notification settings for specified event
-         * @param eventType
-         * @param body
+         * Update a email notification
+         * @param id
+         * @param data
          * @returns {Promise}
          */
-        async updateOrderNotificationSettings({eventType, body}) {
-            return await apiHandler.put(`order-notifications/${eventType}`, body);
+        async update({id, data}) {
+            return await apiHandler.put(`email-notifications/${id}`, data);
         },
 
         /**
-         * Trigger a test Customer Email Notification
-         * @param body
+         * Sent a test Email Notification
+         * @param data
          * @returns {Promise}
          */
-        async triggerCustomerNotification({body}) {
-            return await apiHandler.post(`previews/customer-notification`, body);
-        },
-
-        /**
-         * Trigger a test Order Email Notification
-         * @param body
-         * @returns {Promise}
-         */
-        async triggerOrderNotification({body}) {
-            return await apiHandler.post(`previews/order-notification`, body);
+        async test({data}) {
+            return await apiHandler.post(`previews/email-notifications`, data);
         },
     };
 };
