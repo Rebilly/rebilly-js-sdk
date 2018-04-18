@@ -1,13 +1,14 @@
 export default function ListsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
+                fields
             };
             return await apiHandler.getAll(`lists`, params);
         },
