@@ -108,7 +108,7 @@ export default function ReportsResource({apiHandler}) {
             return await apiHandler.get(`reports/renewal-sales`, params);
         },
 
-        async getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, tz = null} = {}) {
+        async getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -118,6 +118,7 @@ export default function ReportsResource({apiHandler}) {
                 limit,
                 offset,
                 filter,
+                criteria,
                 tz
             };
             return await apiHandler.get(`reports/retention-percentage`, params);
