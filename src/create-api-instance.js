@@ -22,7 +22,7 @@ export default function createApiInstance({apiHandler}) {
         credentialHashes: Resources.CredentialHashesResource({apiHandler}),
         disputes: Resources.DisputesResource({apiHandler}),
         events: Resources.EventsResource({apiHandler}),
-        emailNotification: Resources.EmailNotificationResource({apiHandler}),
+        emailNotifications: Resources.EmailNotificationsResource({apiHandler}),
         files: Resources.FilesResource({apiHandler}),
         gatewayAccounts: Resources.GatewayAccountsResource({apiHandler}),
         invoices:  Resources.InvoicesResource({apiHandler}),
