@@ -1,4 +1,4 @@
-export default function EmailNotificationResources({apiHandler}) {
+export default function EmailNotificationsResource({apiHandler}) {
     return {
         /**
          * Retrieve a list of email notifications
