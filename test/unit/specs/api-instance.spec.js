@@ -32,6 +32,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.credentialHashes).to.be.an('object');
         expect(apiInstance.disputes).to.be.an('object');
         expect(apiInstance.files).to.be.an('object');
+        expect(apiInstance.emailNotifications).to.be.an('object');
         expect(apiInstance.events).to.be.an('object');
         expect(apiInstance.gatewayAccounts).to.be.an('object');
         expect(apiInstance.invoices).to.be.an('object');

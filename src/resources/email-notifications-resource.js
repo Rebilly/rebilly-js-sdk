@@ -1,4 +1,4 @@
-export default function EmailNotificationResource({apiHandler}) {
+export default function EmailNotificationsResource({apiHandler}) {
     return {
         /**
          * Retrieve a list of email notifications
@@ -35,15 +35,6 @@ export default function EmailNotificationResource({apiHandler}) {
          */
         async update({id, data}) {
             return await apiHandler.put(`email-notifications/${id}`, data);
-        },
-
-        /**
-         * Sent a test Email Notification
-         * @param data
-         * @returns {Promise}
-         */
-        async test({data}) {
-            return await apiHandler.post(`previews/email-notifications`, data);
         },
     };
 };
