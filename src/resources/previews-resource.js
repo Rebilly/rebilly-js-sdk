@@ -10,6 +10,14 @@ export default function PreviewsResource({apiHandler}) {
 
         async sendEmailRuleAction({data}) {
             return await apiHandler.post(`previews/rule-actions/send-email`, data);
-        }
+        },
+
+        async sendEmailNotification({data}) {
+            return await apiHandler.post(`previews/email-notifications/send-notification`, data);
+        },
+
+        async previewEmailNotification({data}) {
+            return await apiHandler.post(`previews/email-notifications/preview-notification`, data);
+        },
     };
 };
