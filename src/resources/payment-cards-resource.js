@@ -23,6 +23,10 @@ export default function PaymentCardsResource({apiHandler}) {
             return await apiHandler.create(`payment-cards/${id}`, id, data);
         },
 
+        async patch({id = '', data}) {
+            return await apiHandler.create(`payment-cards/${id}`, id, data);
+        },
+
         async authorize({id, data}) {
             return await apiHandler.post(`payment-cards/${id}/authorization`, data);
         },
