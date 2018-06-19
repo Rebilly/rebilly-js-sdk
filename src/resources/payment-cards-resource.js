@@ -24,7 +24,7 @@ export default function PaymentCardsResource({apiHandler}) {
         },
 
         async patch({id = '', data}) {
-            return await apiHandler.patch(`payment-cards`, id, data);
+            return await apiHandler.patch(`payment-cards/${id}`, data);
         },
 
         async authorize({id, data}) {
