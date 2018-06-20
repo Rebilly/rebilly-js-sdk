@@ -26,6 +26,7 @@ export default function createApiInstance({apiHandler}) {
         files: Resources.FilesResource({apiHandler}),
         gatewayAccounts: Resources.GatewayAccountsResource({apiHandler}),
         invoices:  Resources.InvoicesResource({apiHandler}),
+        kycDocuments:  Resources.KycDocumentsResource({apiHandler}),
         layouts: Resources.LayoutsResource({apiHandler}),
         lists: Resources.ListsResource({apiHandler}),
         notes: Resources.NotesResource({apiHandler}),
