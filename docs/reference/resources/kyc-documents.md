@@ -1,40 +1,40 @@
-# Customers <small>`:::js api.customers`</small>
+# KYC Douments <small>`:::js api.kycDocuments`</small>
 
 > Member of [`RebillyAPI`][goto-rebillyapi]
 
-Customers are associated with payment cards, subscriptions, invoices and other miscellaneous relationship models.
+Customer KYC files uploaded on behalf of a customer, tagged with a document type and submitted for validation.
 
 
 ## getAll
 
---8<----- "reference/resources/shared/full-expanded-signature.md"
+--8<----- "reference/resources/shared/criteria-less-signature.md"
 
-Get a collection of customers. Each entry will be a member.
+Get a collection of KYC documents of all customers.
 
 
 **Example**
 
 ```js
 // all parameters are optional
-const firstCollection = await api.customers.getAll();
+const firstCollection = await api.kycDocuments.getAll();
 
 // alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
-const secondCollection = await api.customers.getAll(params);
+const params = {limit: 20, offset: 100, sort: '-createdTime'};
+const secondCollection = await api.kycDocuments.getAll(params);
 
 // access the collection items, each item is a Member
-secondCollection.items.forEach(customer => console.log(customer.fields.primaryAddress.firstName));
+secondCollection.items.forEach(document => console.log(document.fields.documentType));
 ```
 
 **Parameters**
 
 
---8<----- "reference/resources/shared/full-expanded-get-all.md"
+--8<----- "reference/resources/shared/criteria-less-get-all.md"
 
 
 **Returns**
 
-A collection of customers.
+A collection of customers KYC documents.
 
 Type [`Collection`][goto-collection]
 
@@ -46,22 +46,19 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 ## get
 <div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Get a customer by its `id`.
-
-!!! tip "Contact Object"
-    Customers have contact objects attached to them (`primaryAddress`). The contact information contains the customer's name and address.
+Get a KYC document by its `id`.
 
 **Example**
 
 ```js
-const customer = await api.customers.get({id: 'foobar-001'});
-console.log(customer.fields.primaryAddress.firstName);
+const document = await api.kycDocuments.get({id: 'foobar-001'});
+console.log(document.fields.documentType);
 ```
 
 
 **Returns**
 
-A member exposing the customer fields.
+A member exposing the document fields.
 
 Type [`Member`][goto-member]
 
@@ -70,81 +67,29 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][2]{: target="_blank"} for all payload fields and response data.
 
-## downloadCSV
-
---8<----- "reference/resources/shared/csv/full-expanded-signature.md"
-
-Get a collection of customers in CSV format. The first row of data will include the headers of the fields included within the CSV list.
-
-!!! note 
-    The `downloadCSV` method is exactly the same as the `getAll` method, with the only difference that the former returns a file instead of a collection.
- 
-**Example**
-
-```js
-// all parameters are optional
-const firstFile = await api.customers.downloadCSV();
-
-// alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
-const secondFile = await api.customers.downloadCSV(params);
-
-// access the file data to view the CSV content 
-console.log(secondFile.data);
-```
-
-!!! tip
-    You can generate a binary file to download from the CSV content directly in the browser, or save it locally via the file system in Node.
-
-**Parameters**
-
-
---8<----- "reference/resources/shared/full-expanded-get-all.md"
-
-
-**Returns**
-
-A file with the response data.
-
-Type [`File`][goto-file]
-
-
-**API Spec**
-
-See the [detailed API spec][1]{: target="_blank"} for all payload fields and response data.
-
 
 ## create
-<div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>create</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Create a customer. Optionally provide a specific `id` to use, or let Rebilly generate one.
+Create a KYC document.
 
 **Example**
 
 ```js
 // first set the properties for the new customer
 const data = {
-    primaryAddress: {
-        firstName: 'John',
-        lastName: 'Doe',
-        emails: [{
-            label: 'main',
-            value: 'john.doe+test@grr.la',
-            primary: true
-        }],
-    }
+    fieldId: '4f6cf35x-2c4y-483z-a0a9-158621f77a21',
+    customerId: '4f6cf35x-2c4y-483z-a0a9-158621f77a21',
+    documentType: 'identity-proof'
 };
 
-// the ID is optional
-const firstCustomer = await api.customers.create({data});
-
-// or you can provide one
-const secondCustomer = await api.customers.create({id: 'my-second-id', data});
+// All fields are required
+const firstKycDocument = await api.kycDocuments.create({data});
 ```
 
 **Returns**
 
-A member exposing the created customer fields.
+A member exposing the created document.
 
 Type [`Member`][goto-member]
 
@@ -156,25 +101,17 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## update
 <div class="method"><code><strong>update</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Update a customer using its `id`.
+Update a KYC document by using its `id`.
 
 **Example**
 
 ```js
 // define the values to update
 const data = {
-    primaryAddress: {
-        firstName: 'Johnny',
-        lastName: 'Doe',
-        emails: [{
-            label: 'main',
-            value: 'johnny.doe+test@grr.la',
-            primary: true
-        }],
-    }
+    status: 'accepted'
 };
 
-const customer = await api.customers.update({id: 'my-second-id', data});
+const document = await api.kycDocuments.update({id: 'my-second-id', data});
 ```
 
 **Returns**
@@ -186,66 +123,24 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][3]{: target="_blank"} for all payload fields and response data.
-
-## getLeadSource
-<div class="method"><code><strong>getLeadSource</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
-
-Get a lead source by using the customer `id`.
-
-
-**Example**
-
-```js
-const lead = await api.customers.getLeadSource({id: 'my-second-id'});
-console.log(lead.fields.affiliate);
-```
-
-**Returns**
-
-A member exposing the lead source fields.
-
-Type [`Member`][goto-member]
-
-
-**API Spec**
-
 See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
-## createLeadSource
-<div class="method"><code><strong>createLeadSource</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+## Accept
+<div class="method"><code><strong>accept</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Create a lead source for a customer `id`. A customer can only have one lead source present at a time.
+Accept a KYC document by its `id`.
 
-!!! tip "Customer Tracking"
-    The lead source entity lets you track your customers throughout your different campaigns.
 
 **Example**
 
 ```js
-// first set the properties for the new lead source
-const data = {
-    medium: 'foobar',
-    source: 'www.google.com',
-    campaign: 'my-first-campaign',
-    term: 'subscriptions',
-    content: 'subscription business',
-    affiliate: 'Acme',
-    subAffiliate: null,
-    salesAgent: null,
-    clickId: null,
-    path: null,
-    ipAddress: '12.34.56.78',
-    currency: 'USD',
-    amount: 0
-};
-
-const lead = await api.customers.createLeadSource({id: 'my-second-id', data});
+const acceptedDocument = await api.kycDocuments.accept({id: 'my-second-id'});
+console.log(acceptedDocument.fields.status);
 ```
 
 **Returns**
 
-A member exposing the created customer lead source fields.
+A member exposing the accepted document.
 
 Type [`Member`][goto-member]
 
@@ -254,80 +149,40 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
-## updateLeadSource
-<div class="method"><code><strong>updateLeadSource</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+## Reject
+<div class="method"><code><strong>reject</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Update the lead source for a customer `id`.
+Rejects a document for a customer by its `id`.
 
 **Example**
 
 ```js
-// define the values to update
 const data = {
-    medium: 'foobar',
-    source: 'www.google.com',
-    campaign: 'my-first-campaign',
-    term: 'subscriptions',
-    content: 'subscription business',
-    affiliate: 'Acme',
-    subAffiliate: null,
-    salesAgent: null,
-    clickId: null,
-    path: null,
-    ipAddress: '12.34.56.78',
-    currency: 'USD',
-    amount: 0
-};
-
-const lead = await api.customers.updateLeadSource({id: 'my-second-id', data});
+    type: 'document-expired',
+    message: 'Document is expired'
+}
+const rejectedDocument = await api.kycDocuments.reject({id: 'my-second-id', data});
+console.log(rejectedDocument.fields.rejectionReason.type);
 ```
 
 **Returns**
 
-A member exposing the update customer lead source fields.
+A member exposing the rejected document.
 
 Type [`Member`][goto-member]
 
 
 **API Spec**
 
-See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
-
-## deleteLeadSource
-<div class="method"><code><strong>deleteLeadSource</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
-
-Delete a lead source using the customer `id`.  
-
-
-**Example**
-
-```js
-const request = await api.customers.deleteLeadSource({id: 'my-second-id'});
-
-// the request does not return any fields but
-// you can confirm the success using the status code
-console.log(request.response.status); // 204
-```
-
-
-**Returns**
-
-An empty member without fields. Check the response property to validate the expected status code.
-
-Type [`Member`][goto-member]
-
-
-**API Spec**
-
-See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-file]: ../types/file
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fget
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fput
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fdelete
+[1]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents/get
+[2]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}/get
+[3]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents/post
+[4]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}/put
+[5]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}~1acceptance/post
+[6]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}~1rejection/post

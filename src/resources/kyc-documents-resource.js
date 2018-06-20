@@ -19,8 +19,8 @@ export default function KycDocuments({apiHandler}) {
             return await apiHandler.get(`kyc-documents/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`kyc-documents/${id}`, id, data);
+        async create({data}) {
+            return await apiHandler.create(`kyc-documents`, data);
         },
 
         async update({id, data}) {
