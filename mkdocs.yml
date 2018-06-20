@@ -61,6 +61,7 @@ pages:
       - Files: reference/resources/files.md
       - Gateway Accounts: reference/resources/gateway-accounts.md
       - Invoices: reference/resources/invoices.md
+      - KYC Documents: reference/resources/kyc-documents.md
       - Layouts: reference/resources/layouts.md
       - Lists: reference/resources/lists.md
       - Notes: reference/resources/notes.md
@@ -95,4 +96,3 @@ pages:
     - Criteria: guides/criteria.md
     - Filters: guides/filters.md
   - License: license.md
-
