@@ -49,7 +49,8 @@ export default function GatewayAccountsResource({apiHandler}) {
         },
 
         async createDowntimeSchedule({id, data}) {
-            return await apiHandler.put(`gateway-accounts/${id}/downtime-schedules`, data);
+            // Id for a downtime-schedules cannot be set, is read only.
+            return await apiHandler.create(`gateway-accounts/${id}/downtime-schedules`, '', data);
         },
 
         async updateDowntimeSchedule({id, downtimeScheduleId, data}) {
