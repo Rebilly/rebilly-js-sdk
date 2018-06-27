@@ -36,10 +36,11 @@ export default function GatewayAccountsResource({apiHandler}) {
             return await apiHandler.post(`gateway-accounts/${id}/disable`);
         },
 
-        async getAllDowntimeSchedules({id, limit = null, offset = null} = {}) {
+        async getAllDowntimeSchedules({id, limit = null, offset = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
+                filter,
             };
             return await apiHandler.getAll(`gateway-accounts/${id}/downtime-schedules`, params);
         },
