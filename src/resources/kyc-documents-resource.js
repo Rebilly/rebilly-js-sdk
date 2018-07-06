@@ -1,4 +1,4 @@
-export default function KycDocuments({apiHandler}) {
+export default function KycDocumentsResource({apiHandler}) {
     return {
         async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
@@ -20,7 +20,7 @@ export default function KycDocuments({apiHandler}) {
         },
 
         async create({data}) {
-            return await apiHandler.create(`kyc-documents`, data);
+            return await apiHandler.create(`kyc-documents`, '', data);
         },
 
         async update({id, data}) {
