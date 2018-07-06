@@ -2,272 +2,272 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/getting-started/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/rebilly-api/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/rebilly-experimental-api/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/rebilly-errors/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/account/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/api-keys/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/bank-accounts/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/blacklists/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/checkout-pages/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/contacts/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/coupons/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/credential-hashes/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/custom-events/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/custom-fields/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/customers/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/customer-authentication/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/disputes/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/events/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/files/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/gateway-accounts/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/invoices/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/kyc-documents/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/layouts/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/lists/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/notes/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/organizations/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/payment-cards/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/payment-tokens/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/paypal-accounts/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/plans/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/previews/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/products/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/profile/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/sessions/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/shipping-zones/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/status/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/subscriptions/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/three-d-secure/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/tracking/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/transactions/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/users/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/webhooks/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/websites/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/experimental/customers/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/experimental/exports/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/experimental/histograms/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/resources/experimental/reports/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/types/member/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/types/collection/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/reference/types/file/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/guides/criteria/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/guides/filters/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>/license/</loc>
-     <lastmod>2018-06-27</lastmod>
+     <lastmod>2018-07-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
