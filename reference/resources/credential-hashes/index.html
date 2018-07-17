@@ -464,6 +464,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#getmailguncredential" title="getMailgunCredential" class="md-nav__link">
+    getMailgunCredential
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#createemailcredential" title="createEmailCredential" class="md-nav__link">
     createEmailCredential
   </a>
@@ -473,6 +480,13 @@
         <li class="md-nav__item">
   <a href="#createwebhookcredential" title="createWebhookCredential" class="md-nav__link">
     createWebhookCredential
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#createmailguncredential" title="createMailgunCredential" class="md-nav__link">
+    createMailgunCredential
   </a>
   
 </li>
@@ -1097,6 +1111,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#getmailguncredential" title="getMailgunCredential" class="md-nav__link">
+    getMailgunCredential
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#createemailcredential" title="createEmailCredential" class="md-nav__link">
     createEmailCredential
   </a>
@@ -1106,6 +1127,13 @@
         <li class="md-nav__item">
   <a href="#createwebhookcredential" title="createWebhookCredential" class="md-nav__link">
     createWebhookCredential
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#createmailguncredential" title="createMailgunCredential" class="md-nav__link">
+    createMailgunCredential
   </a>
   
 </li>
@@ -1160,6 +1188,19 @@
 <p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
 <p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1webhooks~1%7Bhash%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="getmailguncredential">getMailgunCredential<a class="headerlink" href="#getmailguncredential" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>getMailgunCredential</strong>({<span class="prop">hash</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Get the details of a Mailgun credential using the <code class="codehilite">hash</code>.</p>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kr">const</span> <span class="nx">details</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">credentialHashes</span><span class="p">.</span><span class="nx">getMailgunCredential</span><span class="p">({</span><span class="nx">hash</span><span class="o">:</span> <span class="s1">&#39;foobar-001&#39;</span><span class="p">});</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">details</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">domain</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the Mailgun credential details.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun~1%7Bhash%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="createemailcredential">createEmailCredential<a class="headerlink" href="#createemailcredential" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>createEmailCredential</strong>({<span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Create new email credentials to use in the <em>events</em> (Rules Engine). </p>
@@ -1283,6 +1324,31 @@
 <p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
 <p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1webhooks%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<h2 id="createmailguncredential">createMailgunCredential<a class="headerlink" href="#createmailguncredential" title="Permanent link">&para;</a></h2>
+<p><div class="method"><code><strong>createMailgunCredential</strong>({<span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
+<p>Create new Mailgun credentials to use in the <em>events</em> (Rules Engine).</p>
+<div class="admonition warning">
+<p class="admonition-title">Immutable Credentials</p>
+<p>The details of a credential hash cannot be modified once created. You will have to generate a new credential hash if the values within change.</p>
+</div>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">// first set the required properties for the new credential hash</span>
+<span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">emailFrom</span><span class="o">:</span> <span class="s1">&#39;me@mydomain.com&#39;</span><span class="p">,</span> <span class="c1">// sender email</span>
+    <span class="nx">apiKey</span><span class="o">:</span> <span class="s1">&#39;key-1234567890&#39;</span><span class="p">,</span> <span class="c1">// use your Mailgun API key</span>
+    <span class="nx">domain</span><span class="o">:</span> <span class="s1">&#39;mail.mydomain.com&#39;</span> <span class="c1">// Mailgun domain</span>
+<span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">credential</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">credentialHashes</span><span class="p">.</span><span class="nx">createMailgunCredential</span><span class="p">({</span><span class="nx">data</span><span class="p">});</span>
+<span class="c1">// use the hash to authenticate your email action in the rules engine</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">credential</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">hash</span><span class="p">);</span>
+</pre></div>
+
+<p><strong>Returns</strong></p>
+<p>A member exposing the created Mailgun credential fields.</p>
+<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p><strong>API Spec</strong></p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
                 
                   
                 
