@@ -55,6 +55,31 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][2]{: target="_blank"} for all payload fields and response data.
 
+## getMailgunCredential
+<div class="method"><code><strong>getMailgunCredential</strong>({<span class="prop">hash</span>}) -> <span class="return">{Member}</span></code></div>
+
+Get the details of a Mailgun credential using the `hash`.
+
+
+**Example**
+
+```js
+const details = await api.credentialHashes.getMailgunCredential({hash: 'foobar-001'});
+console.log(details.fields.domain);
+```
+
+
+**Returns**
+
+A member exposing the Mailgun credential details.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
+
 ## createEmailCredential
 <div class="method"><code><strong>createEmailCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -203,6 +228,41 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
+## createMailgunCredential
+<div class="method"><code><strong>createMailgunCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+
+Create new Mailgun credentials to use in the *events* (Rules Engine).
+
+!!! warning "Immutable Credentials"
+    The details of a credential hash cannot be modified once created. You will have to generate a new credential hash if the values within change.
+
+**Example**
+
+```js
+// first set the required properties for the new credential hash
+const data = {
+    emailFrom: 'me@mydomain.com', // sender email
+    apiKey: 'key-1234567890', // use your Mailgun API key
+    domain: 'mail.mydomain.com' // Mailgun domain
+};
+
+const credential = await api.credentialHashes.createMailgunCredential({data});
+// use the hash to authenticate your email action in the rules engine
+console.log(credential.fields.hash);
+```
+
+
+**Returns**
+
+A member exposing the created Mailgun credential fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
@@ -210,3 +270,5 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [2]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1webhooks~1%7Bhash%7D%2Fget
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1emails%2Fpost
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1webhooks%2Fpost
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun~1%7Bhash%7D%2Fget
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun%2Fpost
