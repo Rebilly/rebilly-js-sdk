@@ -1,51 +1,37 @@
 language: node_js
-
-# Node versions to test
 node_js:
-  - '7'
-  - '6'
-
-# Cache dependencies
+- '8'
+- '6'
 cache:
   pip: true
   yarn: true
   directories:
-    - node_modules
-
-# tokens
+  - node_modules
 env:
   global:
     secure: ZQghI2ZmuocHb2Oek1HvS9qIPVorUisrkivdV9Z0vT3VlCNDQNbZRIGR18rJf0ttW2WQd2Qz1jzTgYgAChnEvVxHGLZ1ezYnnK7RrpeGbKpzLXnX7C9KXy+ej0hY9fP3oVrMwgZeuHMSPnbGEwJG4eyu+e2HQjQ3sZBpJUyMeygXn7RSbXUEkJgy97yIZ17HmXHi76+M5aYvR39LHWU/SJ2AEitOzmvXOgY1804k1u7TdGyDCT2Jeu/1MNuIEkxUQuhyh2Vyj0V2DjYfxuezN8I0IBVmV8VjjFkUREDqqKBT5PoXMCQGn15BPLRBuY4Tmcmn7WKcbRZwo0bgMa68CZxvV8FyiR9wl3BaLqz5vsW/4IXrwy5fXdtlvIzQy+mNFW+I1NnkiGQxCKz4r8EEhIziKhcncoVJfjLyDylNvxMBUWj2DoWGX7Zkt5/CJHEmOcI9DdwVYBEcad0ku0FoE6fd4CwLq3vbGy4oLrod8idIov1peJZ6TBq9pQ6MlDocva3Vex0TvyswFPXzXQi/texjHiY2IIB0ciKv8Zz3Gf7/0Ks5Xudn5xCH9nmTBZrJyjrSHX9uZL5DcHrqMMf5nC5Oy4JCcnhvufcQXjhM4bn/iEbH5Y/oS6qdNmOL0qfdrNaT3P5L/MqnkzENZds7Y6PQYm2yDGaKeS6vePOrF6Q=
-
 branches:
   only:
-    - master
-    - "/^v\\d+\\./"
-
-# slack notification
+  - master
+  - "/^v\\d+\\./"
 notifications:
   slack:
     secure: YITWSY8BLo3bU5nIrHVrR+X0wIuJgTvfxtiSPtd59Zn34Sbs47fdpBCqReGbQJe9uXAwYGWuupKkq7Wc9pULNOnrSq6Rn5Btz6IV/jpTrS1R7KjI1mhmQF65vTwmzU72yMwyT6L+VyjQFYrhGtvJ9qAgiIRima4fmarcd22BjA6rETlx0PfE/Jm9YxL2ebb8BwrBl0CnLXGUMTdKvZnDGwO3wYnYvvf6yoFSxFjsHBSwQlhTIoCA3KzX7FbsSwwMWc9ebOM0BF9556BHPZdMtXXiSt4OJd/cVgP49PfYGeKpLbrEpfEuX5c2bAoYi0BYhBOGr7gaq+r19XbZseU3vwK5Z/5TlVuAsea5uhizPxEEDlEBkx42tMRA/Spj1gnsr7bJL+hATSI/yK/BXi59Vl/iqwPIl91f+jGYzzsK6D32ua8/Xr93Um5tluaOG7xqZg1ASqyfijACJyoZbs0hkYJo1luq8VCutuRASow1K0mvW7QxoLqdCZ+vn6QPK9Qf/E4zmH04E6elEXk80g0Qvw/YKBL/esneuVc6G37oGmG/GYkPyjdziBcBJllymxlU4xLNvdU77d9KNsuWuBDXVTDAQNewkIvIBbSJLbdYg5lT61JQiG7HNRVPpH4odMNu6VTKUZ/j72RwDhgOPgbYR39fATQXNMGDm4KOlCmg28I=
-
 install:
-  - yarn install
-  - pip install --user -r doc-req.txt
-
-# deploy to NPM
+- yarn install
+- pip install --user -r doc-req.txt
 deploy:
   provider: npm
   skip_cleanup: true
   email: andrei.moldoveanu@gmail.com
   api_key:
-    secure: ylVbKkQbTdum+b+eDGbd3CenUoz8bDycNruoTIySMfXZyBezAGoLN7fHNK+YgoAagJ1hP+D9u3DEl/c7eG7jqCgQpOkJzlfm7miBm5ykZMPIzrP2jIUcoMC5Ffs49tt0Ghx5ATjN8Fgk9Zgk2gpl1KvCXXQ/DTnNtTVBqK9aJdkMQ+uKGHxUiJ/nHhbst0FWwHmmmT8zJdpzOkkOx2l9G6Wjs/MWOCI7Gfv/Wl4T79uJXM7t9fppE2K35FuZC7dOT9fom+DVm6auzpRz40HHFW/7hVwFrXTW8xP5uHlXqXtMUqiMGukOJs+K6oIxQ14LPLOCEtisaQCxKA34NAJV15XyVUZEbt/uh+BwKZPDXF+borHmvWo5Mu5AktKd5g1Bydvu6nHdZipdW9NG8C/oZb5EsEeWXlLpYH2OPTA/ylzO848hb6CaylgbiOZNzjH8UikC7WGg0GKOuKjzgWyv9Di21GWDKIki8xyGfaBuK1YTjarwBuDTI8uhJ3WXIldCCyYG7cSSIeojSOM4P6AHgHEOwSwaVTZ1crH5F/0/wDFeZ4iDqL08qRDt4yjggoyCz/hmC9GDzBCuHoafxzoRZ6NnQZ2sgdhHRsTorDIQqJIV0rpfCNgwCtGzBM/PNV/XnfRF5lphWrnK7gFwESKIB8Ml2bAIACgD8ViVHqBVrmE=
+    secure: I3xEyc2M9oKsJ8SEbJLCS9iNC1RrokWq+XmFN5cbS7K45LxxWv9XN9qr3fn1RoZmfcvrYmOiSMBqvtvSLUvJjm6kzlrfahr498K7uTasmSXXwiPIFjXCPMyxP+bKIN/oGwRMjs5sdIV4FXCfBIcwybk2JLX7CJwWJbZ1z1w3hNubf1m+oOj/ndztaKoxQ51Sa+AecqLvtsUHmlFpk7cUL2KWOSQdauY8ITTTY2tsDfrxY39d2s/7yiZ6Cptban7ScZc2l6i+kX/EKk1RPmWnCK/K6uJhIHeqOvWfVsJ9KU2zsO/k6gGfNNMDNhQDHSvxp+3kwCwDrliMjCZf1kcX/EphtLXBOGaeb8sEiO9TQcL8Ij4A/Jg4bFlXeQrhkL/jife5k80+yh2aqR9OAqk4rxCl0vyoypED8SmNmtfCyslD92S0He019XLAHnV50xyH8TtD98SgHfTv9RMEycWzlwc1F5fvUevM/0CioiW/c/dy5lgoRq0g1CcNx9KvrSRoYR1+BTTEf4/i/hr8tTYVMIMkY6KqTv63UfIZZVvAtEgDVzAmo60kuFsSoKsmqRrChp3rlFN1nQK8h2bAvGQIQcYe+Jti3bFbHAMVhDYm9jivebP5NS/x2A1k4p/vhg0DfyXHjb0BfrRzC8NIeL3j956YDQlTcJfrdfdaGmBI/kE=
   on:
     tags: true
-
-# build and deploy docs
 after_deploy:
-  - git config user.name "Andrei Moldoveanu"
-  - git config user.email "andrei.moldoveanu@gmail.com"
-  - git remote add gh-token "https://${GH_TOKEN}@github.com/Rebilly/rebilly-js-sdk.git";
-  - git fetch gh-token;
-  - git fetch gh-token gh-pages:gh-pages;
-  - mkdocs gh-deploy -v --clean --remote-name gh-token;
+- git config user.name "Andrei Moldoveanu"
+- git config user.email "andrei.moldoveanu@gmail.com"
+- git remote add gh-token "https://${GH_TOKEN}@github.com/Rebilly/rebilly-js-sdk.git";
+- git fetch gh-token;
+- git fetch gh-token gh-pages:gh-pages;
+- mkdocs gh-deploy -v --clean --remote-name gh-token;
