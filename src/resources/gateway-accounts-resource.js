@@ -60,6 +60,19 @@ export default function GatewayAccountsResource({apiHandler}) {
 
         async deleteDowntimeSchedule({id, downtimeScheduleId}) {
             return await apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
-        }
+        },
+
+        async getAllTimelineEvents({id, limit = null, offset = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                filter,
+            };
+            return await apiHandler.getAll(`gateway-accounts/${id}/timeline`, params);
+        },
+
+        async getTimelineEvent({id, eventId = ''} = {}) {
+            return await apiHandler.get(`gateway-accounts/${id}/timeline/${eventId}`);
+        },
     };
 };
