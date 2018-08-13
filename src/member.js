@@ -7,11 +7,13 @@ import deepFreeze from './deep-freeze';
  * @prop response {Object}
  * @prop fields {Object}
  * @prop getJSON {Function: Object}
+ * @prop config {Object} original request configuration
  */
 export default class Member {
-    constructor({data, status, statusText, headers}) {
+    constructor({data, status, statusText, headers}, config) {
         this.response = {status, statusText, headers};
         this.fields = {...data};
+        this.config = config;
         deepFreeze(this);
     }
 

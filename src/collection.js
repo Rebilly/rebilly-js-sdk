@@ -12,6 +12,7 @@ import deepFreeze from './deep-freeze';
  * @prop items {Array<Member>}
  * @prop response {Object}
  * @prop getJSON {Function: Object}
+ * @prop config {Object} original request configuration
  * @example
  * const api = RebillyAPI();
  * const customers = api.customers.getAll();
@@ -19,10 +20,11 @@ import deepFreeze from './deep-freeze';
  * const totalCount = customers.total;
  */
 export default class Collection {
-    constructor({data, status, statusText, headers}) {
+    constructor({data, status, statusText, headers}, config) {
         Object.keys(paginationHeaders).forEach(header => this[header] = Number(headers[paginationHeaders[header]]));
         this.response = {status, statusText, headers};
         this.items = data.map(member => new Member({data: member, status, statusText, headers}));
+        this.config = config;
         deepFreeze(this);
     }
 

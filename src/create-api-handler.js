@@ -210,17 +210,20 @@ export default function createApiHandler({options}) {
 
     /**
      * Wraps an Axios request to handle both the response and errors and return wrapped objects.
-     * @param request {Promise}
+     * @param request {Function}
      * @param isCollection {boolean} defines whether the request is done to a collection or a member of the API
+     * @param params {Object} a hash of parameters or configuration options to
+     * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
-    async function wrapRequest(request, {isCollection = false} = {}) {
+    async function wrapRequest({request, isCollection, config}) {
+        const cleanedConfig = getRequestConfig(config);
         try {
-            const response = await request;
-            return processResponse(response, isCollection)
+            const response = await request(cleanedConfig);
+            return processResponse({response, isCollection, config: cleanedConfig})
         }
         catch (error) {
-            return processError(error);
+            return processError({error, config: cleanedConfig});
         }
     }
 
@@ -228,20 +231,22 @@ export default function createApiHandler({options}) {
      * Creates a Member or Collection from the response based on the type flag `isCollection`.
      * @param response {Object} raw API response
      * @param isCollection {boolean}
+     * @param config {Object} original request configuration
      * @returns {Member|Collection}
      */
-    function processResponse(response, isCollection) {
+    function processResponse({response, isCollection, config}) {
         if (isCollection) {
-            return new Collection(response);
+            return new Collection(response, config);
         }
-        return new Member(response);
+        return new Member(response, config);
     }
 
     /**
      * Throws an instance of a Rebilly Error from the base Axios error.
      * @param error {Object}
+     * @param config {Object} original request configuration
      */
-    function processError(error) {
+    function processError({error, config}) {
         if (axios.isCancel(error)) {
             //the request was manually cancelled by a token
             throw new Errors.RebillyCanceledError(error);
@@ -309,7 +314,10 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function get(url, params = {}) {
-        return wrapRequest(instance.get(url, getRequestConfig({params})));
+        return wrapRequest({
+            request: config => instance.get(url, config),
+            config: {params},
+        });
     }
 
     /**
@@ -319,7 +327,11 @@ export default function createApiHandler({options}) {
      * @returns {Collection} collection
      */
     function getAll(url, params) {
-        return wrapRequest(instance.get(url, getRequestConfig({params})), {isCollection: true});
+        return wrapRequest({
+            request: config => instance.get(url, config),
+            config: {params},
+            isCollection: true,
+        });
     }
 
     /**
@@ -330,20 +342,23 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function post(url, data, options = {}) {
-        let config = {};
+        let params = {};
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
         if (options.authenticate === false) {
             //copy headers from default config
-            config = {headers: cloneInstanceHeaders()};
+            params = {headers: cloneInstanceHeaders()};
             //temporarily remove authentication headers
-            delete config.headers.common['REB-APIKEY'];
-            delete config.headers.common['Authorization'];
+            delete params.headers.common['REB-APIKEY'];
+            delete params.headers.common['Authorization'];
         }
         // allow param definition for particular POST cases
         if (options.params) {
-            config.params = {...options.params};
+            params.params = {...options.params};
         }
-        return wrapRequest(instance.post(url, data, getRequestConfig(config)));
+        return wrapRequest({
+            request: config => instance.post(url, data, config),
+            params,
+        });
     }
 
     /**
@@ -353,7 +368,7 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function put(url, data) {
-        return wrapRequest(instance.put(url, data, getRequestConfig()));
+        return wrapRequest({request: config => instance.put(url, data, config)});
     }
 
     /**
@@ -363,7 +378,7 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function patch(url, data) {
-        return wrapRequest(instance.patch(url, data, getRequestConfig()));
+        return wrapRequest({request: config => instance.patch(url, data, config)});
     }
 
     /**
@@ -372,7 +387,7 @@ export default function createApiHandler({options}) {
      * @returns {null|*}
      */
     function del(url) {
-        return wrapRequest(instance.delete(url, getRequestConfig()));
+        return wrapRequest({request: config => instance.delete(url, config)});
     }
 
     /**
@@ -412,12 +427,13 @@ export default function createApiHandler({options}) {
      * @returns {Promise.<*>}
      */
     async function download(url, config) {
+        const cleanedConfig = getRequestConfig(config);
         try {
-            const response = await instance.get(url, getRequestConfig(config));
-            return new File(response);
+            const response = await instance.get(url, cleanedConfig);
+            return new File(response, cleanedConfig);
         }
         catch (error) {
-            return processError(error);
+            return processError({error, config: cleanedConfig});
         }
     }
 
