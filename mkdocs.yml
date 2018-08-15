@@ -92,7 +92,7 @@ pages:
       - Member: reference/types/member.md
       - Collection: reference/types/collection.md
       - File: reference/types/file.md
-  - Guides:
-    - Criteria: guides/criteria.md
-    - Filters: guides/filters.md
+#  - Guides:
+#    - Criteria: guides/criteria.md
+#    - Filters: guides/filters.md
   - License: license.md

@@ -14,6 +14,7 @@ Each file instance exposes the same properties.
 | ---- | ---- | ----------- |
 | data | Object | An `arraybuffer` containing the file data returned by the request. |
 | response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
+| config | Object | An object literal with the original request query string parameters. |
 
 **Example**
 
