@@ -16,6 +16,7 @@ Each collection instance exposes the same properties.
 | offset | number | A zero-based index defining the starting position for the requested members. |
 | response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
 | getJSON | Function | Returns a plain mutable JSON object exposing the `items` of the current collection instance. Discards all other property. |
+| config | Object | An object literal with the original request query string parameters. |
 
 **Example**
 

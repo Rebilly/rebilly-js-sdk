@@ -13,6 +13,7 @@ Each member instance exposes the same properties.
 | fields | Object | An object literal with key/value pairs for each field returned by the API in the response. |
 | response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
 | getJSON | Function | Returns a plain mutable JSON object exposing the `fields` of the current member instance. Discards the `response` property. |
+| config | Object | An object literal with the original request query string parameters. |
 
 **Example**
 

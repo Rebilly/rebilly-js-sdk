@@ -3,8 +3,6 @@ The Rebilly JS SDK library allows you to consume the Rebilly API using either No
 
 [![npm](https://img.shields.io/npm/v/rebilly-js-sdk.svg)](https://www.npmjs.com/package/rebilly-js-sdk)
 [![Build Status](https://travis-ci.org/Rebilly/rebilly-js-sdk.svg?branch=master)](https://travis-ci.org/Rebilly/rebilly-js-sdk)
-[![dependencies Status](https://david-dm.org/Rebilly/rebilly-js-sdk/status.svg)](https://david-dm.org/Rebilly/rebilly-js-sdk)
-[![devDependencies Status](https://david-dm.org/Rebilly/rebilly-js-sdk/dev-status.svg)](https://david-dm.org/Rebilly/rebilly-js-sdk?type=dev)
 [![Try rebilly-js-sdk on RunKit](https://badge.runkitcdn.com/rebilly-js-sdk.svg)](https://npm.runkit.com/rebilly-js-sdk)
 
 ### PCI Compliance Note
