@@ -5,7 +5,7 @@
  * @prop config {Object} original request configuration
  */
 export default class File {
-    constructor({data, status, statusText, headers}, config) {
+    constructor({data, status, statusText, headers}, config = {}) {
         this.response = {status, statusText, headers};
         this.data = data;
         this.config = config;

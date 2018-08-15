@@ -152,6 +152,7 @@ export default function createApiHandler({options}) {
      * @since 1.1.0
      * @param apiUser {string} your API user value found in Rebilly
      * @param apiKey {string} your secret API key found in Rebilly
+     * @deprecated
      * @returns {string}
      */
     function generateSignature({apiUser, apiKey}) {

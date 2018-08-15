@@ -10,7 +10,7 @@ import deepFreeze from './deep-freeze';
  * @prop config {Object} original request configuration
  */
 export default class Member {
-    constructor({data, status, statusText, headers}, config) {
+    constructor({data, status, statusText, headers}, config = {}) {
         this.response = {status, statusText, headers};
         this.fields = {...data};
         this.config = config;

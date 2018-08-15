@@ -20,8 +20,11 @@ import deepFreeze from './deep-freeze';
  * const totalCount = customers.total;
  */
 export default class Collection {
-    constructor({data, status, statusText, headers}, config) {
-        Object.keys(paginationHeaders).forEach(header => this[header] = Number(headers[paginationHeaders[header]]));
+    constructor({data, status, statusText, headers}, config = {}) {
+        Object.keys(paginationHeaders).forEach((header) => {
+            const value = headers[paginationHeaders[header]];
+            this[header] = value ? Number(value) : null;
+        });
         this.response = {status, statusText, headers};
         this.items = data.map(member => new Member({data: member, status, statusText, headers}));
         this.config = config;
