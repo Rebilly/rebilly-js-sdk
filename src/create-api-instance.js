@@ -42,6 +42,8 @@ export default function createApiInstance({apiHandler}) {
         shippingZones: Resources.ShippingZonesResource({apiHandler}),
         status: Resources.StatusResource({apiHandler}),
         subscriptions: Resources.SubscriptionsResource({apiHandler}),
+        subscriptionCancellations: Resources.SubscriptionCancellationsResource({apiHandler}),
+        subscriptionReactivations: Resources.SubscriptionReactivationsResource({apiHandler}),
         tracking: Resources.TrackingResource({apiHandler}),
         transactions: Resources.TransactionsResource({apiHandler}),
         threeDSecure: Resources.ThreeDSecureResource({apiHandler}),
