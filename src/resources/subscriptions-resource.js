@@ -50,6 +50,13 @@ export default function SubscriptionsResource({apiHandler}) {
             return await apiHandler.put(`subscriptions/${id}`, data);
         },
 
+        /**
+         * Use resource `subscriptionCancellations` instead.
+         * @deprecated
+         * @param id
+         * @param data
+         * @returns {Promise<any>}
+         */
         async cancel({id, data}) {
             return await apiHandler.post(`subscriptions/${id}/cancel`, data);
         },
