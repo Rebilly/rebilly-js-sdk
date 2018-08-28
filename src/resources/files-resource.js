@@ -45,7 +45,7 @@ export default function FilesResource({apiHandler}) {
                 filter: `fileId:${id}`
             };
             const attachments = await this.getAllAttachments(params);
-            const promises = attachments.items.map(attachment => this.detach({id: `attachments/${attachment.fields.id}`}));
+            const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
             await Promise.all(promises);
             return await apiHandler.delete(`files/${id}`);
         },
