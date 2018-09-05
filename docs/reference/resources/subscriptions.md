@@ -234,18 +234,17 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
-## switch
-<div class="method"><code><strong>switch</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+## change-plan
+<div class="method"><code><strong>change-plan</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Switch the customer's subscription to a new plan and website combination. The `policy` will be used to determine when the switch will be completed. 
+Change the customer's subscription plan. The `renewalPolicy` will be used to determine when the change will be completed. 
 
 This feature is useful for upgrading and downgrading the customer's subscription.
 
-Allowed `policy` values: 
+Allowed `renewalPolicy` values: 
 
-- `at-next-renewal`
-- `now-with-prorata-credit`
-- `now` 
+- `reset`
+- `retain`
 
 **Example**
 
@@ -253,17 +252,16 @@ Allowed `policy` values:
 // define the subscription details
 const data = {
     planId: 'my-other-plan',
-    policy: 'at-next-renewal',
-    websiteId: 'my-other-website',
-    quantity: 1
+    renewalPolicy: 'retain',
+    prorated: false
 };
 
-const abandonedInvoice = await api.subscriptions.switch({id: 'my-subscription-id', data});
+const abandonedInvoice = await api.subscriptions.changePlan({id: 'my-subscription-id', data});
 ```
 
 **Returns**
 
-A member exposing the switched subscription fields.
+A member exposing the changed subscription fields.
 
 Type [`Member`][goto-member]
 
@@ -437,7 +435,7 @@ Type [`Collection`][goto-collection]
 [2]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D%2Fget
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D%2Fput
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fput
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1switch%2Fpost
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1change-plan%2Fpost
 [6]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fget
 [7]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fput
 [8]: https://rebilly.github.io/RebillyAPI/#tag/Subscriptions%2Fpaths%2F~1subscriptions~1%7Bid%7D~1lead-source%2Fdelete
