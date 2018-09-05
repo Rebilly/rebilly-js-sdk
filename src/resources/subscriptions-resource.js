@@ -61,8 +61,8 @@ export default function SubscriptionsResource({apiHandler}) {
             return await apiHandler.post(`subscriptions/${id}/cancel`, data);
         },
 
-        async switch({id, data}) {
-            return await apiHandler.post(`subscriptions/${id}/switch`, data);
+        async changePlan({id, data}) {
+            return await apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
 
         async getLeadSource({id}) {
