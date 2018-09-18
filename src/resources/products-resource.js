@@ -1,12 +1,13 @@
 export default function ProductsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
+                fields
             };
             return await apiHandler.getAll(`products`, params);
         },
