@@ -507,11 +507,11 @@ Mentions to users and references to resources can be set inside the message stri
 **Example**
 
 ```js
-// Create a gateway comment inline.
-const firstMessage = await api
+// Create a comment
+const firstComment = await api
     .gatewayAccounts.createTimelineComment({id: 'my-gateway-id', data: {message: 'Your comment here'}});
 
-// Using a params object for more clarity.
+// Using params object, mentions and references
 const message = `Example of mentions @user@mydomain.com and references #customers-customer-id`;
 const params = {
     id: 'my-gateway-id'
@@ -519,7 +519,7 @@ const params = {
         message,
     },
 };
-const firstMessage = await api.gatewayAccounts.createTimelineComment(params);
+const secondComment = await api.gatewayAccounts.createTimelineComment(params);
 ```
 
 
