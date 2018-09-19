@@ -62,7 +62,7 @@ export default function GatewayAccountsResource({apiHandler}) {
             return await apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
 
-        async getAllTimelineEvents({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -72,8 +72,16 @@ export default function GatewayAccountsResource({apiHandler}) {
             return await apiHandler.getAll(`gateway-accounts/${id}/timeline`, params);
         },
 
-        async getTimelineEvent({id, eventId = ''} = {}) {
-            return await apiHandler.get(`gateway-accounts/${id}/timeline/${eventId}`);
+        async getTimelineMessage({id, messageId = ''} = {}) {
+            return await apiHandler.get(`gateway-accounts/${id}/timeline/${messageId}`);
+        },
+
+        async deleteTimelineMessage({id, messageId}) {
+            return await apiHandler.delete(`gateway-accounts/${id}/timeline/${messageId}`);
+        },
+
+        async createTimelineComment({id, data}) {
+            return await apiHandler.create(`gateway-accounts/${id}/timeline`, '', data);
         },
     };
 };
