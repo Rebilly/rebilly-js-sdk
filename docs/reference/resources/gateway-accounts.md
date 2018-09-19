@@ -400,11 +400,11 @@ Type [`Member`][goto-member]
 See the [detailed API spec][12]{: target="_blank"} for all payload fields and response data.
 
 
-## getAllTimelineEvents
+## getAllTimelineMessages
 
 <div class="method">
     <code>
-        <strong>getAllTimelineEvents</strong>({
+        <strong>getAllTimelineMessages</strong>({
         <span class="prop">id</span>,
         <span class="prop">limit</span><span class="optional" title="optional">opt</span>,
         <span class="prop">offset</span><span class="optional" title="optional">opt</span>,
@@ -414,7 +414,7 @@ See the [detailed API spec][12]{: target="_blank"} for all payload fields and re
     </code>
 </div>
 
-Get a collection of gateway account timeline events for a gateway `id`. Each entry will be a member.
+Get a collection of gateway account timeline messages for a gateway `id`. Each entry will be a member.
 
 
 **Example**
@@ -422,15 +422,15 @@ Get a collection of gateway account timeline events for a gateway `id`. Each ent
 ```js
 // all parameters are optional except for the `id`
 const firstCollection = await api.gatewayAccounts
-    .getAllTimelineEvents({id: 'my-gateway');
+    .getAllTimelineMessages({id: 'my-gateway');
 
 // alternatively you can specify one or more of them
 const params = {id: 'my-gateway', limit: 20, offset: 100};
-const secondCollection = await api.gatewayAccounts.getAllTimelineEvents(params);
+const secondCollection = await api.gatewayAccounts.getAllTimelineMessages(params);
 
 // access the collection items, each item is a Member
 secondCollection.items
-    .forEach(event => console.log(event.fields.eventType));
+    .forEach(message => console.log(message.fields.eventType));
 ```
 
 **Parameters**
@@ -448,7 +448,7 @@ secondCollection.items
 
 **Returns**
 
-A collection of gateway account timeline events.
+A collection of gateway account timeline messages.
 
 Type [`Collection`][goto-collection]
 
@@ -458,24 +458,29 @@ Type [`Collection`][goto-collection]
 See the [detailed API spec][13]{: target="_blank"} for all payload fields and response data.
 
 
-## getTimelineEvent
-<div class="method"><code><strong>getTimelineEvent</strong>({<span class="prop">id</span>, <span class="prop">eventId</span>}) -> <span class="return">{Member}</span></code></div>
+## getTimelineMessage
+<div class="method">
+    <code>
+        <strong>getTimelineMessage</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">messageId</span>
+        }) -> <span class="return">{Member}</span></code></div>
 
-Get a gateway account timeline event by its `id` and `eventId` combination.
+Get a gateway account timeline message by its `id` and `messageId` combination.
 
 
 **Example**
 
 ```js
 const event = await api.gatewayAccounts
-    .getTimelineEvent({id: 'foobar-001', eventId: 'event-202'});
+    .getTimelineMessage({id: 'foobar-001', messageId: 'message-202'});
 console.log(event.fields.eventType);
 ```
 
 
 **Returns**
 
-A member exposing the gateway account timeline event fields.
+A member exposing the gateway account timeline message fields.
 
 Type [`Member`][goto-member]
 
@@ -483,6 +488,88 @@ Type [`Member`][goto-member]
 **API Spec**
 
 See the [detailed API spec][14]{: target="_blank"} for all payload fields and response data.
+
+## createTimelineComment
+<div class="method">
+    <code>
+        <strong>createTimelineComment</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">data</span>
+        }) -> <span class="return">{Member}</span>
+    </code>
+</div>
+
+Create a timeline comment associated to a gateway account by defining its `id` and `data`. The comment message to be posted must be defined in `message` string attribute of the `data` object.
+
+
+Mentions to users and references to resources can be set inside the message string. See the [detailed API spec][15]{: target="_blank"} for details.
+
+**Example**
+
+```js
+// Create a gateway comment inline.
+const firstMessage = await api
+    .gatewayAccounts.createTimelineComment({id: 'my-gateway-id', data: {message: 'Your comment here'}});
+
+// Using a params object for more clarity.
+const message = `Example of mentions @user@mydomain.com and references #customers-customer-id`;
+const params = {
+    id: 'my-gateway-id'
+    data: {
+        message,
+    },
+};
+const firstMessage = await api.gatewayAccounts.createTimelineComment(params);
+```
+
+
+**Returns**
+
+A member exposing the created gateway timeline comment fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][15]{: target="_blank"} for all payload fields and response data.
+
+
+## deleteTimelineMessage
+<div class="method">
+    <code>
+        <strong>deleteTimelineMessage</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">messageId</span>
+        }) -> <span class="return">{Member}</span>
+    </code>
+</div>
+
+Delete a gateway timeline message by using its `id` and `messageId` combination.
+
+
+**Example**
+
+```js
+const request = await api.gatewayAccounts
+    .deleteTimelineMessage({id: 'foobar-001', messageId: 'message-202'});
+
+// the request does not return any fields but
+// you can confirm the success using the status code
+console.log(request.response.status); // 204
+```
+
+
+**Returns**
+
+An empty member without fields. Check the response property to validate the expected status code.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][16]{: target="_blank"} for all payload fields and response data.
 
 
 [goto-rebillyapi]: ../rebilly-api
@@ -502,4 +589,6 @@ See the [detailed API spec][14]{: target="_blank"} for all payload fields and re
 [11]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1downtime-schedules~1%7BdowntimeId%7D%2Fput
 [12]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1downtime-schedules~1%7BdowntimeId%7D%2Fdelete
 [13]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1timeline%2Fget
-[14]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1timeline~1%7BeventId%7D%2Fget
+[14]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1timeline~1%7BmessageId%7D%2Fget
+[15]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1timeline%2Fpost
+[16]: https://rebilly.github.io/RebillyUserAPI/#tag/Gateway-Accounts%2Fpaths%2F~1gateway-accounts~1%7Bid%7D~1timeline~1%7BmessageId%7D%2Fdelete
