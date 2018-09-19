@@ -472,9 +472,9 @@ Get a gateway account timeline message by its `id` and `messageId` combination.
 **Example**
 
 ```js
-const event = await api.gatewayAccounts
+const message = await api.gatewayAccounts
     .getTimelineMessage({id: 'foobar-001', messageId: 'message-202'});
-console.log(event.fields.eventType);
+console.log(message.fields.eventType);
 ```
 
 
