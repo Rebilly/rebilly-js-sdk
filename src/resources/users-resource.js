@@ -31,6 +31,10 @@ export default function UsersResource({apiHandler}) {
             return await apiHandler.post(`users/${id}/password`, data);
         },
 
+        async getResetPasswordToken({token}) {
+            return await apiHandler.get(`reset-password/${token}`);
+        },
+
         async resetPassword({token, data}) {
             return await apiHandler.post(`reset-password/${token}`, data);
         },
