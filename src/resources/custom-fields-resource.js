@@ -1,9 +1,10 @@
 export default function CustomFieldsResource({apiHandler}) {
     return {
-        async getAll({resource, limit = null, offset = null} = {}) {
+        async getAll({resource, limit = null, offset = null, fields = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                fields,
             };
             return await apiHandler.getAll(`custom-fields/${resource}`, params);
         },

@@ -1,10 +1,11 @@
 export default function CustomEventsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
-                sort
+                sort,
+                fields,
             };
             return await apiHandler.getAll(`custom-events`, params);
         },
