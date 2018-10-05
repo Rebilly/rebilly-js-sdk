@@ -74,6 +74,7 @@ export function createExperimentalApiInstance({apiHandler}) {
         subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
         timelines: ExperimentalResources.TimelinesResource({apiHandler}),
         transactions: ExperimentalResources.TransactionsResource({apiHandler}),
+        location: ExperimentalResources.LocationResource({apiHandler}),
 
         //expose apiHandler methods to the API instance
         addRequestInterceptor: apiHandler.addRequestInterceptor,
