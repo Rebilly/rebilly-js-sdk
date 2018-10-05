@@ -5,6 +5,7 @@ import ReportsResource from './reports-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TimelinesResource from './timelines-resource';
 import TransactionsResource from './transactions-resource';
+import LocationResource from './location-resource';
 
 const ExperimentalResources = {
     CustomersResource,
@@ -13,7 +14,8 @@ const ExperimentalResources = {
     ReportsResource,
     SubscriptionsResource,
     TimelinesResource,
-    TransactionsResource
+    TransactionsResource,
+    LocationResource,
 };
 
 export default ExperimentalResources;
