@@ -12,6 +12,10 @@ export default function CredentialHashesResource({apiHandler}) {
             return await apiHandler.get(`credential-hashes/mailgun/${hash}`);
         },
 
+        async getAWSSESCredential({hash}) {
+            return await apiHandler.get(`credential-hashes/aws-ses/${hash}`);
+        },
+
         async createEmailCredential({data}) {
             return await apiHandler.post(`credential-hashes/emails`, data);
         },
@@ -22,6 +26,10 @@ export default function CredentialHashesResource({apiHandler}) {
 
         async createMailgunCredential({data}) {
             return await apiHandler.post(`credential-hashes/mailgun`, data);
+        },
+
+        async createAWSSESCredential({data}) {
+            return await apiHandler.post(`credential-hashes/aws-ses`, data);
         }
     };
 };

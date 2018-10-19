@@ -80,6 +80,31 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
+## getAWSSESCredential
+<div class="method"><code><strong>getAWSSESCredential</strong>({<span class="prop">hash</span>}) -> <span class="return">{Member}</span></code></div>
+
+Get the details of an AWS SES credential using the `hash`.
+
+
+**Example**
+
+```js
+const details = await api.credentialHashes.getAWSSESCredential({hash: 'foobar-001'});
+console.log(details.fields.configurationSetName);
+```
+
+
+**Returns**
+
+A member exposing the AWS SES credential details.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+
 ## createEmailCredential
 <div class="method"><code><strong>createEmailCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -263,6 +288,42 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
+## createAWSSESCredential
+<div class="method"><code><strong>createAWSSESCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+
+Create new AWS SES credentials to use in the *events* (Rules Engine).
+
+!!! warning "Immutable Credentials"
+    The details of a credential hash cannot be modified once created. You will have to generate a new credential hash if the values within change.
+
+**Example**
+
+```js
+// first set the required properties for the new credential hash
+const data = {
+    key: 'BWITYO4UARGDLMFY6UDP',
+    secret: '8D34yYHOK9+yM7pDnNUO3UTO/5b8Wy/PGNyzTRmG',
+    region: 'us-west-2',
+    configurationSetName: 'SpecialConfigurationSet',
+};
+
+const credential = await api.credentialHashes.createAWSSESCredential({data});
+// use the hash to authenticate your email action in the rules engine
+console.log(credential.fields.hash);
+```
+
+
+**Returns**
+
+A member exposing the created AWS SES credential fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
@@ -272,3 +333,5 @@ See the [detailed API spec][6]{: target="_blank"} for all payload fields and res
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1webhooks%2Fpost
 [5]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun~1%7Bhash%7D%2Fget
 [6]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun%2Fpost
+[7]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1aws-ses~1{hash}/get
+[8]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1aws-ses/post
