@@ -16,6 +16,10 @@ export default function CredentialHashesResource({apiHandler}) {
             return await apiHandler.get(`credential-hashes/aws-ses/${hash}`);
         },
 
+        async getSendGridCredential({hash}) {
+            return await apiHandler.get(`credential-hashes/sendgrid/${hash}`);
+        },
+
         async createEmailCredential({data}) {
             return await apiHandler.post(`credential-hashes/emails`, data);
         },
@@ -30,6 +34,10 @@ export default function CredentialHashesResource({apiHandler}) {
 
         async createAWSSESCredential({data}) {
             return await apiHandler.post(`credential-hashes/aws-ses`, data);
-        }
+        },
+
+        async createSendGridCredential({data}) {
+            return await apiHandler.post(`credential-hashes/sendgrid`, data);
+        },
     };
 };
