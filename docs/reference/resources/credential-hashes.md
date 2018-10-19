@@ -105,6 +105,31 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
+## getSendGridCredential
+<div class="method"><code><strong>getSendGridCredential</strong>({<span class="prop">hash</span>}) -> <span class="return">{Member}</span></code></div>
+
+Get the details of an SendGrid credential using the `hash`.
+
+
+**Example**
+
+```js
+const details = await api.credentialHashes.getSendGridCredential({hash: 'foobar-001'});
+console.log(details.fields.apiKey);
+```
+
+
+**Returns**
+
+A member exposing the SendGrid credential details.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][9]{: target="_blank"} for all payload fields and response data.
+
 ## createEmailCredential
 <div class="method"><code><strong>createEmailCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -324,6 +349,39 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
 
+## createSendGridCredential
+<div class="method"><code><strong>createSendGridCredential</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+
+Create new SendGrid credentials to use in the *events* (Rules Engine).
+
+!!! warning "Immutable Credentials"
+    The details of a credential hash cannot be modified once created. You will have to generate a new credential hash if the values within change.
+
+**Example**
+
+```js
+// first set the required properties for the new credential hash
+const data = {
+    apiKey: 'SO.WFbRlSWUQJSb40eny4RuZQ.7liHLZ4l1jaPCgbu02b-aGH-bo4RB8z9fK3aUd1heeL',
+};
+
+const credential = await api.credentialHashes.createSendGridCredential({data});
+// use the hash to authenticate your email action in the rules engine
+console.log(credential.fields.hash);
+```
+
+
+**Returns**
+
+A member exposing the created SendGrid credential fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][10]{: target="_blank"} for all payload fields and response data.
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
@@ -335,3 +393,5 @@ See the [detailed API spec][8]{: target="_blank"} for all payload fields and res
 [6]: https://rebilly.github.io/RebillyAPI/#tag/Credential-Hashes%2Fpaths%2F~1credential-hashes~1mailgun%2Fpost
 [7]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1aws-ses~1{hash}/get
 [8]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1aws-ses/post
+[9]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1sendgrid~1{hash}/get
+[10]: https://rebilly.github.io/RebillyUserAPI/#tag/Email-Credentials/paths/~1credential-hashes~1sendgrid/post
