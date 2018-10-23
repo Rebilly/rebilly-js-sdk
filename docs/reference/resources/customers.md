@@ -321,6 +321,177 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
+## getAllTimelineMessages
+
+<div class="method">
+    <code>
+        <strong>getAllTimelineMessages</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">limit</span><span class="optional" title="optional">opt</span>,
+        <span class="prop">offset</span><span class="optional" title="optional">opt</span>,
+        <span class="prop">sort</span><span class="optional" title="optional">opt</span>,
+        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
+        }) -> <span class="return">{Collection}</span>
+    </code>
+</div>
+
+Get a collection of customer timeline messages for a customer `id`. Each entry will be a member.
+
+
+**Example**
+
+```js
+// all parameters are optional except for the `id`
+const firstCollection = await api.customers
+    .getAllTimelineMessages({id: 'my-customer');
+
+// alternatively you can specify one or more of them
+const params = {id: 'my-customer', limit: 20, offset: 100};
+const secondCollection = await api.customers.getAllTimelineMessages(params);
+
+// access the collection items, each item is a Member
+secondCollection.items
+    .forEach(message => console.log(message.fields.eventType));
+```
+
+**Parameters**
+
+| Name | Type | Attribute | Description |
+| - | - | - | - |
+| limit | number | Optional | The amount of members to return per request.<br>Defaults to `100`. |
+| offset | number | Optional | Member index from which to start returning results. <br>Defaults to `0`. |
+| sort | string | Optional | The member field on which to sort on. Sorting is ascending by default. Use `-` (dash) to make it descending.<br>Example: `createdTime` and `-createdTime`. |
+| filter | string | Optional | A list of one or more member fields and their values, used to filter the collection results.<br>Example: `status:active`.<br> See the [filters guide][guide-filters] for more details. |
+
+
+[guide-filters]: ../../guides/filters.md
+
+
+**Returns**
+
+A collection of customer timeline messages.
+
+Type [`Collection`][goto-collection]
+
+
+**API Spec**
+
+See the [detailed API spec][13]{: target="_blank"} for all payload fields and response data.
+
+
+## getTimelineMessage
+<div class="method">
+    <code>
+        <strong>getTimelineMessage</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">messageId</span>
+        }) -> <span class="return">{Member}</span></code></div>
+
+Get a customer timeline message by its `id` and `messageId` combination.
+
+
+**Example**
+
+```js
+const message = await api.customers
+    .getTimelineMessage({id: 'foobar-001', messageId: 'message-202'});
+console.log(message.fields.eventType);
+```
+
+
+**Returns**
+
+A member exposing the customer timeline message fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][14]{: target="_blank"} for all payload fields and response data.
+
+## createTimelineComment
+<div class="method">
+    <code>
+        <strong>createTimelineComment</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">data</span>
+        }) -> <span class="return">{Member}</span>
+    </code>
+</div>
+
+Create a timeline comment associated to a customer account by defining its `id` and `data`. The comment message to be posted must be defined in `message` string attribute of the `data` object.
+
+
+Mentions to users and references to resources can be set inside the message string. See the [detailed API spec][15]{: target="_blank"} for details.
+
+**Example**
+
+```js
+// Create a comment
+const firstComment = await api
+    .customers.createTimelineComment({id: 'my-customer-id', data: {message: 'Your comment here'}});
+
+// Using params object, mentions and references
+const message = `Example of mentions @user@mydomain.com and references #customers-customer-id`;
+const params = {
+    id: 'my-customer-id'
+    data: {
+        message,
+    },
+};
+const secondComment = await api.customers.createTimelineComment(params);
+```
+
+
+**Returns**
+
+A member exposing the created customer timeline comment fields.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][15]{: target="_blank"} for all payload fields and response data.
+
+
+## deleteTimelineMessage
+<div class="method">
+    <code>
+        <strong>deleteTimelineMessage</strong>({
+        <span class="prop">id</span>,
+        <span class="prop">messageId</span>
+        }) -> <span class="return">{Member}</span>
+    </code>
+</div>
+
+Delete a customer timeline message by using its `id` and `messageId` combination.
+
+
+**Example**
+
+```js
+const request = await api.customers
+    .deleteTimelineMessage({id: 'foobar-001', messageId: 'message-202'});
+
+// the request does not return any fields but
+// you can confirm the success using the status code
+console.log(request.response.status); // 204
+```
+
+
+**Returns**
+
+An empty member without fields. Check the response property to validate the expected status code.
+
+Type [`Member`][goto-member]
+
+
+**API Spec**
+
+See the [detailed API spec][16]{: target="_blank"} for all payload fields and response data.
+
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member

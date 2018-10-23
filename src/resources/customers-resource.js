@@ -60,6 +60,28 @@ export default function CustomersResource({apiHandler}) {
 
         async deleteLeadSource({id}) {
             return await apiHandler.delete(`customers/${id}/lead-source`);
-        }
+        },
+
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return await apiHandler.getAll(`customers/${id}/timeline`, params);
+        },
+
+        async getTimelineMessage({id, messageId = ''} = {}) {
+            return await apiHandler.get(`customers/${id}/timeline/${messageId}`);
+        },
+
+        async deleteTimelineMessage({id, messageId}) {
+            return await apiHandler.delete(`customers/${id}/timeline/${messageId}`);
+        },
+
+        async createTimelineComment({id, data}) {
+            return await apiHandler.create(`customers/${id}/timeline`, '', data);
+        },
     };
 };
