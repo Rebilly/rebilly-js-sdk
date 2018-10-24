@@ -376,7 +376,7 @@ Type [`Collection`][goto-collection]
 
 **API Spec**
 
-See the [detailed API spec][13]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
 
 ## getTimelineMessage
@@ -408,7 +408,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][14]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][8]{: target="_blank"} for all payload fields and response data.
 
 ## createTimelineComment
 <div class="method">
@@ -453,7 +453,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][15]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][9]{: target="_blank"} for all payload fields and response data.
 
 
 ## deleteTimelineMessage
@@ -490,7 +490,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][16]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][10]{: target="_blank"} for all payload fields and response data.
 
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
@@ -502,3 +502,7 @@ See the [detailed API spec][16]{: target="_blank"} for all payload fields and re
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fget
 [5]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fput
 [6]: https://rebilly.github.io/RebillyAPI/#tag/Customers%2Fpaths%2F~1customers~1%7Bid%7D~1lead-source%2Fdelete
+[7]: https://rebilly.github.io/RebillyAPI/#tag/Customers/paths/~1customers~1{id}~1timeline/get
+[8]: https://rebilly.github.io/RebillyAPI/#tag/Customers/paths/~1customers~1{id}~1timeline~1{messageId}/get
+[9]: https://rebilly.github.io/RebillyAPI/#tag/Customers/paths/~1customers~1{id}~1timeline/post
+[10]: https://rebilly.github.io/RebillyAPI/#tag/Customers/paths/~1customers~1{id}~1timeline~1{messageId}/delete
