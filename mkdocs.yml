@@ -1,10 +1,12 @@
 #project information
 site_name: Rebilly JS SDK
 site_description: Official Rebilly JS SDK Documentation
-site_favicon: 'images/favicon.ico'
 
 #theme
-theme: 'material'
+theme:
+  name: 'material'
+  favicon: 'images/favicon.ico'
+
 extra_css:
   - 'styles/extra.css'
 
@@ -25,18 +27,21 @@ markdown_extensions:
   - admonition
   - codehilite
   - meta
-  - toc(permalink=true)
+  - toc:
+      permalink: True
   - attr_list
   - pymdownx.inlinehilite
   - pymdownx.critic
-  - pymdownx.betterem(smart_enable=all)
+  - pymdownx.betterem:
+      smart_enable: all
   - pymdownx.superfences
   - pymdownx.mark
-  - pymdownx.snippets(base_path=docs)
+  - pymdownx.snippets:
+      base_path: docs
   #  - pymdownx.smartsymbols
 
 #page tree
-pages:
+nav:
   - Introduction: index.md
   - Getting Started: getting-started.md
   - Reference:
@@ -92,7 +97,7 @@ pages:
       - Member: reference/types/member.md
       - Collection: reference/types/collection.md
       - File: reference/types/file.md
-#  - Guides:
-#    - Criteria: guides/criteria.md
-#    - Filters: guides/filters.md
+  - Guides:
+    - Criteria: guides/criteria.md
+    - Filters: guides/filters.md
   - License: license.md
