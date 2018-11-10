@@ -40,5 +40,5 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Status
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Status
 

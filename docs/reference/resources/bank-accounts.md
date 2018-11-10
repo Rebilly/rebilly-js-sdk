@@ -139,7 +139,7 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts%2Fpaths%2F~1bank-accounts%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts%2Fpaths%2F~1bank-accounts~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts%2Fpaths%2F~1bank-accounts~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts%2Fpaths%2F~1bank-accounts~1%7Bid%7D~1deactivation%2Fpost
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts/paths/~1bank-accounts/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts/paths/~1bank-accounts~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts/paths/~1bank-accounts~1{id}/put
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Bank-Accounts/paths/~1bank-accounts~1{id}~1deactivation/post

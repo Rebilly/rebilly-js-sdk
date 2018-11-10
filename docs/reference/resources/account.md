@@ -200,9 +200,9 @@ Type [`Member`][goto-member]
 
 [goto-rebillyapi]: ../rebilly-api
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1signup%2Fpost
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1signup/post
 [2]: ../rebilly-api/#setsessiontoken
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1signin%2Fpost
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1activation~1%7Btoken%7D%2Fpost
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1forgot-password%2Fpost
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Sessions%2Fpaths%2F~1logout%2Fpost
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/JWT-Session/paths/~1signin/post
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1activation~1{token}/post
+[5]: https://rebilly.github.io/RebillyUserAPI/#tag/Reset-password/paths/~1forgot-password/post
+[6]: https://rebilly.github.io/RebillyUserAPI/#tag/JWT-Session/paths/~1logout/post

@@ -71,7 +71,7 @@ Type [`Member`][goto-member]
 See the [detailed API spec][2]{: target="_blank"} for all payload fields and response data.
 
 ## queue
-<div class="method"><code><strong>get</strong>({<span class="prop">resource</span>, <span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>queue</strong>({<span class="prop">resource</span>, <span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
 Queue an export for a specific `resource`. The processing time for the export can vary from a few seconds to a few minutes depending on the amount of data requested.
 
@@ -116,6 +116,6 @@ See the [detailed API spec][2]{: target="_blank"} for all payload fields and res
 [goto-rebillyapix]: ../../rebilly-experimental-api
 [goto-member]: ../../types/member
 [goto-collection]: ../../types/collection
-[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Exports%2Fpaths%2F~1exports~1transactions%2Fget
-[2]: https://rebilly.github.io/RebillyReportsAPI/#tag/Exports%2Fpaths%2F~1exports~1transactions~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyReportsAPI/#tag/Exports%2Fpaths%2F~1exports~1transactions%2Fpost
+[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Data-Exports/paths/~1data-exports/get
+[2]: https://rebilly.github.io/RebillyReportsAPI/#tag/Data-Exports/paths/~1data-exports~1{id}/get
+[3]: https://rebilly.github.io/RebillyReportsAPI/#tag/Data-Exports/paths/~1data-exports/post

@@ -157,8 +157,8 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[goto-rebillyjs]: https://help.rebilly.com/20221-development/rebillyjs
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens~1%7Btoken%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens%2Fpost
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens~1%7Btoken%7D~1expiration%2Fpost
+[goto-rebillyjs]: https://help.rebilly.com/development/rebillyjs
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens~1{token}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens/post
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens~1{token}~1expiration/post

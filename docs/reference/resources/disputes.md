@@ -219,7 +219,6 @@ See the [detailed API spec][2]{: target="_blank"} for all payload fields and res
 [goto-member]: ../types/member
 [goto-file]: ../types/file
 [goto-events]: ./events/
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Disputes%2Fpaths%2F~1disputes%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Disputes%2Fpaths%2F~1disputes~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Disputes%2Fpaths%2F~1disputes~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/disputes%2Fpaths%2F~1contacts~1%7Bid%7D%2Fdelete
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Disputes/paths/~1disputes/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Disputes/paths/~1disputes~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Disputes/paths/~1disputes~1{id}/put

@@ -163,6 +163,6 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Webhooks%2Fpaths%2F~1webhooks%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Webhooks%2Fpaths%2F~1webhooks~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Webhooks%2Fpaths%2F~1webhooks~1%7Bid%7D%2Fput
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Webhooks/paths/~1webhooks/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Webhooks/paths/~1webhooks~1{id}/get
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Webhooks/paths/~1webhooks~1{id}/put

@@ -129,7 +129,7 @@ Type [`Member`][goto-member]
 See the [detailed API spec][4]{: target="_blank"} for all payload fields and response data.
 
 ## uploadAndUpdate
-<div class="method"><code><strong>upload</strong>({<span class="prop">fileObject</span>, <span class="prop">data</span><span class="optional">opt</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>uploadAndUpdate</strong>({<span class="prop">fileObject</span>, <span class="prop">data</span><span class="optional">opt</span>}) -> <span class="return">{Member}</span></code></div>
 
 Upload a file for later use and include its description and tags. Provide a native [File object][goto-mdn-file] as the payload.
 
@@ -460,14 +460,14 @@ See the [detailed API spec][11]{: target="_blank"} for all payload fields and re
 [goto-detach-delete]: #detachanddelete
 [goto-arraybuffer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer
 [goto-attach]: #attach
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files%2Fpost
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files~1%7Bid%7D%2Fput
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files~1%7Bid%7D%2Fdelete
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1files~1%7Bid%7D~1download%2Fget
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1attachments%2Fget
-[8]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1attachments~1%7Bid%7D%2Fget
-[9]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1attachments~1%7Bid%7D%2Fput
-[10]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1attachments%2Fpost
-[11]: https://rebilly.github.io/RebillyAPI/#tag/Files%2Fpaths%2F~1attachments~1%7Bid%7D%2Fdelete
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files/post
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files~1{id}/put
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files~1{id}/delete
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1files~1{id}~1download/get
+[7]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1attachments/get
+[8]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1attachments~1{id}/get
+[9]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1attachments~1{id}/put
+[10]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1attachments/post
+[11]: https://rebilly.github.io/RebillyAPI/#tag/Files/paths/~1attachments~1{id}/delete

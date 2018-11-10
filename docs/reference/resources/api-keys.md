@@ -166,7 +166,7 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/API-Keys%2Fpaths%2F~1api-keys%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/API-Keys%2Fpaths%2F~1api-keys~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/API-Keys%2Fpaths%2F~1api-keys~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/API-Keys%2Fpaths%2F~1api-keys~1%7Bid%7D%2Fdelete
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/API-Keys/paths/~1api-keys/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/API-Keys/paths/~1api-keys~1{id}/get     
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/API-Keys/paths/~1api-keys~1{id}/put
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/API-Keys/paths/~1api-keys~1{id}/delete
