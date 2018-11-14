@@ -183,8 +183,8 @@ See the [detailed API spec][5]{: target="_blank"} for all payload fields and res
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-events]: ./events
-[1]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts%2Fpaths%2F~1paypal-accounts%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts%2Fpaths%2F~1paypal-accounts~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts%2Fpaths%2F~1paypal-accounts~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts%2Fpaths%2F~1paypal-accounts~1%7Bid%7D~1activation%2Fpost
-[5]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts%2Fpaths%2F~1paypal-accounts~1%7Bid%7D~1deactivation%2Fpost
+[1]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts/paths/~1paypal-accounts/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts/paths/~1paypal-accounts~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts/paths/~1paypal-accounts~1{id}/put
+[4]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts/paths/~1paypal-accounts~1{id}~1activation/post
+[5]: https://rebilly.github.io/RebillyAPI/#tag/PayPal-Accounts/paths/~1paypal-accounts~1{id}~1deactivation/post

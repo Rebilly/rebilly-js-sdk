@@ -208,7 +208,7 @@ Type [`Member`][goto-member]
 See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
 ## resetPassword
-<div class="method"><code><strong>updatePassword</strong>({<span class="prop">token</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>resetPassword</strong>({<span class="prop">token</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
 Reset a user's password using an existing forgot password `token`. 
  
@@ -266,10 +266,10 @@ See the [detailed API spec][7]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1%7Bid%7D%2Fput
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1%7Bid%7D%2Fdelete
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1%7Bid%7D~1password%2Fpost
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1reset-password~1%7Btoken%7D%2Fpost
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Users%2Fpaths%2F~1users~1%7Bid%7D~1totp-reset%2Fpost
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users~1{id}/get
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users~1{id}/put
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users~1{id}/delete
+[5]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users~1{id}~1password/post
+[6]: https://rebilly.github.io/RebillyAPI/#tag/Users/paths/~1users~1reset-password~1{token}/post
+[7]: https://rebilly.github.io/RebillyUserAPI/#tag/Users/paths/~1users~1{id}~1totp-reset/post

@@ -125,7 +125,7 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Profile%2Fpaths%2F~1profile%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Profile%2Fpaths%2F~1profile%2Fput
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Profile%2Fpaths%2F~1profile~1password%2Fpost
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Profile%2Fpaths%2F~1profile~1totp-reset%2Fpost
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1profile/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1profile/put
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1profile~1password/post
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Profile/paths/~1profile~1totp-reset/post

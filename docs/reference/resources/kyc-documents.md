@@ -199,9 +199,9 @@ See the [detailed API spec][6]{: target="_blank"} for all payload fields and res
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-file]: ../types/file
-[1]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents/get
-[2]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}/get
-[3]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents/post
-[4]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}/put
-[5]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}~1acceptance/post
-[6]: http://rebilly.github.io/RebillyAPI/preview/add_kyc/#/paths/~1kyc-documents~1{id}~1rejection/post
+[1]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents/post
+[4]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents~1{id}/put
+[5]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents~1{id}~1acceptance/post
+[6]: https://rebilly.github.io/RebillyAPI/#tag/KYC-Documents/paths/~1kyc-documents~1{id}~1rejection/post

@@ -50,4 +50,4 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 
 [goto-rebillyapix]: ../../rebilly-experimental-api
 [goto-member]: ../../types/member
-[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Histograms%2Fpaths%2F~1histograms~1transactions%2Fget
+[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Histograms/paths/~1histograms~1transactions/get

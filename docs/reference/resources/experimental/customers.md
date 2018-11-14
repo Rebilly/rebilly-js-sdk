@@ -32,4 +32,4 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 
 [goto-rebillyapix]: ../../rebilly-experimental-api
 [goto-member]: ../../types/member
-[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Customers%2Fpaths%2F~1customers~1%7BcustomerId%7D~1summary-metrics%2Fget
+[1]: https://rebilly.github.io/RebillyReportsAPI/#tag/Customers/paths/~1customers~1{customerId}~1summary-metrics/get

@@ -11,7 +11,7 @@ The actions vary depending on the event triggered. From automatic gateway accoun
 
 ## getAll
 
-<div class="method"><code><strong>getAllScheduled</strong>({<span class="prop">limit</span><span class="optional">opt</span>, <span class="prop">offset</span><span class="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
+<div class="method"><code><strong>getAll</strong>({<span class="prop">limit</span><span class="optional">opt</span>, <span class="prop">offset</span><span class="optional">opt</span>}) -> <span class="return">{Collection}</span></code></div>
 
 Get a collection of events. Each entry will be a member.
 
@@ -330,11 +330,11 @@ See the [detailed API spec][7]{: target="_blank"} for all payload fields and res
 [goto-member]: ../types/member
 [goto-versiondetail]: #getrulesversiondetail
 [goto-getscheduled]: #getscheduled
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules%2Fget
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules%2Fput
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1history%2Fget
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1history~1%7Bversion%7D%2Fget
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1events~1%7BeventType%7D~1rules~1versions~1%7Bversion%7D%2Fget
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}/get
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}~1rules/get
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}~1rules/put
+[5]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}~1rules~1history/get
+[6]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}~1rules~1history~1{version}/get
+[7]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1events~1{eventType}~1rules~1versions~1{version}/get
 

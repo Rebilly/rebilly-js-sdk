@@ -141,6 +141,6 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 [goto-hashes-email]: ./credential-hashes#createemailcredential
 [goto-events]: ./events
 [goto-custom-events]: ./custom-events
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Webhooks%2Fpaths%2F~1previews~1webhooks%2Fpost
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1previews~1rule-actions~1trigger-webhook%2Fpost
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Rules%2Fpaths%2F~1previews~1rule-actions~1send-email%2Fpost
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Webhooks/paths/~1previews~1webhooks/post
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1previews~1rule-actions~1trigger-webhook/post
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Rules/paths/~1previews~1rule-actions~1send-email/post

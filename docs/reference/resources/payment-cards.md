@@ -228,7 +228,7 @@ Type [`Collection`][goto-collection]
 See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
 ## migrate
-<div class="method"><code><strong>deactivate</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>migrate</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
 Migrate payment cards in bulk from one gateway account to another using their `id`. This is useful when the original gateway account is no longer available.
 
@@ -287,10 +287,10 @@ Type [`Collection`][goto-collection]
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-events]: ./events
-[1]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards%2Fpaths%2F~1payment-cards%2Fget
-[2]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards%2Fpaths%2F~1payment-cards~1%7Bid%7D%2Fget
-[3]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards%2Fpaths%2F~1payment-cards%2Fpost
-[4]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards%2Fpaths%2F~1payment-cards~1%7Bid%7D~1authorization%2Fpost
-[5]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards%2Fpaths%2F~1payment-cards~1%7Bid%7D~1deactivation%2Fpost
-[6]: https://rebilly.github.io/RebillyAPI/#tag/Migrate-payment-cards%2Fpaths%2F~1payment-cards-migrations%2Fget
-[7]: https://rebilly.github.io/RebillyAPI/#tag/Migrate-payment-cards%2Fpaths%2F~1payment-cards-migrations~1migrate%2Fpost
+[1]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards/get
+[2]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}/get
+[3]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards/post
+[4]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}~1authorization/post
+[5]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}~1deactivation/post
+[6]: https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/get
+[7]: https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/post
