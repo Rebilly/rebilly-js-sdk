@@ -1,6 +1,6 @@
 import Member from './member';
 import paginationHeaders from './pagination-headers';
-// import deepFreeze from './deep-freeze';
+import deepFreeze from './deep-freeze';
 
 /**
  * A collection of read-only entity members.
@@ -28,7 +28,7 @@ export default class Collection {
         this.response = {status, statusText, headers};
         this.items = data.map(member => new Member({data: member, status, statusText, headers}));
         this.config = config;
-        // deepFreeze(this);
+        deepFreeze(this, {exclude: ['cancelToken']});
     }
 
     /**

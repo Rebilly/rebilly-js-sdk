@@ -139,6 +139,7 @@ export default function createApiHandler({options}) {
 
     /**
      * Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal.
+     * @deprecated 9.0.0
      * @returns {axios.CancelToken}
      */
     function getCancellationToken() {
@@ -301,11 +302,11 @@ export default function createApiHandler({options}) {
      * @returns {Object}
      */
     function getRequestConfig(configuration = {}) {
-        let config = cleanUpParameters(configuration);
+        const config = cleanUpParameters(configuration);
         if (cancellationToken) {
-            config = {...config, cancelToken: cancellationToken.token};
+            return {...config, cancelToken: cancellationToken.token};
         }
-        return config;
+        return {...config};
     }
 
     /**
