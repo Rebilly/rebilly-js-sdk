@@ -302,9 +302,9 @@ export default function createApiHandler({options}) {
      * @returns {Object}
      */
     function getRequestConfig(configuration = {}) {
-        let config = cleanUpParameters(configuration);
+        const config = cleanUpParameters(configuration);
         if (cancellationToken) {
-            config = {...config, $cancelToken: cancellationToken.token};
+            return {...config, cancelToken: cancellationToken.token};
         }
         return {...config};
     }

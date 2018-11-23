@@ -28,7 +28,7 @@ export default class Collection {
         this.response = {status, statusText, headers};
         this.items = data.map(member => new Member({data: member, status, statusText, headers}));
         this.config = config;
-        deepFreeze(this, {exclude: ['$cancelToken']});
+        deepFreeze(this, {exclude: ['cancelToken']});
     }
 
     /**

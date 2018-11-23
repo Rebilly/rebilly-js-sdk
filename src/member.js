@@ -14,7 +14,7 @@ export default class Member {
         this.response = {status, statusText, headers};
         this.fields = {...data};
         this.config = config;
-        deepFreeze(this, {exclude: ['$cancelToken']});
+        deepFreeze(this, {exclude: ['cancelToken']});
     }
 
     /**

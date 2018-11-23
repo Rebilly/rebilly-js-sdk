@@ -14,7 +14,7 @@ export default function deepFreeze(obj, {exclude = []} = {}) {
             && !exclude.includes(prop)
             && (typeof obj[prop] === "object" || typeof obj[prop] === "function")
             && !Object.isFrozen(obj[prop])) {
-            deepFreeze(obj[prop]);
+            deepFreeze(obj[prop], {exclude});
         }
     });
 
