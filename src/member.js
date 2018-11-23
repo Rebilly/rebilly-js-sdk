@@ -1,4 +1,4 @@
-import deepFreeze from './deep-freeze';
+// import deepFreeze from './deep-freeze';
 
 /**
  * A single read-only entity member.
@@ -14,7 +14,8 @@ export default class Member {
         this.response = {status, statusText, headers};
         this.fields = {...data};
         this.config = config;
-        deepFreeze(this);
+        // temporary solution for Firefox
+        // deepFreeze(this);
     }
 
     /**
