@@ -20,6 +20,10 @@ export default function CredentialHashesResource({apiHandler}) {
             return await apiHandler.get(`credential-hashes/sendgrid/${hash}`);
         },
 
+        async getPostmarkCredential({hash}) {
+            return await apiHandler.get(`credential-hashes/postmark/${hash}`);
+        },
+
         async createEmailCredential({data}) {
             return await apiHandler.post(`credential-hashes/emails`, data);
         },
@@ -38,6 +42,10 @@ export default function CredentialHashesResource({apiHandler}) {
 
         async createSendGridCredential({data}) {
             return await apiHandler.post(`credential-hashes/sendgrid`, data);
+        },
+
+        async createPostmarkCredential({data}) {
+            return await apiHandler.post(`credential-hashes/postmark`, data);
         },
     };
 };
