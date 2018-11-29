@@ -7,7 +7,7 @@ Create permanent, time or usage restricted discount coupons for your customers t
 
 ## getAll
 
---8<----- "reference/resources/shared/filter-signature.md"
+--8<----- "reference/resources/shared/criteria-less-signature.md"
 
 Get a collection of coupons. Each entry will be a member.
 
@@ -29,7 +29,7 @@ secondCollection.items.forEach(coupon => console.log(coupon.fields.status));
 **Parameters**
 
 
---8<----- "reference/resources/shared/filter-get-all.md"
+--8<----- "reference/resources/shared/criteria-less-get-all.md"
 
 
 **Returns**
@@ -140,17 +140,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 
 ## getAllRedemptions
 
-<div class="method">
-    <code>
-        <strong>getAllRedemptions</strong>({
-        <span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">offset</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">sort</span><span class="optional" title="optional">opt</span>
-        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
-        }) -> <span class="return">{Collection}</span>
-    </code>
-</div>
-
+--8<----- "reference/resources/shared/criteria-less-signature.md"
 
 Get a collection of coupon redemptions. Each entry will be a member. 
 
@@ -174,7 +164,7 @@ secondCollection.items.forEach(coupon => console.log(coupon.fields.status));
 **Parameters**
 
 
---8<----- "reference/resources/shared/filter-get-all.md"
+--8<----- "reference/resources/shared/criteria-less-get-all.md"
 
 
 **Returns**
