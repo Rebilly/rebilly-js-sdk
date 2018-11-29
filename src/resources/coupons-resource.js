@@ -1,11 +1,12 @@
 export default function CouponsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
-                filter
+                filter,
+                q
             };
             return await apiHandler.getAll(`coupons`, params);
         },
@@ -22,12 +23,13 @@ export default function CouponsResource({apiHandler}) {
             return await apiHandler.put(`coupons/${redemptionCode}`, data);
         },
 
-        async getAllRedemptions({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAllRedemptions({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
-                filter
+                filter,
+                q
             };
             return await apiHandler.getAll(`coupons-redemptions`, params);
         },
