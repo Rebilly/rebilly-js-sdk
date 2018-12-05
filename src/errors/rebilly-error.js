@@ -13,5 +13,6 @@ export default class RebillyError extends Error {
         this.status = response && response.status ? response.status : null;
         this.statusText = response && response.statusText ? response.statusText : null;
         this.details = response ? (response.data && response.data.details ? response.data.details : null ) : null;
+        this.invalidFields = response ? (response.data && response.data.invalidFields ? response.data.invalidFields : null ) : null;
     }
 }
