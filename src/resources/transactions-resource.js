@@ -89,6 +89,28 @@ export default function TransactionsResource({apiHandler}) {
 
         async deleteLeadSource({id}) {
             return await apiHandler.delete(`transactions/${id}/lead-source`);
-        }
+        },
+
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return await apiHandler.getAll(`transactions/${id}/timeline`, params);
+        },
+
+        async getTimelineMessage({id, messageId = ''} = {}) {
+            return await apiHandler.get(`transactions/${id}/timeline/${messageId}`);
+        },
+
+        async deleteTimelineMessage({id, messageId}) {
+            return await apiHandler.delete(`transactions/${id}/timeline/${messageId}`);
+        },
+
+        async createTimelineComment({id, data}) {
+            return await apiHandler.create(`transactions/${id}/timeline`, '', data);
+        },
     };
 };
