@@ -5,7 +5,7 @@
 Preview the result of event triggered actions like webhooks and emails both globally and in the Rules Engine.
 
 !!! tip "Testing Webhooks"
-    We recommend [RequestBin][goto-requestbin] for testing webhooks. It collects your requests and lets you inspect them using a unique URL.
+    We recommend [Hookbin][goto-request-catcher] for testing webhooks. It collects your requests and lets you inspect them using a unique URL.
 
 ## webhook
 <div class="method"><code><strong>webhook</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
@@ -26,9 +26,9 @@ const data = {
     status: 'active',
     method: 'POST',
     headers: {},
-    // requestb.in is a great tool for
+    // hookb.in is a great tool for
     // previewing webhooks
-    url: 'https://requestb.in/1lmf8481',
+    url: 'https://hookb.in/Oe90ZRmdeWUGWg1MGKQV',
     // created prior to the test
     credentialHash: 'dcf6e32f2daee457a1db8ce5fdfbe200'
 };
@@ -71,9 +71,9 @@ const data = {
     method: 'POST',
     headers: {},
     query: {},
-    // requestb.in is a great tool for
+    // hookb.in is a great tool for
     // previewing webhooks
-    url: 'https://requestb.in/1lmf8481',
+    url: 'https://hookb.in/Oe90ZRmdeWUGWg1MGKQV',
     // created prior to the test
     credentialHash: 'dcf6e32f2daee457a1db8ce5fdfbe200'
 };
@@ -136,7 +136,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
 [goto-webhooks]: ./webhooks
-[goto-requestbin]: https://requestb.in
+[goto-request-catcher]: https://hookbin.com
 [goto-hashes]: ./credential-hashes#createwebhookcredential
 [goto-hashes-email]: ./credential-hashes#createemailcredential
 [goto-events]: ./events
