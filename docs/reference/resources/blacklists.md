@@ -87,6 +87,8 @@ The supported blacklist item types are:
 - `country` 
 - `fingerprint` 
 - `bin`
+- `email-domain`
+- `bank-account`
 
 
 **Example**
