@@ -28,6 +28,10 @@ export default function CredentialHashesResource({apiHandler}) {
             return await apiHandler.get(`credential-hashes/oauth2/${hash}`);
         },
 
+        async getAllOAuth2Credentials() {
+            return await apiHandler.get(`credential-hashes/oauth2`);
+        },
+
         async updateOAuth2Credential({hash, data}) {
             return await apiHandler.patch(`credential-hashes/oauth2/${hash}`, data);
         },
