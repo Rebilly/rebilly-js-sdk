@@ -80,13 +80,15 @@ If you do not provide an expiry time the item will be permanent.
 
 The supported blacklist item types are:
 
-- `payment-card-id` 
+- `payment-card` 
 - `customer-id`
 - `email` 
 - `ip-address` 
 - `country` 
 - `fingerprint` 
 - `bin`
+- `email-domain`
+- `bank-account`
 
 
 **Example**

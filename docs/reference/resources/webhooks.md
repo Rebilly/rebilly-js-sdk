@@ -100,7 +100,7 @@ const data = {
     status: 'active',
     method: 'POST',
     headers: {},
-    url: 'https://requestb.in/1lmf8481',
+    url: 'https://hookb.in/Oe90ZRmdeWUGWg1MGKQV',
     // created prior to the test
     credentialHash: 'dcf6e32f2daee457a1db8ce5fdfbe200'
 };
@@ -138,7 +138,7 @@ const data = {
     status: 'active',
     method: 'POST',
     headers: {},
-    url: 'https://requestb.in/1lmf8481',
+    url: 'https://hookb.in/Oe90ZRmdeWUGWg1MGKQV',
     // created prior to the test
     credentialHash: 'dcf6e32f2daee457a1db8ce5fdfbe200'
 };
