@@ -370,7 +370,7 @@ export default function createApiHandler({options}) {
      * @param params? {Object}
      * @returns {Member} member
      */
-    function put(url, data, params) {
+    function put(url, data, params = {}) {
         return wrapRequest({
             request: config => instance.put(url, data, {
                 ...config,

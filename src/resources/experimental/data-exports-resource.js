@@ -21,17 +21,13 @@ export default function DataExportsResource({apiHandler}) {
         },
 
         async queue({data, expand = null}) {
-            const params = {
-                expand
-            };
-            return await apiHandler.post('data-exports', data);
+            const params = {expand};
+            return await apiHandler.post('data-exports', data, params);
         },
 
         async update ({id, data, expand = null}) {
-            const params = {
-                expand
-            };
-            return await apiHandler.put(`data-exports/${id}`, data);
+            const params = {expand};
+            return await apiHandler.put(`data-exports/${id}`, data, params);
         },
 
         async delete({id}) {
