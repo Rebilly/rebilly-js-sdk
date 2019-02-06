@@ -31,16 +31,19 @@ export default function ContactsResource({apiHandler}) {
             return await apiHandler.download(`contacts`, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`contacts/${id}`);
+        async get({id, expand = null}) {
+            const params = {expand};
+            return await apiHandler.get(`contacts/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`contacts/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`contacts/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`contacts/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`contacts/${id}`, data, params);
         },
 
         async delete({id}) {

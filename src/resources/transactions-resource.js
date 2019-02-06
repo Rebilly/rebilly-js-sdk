@@ -53,14 +53,13 @@ export default function TransactionsResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`transactions/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`payments/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`payments/${id}`, id, data, params);
         },
 
         async cancel({id}) {

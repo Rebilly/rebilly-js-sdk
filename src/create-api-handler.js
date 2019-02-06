@@ -344,22 +344,22 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function post(url, data, options = {}) {
-        let params = {};
+        let configuration = {};
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
         if (options.authenticate === false) {
             //copy headers from default config
-            params = {headers: cloneInstanceHeaders()};
+            configuration = {headers: cloneInstanceHeaders()};
             //temporarily remove authentication headers
-            delete params.headers.common['REB-APIKEY'];
-            delete params.headers.common['Authorization'];
+            delete configuration.headers.common['REB-APIKEY'];
+            delete configuration.headers.common['Authorization'];
         }
         // allow param definition for particular POST cases
         if (options.params) {
-            params.params = {...options.params};
+            configuration.params = {...options.params};
         }
         return wrapRequest({
             request: config => instance.post(url, data, config),
-            params,
+            config: configuration,
         });
     }
 
@@ -367,10 +367,14 @@ export default function createApiHandler({options}) {
      * Trigger a PUT request on the target URL with the provided data payload, and return the member received in the response.
      * @param url {string}
      * @param data {Object}
+     * @param params? {Object}
      * @returns {Member} member
      */
-    function put(url, data) {
-        return wrapRequest({request: config => instance.put(url, data, config)});
+    function put(url, data, params = {}) {
+        return wrapRequest({
+            request: config => instance.put(url, data, config),
+            config: {params},
+        });
     }
 
     /**
@@ -380,7 +384,10 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function patch(url, data) {
-        return wrapRequest({request: config => instance.patch(url, data, config)});
+        return wrapRequest({
+            request: config => instance.patch(url, data, config),
+            config: {},
+        });
     }
 
     /**
@@ -389,18 +396,22 @@ export default function createApiHandler({options}) {
      * @returns {null|*}
      */
     function del(url) {
-        return wrapRequest({request: config => instance.delete(url, config)});
+        return wrapRequest({
+            request: config => instance.delete(url, config),
+            config: {},
+        });
     }
 
     /**
      * Trigger a DELETE request on the target URL with provided payload.
      * @param url {string}
+     * @param data {Object}
      * @returns {null|*}
      */
-    function deleteAll(url, payload) {
+    function deleteAll(url, data) {
         return wrapRequest({
             request: config => instance.delete(url, config),
-            config: {data: {...payload}},
+            config: {data: {...data}},
         });
     }
 
@@ -409,12 +420,13 @@ export default function createApiHandler({options}) {
      * @param url {string}
      * @param id {string}
      * @param data {Object}
+     * @param params? {Object}
      * @throws Errors.RebillyConflictError
      * @returns {Member} member
      */
-    async function create(url, id, data) {
+    async function create(url, id, data, params = {}) {
         if (id === '') {
-            return post(url, data);
+            return post(url, data, {params});
         }
         else {
             try {
@@ -425,7 +437,7 @@ export default function createApiHandler({options}) {
             }
             catch (error) {
                 if (error.name === 'RebillyNotFoundError') {
-                    return put(url, data);
+                    return put(url, data, params);
                 }
                 //throw unexpected errors
                 throw error;
