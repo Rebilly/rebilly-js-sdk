@@ -46,6 +46,7 @@ export default function createApiInstance({apiHandler}) {
         subscriptions: Resources.SubscriptionsResource({apiHandler}),
         subscriptionCancellations: Resources.SubscriptionCancellationsResource({apiHandler}),
         subscriptionReactivations: Resources.SubscriptionReactivationsResource({apiHandler}),
+        tags: Resources.TagsResource({apiHandler}),
         tracking: Resources.TrackingResource({apiHandler}),
         transactions: Resources.TransactionsResource({apiHandler}),
         threeDSecure: Resources.ThreeDSecureResource({apiHandler}),

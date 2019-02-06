@@ -36,6 +36,7 @@ import StatusResource from './status-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
+import TagsResource from './tags-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
 import ThreeDSecureResource from './three-d-secure-resource';
@@ -82,6 +83,7 @@ const Resources = {
     SubscriptionsResource,
     SubscriptionCancellationsResource,
     SubscriptionReactivationsResource,
+    TagsResource,
     TrackingResource,
     TransactionsResource,
     ThreeDSecureResource,

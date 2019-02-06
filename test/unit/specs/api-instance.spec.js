@@ -54,6 +54,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.subscriptions).to.be.an('object');
         expect(apiInstance.subscriptionCancellations).to.be.an('object');
         expect(apiInstance.subscriptionReactivations).to.be.an('object');
+        expect(apiInstance.tags).to.be.an('object');
         expect(apiInstance.tracking).to.be.an('object');
         expect(apiInstance.transactions).to.be.an('object');
         expect(apiInstance.threeDSecure).to.be.an('object');
