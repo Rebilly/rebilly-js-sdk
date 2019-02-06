@@ -214,7 +214,7 @@ export default function createApiHandler({options}) {
      * Wraps an Axios request to handle both the response and errors and return wrapped objects.
      * @param request {Function}
      * @param isCollection {boolean} defines whether the request is done to a collection or a member of the API
-     * @param params {Object} a hash of parameters or configuration options to
+     * @param config {Object} a hash of parameters or configuration options to
      * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
@@ -393,6 +393,18 @@ export default function createApiHandler({options}) {
     }
 
     /**
+     * Trigger a DELETE request on the target URL with provided payload.
+     * @param url {string}
+     * @returns {null|*}
+     */
+    function deleteAll(url, payload) {
+        return wrapRequest({
+            request: config => instance.delete(url, config),
+            config: {data: {...payload}},
+        });
+    }
+
+    /**
      * Create a new member for the current resource using the data payload if no ID is provided, otherwise verify if the ID already exists and create the member with the specified ID. Throws RebillyInvalidOperationError if the ID already exists.
      * @param url {string}
      * @param id {string}
@@ -457,6 +469,7 @@ export default function createApiHandler({options}) {
         put,
         patch,
         delete: del,
+        deleteAll,
         create,
         download
     };
