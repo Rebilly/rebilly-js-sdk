@@ -344,22 +344,22 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function post(url, data, options = {}) {
-        let params = {};
+        let configuration = {};
         //enable support for POST without authentication, specifically for login, sign up and other guest actions
         if (options.authenticate === false) {
             //copy headers from default config
-            params = {headers: cloneInstanceHeaders()};
+            configuration = {headers: cloneInstanceHeaders()};
             //temporarily remove authentication headers
-            delete params.headers.common['REB-APIKEY'];
-            delete params.headers.common['Authorization'];
+            delete configuration.headers.common['REB-APIKEY'];
+            delete configuration.headers.common['Authorization'];
         }
         // allow param definition for particular POST cases
         if (options.params) {
-            params.params = {...options.params};
+            configuration.params = {...options.params};
         }
         return wrapRequest({
             request: config => instance.post(url, data, config),
-            params,
+            config: configuration,
         });
     }
 
@@ -372,10 +372,8 @@ export default function createApiHandler({options}) {
      */
     function put(url, data, params = {}) {
         return wrapRequest({
-            request: config => instance.put(url, data, {
-                ...config,
-                params,
-            }),
+            request: config => instance.put(url, data, config),
+            config: {params},
         });
     }
 
@@ -386,7 +384,10 @@ export default function createApiHandler({options}) {
      * @returns {Member} member
      */
     function patch(url, data) {
-        return wrapRequest({request: config => instance.patch(url, data, config)});
+        return wrapRequest({
+            request: config => instance.patch(url, data, config),
+            config: {},
+        });
     }
 
     /**
@@ -395,7 +396,10 @@ export default function createApiHandler({options}) {
      * @returns {null|*}
      */
     function del(url) {
-        return wrapRequest({request: config => instance.delete(url, config)});
+        return wrapRequest({
+            request: config => instance.delete(url, config),
+            config: {},
+        });
     }
 
     /**

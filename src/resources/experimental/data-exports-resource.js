@@ -14,9 +14,7 @@ export default function DataExportsResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`data-exports/${id}`, params);
         },
 
