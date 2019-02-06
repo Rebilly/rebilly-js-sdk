@@ -13,15 +13,24 @@ export default function DataExportsResource({apiHandler}) {
             return await apiHandler.getAll('data-exports', params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`data-exports/${id}`);
+        async get({id, expand = null}) {
+            const params = {
+                expand
+            };
+            return await apiHandler.get(`data-exports/${id}`, params);
         },
 
-        async queue({data}) {
+        async queue({data, expand = null}) {
+            const params = {
+                expand
+            };
             return await apiHandler.post('data-exports', data);
         },
 
-        async update ({id, data}) {
+        async update ({id, data, expand = null}) {
+            const params = {
+                expand
+            };
             return await apiHandler.put(`data-exports/${id}`, data);
         },
 

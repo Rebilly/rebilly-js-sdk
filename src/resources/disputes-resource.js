@@ -35,16 +35,19 @@ export default function DisputesResource({apiHandler}) {
             return await apiHandler.download(`disputes`, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`disputes/${id}`);
+        async get({id, expand = null}) {
+            const params = {expand};
+            return await apiHandler.get(`disputes/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`disputes/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`disputes/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`disputes/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`disputes/${id}`, data, params);
         }
     };
 };

@@ -367,10 +367,16 @@ export default function createApiHandler({options}) {
      * Trigger a PUT request on the target URL with the provided data payload, and return the member received in the response.
      * @param url {string}
      * @param data {Object}
+     * @param params? {Object}
      * @returns {Member} member
      */
-    function put(url, data) {
-        return wrapRequest({request: config => instance.put(url, data, config)});
+    function put(url, data, params) {
+        return wrapRequest({
+            request: config => instance.put(url, data, {
+                ...config,
+                params,
+            }),
+        });
     }
 
     /**
@@ -395,12 +401,13 @@ export default function createApiHandler({options}) {
     /**
      * Trigger a DELETE request on the target URL with provided payload.
      * @param url {string}
+     * @param data {Object}
      * @returns {null|*}
      */
-    function deleteAll(url, payload) {
+    function deleteAll(url, data) {
         return wrapRequest({
             request: config => instance.delete(url, config),
-            config: {data: {...payload}},
+            config: {data: {...data}},
         });
     }
 
@@ -409,12 +416,13 @@ export default function createApiHandler({options}) {
      * @param url {string}
      * @param id {string}
      * @param data {Object}
+     * @param params? {Object}
      * @throws Errors.RebillyConflictError
      * @returns {Member} member
      */
-    async function create(url, id, data) {
+    async function create(url, id, data, params = {}) {
         if (id === '') {
-            return post(url, data);
+            return post(url, data, {params});
         }
         else {
             try {
@@ -425,7 +433,7 @@ export default function createApiHandler({options}) {
             }
             catch (error) {
                 if (error.name === 'RebillyNotFoundError') {
-                    return put(url, data);
+                    return put(url, data, params);
                 }
                 //throw unexpected errors
                 throw error;

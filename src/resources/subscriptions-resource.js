@@ -36,18 +36,18 @@ export default function SubscriptionsResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`subscriptions/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`subscriptions/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`subscriptions/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`subscriptions/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`subscriptions/${id}`, data, params);
         },
 
         /**
