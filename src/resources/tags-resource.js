@@ -32,7 +32,7 @@ export default function TagsResource({apiHandler}) {
          * @param name {String} New unique tag name
          */
         async update ({tag, name}) {
-            return apiHandler.put(`${RESOURCE}/${tag}`, {name});
+            return apiHandler.patch(`${RESOURCE}/${tag}`, {name});
         },
 
         async delete ({tag}) {
