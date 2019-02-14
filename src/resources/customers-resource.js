@@ -32,18 +32,18 @@ export default function CustomersResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`customers/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`customers/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`customers/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`customers/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`customers/${id}`, data, params);
         },
 
         async getLeadSource({id}) {

@@ -36,18 +36,18 @@ export default function SubscriptionsResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`subscriptions/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`subscriptions/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`subscriptions/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`subscriptions/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`subscriptions/${id}`, data, params);
         },
 
         /**
@@ -75,6 +75,28 @@ export default function SubscriptionsResource({apiHandler}) {
 
         async deleteLeadSource({id}) {
             return await apiHandler.delete(`subscriptions/${id}/lead-source`);
-        }
+        },
+
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return await apiHandler.getAll(`subscriptions/${id}/timeline`, params);
+        },
+
+        async getTimelineMessage({id, messageId = ''} = {}) {
+            return await apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
+        },
+
+        async deleteTimelineMessage({id, messageId}) {
+            return await apiHandler.delete(`subscriptions/${id}/timeline/${messageId}`);
+        },
+
+        async createTimelineComment({id, data}) {
+            return await apiHandler.create(`subscriptions/${id}/timeline`, '', data);
+        },
     };
 };

@@ -13,18 +13,18 @@ export default function KycDocumentsResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`kyc-documents/${id}`, params);
         },
 
-        async create({data}) {
-            return await apiHandler.create(`kyc-documents`, '', data);
+        async create({data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`kyc-documents`, '', data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`kyc-documents/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`kyc-documents/${id}`, data, params);
         },
 
         async accept({id}) {

@@ -29,12 +29,14 @@ import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
 import ProfileResource from './profile-resource';
+import SearchResource from './search-resource';
 import SessionsResource from './sessions-resource';
 import ShippingZonesResource from './shipping-zones-resource';
 import StatusResource from './status-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
+import TagsResource from './tags-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
 import ThreeDSecureResource from './three-d-secure-resource';
@@ -74,12 +76,14 @@ const Resources = {
     PreviewsResource,
     ProductsResource,
     ProfileResource,
+    SearchResource,
     SessionsResource,
     ShippingZonesResource,
     StatusResource,
     SubscriptionsResource,
     SubscriptionCancellationsResource,
     SubscriptionReactivationsResource,
+    TagsResource,
     TrackingResource,
     TransactionsResource,
     ThreeDSecureResource,

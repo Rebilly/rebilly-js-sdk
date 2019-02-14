@@ -20,9 +20,7 @@ export default function InvoicesResource({apiHandler}) {
         },
 
         async get({id, expand = null}) {
-            const params = {
-                expand
-            };
+            const params = {expand};
             return await apiHandler.get(`invoices/${id}`, params);
         },
 
@@ -50,12 +48,14 @@ export default function InvoicesResource({apiHandler}) {
             return await apiHandler.download(`invoices`, config);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`invoices/${id}`, id, data);
+        async create({id = '', data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.create(`invoices/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`invoices/${id}`, data);
+        async update({id, data, expand = null}) {
+            const params = {expand};
+            return await apiHandler.put(`invoices/${id}`, data, params);
         },
 
         async issue({id, data = {}}) {
