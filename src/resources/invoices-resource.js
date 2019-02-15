@@ -96,6 +96,28 @@ export default function InvoicesResource({apiHandler}) {
 
         async deleteLeadSource({id}) {
             return await apiHandler.delete(`invoices/${id}/lead-source`);
-        }
+        },
+
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return await apiHandler.getAll(`invoices/${id}/timeline`, params);
+        },
+
+        async getTimelineMessage({id, messageId = ''} = {}) {
+            return await apiHandler.get(`invoices/${id}/timeline/${messageId}`);
+        },
+
+        async deleteTimelineMessage({id, messageId}) {
+            return await apiHandler.delete(`invoices/${id}/timeline/${messageId}`);
+        },
+
+        async createTimelineComment({id, data}) {
+            return await apiHandler.create(`invoices/${id}/timeline`, '', data);
+        },
     };
 };
