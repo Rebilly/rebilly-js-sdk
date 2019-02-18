@@ -16,6 +16,7 @@ import EmailMessagesResource from './email-messages-resource';
 import EmailNotificationsResource from './email-notifications-resource';
 import FilesResource from './files-resource';
 import GatewayAccountsResource from './gateway-accounts-resource';
+import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
 import LayoutsResource from './layouts-resource';
@@ -63,6 +64,7 @@ const Resources = {
     EmailNotificationsResource,
     FilesResource,
     GatewayAccountsResource,
+    IntegrationsResource,
     InvoicesResource,
     KycDocumentsResource,
     LayoutsResource,
