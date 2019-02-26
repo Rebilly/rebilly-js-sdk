@@ -1,8 +1,10 @@
 import {csvHeader} from '../request-headers';
 
+const RESOURCE = 'transactions';
+
 export default function TransactionsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,16 +12,17 @@ export default function TransactionsResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`transactions`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`transactions/${id}/matched-rules`);
+        async getAllMatchedRules({id}, params) {
+            return await apiHandler.getAll(`${RESOURCE}/${id}/matched-rules`, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -28,71 +31,71 @@ export default function TransactionsResource({apiHandler}) {
                     expand,
                     filter,
                     q,
-                    criteria
+                    criteria,
+                    cancel,
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`transactions`, config);
+            return await apiHandler.download(RESOURCE, config);
         },
 
-        async get({id, expand = null}) {
-            const params = {expand};
-            return await apiHandler.get(`transactions/${id}`, params);
+        async get({id, expand = null}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, {expand, ...params});
         },
 
-        async create({data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.post(`transactions`, data, {params});
+        async create({data, expand = null}, params) {
+            return await apiHandler.post(RESOURCE, data, {params: {expand, ...params}});
         },
 
-        async cancel({id}) {
-            return await apiHandler.post(`transactions/${id}/cancel`);
+        async cancel({id}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/cancel`, null, {params: {...params}});
         },
 
-        async refund({id, data}) {
-            return await apiHandler.post(`transactions/${id}/refund`, data);
+        async refund({id, data}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/refund`, data, {params: {...params}});
         },
 
-        async getGatewayLogs({id}) {
-            return await apiHandler.getAll(`transactions/${id}/gateway-logs`);
+        async getGatewayLogs({id}, params) {
+            return await apiHandler.getAll(`${RESOURCE}/${id}/gateway-logs`, params);
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`transactions/${id}/lead-source`);
+        async getLeadSource({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/lead-source`, params);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`transactions/${id}/lead-source`, data);
+        async createLeadSource({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/lead-source`, data, params);
         },
 
-        async updateLeadSource({id, data}) {
-            return await apiHandler.put(`transactions/${id}/lead-source`, data);
+        async updateLeadSource({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/lead-source`, data, params);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`transactions/${id}/lead-source`);
+        async deleteLeadSource({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}/lead-source`, params);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                cancel,
             };
-            return await apiHandler.getAll(`transactions/${id}/timeline`, params);
+            return await apiHandler.getAll(`${RESOURCE}/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`transactions/${id}/timeline/${messageId}`);
+        async getTimelineMessage({id, messageId = ''} = {}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/timeline/${messageId}`, params);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`transactions/${id}/timeline/${messageId}`);
+        async deleteTimelineMessage({id, messageId}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}/timeline/${messageId}`, params);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`transactions/${id}/timeline`, '', data);
+        async createTimelineComment({id, data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}/timeline`, '', data, params);
         },
     };
-};
+}

@@ -15,7 +15,6 @@ import {version} from '../package.json';
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
-    let cancellationToken = null;
 
     /**
      * Create an Axios instance for Rebilly.
@@ -138,17 +137,6 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal.
-     * @deprecated 9.0.0
-     * @returns {axios.CancelToken}
-     */
-    function getCancellationToken() {
-        const tokenFactory = axios.CancelToken;
-        cancellationToken = tokenFactory.source();
-        return cancellationToken;
-    }
-
-    /**
      * Generate an authentication signature for payment token creation.
      * @since 1.1.0
      * @param apiUser {string} your API user value found in Rebilly
@@ -215,7 +203,8 @@ export default function createApiHandler({options}) {
      * @param request {Function}
      * @param isCollection {boolean} defines whether the request is done to a collection or a member of the API
      * @param config {Object} a hash of parameters or configuration options to
-     * apply to the request after cleanup
+     * apply to the request after cleanup. To enable request cancelation the `cancel` parameter should be provided,
+     * its value should represent axios CancelToken executor function.
      * @returns {Promise.<*>}
      */
     async function wrapRequest({request, isCollection, config}) {
@@ -246,9 +235,8 @@ export default function createApiHandler({options}) {
     /**
      * Throws an instance of a Rebilly Error from the base Axios error.
      * @param error {Object}
-     * @param config {Object} original request configuration
      */
-    function processError({error, config}) {
+    function processError({error}) {
         if (axios.isCancel(error)) {
             //the request was manually cancelled by a token
             throw new Errors.RebillyCanceledError(error);
@@ -298,13 +286,17 @@ export default function createApiHandler({options}) {
 
     /**
      * Combines parameters with other configurations settings for all requests. If present the cancellation token will be injected.
+     * If parameters include `cancel` corresponding function (`CancelToken` executor function ) will be injected as `cancelToken`.
      * @param configuration
      * @returns {Object}
      */
     function getRequestConfig(configuration = {}) {
-        const config = cleanUpParameters(configuration);
-        if (cancellationToken) {
-            return {...config, cancelToken: cancellationToken.token};
+        let config = cleanUpParameters(configuration);
+        if (config.params && config.params.cancel) {
+            config = {
+                ...config,
+                cancelToken: new axios.CancelToken(config.params.cancel),
+            };
         }
         return {...config};
     }
@@ -383,10 +375,10 @@ export default function createApiHandler({options}) {
      * @param data {Object}
      * @returns {Member} member
      */
-    function patch(url, data) {
+    function patch(url, data, params = {}) {
         return wrapRequest({
             request: config => instance.patch(url, data, config),
-            config: {},
+            config: {params},
         });
     }
 
@@ -395,10 +387,10 @@ export default function createApiHandler({options}) {
      * @param url {string}
      * @returns {null|*}
      */
-    function del(url) {
+    function del(url, params = {}) {
         return wrapRequest({
             request: config => instance.delete(url, config),
-            config: {},
+            config: {params},
         });
     }
 
@@ -408,10 +400,13 @@ export default function createApiHandler({options}) {
      * @param data {Object}
      * @returns {null|*}
      */
-    function deleteAll(url, data) {
+    function deleteAll(url, data, params = {}) {
         return wrapRequest({
             request: config => instance.delete(url, config),
-            config: {data: {...data}},
+            config: {
+                data: {...data},
+                params: {...params},
+            },
         });
     }
 
@@ -447,6 +442,7 @@ export default function createApiHandler({options}) {
 
     /**
      * Returns a File by triggering a get call to the specified URL without converting the response into a Member. Use the config object to specify headers and desired response type.
+     * Specify `config.params.cancel` to have an ability to cancel request.
      * @link https://github.com/mzabriskie/axios#request-config
      * @param url {string}
      * @param config {Object}
@@ -473,7 +469,6 @@ export default function createApiHandler({options}) {
         setProxyAgent,
         setSessionToken,
         setEndpoints,
-        getCancellationToken,
         generateSignature,
         get,
         getAll,
@@ -485,4 +480,4 @@ export default function createApiHandler({options}) {
         create,
         download
     };
-};
+}

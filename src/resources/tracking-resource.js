@@ -1,20 +1,23 @@
 import {csvHeader} from '../request-headers';
 
+const RESOURCE = 'tracking';
+
 export default function TrackingResource({apiHandler}) {
     return {
-        async getAllApiLogs({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async getAllApiLogs({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`tracking/api`, params);
+            return await apiHandler.getAll(`${RESOURCE}/api`, params);
         },
 
-        async downloadApiLogsCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async downloadApiLogsCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -22,70 +25,75 @@ export default function TrackingResource({apiHandler}) {
                     sort,
                     filter,
                     q,
-                    criteria
+                    criteria,
+                    cancel,
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`tracking/api`, config);
+            return await apiHandler.download(`${RESOURCE}/api`, config);
         },
 
-        async getApiLog({id}) {
-            return await apiHandler.get(`tracking/api/${id}`);
+        async getApiLog({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/api/${id}`, params);
         },
 
-        async getAllSubscriptionLogs({limit = null, offset = null, sort = null, filter = null} = {}) {
-            const params = {
-                limit,
-                offset,
-                sort,
-                filter
-            };
-            return await apiHandler.getAll(`tracking/subscriptions`, params);
-        },
-
-        async getSubscriptionLog({id}) {
-            return await apiHandler.get(`tracking/subscriptions/${id}`);
-        },
-
-        async getAllWebhookNotificationLogs({limit = null, offset = null, sort = null, filter = null} = {}) {
-            const params = {
-                limit,
-                offset,
-                sort,
-                filter
-            };
-            return await apiHandler.getAll(`tracking/website-webhooks`, params);
-        },
-
-        async getWebhookNotificationLog({id}) {
-            return await apiHandler.get(`tracking/website-webhooks/${id}`);
-        },
-
-        async getAllListsChangesHistory({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAllSubscriptionLogs({limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                cancel,
             };
-            return await apiHandler.getAll(`tracking/lists`, params);
+            return await apiHandler.getAll(`${RESOURCE}/subscriptions`, params);
         },
 
-        async getAllWebhookTrackingLogs({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async getSubscriptionLog({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/subscriptions/${id}`, params);
+        },
+
+        async getAllWebhookNotificationLogs({limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                cancel,
+            };
+            return await apiHandler.getAll(`${RESOURCE}/website-webhooks`, params);
+        },
+
+        async getWebhookNotificationLog({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/website-webhooks/${id}`, params);
+        },
+
+        async getAllListsChangesHistory({limit = null, offset = null, sort = null, filter = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                cancel,
             };
-            return await apiHandler.getAll(`tracking/webhooks`, params);
+            return await apiHandler.getAll(`${RESOURCE}/lists`, params);
         },
 
-        async getWebhookTrackingLog({id}) {
-            return await apiHandler.get(`tracking/webhooks/${id}`);
+        async getAllWebhookTrackingLogs({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                q,
+                criteria,
+                cancel,
+            };
+            return await apiHandler.getAll(`${RESOURCE}/webhooks`, params);
+        },
+
+        async getWebhookTrackingLog({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/webhooks/${id}`, params);
         },
 
         /**
@@ -97,15 +105,16 @@ export default function TrackingResource({apiHandler}) {
          * @param criteria
          * @returns {Promise}
          */
-        async getAllEmailNotifications({limit = null, offset = null, sort = null, filter = null, criteria = null} = {}) {
+        async getAllEmailNotifications({limit = null, offset = null, sort = null, filter = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`tracking/email-notifications`, params);
+            return await apiHandler.getAll(`${RESOURCE}/email-notifications`, params);
         },
 
         /**
@@ -113,8 +122,8 @@ export default function TrackingResource({apiHandler}) {
          * @param id
          * @returns {Promise}
          */
-        async getEmailNotification({id}) {
-            return await apiHandler.get(`tracking/email-notifications/${id}`)
+        async getEmailNotification({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/email-notifications/${id}`, params)
         }
     };
-};
+}

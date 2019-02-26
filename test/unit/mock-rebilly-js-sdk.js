@@ -27,4 +27,4 @@ export default function MockRebillyAPI({apiKey = null, version = null, sandbox =
 
     const apiHandler = createApiTestHandler({options});
     return createApiInstance({apiHandler});
-};
+}

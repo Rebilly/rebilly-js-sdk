@@ -86,20 +86,65 @@ describe('when I use an API handler', () => {
         expect(firstToken).to.not.be.equal(secondToken);
     });
 
-    it('should allow requests to be canceled', async () => {
-        const token = api.getCancellationToken();
-        const reason = 'Cancelled request manually';
-        expect(token.cancel).to.be.a('function');
-        try {
-            setTimeout(() => token.cancel(reason), 500);
-            await api.customers.get({id: 'cancellable-customer-id'});
-            //this assertion should never run
-            expect(true).to.be.equal(false);
-        }
-        catch (error) {
-            expect(error.name).to.be.equal('RebillyCanceledError');
-            expect(error.message).to.be.equal(reason);
-        }
+    describe('request cancelation', () => {
+        describe('when `cancel` parameter is not present', () => {
+            it('should not add `cancelToken` to axios params', async () => {
+                const params = {limit: 100};
+                const data = await api.customers.getAll(params);
+                expect(Object.keys(data.config)).not.to.include('cancelToken');
+            });
+        });
+        describe('when `cancel` parameter is present', () => {
+            const reason = 'Cancelled request manually!';
+            const generateExecutorFunction = cancelObj => f => (cancelObj.cancel = f);
+            const request = (requestParams) => api.customers.getAll(requestParams);
+
+            it('should allow individual requests to be canceled', () => {
+                const cancel = {cancel: null};
+                const executorFunction = generateExecutorFunction(cancel);
+                const params = {cancel: executorFunction, limit: 100};
+                request(params)
+                    .then(() => {
+                        //this assertion should never run
+                        expect(true).to.be.equal(false);
+                    })
+                    .catch((error) => {
+                        expect(error.name).to.be.equal('RebillyCanceledError');
+                        expect(error.message).to.be.equal(reason);
+                    });
+                cancel.cancel(reason);
+            });
+            it('should only cancel corresponding request', () => {
+                const cancel = {cancel: null};
+                const anotherCancel = {cancel: null};
+
+                const executorFunction = generateExecutorFunction(cancel);
+                const anotherExecutorFunction = generateExecutorFunction(anotherCancel);
+
+                const params = {cancel: executorFunction, limit: 100};
+                const anotherParams = {cancel: anotherExecutorFunction, limit: 100};
+
+                request(params)
+                    .then(() => {
+                        //this assertion should never run
+                        expect(true).to.be.equal(false);
+                    })
+                    .catch((error) => {
+                        expect(error.name).to.be.equal('RebillyCanceledError');
+                        expect(error.message).to.be.equal(reason);
+                    });
+                request(anotherParams)
+                    .then((data) => {
+                        expect(Object.keys(data.config)).to.include('cancelToken');
+                    })
+                    .catch((error) => {
+                        //this assertion should not run
+                        expect(true).to.be.equal(false);
+                    });
+
+                cancel.cancel(reason);
+            });
+        });
     });
 
     it('should generate a signature for server-side payment token creation', () => {

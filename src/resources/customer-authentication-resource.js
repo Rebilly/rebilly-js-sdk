@@ -1,75 +1,83 @@
+const AUTH_OPTIONS = 'authentication-options';
+const AUTH_TOKENS = 'authentication-tokens';
+const CREDENTIALS = 'credentials';
+const PWD_TOKENS = 'password-tokens';
+
 export default function CustomerAuthenticationResource({apiHandler}) {
     return {
-        async getAuthOptions() {
-            return await apiHandler.get(`authentication-options`);
+        async getAuthOptions(params) {
+            return await apiHandler.get(AUTH_OPTIONS, params);
         },
 
-        async updateAuthOptions({data}) {
-            return await apiHandler.put(`authentication-options`, data);
+        async updateAuthOptions({data}, params) {
+            return await apiHandler.put(AUTH_OPTIONS, data, params);
         },
 
-        async getAllAuthTokens({limit = null, offset = null} = {}) {
+        async getAllAuthTokens({limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`authentication-tokens`, params);
+            return await apiHandler.getAll(AUTH_TOKENS, params);
         },
 
-        async verify({token}) {
-            return await apiHandler.get(`authentication-tokens/${token}`);
+        async verify({token}, params) {
+            return await apiHandler.get(`${AUTH_TOKENS}/${token}`, params);
         },
 
-        async login({data}) {
-            return await apiHandler.post(`authentication-tokens`, data);
+        async login({data}, params) {
+            return await apiHandler.post(AUTH_TOKENS, data, {params: {...params}});
         },
 
-        async logout({token}) {
-            return await apiHandler.delete(`authentication-tokens/${token}`);
+        async logout({token}, params) {
+            return await apiHandler.delete(`${AUTH_TOKENS}/${token}`, params);
         },
 
-        async getAllCredentials({limit = null, offset = null} = {}) {
+        async getAllCredentials({limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`credentials`, params);
+            return await apiHandler.getAll(CREDENTIALS, params);
         },
 
-        async getCredential({id}) {
-            return await apiHandler.get(`credentials/${id}`);
+        async getCredential({id}, params) {
+            return await apiHandler.get(`${CREDENTIALS}/${id}`, params);
         },
 
-        async createCredential({id = '', data}) {
-            return await apiHandler.create(`credentials/${id}`, id, data);
+        async createCredential({id = '', data}, params) {
+            return await apiHandler.create(`${CREDENTIALS}/${id}`, id, data, params);
         },
 
-        async updateCredential({id, data}) {
-            return await apiHandler.put(`credentials/${id}`, data);
+        async updateCredential({id, data}, params) {
+            return await apiHandler.put(`${CREDENTIALS}/${id}`, data, params);
         },
 
-        async deleteCredential({id}) {
-            return await apiHandler.delete(`credentials/${id}`);
+        async deleteCredential({id}, params) {
+            return await apiHandler.delete(`${CREDENTIALS}/${id}`, params);
         },
 
-        async getAllResetPasswordTokens({limit = null, offset = null} = {}) {
+        async getAllResetPasswordTokens({limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`password-tokens`, params);
+            return await apiHandler.getAll(PWD_TOKENS, params);
         },
 
-        async getResetPasswordToken({id}) {
-            return await apiHandler.getAll(`password-tokens/${id}`);
+        async getResetPasswordToken({id}, params) {
+            return await apiHandler.getAll(`${PWD_TOKENS}/${id}`, params);
         },
 
-        async createResetPasswordToken({data}) {
-            return await apiHandler.post(`password-tokens`, data);
+        async createResetPasswordToken({data}, params) {
+            return await apiHandler.post(PWD_TOKENS, data, {params: {...params}});
         },
 
-        async deleteResetPasswordToken({id}) {
-            return await apiHandler.delete(`password-tokens/${id}`);
+        async deleteResetPasswordToken({id}, params) {
+            return await apiHandler.delete(`${PWD_TOKENS}/${id}`, params);
         }
     };
-};
+}

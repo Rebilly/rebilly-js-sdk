@@ -1,21 +1,24 @@
+const RESOURCE = 'subscription-reactivations';
+
 export default function SubscriptionReactivationsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                cancel,
             };
-            return await apiHandler.getAll(`subscription-reactivations`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`subscription-reactivations/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async reactivate({data}) {
-            return await apiHandler.post(`subscription-reactivations`, data);
+        async reactivate({data}, params) {
+            return await apiHandler.post(RESOURCE, data, {params: {...params}});
         }
     };
-};
+}

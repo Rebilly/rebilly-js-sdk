@@ -1,25 +1,28 @@
+const RESOURCE = 'subscription-cancellations';
+
 export default function SubscriptionCancellationsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                cancel,
             };
-            return await apiHandler.getAll(`subscription-cancellations`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`subscription-cancellations/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`subscription-cancellations/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`subscription-cancellations/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         }
     };
-};
+}

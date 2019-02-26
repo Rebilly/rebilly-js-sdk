@@ -1,29 +1,32 @@
+const RESOURCE = 'organizations';
+
 export default function OrganizationsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`organizations`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`organizations/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`organizations/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`organizations/${id}`, data);
+        async update({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`organizations/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         }
     };
-};
+}

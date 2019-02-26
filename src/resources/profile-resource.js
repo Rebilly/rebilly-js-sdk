@@ -1,19 +1,21 @@
+const RESOURCE = 'profile';
+
 export default function ProfileResource({apiHandler}) {
     return {
-        async get() {
-            return await apiHandler.get(`profile`);
+        async get(params) {
+            return await apiHandler.get(RESOURCE, params);
         },
 
-        async update({data}) {
-            return await apiHandler.put(`profile`, data);
+        async update({data}, params) {
+            return await apiHandler.put(RESOURCE, data, params);
         },
 
-        async updatePassword({data}) {
-            return await apiHandler.post(`profile/password`, data);
+        async updatePassword({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/password`, data, {params: {...params}});
         },
 
-        async resetTotp() {
-            return await apiHandler.post(`profile/totp-reset`);
+        async resetTotp(params) {
+            return await apiHandler.post(`${RESOURCE}/totp-reset`, null, {params: {...params}});
         }
     };
-};
+}

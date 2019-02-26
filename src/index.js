@@ -34,7 +34,7 @@ export default function RebillyAPI({apiKey = null, version = baseApiVersion, san
 
     const apiHandler = createApiHandler({options});
     return createApiInstance({apiHandler});
-};
+}
 
 /**
  * Create an instance of the experimental Rebilly API

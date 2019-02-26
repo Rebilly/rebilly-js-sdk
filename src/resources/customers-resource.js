@@ -1,8 +1,10 @@
 import {csvHeader} from '../request-headers';
 
+const RESOURCE = 'customers';
+
 export default function CustomersResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,12 +12,13 @@ export default function CustomersResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`customers`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -24,64 +27,63 @@ export default function CustomersResource({apiHandler}) {
                     expand,
                     filter,
                     q,
-                    criteria
+                    criteria,
+                    cancel,
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`customers`, config);
+            return await apiHandler.download(RESOURCE, config);
         },
 
-        async get({id, expand = null}) {
-            const params = {expand};
-            return await apiHandler.get(`customers/${id}`, params);
+        async get({id, expand = null}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, {expand, ...params});
         },
 
-        async create({id = '', data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.create(`customers/${id}`, id, data, params);
+        async create({id = '', data, expand = null}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, {expand, ...params});
         },
 
-        async update({id, data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.put(`customers/${id}`, data, params);
+        async update({id, data, expand = null}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, {expand, ...params});
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`customers/${id}/lead-source`);
+        async getLeadSource({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/lead-source`, params);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`customers/${id}/lead-source`, data);
+        async createLeadSource({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/lead-source`, data), params;
         },
 
-        async updateLeadSource({id, data}) {
-            return await apiHandler.put(`customers/${id}/lead-source`, data);
+        async updateLeadSource({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/lead-source`, data, params);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`customers/${id}/lead-source`);
+        async deleteLeadSource({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}/lead-source`, params);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                cancel,
             };
-            return await apiHandler.getAll(`customers/${id}/timeline`, params);
+            return await apiHandler.getAll(`${RESOURCE}/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`customers/${id}/timeline/${messageId}`);
+        async getTimelineMessage({id, messageId = ''} = {}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/timeline/${messageId}`, params);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`customers/${id}/timeline/${messageId}`);
+        async deleteTimelineMessage({id, messageId}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}/timeline/${messageId}`, params);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`customers/${id}/timeline`, '', data);
+        async createTimelineComment({id, data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}/timeline`, '', data, params);
         },
     };
-};
+}

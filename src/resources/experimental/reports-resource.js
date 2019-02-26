@@ -1,18 +1,21 @@
+const RESOURCE = 'reports';
+
 export default function ReportsResource({apiHandler}) {
     return {
-        async getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/api-log-summary`, params);
+            return await apiHandler.get(`${RESOURCE}/api-log-summary`, params);
         },
 
-        async getCumulativeSubscriptionsPlans({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getCumulativeSubscriptionsPlans({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -20,12 +23,13 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.getAll(`reports/cumulative-subscriptions-plans`, params);
+            return await apiHandler.getAll(`${RESOURCE}/cumulative-subscriptions-plans`, params);
         },
 
-        async getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -34,12 +38,13 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/cumulative-subscriptions`, params);
+            return await apiHandler.get(`${RESOURCE}/cumulative-subscriptions`, params);
         },
 
-        async getDccMarkup({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, tz = null} = {}) {
+        async getDccMarkup({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -47,68 +52,74 @@ export default function ReportsResource({apiHandler}) {
                 limit,
                 offset,
                 filter,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/dcc-markup`, params);
+            return await apiHandler.get(`${RESOURCE}/dcc-markup`, params);
         },
 
-        async getDisputes({aggregationField, periodMonth, limit = null, offset = null, filter = null, tz = null} = {}) {
+        async getDisputes({aggregationField, periodMonth, limit = null, offset = null, filter = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodMonth,
                 limit,
                 offset,
                 filter,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/disputes`, params);
+            return await apiHandler.get(`${RESOURCE}/disputes`, params);
         },
 
-        async getEventsTriggeredSummary({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getEventsTriggeredSummary({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel
             };
-            return await apiHandler.get(`reports/events-triggered`, params);
+            return await apiHandler.get(`${RESOURCE}/events-triggered`, params);
         },
 
-        async getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/events-triggered/${eventType}/rules`, params);
+            return await apiHandler.get(`${RESOURCE}/events-triggered/${eventType}/rules`, params);
         },
 
-        async getFutureRenewals({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getFutureRenewals({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/future-renewals`, params);
+            return await apiHandler.get(`${RESOURCE}/future-renewals`, params);
         },
 
-        async getRenewalSales({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getRenewalSales({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/renewal-sales`, params);
+            return await apiHandler.get(`${RESOURCE}/renewal-sales`, params);
         },
 
-        async getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -119,12 +130,13 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/retention-percentage`, params);
+            return await apiHandler.get(`${RESOURCE}/retention-percentage`, params);
         },
 
-        async getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, sort = null, filter = null, criteria = null, tz = null} = {}) {
+        async getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, sort = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -137,12 +149,13 @@ export default function ReportsResource({apiHandler}) {
                 sort,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/retention-value`, params);
+            return await apiHandler.get(`${RESOURCE}/retention-value`, params);
         },
 
-        async getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -150,16 +163,17 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/retry-transaction`, params);
+            return await apiHandler.get(`${RESOURCE}/retry-transaction`, params);
         },
 
-        async getStatistics() {
-            return await apiHandler.get(`reports/statistics`);
+        async getStatistics(params) {
+            return await apiHandler.get(`${RESOURCE}/statistics`, params);
         },
 
-        async getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -168,71 +182,62 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/subscription-cancellation`, params);
+            return await apiHandler.get(`${RESOURCE}/subscription-cancellation`, params);
         },
 
-        async getSubscriptionRenewalList({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getSubscriptionRenewalList({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.getAll(`reports/subscription-renewal-list`, params);
+            return await apiHandler.getAll(`${RESOURCE}/subscription-renewal-list`, params);
         },
 
-        async getSubscriptionRenewal({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getSubscriptionRenewal({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/subscription-renewal`, params);
+            return await apiHandler.get(`${RESOURCE}/subscription-renewal`, params);
         },
 
-        async getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate, limit = null, offset = null} = {}) {
+        async getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate, limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 type,
                 subaggregate,
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.get(`reports/time-series-transaction`, params);
+            return await apiHandler.get(`${RESOURCE}/time-series-transaction`, params);
         },
 
-        async getTransactionsPlan({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        async getTransactionsPlan({periodStart, periodEnd, limit = null, offset = null, tz = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.getAll(`reports/transactions-plan`, params);
+            return await apiHandler.getAll(`${RESOURCE}/transactions-plan`, params);
         },
 
-        async getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
-            const params = {
-                aggregationField,
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                filter,
-                criteria,
-                tz
-            };
-            return await apiHandler.get(`reports/transactions-time-dispute`, params);
-        },
-
-        async getTransactions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        async getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -241,31 +246,49 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter,
                 criteria,
-                tz
+                tz,
+                cancel,
             };
-            return await apiHandler.get(`reports/transactions`, params);
+            return await apiHandler.get(`${RESOURCE}/transactions-time-dispute`, params);
         },
 
-        async getPaymentsSuccessByDeclineReason({periodStart, periodEnd, limit = null, offset = null, filter = null} = {}) {
+        async getTransactions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null, cancel = null} = {}) {
+            const params = {
+                aggregationField,
+                periodStart,
+                periodEnd,
+                limit,
+                offset,
+                filter,
+                criteria,
+                tz,
+                cancel,
+            };
+            return await apiHandler.get(`${RESOURCE}/transactions`, params);
+        },
+
+        async getPaymentsSuccessByDeclineReason({periodStart, periodEnd, limit = null, offset = null, filter = null, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 limit,
                 offset,
-                filter
+                filter,
+                cancel,
             };
-            return await apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
+            return await apiHandler.getAll(`${RESOURCE}/payments-success-by-decline-reason`, params);
         },
 
-        async getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
+        async getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}, cancel = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
                 tz,
                 segments,
-                metrics
+                metrics,
+                cancel
             };
-            return await apiHandler.getAll(`reports/dashboard`, params);
+            return await apiHandler.getAll(`${RESOURCE}/dashboard`, params);
         },
     };
-};
+}

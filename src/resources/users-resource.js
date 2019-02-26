@@ -1,46 +1,50 @@
+const RESOURCE = 'users';
+const RESET_PASSWORD = 'reset-password';
+
 export default function UsersResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`users`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`users/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`users/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async update({id = '', data}) {
-            return await apiHandler.put(`users/${id}`, data);
+        async update({id = '', data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`users/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         },
 
-        async updatePassword({id, data}) {
-            return await apiHandler.post(`users/${id}/password`, data);
+        async updatePassword({id, data}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/password`, data, {params: {...params}});
         },
 
-        async getResetPasswordToken({token}) {
-            return await apiHandler.get(`reset-password/${token}`);
+        async getResetPasswordToken({token}, params) {
+            return await apiHandler.get(`${RESET_PASSWORD}/${token}`, params);
         },
 
-        async resetPassword({token, data}) {
-            return await apiHandler.post(`reset-password/${token}`, data);
+        async resetPassword({token, data}, params) {
+            return await apiHandler.post(`${RESET_PASSWORD}/${token}`, data, {params: {...params}});
         },
 
-        async resetTotp({id}) {
-            return await apiHandler.post(`users/${id}/totp-reset`);
+        async resetTotp({id}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/totp-reset`, null, {params: {...params}});
         }
     };
-};
+}

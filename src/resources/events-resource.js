@@ -1,43 +1,47 @@
+const RESOURCE = 'events';
+
 export default function EventsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null} = {}) {
+        async getAll({limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`events`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({eventType}) {
-            return await apiHandler.get(`events/${eventType}`);
+        async get({eventType}, params) {
+            return await apiHandler.get(`${RESOURCE}/${eventType}`, params);
         },
 
-        async getRules({eventType}) {
-            return await apiHandler.get(`events/${eventType}/rules`);
+        async getRules({eventType}, params) {
+            return await apiHandler.get(`${RESOURCE}/${eventType}/rules`, params);
         },
 
-        async createRules({eventType, data}) {
-            return await apiHandler.put(`events/${eventType}/rules`, data);
+        async createRules({eventType, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${eventType}/rules`, data, params);
         },
 
-        async updateRules({eventType, data}) {
-            return await apiHandler.put(`events/${eventType}/rules`, data);
+        async updateRules({eventType, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${eventType}/rules`, data, params);
         },
 
-        async getRulesHistory({eventType, limit = null, offset = null} = {}) {
+        async getRulesHistory({eventType, limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`events/${eventType}/rules/history`, params);
+            return await apiHandler.getAll(`${RESOURCE}/${eventType}/rules/history`, params);
         },
 
-        async getRulesVersionNumber({eventType, version}) {
-            return await apiHandler.get(`events/${eventType}/rules/history/${version}`);
+        async getRulesVersionNumber({eventType, version}, params) {
+            return await apiHandler.get(`${RESOURCE}/${eventType}/rules/history/${version}`, params);
         },
 
-        async getRulesVersionDetail({eventType, version}) {
-            return await apiHandler.get(`events/${eventType}/rules/versions/${version}`);
+        async getRulesVersionDetail({eventType, version}, params) {
+            return await apiHandler.get(`${RESOURCE}/${eventType}/rules/versions/${version}`, params);
         }
     };
-};
+}

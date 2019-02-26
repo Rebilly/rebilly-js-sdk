@@ -1,23 +1,25 @@
+const RESOURCE = 'previews';
+
 export default function PreviewsResource({apiHandler}) {
     return {
-        async webhook({data}) {
-            return await apiHandler.post(`previews/webhooks`, data);
+        async webhook({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/webhooks`, data, {params: {...params}});
         },
 
-        async triggerWebhookRuleAction({data}) {
-            return await apiHandler.post(`previews/rule-actions/trigger-webhook`, data);
+        async triggerWebhookRuleAction({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/rule-actions/trigger-webhook`, data, {params: {...params}});
         },
 
-        async sendEmailRuleAction({data}) {
-            return await apiHandler.post(`previews/rule-actions/send-email`, data);
+        async sendEmailRuleAction({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/rule-actions/send-email`, data, {params: {...params}});
         },
 
-        async sendEmailNotification({data}) {
-            return await apiHandler.post(`previews/email-notifications/send-notification`, data);
+        async sendEmailNotification({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/email-notifications/send-notification`, data, {params: {...params}});
         },
 
-        async previewEmailNotification({data}) {
-            return await apiHandler.post(`previews/email-notifications/preview-notification`, data);
+        async previewEmailNotification({data}, params) {
+            return await apiHandler.post(`${RESOURCE}/email-notifications/preview-notification`, data, {params: {...params}});
         },
     };
-};
+}

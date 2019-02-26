@@ -1,20 +1,23 @@
 import {csvHeader} from '../request-headers';
 
+const RESOURCE = 'websites';
+
 export default function WebsitesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`websites`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -23,27 +26,28 @@ export default function WebsitesResource({apiHandler}) {
                     expand,
                     filter,
                     q,
-                    criteria
+                    criteria,
+                    cancel,
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`websites`, config);
+            return await apiHandler.download(RESOURCE, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`websites/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`websites/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`websites/${id}`, data);
+        async update({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`websites/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         }
     };
-};
+}

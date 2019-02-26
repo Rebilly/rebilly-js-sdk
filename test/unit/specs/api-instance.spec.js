@@ -71,7 +71,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.setTimeout).to.be.a('function');
         expect(apiInstance.setProxyAgent).to.be.a('function');
         expect(apiInstance.setEndpoints).to.be.a('function');
-        expect(apiInstance.getCancellationToken).to.be.a('function');
         expect(apiInstance.generateSignature).to.be.a('function');
     });
 
@@ -91,6 +90,5 @@ describe('when I create an API instance', () => {
         expect(apiInstanceExperimental.setTimeout).to.be.a('function');
         expect(apiInstanceExperimental.setProxyAgent).to.be.a('function');
         expect(apiInstanceExperimental.setEndpoints).to.be.a('function');
-        expect(apiInstanceExperimental.getCancellationToken).to.be.a('function');
     });
 });

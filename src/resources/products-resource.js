@@ -1,31 +1,34 @@
+const RESOURCE = 'products';
+
 export default function ProductsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, fields = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, fields = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                fields
+                fields,
+                cancel,
             };
-            return await apiHandler.getAll(`products`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`products/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`products/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`products/${id}`, data);
+        async update({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`products/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         }
     };
-};
+}

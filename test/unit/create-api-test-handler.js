@@ -11,4 +11,4 @@ export default function createApiTestHandler({options}) {
     //setup mocks on the current adapter
     Object.values(mocks).forEach(mock => mock({adapter}));
     return apiHandler;
-};
+}

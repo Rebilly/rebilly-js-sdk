@@ -1,24 +1,27 @@
+const RESOURCE = 'custom-fields';
+
 export default function CustomFieldsResource({apiHandler}) {
     return {
-        async getAll({resource, limit = null, offset = null, fields = null} = {}) {
+        async getAll({resource, limit = null, offset = null, fields = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 fields,
+                cancel,
             };
-            return await apiHandler.getAll(`custom-fields/${resource}`, params);
+            return await apiHandler.getAll(`${RESOURCE}/${resource}`, params);
         },
 
-        async get({resource, name}) {
-            return await apiHandler.get(`custom-fields/${resource}/${name}`);
+        async get({resource, name}, params) {
+            return await apiHandler.get(`${RESOURCE}/${resource}/${name}`, params);
         },
 
-        async create({resource, name, data}) {
-            return await apiHandler.put(`custom-fields/${resource}/${name}`, data);
+        async create({resource, name, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${resource}/${name}`, data, params);
         },
 
-        async update({resource, name, data}) {
-            return await apiHandler.put(`custom-fields/${resource}/${name}`, data);
+        async update({resource, name, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${resource}/${name}`, data, params);
         },
     };
-};
+}

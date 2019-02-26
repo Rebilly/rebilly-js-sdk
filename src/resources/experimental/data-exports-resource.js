@@ -1,6 +1,8 @@
+const RESOURCE = 'data-exports';
+
 export default function DataExportsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -8,28 +10,26 @@ export default function DataExportsResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll('data-exports', params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id, expand = null}) {
-            const params = {expand};
-            return await apiHandler.get(`data-exports/${id}`, params);
+        async get({id, expand = null}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, {expand, ...params});
         },
 
-        async queue({data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.post('data-exports', data, params);
+        async queue({data, expand = null}, params) {
+            return await apiHandler.post('data-exports', data, {params: {expand, ...params}});
         },
 
-        async update ({id, data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.put(`data-exports/${id}`, data, params);
+        async update ({id, data, expand = null}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, {expand, ...params});
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`data-exports/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         }
     };
-};
+}

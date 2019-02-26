@@ -1,27 +1,31 @@
+const FILES = 'files';
+const ATTACHMENTS = 'attachments';
+
 export default function FilesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
+                cancel,
             };
-            return await apiHandler.getAll(`files`, params);
+            return await apiHandler.getAll(FILES, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`files/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${FILES}/${id}`, params);
         },
 
-        async upload({fileObject}) {
-            return await apiHandler.post(`files`, fileObject);
+        async upload({fileObject}, params) {
+            return await apiHandler.post(FILES, fileObject, {params: {...params}});
         },
 
-        async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
-            const file = await this.upload({fileObject});
+        async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}, {cancel = null} = {}) {
+            const file = await this.upload({fileObject}, {cancel});
             const params = {
                 name: file.name,
                 extension: file.extension,
@@ -29,59 +33,61 @@ export default function FilesResource({apiHandler}) {
                 tags: data.tags,
                 url: ''
             };
-            return await this.update({id: file.fields.id, data: params});
+            return await this.update({id: file.fields.id, data: params}, {cancel});
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`files/${id}`, data);
+        async update({id, data}, params) {
+            return await apiHandler.put(`${FILES}/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`files/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${FILES}/${id}`, params);
         },
 
-        async detachAndDelete({id}) {
+        async detachAndDelete({id}, {cancel = null} = {}) {
             const params = {
-                filter: `fileId:${id}`
+                filter: `fileId:${id}`,
+                cancel,
             };
             const attachments = await this.getAllAttachments(params);
             const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
             await Promise.all(promises);
-            return await apiHandler.delete(`files/${id}`);
+            return await apiHandler.delete(`${FILES}/${id}`, {cancel});
         },
 
-        async download({id}) {
+        async download({id}, params) {
             const config = {
                 responseType: 'arraybuffer'
             };
-            return await apiHandler.download(`files/${id}/download`, config);
+            return await apiHandler.download(`${FILES}/${id}/download`, {...config, params: {...params}});
         },
 
-        async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`attachments`, params)
+            return await apiHandler.getAll(ATTACHMENTS, params)
         },
 
-        async getAttachment({id}) {
-            return await apiHandler.get(`attachments${id}`);
+        async getAttachment({id}, params) {
+            return await apiHandler.get(`${ATTACHMENTS}/${id}`, params);
         },
 
-        async updateAttachment({id, data}) {
-            return await apiHandler.put(`attachments/${id}`, data);
+        async updateAttachment({id, data}, params) {
+            return await apiHandler.put(`${ATTACHMENTS}/${id}`, data, params);
         },
 
-        async attach({data}) {
-            return await apiHandler.post(`attachments`, data);
+        async attach({data}, params) {
+            return await apiHandler.post(ATTACHMENTS, data, {params: {...params}});
         },
 
-        async detach({id}) {
-            return await apiHandler.delete(`attachments/${id}`)
+        async detach({id}, params) {
+            return await apiHandler.delete(`${ATTACHMENTS}/${id}`, params)
         }
     };
-};
+}

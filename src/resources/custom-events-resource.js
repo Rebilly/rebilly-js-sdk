@@ -1,69 +1,74 @@
+const RESOURCE = 'custom-events';
+
 export default function CustomEventsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, fields = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, fields = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 fields,
+                cancel,
             };
-            return await apiHandler.getAll(`custom-events`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`custom-events/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`custom-events/${id}`, id, data);
+        async create({id = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${id}`, id, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`custom-events/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         },
 
-        async getRules({id}) {
-            return await apiHandler.get(`custom-events/${id}/rules`);
+        async getRules({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/rules`, params);
         },
 
-        async createRules({id, data}) {
-            return await apiHandler.put(`custom-events/${id}/rules`, data);
+        async createRules({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/rules`, data, params);
         },
 
-        async updateRules({id, data}) {
-            return await apiHandler.put(`custom-events/${id}/rules`, data);
+        async updateRules({id, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}/rules`, data, params);
         },
 
-        async getRulesHistory({id, limit = null, offset = null} = {}) {
+        async getRulesHistory({id, limit = null, offset = null, cancel = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`custom-events/${id}/rules/history`, params);
+            return await apiHandler.getAll(`${RESOURCE}/${id}/rules/history`, params);
         },
 
-        async getRulesVersionNumber({id, version}) {
-            return await apiHandler.get(`custom-events/${id}/rules/history/${version}`);
+        async getRulesVersionNumber({id, version}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/rules/history/${version}`, params);
         },
 
-        async getRulesVersionDetail({id, version}) {
-            return await apiHandler.get(`custom-events/${id}/rules/versions/${version}`);
+        async getRulesVersionDetail({id, version}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}/rules/versions/${version}`, params);
         },
 
-        async getAllScheduled({limit = null, offset = null}  = {}) {
+        async getAllScheduled({limit = null, offset = null, cancel = null}  = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                cancel,
             };
-            return await apiHandler.getAll(`queue/custom-events`, params);
+            return await apiHandler.getAll(`queue/${RESOURCE}`, params);
         },
 
-        async getScheduled({id}) {
-            return await apiHandler.get(`queue/custom-events/${id}`);
+        async getScheduled({id}, params) {
+            return await apiHandler.get(`queue/${RESOURCE}/${id}`, params);
         },
 
-        async deleteScheduled({id}) {
-            return await apiHandler.delete(`queue/custom-events/${id}`);
+        async deleteScheduled({id}, params) {
+            return await apiHandler.delete(`queue/${RESOURCE}/${id}`, params);
         }
     };
-};
+}

@@ -1,7 +1,7 @@
 export default function LocationResource({apiHandler}) {
     return {
-        async query() {
-            return await apiHandler.get(`location`);
+        async query(params) {
+            return await apiHandler.get(`location`, params);
         }
     };
-};
+}

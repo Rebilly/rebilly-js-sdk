@@ -1,53 +1,58 @@
+const RESOURCE = 'coupons';
+const REDEMPTION = 'coupons-redemptions';
+
 export default function CouponsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`coupons`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({redemptionCode}) {
-            return await apiHandler.get(`coupons/${redemptionCode}`);
+        async get({redemptionCode}, params) {
+            return await apiHandler.get(`${RESOURCE}/${redemptionCode}`, params);
         },
 
-        async create({redemptionCode = '', data}) {
-            return await apiHandler.create(`coupons/${redemptionCode}`, redemptionCode, data);
+        async create({redemptionCode = '', data}, params) {
+            return await apiHandler.create(`${RESOURCE}/${redemptionCode}`, redemptionCode, data, params);
         },
 
-        async update({redemptionCode, data}) {
-            return await apiHandler.put(`coupons/${redemptionCode}`, data);
+        async update({redemptionCode, data}, params) {
+            return await apiHandler.put(`${RESOURCE}/${redemptionCode}`, data, params);
         },
 
-        async getAllRedemptions({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        async getAllRedemptions({limit = null, offset = null, sort = null, filter = null, q = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`coupons-redemptions`, params);
+            return await apiHandler.getAll(REDEMPTION, params);
         },
 
-        async getRedemption({id}) {
-            return await apiHandler.get(`coupons-redemptions/${id}`);
+        async getRedemption({id}, params) {
+            return await apiHandler.get(`${REDEMPTION}/${id}`, params);
         },
 
-        async cancelRedemption({id}) {
-            return await apiHandler.post(`coupons-redemptions/${id}/cancel`);
+        async cancelRedemption({id}, params) {
+            return await apiHandler.post(`${REDEMPTION}/${id}/cancel`, null, {params: {...params}});
         },
 
-        async redeem({data}) {
-            return await apiHandler.post(`coupons-redemptions`, data);
+        async redeem({data}, params) {
+            return await apiHandler.post(REDEMPTION, data, {params: {...params}});
         },
 
-        async setExpiry({redemptionCode, data}) {
-            return await apiHandler.post(`coupons/${redemptionCode}/expiration`, data);
+        async setExpiry({redemptionCode, data}, params) {
+            return await apiHandler.post(`${RESOURCE}/${redemptionCode}/expiration`, data, {params: {...params}});
         }
     };
-};
+}

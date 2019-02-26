@@ -4,4 +4,4 @@ export default function IntegrationsResource({apiHandler}) {
             return await apiHandler.getAll('integrations', params);
         }
     };
-};
+}

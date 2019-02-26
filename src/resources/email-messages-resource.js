@@ -1,30 +1,33 @@
+const RESOURCE = 'email-messages';
+
 export default function EmailMessagesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, filter = null, cancel = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                cancel,
             };
-            return await apiHandler.getAll(`email-messages`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`email-messages/${id}`);
+        async get({id}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, params);
         },
 
-        async create({data}) {
-            return await apiHandler.post(`email-messages`, data);
+        async create({data}, params) {
+            return await apiHandler.post(RESOURCE, data, null, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`email-messages/${id}`);
+        async delete({id}, params) {
+            return await apiHandler.delete(`${RESOURCE}/${id}`, params);
         },
 
-        async send({id, data={status:'outbox'}}) {
-            return await apiHandler.patch(`email-messages/${id}`, data);
+        async send({id, data={status:'outbox'}}, params) {
+            return await apiHandler.patch(`${RESOURCE}/${id}`, data, params);
         }
     };
-};
+}
 

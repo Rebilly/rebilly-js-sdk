@@ -1,38 +1,38 @@
+const RESOURCE = 'kyc-documents';
+
 export default function KycDocumentsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
+        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, cancel = null,} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 expand,
                 filter,
-                q
+                q,
+                cancel,
             };
-            return await apiHandler.getAll(`kyc-documents`, params);
+            return await apiHandler.getAll(RESOURCE, params);
         },
 
-        async get({id, expand = null}) {
-            const params = {expand};
-            return await apiHandler.get(`kyc-documents/${id}`, params);
+        async get({id, expand = null}, params) {
+            return await apiHandler.get(`${RESOURCE}/${id}`, {expand, ...params});
         },
 
-        async create({data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.create(`kyc-documents`, '', data, params);
+        async create({data, expand = null}, params) {
+            return await apiHandler.create(RESOURCE, '', data, {expand, ...params});
         },
 
-        async update({id, data, expand = null}) {
-            const params = {expand};
-            return await apiHandler.put(`kyc-documents/${id}`, data, params);
+        async update({id, data, expand = null}, params) {
+            return await apiHandler.put(`${RESOURCE}/${id}`, data, {expand, ...params});
         },
 
-        async accept({id}) {
-            return await apiHandler.post(`kyc-documents/${id}/acceptance`);
+        async accept({id}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/acceptance`, null, {params: {...params}});
         },
 
-        async reject({id, data}) {
-            return await apiHandler.post(`kyc-documents/${id}/rejection`, data);
+        async reject({id, data}, params) {
+            return await apiHandler.post(`${RESOURCE}/${id}/rejection`, data, {params: {...params}});
         }
     };
-};
+}
