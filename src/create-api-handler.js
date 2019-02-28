@@ -7,6 +7,7 @@ import cloneDeep from 'clone-deep';
 import jsBase64 from 'js-base64';
 import createHmac from 'create-hmac';
 import {version} from '../package.json';
+import {Cancellation, RequestsCache} from './cancellation';
 
 /**
  * Creates an API handler for the current instance with the provided options.
@@ -41,8 +42,8 @@ export default function createApiHandler({options}) {
         return {
             baseURL: getBaseURL(),
             timeout: options.requestTimeout,
-            headers: getRequestHeaders()
-        }
+            headers: getRequestHeaders(),
+        };
     }
 
     /**
@@ -60,7 +61,7 @@ export default function createApiHandler({options}) {
      */
     function getRequestHeaders() {
         const headers = {
-            'REB-API-CONSUMER': `RebillySDK/JS-SDK ${version}`
+            'REB-API-CONSUMER': `RebillySDK/JS-SDK ${version}`,
         };
         if (options.apiKey) {
             headers['REB-APIKEY'] = options.apiKey;
@@ -114,7 +115,7 @@ export default function createApiHandler({options}) {
         instance.defaults.proxy = {
             host,
             port,
-            auth
+            auth,
         };
     }
 
@@ -171,7 +172,7 @@ export default function createApiHandler({options}) {
             'REB-APIUSER': apiUser,
             'REB-NONCE': nonce,
             'REB-TIMESTAMP': timestamp,
-            'REB-SIGNATURE': signature
+            'REB-SIGNATURE': signature,
         };
         return jsBase64.Base64.encode(JSON.stringify(payload));
     }
@@ -181,7 +182,10 @@ export default function createApiHandler({options}) {
      * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
      * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
      */
-    function addRequestInterceptor({thenDelegate, catchDelegate = () => {}}) {
+    function addRequestInterceptor({
+                                       thenDelegate, catchDelegate = () => {
+        },
+                                   }) {
         instance.interceptors.request.use(thenDelegate, catchDelegate);
     }
 
@@ -198,7 +202,10 @@ export default function createApiHandler({options}) {
      * @param thenDelegate {Function} defines the delegate logic to run before the response is completed
      * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the response is executed for this interceptor
      */
-    function addResponseInterceptor({thenDelegate, catchDelegate = () => {}}) {
+    function addResponseInterceptor({
+                                        thenDelegate, catchDelegate = () => {
+        },
+                                    }) {
         instance.interceptors.response.use(thenDelegate, catchDelegate);
     }
 
@@ -218,15 +225,24 @@ export default function createApiHandler({options}) {
      * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
-    async function wrapRequest({request, isCollection, config}) {
+    function wrapRequest({request, isCollection, config}) {
         const cleanedConfig = getRequestConfig(config);
-        try {
-            const response = await request(cleanedConfig);
-            return processResponse({response, isCollection, config: cleanedConfig})
-        }
-        catch (error) {
-            return processError({error, config: cleanedConfig});
-        }
+        const {id, cancelToken} = RequestsCache.save(cleanedConfig);
+
+        cleanedConfig.cancelToken = cancelToken;
+        const result = (async function () {
+            try {
+                const response = await request(cleanedConfig);
+                return processResponse({response, isCollection, config: cleanedConfig});
+            }
+            catch (error) {
+                return processError({error, config: cleanedConfig});
+            } finally {
+                RequestsCache.deleteById(id);
+            }
+        })();
+        result.cancel = (reason) => Cancellation.cancelById(id, reason);
+        return result;
     }
 
     /**
@@ -483,6 +499,6 @@ export default function createApiHandler({options}) {
         delete: del,
         deleteAll,
         create,
-        download
+        download,
     };
 };

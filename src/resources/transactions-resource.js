@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function TransactionsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,7 +12,7 @@ export default function TransactionsResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`transactions`, params);
+            return apiHandler.getAll(`transactions`, params);
         },
 
         async getAllMatchedRules({id}) {

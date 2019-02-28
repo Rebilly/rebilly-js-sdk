@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function CustomersResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,7 +12,7 @@ export default function CustomersResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`customers`, params);
+            return apiHandler.getAll(`customers`, params);
         },
 
         async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
