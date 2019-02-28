@@ -9,6 +9,27 @@ import createHmac from 'create-hmac';
 import {version} from '../package.json';
 
 /**
+ * Availble types of axios interceptors
+ */
+export const interceptorTypes = {
+    request: 'request',
+    response: 'response',
+};
+
+/**
+ * Verifyes that `type` is one of the `interceptorTypes` or throws an error
+ * @param options
+ */
+export const isInterceptorType = (type) => {
+    if (!Object.values(interceptorTypes).includes(type)) {
+        throw new Error (`There is no such interceptor type as "${type}"`);
+    }
+
+    return true;
+};
+
+
+/**
  * Creates an API handler for the current instance with the provided options.
  * @param options
  * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
@@ -177,37 +198,59 @@ export default function createApiHandler({options}) {
     }
 
     /**
+     * Adds a interceptor to the current API instance.
+     * @param type {String} interceptor type (`request`/`response`)
+     * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
+     * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
+     * @return {Number} An ID used to remove interceptor later
+     */
+    function addInterceptor(type, {thenDelegate, catchDelegate = () => {}}) {
+        return isInterceptorType(type) && instance.interceptors[interceptorTypes[type]].use(thenDelegate, catchDelegate);
+    }
+
+    /**
+     * Removes a specific interceptor from the current API instance.
+     * @param type interceptor type (`request`/`response`)
+     * @param interceptor {Number} defines the interceptor delegate to remove (the ID that was returned by addInterceptor)
+     */
+    function removeInterceptor(type, interceptor) {
+        return isInterceptorType(type) && instance.interceptors[interceptorTypes[type]].eject(interceptor);
+    }
+
+    /**
      * Adds a request interceptor to the current API instance.
      * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
      * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
+     * @return {Number} An ID used to remove interceptor later
      */
     function addRequestInterceptor({thenDelegate, catchDelegate = () => {}}) {
-        instance.interceptors.request.use(thenDelegate, catchDelegate);
+        return addInterceptor(interceptorTypes.request, {thenDelegate, catchDelegate});
     }
 
     /**
      * Removes a specific request interceptor from the current API instance.
-     * @param interceptor {Function} defines the interceptor delegate to remove
+     * @param interceptor {Number} defines the interceptor delegate to remove (the ID that was returned by `addRequestInterceptor`)
      */
     function removeRequestInterceptor(interceptor) {
-        instance.interceptors.request.eject(interceptor);
+        removeInterceptor(interceptorTypes.request, interceptor);
     }
 
     /**
      * Adds a request response to the current API instance.
      * @param thenDelegate {Function} defines the delegate logic to run before the response is completed
      * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the response is executed for this interceptor
+     * @return {Number} An ID used to remove interceptor later
      */
     function addResponseInterceptor({thenDelegate, catchDelegate = () => {}}) {
-        instance.interceptors.response.use(thenDelegate, catchDelegate);
+        return addInterceptor(interceptorTypes.response, {thenDelegate, catchDelegate});
     }
 
     /**
      * Removes a specific response interceptor from the current API instance.
-     * @param interceptor {Function} defines the interceptor delegate to remove
+     * @param interceptor {Number} defines the interceptor delegate to remove (the ID that was returned by `addResponseInterceptor`)
      */
     function removeResponseInterceptor(interceptor) {
-        instance.interceptors.response.eject(interceptor);
+        removeInterceptor(interceptorTypes.response, interceptor);
     }
 
     /**
