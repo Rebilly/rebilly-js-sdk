@@ -1,11 +1,12 @@
 import createApiHandler from './create-api-handler';
 import createApiInstance, {createExperimentalApiInstance} from './create-api-instance';
 import Errors from './errors';
+import cancellation from './cancellation';
 
 const baseApiVersion = 'v2.1';
 const baseEndpoints = {
     live: 'https://api.rebilly.com',
-    sandbox: 'https://api-sandbox.rebilly.com'
+    sandbox: 'https://api-sandbox.rebilly.com',
 };
 const baseTimeoutMs = 6000;
 
@@ -29,7 +30,7 @@ export default function RebillyAPI({apiKey = null, version = baseApiVersion, san
         apiVersion: version,
         isSandbox: sandbox,
         requestTimeout: timeout,
-        jwt: null
+        jwt: null,
     };
 
     const apiHandler = createApiHandler({options});
@@ -55,11 +56,11 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
         apiVersion: 'experimental',
         isSandbox: sandbox,
         requestTimeout: timeout,
-        jwt: null
+        jwt: null,
     };
 
     const apiHandler = createApiHandler({options});
     return createExperimentalApiInstance({apiHandler});
 }
 
-export {Errors as RebillyErrors, RebillyExperimentalAPI};
+export {Errors as RebillyErrors, RebillyExperimentalAPI, cancellation};
