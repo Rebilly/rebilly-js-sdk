@@ -2189,6 +2189,10 @@ nan@^2.3.0:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
 
+nanoid@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.0.1.tgz#deb55cac196e3f138071911dabbc3726eb048864"
+
 node-libs-browser@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/node-libs-browser/-/node-libs-browser-2.0.0.tgz#a3a59ec97024985b46e958379646f96c4b616646"
@@ -2777,6 +2781,12 @@ shebang-command@^1.2.0:
 shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+
+shortid@^2.2.14:
+  version "2.2.14"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.14.tgz#80db6aafcbc3e3a46850b3c88d39e051b84c8d18"
+  dependencies:
+    nanoid "^2.0.0"
 
 signal-exit@^3.0.0, signal-exit@^3.0.1, signal-exit@^3.0.2:
   version "3.0.2"
