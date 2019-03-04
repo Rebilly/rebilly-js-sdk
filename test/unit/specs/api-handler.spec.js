@@ -1,11 +1,15 @@
 import chai from 'chai';
+import sinon from 'sinon';
+import sinonChai from 'sinon-chai';
 import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import jsBase64 from 'js-base64';
 import crypto from 'crypto';
 import {version} from '../../../package.json';
+import {interceptorTypes, isInterceptorType} from '../../../src/create-api-handler';
 
 const expect = chai.expect;
+chai.use(sinonChai);
 
 describe('when I use an API handler', () => {
     const options = {
@@ -104,5 +108,50 @@ describe('when I use an API handler', () => {
     it('should define an API consumer header based on the package version', () => {
         const headers = apiHandler.getInstance().defaults.headers;
         expect(headers['REB-API-CONSUMER']).to.be.equal(`RebillySDK/JS-SDK ${version}`);
+    });
+
+    describe('with interceptors', () => {
+        describe('request interceptor', () => {
+            it('should return created interceptor ID when intercenptor is added', () => {
+                const interceptor = apiHandler.addRequestInterceptor({thenDelegate: () => {}});
+                expect(interceptor).to.be.a('number');
+            });
+            it('should call axios interceptorManager eject function on interceptor removal', () => {
+                const interceptor = apiHandler.addRequestInterceptor({thenDelegate: () => {}});
+                sinon.spy(apiHandler.getInstance().interceptors.request, 'eject');
+                apiHandler.removeRequestInterceptor(interceptor);
+                expect(apiHandler.getInstance().interceptors.request.eject).to.have.been.calledWith(interceptor);
+            });
+        });
+        describe('response interceptor', () => {
+            it('should return created interceptor ID when intercenptor is added', () => {
+                const interceptor = apiHandler.addResponseInterceptor({thenDelegate: () => {}});
+                expect(interceptor).to.be.a('number');
+            });
+            it('should call axios interceptorManager eject function on interceptor removal', () => {
+                const interceptor = apiHandler.addResponseInterceptor({thenDelegate: () => {}});
+                sinon.spy(apiHandler.getInstance().interceptors.response, 'eject');
+                apiHandler.removeResponseInterceptor(interceptor);
+                expect(apiHandler.getInstance().interceptors.response.eject).to.have.been.calledWith(interceptor);
+            });
+        });
+    });
+});
+
+describe('the #isInterceptorType function', () => {
+    describe('when type is not one of interceptorTypes', () => {
+        it('should throw an error', () => {
+            try {
+                isInterceptorType('madeUpType');
+            } catch (error) {
+                expect(error.message).to.be.equal('There is no such interceptor type as "madeUpType"');
+            }
+        });
+    });
+    describe('when type is one of interceptorTypes', () => {
+        it('should return true', () => {
+            const result = isInterceptorType(interceptorTypes.request);
+            expect(result).to.be.true;
+        });
     });
 });

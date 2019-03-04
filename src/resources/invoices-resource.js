@@ -70,10 +70,11 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.post(`invoices/${id}/void`, null);
         },
 
-        getAllInvoiceItems({id, limit = null, offset = null}) {
+        getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
             const params = {
                 limit,
-                offset
+                offset,
+                expand,
             };
             return apiHandler.getAll(`invoices/${id}/items`, params);
         },
