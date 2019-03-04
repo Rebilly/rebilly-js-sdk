@@ -7,7 +7,7 @@ export default function FilesResource({apiHandler}) {
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
             };
             return await apiHandler.getAll(`files`, params);
         },
@@ -20,16 +20,32 @@ export default function FilesResource({apiHandler}) {
             return await apiHandler.post(`files`, fileObject);
         },
 
-        async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
-            const file = await this.upload({fileObject});
-            const params = {
-                name: file.name,
-                extension: file.extension,
-                description: data.description,
-                tags: data.tags,
-                url: ''
+        uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
+
+            const requests = [];
+            const handler = async () => {
+                const file = this.upload({fileObject});
+                requests.push(file);
+
+                await file;
+                const params = {
+                    name: file.name,
+                    extension: file.extension,
+                    description: data.description,
+                    tags: data.tags,
+                    url: '',
+                };
+
+                const result = this.update({id: file.fields.id, data: params});
+                requests.push(result);
+                return result;
             };
-            return await this.update({id: file.fields.id, data: params});
+
+            const result = handler();
+            result.cancel = () => {
+                requests.forEach(req => req.cancel());
+            };
+            return result;
         },
 
         async update({id, data}) {
@@ -42,19 +58,35 @@ export default function FilesResource({apiHandler}) {
 
         async detachAndDelete({id}) {
             const params = {
-                filter: `fileId:${id}`
+                filter: `fileId:${id}`,
             };
-            const attachments = await this.getAllAttachments(params);
-            const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
-            await Promise.all(promises);
-            return await apiHandler.delete(`files/${id}`);
+            let requests = [];
+            const handler = async () => {
+                const attachments = this.getAllAttachments(params);
+                requests.push(attachments);
+                await attachments;
+
+                const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
+                requests = [...requests, promises];
+                await Promise.all(promises);
+
+                const result = apiHandler.delete(`files/${id}`);
+                requests.push(result);
+                return result;
+            };
+
+            const result = handler();
+            result.cancel = () => {
+                requests.forEach(req => req.cancel());
+            };
+            return result;
         },
 
-        async download({id}) {
+        download({id}) {
             const config = {
-                responseType: 'arraybuffer'
+                responseType: 'arraybuffer',
             };
-            return await apiHandler.download(`files/${id}/download`, config);
+            return apiHandler.download(`files/${id}/download`, config);
         },
 
         async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
@@ -63,9 +95,9 @@ export default function FilesResource({apiHandler}) {
                 offset,
                 sort,
                 filter,
-                q
+                q,
             };
-            return await apiHandler.getAll(`attachments`, params)
+            return apiHandler.getAll(`attachments`, params);
         },
 
         async getAttachment({id}) {
@@ -80,8 +112,8 @@ export default function FilesResource({apiHandler}) {
             return await apiHandler.post(`attachments`, data);
         },
 
-        async detach({id}) {
-            return await apiHandler.delete(`attachments/${id}`)
-        }
+        detach({id}) {
+            return apiHandler.delete(`attachments/${id}`);
+        },
     };
 };
