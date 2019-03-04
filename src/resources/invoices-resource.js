@@ -2,7 +2,7 @@ import {pdfHeader, csvHeader} from '../request-headers';
 
 export default function InvoicesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,27 +12,27 @@ export default function InvoicesResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`invoices`, params);
+            return apiHandler.getAll(`invoices`, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`invoices/${id}/matched-rules`);
+        getAllMatchedRules({id}) {
+            return apiHandler.getAll(`invoices/${id}/matched-rules`);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`invoices/${id}`, params);
+            return apiHandler.get(`invoices/${id}`, params);
         },
 
-        async downloadPDF({id}) {
+        downloadPDF({id}) {
             const config = {
                 headers: pdfHeader,
                 responseType: 'arraybuffer'
             };
-            return await apiHandler.download(`invoices/${id}`, config);
+            return apiHandler.download(`invoices/${id}`, config);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -45,79 +45,79 @@ export default function InvoicesResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`invoices`, config);
+            return apiHandler.download(`invoices`, config);
         },
 
-        async create({id = '', data, expand = null}) {
+        create({id = '', data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`invoices/${id}`, id, data, params);
+            return apiHandler.create(`invoices/${id}`, id, data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`invoices/${id}`, data, params);
+            return apiHandler.put(`invoices/${id}`, data, params);
         },
 
-        async issue({id, data = {}}) {
-            return await apiHandler.post(`invoices/${id}/issue`, data);
+        issue({id, data = {}}) {
+            return apiHandler.post(`invoices/${id}/issue`, data);
         },
 
-        async abandon({id}) {
-            return await apiHandler.post(`invoices/${id}/abandon`, null);
+        abandon({id}) {
+            return apiHandler.post(`invoices/${id}/abandon`, null);
         },
 
-        async void({id}) {
-            return await apiHandler.post(`invoices/${id}/void`, null);
+        void({id}) {
+            return apiHandler.post(`invoices/${id}/void`, null);
         },
 
-        async getAllInvoiceItems({id, limit = null, offset = null}) {
+        getAllInvoiceItems({id, limit = null, offset = null}) {
             const params = {
                 limit,
                 offset
             };
-            return await apiHandler.getAll(`invoices/${id}/items`, params);
+            return apiHandler.getAll(`invoices/${id}/items`, params);
         },
 
-        async createInvoiceItem({id, data}) {
-            return await apiHandler.post(`invoices/${id}/items`, data);
+        createInvoiceItem({id, data}) {
+            return apiHandler.post(`invoices/${id}/items`, data);
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`invoices/${id}/lead-source`);
+        getLeadSource({id}) {
+            return apiHandler.get(`invoices/${id}/lead-source`);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`invoices/${id}/lead-source`, data);
+        createLeadSource({id, data}) {
+            return apiHandler.put(`invoices/${id}/lead-source`, data);
         },
 
-        async updateLeadSource({id, data}) {
-            return await apiHandler.put(`invoices/${id}/lead-source`, data);
+        updateLeadSource({id, data}) {
+            return apiHandler.put(`invoices/${id}/lead-source`, data);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`invoices/${id}/lead-source`);
+        deleteLeadSource({id}) {
+            return apiHandler.delete(`invoices/${id}/lead-source`);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
             };
-            return await apiHandler.getAll(`invoices/${id}/timeline`, params);
+            return apiHandler.getAll(`invoices/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`invoices/${id}/timeline/${messageId}`);
+        getTimelineMessage({id, messageId = ''} = {}) {
+            return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`invoices/${id}/timeline/${messageId}`);
+        deleteTimelineMessage({id, messageId}) {
+            return apiHandler.delete(`invoices/${id}/timeline/${messageId}`);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`invoices/${id}/timeline`, '', data);
+        createTimelineComment({id, data}) {
+            return apiHandler.create(`invoices/${id}/timeline`, '', data);
         },
     };
 };

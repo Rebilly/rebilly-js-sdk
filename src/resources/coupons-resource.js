@@ -1,6 +1,6 @@
 export default function CouponsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -8,22 +8,22 @@ export default function CouponsResource({apiHandler}) {
                 filter,
                 q
             };
-            return await apiHandler.getAll(`coupons`, params);
+            return apiHandler.getAll(`coupons`, params);
         },
 
-        async get({redemptionCode}) {
-            return await apiHandler.get(`coupons/${redemptionCode}`);
+        get({redemptionCode}) {
+            return apiHandler.get(`coupons/${redemptionCode}`);
         },
 
-        async create({redemptionCode = '', data}) {
-            return await apiHandler.create(`coupons/${redemptionCode}`, redemptionCode, data);
+        create({redemptionCode = '', data}) {
+            return apiHandler.create(`coupons/${redemptionCode}`, redemptionCode, data);
         },
 
-        async update({redemptionCode, data}) {
-            return await apiHandler.put(`coupons/${redemptionCode}`, data);
+        update({redemptionCode, data}) {
+            return apiHandler.put(`coupons/${redemptionCode}`, data);
         },
 
-        async getAllRedemptions({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAllRedemptions({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -31,23 +31,23 @@ export default function CouponsResource({apiHandler}) {
                 filter,
                 q
             };
-            return await apiHandler.getAll(`coupons-redemptions`, params);
+            return apiHandler.getAll(`coupons-redemptions`, params);
         },
 
-        async getRedemption({id}) {
-            return await apiHandler.get(`coupons-redemptions/${id}`);
+        getRedemption({id}) {
+            return apiHandler.get(`coupons-redemptions/${id}`);
         },
 
-        async cancelRedemption({id}) {
-            return await apiHandler.post(`coupons-redemptions/${id}/cancel`);
+        cancelRedemption({id}) {
+            return apiHandler.post(`coupons-redemptions/${id}/cancel`);
         },
 
-        async redeem({data}) {
-            return await apiHandler.post(`coupons-redemptions`, data);
+        redeem({data}) {
+            return apiHandler.post(`coupons-redemptions`, data);
         },
 
-        async setExpiry({redemptionCode, data}) {
-            return await apiHandler.post(`coupons/${redemptionCode}/expiration`, data);
+        setExpiry({redemptionCode, data}) {
+            return apiHandler.post(`coupons/${redemptionCode}/expiration`, data);
         }
     };
 };

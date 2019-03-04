@@ -1,7 +1,7 @@
 export default function StatusResource({apiHandler}) {
     return {
-        async get() {
-            return await apiHandler.get(`status`);
+        get() {
+            return apiHandler.get(`status`);
         }
     };
 };

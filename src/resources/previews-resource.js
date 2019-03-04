@@ -1,23 +1,23 @@
 export default function PreviewsResource({apiHandler}) {
     return {
-        async webhook({data}) {
-            return await apiHandler.post(`previews/webhooks`, data);
+        webhook({data}) {
+            return apiHandler.post(`previews/webhooks`, data);
         },
 
-        async triggerWebhookRuleAction({data}) {
-            return await apiHandler.post(`previews/rule-actions/trigger-webhook`, data);
+        triggerWebhookRuleAction({data}) {
+            return apiHandler.post(`previews/rule-actions/trigger-webhook`, data);
         },
 
-        async sendEmailRuleAction({data}) {
-            return await apiHandler.post(`previews/rule-actions/send-email`, data);
+        sendEmailRuleAction({data}) {
+            return apiHandler.post(`previews/rule-actions/send-email`, data);
         },
 
-        async sendEmailNotification({data}) {
-            return await apiHandler.post(`previews/email-notifications/send-notification`, data);
+        sendEmailNotification({data}) {
+            return apiHandler.post(`previews/email-notifications/send-notification`, data);
         },
 
-        async previewEmailNotification({data}) {
-            return await apiHandler.post(`previews/email-notifications/preview-notification`, data);
+        previewEmailNotification({data}) {
+            return apiHandler.post(`previews/email-notifications/preview-notification`, data);
         },
     };
 };

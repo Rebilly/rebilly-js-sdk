@@ -1,6 +1,6 @@
 export default function FilesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -9,15 +9,15 @@ export default function FilesResource({apiHandler}) {
                 q,
                 criteria,
             };
-            return await apiHandler.getAll(`files`, params);
+            return apiHandler.getAll(`files`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`files/${id}`);
+        get({id}) {
+            return apiHandler.get(`files/${id}`);
         },
 
-        async upload({fileObject}) {
-            return await apiHandler.post(`files`, fileObject);
+        upload({fileObject}) {
+            return apiHandler.post(`files`, fileObject);
         },
 
         uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
@@ -48,15 +48,15 @@ export default function FilesResource({apiHandler}) {
             return result;
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`files/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`files/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`files/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`files/${id}`);
         },
 
-        async detachAndDelete({id}) {
+        detachAndDelete({id}) {
             const params = {
                 filter: `fileId:${id}`,
             };
@@ -89,7 +89,7 @@ export default function FilesResource({apiHandler}) {
             return apiHandler.download(`files/${id}/download`, config);
         },
 
-        async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -100,16 +100,16 @@ export default function FilesResource({apiHandler}) {
             return apiHandler.getAll(`attachments`, params);
         },
 
-        async getAttachment({id}) {
-            return await apiHandler.get(`attachments${id}`);
+        getAttachment({id}) {
+            return apiHandler.get(`attachments${id}`);
         },
 
-        async updateAttachment({id, data}) {
-            return await apiHandler.put(`attachments/${id}`, data);
+        updateAttachment({id, data}) {
+            return apiHandler.put(`attachments/${id}`, data);
         },
 
-        async attach({data}) {
-            return await apiHandler.post(`attachments`, data);
+        attach({data}) {
+            return apiHandler.post(`attachments`, data);
         },
 
         detach({id}) {

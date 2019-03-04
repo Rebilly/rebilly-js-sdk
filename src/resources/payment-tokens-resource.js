@@ -1,23 +1,23 @@
 export default function PaymentTokensResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null} = {}) {
+        getAll({limit = null, offset = null} = {}) {
             const params = {
                 limit,
                 offset
             };
-            return await apiHandler.getAll(`tokens`, params);
+            return apiHandler.getAll(`tokens`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`tokens/${id}`);
+        get({id}) {
+            return apiHandler.get(`tokens/${id}`);
         },
 
-        async create({data}) {
-            return await apiHandler.post(`tokens`, data);
+        create({data}) {
+            return apiHandler.post(`tokens`, data);
         },
 
-        async expire({id}) {
-            return await apiHandler.post(`tokens/${id}/expiration`);
+        expire({id}) {
+            return apiHandler.post(`tokens/${id}/expiration`);
         }
     };
 };
