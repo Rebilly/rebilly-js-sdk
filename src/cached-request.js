@@ -14,15 +14,13 @@ import deepFreeze from './deep-freeze';
  * @readonly
  *
  * @prop {CachedRequestId} id - request id
- * @prop {array} groups - request group ids
  * @prop {number} created - created time
  * @prop {Canceler} cancel - cancel function, axios Canceler
  * @prop {CancelToken} cancelToken - axios CancelToken
  */
 export default class CachedRequest {
-    constructor({id, groups, created} = {}) {
+    constructor({id, created} = {}) {
         this.id = id || shortid.generate();
-        this.groups = groups || [];
         this.created = created || new Date().getTime();
 
         this.cancelSource = axios.CancelToken.source();
@@ -36,7 +34,6 @@ export default class CachedRequest {
          */
         this.cancel = this.cancelSource.cancel;
         this.cancelToken = this.cancelSource.token;
-
         deepFreeze(this, {exclude: ['cancelSource', 'cancelToken', 'cancel']});
     }
 }
