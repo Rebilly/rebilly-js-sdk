@@ -7,6 +7,8 @@ import cloneDeep from 'clone-deep';
 import jsBase64 from 'js-base64';
 import createHmac from 'create-hmac';
 import {version} from '../package.json';
+import RequestsCache from './requests-cache';
+import {Cancellation} from './cancellation';
 
 /**
  * Availble types of axios interceptors
@@ -36,7 +38,6 @@ export const isInterceptorType = (type) => {
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
-    let cancellationToken = null;
 
     /**
      * Create an Axios instance for Rebilly.
@@ -159,17 +160,6 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal.
-     * @deprecated 9.0.0
-     * @returns {axios.CancelToken}
-     */
-    function getCancellationToken() {
-        const tokenFactory = axios.CancelToken;
-        cancellationToken = tokenFactory.source();
-        return cancellationToken;
-    }
-
-    /**
      * Generate an authentication signature for payment token creation.
      * @since 1.1.0
      * @param apiUser {string} your API user value found in Rebilly
@@ -261,15 +251,26 @@ export default function createApiHandler({options}) {
      * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
-    async function wrapRequest({request, isCollection, config}) {
+    function wrapRequest({request, isCollection, config}) {
         const cleanedConfig = getRequestConfig(config);
-        try {
-            const response = await request(cleanedConfig);
-            return processResponse({response, isCollection, config: cleanedConfig})
-        }
-        catch (error) {
-            return processError({error, config: cleanedConfig});
-        }
+        const {id, cancelToken} = RequestsCache.save();
+
+        cleanedConfig.cancelToken = cancelToken;
+
+        const handler = async function () {
+            try {
+                const response = await request(cleanedConfig);
+                return processResponse({response, isCollection, config: cleanedConfig});
+            }
+            catch (error) {
+                return processError({error, config: cleanedConfig});
+            } finally {
+                RequestsCache.deleteById(id);
+            }
+        };
+        const promise = handler();
+        promise.cancel = reason => Cancellation.cancelById(id, reason);
+        return promise;
     }
 
     /**
@@ -346,9 +347,6 @@ export default function createApiHandler({options}) {
      */
     function getRequestConfig(configuration = {}) {
         const config = cleanUpParameters(configuration);
-        if (cancellationToken) {
-            return {...config, cancelToken: cancellationToken.token};
-        }
         return {...config};
     }
 
@@ -516,7 +514,6 @@ export default function createApiHandler({options}) {
         setProxyAgent,
         setSessionToken,
         setEndpoints,
-        getCancellationToken,
         generateSignature,
         get,
         getAll,
