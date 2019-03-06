@@ -3,8 +3,6 @@ import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
-import jsBase64 from 'js-base64';
-import crypto from 'crypto';
 import {version} from '../../../package.json';
 import {interceptorTypes, isInterceptorType} from '../../../src/create-api-handler';
 
@@ -88,21 +86,6 @@ describe('when I use an API handler', () => {
         const firstToken = handlerOne.getInstance().defaults.headers.common['Authorization'];
         const secondToken = handlerTwo.getInstance().defaults.headers.common['Authorization'];
         expect(firstToken).to.not.be.equal(secondToken);
-    });
-
-    it('should generate a signature for server-side payment token creation', () => {
-        const apiUser = '0pou/FjPq';
-        const apiKey = `${apiUser}1234567890123`;
-        const signature = apiHandler.generateSignature({apiUser, apiKey});
-        const decoded = JSON.parse(jsBase64.Base64.decode(signature));
-        const user = decoded['REB-APIUSER'];
-        expect(user).to.be.equal(apiUser);
-        const nonce = decoded['REB-NONCE'];
-        const ts = decoded['REB-TIMESTAMP'];
-        const hash = decoded['REB-SIGNATURE'];
-        const data = `${user}${nonce}${ts}`;
-        const result = crypto.createHmac('sha1', apiKey).update(data).digest('hex');
-        expect(hash).to.be.equal(result);
     });
 
     it('should define an API consumer header based on the package version', () => {

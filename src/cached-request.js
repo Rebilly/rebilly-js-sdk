@@ -26,7 +26,7 @@ export default class CachedRequest {
         this.cancelSource = axios.CancelToken.source();
 
         /**
-         * please don't forget delete request
+         * please don't forget to delete request
          * from the cache after cancellation
          *
          * see {@link Cancellation.cancelById}

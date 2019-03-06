@@ -4,8 +4,6 @@ import Collection from './collection';
 import File from './file';
 import Errors from './errors';
 import cloneDeep from 'clone-deep';
-import jsBase64 from 'js-base64';
-import createHmac from 'create-hmac';
 import {version} from '../package.json';
 import RequestsCache from './requests-cache';
 import {Cancellation} from './cancellation';
@@ -160,34 +158,6 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Generate an authentication signature for payment token creation.
-     * @since 1.1.0
-     * @param apiUser {string} your API user value found in Rebilly
-     * @param apiKey {string} your secret API key found in Rebilly
-     * @deprecated
-     * @returns {string}
-     */
-    function generateSignature({apiUser, apiKey}) {
-        const randomString = (strLength) => {
-            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            return Array.from(new Array(strLength)).reduce((text) => {
-                return text = `${text}${alphabet.charAt(Math.floor(Math.random() * alphabet.length))}`;
-            }, '');
-        };
-        const nonce = randomString(30);
-        const timestamp = Date.now();
-        const data = `${apiUser}${nonce}${timestamp}`;
-        const signature = createHmac('sha1', apiKey).update(data).digest('hex');
-        const payload = {
-            'REB-APIUSER': apiUser,
-            'REB-NONCE': nonce,
-            'REB-TIMESTAMP': timestamp,
-            'REB-SIGNATURE': signature
-        };
-        return jsBase64.Base64.encode(JSON.stringify(payload));
-    }
-
-    /**
      * Adds a interceptor to the current API instance.
      * @param type {String} interceptor type (`request`/`response`)
      * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
@@ -269,6 +239,7 @@ export default function createApiHandler({options}) {
             }
         };
         const promise = handler();
+        // expose cancellation method to the Promise instance
         promise.cancel = reason => Cancellation.cancelById(id, reason);
         return promise;
     }
@@ -514,7 +485,6 @@ export default function createApiHandler({options}) {
         setProxyAgent,
         setSessionToken,
         setEndpoints,
-        generateSignature,
         get,
         getAll,
         post,

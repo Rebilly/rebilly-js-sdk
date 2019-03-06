@@ -125,34 +125,6 @@ api.removeResponseInterceptor(interceptor);
 | - | - | - | - |
 | interceptor | Function | - | The reference to the previously added response interceptor that should be removed from the current instance. |
 
-### generateSignature
-<div class="method"><code><strong>generateSignature</strong>({<span class="prop">apiUser</span>, <span class="prop">apiKey</span>}) -> <span class="return">{string}</span></code></div>
-
-Generates a signature used to authenticate payment token creation requests. This should be used in conjunction with the [Rebilly JS Token library][goto-rebillyjs]{: target="_blank"}, which powers your checkout form and removes the need to send sensitive customer information directly to your servers.
-
-!!! warning "Server-side Only"
-    You should use the signature generation method only on the server-side as it will otherwise expose your secret `apiKey` to the browser.
-
-==Since 1.1.0==
-
-> See [Rebilly JS Token Library][goto-rebillyjs]{: target="_blank"}
-
-**Example**
-
-```js
-const credentials = {apiUser:'foobar', apiKey: '01234567890'};
-const signature = api.generateSignature(credentials);
-
-// in your checkout page authenticate your requests
-// using the Rebilly.js token library
-Rebilly.setAuth(`the signature's content`);
-```
-
-**Returns**
-
-A signature that can be used to authenticate [Rebilly JS token][goto-rebillyjs]{: target="_blank"} creation for use in a checkout page.
-
-Type `string`
 
 ### setTimeout
 <div class="method"><code><strong>setTimeout</strong>(<span class="prop">timeout</span>)</code></div>
