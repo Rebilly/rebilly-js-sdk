@@ -1,87 +1,119 @@
 export default function FilesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria
+                criteria,
             };
-            return await apiHandler.getAll(`files`, params);
+            return apiHandler.getAll(`files`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`files/${id}`);
+        get({id}) {
+            return apiHandler.get(`files/${id}`);
         },
 
-        async upload({fileObject}) {
-            return await apiHandler.post(`files`, fileObject);
+        upload({fileObject}) {
+            return apiHandler.post(`files`, fileObject);
         },
 
-        async uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
-            const file = await this.upload({fileObject});
+        uploadAndUpdate({fileObject, data = {description: '', tags: ['']}}) {
+
+            const requests = [];
+            const handler = async () => {
+                const file = this.upload({fileObject});
+                requests.push(file);
+
+                await file;
+                const params = {
+                    name: file.name,
+                    extension: file.extension,
+                    description: data.description,
+                    tags: data.tags,
+                    url: '',
+                };
+
+                const result = this.update({id: file.fields.id, data: params});
+                requests.push(result);
+                return result;
+            };
+
+            const result = handler();
+            result.cancel = () => {
+                requests.forEach(req => req.cancel());
+            };
+            return result;
+        },
+
+        update({id, data}) {
+            return apiHandler.put(`files/${id}`, data);
+        },
+
+        delete({id}) {
+            return apiHandler.delete(`files/${id}`);
+        },
+
+        detachAndDelete({id}) {
             const params = {
-                name: file.name,
-                extension: file.extension,
-                description: data.description,
-                tags: data.tags,
-                url: ''
+                filter: `fileId:${id}`,
             };
-            return await this.update({id: file.fields.id, data: params});
-        },
+            let requests = [];
+            const handler = async () => {
+                const attachments = this.getAllAttachments(params);
+                requests.push(attachments);
+                await attachments;
 
-        async update({id, data}) {
-            return await apiHandler.put(`files/${id}`, data);
-        },
+                const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
+                requests = [...requests, promises];
+                await Promise.all(promises);
 
-        async delete({id}) {
-            return await apiHandler.delete(`files/${id}`);
-        },
-
-        async detachAndDelete({id}) {
-            const params = {
-                filter: `fileId:${id}`
+                const result = apiHandler.delete(`files/${id}`);
+                requests.push(result);
+                return result;
             };
-            const attachments = await this.getAllAttachments(params);
-            const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
-            await Promise.all(promises);
-            return await apiHandler.delete(`files/${id}`);
+
+            const result = handler();
+            result.cancel = () => {
+                requests.forEach(req => req.cancel());
+            };
+            return result;
         },
 
-        async download({id}) {
+        download({id}) {
             const config = {
-                responseType: 'arraybuffer'
+                responseType: 'arraybuffer',
             };
-            return await apiHandler.download(`files/${id}/download`, config);
+            return apiHandler.download(`files/${id}/download`, config);
         },
 
-        async getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAllAttachments({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q
+                q,
             };
-            return await apiHandler.getAll(`attachments`, params)
+            return apiHandler.getAll(`attachments`, params);
         },
 
-        async getAttachment({id}) {
-            return await apiHandler.get(`attachments${id}`);
+        getAttachment({id}) {
+            return apiHandler.get(`attachments${id}`);
         },
 
-        async updateAttachment({id, data}) {
-            return await apiHandler.put(`attachments/${id}`, data);
+        updateAttachment({id, data}) {
+            return apiHandler.put(`attachments/${id}`, data);
         },
 
-        async attach({data}) {
-            return await apiHandler.post(`attachments`, data);
+        attach({data}) {
+            return apiHandler.post(`attachments`, data);
         },
 
-        async detach({id}) {
-            return await apiHandler.delete(`attachments/${id}`)
-        }
+        detach({id}) {
+            return apiHandler.delete(`attachments/${id}`);
+        },
     };
 };
