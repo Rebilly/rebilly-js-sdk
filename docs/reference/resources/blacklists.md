@@ -89,6 +89,7 @@ The supported blacklist item types are:
 - `bin`
 - `email-domain`
 - `bank-account`
+- `address`
 
 
 **Example**
