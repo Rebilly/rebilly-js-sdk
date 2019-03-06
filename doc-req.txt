@@ -1,4 +1,4 @@
 # define packages for documentation building
 
-mkdocs>=0.16
-mkdocs-material>=1.10
+mkdocs>=1.0
+mkdocs-material>=4.0
