@@ -2,7 +2,7 @@
 
 
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="no-js">
   <head>
     
@@ -33,8 +33,8 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-0.17.5, mkdocs-material-2.9.4">
+      <link rel="shortcut icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
     
     
       
@@ -42,28 +42,40 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/application.451f80e5.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css">
       
       
-    
-    
-      <script src="../../../assets/javascripts/modernizr.1aa3b519.js"></script>
-    
-    
-      <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        
+        
+        <meta name="theme-color" content="#3f51b5">
       
+    
+    
+      <script src="../../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
     <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
     
+    
       <link rel="stylesheet" href="../../../styles/extra.css">
+    
+    
+      
     
     
   </head>
   
-    <body dir="ltr">
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
   
     <svg class="md-svg">
       <defs>
@@ -115,22 +127,19 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
-            
-              <span class="md-header-nav__topic">
-                Rebilly JS SDK
-              </span>
-              <span class="md-header-nav__topic">
-                Payment Tokens
-              </span>
-            
+            <span class="md-header-nav__topic">
+              Rebilly JS SDK
+            </span>
+            <span class="md-header-nav__topic">
+              Payment Tokens
+            </span>
           
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
         
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-            
 <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
@@ -153,7 +162,6 @@
     </div>
   </div>
 </div>
-          
         
       </div>
       
@@ -164,20 +172,18 @@
 
   
 
-
-  <a href="https://github.com/Rebilly/rebilly-js-sdk/" title="Go to repository" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      Rebilly JS SDK
+<a href="https://github.com/Rebilly/rebilly-js-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    Rebilly JS SDK
+  </div>
+</a>
           </div>
         </div>
       
@@ -213,20 +219,18 @@
 
   
 
-
-  <a href="https://github.com/Rebilly/rebilly-js-sdk/" title="Go to repository" class="md-source" data-md-source="github">
-    
-      <div class="md-source__icon">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <use xlink:href="#__github" width="24" height="24"></use>
-        </svg>
-      </div>
-    
-    <div class="md-source__repository">
-      Rebilly JS SDK
+<a href="https://github.com/Rebilly/rebilly-js-sdk/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
     </div>
-  </a>
-
+  
+  <div class="md-source__repository">
+    Rebilly JS SDK
+  </div>
+</a>
     </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -1131,12 +1135,12 @@
                 
                 <h1 id="payment-tokens-apipaymenttokens">Payment Tokens <small><code class="codehilite"><span class="nx">api</span><span class="p">.</span><span class="nx">paymentTokens</span></code></small><a class="headerlink" href="#payment-tokens-apipaymenttokens" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Member of <a href="../../rebilly-api"><code class="codehilite">RebillyAPI</code></a></p>
+<p>Member of <a href="../rebilly-api"><code class="codehilite">RebillyAPI</code></a></p>
 </blockquote>
 <p>Tokens are an encrypted string representing a payment instrument. A token expires within 24 hours.</p>
 <p>Payment tokens are used to reduce the scope of PCI DSS compliance. A payment token can be made using a different authentication scheme , which allows you to create a payment token directly from the browser, bypassing the need to send sensitive cardholder info to your servers. We recommend using this with our Rebilly.js library, which helps you wire a form into this API resource and create payment tokens.</p>
 <blockquote>
-<p>See <a href="https://help.rebilly.com/20221-development/rebillyjs">Rebilly.js</a> library</p>
+<p>See <a href="https://help.rebilly.com/development/rebillyjs">Rebilly.js</a> library</p>
 </blockquote>
 <h2 id="getall">getAll<a class="headerlink" href="#getall" title="Permanent link">&para;</a></h2>
 <div class="method">
@@ -1188,9 +1192,9 @@
 </table>
 <p><strong>Returns</strong></p>
 <p>A collection of payment tokens.</p>
-<p>Type <a href="../../types/collection"><code class="codehilite">Collection</code></a></p>
+<p>Type <a href="../types/collection"><code class="codehilite">Collection</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens/get" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="get">get<a class="headerlink" href="#get" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Get a payment token by its <code class="codehilite">id</code>.</p>
@@ -1201,9 +1205,9 @@
 
 <p><strong>Returns</strong></p>
 <p>A member exposing the payment token fields.</p>
-<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p>Type <a href="../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens~1%7Btoken%7D%2Fget" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens~1{token}/get" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="create">create<a class="headerlink" href="#create" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Create a payment token from a payment instrument. It can then be used to complete an order as a surrogate for a payment instrument. A payment token can represent either payment card or bank account.</p>
@@ -1249,9 +1253,9 @@
 
 <p><strong>Returns</strong></p>
 <p>A member exposing the created payment token fields.</p>
-<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p>Type <a href="../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens/post" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="expire">expire<a class="headerlink" href="#expire" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>expire</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Expire a payment token by using its <code class="codehilite">id</code>. This will prevent the token from being used in new orders. </p>
@@ -1261,9 +1265,9 @@
 
 <p><strong>Returns</strong></p>
 <p>A member exposing the expired payment token fields.</p>
-<p>Type <a href="../../types/member"><code class="codehilite">Member</code></a></p>
+<p>Type <a href="../types/member"><code class="codehilite">Member</code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens%2Fpaths%2F~1tokens~1%7Btoken%7D~1expiration%2Fpost" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Tokens/paths/~1tokens~1{token}~1expiration/post" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
                 
                   
                 
@@ -1321,7 +1325,7 @@
       <div class="md-footer-copyright">
         
           <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2017 Rebilly Inc.
+            Copyright &copy; 2019 Rebilly Inc.
           </div>
         
         powered by
@@ -1331,20 +1335,15 @@
           Material for MkDocs</a>
       </div>
       
-        
-      
     </div>
   </div>
 </footer>
       
     </div>
     
-      <script src="../../../assets/javascripts/application.30f6b8b1.js"></script>
+      <script src="../../../assets/javascripts/application.d9aa80ab.js"></script>
       
-      <script>app.initialize({version:"0.17.5",url:{base:"../../.."}})</script>
-      
-    
-    
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
       
     
   </body>
