@@ -1,27 +1,27 @@
 export default function AccountResource({apiHandler}) {
     return {
-        async signUp({data}) {
-            return await apiHandler.post(`signup`, data, {authenticate: false});
+        signUp({data}) {
+            return apiHandler.post(`signup`, data, {authenticate: false});
         },
 
-        async signIn({data}) {
-            return await apiHandler.post(`signin`, data, {authenticate: false});
+        signIn({data}) {
+            return apiHandler.post(`signin`, data, {authenticate: false});
         },
 
-        async logout() {
-            return await apiHandler.post(`logout`);
+        logout() {
+            return apiHandler.post(`logout`);
         },
 
-        async activate({token}) {
-            return await apiHandler.post(`activation/${token}`, null, {authenticate: false});
+        activate({token}) {
+            return apiHandler.post(`activation/${token}`, null, {authenticate: false});
         },
 
-        async forgotPassword({data}) {
-            return await apiHandler.post(`forgot-password`, data, {authenticate: false});
+        forgotPassword({data}) {
+            return apiHandler.post(`forgot-password`, data, {authenticate: false});
         },
 
-        async resetSandbox() {
-            return await apiHandler.post(`reset-sandbox`);
+        resetSandbox() {
+            return apiHandler.post(`reset-sandbox`);
         }
     };
 };

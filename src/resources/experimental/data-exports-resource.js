@@ -1,6 +1,6 @@
 export default function DataExportsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,26 +10,26 @@ export default function DataExportsResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll('data-exports', params);
+            return apiHandler.getAll('data-exports', params);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`data-exports/${id}`, params);
+            return apiHandler.get(`data-exports/${id}`, params);
         },
 
-        async queue({data, expand = null}) {
+        queue({data, expand = null}) {
             const params = {expand};
-            return await apiHandler.post('data-exports', data, params);
+            return apiHandler.post('data-exports', data, params);
         },
 
-        async update ({id, data, expand = null}) {
+        update ({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`data-exports/${id}`, data, params);
+            return apiHandler.put(`data-exports/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`data-exports/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`data-exports/${id}`);
         }
     };
 };

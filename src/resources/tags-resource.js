@@ -3,7 +3,7 @@ const RESOURCE = 'tags';
 
 export default function TagsResource({apiHandler}) {
     return {
-        async getAll({
+        getAll({
             limit = null,
             offset = null,
             filter = null,
@@ -19,11 +19,11 @@ export default function TagsResource({apiHandler}) {
             });
         },
 
-        async create({name}) {
+        create({name}) {
             return apiHandler.post(`${RESOURCE}/`, {name});
         },
 
-        async get ({tag}) {
+        get ({tag}) {
             return apiHandler.get(`${RESOURCE}/${tag}`);
         },
 
@@ -31,27 +31,27 @@ export default function TagsResource({apiHandler}) {
          * @param tag {String} The tag name
          * @param name {String} New unique tag name
          */
-        async update ({tag, name}) {
+        update ({tag, name}) {
             return apiHandler.patch(`${RESOURCE}/${tag}`, {name});
         },
 
-        async delete ({tag}) {
+        delete ({tag}) {
             return apiHandler.delete(`${RESOURCE}/${tag}`);
         },
 
-        async tagCustomers ({tag, ids}) {
+        tagCustomers ({tag, ids}) {
             return apiHandler.post(`${RESOURCE}/${tag}/customers`, {customerIds: ids});
         },
 
-        async tagCustomer ({tag, id}) {
+        tagCustomer ({tag, id}) {
             return apiHandler.post(`${RESOURCE}/${tag}/customers/${id}`);
         },
 
-        async untagCustomers ({tag, ids}) {
+        untagCustomers ({tag, ids}) {
             return apiHandler.deleteAll(`${RESOURCE}/${tag}/customers`, {customerIds: ids});
         },
 
-        async untagCustomer ({tag, id}) {
+        untagCustomer ({tag, id}) {
             return apiHandler.delete(`${RESOURCE}/${tag}/customers/${id}`);
         },
     };

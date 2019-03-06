@@ -1,6 +1,6 @@
 export default function PlansResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -9,23 +9,23 @@ export default function PlansResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`plans`, params);
+            return apiHandler.getAll(`plans`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`plans/${id}`);
+        get({id}) {
+            return apiHandler.get(`plans/${id}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`plans/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`plans/${id}`, id, data);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`plans/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`plans/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`plans/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`plans/${id}`);
         }
     };
 };

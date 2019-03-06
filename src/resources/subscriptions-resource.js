@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function SubscriptionsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,14 +12,14 @@ export default function SubscriptionsResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`subscriptions`, params);
+            return apiHandler.getAll(`subscriptions`, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`subscriptions/${id}/matched-rules`);
+        getAllMatchedRules({id}) {
+            return apiHandler.getAll(`subscriptions/${id}/matched-rules`);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -32,22 +32,22 @@ export default function SubscriptionsResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`subscriptions`, config);
+            return apiHandler.download(`subscriptions`, config);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`subscriptions/${id}`, params);
+            return apiHandler.get(`subscriptions/${id}`, params);
         },
 
-        async create({id = '', data, expand = null}) {
+        create({id = '', data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`subscriptions/${id}`, id, data, params);
+            return apiHandler.create(`subscriptions/${id}`, id, data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`subscriptions/${id}`, data, params);
+            return apiHandler.put(`subscriptions/${id}`, data, params);
         },
 
         /**
@@ -57,46 +57,46 @@ export default function SubscriptionsResource({apiHandler}) {
          * @param data
          * @returns {Promise<any>}
          */
-        async cancel({id, data}) {
-            return await apiHandler.post(`subscriptions/${id}/cancel`, data);
+        cancel({id, data}) {
+            return apiHandler.post(`subscriptions/${id}/cancel`, data);
         },
 
-        async changePlan({id, data}) {
-            return await apiHandler.post(`subscriptions/${id}/change-plan`, data);
+        changePlan({id, data}) {
+            return apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`subscriptions/${id}/lead-source`);
+        getLeadSource({id}) {
+            return apiHandler.get(`subscriptions/${id}/lead-source`);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`subscriptions/${id}/lead-source`, data);
+        createLeadSource({id, data}) {
+            return apiHandler.put(`subscriptions/${id}/lead-source`, data);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`subscriptions/${id}/lead-source`);
+        deleteLeadSource({id}) {
+            return apiHandler.delete(`subscriptions/${id}/lead-source`);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
             };
-            return await apiHandler.getAll(`subscriptions/${id}/timeline`, params);
+            return apiHandler.getAll(`subscriptions/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
+        getTimelineMessage({id, messageId = ''} = {}) {
+            return apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`subscriptions/${id}/timeline/${messageId}`);
+        deleteTimelineMessage({id, messageId}) {
+            return apiHandler.delete(`subscriptions/${id}/timeline/${messageId}`);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`subscriptions/${id}/timeline`, '', data);
+        createTimelineComment({id, data}) {
+            return apiHandler.create(`subscriptions/${id}/timeline`, '', data);
         },
     };
 };

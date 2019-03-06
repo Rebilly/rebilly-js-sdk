@@ -1,6 +1,6 @@
 export default function UsersResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -8,39 +8,39 @@ export default function UsersResource({apiHandler}) {
                 filter,
                 q
             };
-            return await apiHandler.getAll(`users`, params);
+            return apiHandler.getAll(`users`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`users/${id}`);
+        get({id}) {
+            return apiHandler.get(`users/${id}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`users/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`users/${id}`, id, data);
         },
 
-        async update({id = '', data}) {
-            return await apiHandler.put(`users/${id}`, data);
+        update({id = '', data}) {
+            return apiHandler.put(`users/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`users/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`users/${id}`);
         },
 
-        async updatePassword({id, data}) {
-            return await apiHandler.post(`users/${id}/password`, data);
+        updatePassword({id, data}) {
+            return apiHandler.post(`users/${id}/password`, data);
         },
 
-        async getResetPasswordToken({token}) {
-            return await apiHandler.get(`reset-password/${token}`);
+        getResetPasswordToken({token}) {
+            return apiHandler.get(`reset-password/${token}`);
         },
 
-        async resetPassword({token, data}) {
-            return await apiHandler.post(`reset-password/${token}`, data);
+        resetPassword({token, data}) {
+            return apiHandler.post(`reset-password/${token}`, data);
         },
 
-        async resetTotp({id}) {
-            return await apiHandler.post(`users/${id}/totp-reset`);
+        resetTotp({id}) {
+            return apiHandler.post(`users/${id}/totp-reset`);
         }
     };
 };

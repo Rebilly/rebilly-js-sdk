@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function DisputesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,14 +12,14 @@ export default function DisputesResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`disputes`, params);
+            return apiHandler.getAll(`disputes`, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`disputes/${id}/matched-rules`);
+        getAllMatchedRules({id}) {
+            return apiHandler.getAll(`disputes/${id}/matched-rules`);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -32,22 +32,22 @@ export default function DisputesResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`disputes`, config);
+            return apiHandler.download(`disputes`, config);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`disputes/${id}`, params);
+            return apiHandler.get(`disputes/${id}`, params);
         },
 
-        async create({id = '', data, expand = null}) {
+        create({id = '', data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`disputes/${id}`, id, data, params);
+            return apiHandler.create(`disputes/${id}`, id, data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`disputes/${id}`, data, params);
+            return apiHandler.put(`disputes/${id}`, data, params);
         }
     };
 };

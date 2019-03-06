@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function TransactionsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,14 +12,14 @@ export default function TransactionsResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`transactions`, params);
+            return apiHandler.getAll(`transactions`, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`transactions/${id}/matched-rules`);
+        getAllMatchedRules({id}) {
+            return apiHandler.getAll(`transactions/${id}/matched-rules`);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -32,67 +32,67 @@ export default function TransactionsResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`transactions`, config);
+            return apiHandler.download(`transactions`, config);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`transactions/${id}`, params);
+            return apiHandler.get(`transactions/${id}`, params);
         },
 
-        async create({data, expand = null}) {
+        create({data, expand = null}) {
             const params = {expand};
-            return await apiHandler.post(`transactions`, data, {params});
+            return apiHandler.post(`transactions`, data, {params});
         },
 
-        async cancel({id}) {
-            return await apiHandler.post(`transactions/${id}/cancel`);
+        cancel({id}) {
+            return apiHandler.post(`transactions/${id}/cancel`);
         },
 
-        async refund({id, data}) {
-            return await apiHandler.post(`transactions/${id}/refund`, data);
+        refund({id, data}) {
+            return apiHandler.post(`transactions/${id}/refund`, data);
         },
 
-        async getGatewayLogs({id}) {
-            return await apiHandler.getAll(`transactions/${id}/gateway-logs`);
+        getGatewayLogs({id}) {
+            return apiHandler.getAll(`transactions/${id}/gateway-logs`);
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`transactions/${id}/lead-source`);
+        getLeadSource({id}) {
+            return apiHandler.get(`transactions/${id}/lead-source`);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`transactions/${id}/lead-source`, data);
+        createLeadSource({id, data}) {
+            return apiHandler.put(`transactions/${id}/lead-source`, data);
         },
 
-        async updateLeadSource({id, data}) {
-            return await apiHandler.put(`transactions/${id}/lead-source`, data);
+        updateLeadSource({id, data}) {
+            return apiHandler.put(`transactions/${id}/lead-source`, data);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`transactions/${id}/lead-source`);
+        deleteLeadSource({id}) {
+            return apiHandler.delete(`transactions/${id}/lead-source`);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
             };
-            return await apiHandler.getAll(`transactions/${id}/timeline`, params);
+            return apiHandler.getAll(`transactions/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`transactions/${id}/timeline/${messageId}`);
+        getTimelineMessage({id, messageId = ''} = {}) {
+            return apiHandler.get(`transactions/${id}/timeline/${messageId}`);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`transactions/${id}/timeline/${messageId}`);
+        deleteTimelineMessage({id, messageId}) {
+            return apiHandler.delete(`transactions/${id}/timeline/${messageId}`);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`transactions/${id}/timeline`, '', data);
+        createTimelineComment({id, data}) {
+            return apiHandler.create(`transactions/${id}/timeline`, '', data);
         },
     };
 };

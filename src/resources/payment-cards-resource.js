@@ -1,6 +1,6 @@
 export default function PaymentCardsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -8,45 +8,45 @@ export default function PaymentCardsResource({apiHandler}) {
                 filter,
                 q
             };
-            return await apiHandler.getAll(`payment-cards`, params);
+            return apiHandler.getAll(`payment-cards`, params);
         },
 
-        async getAllMatchedRules({id}) {
-            return await apiHandler.getAll(`payment-cards/${id}/matched-rules`);
+        getAllMatchedRules({id}) {
+            return apiHandler.getAll(`payment-cards/${id}/matched-rules`);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`payment-cards/${id}`);
+        get({id}) {
+            return apiHandler.get(`payment-cards/${id}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`payment-cards/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`payment-cards/${id}`, id, data);
         },
 
-        async patch({id = '', data}) {
-            return await apiHandler.patch(`payment-cards/${id}`, data);
+        patch({id = '', data}) {
+            return apiHandler.patch(`payment-cards/${id}`, data);
         },
 
-        async authorize({id, data}) {
-            return await apiHandler.post(`payment-cards/${id}/authorization`, data);
+        authorize({id, data}) {
+            return apiHandler.post(`payment-cards/${id}/authorization`, data);
         },
 
-        async deactivate({id}) {
-            return await apiHandler.post(`payment-cards/${id}/deactivation`);
+        deactivate({id}) {
+            return apiHandler.post(`payment-cards/${id}/deactivation`);
         },
 
-        async getAllMigratable({limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllMigratable({limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter
             };
-            return await apiHandler.getAll(`payment-cards-migrations`, params);
+            return apiHandler.getAll(`payment-cards-migrations`, params);
         },
 
-        async migrate({data}) {
-            return await apiHandler.post(`payment-cards-migrations/migrate`, data);
+        migrate({data}) {
+            return apiHandler.post(`payment-cards-migrations/migrate`, data);
         }
     };
 };

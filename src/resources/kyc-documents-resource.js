@@ -1,6 +1,6 @@
 export default function KycDocumentsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -9,30 +9,30 @@ export default function KycDocumentsResource({apiHandler}) {
                 filter,
                 q
             };
-            return await apiHandler.getAll(`kyc-documents`, params);
+            return apiHandler.getAll(`kyc-documents`, params);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`kyc-documents/${id}`, params);
+            return apiHandler.get(`kyc-documents/${id}`, params);
         },
 
-        async create({data, expand = null}) {
+        create({data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`kyc-documents`, '', data, params);
+            return apiHandler.create(`kyc-documents`, '', data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`kyc-documents/${id}`, data, params);
+            return apiHandler.put(`kyc-documents/${id}`, data, params);
         },
 
-        async accept({id}) {
-            return await apiHandler.post(`kyc-documents/${id}/acceptance`);
+        accept({id}) {
+            return apiHandler.post(`kyc-documents/${id}/acceptance`);
         },
 
-        async reject({id, data}) {
-            return await apiHandler.post(`kyc-documents/${id}/rejection`, data);
+        reject({id, data}) {
+            return apiHandler.post(`kyc-documents/${id}/rejection`, data);
         }
     };
 };
