@@ -6,21 +6,20 @@ site_description: Official Rebilly JS SDK Documentation
 theme:
   name: 'material'
   favicon: 'images/favicon.ico'
+  palette:
+    primary: 'indigo'
+    accent: 'deep purple'
 
 extra_css:
   - 'styles/extra.css'
 
-extra:
-  palette:
-    primary: 'indigo'
-    accent: 'deep purple'
 
 #repo information
 repo_name: 'Rebilly JS SDK'
 repo_url: 'https://github.com/Rebilly/rebilly-js-sdk'
 
 # Copyright
-copyright: 'Copyright &copy; 2017 Rebilly Inc.'
+copyright: 'Copyright &copy; 2019 Rebilly Inc.'
 
 #extensions
 markdown_extensions:
@@ -30,15 +29,14 @@ markdown_extensions:
   - toc:
       permalink: True
   - attr_list
-  - pymdownx.inlinehilite
   - pymdownx.critic
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.superfences
   - pymdownx.mark
+  - pymdownx.inlinehilite
   - pymdownx.snippets:
       base_path: docs
-  #  - pymdownx.smartsymbols
 
 #page tree
 nav:

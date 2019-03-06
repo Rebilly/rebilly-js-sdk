@@ -4,8 +4,8 @@ export default function EmailNotificationsResource({apiHandler}) {
          * Retrieve a list of email notifications
          * @returns {Promise}
          */
-        async getAll() {
-            return await apiHandler.getAll('email-notifications');
+        getAll() {
+            return apiHandler.getAll('email-notifications');
         },
 
         /**
@@ -13,8 +13,8 @@ export default function EmailNotificationsResource({apiHandler}) {
          * @param id
          * @returns {Promise}
          */
-        async get({id}) {
-            return await apiHandler.get(`email-notifications/${id}`);
+        get({id}) {
+            return apiHandler.get(`email-notifications/${id}`);
         },
 
         /**
@@ -23,8 +23,8 @@ export default function EmailNotificationsResource({apiHandler}) {
          * @param data
          * @returns {Promise}
          */
-        async create({id = '', data}) {
-            return await apiHandler.create(`email-notifications/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`email-notifications/${id}`, id, data);
         },
 
         /**
@@ -33,8 +33,8 @@ export default function EmailNotificationsResource({apiHandler}) {
          * @param data
          * @returns {Promise}
          */
-        async update({id, data}) {
-            return await apiHandler.put(`email-notifications/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`email-notifications/${id}`, data);
         },
     };
 };

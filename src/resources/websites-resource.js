@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function WebsitesResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -11,10 +11,10 @@ export default function WebsitesResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`websites`, params);
+            return apiHandler.getAll(`websites`, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -27,23 +27,23 @@ export default function WebsitesResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`websites`, config);
+            return apiHandler.download(`websites`, config);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`websites/${id}`);
+        get({id}) {
+            return apiHandler.get(`websites/${id}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`websites/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`websites/${id}`, id, data);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`websites/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`websites/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`websites/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`websites/${id}`);
         }
     };
 };

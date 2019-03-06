@@ -1,6 +1,6 @@
 export default function ProductsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, fields = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -9,23 +9,23 @@ export default function ProductsResource({apiHandler}) {
                 q,
                 fields
             };
-            return await apiHandler.getAll(`products`, params);
+            return apiHandler.getAll(`products`, params);
         },
 
-        async get({id}) {
-            return await apiHandler.get(`products/${id}`);
+        get({id}) {
+            return apiHandler.get(`products/${id}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`products/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`products/${id}`, id, data);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`products/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`products/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`products/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`products/${id}`);
         }
     };
 };

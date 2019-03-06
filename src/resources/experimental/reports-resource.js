@@ -1,6 +1,6 @@
 export default function ReportsResource({apiHandler}) {
     return {
-        async getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -9,10 +9,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/api-log-summary`, params);
+            return apiHandler.get(`reports/api-log-summary`, params);
         },
 
-        async getCumulativeSubscriptionsPlans({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getCumulativeSubscriptionsPlans({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -22,10 +22,10 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.getAll(`reports/cumulative-subscriptions-plans`, params);
+            return apiHandler.getAll(`reports/cumulative-subscriptions-plans`, params);
         },
 
-        async getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -36,10 +36,10 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/cumulative-subscriptions`, params);
+            return apiHandler.get(`reports/cumulative-subscriptions`, params);
         },
 
-        async getDccMarkup({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, tz = null} = {}) {
+        getDccMarkup({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -49,10 +49,10 @@ export default function ReportsResource({apiHandler}) {
                 filter,
                 tz
             };
-            return await apiHandler.get(`reports/dcc-markup`, params);
+            return apiHandler.get(`reports/dcc-markup`, params);
         },
 
-        async getDisputes({aggregationField, periodMonth, limit = null, offset = null, filter = null, tz = null} = {}) {
+        getDisputes({aggregationField, periodMonth, limit = null, offset = null, filter = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodMonth,
@@ -61,10 +61,10 @@ export default function ReportsResource({apiHandler}) {
                 filter,
                 tz
             };
-            return await apiHandler.get(`reports/disputes`, params);
+            return apiHandler.get(`reports/disputes`, params);
         },
 
-        async getEventsTriggeredSummary({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getEventsTriggeredSummary({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -72,10 +72,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/events-triggered`, params);
+            return apiHandler.get(`reports/events-triggered`, params);
         },
 
-        async getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -83,10 +83,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/events-triggered/${eventType}/rules`, params);
+            return apiHandler.get(`reports/events-triggered/${eventType}/rules`, params);
         },
 
-        async getFutureRenewals({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getFutureRenewals({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -94,10 +94,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/future-renewals`, params);
+            return apiHandler.get(`reports/future-renewals`, params);
         },
 
-        async getRenewalSales({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getRenewalSales({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -105,10 +105,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/renewal-sales`, params);
+            return apiHandler.get(`reports/renewal-sales`, params);
         },
 
-        async getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getRetentionPercentage({aggregationField, aggregationPeriod, periodStart, periodEnd, includeSwitchedSubscriptions = null, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -121,10 +121,10 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/retention-percentage`, params);
+            return apiHandler.get(`reports/retention-percentage`, params);
         },
 
-        async getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, sort = null, filter = null, criteria = null, tz = null} = {}) {
+        getRetentionValue({aggregationField, aggregationPeriod, periodStart, periodEnd, includeRefunds = null, includeDisputes = null, limit = null, offset = null, sort = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 aggregationPeriod,
@@ -139,10 +139,10 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/retention-value`, params);
+            return apiHandler.get(`reports/retention-value`, params);
         },
 
-        async getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -152,14 +152,14 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/retry-transaction`, params);
+            return apiHandler.get(`reports/retry-transaction`, params);
         },
 
-        async getStatistics() {
-            return await apiHandler.get(`reports/statistics`);
+        getStatistics() {
+            return apiHandler.get(`reports/statistics`);
         },
 
-        async getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -170,10 +170,10 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/subscription-cancellation`, params);
+            return apiHandler.get(`reports/subscription-cancellation`, params);
         },
 
-        async getSubscriptionRenewalList({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getSubscriptionRenewalList({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -181,10 +181,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.getAll(`reports/subscription-renewal-list`, params);
+            return apiHandler.getAll(`reports/subscription-renewal-list`, params);
         },
 
-        async getSubscriptionRenewal({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getSubscriptionRenewal({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -192,10 +192,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.get(`reports/subscription-renewal`, params);
+            return apiHandler.get(`reports/subscription-renewal`, params);
         },
 
-        async getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate, limit = null, offset = null} = {}) {
+        getTimeSeriesTransaction({periodStart, periodEnd, type, subaggregate, limit = null, offset = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -204,10 +204,10 @@ export default function ReportsResource({apiHandler}) {
                 limit,
                 offset
             };
-            return await apiHandler.get(`reports/time-series-transaction`, params);
+            return apiHandler.get(`reports/time-series-transaction`, params);
         },
 
-        async getTransactionsPlan({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getTransactionsPlan({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -215,24 +215,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 tz
             };
-            return await apiHandler.getAll(`reports/transactions-plan`, params);
+            return apiHandler.getAll(`reports/transactions-plan`, params);
         },
 
-        async getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
-            const params = {
-                aggregationField,
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                filter,
-                criteria,
-                tz
-            };
-            return await apiHandler.get(`reports/transactions-time-dispute`, params);
-        },
-
-        async getTransactions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+        getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,
@@ -243,10 +229,24 @@ export default function ReportsResource({apiHandler}) {
                 criteria,
                 tz
             };
-            return await apiHandler.get(`reports/transactions`, params);
+            return apiHandler.get(`reports/transactions-time-dispute`, params);
         },
 
-        async getPaymentsSuccessByDeclineReason({periodStart, periodEnd, limit = null, offset = null, filter = null} = {}) {
+        getTransactions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
+            const params = {
+                aggregationField,
+                periodStart,
+                periodEnd,
+                limit,
+                offset,
+                filter,
+                criteria,
+                tz
+            };
+            return apiHandler.get(`reports/transactions`, params);
+        },
+
+        getPaymentsSuccessByDeclineReason({periodStart, periodEnd, limit = null, offset = null, filter = null} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -254,10 +254,10 @@ export default function ReportsResource({apiHandler}) {
                 offset,
                 filter
             };
-            return await apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
+            return apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
         },
 
-        async getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
+        getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
             const params = {
                 periodStart,
                 periodEnd,
@@ -265,7 +265,7 @@ export default function ReportsResource({apiHandler}) {
                 segments,
                 metrics
             };
-            return await apiHandler.getAll(`reports/dashboard`, params);
+            return apiHandler.getAll(`reports/dashboard`, params);
         },
     };
 };

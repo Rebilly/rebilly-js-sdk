@@ -1,6 +1,6 @@
 export default function ListsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,23 +10,23 @@ export default function ListsResource({apiHandler}) {
                 criteria,
                 fields
             };
-            return await apiHandler.getAll(`lists`, params);
+            return apiHandler.getAll(`lists`, params);
         },
 
-        async get({id, version = ''}) {
-            return await apiHandler.get(`lists/${id}/${version}`);
+        get({id, version = ''}) {
+            return apiHandler.get(`lists/${id}/${version}`);
         },
 
-        async create({id = '', data}) {
-            return await apiHandler.create(`lists/${id}`, id, data);
+        create({id = '', data}) {
+            return apiHandler.create(`lists/${id}`, id, data);
         },
 
-        async update({id, data}) {
-            return await apiHandler.put(`lists/${id}`, data);
+        update({id, data}) {
+            return apiHandler.put(`lists/${id}`, data);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`lists/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`lists/${id}`);
         }
     };
 };

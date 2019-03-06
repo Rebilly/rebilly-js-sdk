@@ -1,5 +1,6 @@
 language: node_js
 node_js:
+- '10'
 - '8'
 - '6'
 cache:
@@ -17,9 +18,14 @@ branches:
 notifications:
   slack:
     secure: YITWSY8BLo3bU5nIrHVrR+X0wIuJgTvfxtiSPtd59Zn34Sbs47fdpBCqReGbQJe9uXAwYGWuupKkq7Wc9pULNOnrSq6Rn5Btz6IV/jpTrS1R7KjI1mhmQF65vTwmzU72yMwyT6L+VyjQFYrhGtvJ9qAgiIRima4fmarcd22BjA6rETlx0PfE/Jm9YxL2ebb8BwrBl0CnLXGUMTdKvZnDGwO3wYnYvvf6yoFSxFjsHBSwQlhTIoCA3KzX7FbsSwwMWc9ebOM0BF9556BHPZdMtXXiSt4OJd/cVgP49PfYGeKpLbrEpfEuX5c2bAoYi0BYhBOGr7gaq+r19XbZseU3vwK5Z/5TlVuAsea5uhizPxEEDlEBkx42tMRA/Spj1gnsr7bJL+hATSI/yK/BXi59Vl/iqwPIl91f+jGYzzsK6D32ua8/Xr93Um5tluaOG7xqZg1ASqyfijACJyoZbs0hkYJo1luq8VCutuRASow1K0mvW7QxoLqdCZ+vn6QPK9Qf/E4zmH04E6elEXk80g0Qvw/YKBL/esneuVc6G37oGmG/GYkPyjdziBcBJllymxlU4xLNvdU77d9KNsuWuBDXVTDAQNewkIvIBbSJLbdYg5lT61JQiG7HNRVPpH4odMNu6VTKUZ/j72RwDhgOPgbYR39fATQXNMGDm4KOlCmg28I=
+addons:
+  apt:
+    packages:
+      - "python3"
+      - "python3-pip"
 install:
 - yarn install
-- pip install --user -r doc-req.txt
+- pip3 install --user -r doc-req.txt
 deploy:
   provider: npm
   skip_cleanup: true

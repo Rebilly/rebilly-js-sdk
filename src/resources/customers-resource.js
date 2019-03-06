@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function CustomersResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,10 +12,10 @@ export default function CustomersResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`customers`, params);
+            return apiHandler.getAll(`customers`, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -28,60 +28,60 @@ export default function CustomersResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`customers`, config);
+            return apiHandler.download(`customers`, config);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`customers/${id}`, params);
+            return apiHandler.get(`customers/${id}`, params);
         },
 
-        async create({id = '', data, expand = null}) {
+        create({id = '', data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`customers/${id}`, id, data, params);
+            return apiHandler.create(`customers/${id}`, id, data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`customers/${id}`, data, params);
+            return apiHandler.put(`customers/${id}`, data, params);
         },
 
-        async getLeadSource({id}) {
-            return await apiHandler.get(`customers/${id}/lead-source`);
+        getLeadSource({id}) {
+            return apiHandler.get(`customers/${id}/lead-source`);
         },
 
-        async createLeadSource({id, data}) {
-            return await apiHandler.put(`customers/${id}/lead-source`, data);
+        createLeadSource({id, data}) {
+            return apiHandler.put(`customers/${id}/lead-source`, data);
         },
 
-        async updateLeadSource({id, data}) {
-            return await apiHandler.put(`customers/${id}/lead-source`, data);
+        updateLeadSource({id, data}) {
+            return apiHandler.put(`customers/${id}/lead-source`, data);
         },
 
-        async deleteLeadSource({id}) {
-            return await apiHandler.delete(`customers/${id}/lead-source`);
+        deleteLeadSource({id}) {
+            return apiHandler.delete(`customers/${id}/lead-source`);
         },
 
-        async getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
             };
-            return await apiHandler.getAll(`customers/${id}/timeline`, params);
+            return apiHandler.getAll(`customers/${id}/timeline`, params);
         },
 
-        async getTimelineMessage({id, messageId = ''} = {}) {
-            return await apiHandler.get(`customers/${id}/timeline/${messageId}`);
+        getTimelineMessage({id, messageId = ''} = {}) {
+            return apiHandler.get(`customers/${id}/timeline/${messageId}`);
         },
 
-        async deleteTimelineMessage({id, messageId}) {
-            return await apiHandler.delete(`customers/${id}/timeline/${messageId}`);
+        deleteTimelineMessage({id, messageId}) {
+            return apiHandler.delete(`customers/${id}/timeline/${messageId}`);
         },
 
-        async createTimelineComment({id, data}) {
-            return await apiHandler.create(`customers/${id}/timeline`, '', data);
+        createTimelineComment({id, data}) {
+            return apiHandler.create(`customers/${id}/timeline`, '', data);
         },
     };
 };

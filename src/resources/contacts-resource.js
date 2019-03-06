@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function ContactsResource({apiHandler}) {
     return {
-        async getAll({limit = null, offset = null, sort = null, expand, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -12,10 +12,10 @@ export default function ContactsResource({apiHandler}) {
                 q,
                 criteria
             };
-            return await apiHandler.getAll(`contacts`, params);
+            return apiHandler.getAll(`contacts`, params);
         },
 
-        async downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -28,26 +28,26 @@ export default function ContactsResource({apiHandler}) {
                 },
                 headers: csvHeader
             };
-            return await apiHandler.download(`contacts`, config);
+            return apiHandler.download(`contacts`, config);
         },
 
-        async get({id, expand = null}) {
+        get({id, expand = null}) {
             const params = {expand};
-            return await apiHandler.get(`contacts/${id}`, params);
+            return apiHandler.get(`contacts/${id}`, params);
         },
 
-        async create({id = '', data, expand = null}) {
+        create({id = '', data, expand = null}) {
             const params = {expand};
-            return await apiHandler.create(`contacts/${id}`, id, data, params);
+            return apiHandler.create(`contacts/${id}`, id, data, params);
         },
 
-        async update({id, data, expand = null}) {
+        update({id, data, expand = null}) {
             const params = {expand};
-            return await apiHandler.put(`contacts/${id}`, data, params);
+            return apiHandler.put(`contacts/${id}`, data, params);
         },
 
-        async delete({id}) {
-            return await apiHandler.delete(`contacts/${id}`);
+        delete({id}) {
+            return apiHandler.delete(`contacts/${id}`);
         }
     };
 };

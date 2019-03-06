@@ -4,9 +4,9 @@ import Collection from './collection';
 import File from './file';
 import Errors from './errors';
 import cloneDeep from 'clone-deep';
-import jsBase64 from 'js-base64';
-import createHmac from 'create-hmac';
 import {version} from '../package.json';
+import RequestsCache from './requests-cache';
+import {Cancellation} from './cancellation';
 
 /**
  * Availble types of axios interceptors
@@ -36,7 +36,6 @@ export const isInterceptorType = (type) => {
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
-    let cancellationToken = null;
 
     /**
      * Create an Axios instance for Rebilly.
@@ -159,45 +158,6 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal.
-     * @deprecated 9.0.0
-     * @returns {axios.CancelToken}
-     */
-    function getCancellationToken() {
-        const tokenFactory = axios.CancelToken;
-        cancellationToken = tokenFactory.source();
-        return cancellationToken;
-    }
-
-    /**
-     * Generate an authentication signature for payment token creation.
-     * @since 1.1.0
-     * @param apiUser {string} your API user value found in Rebilly
-     * @param apiKey {string} your secret API key found in Rebilly
-     * @deprecated
-     * @returns {string}
-     */
-    function generateSignature({apiUser, apiKey}) {
-        const randomString = (strLength) => {
-            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-            return Array.from(new Array(strLength)).reduce((text) => {
-                return text = `${text}${alphabet.charAt(Math.floor(Math.random() * alphabet.length))}`;
-            }, '');
-        };
-        const nonce = randomString(30);
-        const timestamp = Date.now();
-        const data = `${apiUser}${nonce}${timestamp}`;
-        const signature = createHmac('sha1', apiKey).update(data).digest('hex');
-        const payload = {
-            'REB-APIUSER': apiUser,
-            'REB-NONCE': nonce,
-            'REB-TIMESTAMP': timestamp,
-            'REB-SIGNATURE': signature
-        };
-        return jsBase64.Base64.encode(JSON.stringify(payload));
-    }
-
-    /**
      * Adds a interceptor to the current API instance.
      * @param type {String} interceptor type (`request`/`response`)
      * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
@@ -261,15 +221,27 @@ export default function createApiHandler({options}) {
      * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
-    async function wrapRequest({request, isCollection, config}) {
+    function wrapRequest({request, isCollection, config}) {
         const cleanedConfig = getRequestConfig(config);
-        try {
-            const response = await request(cleanedConfig);
-            return processResponse({response, isCollection, config: cleanedConfig})
-        }
-        catch (error) {
-            return processError({error, config: cleanedConfig});
-        }
+        const {id, cancelToken} = RequestsCache.save();
+
+        cleanedConfig.cancelToken = cancelToken;
+
+        const handler = async function () {
+            try {
+                const response = await request(cleanedConfig);
+                return processResponse({response, isCollection, config: cleanedConfig});
+            }
+            catch (error) {
+                return processError({error, config: cleanedConfig});
+            } finally {
+                RequestsCache.deleteById(id);
+            }
+        };
+        const promise = handler();
+        // expose cancellation method to the Promise instance
+        promise.cancel = reason => Cancellation.cancelById(id, reason);
+        return promise;
     }
 
     /**
@@ -346,9 +318,6 @@ export default function createApiHandler({options}) {
      */
     function getRequestConfig(configuration = {}) {
         const config = cleanUpParameters(configuration);
-        if (cancellationToken) {
-            return {...config, cancelToken: cancellationToken.token};
-        }
         return {...config};
     }
 
@@ -516,8 +485,6 @@ export default function createApiHandler({options}) {
         setProxyAgent,
         setSessionToken,
         setEndpoints,
-        getCancellationToken,
-        generateSignature,
         get,
         getAll,
         post,
