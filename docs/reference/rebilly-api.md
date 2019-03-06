@@ -125,45 +125,6 @@ api.removeResponseInterceptor(interceptor);
 | - | - | - | - |
 | interceptor | Function | - | The reference to the previously added response interceptor that should be removed from the current instance. |
 
-### getCancellationToken
-<div class="method"><code><strong>getCancellationToken</strong>() -> <span class="return">{CancelToken}</span></code></div>
-
-Returns a cancellation token for the active instance. Based on the withdrawn cancelable promises proposal. Can be used to cancel any ongoing request. This feature is useful for stopping requests that are no longer required to complete.
-
-==Since 0.12.0==
-
-> See [RebillyErrors][goto-errors]
-
-**Example**
-
-```js
-// once created the token will be used for each subsequent API request
-const token = api.getCancellationToken();
-// when cancelling the request, a message can be provided
-token.cancel('Cancelled request manually');
-
-// any ongoing request will be canceled by the same token
-try {
-    // trigger a request
-    await api.customers.get({id: 'cancellable-customer-id'});
-} catch(error) {
-    // you can detect if a request was canceled by checking 
-    // the error.name
-    if (error.name === 'RebillyCanceledError') {
-        // the message provided to 'token.cancel' will be reflected here
-        console.log(error.message) // returns 'Cancelled request manually'     
-    } else {
-       // normal error handling 
-    }
-}
-```
-
-**Returns**
-
-The global cancellation token. An instance of `axios.CancelToken`. Exposes method `cancel(message)`.
-
-Type `CancelToken`
-
 ### generateSignature
 <div class="method"><code><strong>generateSignature</strong>({<span class="prop">apiUser</span>, <span class="prop">apiKey</span>}) -> <span class="return">{string}</span></code></div>
 
