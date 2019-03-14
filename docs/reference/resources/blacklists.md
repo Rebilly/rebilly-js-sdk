@@ -100,10 +100,10 @@ const data = {
     type: 'ip-address',
     value: '63.118.98.100'
     
-    // optionally provide an `expiredTime` to make
+    // optionally provide an `expirationTime` to make
     // the item expire and function like a `greylist`
     
-    // expiredTime: '2017-09-18T21:50:44Z'
+    // expirationTime: '2017-09-18T21:50:44Z'
 };
 
 // the ID is optional
