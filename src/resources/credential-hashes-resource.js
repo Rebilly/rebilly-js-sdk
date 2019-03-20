@@ -36,7 +36,7 @@ export default function CredentialHashesResource({apiHandler}) {
             const params = {
                 q,
             };
-            return apiHandler.get(`credential-hashes/oauth2/${hash}/items`, params);
+            return apiHandler.getAll(`credential-hashes/oauth2/${hash}/items`, params);
         },
 
         updateOAuth2Credential({hash, data}) {
