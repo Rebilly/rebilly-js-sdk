@@ -77,6 +77,16 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.delete(`subscriptions/${id}/lead-source`);
         },
 
+        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
+        },
+
         getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
