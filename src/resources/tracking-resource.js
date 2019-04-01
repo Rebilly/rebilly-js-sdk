@@ -88,6 +88,10 @@ export default function TrackingResource({apiHandler}) {
             return apiHandler.get(`tracking/webhooks/${id}`);
         },
 
+        resendWebhook({id} = {}) {
+            return apiHandler.delete(`tracking/webhooks/${id}/resend`);
+        },
+
         /**
          * Retrieve a list of tracking email notifications
          * @param limit
