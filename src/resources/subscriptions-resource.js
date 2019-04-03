@@ -77,12 +77,13 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.delete(`subscriptions/${id}/lead-source`);
         },
 
-        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                expand,
             };
             return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
         },

@@ -62,12 +62,13 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.delete(`customers/${id}/lead-source`);
         },
 
-        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                expand,
             };
             return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
         },
