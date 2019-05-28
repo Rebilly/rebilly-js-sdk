@@ -22,7 +22,7 @@ import KycDocumentsResource from './kyc-documents-resource';
 import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import NotesResource from './notes-resource';
-import CompaniesResource from 'src/resources/companies-resource';
+import CompaniesResource from './companies-resource';
 import PaymentCardsResource from './payment-cards-resource';
 import PaymentTokensResource from './payment-tokens-resource';
 import PayPalAccountsResource from './paypal-accounts-resource';
