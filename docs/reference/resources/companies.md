@@ -1,31 +1,31 @@
-# Organizations <small>`:::js api.organizations`</small>
+# Companies <small>`:::js api.companies`</small>
 
 > Member of [`RebillyAPI`][goto-rebillyapi]
 
-Organizations include the name and address of the entities related to your account. An account may be multi-national, and support multiple organizations.
+Companies include the name and address of the entities related to your account. An account may be multi-national, and support multiple companies.
 
 !!! note
-    Organizations are shared between the *Live* and *Sandbox* modes.
+    Companies are shared between the *Live* and *Sandbox* modes.
 
 ## getAll
 
 --8<----- "reference/resources/shared/search-signature.md"
 
-Get a collection of organizations. Each entry will be a member.
+Get a collection of companies. Each entry will be a member.
 
 
 **Example**
 
 ```js
 // all parameters are optional
-const firstCollection = await api.organizations.getAll();
+const firstCollection = await api.companies.getAll();
 
 // alternatively you can specify one or more of them
 const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
-const secondCollection = await api.organizations.getAll(params);
+const secondCollection = await api.companies.getAll(params);
 
 // access the collection items, each item is a Member
-secondCollection.items.forEach(organization => console.log(organization.fields.name));
+secondCollection.items.forEach(company => console.log(company.fields.name));
 ```
 
 **Parameters**
@@ -36,7 +36,7 @@ secondCollection.items.forEach(organization => console.log(organization.fields.n
 
 **Returns**
 
-A collection of organizations.
+A collection of companies.
 
 Type [`Collection`][goto-collection]
 
@@ -48,20 +48,20 @@ See the [detailed API spec][1]{: target="_blank"} for all payload fields and res
 ## get
 <div class="method"><code><strong>get</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Get an organization by its `id`.
+Get an company by its `id`.
 
 
 **Example**
 
 ```js
-const organization = await api.organizations.get({id: 'foobar-001'});
-console.log(organization.fields.name);
+const company = await api.companies.get({id: 'foobar-001'});
+console.log(company.fields.name);
 ```
 
 
 **Returns**
 
-A member exposing the organization fields.
+A member exposing the company fields.
 
 Type [`Member`][goto-member]
 
@@ -73,12 +73,12 @@ See the [detailed API spec][2]{: target="_blank"} for all payload fields and res
 ## create
 <div class="method"><code><strong>create</strong>({<span class="prop">id</span><span class="optional" title="optional">opt</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Create an organization. Optionally provide a specific `id` to use, or let Rebilly generate one. 
+Create an company. Optionally provide a specific `id` to use, or let Rebilly generate one. 
 
 **Example**
 
 ```js
-// first set the properties for the new organization
+// first set the properties for the new company
 const data = {
     name: 'Acme Import Inc.',
     address: '1234 Roger Street',
@@ -90,16 +90,16 @@ const data = {
 };
 
 // the ID is optional
-const firstOrganization = await api.organizations.create({data});
+const firstOrganization = await api.companies.create({data});
 
 // or you can provide one
-const secondOrganization = await api.organizations.create({id: 'my-second-key', data});
+const secondOrganization = await api.companies.create({id: 'my-second-key', data});
 ```
 
 
 **Returns**
 
-A member exposing the created organization fields.
+A member exposing the created company fields.
 
 Type [`Member`][goto-member]
 
@@ -111,7 +111,7 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## update
 <div class="method"><code><strong>update</strong>({<span class="prop">id</span>, <span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
-Update an organization by using its `id`. 
+Update an company by using its `id`. 
 
 
 **Example**
@@ -128,13 +128,13 @@ const data = {
     postalCode: 'H1N0K1'
 };
 
-const organization = await api.organizations.update({id: 'my-second-key', data});
+const company = await api.companies.update({id: 'my-second-key', data});
 ```
 
 
 **Returns**
 
-A member exposing the updated organization fields.
+A member exposing the updated company fields.
 
 Type [`Member`][goto-member]
 
@@ -146,13 +146,13 @@ See the [detailed API spec][3]{: target="_blank"} for all payload fields and res
 ## delete
 <div class="method"><code><strong>delete</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
 
-Delete an organization by using its `id`. 
+Delete an company by using its `id`. 
 
 
 **Example**
 
 ```js
-const request = await api.organizations.delete({id: 'my-second-key'});
+const request = await api.companies.delete({id: 'my-second-key'});
 
 // the request does not return any fields but
 // you can confirm the success using the status code
@@ -174,7 +174,7 @@ See the [detailed API spec][4]{: target="_blank"} for all payload fields and res
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
 [goto-member]: ../types/member
-[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Organizations/paths/~1organizations/get
-[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Organizations/paths/~1organizations~1{id}/get
-[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Organizations/paths/~1organizations~1{id}/put
-[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Organizations/paths/~1organizations~1{id}/delete
+[1]: https://rebilly.github.io/RebillyUserAPI/#tag/Companies/paths/~1organizations/get
+[2]: https://rebilly.github.io/RebillyUserAPI/#tag/Companies/paths/~1organizations~1{id}/get
+[3]: https://rebilly.github.io/RebillyUserAPI/#tag/Companies/paths/~1organizations~1{id}/put
+[4]: https://rebilly.github.io/RebillyUserAPI/#tag/Companies/paths/~1organizations~1{id}/delete
