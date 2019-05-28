@@ -1,4 +1,4 @@
-export default function OrganizationsResource({apiHandler}) {
+export default function CompaniesResource({apiHandler}) {
     return {
         getAll({limit = null, offset = null, sort = null, q = null} = {}) {
             const params = {
@@ -7,23 +7,23 @@ export default function OrganizationsResource({apiHandler}) {
                 sort,
                 q
             };
-            return apiHandler.getAll(`organizations`, params);
+            return apiHandler.getAll(`companies`, params);
         },
 
         get({id}) {
-            return apiHandler.get(`organizations/${id}`);
+            return apiHandler.get(`companies/${id}`);
         },
 
         create({id = '', data}) {
-            return apiHandler.create(`organizations/${id}`, id, data);
+            return apiHandler.create(`companies/${id}`, id, data);
         },
 
         update({id, data}) {
-            return apiHandler.put(`organizations/${id}`, data);
+            return apiHandler.put(`companies/${id}`, data);
         },
 
         delete({id}) {
-            return apiHandler.delete(`organizations/${id}`);
+            return apiHandler.delete(`companies/${id}`);
         }
     };
 };
