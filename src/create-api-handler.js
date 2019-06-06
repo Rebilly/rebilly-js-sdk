@@ -261,14 +261,14 @@ export default function createApiHandler({options}) {
     /**
      * Throws an instance of a Rebilly Error from the base Axios error.
      * @param error {Object}
-     * @param config {Object} original request configuration
      */
-    function processError({error, config}) {
+    function processError({error}) {
+        // The request was manually cancelled by a token.
         if (axios.isCancel(error)) {
-            //the request was manually cancelled by a token
             throw new Errors.RebillyCanceledError(error);
         }
-        else if (error.response) {
+
+        if (error.response) {
             switch (Number(error.response.status)) {
                 case 401: //unauthorized
                     throw new Errors.RebillyForbiddenError(error);
@@ -285,12 +285,12 @@ export default function createApiHandler({options}) {
                     throw new Errors.RebillyRequestError(error);
             }
         }
-        else if (error.code === 'ECONNABORTED') {
+
+        if (error.code === 'ECONNABORTED') {
             throw new Errors.RebillyTimeoutError(error);
         }
-        else {
-            throw new Errors.RebillyRequestError(error);
-        }
+
+        throw new Errors.RebillyRequestError(error);
     }
 
     /**

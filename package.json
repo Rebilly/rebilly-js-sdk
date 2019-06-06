@@ -1,6 +1,6 @@
 {
   "name": "rebilly-js-sdk",
-  "version": "12.2.0",
+  "version": "12.3.0",
   "description": "Official Rebilly API JS library for the browser and Node",
   "browser": "./dist/rebilly-js-sdk.js",
   "main": "./dist/rebilly-js-sdk.node.js",
@@ -59,7 +59,7 @@
     "webpack": "^3.4.1"
   },
   "dependencies": {
-    "axios": "^0.17.0",
+    "axios": "^0.18.1",
     "babel-runtime": "^6.25.0",
     "shortid": "^2.2.14"
   },
