@@ -1,21 +1,20 @@
-const webpack = require('webpack');
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const generatePlugins = (isProd) => {
     return [
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: !isProd,
-            mangle: !isProd ? false : {
-                except: ['Collection', 'Member', 'File'],
-                screw_ie8: true,
-                keep_fnames: true
+        new UglifyJsPlugin({
+            sourceMap: isProd,
+            uglifyOptions: {
+                beautify: !isProd,
+                comments: false,
+                compress: isProd,
+                mangle: !isProd ? false : {
+                    reserved: ['Collection', 'Member', 'File'],
+                    keep_fnames: true,
+                },
             },
-            compress: !isProd ? false : {
-                screw_ie8: true
-            },
-            comments: false,
-            sourceMap: isProd
-        })
+        }),
     ];
 };
 
