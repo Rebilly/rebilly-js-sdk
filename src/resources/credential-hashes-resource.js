@@ -29,7 +29,7 @@ export default function CredentialHashesResource({apiHandler}) {
         },
 
         getAllOAuth2Credentials() {
-            return apiHandler.get(`credential-hashes/oauth2`);
+            return apiHandler.getAll(`credential-hashes/oauth2`);
         },
 
         getOAuth2CredentialItems({hash, q = null, params = null}) {
