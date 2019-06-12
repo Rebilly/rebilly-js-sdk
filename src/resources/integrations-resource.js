@@ -4,8 +4,8 @@ export default function IntegrationsResource({apiHandler}) {
             return apiHandler.getAll('integrations', params);
         },
 
-        get({label, expand = null}) {
-            return apiHandler.get(`integrations/${label}`, {expand});
+        get({service, expand = null}) {
+            return apiHandler.get(`integrations/${service}`, {expand});
         },
     };
 };
