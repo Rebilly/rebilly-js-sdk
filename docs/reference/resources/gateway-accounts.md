@@ -225,6 +225,27 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
 
+## close
+<div class="method"><code><strong>close</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+
+Permanently close or archive a gateway account by using its `id`. This cannot be undone.
+
+
+**Example**
+
+```js
+const gatewayAccount = await api.gatewayAccounts.close({id: 'foobar-001'});
+console.log(gatewayAccount.fields.status);
+```
+
+
+**Returns**
+
+A member exposing the gateway account fields.
+
+Type [`Member`][goto-member]
+
+
 
 ## getAllDowntimeSchedules
 
