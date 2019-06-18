@@ -34,6 +34,7 @@ export default function createApiInstance({apiHandler}) {
         notes: Resources.NotesResource({apiHandler}),
         companies: Resources.CompaniesResource({apiHandler}),
         paymentCards: Resources.PaymentCardsResource({apiHandler}),
+        paymentCardsBankNames: Resources.PaymentCardsBankNamesResource({apiHandler}),
         paymentTokens: Resources.PaymentTokensResource({apiHandler}),
         paypalAccounts: Resources.PayPalAccountsResource({apiHandler}),
         plans: Resources.PlansResource({apiHandler}),
