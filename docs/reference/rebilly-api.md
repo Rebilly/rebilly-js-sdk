@@ -442,6 +442,14 @@ See Payment Instruments.
 
 !!! info ""
     See the [**Payment Cards resource**][22] for detailed method information.
+    
+### Payment Cards Bank Names
+`:::js api.paymentCardsBankNames`
+
+All bank names related to all cards in transations. 
+
+!!! info ""
+    See the [**Payment Cards Bank Names resource**][23] for detailed method information.
 
 ### Payment Tokens
 `:::js api.paymentTokens`
@@ -453,7 +461,7 @@ Payment tokens are used to reduce the scope of PCI DSS compliance. A payment tok
 See [Rebilly.js][goto-rebillyjs] library    
 
 !!! info ""
-    See the [**Payment Tokens resource**][23] for detailed method information.
+    See the [**Payment Tokens resource**][24] for detailed method information.
 
 ### Paypal Accounts
 `:::js api.paypalAccounts`
@@ -463,7 +471,7 @@ A form of payment instrument, paypal accounts enable customers to do transaction
 See Payment Instruments. 
 
 !!! info ""
-    See the [**Paypal Accounts resource**][24] for detailed method information.
+    See the [**Paypal Accounts resource**][25] for detailed method information.
 
 ### Plans
 `:::js api.plans`
@@ -471,7 +479,7 @@ See Payment Instruments.
 Create and manage plans. Plans are used to describe a subscription. A plan may have optional setup fees, an optional trial period and fees, and an optional recurring fees and frequency. A plan may also expire, or be valid only for a limited number of recurrences. 
 
 !!! info ""
-    See the [**Plans resource**][25] for detailed method information.
+    See the [**Plans resource**][26] for detailed method information.
 
 ### Previews
 `:::js api.previews`
@@ -479,7 +487,7 @@ Create and manage plans. Plans are used to describe a subscription. A plan may h
 Preview the result of event triggered actions like webhooks and emails both globally and in the Rules Engine. 
 
 !!! info ""
-    See the [**Previews resource**][26] for detailed method information.
+    See the [**Previews resource**][27] for detailed method information.
 
 ### Products
 `:::js api.products`
@@ -487,7 +495,7 @@ Preview the result of event triggered actions like webhooks and emails both glob
 Create and manage products. You may attach them to plans. Products can have a tax category, accounting code and may require shipping.
 
 !!! info ""
-    See the [**Products resource**][27] for detailed method information.
+    See the [**Products resource**][28] for detailed method information.
 
 ### Profile
 `:::js api.profile`
@@ -497,7 +505,7 @@ Manage the profile of the current user. When using a secret API key the profile 
 The profile includes information about the currently authenticated user like his name, email and preferences.
 
 !!! info ""
-    See the [**Profile resource**][28] for detailed method information.
+    See the [**Profile resource**][29] for detailed method information.
 
 ### Sessions
 `:::js api.sessions`
@@ -507,7 +515,7 @@ Create and manage sessions. Session tokens are an alternate method to API authen
 This token can be used to authenticate to the API. In addition, the session can be set to expire at a particular time, and has very granular control over permissions. Use the token to then authenticate for further requests to the Rebilly API.
 
 !!! info ""
-    See the [**Sessions resource**][29] for detailed method information.
+    See the [**Sessions resource**][30] for detailed method information.
 
 ### Shipping Zones
 `:::js api.shippingZones`
@@ -515,7 +523,7 @@ This token can be used to authenticate to the API. In addition, the session can 
 Create and manage shipping zones. Products that require shipping will automatically have shipping priced base on the shipping zone that matches the destination. Each zone contains regions and countries that you ship to, and has its own shipping rates.
 
 !!! info ""
-    See the [**Shipping Zones resource**][30] for detailed method information.
+    See the [**Shipping Zones resource**][31] for detailed method information.
 
 ### Status (API)
 `:::js api.status`
@@ -526,7 +534,7 @@ Get the current status of the Rebilly API. This feature can be used to confirm w
     You can poll this endpoint on interval to check the status of the API.
 
 !!! info ""
-    See the [**Status resource**][31] for detailed method information.
+    See the [**Status resource**][32] for detailed method information.
 
 ### Subscriptions
 `:::js api.subscriptions`
@@ -534,7 +542,7 @@ Get the current status of the Rebilly API. This feature can be used to confirm w
 Create and manage subscriptions. A subscription is an instance of a plan for a specific customer and website combination.
 
 !!! info ""
-    See the [**Subscriptions resource**][32] for detailed method information.
+    See the [**Subscriptions resource**][33] for detailed method information.
 
 ### Three D Secure (3DS)
 `:::js api.threeDSecure`
@@ -544,7 +552,7 @@ Create and list 3DS entries. 3D Secure is a way to authenticate and protect tran
 The merchant chooses whether or not to use 3D secure, and this is usually done via an iframe on the merchant's site. This allows the merchant to shift liability from themselves to the issuing bank in some cases.  3D Secure requires cardholder interaction to be completed.
 
 !!! info ""
-    See the [**Three D Secure resource**][33] for detailed method information.
+    See the [**Three D Secure resource**][34] for detailed method information.
 
 ### Tracking
 `:::js api.tracking`
@@ -552,7 +560,7 @@ The merchant chooses whether or not to use 3D secure, and this is usually done v
 Inspect tracking data. Tracking is a layer for accessing all the activity (API requests, subscriptions, webhooks, events, etc.), thus providing easier debugging and issues auditing.
 
 !!! info ""
-    See the [**Tracking resource**][34] for detailed method information.
+    See the [**Tracking resource**][35] for detailed method information.
 
 ### Transactions
 `:::js api.transactions`
@@ -560,7 +568,7 @@ Inspect tracking data. Tracking is a layer for accessing all the activity (API r
 Create and manage transactions. A transaction is an instance of an action regarding a payment. It is always related to a customer and a payment method, and can be related to another transaction. Transactions can be scheduled to happen in the future.
 
 !!! info ""
-    See the [**Transactions resource**][35] for detailed method information.
+    See the [**Transactions resource**][36] for detailed method information.
 
 ### Users
 `:::js api.users`
@@ -568,7 +576,7 @@ Create and manage transactions. A transaction is an instance of an action regard
 Create and manage users. A *user* represents a person who can login to Rebilly, and take actions subject to their granted permissions.
 
 !!! info ""
-    See the [**Users resource**][36] for detailed method information.
+    See the [**Users resource**][37] for detailed method information.
 
 ### Webhooks
 `:::js api.webhooks`
@@ -578,7 +586,7 @@ Create and manage webhooks. Webhooks are designed to notify your systems when ce
 They allow you to collect information about those events. Rebilly can send this information to an URL of your choice.
 
 !!! info ""
-    See the [**Webhooks resource**][37] for detailed method information.
+    See the [**Webhooks resource**][38] for detailed method information.
     
 ### Websites
 `:::js api.websites`
@@ -586,7 +594,7 @@ They allow you to collect information about those events. Rebilly can send this 
 Create and manage websites. The website is related to each invoice and each payment gateway account. This feature would allow you to have gateway accounts that are related to multiple websites, or exclusive to particular websites. And gives you more control over your business.
 
 !!! info ""
-    See the [**Websites resource**][38] for detailed method information.
+    See the [**Websites resource**][39] for detailed method information.
 
 
 [1]: ./resources/account
@@ -611,22 +619,23 @@ Create and manage websites. The website is related to each invoice and each paym
 [20]: ./resources/notes.md
 [21]: ./resources/companies.md
 [22]: ./resources/payment-cards.md
-[23]: ./resources/payment-tokens.md
-[24]: ./resources/paypal-accounts.md
-[25]: ./resources/plans.md
-[26]: ./resources/previews.md
-[27]: ./resources/products.md
-[28]: ./resources/profile.md
-[29]: ./resources/sessions.md
-[30]: ./resources/shipping-zones.md
-[31]: ./resources/status.md
-[32]: ./resources/subscriptions.md
-[33]: ./resources/three-d-secure.md
-[34]: ./resources/tracking.md
-[35]: ./resources/transactions.md
-[36]: ./resources/users.md
-[37]: ./resources/webhooks.md
-[38]: ./resources/websites.md
+[23]: ./resources/payment-cards-bank-names.md
+[24]: ./resources/payment-tokens.md
+[25]: ./resources/paypal-accounts.md
+[26]: ./resources/plans.md
+[27]: ./resources/previews.md
+[28]: ./resources/products.md
+[29]: ./resources/profile.md
+[30]: ./resources/sessions.md
+[31]: ./resources/shipping-zones.md
+[32]: ./resources/status.md
+[33]: ./resources/subscriptions.md
+[34]: ./resources/three-d-secure.md
+[35]: ./resources/tracking.md
+[36]: ./resources/transactions.md
+[37]: ./resources/users.md
+[38]: ./resources/webhooks.md
+[39]: ./resources/websites.md
 
 [goto-account-signin]: ./resources/account#signin
 [goto-errors]: ./rebilly-errors
