@@ -42,6 +42,7 @@ export default function createApiInstance({apiHandler}) {
         products: Resources.ProductsResource({apiHandler}),
         profile: Resources.ProfileResource({apiHandler}),
         search: Resources.SearchResource({apiHandler}),
+        segments: Resources.SegmentsResource({apiHandler}),
         sessions: Resources.SessionsResource({apiHandler}),
         shippingZones: Resources.ShippingZonesResource({apiHandler}),
         status: Resources.StatusResource({apiHandler}),
