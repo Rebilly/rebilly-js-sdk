@@ -20,6 +20,7 @@ export default function createApiInstance({apiHandler}) {
         customEvents: Resources.CustomEventsResource({apiHandler}),
         customFields: Resources.CustomFieldsResource({apiHandler}),
         credentialHashes: Resources.CredentialHashesResource({apiHandler}),
+        creditMemos: Resources.CreditMemosResource({apiHandler}),
         disputes: Resources.DisputesResource({apiHandler}),
         events: Resources.EventsResource({apiHandler}),
         emailMessages: Resources.EmailMessagesResource({apiHandler}),

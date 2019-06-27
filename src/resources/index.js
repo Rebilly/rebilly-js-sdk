@@ -6,6 +6,7 @@ import CheckoutPagesResource from './checkout-pages-resource';
 import ContactsResource from './contacts-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
+import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
 import CustomEventsResource from './custom-events-resource';
@@ -56,6 +57,7 @@ const Resources = {
     ContactsResource,
     CouponsResource,
     CredentialHashesResource,
+    CreditMemosResource,
     CustomerAuthenticationResource,
     CustomersResource,
     CustomEventsResource,
