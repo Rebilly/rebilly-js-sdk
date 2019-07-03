@@ -446,7 +446,7 @@ See Payment Instruments.
 ### Payment Cards Bank Names
 `:::js api.paymentCardsBankNames`
 
-All bank names related to all cards in transations. 
+All bank names related to all cards in transactions. 
 
 !!! info ""
     See the [**Payment Cards Bank Names resource**][23] for detailed method information.
