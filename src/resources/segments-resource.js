@@ -27,6 +27,10 @@ export default function SegmentsResource({apiHandler}) {
 
         delete({id}) {
             return apiHandler.delete(`grid-segments/${id}`);
-        }
+        },
+
+        patch({id, data}) {
+            return apiHandler.patch(`grid-segments/${id}`, data);
+        },
     };
 };
