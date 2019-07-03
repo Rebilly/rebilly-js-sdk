@@ -36,7 +36,7 @@ export default function PaymentCardsResource({apiHandler}) {
         },
 
         migrate({data}) {
-            return apiHandler.post(`payment-cards-migrations/migrate`, data);
+            return apiHandler.post(`payment-cards-migrations`, data);
         }
     };
 };
