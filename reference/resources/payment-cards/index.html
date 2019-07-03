@@ -654,13 +654,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getallmigratable" title="getAllMigratable" class="md-nav__link">
-    getAllMigratable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#migrate" title="migrate" class="md-nav__link">
     migrate
   </a>
@@ -1135,13 +1128,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#getallmigratable" title="getAllMigratable" class="md-nav__link">
-    getAllMigratable
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#migrate" title="migrate" class="md-nav__link">
     migrate
   </a>
@@ -1337,77 +1323,6 @@
 <p>Type <a href="../types/member"><code class="codehilite"><span class="n">Member</span></code></a></p>
 <p><strong>API Spec</strong></p>
 <p>See the <a href="https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}~1deactivation/post" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
-<h2 id="getallmigratable">getAllMigratable<a class="headerlink" href="#getallmigratable" title="Permanent link">&para;</a></h2>
-<div class="method">
-    <code>
-        <strong>getAllMigratable</strong>({
-        <span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">offset</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">sort</span><span class="optional" title="optional">opt</span>
-        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
-        }) -> <span class="return">{Collection}</span>
-    </code>
-</div>
-
-<p>Get a collection of migratable payment cards. Each entry will be a member.</p>
-<div class="admonition info">
-<p class="admonition-title">Payment Card Migration</p>
-<p>Migrating payment cards lets you move cards in bulk from one gateway account to another. This is useful when the original gateway account is no longer available.</p>
-</div>
-<p><strong>Example</strong></p>
-<div class="codehilite"><pre><span></span><span class="c1">// all parameters are optional</span>
-<span class="kr">const</span> <span class="nx">firstCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">paymentCards</span><span class="p">.</span><span class="nx">getAllMigratable</span><span class="p">();</span>
-
-<span class="c1">// alternatively you can specify one or more of them</span>
-<span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span><span class="nx">limit</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">offset</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">sort</span><span class="o">:</span> <span class="s1">&#39;-createdTime&#39;</span><span class="p">};</span> 
-<span class="kr">const</span> <span class="nx">secondCollection</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">api</span><span class="p">.</span><span class="nx">paymentCards</span><span class="p">.</span><span class="nx">getAllMigratable</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
-
-<span class="c1">// access the collection items, each item is a Member</span>
-<span class="nx">secondCollection</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">paymentCard</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">paymentCard</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">customerId</span><span class="p">));</span>
-</pre></div>
-
-<p><strong>Parameters</strong></p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>limit</td>
-<td>number</td>
-<td>Optional</td>
-<td>The amount of members to return per request.<br>Defaults to <code class="codehilite"><span class="mi">100</span></code>.</td>
-</tr>
-<tr>
-<td>offset</td>
-<td>number</td>
-<td>Optional</td>
-<td>Member index from which to start returning results. <br>Defaults to <code class="codehilite"><span class="mi">0</span></code>.</td>
-</tr>
-<tr>
-<td>sort</td>
-<td>string</td>
-<td>Optional</td>
-<td>The member field on which to sort on. Sorting is ascending by default. Use <code class="codehilite"><span class="o">-</span></code> (dash) to make it descending.<br>Example: <code class="codehilite"><span class="n">createdTime</span></code> and <code class="codehilite"><span class="o">-</span><span class="n">createdTime</span></code>.</td>
-</tr>
-<tr>
-<td>filter</td>
-<td>string</td>
-<td>Optional</td>
-<td>A list of one or more member fields and their values, used to filter the collection results.<br>Example: <code class="codehilite"><span class="n">status</span><span class="o">:</span><span class="n">active</span></code>.<br> See the <a href="../../../guides/filters/">filters guide</a> for more details.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Returns</strong></p>
-<p>A collection of migratable payment cards.</p>
-<p>Type <a href="../types/collection"><code class="codehilite"><span class="n">Collection</span></code></a></p>
-<p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/get" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="migrate">migrate<a class="headerlink" href="#migrate" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>migrate</strong>({<span class="prop">data</span>}) -&gt; <span class="return">{Member}</span></code></div></p>
 <p>Migrate payment cards in bulk from one gateway account to another using their <code class="codehilite"><span class="n">id</span></code>. This is useful when the original gateway account is no longer available.</p>
@@ -1431,7 +1346,7 @@
 <p>A member exposing a single field (<code class="codehilite"><span class="n">migratedCards</span></code>) with the amount of cards that were successfully migrated.</p>
 <p>Type <a href="../types/member"><code class="codehilite"><span class="n">Member</span></code></a></p>
 <p><strong>API Spec</strong></p>
-<p>See the <a href="https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/post" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
+<p>See the <a href="https://rebilly.github.io/RebillyUserAPI/#operation/migratePaymentCards" target="_blank">detailed API spec</a> for all payload fields and response data.</p>
 <h2 id="getallmatchedrules">getAllMatchedRules<a class="headerlink" href="#getallmatchedrules" title="Permanent link">&para;</a></h2>
 <p><div class="method"><code><strong>getAllMatchedRules</strong>({<span class="prop">id</span>}) -&gt; <span class="return">{Collection}</span></code></div></p>
 <p>Get all previously matched event rules for a payment card <code class="codehilite"><span class="n">id</span></code>. The rules are defined within system events and are part of the Rules Engine.</p>
