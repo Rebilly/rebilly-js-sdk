@@ -35,16 +35,6 @@ export default function PaymentCardsResource({apiHandler}) {
             return apiHandler.post(`payment-cards/${id}/deactivation`);
         },
 
-        getAllMigratable({limit = null, offset = null, sort = null, filter = null} = {}) {
-            const params = {
-                limit,
-                offset,
-                sort,
-                filter
-            };
-            return apiHandler.getAll(`payment-cards-migrations`, params);
-        },
-
         migrate({data}) {
             return apiHandler.post(`payment-cards-migrations/migrate`, data);
         }

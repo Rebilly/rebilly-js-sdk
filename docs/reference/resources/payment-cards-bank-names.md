@@ -3,7 +3,7 @@
   
 > Member of [`RebillyAPI`][goto-rebillyapi]  
   
-All bank names related to all cards in transations.  
+All bank names related to all cards in transactions.  
   
   
   

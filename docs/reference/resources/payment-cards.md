@@ -177,56 +177,6 @@ Type [`Member`][goto-member]
 
 See the [detailed API spec][5]{: target="_blank"} for all payload fields and response data.
 
-
-## getAllMigratable
-
-<div class="method">
-    <code>
-        <strong>getAllMigratable</strong>({
-        <span class="prop">limit</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">offset</span><span class="optional" title="optional">opt</span>, 
-        <span class="prop">sort</span><span class="optional" title="optional">opt</span>
-        <span class="prop">filter</span><span class="optional" title="optional">opt</span>
-        }) -> <span class="return">{Collection}</span>
-    </code>
-</div>
-
-Get a collection of migratable payment cards. Each entry will be a member.
-
-!!! info "Payment Card Migration"
-    Migrating payment cards lets you move cards in bulk from one gateway account to another. This is useful when the original gateway account is no longer available.
-
-**Example**
-
-```js
-// all parameters are optional
-const firstCollection = await api.paymentCards.getAllMigratable();
-
-// alternatively you can specify one or more of them
-const params = {limit: 20, offset: 100, sort: '-createdTime'}; 
-const secondCollection = await api.paymentCards.getAllMigratable(params);
-
-// access the collection items, each item is a Member
-secondCollection.items.forEach(paymentCard => console.log(paymentCard.fields.customerId));
-```
-
-**Parameters**
-
-
---8<----- "reference/resources/shared/filter-get-all.md"
-
-
-**Returns**
-
-A collection of migratable payment cards.
-
-Type [`Collection`][goto-collection]
-
-
-**API Spec**
-
-See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
-
 ## migrate
 <div class="method"><code><strong>migrate</strong>({<span class="prop">data</span>}) -> <span class="return">{Member}</span></code></div>
 
@@ -261,7 +211,7 @@ Type [`Member`][goto-member]
 
 **API Spec**
 
-See the [detailed API spec][7]{: target="_blank"} for all payload fields and response data.
+See the [detailed API spec][6]{: target="_blank"} for all payload fields and response data.
 
 ## getAllMatchedRules
 <div class="method"><code><strong>getAllMatchedRules</strong>({<span class="prop">id</span>}) -> <span class="return">{Collection}</span></code></div>
@@ -292,5 +242,4 @@ Type [`Collection`][goto-collection]
 [3]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards/post
 [4]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}~1authorization/post
 [5]: https://rebilly.github.io/RebillyAPI/#tag/Payment-Cards/paths/~1payment-cards~1{id}~1deactivation/post
-[6]: https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/get
-[7]: https://rebilly.github.io/RebillyUserAPI/#tag/Migrate-payment-cards/paths/~1payment-cards-migrations/post
+[6]: https://rebilly.github.io/RebillyUserAPI/#operation/migratePaymentCards
