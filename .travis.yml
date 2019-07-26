@@ -2,9 +2,7 @@ language: node_js
 node_js:
 - '10'
 - '8'
-- '6'
 cache:
-  pip: true
   yarn: true
   directories:
   - node_modules
@@ -18,14 +16,8 @@ branches:
 notifications:
   slack:
     secure: YITWSY8BLo3bU5nIrHVrR+X0wIuJgTvfxtiSPtd59Zn34Sbs47fdpBCqReGbQJe9uXAwYGWuupKkq7Wc9pULNOnrSq6Rn5Btz6IV/jpTrS1R7KjI1mhmQF65vTwmzU72yMwyT6L+VyjQFYrhGtvJ9qAgiIRima4fmarcd22BjA6rETlx0PfE/Jm9YxL2ebb8BwrBl0CnLXGUMTdKvZnDGwO3wYnYvvf6yoFSxFjsHBSwQlhTIoCA3KzX7FbsSwwMWc9ebOM0BF9556BHPZdMtXXiSt4OJd/cVgP49PfYGeKpLbrEpfEuX5c2bAoYi0BYhBOGr7gaq+r19XbZseU3vwK5Z/5TlVuAsea5uhizPxEEDlEBkx42tMRA/Spj1gnsr7bJL+hATSI/yK/BXi59Vl/iqwPIl91f+jGYzzsK6D32ua8/Xr93Um5tluaOG7xqZg1ASqyfijACJyoZbs0hkYJo1luq8VCutuRASow1K0mvW7QxoLqdCZ+vn6QPK9Qf/E4zmH04E6elEXk80g0Qvw/YKBL/esneuVc6G37oGmG/GYkPyjdziBcBJllymxlU4xLNvdU77d9KNsuWuBDXVTDAQNewkIvIBbSJLbdYg5lT61JQiG7HNRVPpH4odMNu6VTKUZ/j72RwDhgOPgbYR39fATQXNMGDm4KOlCmg28I=
-addons:
-  apt:
-    packages:
-      - "python3"
-      - "python3-pip"
 install:
 - yarn install
-- pip3 install --user -r doc-req.txt
 deploy:
   provider: npm
   skip_cleanup: true
@@ -34,10 +26,3 @@ deploy:
     secure: W5Rvm+hL7M0aP6uZgGERPTWBCm3mOLu/55qHu2MwONjswxaN9L+wKJV2dvtzlQ3NrS9CwckvBxPdBZtn992r9CnuzVgcblIdy5sP9zWpD3ykQGcaht+2Xn13RjhT5o4ExKrY8KDBxh1F0IcOx9kxfiMgAbD+QWaCriPnWdRcWc0ZI2QtG0JcHU7QFxH+VkqEgWRcY6d1AwG6AuagbdcUV6LHgWOby2X1EN4+PW1wmTGPlX/WHKPx3GXT76ksRTf1ZzSzxXhiFircsd3fxeLhPl/vAl7Y9zjtYzfHUa6fmliB552K80/KLX2/nOBgOSan0IqE5LF4q9IDxeooembnGHVPWk+OZKvbg1R2tYLQ9kxFc6dWsJQ5R4eDDxP8lzLAKQYCg1cmFuaIk2tVthh/gRjlJzKOARUZs+wKtexdDOK5Z7Tpx9AWBYreXga0K4PmmLBzRvLzruJ4Qnf9J32XoGZUnywmkrA64Xli1Y+VHRHXe+IyIFs71nIAMoJL+Zc6ha4xDtPdqyeOxWjilfULX8Oxct8TAxX+97n1/3nfwL3whWRN0KkX8s9OYWdb7gtU1QYP43AhjON7ufV992pBTKcxWplF9nAMqYpBFA2P+S7JSv3fB5sWNZAfoVLrLX9TOlqml7Wqc43O2Rs9gdx8SLPAIsnsftBQkg/QjqPQhr4=
   on:
     tags: true
-after_deploy:
-- git config user.name "Andrei Moldoveanu"
-- git config user.email "andrei.moldoveanu@gmail.com"
-- git remote add gh-token "https://${GH_TOKEN}@github.com/Rebilly/rebilly-js-sdk.git";
-- git fetch gh-token;
-- git fetch gh-token gh-pages:gh-pages;
-- mkdocs gh-deploy -v --clean --remote-name gh-token;

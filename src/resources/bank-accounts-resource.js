@@ -19,6 +19,10 @@ export default function BankAccountsResource({apiHandler}) {
             return apiHandler.create(`bank-accounts/${id}`, id, data);
         },
 
+        patch({id = '', data}) {
+            return apiHandler.patch(`bank-accounts/${id}`, data);
+        },
+
         deactivate({id}) {
             return apiHandler.post(`bank-accounts/${id}/deactivation`);
         }
