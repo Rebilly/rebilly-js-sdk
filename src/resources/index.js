@@ -9,7 +9,7 @@ import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
-import CustomEmailMessagesResource from './custom-email-messages-resource';
+import CustomEmailNotificationsResource from './custom-email-notifications-resource';
 import CustomEventsResource from './custom-events-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
@@ -61,7 +61,7 @@ const Resources = {
     CreditMemosResource,
     CustomerAuthenticationResource,
     CustomersResource,
-    CustomEmailMessagesResource,
+    CustomEmailNotificationsResource,
     CustomEventsResource,
     CustomFieldsResource,
     DisputesResource,
