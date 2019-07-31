@@ -120,5 +120,16 @@ export default function InvoicesResource({apiHandler}) {
         createTimelineComment({id, data}) {
             return apiHandler.create(`invoices/${id}/timeline`, '', data);
         },
+
+        getAllCreditMemos({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+
+            return apiHandler.getAll(`invoices/${id}/credit-memos`, params);
+        }
     };
 };
