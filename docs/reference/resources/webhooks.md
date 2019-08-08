@@ -81,6 +81,7 @@ Allowed `eventsFilter` values:
 - `subscription-trial-ended`
 - `subscription-activated`
 - `subscription-canceled`
+- `subscription-reactivated`
 - `subscription-renewed`
 - `transaction-processed`
 - `payment-card-expired`
