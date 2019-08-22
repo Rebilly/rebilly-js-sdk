@@ -62,6 +62,10 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.post(`invoices/${id}/issue`, data);
         },
 
+        reissue({id, data = {}}) {
+            return apiHandler.post(`invoices/${id}/reissue`, data);
+        },
+
         abandon({id}) {
             return apiHandler.post(`invoices/${id}/abandon`, null);
         },
