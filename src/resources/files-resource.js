@@ -64,9 +64,9 @@ export default function FilesResource({apiHandler}) {
             const handler = async () => {
                 const attachments = this.getAllAttachments(params);
                 requests.push(attachments);
-                await attachments;
+                const attachmentsResult = await attachments;
 
-                const promises = attachments.items.map(attachment => this.detach({id: attachment.fields.id}));
+                const promises = attachmentsResult.items.map(attachment => this.detach({id: attachment.fields.id}));
                 requests = [...requests, promises];
                 await Promise.all(promises);
 
