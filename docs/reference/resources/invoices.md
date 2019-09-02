@@ -705,6 +705,26 @@ An empty member without fields. Check the response property to validate the expe
 
 Type [`Member`][goto-member]
 
+## getAllTransactionAllocations
+<div class="method"><code><strong>getAllTransactionAllocations</strong>({<span class="prop">id</span>}) -> <span class="return">{Collection}</span></code></div>
+
+Get the precise transaction amounts allocated as payments for an invoice `id`.
+
+**Example**
+
+```js
+const allocations = await api.invoices.getAllTransactionAllocations({id: 'foobar-001'});
+```
+
+**Returns**
+
+A collection of transaction allocations for this invoice.
+
+Type [`Collection`][goto-collection]
+
+**API Spec**
+
+See the [detailed API spec][16]{: target="_blank"} for all payload fields and response data.
 
 [goto-rebillyapi]: ../rebilly-api
 [goto-collection]: ../types/collection
@@ -727,3 +747,4 @@ Type [`Member`][goto-member]
 [13]: https://rebilly.github.io/RebillyAPI/#tag/Invoices/paths/~1invoices~1{id}~1timeline~1{messageId}/get
 [14]: https://rebilly.github.io/RebillyAPI/#tag/Invoices/paths/~1invoices~1{id}~1timeline/post
 [15]: https://rebilly.github.io/RebillyAPI/#tag/Invoices/paths/~1invoices~1{id}~1timeline~1{messageId}/delete
+[16]: https://rebilly.github.io/RebillyAPI/#operation/GetInvoiceTransactionAllocationCollection
