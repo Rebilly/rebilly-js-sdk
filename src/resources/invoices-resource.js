@@ -134,6 +134,15 @@ export default function InvoicesResource({apiHandler}) {
             };
 
             return apiHandler.getAll(`invoices/${id}/credit-memos`, params);
-        }
+        },
+
+        getAllTransactionAllocations({id, limit = null, offset = null}) {
+            const params = {
+                limit,
+                offset,
+            };
+
+            return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
+        },
     };
 };
