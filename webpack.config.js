@@ -1,8 +1,23 @@
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 const generatePlugins = (isProd) => {
     return [
+        new TerserPlugin({
+            extractComments: false,
+            terserOptions: {
+                beautify: !isProd,
+                comments: false,
+                ecma: 6,
+                compress: isProd,
+                mangle: isProd ? false : {
+                    reserved: ['Collection', 'Member', 'File'],
+                    keep_fnames: true,
+                },
+            },
+        }),
+/*
         new UglifyJsPlugin({
             sourceMap: isProd,
             uglifyOptions: {
@@ -15,6 +30,7 @@ const generatePlugins = (isProd) => {
                 },
             },
         }),
+*/
     ];
 };
 
@@ -46,6 +62,7 @@ module.exports = (env = {}) => {
             },
             plugins: generatePlugins(isProd),
             devtool: 'source-map',
+            mode: isProd ? 'production' : 'development',
         }
     });
 };
