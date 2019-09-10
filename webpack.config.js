@@ -1,5 +1,4 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const generatePlugins = (isProd) => {
@@ -17,20 +16,6 @@ const generatePlugins = (isProd) => {
                 },
             },
         }),
-/*
-        new UglifyJsPlugin({
-            sourceMap: isProd,
-            uglifyOptions: {
-                beautify: !isProd,
-                comments: false,
-                compress: isProd,
-                mangle: !isProd ? false : {
-                    reserved: ['Collection', 'Member', 'File'],
-                    keep_fnames: true,
-                },
-            },
-        }),
-*/
     ];
 };
 
