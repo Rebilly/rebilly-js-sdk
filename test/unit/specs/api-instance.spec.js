@@ -27,7 +27,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.coupons).to.be.an('object');
         expect(apiInstance.customers).to.be.an('object');
         expect(apiInstance.customerAuthentication).to.be.an('object');
-        expect(apiInstance.customEmailNotifications).to.be.an('object');
         expect(apiInstance.customEvents).to.be.an('object');
         expect(apiInstance.customFields).to.be.an('object');
         expect(apiInstance.credentialHashes).to.be.an('object');

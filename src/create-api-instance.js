@@ -17,7 +17,6 @@ export default function createApiInstance({apiHandler}) {
         coupons: Resources.CouponsResource({apiHandler}),
         customers: Resources.CustomersResource({apiHandler}),
         customerAuthentication: Resources.CustomerAuthenticationResource({apiHandler}),
-        customEmailNotifications: Resources.CustomEmailNotificationsResource({apiHandler}),
         customEvents: Resources.CustomEventsResource({apiHandler}),
         customFields: Resources.CustomFieldsResource({apiHandler}),
         credentialHashes: Resources.CredentialHashesResource({apiHandler}),
