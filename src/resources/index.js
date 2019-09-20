@@ -9,11 +9,11 @@ import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
-import CustomEmailNotificationsResource from './custom-email-notifications-resource';
 import CustomEventsResource from './custom-events-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
 import EventsResource from './events-resource';
+import EmailDeliverySettingsResource from './email-delivery-settings-resource';
 import EmailMessagesResource from './email-messages-resource';
 import EmailNotificationsResource from './email-notifications-resource';
 import FilesResource from './files-resource';
@@ -61,11 +61,11 @@ const Resources = {
     CreditMemosResource,
     CustomerAuthenticationResource,
     CustomersResource,
-    CustomEmailNotificationsResource,
     CustomEventsResource,
     CustomFieldsResource,
     DisputesResource,
     EventsResource,
+    EmailDeliverySettingsResource,
     EmailMessagesResource,
     EmailNotificationsResource,
     FilesResource,
