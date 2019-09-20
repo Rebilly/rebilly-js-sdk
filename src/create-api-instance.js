@@ -23,6 +23,7 @@ export default function createApiInstance({apiHandler}) {
         creditMemos: Resources.CreditMemosResource({apiHandler}),
         disputes: Resources.DisputesResource({apiHandler}),
         events: Resources.EventsResource({apiHandler}),
+        emailDeliverySettingsResource: Resources.EmailDeliverySettingsResource({apiHandler}),
         emailMessages: Resources.EmailMessagesResource({apiHandler}),
         emailNotifications: Resources.EmailNotificationsResource({apiHandler}),
         files: Resources.FilesResource({apiHandler}),
