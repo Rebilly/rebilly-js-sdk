@@ -88,6 +88,10 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
         },
 
+        issueUpcomingInvoice({id, invoiceId, data = {}}) {
+            return apiHandler.post(`subscriptions/${id}/upcoming-invoices/${invoiceId}/issue`, data);
+        },
+
         getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
