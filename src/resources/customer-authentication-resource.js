@@ -25,7 +25,7 @@ export default function CustomerAuthenticationResource({apiHandler}) {
         },
 
         exchangeToken({token, data}) {
-            return apiHandler.post(`authentication-tokens/${token}`, data, {authenticate: false});
+            return apiHandler.post(`authentication-tokens/${token}`, data);
         },
 
         logout({token}) {
