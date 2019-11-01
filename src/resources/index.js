@@ -2,6 +2,7 @@ import AccountResource from './account-resource';
 import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
 import BlacklistsResource from './blacklists-resource';
+import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutPagesResource from './checkout-pages-resource';
 import ContactsResource from './contacts-resource';
 import CouponsResource from './coupons-resource';
@@ -54,6 +55,7 @@ const Resources = {
     ApiKeysResource,
     BankAccountsResource,
     BlacklistsResource,
+    BroadcastMessagesResource,
     CheckoutPagesResource,
     ContactsResource,
     CouponsResource,
