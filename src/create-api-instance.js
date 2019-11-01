@@ -12,6 +12,7 @@ export default function createApiInstance({apiHandler}) {
         apiKeys: Resources.ApiKeysResource({apiHandler}),
         bankAccounts: Resources.BankAccountsResource({apiHandler}),
         blacklists: Resources.BlacklistsResource({apiHandler}),
+        broadcastMessages: Resources.BroadcastMessagesResource({apiHandler}),
         checkoutPages: Resources.CheckoutPagesResource({apiHandler}),
         contacts: Resources.ContactsResource({apiHandler}),
         coupons: Resources.CouponsResource({apiHandler}),
