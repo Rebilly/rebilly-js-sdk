@@ -19,7 +19,7 @@ export default function BroadcastMessagesResource({apiHandler}) {
         },
 
         update({id, data}) {
-            return apiHandler.put(`broadcast-messages/${id}`, data);
+            return apiHandler.patch(`broadcast-messages/${id}`, data);
         },
 
         delete({id}) {
