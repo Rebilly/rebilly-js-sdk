@@ -5,7 +5,13 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
          * @returns {Promise}
          */
         getAll() {
-            return apiHandler.getAll('email-delivery-settings');
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+            };
+            return apiHandler.getAll(`email-delivery-settings`, params);
         },
 
         /**
