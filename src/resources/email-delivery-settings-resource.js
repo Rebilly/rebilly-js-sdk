@@ -5,7 +5,7 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
          * @returns {Promise}
          */
         getAll() {
-            return apiHandler.get('email-delivery-settings');
+            return apiHandler.getAll('email-delivery-settings');
         },
 
         /**
