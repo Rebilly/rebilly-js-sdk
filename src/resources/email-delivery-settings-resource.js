@@ -4,7 +4,7 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
          * Retrieve the list of email delivery settings
          * @returns {Promise}
          */
-        getAll() {
+        getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
