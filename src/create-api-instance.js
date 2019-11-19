@@ -34,6 +34,7 @@ export default function createApiInstance({apiHandler}) {
         kycDocuments:  Resources.KycDocumentsResource({apiHandler}),
         layouts: Resources.LayoutsResource({apiHandler}),
         lists: Resources.ListsResource({apiHandler}),
+        memberships: Resources.MembershipsResource({apiHandler}),
         notes: Resources.NotesResource({apiHandler}),
         companies: Resources.CompaniesResource({apiHandler}),
         paymentCards: Resources.PaymentCardsResource({apiHandler}),
