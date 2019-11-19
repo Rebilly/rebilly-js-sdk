@@ -4,12 +4,10 @@
 
 ==Experimental== 
 
-Create an organization
-
 ## create
-<div class="method"><code><strong>getCustomerLifetimeSummaryMetrics</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+<div class="method"><code><strong>create</strong>({<span class="prop">name</span>,<span class="prop">website</span>,<span class="prop">reportingCurrency</span>}) -> <span class="return">{Member}</span></code></div>
 
-Get a the summary of a customer's lifetime metrics by using its `id`.
+Create an organization.
 
 **Example**
 
