@@ -80,6 +80,7 @@ export function createExperimentalApiInstance({apiHandler}) {
         customers: ExperimentalResources.CustomersResource({apiHandler}),
         dataExports: ExperimentalResources.DataExportsResource({apiHandler}),
         histograms: ExperimentalResources.HistogramsResource({apiHandler}),
+        organizations: ExperimentalResources.OrganizationsResource({apiHandler}),
         reports: ExperimentalResources.ReportsResource({apiHandler}),
         subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
         timelines: ExperimentalResources.TimelinesResource({apiHandler}),
