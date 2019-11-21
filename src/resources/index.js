@@ -24,6 +24,7 @@ import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
 import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
+import MembershipsResource from './memberships-resource';
 import NotesResource from './notes-resource';
 import CompaniesResource from './companies-resource';
 import PaymentCardsResource from './payment-cards-resource';
@@ -77,6 +78,7 @@ const Resources = {
     KycDocumentsResource,
     LayoutsResource,
     ListsResource,
+    MembershipsResource,
     NotesResource,
     CompaniesResource,
     PaymentCardsResource,
