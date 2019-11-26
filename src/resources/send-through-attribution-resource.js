@@ -1,12 +1,12 @@
 export default function SendThroughAttributionResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null} = {}) {
+        getAll(eventType, {limit = null, offset = null, sort = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
             };
-            return apiHandler.getAll(`send-through-attribution`, params);
+            return apiHandler.getAll(`send-through-attribution/${eventType}`, params);
         },
     };
 };
