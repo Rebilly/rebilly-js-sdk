@@ -52,7 +52,7 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
          * @returns {Promise}
          */
         verify({token, data}) {
-            return apiHandler.patch(`verify/email-delivery-settings/${token}`, data);
+            return apiHandler.put(`email-delivery-setting-verifications/${token}`, data);
         },
 
     };
