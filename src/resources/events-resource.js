@@ -24,10 +24,11 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.put(`events/${eventType}/rules`, data);
         },
 
-        getRulesHistory({eventType, limit = null, offset = null} = {}) {
+        getRulesHistory({eventType, limit = null, offset = null, filter = null} = {}) {
             const params = {
                 limit,
-                offset
+                offset,
+                filter,
             };
             return apiHandler.getAll(`events/${eventType}/rules/history`, params);
         },
