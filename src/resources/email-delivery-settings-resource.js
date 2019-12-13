@@ -55,5 +55,12 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
             return apiHandler.put(`email-delivery-setting-verifications/${token}`, data);
         },
 
+        /**
+         * Trigger a resend of the verification email.
+         * @returns {Promise}
+         */
+        resendVerification({id}) {
+            return apiHandler.post(`email-delivery-settings/${id}/resend-email-verification`);
+        },
     };
 };
