@@ -44,7 +44,7 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
          * @returns {Promise}
          */
         update({id, data}) {
-            return apiHandler.delete(`email-delivery-settings/${id}`, data);
+            return apiHandler.patch(`email-delivery-settings/${id}`, data);
         },
 
         /**
