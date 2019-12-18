@@ -33,6 +33,10 @@ export default function KycDocumentsResource({apiHandler}) {
 
         reject({id, data}) {
             return apiHandler.post(`kyc-documents/${id}/rejection`, data);
+        },
+
+        review({id}) {
+            return apiHandler.post(`kyc-documents/${id}/review`);
         }
     };
 };

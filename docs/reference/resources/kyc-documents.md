@@ -190,6 +190,23 @@ A member exposing the rejected document.
 
 Type [`Member`][goto-member]
 
+## review
+<div class="method"><code><strong>review</strong>({<span class="prop">id</span>}) -> <span class="return">{Member}</span></code></div>
+
+Reviews a document for a customer by its `id`.
+
+**Example**
+
+```js
+const reviewedDocument = await api.kycDocuments.review({id: 'my-second-id'});
+console.log(reviewedDocument.fields.reviewTime);
+```
+
+**Returns**
+
+A member exposing the reviewed document.
+
+Type [`Member`][goto-member]
 
 **API Spec**
 
