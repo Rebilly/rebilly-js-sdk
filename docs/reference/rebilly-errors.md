@@ -3,7 +3,7 @@
 The JS SDK returns custom error types based on the HTTP code when available or an internal condition like timeouts and manual cancellation.
 
 ## Importing
-You can import the error object into your project to access the different types of errors returned by the library..
+You can import the error object into your project to access the different types of errors returned by the library.
 ```js
 import {RebillyErrors} from 'rebilly-js-sdk';
 ```
@@ -16,7 +16,7 @@ The `RebillyErrors` object exposes the following types:
 | ---- | ----------- | ----------- |
 | RebillyRequestError | `-` | Generic error when no response is available. |
 | RebillyTimeoutError | `-` | The request timed out. |
-| RebillyCanceledError | `-` | The request was manually canceled before being completed.<br>**See [api.getCancellationToken][1]** |
+| RebillyCanceledError | `-` | The request was manually canceled before being completed. |
 | RebillyForbiddenError | `401` | Indicates an invalid API key or expired session token. |
 | RebillyNotFoundError | `404` | Requested resource was not found. |
 | RebillyMethodNotAllowedError | `405` | Request method not allowed on this resource. |
@@ -80,5 +80,3 @@ try {
         // handle error
     }
     ```
-
-[1]: ./rebilly-api/#getcancellationtoken

@@ -228,39 +228,4 @@ Resources are accessible at the root of the API client and represent a domain fo
 !!! tip "Promises"
     All resource methods return chainable Promises.
 
-### Customers
-`:::js api.customers`
-
-Access customer lifetime metrics. 
-
-!!! info ""
-    See the [**Customers resource**][1] for detailed method information.
-    
-### Exports
-`:::js api.exports`
-
-Queue data exports for resources and download the result in CSV format. There is no limit to the amount of data that can be exported. 
-
-!!! info ""
-    See the [**Exports resource**][2] for detailed method information.
-    
-### Histograms
-`:::js api.histograms`
-
-Histograms are for a particular kinds of reports with cohorts and periods. 
-
-!!! info ""
-    See the [**Histograms resource**][3] for detailed method information.
-    
-### Reports
-`:::js api.reports`
-
-Retrieve summary information about your customers, subscriptions, transactions, and more. 
-
-!!! info ""
-    See the [**Reports resource**][4] for detailed method information.
-    
-[1]: ./resources/experimental/customers.md
-[2]: ./resources/experimental/exports.md
-[3]: ./resources/experimental/histograms.md
-[4]: ./resources/experimental/reports.md
+Read the [API Reference docs](https://rebilly.github.io/RebillyReportsAPI/).

@@ -8,8 +8,8 @@ The Rebilly JS SDK library allows you to consume the Rebilly API using either No
 ### PCI Compliance Note
 If you need to handle raw payment card data, you should use [Rebilly FramePay](https://rebilly.github.io/framepay-docs/) to generate tokens for your server-side logic.
 
-### Rebilly API Spec
-The library is a semantic representation of the [Rebilly API spec](https://rebilly.github.io/RebillyAPI/). A secondary [experimental API spec for reports](https://rebilly.github.io/RebillyReportsAPI/) is also available.
+### Rebilly API Definition
+The library is a semantic representation of the [Rebilly API definition](https://api-reference.rebilly.com/).
 
 ## Installation
 Install the latest version of the SDK with [Yarn](https://yarnpkg.com/en/):
@@ -23,10 +23,10 @@ npm install rebilly-js-sdk --save
 ```
 
 ## Documentation
-Visit the [GitHub pages](https://rebilly.github.io/rebilly-js-sdk/) for detailed documentation.
+Visit the [API Reference](https://api-reference.rebilly.com/) for detailed documentation.
 
 ## Usage
-To create an instance, you need to provide your secret API key that is available in Rebilly in the [Developer > API Keys](https://app.rebilly.com/api-keys) menu.
+To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
 
 > Every resource method returns a chainable Promise.
 
