@@ -8,8 +8,8 @@ The Rebilly JS SDK library allows you to consume the Rebilly API using either No
 ### PCI Compliance Note
 If you need to handle raw payment card data, you should use [Rebilly FramePay](https://rebilly.github.io/framepay-docs/) to generate tokens for your server-side logic.
 
-### Rebilly API Spec
-The library is a semantic representation of the [Rebilly API spec](https://rebilly.github.io/RebillyAPI/). A secondary [experimental API spec for reports](https://rebilly.github.io/RebillyReportsAPI/) is also available.
+### Rebilly API Definition
+The library is a semantic representation of the [Rebilly API spec](https://api-reference.rebilly.com/).
 
 ## Quick Start
 

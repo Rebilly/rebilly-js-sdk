@@ -39,14 +39,14 @@ import {RebillyExperimentalAPI, RebillyErrors} from 'rebilly-js-sdk';
 
 | Module | Description |
 | ------ | ----------- |
-| RebillyExperimentalAPI | Secondary API client. Reserved for experimental endpoints like reports and statistics. This client can break backward-compatibility. Based on the [Experimental Reports API spec.](https://rebilly.github.io/RebillyReportsAPI/) |
+| RebillyExperimentalAPI | Secondary API client. Reserved for experimental endpoints like reports and statistics. This client can break backward-compatibility. Based on the [Experimental Reports API definition](https://rebilly.github.io/RebillyReportsAPI/). |
 | RebillyErrors | Exposes the different errors returned by both API clients. |
 
 ### Creating an instance
 The API clients need either a private API key for backend use, or to be provided with a JWT session token when used in a browser.
 
 #### Node
-Use a secret API key found in Rebilly under [Developer > API Keys](https://app.rebilly.com/api-keys).
+Use a secret API key found in Rebilly under [Automations > API Keys](https://app.rebilly.com/api-keys).
 ```js
 const api = RebillyAPI({apiKey: 'secret-api-key'});
 ```

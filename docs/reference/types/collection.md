@@ -37,7 +37,7 @@ const customers = await api.customers.getAll({limit: 50, offset: 25});
 We can see the limit is equal to the value requested:
 ```js
 console.log(customers.limit); // 50
-//the item count is also the same
+// the item count is also the same
 console.log(customers.items.length); // 50
 ```
 
@@ -48,7 +48,7 @@ console.log(customers.response.status);
 
 We can loop through the customers and check their ID:
 ```js
-//each `customer` is a Member instance with fields
+// each `customer` is a Member instance with fields
 customers.items.forEach(customer => console.log(customer.fields.id))
 ```
 
