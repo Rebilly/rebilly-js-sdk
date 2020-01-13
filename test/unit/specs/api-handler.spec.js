@@ -37,6 +37,25 @@ describe('when I use an API handler', () => {
         expect(options.jwt).to.equal(token);
     });
 
+    it('should have Organization-Id header if set it up', () => {
+        const options = {
+            version: 1,
+            apiEndpoints: {live: '', sandbox: ''},
+            apiKey: '000000000',
+            apiVersion: 'v1',
+            isSandbox: false,
+            requestTimeout: 1,
+            jwt: null,
+            organizationId: 'org-id-123'
+        };
+        const handler = createApiTestHandler({options});
+        expect(handler.getInstance().defaults.headers['Organization-Id']).to.equal('org-id-123');
+    });
+
+    it('should not have Organization-Id header if it not set', () => {
+        expect(apiHandler.getInstance().defaults.headers['Organization-Id']).to.be.an('undefined');
+    });
+
     it('should allow the proxy agent to be set', () => {
         const params = {host: 'testHost', port: 888, auth: {key: 'foo', value: 'bar'}};
         apiHandler.setProxyAgent(params);
