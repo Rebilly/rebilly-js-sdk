@@ -28,7 +28,7 @@ Visit the [API Reference](https://api-reference.rebilly.com/) for detailed docum
 ## Usage
 To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
 If you want to perform a request to a specific organization in which you have access you need to provide an organization identifier. You could see all organizations memberships in the response from `/v2.1/profile` entry point.
-You can find organization ID in `memberships[0]organization.id` in the next response sample:
+You can find organization ID in `memberships[0].organization.id` in the next response sample:
 ```json
 {
     "id": "11111111-1111-1111-1111-111111111111",
