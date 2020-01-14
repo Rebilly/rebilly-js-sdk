@@ -26,7 +26,6 @@ import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import NotesResource from './notes-resource';
-import CompaniesResource from './companies-resource';
 import PaymentCardsResource from './payment-cards-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentTokensResource from './payment-tokens-resource';
@@ -82,7 +81,6 @@ const Resources = {
     ListsResource,
     MembershipsResource,
     NotesResource,
-    CompaniesResource,
     PaymentCardsResource,
     PaymentCardsBankNamesResource,
     PaymentTokensResource,
