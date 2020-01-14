@@ -51,6 +51,7 @@ import ThreeDSecureResource from './three-d-secure-resource';
 import UsersResource from './users-resource';
 import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
+import OrganizationsResource from './organizations-resource';
 
 const Resources = {
     AccountResource,
@@ -105,7 +106,8 @@ const Resources = {
     ThreeDSecureResource,
     UsersResource,
     WebhooksResource,
-    WebsitesResource
+    WebsitesResource,
+    OrganizationsResource,
 };
 
 export default Resources;
