@@ -27,6 +27,32 @@ Visit the [API Reference](https://api-reference.rebilly.com/) for detailed docum
 
 ## Usage
 To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
+If you want to perform a request to a specific organization in which you have access you need to provide an organization identifier. You could see all organizations memberships in the response from `/v2.1/profile` entry point.
+You can find organization ID in `memberships[0]organization.id` in the next response sample:
+```json
+{
+    "id": "11111111-1111-1111-1111-111111111111",
+    "firstName": "User",
+    "lastName": "Name",
+    "email": "user@domain.com",
+    "memberships": [
+        {
+            "organization": {
+                "id": "11111111-1111-1111-1111-111111111111",
+                "name": "Organization Name",
+                "createdTime": "2019-09-04T03:29:58+00:00"
+            },
+            "user": {
+                "id": "11111111-1111-1111-1111-111111111111",
+                "name": "User Name",
+                "email": "user@domain.com"
+            },
+            ...
+        }
+    ],
+    ...
+}
+```
 
 > Every resource method returns a chainable Promise.
 
@@ -34,7 +60,7 @@ ES7 usage example:
 ```js
 import RebillyAPI from 'rebilly-js-sdk';
 
-const api = RebillyAPI({apiKey: 'secret-api-key'});
+const api = RebillyAPI({apiKey: 'secret-api-key', organizationId: '11111111-1111-1111-1111-111111111111'});
 
 try {
     const transactions = await api.transactions.getAll();
@@ -49,7 +75,7 @@ try {
 ES5 usage example:
 ```js
 var RebillyAPI = require('rebilly-js-sdk').default;
-var api = RebillyAPI({apiKey: 'secret-api-key'});
+var api = RebillyAPI({apiKey: 'secret-api-key', organizationId: '11111111-1111-1111-1111-111111111111'});
 
 api.transactions.getAll()
     .then(function(transactions) {
