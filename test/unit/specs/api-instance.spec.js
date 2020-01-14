@@ -62,6 +62,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.users).to.be.an('object');
         expect(apiInstance.webhooks).to.be.an('object');
         expect(apiInstance.websites).to.be.an('object');
+        expect(apiInstance.segments).to.be.an('object');
     });
     it('should expose helper methods', () => {
         expect(apiInstance.setSessionToken).to.be.a('function');
