@@ -41,7 +41,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.layouts).to.be.an('object');
         expect(apiInstance.lists).to.be.an('object');
         expect(apiInstance.notes).to.be.an('object');
-        expect(apiInstance.companies).to.be.an('object');
+        expect(apiInstance.organizations).to.be.an('object');
         expect(apiInstance.paymentCards).to.be.an('object');
         expect(apiInstance.paymentTokens).to.be.an('object');
         expect(apiInstance.paypalAccounts).to.be.an('object');
