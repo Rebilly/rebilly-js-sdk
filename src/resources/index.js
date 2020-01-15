@@ -26,7 +26,6 @@ import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import NotesResource from './notes-resource';
-import CompaniesResource from './companies-resource';
 import PaymentCardsResource from './payment-cards-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentTokensResource from './payment-tokens-resource';
@@ -51,6 +50,7 @@ import ThreeDSecureResource from './three-d-secure-resource';
 import UsersResource from './users-resource';
 import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
+import OrganizationsResource from './organizations-resource';
 
 const Resources = {
     AccountResource,
@@ -81,7 +81,6 @@ const Resources = {
     ListsResource,
     MembershipsResource,
     NotesResource,
-    CompaniesResource,
     PaymentCardsResource,
     PaymentCardsBankNamesResource,
     PaymentTokensResource,
@@ -105,7 +104,8 @@ const Resources = {
     ThreeDSecureResource,
     UsersResource,
     WebhooksResource,
-    WebsitesResource
+    WebsitesResource,
+    OrganizationsResource,
 };
 
 export default Resources;
