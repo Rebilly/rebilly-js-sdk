@@ -75,7 +75,7 @@ export default function createApiHandler({options}) {
     }
 
     /**
-     * Generate the request headers at instantiation with the `REB-APIKEY` if present.
+     * Generate the request headers at instantiation with the `REB-APIKEY` and/or `Organization-Id` if present.
      * @returns {Object}
      */
     function getRequestHeaders() {
@@ -84,6 +84,9 @@ export default function createApiHandler({options}) {
         };
         if (options.apiKey) {
             headers['REB-APIKEY'] = options.apiKey;
+        }
+        if (options.organizationId) {
+            headers['Organization-Id'] = options.organizationId;
         }
         return headers;
     }

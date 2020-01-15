@@ -27,6 +27,30 @@ Visit the [API Reference](https://api-reference.rebilly.com/) for detailed docum
 
 ## Usage
 To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
+If you want to perform a request to a specific organization in which you have access you need to provide an organization identifier. You could see all organizations memberships in the response from `/v2.1/profile` entry point.
+You can find organization ID in `memberships[0].organization.id` in the next short response sample (real response will have more information):
+```json
+{
+    "id": "11111111-1111-1111-1111-111111111111",
+    "firstName": "User",
+    "lastName": "Name",
+    "email": "user@domain.com",
+    "memberships": [
+        {
+            "organization": {
+                "id": "11111111-1111-1111-1111-111111111111",
+                "name": "Organization Name",
+                "createdTime": "2019-09-04T03:29:58+00:00"
+            },
+            "user": {
+                "id": "11111111-1111-1111-1111-111111111111",
+                "name": "User Name",
+                "email": "user@domain.com"
+            }
+        }
+    ]
+}
+```
 
 > Every resource method returns a chainable Promise.
 
@@ -34,7 +58,7 @@ ES7 usage example:
 ```js
 import RebillyAPI from 'rebilly-js-sdk';
 
-const api = RebillyAPI({apiKey: 'secret-api-key'});
+const api = RebillyAPI({apiKey: 'secret-api-key', organizationId: '11111111-1111-1111-1111-111111111111'});
 
 try {
     const transactions = await api.transactions.getAll();
@@ -49,7 +73,7 @@ try {
 ES5 usage example:
 ```js
 var RebillyAPI = require('rebilly-js-sdk').default;
-var api = RebillyAPI({apiKey: 'secret-api-key'});
+var api = RebillyAPI({apiKey: 'secret-api-key', organizationId: '11111111-1111-1111-1111-111111111111'});
 
 api.transactions.getAll()
     .then(function(transactions) {
@@ -95,6 +119,7 @@ const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000}
 | `sandbox` | `boolean` | Flag used to enable sandbox mode for the instance. This allows you to run requests without processing real transactions on your account. Defaults to `false`. |
 | `timeout` | `integer` | Define the timeout in milliseconds for API requests. Defaults to `6000`.|
 | `version` | `string` | Define the version of the API to use. Defaults to `v2.1`. This configuration does not apply to `RebillyExperimentalAPI`. |
+| `organizationId` | `string` | Your organization identifier in scope of which need to perform request (if not specified, the default organization will be used). |
 
 ### Collections and Members
 All resource calls except CSV or PDF downloads return either Members or Collections. Members are returned by all methods other than `getAll`, which returns a Collection. A collection contains a list of members. Both types are **immutable** (frozen) objects that can return a JSON representation of their member properties.
