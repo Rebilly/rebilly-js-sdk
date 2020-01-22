@@ -17,16 +17,23 @@ const baseTimeoutMs = 6000;
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param timeout {number} timeout in milliseconds
  * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
+ * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
  * @returns {{account, apiKeys, bankAccounts, blacklists, checkoutPages, coupons, customers, customerAuthentication, customEvents, customFields, credentialHashes, disputes, events, files, gatewayAccounts, invoices, layouts, lists, notes, organizations, paymentCards, paymentCardsBankNames, paymentTokens, paypalAccounts, plans, previews, products, profile, search, segments, sessions, shippingZones, status, subscriptions, tracking, transactions, threeDSecure, users, webhooks, websites, addRequestInterceptor, removeRequestInterceptor, addResponseInterceptor, removeResponseInterceptor, setTimeout, setProxyAgent, setSessionToken, setEndpoints, getCancellationToken}}
  * @constructor
  */
-export default function RebillyAPI({apiKey = null, version = baseApiVersion, sandbox = false, timeout = baseTimeoutMs, organizationId = null} = {}) {
+export default function RebillyAPI({apiKey = null, version = baseApiVersion, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+    if(!urls.live || !urls.sandbox) {
+        throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
+    }
+    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+        throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
+    }
     /**
      * Internal configuration options
-     * @type {{apiKey: string|null, apiVersion: string, isSandbox: boolean, requestTimeout: number, jwt: string|null}}
+     * @type {{apiEndpoints: {live: string, sandbox: string}, apiKey: string|null, apiVersion: string, isSandbox: boolean, requestTimeout: number, jwt: string|null}}
      */
     const options = {
-        apiEndpoints: baseEndpoints,
+        apiEndpoints: urls,
         apiKey: apiKey,
         apiVersion: version,
         isSandbox: sandbox,
@@ -45,16 +52,23 @@ export default function RebillyAPI({apiKey = null, version = baseApiVersion, san
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param timeout {number} timeout in milliseconds
  * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
+ * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
  * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
  * @constructor
  */
-function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null} = {}) {
+function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+    if(!urls.live || !urls.sandbox) {
+        throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
+    }
+    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+        throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
+    }
     /**
      * Internal configuration options
      * @type {{apiEndpoints: {live: string, sandbox: string}, apiKey: *, isSandbox: boolean, requestTimeout: number, jwt: null}}
      */
     const options = {
-        apiEndpoints: baseEndpoints,
+        apiEndpoints: urls,
         apiKey: apiKey,
         apiVersion: 'experimental',
         isSandbox: sandbox,
