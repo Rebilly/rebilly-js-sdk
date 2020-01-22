@@ -120,6 +120,7 @@ const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000}
 | `timeout` | `integer` | Define the timeout in milliseconds for API requests. Defaults to `6000`.|
 | `version` | `string` | Define the version of the API to use. Defaults to `v2.1`. This configuration does not apply to `RebillyExperimentalAPI`. |
 | `organizationId` | `string` | Your organization identifier in scope of which need to perform request (if not specified, the default organization will be used). |
+| `urls` | `object` | Define the root urls for `live` and `sandbox` mode. Object must have a key for each mode that have strings for values. Defaults to `{live: 'https://api.rebilly.com', sandbox: 'https://api-sandbox.rebilly.com'}`|
 
 ### Collections and Members
 All resource calls except CSV or PDF downloads return either Members or Collections. Members are returned by all methods other than `getAll`, which returns a Collection. A collection contains a list of members. Both types are **immutable** (frozen) objects that can return a JSON representation of their member properties.
