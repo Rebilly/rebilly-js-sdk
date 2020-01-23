@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function CustomersResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,7 +10,8 @@ export default function CustomersResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria
+                criteria,
+                fields
             };
             return apiHandler.getAll(`customers`, params);
         },
@@ -31,8 +32,8 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.download(`customers`, config);
         },
 
-        get({id, expand = null}) {
-            const params = {expand};
+        get({id, expand = null, fields = null}) {
+            const params = {expand, fields};
             return apiHandler.get(`customers/${id}`, params);
         },
 
