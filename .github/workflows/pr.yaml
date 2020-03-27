@@ -4,23 +4,17 @@ on: pull_request
 
 jobs:
   frontend-unit-tests:
-    name: Run Unit Tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node: [ '12', '10', '8' ]
 
+    name: Tests on node ${{ matrix.node }}
     steps:
-      - name: Checkout Rebilly/rebilly-js-sdk
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - name: Setup node
         uses: actions/setup-node@v1
         with:
-          - node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
-
-      - name: Run unit tests
-        run: yarn run unit
+          node-version: ${{ matrix.node }}
+      - run: yarn install --frozen-lockfile --non-interactive
+      - run: yarn run unit
