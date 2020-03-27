@@ -1,0 +1,18 @@
+name: Build & Test
+
+on: pull_request
+
+jobs:
+  frontend-unit-tests:
+    name: Run Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Rebilly/rebilly-js-sdk
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive
+
+      - name: Run unit tests
+        run: yarn run unit
