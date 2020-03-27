@@ -6,10 +6,18 @@ jobs:
   frontend-unit-tests:
     name: Run Unit Tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12', '10', '8' ]
 
     steps:
       - name: Checkout Rebilly/rebilly-js-sdk
         uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          - node-version: ${{ matrix.node }}
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --non-interactive
