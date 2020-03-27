@@ -9,6 +9,7 @@ import ExperimentalResources from './resources/experimental';
 export default function createApiInstance({apiHandler}) {
     return {
         account: Resources.AccountResource({apiHandler}),
+        aml: Resources.AmlResource({apiHandler}),
         apiKeys: Resources.ApiKeysResource({apiHandler}),
         bankAccounts: Resources.BankAccountsResource({apiHandler}),
         blacklists: Resources.BlacklistsResource({apiHandler}),

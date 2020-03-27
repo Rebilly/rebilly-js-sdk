@@ -1,4 +1,5 @@
 import AccountResource from './account-resource';
+import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
 import BlacklistsResource from './blacklists-resource';
@@ -54,6 +55,7 @@ import OrganizationsResource from './organizations-resource';
 
 const Resources = {
     AccountResource,
+    AmlResource,
     ApiKeysResource,
     BankAccountsResource,
     BlacklistsResource,
