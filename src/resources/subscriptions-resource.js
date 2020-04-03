@@ -113,5 +113,8 @@ export default function SubscriptionsResource({apiHandler}) {
         createTimelineComment({id, data}) {
             return apiHandler.create(`subscriptions/${id}/timeline`, '', data);
         },
+        createInterimInvoice({id, data = {}}) {
+            return apiHandler.post(`subscriptions/${id}/interim-invoice`, '', data);
+        }
     };
 };
