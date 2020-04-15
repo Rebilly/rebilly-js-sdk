@@ -52,7 +52,6 @@ nav:
       - Bank Accounts: reference/resources/bank-accounts.md
       - Blacklists: reference/resources/blacklists.md
       - Checkout Pages: reference/resources/checkout-pages.md
-      - Contacts: reference/resources/contacts.md
       - Coupons: reference/resources/coupons.md
       - Credential Hashes: reference/resources/credential-hashes.md
       - Custom Events: reference/resources/custom-events.md
