@@ -67,6 +67,32 @@ export default function GatewayAccountsResource({apiHandler}) {
             return apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
 
+        getAllVolumeLimits({id, limit = null, offset = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                filter,
+            };
+            return apiHandler.getAll(`gateway-accounts/${id}/limits`, params);
+        },
+
+        getVolumeLimit({id, volumeLimitId}) {
+            return apiHandler.get(`gateway-accounts/${id}/limits/${volumeLimitId}`);
+        },
+
+        createVolumeLimit({id, data}) {
+            // volumeLimitId cannot be specified on create, it is generated automatically
+            return apiHandler.create(`gateway-accounts/${id}/limits`, '', data);
+        },
+
+        updateVolumeLimit({id, volumeLimitId, data}) {
+            return apiHandler.put(`gateway-accounts/${id}/limits/${volumeLimitId}`, data);
+        },
+
+        deleteVolumeLimit({id, volumeLimitId}) {
+            return apiHandler.delete(`gateway-accounts/${id}/limits/${volumeLimitId}`);
+        },
+
         getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
