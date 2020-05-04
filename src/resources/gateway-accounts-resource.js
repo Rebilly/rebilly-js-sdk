@@ -81,7 +81,7 @@ export default function GatewayAccountsResource({apiHandler}) {
         },
 
         createVolumeLimit({id, data}) {
-            // Id for a volume limit cannot be set, is read only.
+            // volumeLimitId cannot be specified on create, it is generated automatically
             return apiHandler.create(`gateway-accounts/${id}/limits`, '', data);
         },
 
