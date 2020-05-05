@@ -80,9 +80,8 @@ export default function GatewayAccountsResource({apiHandler}) {
             return apiHandler.get(`gateway-accounts/${id}/limits/${volumeLimitId}`);
         },
 
-        createVolumeLimit({id, data}) {
-            // volumeLimitId cannot be specified on create, it is generated automatically
-            return apiHandler.create(`gateway-accounts/${id}/limits`, '', data);
+        createVolumeLimit({id, volumeLimitId, data}) {
+            return apiHandler.put(`gateway-accounts/${id}/limits/${volumeLimitId}`, data);
         },
 
         updateVolumeLimit({id, volumeLimitId, data}) {
