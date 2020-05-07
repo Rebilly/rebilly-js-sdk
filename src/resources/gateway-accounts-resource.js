@@ -67,13 +67,8 @@ export default function GatewayAccountsResource({apiHandler}) {
             return apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
 
-        getAllVolumeLimits({id, limit = null, offset = null, filter = null} = {}) {
-            const params = {
-                limit,
-                offset,
-                filter,
-            };
-            return apiHandler.getAll(`gateway-accounts/${id}/limits`, params);
+        getAllVolumeLimits({id}) {
+            return apiHandler.getAll(`gateway-accounts/${id}/limits`);
         },
 
         getVolumeLimit({id, volumeLimitId}) {
