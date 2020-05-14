@@ -114,7 +114,7 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.create(`subscriptions/${id}/timeline`, '', data);
         },
         createInterimInvoice({id, data = {}}) {
-            return apiHandler.post(`subscriptions/${id}/interim-invoice`, '', data);
+            return apiHandler.post(`subscriptions/${id}/interim-invoice`, data);
         }
     };
 };
