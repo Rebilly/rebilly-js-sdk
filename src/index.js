@@ -83,7 +83,7 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
 
 /**
  * Create an instance of the experimental Rebilly API
- * @param apiKey {string} private API key; if provided will be used for all requests
+ * @param apiKey {string} publishable API key; if provided will be used for all requests
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param version {string} specify a different version of the API to use than the current stable release
  * @param timeout {number} timeout in milliseconds
