@@ -24,7 +24,7 @@ export default StorefrontResources;
 
 /** TODO: Update the README.md with the follow once API is ready for public consumption.
  ## Rebilly Storefront API
- The Rebilly Storefront APU is available as a tertiary API within the library. Unlike the main API or the Experimental API, this api allows customers to query information from Rebilly.
+ The Rebilly Storefront API is available as a tertiary API within the library. Unlike the main API or the Experimental API, this API allows customers to query information from Rebilly.
  Mostly used for customer self-service applications.
 
  ```js
