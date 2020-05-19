@@ -1,5 +1,6 @@
 import Resources from './resources';
 import ExperimentalResources from './resources/experimental';
+import StorefrontResources from './resources/storefront';
 
 /**
  * Create an API instance using the provided API handler.
@@ -100,3 +101,28 @@ export function createExperimentalApiInstance({apiHandler}) {
         getCancellationToken: apiHandler.getCancellationToken
     };
 }
+
+export function createStorefrontApiInstance({apiHandler}) {
+    return {
+        account: StorefrontResources.AccountResource({apiHandler}),
+        authorization: StorefrontResources.AuthorizationResource({apiHandler}),
+        invoices: StorefrontResources.InvoicesResource({apiHandler}),
+        kycDocuments: StorefrontResources.KycDocumentsResource({apiHandler}),
+        paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
+        plans: StorefrontResources.PlansResource({apiHandler}),
+        products: StorefrontResources.ProductResource({apiHandler}),
+        transactions: StorefrontResources.TransactionsResource({apiHandler}),
+        website: StorefrontResources.WebsiteResource({apihandler}),
+
+        //expose apiHandler methods to the API instance
+        addRequestInterceptor: apiHandler.addRequestInterceptor,
+        removeRequestInterceptor: apiHandler.removeRequestInterceptor,
+        addResponseInterceptor: apiHandler.addResponseInterceptor,
+        removeResponseInterceptor: apiHandler.removeResponseInterceptor,
+        setTimeout: apiHandler.setTimeout,
+        setProxyAgent: apiHandler.setProxyAgent,
+        setSessionToken: apiHandler.setSessionToken,
+        setEndpoints: apiHandler.setEndpoints,
+        getCancellationToken: apiHandler.getCancellationToken
+    }
+};

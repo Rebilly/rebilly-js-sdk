@@ -1,5 +1,5 @@
 import createApiHandler from './create-api-handler';
-import createApiInstance, {createExperimentalApiInstance} from './create-api-instance';
+import createApiInstance, {createExperimentalApiInstance, createStorefrontApiInstance} from './create-api-instance';
 import Errors from './errors';
 import cancellation from './cancellation';
 
@@ -81,4 +81,40 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
     return createExperimentalApiInstance({apiHandler});
 }
 
-export {Errors as RebillyErrors, RebillyExperimentalAPI, cancellation};
+/**
+ * Create an instance of the experimental Rebilly API
+ * @param apiKey {string} private API key; if provided will be used for all requests
+ * @param sandbox {boolean} whether to use the sandbox endpoint or the live
+ * @param version {string} specify a different version of the API to use than the current stable release
+ * @param timeout {number} timeout in milliseconds
+ * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
+ * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
+ * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
+ * @constructor
+ */
+function RebillyStorefrontAPI({apiKey = null, sandbox = false, version = 'v1', timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+    if(!urls.live || !urls.sandbox) {
+        throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
+    }
+    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+        throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
+    }
+    /**
+     * Internal configuration options
+     * @type {{apiEndpoints: {live: string, sandbox: string}, apiKey: *, isSandbox: boolean, requestTimeout: number, jwt: null}}
+     */
+    const options = {
+        apiEndpoints: urls,
+        apiKey: apiKey,
+        apiVersion: `storefront/${version}`,
+        isSandbox: sandbox,
+        requestTimeout: timeout,
+        jwt: null,
+        organizationId: organizationId,
+    };
+
+    const apiHandler = createApiHandler({options});
+    return createStorefrontApiInstance({apiHandler});
+}
+
+export {Errors as RebillyErrors, RebillyExperimentalAPI, RebillyStorefrontAPI, cancellation};
