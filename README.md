@@ -1,15 +1,15 @@
-# Rebilly JS SDK Library 
+# Rebilly JS SDK library 
 The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.
 
 [![npm](https://img.shields.io/npm/v/rebilly-js-sdk.svg)](https://www.npmjs.com/package/rebilly-js-sdk)
 [![Build Status](https://travis-ci.org/Rebilly/rebilly-js-sdk.svg?branch=master)](https://travis-ci.org/Rebilly/rebilly-js-sdk)
 [![Try rebilly-js-sdk on RunKit](https://badge.runkitcdn.com/rebilly-js-sdk.svg)](https://npm.runkit.com/rebilly-js-sdk)
 
-### PCI Compliance Note
+### PCI Compliance note
 If you need to handle raw payment card data, you should use [Rebilly FramePay](https://rebilly.github.io/framepay-docs/) to generate tokens for your server-side logic.
 
-### Rebilly API Definition
-The library is a semantic representation of the [Rebilly API definition](https://api-reference.rebilly.com/).
+### Rebilly API definition
+This library is a semantic representation of the [Rebilly API definition](https://api-reference.rebilly.com/).
 
 ## Installation
 Install the latest version of the SDK with [Yarn](https://yarnpkg.com/en/):
@@ -86,13 +86,13 @@ api.transactions.getAll()
     });
 ```
 
-### Error Handling
+### Error handling
 The SDK returns several different types of errors based on the HTTP response, ranging from 401 to 422. They are exposed and can be imported:
 ```js
 import {RebillyErrors} from 'rebilly-js-sdk';
 ```
 
-#### Error Types
+#### Error types
 | Type | Status Code | Description |
 |---|---|---|
 | `RebillyRequestError` | `-` | Generic error when no response is available. |
@@ -112,7 +112,7 @@ Example:
 const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
 ```
 
-#### Configuration Options
+#### Configuration options
 | Option | Type | Description |
 |---|---|---|
 | `apiKey` | `string` | Your secret API key. To be used only for server-side integration. See [Developer > API Keys](https://app.rebilly.com/api-keys). |
@@ -122,7 +122,7 @@ const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000}
 | `organizationId` | `string` | Your organization identifier in scope of which need to perform request (if not specified, the default organization will be used). |
 | `urls` | `object` | Define the root urls for `live` and `sandbox` mode. Object must have a key for each mode that have strings for values. Defaults to `{live: 'https://api.rebilly.com', sandbox: 'https://api-sandbox.rebilly.com'}`|
 
-### Collections and Members
+### Collections, members, and files
 All resource calls except CSV or PDF downloads return either Members or Collections. Members are returned by all methods other than `getAll`, which returns a Collection. A collection contains a list of members. Both types are **immutable** (frozen) objects that can return a JSON representation of their member properties.
 
 Example:
@@ -163,7 +163,7 @@ import RebillyAPI, {RebillyExperimentalAPI} from 'rebilly-js-sdk';
 const experimentalAPI = RebillyExperimentalAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
 ```
 
-## Development Commands
+## Development
 
 Build development `dist` folder without sourcemap
 ```
