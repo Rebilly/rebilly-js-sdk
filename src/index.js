@@ -92,7 +92,7 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
  * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
  * @constructor
  */
-function RebillyStorefrontAPI({apiKey = null, sandbox = false, version = 'v1', timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, version = 'v1', timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
@@ -105,15 +105,18 @@ function RebillyStorefrontAPI({apiKey = null, sandbox = false, version = 'v1', t
      */
     const options = {
         apiEndpoints: urls,
-        apiKey: apiKey,
+        publishableKey: publishableKey,
+        jwt: jwt,
         apiVersion: `storefront/${version}`,
         isSandbox: sandbox,
         requestTimeout: timeout,
-        jwt: null,
         organizationId: organizationId,
     };
 
     const apiHandler = createApiHandler({options});
+
+    apiHandler.setSessionToken(options.jwt);
+
     return createStorefrontApiInstance({apiHandler});
 }
 

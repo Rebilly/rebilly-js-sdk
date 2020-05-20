@@ -122,6 +122,7 @@ export function createStorefrontApiInstance({apiHandler}) {
         setTimeout: apiHandler.setTimeout,
         setProxyAgent: apiHandler.setProxyAgent,
         setSessionToken: apiHandler.setSessionToken,
+        setPublishableKey: apiHandler.setPublishableKey,
         setEndpoints: apiHandler.setEndpoints,
         getCancellationToken: apiHandler.getCancellationToken
     }

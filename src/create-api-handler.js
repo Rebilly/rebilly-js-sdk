@@ -32,7 +32,7 @@ export const isInterceptorType = (type) => {
 /**
  * Creates an API handler for the current instance with the provided options.
  * @param options
- * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
+ * @returns {{addRequestInterceptor: addRequestInterceptor, removeRequestInterceptor: removeRequestInterceptor, addResponseInterceptor: addResponseInterceptor, removeResponseInterceptor: removeResponseInterceptor, setTimeout: setTimeout, setProxyAgent: setProxyAgent, setSessionToken: setSessionToken, setPublishableKey: setPublishableKey, setEndpoints: setEndpoints, getCancellationToken: getCancellationToken, get: get, getAll: getAll, post: post, put: put, patch: patch, delete: del, create: create}}
  */
 export default function createApiHandler({options}) {
     const instance = createInstance();
@@ -116,13 +116,20 @@ export default function createApiHandler({options}) {
      * Use a JWT session token to identify API request. This removes the private API key header if present.
      * @param token string
      */
-    function setSessionToken(token) {
+    function setSessionToken(token = options.jwt) {
         const headers = cloneInstanceHeaders();
         options.apiKey = null;
         options.jwt = token;
         delete headers.common['REB-APIKEY'];
         headers.common['Authorization'] = `Bearer ${token}`;
         instance.defaults.headers = headers;
+    }
+
+    function setPublishableKey(key = options.publishableKey) {
+      const headers = cloneInstanceHeaders();
+      options.publishableKey = key;
+      headers.common['Authorization'] = `${key}`;
+      instance.defaults.headers = headers;
     }
 
     /**
@@ -487,6 +494,7 @@ export default function createApiHandler({options}) {
         setTimeout,
         setProxyAgent,
         setSessionToken,
+        setPublishableKey,
         setEndpoints,
         get,
         getAll,
