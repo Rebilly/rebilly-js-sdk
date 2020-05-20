@@ -112,7 +112,7 @@ export function createStorefrontApiInstance({apiHandler}) {
         plans: StorefrontResources.PlansResource({apiHandler}),
         products: StorefrontResources.ProductResource({apiHandler}),
         transactions: StorefrontResources.TransactionsResource({apiHandler}),
-        website: StorefrontResources.WebsiteResource({apihandler}),
+        website: StorefrontResources.WebsiteResource({apiHandler}),
 
         //expose apiHandler methods to the API instance
         addRequestInterceptor: apiHandler.addRequestInterceptor,
