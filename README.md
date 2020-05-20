@@ -11,7 +11,11 @@ If you need to handle raw payment card data, you should use [Rebilly FramePay](h
 ### Rebilly API definition
 This library is a semantic representation of the [Rebilly API definition](https://api-reference.rebilly.com/).
 
-## Installation
+The definition includes SDK examples for each API operation, listed under *Request samples*.
+
+## Getting started
+
+### Installation
 Install the latest version of the SDK with [Yarn](https://yarnpkg.com/en/):
 ```
 yarn add rebilly-js-sdk
@@ -22,13 +26,14 @@ Or using NPM:
 npm install rebilly-js-sdk --save
 ```
 
-## Documentation
-Visit the [API Reference](https://api-reference.rebilly.com/) for detailed documentation.
-
-## Usage
+### Finding your API key
 To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
-If you want to perform a request to a specific organization in which you have access you need to provide an organization identifier. You could see all organizations memberships in the response from `/v2.1/profile` entry point.
-You can find organization ID in `memberships[0].organization.id` in the next short response sample (real response will have more information):
+
+### Finding your organization ID (optional)
+If you want to perform a request to a specific organization (which you have access to), you need to provide an organization identifier. 
+You can see all organization memberships by making a `GET` request to [the profile endpoint](https://user-api-docs.rebilly.com/tag/Profile#operation/GetProfile)
+
+In the below sample response, your organization ID is `memberships[0].organization.id`
 ```json
 {
     "id": "11111111-1111-1111-1111-111111111111",
@@ -52,9 +57,22 @@ You can find organization ID in `memberships[0].organization.id` in the next sho
 }
 ```
 
-> Every resource method returns a chainable Promise.
+## Usage
+Rebilly offers several APIs, each with a specific purpose. 
+In order to perform operations on an API you must instantiate the corresponding API client, as detailed below.
 
-ES7 usage example:
+Performing API operations is identical across all API clients. 
+Every resource method returns a chainable Promise.
+
+### RebillyAPI
+This is the main API client. Often you will only need this client.
+It includes resources for the main [Rebilly API](https://api-reference.rebilly.com/) and the [Rebilly User API](https://user-api-docs.rebilly.com/).
+
+#### Typical usage
+Import the `RebillyAPI` method and initialize it with your API key (and optionally organizationId)
+The full list of configuration options can be found [here](#configuration-options)
+
+ES7 example:
 ```js
 import RebillyAPI from 'rebilly-js-sdk';
 
@@ -70,7 +88,7 @@ try {
 }
 ```
 
-ES5 usage example:
+ES5 example:
 ```js
 var RebillyAPI = require('rebilly-js-sdk').default;
 var api = RebillyAPI({apiKey: 'secret-api-key', organizationId: '11111111-1111-1111-1111-111111111111'});
@@ -85,6 +103,70 @@ api.transactions.getAll()
         console.error(err.name);
     });
 ```
+
+#### Usage with JWT
+You can also authenticate the API client with Rebilly using a JWT. 
+To do this, initialize the API client without an API key. 
+You can then get a JWT by providing your account email and password to [the `signin` endpoint](https://user-api-docs.rebilly.com/tag/JWT-Session#operation/PostSigninRequest).
+
+Example:
+```js
+// instantiate an unauthorized API client
+const api = RebillyAPI();
+
+// build the sign in payload
+const payload = {data: {email, password, expiredTime}};
+
+// the 'signIn' method does not require API authorization to complete
+const response = await api.account.signIn(payload);
+
+// set the session token for future API requests that require
+// an authorization using the response fields
+api.setSessionToken(response.fields.token);
+
+// this request will be authorized using the token
+const customers = await api.customers.getAll();
+```
+
+### RebillyExperimentalAPI
+This client includes resources for the experimental [Rebilly Reports API](https://reports-api-docs.rebilly.com/).
+Unlike the main API, it can introduce backward incompatible changes to the API specification.
+It is used mainly for reporting and requests with heavy computational loads like dashboard statistics.
+
+#### Typical usage
+Import the `RebillyExperimentalAPI` method and initialize it with your API key (and optionally organizationId)
+The full list of configuration options can be found [here](#configuration-options)
+
+```js
+import {RebillyExperimentalAPI} from 'rebilly-js-sdk';
+
+const experimentalAPI = RebillyExperimentalAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
+```
+
+#### Usage with JWT
+This client can also be used with a JWT. 
+Just like the main client, initialize the API client without an API key. 
+However, in order to get a JWT you will need to use the sign in method from the main API client.
+
+Example:
+```js
+// instantiate main API client
+const api = RebillyAPI();
+
+// instantiate experimental API client
+const experimentalAPI = RebillyExperimentalAPI();
+
+// build the sign in payload
+const payload = {data: {email, password, expiredTime}};
+
+// use the main client's signIn method to get a JWT
+const response = await api.account.signIn(payload);
+
+// set the session token for the experimental client
+experimentalApi.setSessionToken(response.fields.token);
+```
+
+## Reference
 
 ### Error handling
 The SDK returns several different types of errors based on the HTTP response, ranging from 401 to 422. They are exposed and can be imported:
@@ -106,11 +188,6 @@ import {RebillyErrors} from 'rebilly-js-sdk';
 
 ### Configuration
 The library authentication can be provided by the `apiKey` or a session token (JWT). All instantiation parameters are *optional*.
-
-Example:
-```js
-const api = RebillyAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
-```
 
 #### Configuration options
 | Option | Type | Description |
@@ -154,14 +231,7 @@ A member is a single resource entity, e.g. a customer or a transaction. Each mem
 | `response` | The original response stripped down to the status code, status text and headers. `{status, statusText, headers}` |
 | `getJSON()` | Returns a JSON representation of the member fields that can be mutated. |
 
-## Rebilly Experimental API
-The Rebilly Experimental Reports API is available as a secondary API within the library. Unlike the main API, it can introduce backward incompatible changes to the API specification. It is used mainly for reporting and requests with heavy computational loads like dashboard statistics.
 
-```js
-import RebillyAPI, {RebillyExperimentalAPI} from 'rebilly-js-sdk';
-
-const experimentalAPI = RebillyExperimentalAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
-```
 
 ## Development
 
