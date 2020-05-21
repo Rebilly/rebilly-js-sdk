@@ -186,10 +186,13 @@ import {RebillyErrors} from 'rebilly-js-sdk';
 | `RebillyConflictError` | `409` | Requested operation triggered a conflict. |
 | `RebillyValidationError` | `422` | The request payload triggered a validation error (see error details). |
 
-### Configuration
-The library authentication can be provided by the `apiKey` or a session token (JWT). All instantiation parameters are *optional*.
+### Configuration options
+These are the configuration options available when instantiating an API client. 
+The library authentication can be provided by the `apiKey` or a session token (JWT). 
+All instantiation parameters are *optional*.
 
-#### Configuration options
+By default a client instance is always generated in the **Live** environment. The **Sandbox** mode is only recommended while developing your integration. 
+
 | Option | Type | Description |
 |---|---|---|
 | `apiKey` | `string` | Your secret API key. To be used only for server-side integration. See [Developer > API Keys](https://app.rebilly.com/api-keys). |
