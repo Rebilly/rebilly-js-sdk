@@ -57,12 +57,18 @@ Or using NPM:
 npm install rebilly-js-sdk --save
 ```
 
-### Finding your API key
-To create an instance, you need to provide your secret API key that is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
+### Finding your API key (optional)
+To use the JS SDK with Node, you will need to provide your secret API key. This is available in Rebilly in the [Automations > API Keys](https://app.rebilly.com/api-keys) menu.
+
+> **Node environment variables**
+> 
+> For added security your secret API key should be kept as a [Node environment variable](https://www.twilio.com/blog/2017/08/working-with-environment-variables-in-node-js.html).
 
 ### Finding your organization ID (optional)
 If you want to perform a request to a specific organization (which you have access to), you need to provide an organization identifier. 
 You can see all organization memberships by making a `GET` request to [the profile endpoint](https://user-api-docs.rebilly.com/tag/Profile#operation/GetProfile)
+
+If you do not provide an organization ID to the API client, the User's default organization will be used.
 
 In the below sample response, your organization ID is `memberships[0].organization.id`
 ```json
@@ -90,17 +96,19 @@ In the below sample response, your organization ID is `memberships[0].organizati
 
 ## Usage
 Rebilly offers several APIs, each with a specific purpose. 
-In order to perform operations on an API you must instantiate the corresponding API client, as detailed below.
-
+In order to perform operations on an API you must instantiate the corresponding API client, as detailed below. 
 Performing API operations is identical across all API clients. 
-Every resource method returns a chainable Promise.
+
+> **Promise-based**
+> 
+> Every resource method returns a chainable Promise.
 
 ### RebillyAPI
 This is the main API client. Often you will only need this client.
 It includes resources for the main [Rebilly API](https://api-reference.rebilly.com/) and the [Rebilly User API](https://user-api-docs.rebilly.com/).
 
-#### Usage with API key
-Import the `RebillyAPI` method and initialize it with your API key (and optionally organizationId)
+#### Usage with Node
+Import the `RebillyAPI` method and initialize it with your secret API key (and optionally organizationId)
 The full list of configuration options can be found [here](#configuration-options)
 
 ES7 example:
@@ -135,9 +143,11 @@ api.transactions.getAll()
     });
 ```
 
-#### Usage with JWT
-You can also authenticate the API client with Rebilly using a JWT. 
+#### Usage in browser
+You should never use a secret API key in the browser because it will be exposed by each API call in plain text. Instead a JWT session token should be provided to the API instance. 
+
 To do this, initialize the API client without an API key. 
+
 You can then get a JWT by providing your account email and password to [the `signin` endpoint](https://user-api-docs.rebilly.com/tag/JWT-Session#operation/PostSigninRequest).
 
 Example:
@@ -160,11 +170,15 @@ const customers = await api.customers.getAll();
 ```
 
 ### RebillyExperimentalAPI
-This client includes resources for the experimental [Rebilly Reports API](https://reports-api-docs.rebilly.com/).
-Unlike the main API, it can introduce backward incompatible changes to the API specification.
-It is used mainly for reporting and requests with heavy computational loads like dashboard statistics.
+This client includes resources for the experimental [Rebilly Reports API](https://reports-api-docs.rebilly.com/). It is used mainly for reporting and requests with heavy computational loads like dashboard statistics.
 
-#### Usage with API key
+> **Versionless API**
+>
+> The experimental API can introduce backward incompatible changes to the API specification. 
+> Unlike the main API, it does not support versioning. 
+
+
+#### Usage with Node
 Import the `RebillyExperimentalAPI` method and initialize it with your API key (and optionally organizationId)
 The full list of configuration options can be found [here](#configuration-options)
 
@@ -174,10 +188,13 @@ import {RebillyExperimentalAPI} from 'rebilly-js-sdk';
 const experimentalAPI = RebillyExperimentalAPI({apiKey: 'secret-api-key', sandbox: true, timeout: 10000});
 ```
 
-#### Usage with JWT
-This client can also be used with a JWT. 
-Just like the main client, initialize the API client without an API key. 
-However, in order to get a JWT you will need to use the sign in method from the main API client.
+#### Usage in browser
+You should never use a secret API key in the browser because it will be exposed by each API call in plain text. Instead a JWT session token should be provided to the API instance.
+
+To do this, initialize the API client without an API key. 
+
+In order to get a JWT you will need to use the sign in method from the **main** API client.
+The same JWT can be used for both RebillyAPI and RebillyExperimentalAPI.
 
 Example:
 ```js
@@ -218,11 +235,11 @@ import {RebillyErrors} from 'rebilly-js-sdk';
 | `RebillyValidationError` | `422` | The request payload triggered a validation error (see error details). |
 
 ### Configuration options
-These are the configuration options available when instantiating an API client. 
-The library authentication can be provided by the `apiKey` or a session token (JWT). 
-All instantiation parameters are *optional*.
+All client API configuration parameters are optional. However, a secret API key can only be provided at instantiation.
 
-By default a client instance is always generated in the **Live** environment. The **Sandbox** mode is only recommended while developing your integration. 
+> **API environments**
+>
+> By default a client instance is always generated in the **Live** environment. The **Sandbox** mode is only recommended while developing your integration. 
 
 | Option | Type | Description |
 |---|---|---|
@@ -240,6 +257,8 @@ All resource calls return either a File, Member, or Collection:
 * CSV or PDF downloads will return a `File`
 * All other methods return a `Member`
 
+> **Frozen Objects**
+>
 > Both Collections and Members are **immutable** (frozen). Attempting to modify either one directly will result in a `TypeError`. You can retrieve a plain JSON object for mutation using the `getJSON` method.
 
 #### Collection <small>`Type`</small>
@@ -275,8 +294,6 @@ The File type allows you to access the `arraybuffer` data from API requests that
 
 You can generate a binary file to download from the file content directly in the browser, or save it locally via the file system in Node.
 
-> See [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
-
 Each file instance exposes the same properties.
 
 | Name | Type | Description |
@@ -284,6 +301,8 @@ Each file instance exposes the same properties.
 | data | Object | An `arraybuffer` containing the file data returned by the request. |
 | response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
 | config | Object | An object literal with the original request query string parameters. |
+
+See [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 
 ## API client methods
 The API clients each expose the following configuration and utility methods you can use to customize your instance.
@@ -410,8 +429,9 @@ For example usage, see the `Usage with JWT` sections in each API client above.
 
 Update the endpoints URL for live, sandbox or both mode in the current API instance's active URL. This is useful for testing a different version of the API.
 
-!!! warning "Securing Communications"
-    When modifying the API endpoints always use **HTTPS** for a production environment. 
+> **Securing Communications**
+> 
+> When modifying the API endpoints always use **HTTPS** for a production environment. 
 
 **Example**
 
