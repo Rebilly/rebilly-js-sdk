@@ -202,38 +202,57 @@ By default a client instance is always generated in the **Live** environment. Th
 | `organizationId` | `string` | Your organization identifier in scope of which need to perform request (if not specified, the default organization will be used). |
 | `urls` | `object` | Define the root urls for `live` and `sandbox` mode. Object must have a key for each mode that have strings for values. Defaults to `{live: 'https://api.rebilly.com', sandbox: 'https://api-sandbox.rebilly.com'}`|
 
-### Collections, members, and files
-All resource calls except CSV or PDF downloads return either Members or Collections. Members are returned by all methods other than `getAll`, which returns a Collection. A collection contains a list of members. Both types are **immutable** (frozen) objects that can return a JSON representation of their member properties.
+### Collections, Members, and Files
+All resource calls return either a File, Member, or Collection:
 
-Example:
-```js
-const collection = await api.transactions.getAll();
-collection.items.forEach(member => {
-    //member.fields
-});
-```
+* `getAll` always returns a `Collection`, which contains a list of Members
+* CSV or PDF downloads will return a `File`
+* All other methods return a `Member`
 
-#### Collection
-A collection is a list of member entities, e.g. a list of customers or a list of transactions. Each collection exposes standard properties:
+> Both Collections and Members are **immutable** (frozen). Attempting to modify either one directly will result in a `TypeError`. You can retrieve a plain JSON object for mutation using the `getJSON` method.
 
-| Property | Description |
-|---|---|
-| `items<Member>` | An array of member entities. Each one represents a single resource entity. |
-| `limit` | An integer defining the amount of members requested at once. |
-| `offset` | A zero based integer defining the starting position for the requested members. |
-| `total` | An integer defining the total amount of members that exist regardless of the requested limit. |
-| `response` | The original response stripped down to the status code, status text and headers. `{status, statusText, headers}` |
-| `getJSON()` | Returns a JSON representation of the items that can be mutated. |
+#### Collection <small>`Type`</small>
+The Collection type represents a list of Members (e.g. a list of customers, a list of transactions).
 
-#### Member
-A member is a single resource entity, e.g. a customer or a transaction. Each member exposes standard properties:
+Each collection instance exposes the same properties.
 
-| Property | Description |
-|---|---|
-| `fields` | A list of fields within the member entity. For example the customer's `ID`. |
-| `response` | The original response stripped down to the status code, status text and headers. `{status, statusText, headers}` |
-| `getJSON()` | Returns a JSON representation of the member fields that can be mutated. |
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| items | Array&lt;Member&gt; | An array of member entities. See the [Member type][goto-member] for details. |
+| total | number | An integer defining the total amount of members that exist regardless of the requested limit. | 
+| limit | number | An integer defining the count of values returned by the API request. Reflects the `limit` value passed to the function which returned the Collection. |
+| offset | number | A zero-based index defining the starting position for the requested members. |
+| response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
+| getJSON | Function | Returns a plain mutable JSON object exposing the `items` of the current collection instance. Discards all other property. |
+| config | Object | An object literal with the original request query string parameters. |
 
+#### Member <small>`Type`</small>
+The Member type represents an instance of a single resource entity in Rebilly (e.g. one customer, one transaction).
+
+Each member instance exposes the same properties.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| fields | Object | An object literal with key/value pairs for each field returned by the API in the response. |
+| response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
+| getJSON | Function | Returns a plain mutable JSON object exposing the `fields` of the current member instance. Discards the `response` property. |
+| config | Object | An object literal with the original request query string parameters. |
+
+#### File <small>`Type`</small>
+
+The File type allows you to access the `arraybuffer` data from API requests that return files. The files can be either exported CSV data or generated invoice PDFs.
+
+You can generate a binary file to download from the file content directly in the browser, or save it locally via the file system in Node.
+
+> See [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
+
+Each file instance exposes the same properties.
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| data | Object | An `arraybuffer` containing the file data returned by the request. |
+| response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
+| config | Object | An object literal with the original request query string parameters. |
 
 
 ## Development
