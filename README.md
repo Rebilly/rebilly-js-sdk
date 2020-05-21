@@ -20,10 +20,10 @@ The definition includes SDK examples for each API operation, listed under *Reque
   - [Finding your organization ID (optional)](#finding-your-organization-id-optional)
 - [Usage](#usage)
   - [RebillyAPI](#rebillyapi)
-    - [Typical usage](#typical-usage)
+    - [Usage with API key](#usage-with-api-key)
     - [Usage with JWT](#usage-with-jwt)
   - [RebillyExperimentalAPI](#rebillyexperimentalapi)
-    - [Typical usage](#typical-usage-1)
+    - [Usage with API key](#usage-with-api-key-1)
     - [Usage with JWT](#usage-with-jwt-1)
 - [Reference](#reference)
   - [Error handling](#error-handling)
@@ -99,7 +99,7 @@ Every resource method returns a chainable Promise.
 This is the main API client. Often you will only need this client.
 It includes resources for the main [Rebilly API](https://api-reference.rebilly.com/) and the [Rebilly User API](https://user-api-docs.rebilly.com/).
 
-#### Typical usage
+#### Usage with API key
 Import the `RebillyAPI` method and initialize it with your API key (and optionally organizationId)
 The full list of configuration options can be found [here](#configuration-options)
 
@@ -164,7 +164,7 @@ This client includes resources for the experimental [Rebilly Reports API](https:
 Unlike the main API, it can introduce backward incompatible changes to the API specification.
 It is used mainly for reporting and requests with heavy computational loads like dashboard statistics.
 
-#### Typical usage
+#### Usage with API key
 Import the `RebillyExperimentalAPI` method and initialize it with your API key (and optionally organizationId)
 The full list of configuration options can be found [here](#configuration-options)
 
