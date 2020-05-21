@@ -13,6 +13,37 @@ This library is a semantic representation of the [Rebilly API definition](https:
 
 The definition includes SDK examples for each API operation, listed under *Request samples*.
 
+## Table of Contents
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+  - [Finding your API key](#finding-your-api-key)
+  - [Finding your organization ID (optional)](#finding-your-organization-id-optional)
+- [Usage](#usage)
+  - [RebillyAPI](#rebillyapi)
+    - [Typical usage](#typical-usage)
+    - [Usage with JWT](#usage-with-jwt)
+  - [RebillyExperimentalAPI](#rebillyexperimentalapi)
+    - [Typical usage](#typical-usage-1)
+    - [Usage with JWT](#usage-with-jwt-1)
+- [Reference](#reference)
+  - [Error handling](#error-handling)
+    - [Error types](#error-types)
+  - [Configuration options](#configuration-options)
+  - [Collections, Members, and Files](#collections-members-and-files)
+    - [Collection <small>`Type`</small>](#collection-smalltypesmall)
+    - [Member <small>`Type`</small>](#member-smalltypesmall)
+    - [File <small>`Type`</small>](#file-smalltypesmall)
+- [API client methods](#api-client-methods)
+  - [addRequestInterceptor](#addrequestinterceptor)
+  - [removeRequestInterceptor](#removerequestinterceptor)
+  - [addResponseInterceptor](#addresponseinterceptor)
+  - [removeResponseInterceptor](#removeresponseinterceptor)
+  - [setTimeout](#settimeout)
+  - [setSessionToken](#setsessiontoken)
+  - [setEndpoints](#setendpoints)
+  - [setProxyAgent](#setproxyagent)
+- [Development](#development)
+
 ## Getting started
 
 ### Installation
