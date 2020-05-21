@@ -30,9 +30,9 @@ The definition includes SDK examples for each API operation, listed under *Reque
     - [Error types](#error-types)
   - [Configuration options](#configuration-options)
   - [Collections, Members, and Files](#collections-members-and-files)
-    - [Collection <small>`Type`</small>](#collection-smalltypesmall)
-    - [Member <small>`Type`</small>](#member-smalltypesmall)
-    - [File <small>`Type`</small>](#file-smalltypesmall)
+    - [Collection](#collection)
+    - [Member](#member)
+    - [File](#file)
 - [API client methods](#api-client-methods)
   - [addRequestInterceptor](#addrequestinterceptor)
   - [removeRequestInterceptor](#removerequestinterceptor)
@@ -261,7 +261,7 @@ All resource calls return either a File, Member, or Collection:
 >
 > Both Collections and Members are **immutable** (frozen). Attempting to modify either one directly will result in a `TypeError`. You can retrieve a plain JSON object for mutation using the `getJSON` method.
 
-#### Collection <small>`Type`</small>
+#### Collection
 The Collection type represents a list of Members (e.g. a list of customers, a list of transactions).
 
 Each collection instance exposes the same properties.
@@ -276,7 +276,7 @@ Each collection instance exposes the same properties.
 | getJSON | Function | Returns a plain mutable JSON object exposing the `items` of the current collection instance. Discards all other property. |
 | config | Object | An object literal with the original request query string parameters. |
 
-#### Member <small>`Type`</small>
+#### Member
 The Member type represents an instance of a single resource entity in Rebilly (e.g. one customer, one transaction).
 
 Each member instance exposes the same properties.
@@ -288,7 +288,7 @@ Each member instance exposes the same properties.
 | getJSON | Function | Returns a plain mutable JSON object exposing the `fields` of the current member instance. Discards the `response` property. |
 | config | Object | An object literal with the original request query string parameters. |
 
-#### File <small>`Type`</small>
+#### File
 
 The File type allows you to access the `arraybuffer` data from API requests that return files. The files can be either exported CSV data or generated invoice PDFs.
 
@@ -298,11 +298,10 @@ Each file instance exposes the same properties.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| data | Object | An `arraybuffer` containing the file data returned by the request. |
+| data | Object | An `arraybuffer` containing the file data returned by the request. See [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer). |
 | response | Object | The original response stripped down to the status code, status text and headers. Exposes three more properties: `{status, statusText, headers}`. |
 | config | Object | An object literal with the original request query string parameters. |
 
-See [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 
 ## API client methods
 The API clients each expose the following configuration and utility methods you can use to customize your instance.
