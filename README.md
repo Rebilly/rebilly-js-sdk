@@ -15,7 +15,7 @@ The definition includes SDK examples for each API operation, listed under *Reque
 
 ## Usage
 
-Instructions for installing and using  the JS SDK can be found in the [Rebilly Docs](https://docs.rebilly.com/docs/developer-docs/js-sdk)
+Instructions for installing and using  the JS SDK can be found in the [Rebilly Docs](https://docs.rebilly.com/docs/developer-docs/sdks)
 
 ## Development
 
