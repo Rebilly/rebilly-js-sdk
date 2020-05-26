@@ -101,7 +101,7 @@ export default function FilesResource({apiHandler}) {
         },
 
         getAttachment({id}) {
-            return apiHandler.get(`attachments${id}`);
+            return apiHandler.get(`attachments/${id}`);
         },
 
         updateAttachment({id, data}) {
