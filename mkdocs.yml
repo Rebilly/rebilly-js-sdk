@@ -1,0 +1,10 @@
+#project information
+site_name: Rebilly JS SDK
+site_description: Official Rebilly JS SDK Documentation
+
+#repo information
+repo_name: 'Rebilly JS SDK'
+repo_url: 'https://github.com/Rebilly/rebilly-js-sdk'
+
+# Copyright
+copyright: 'Copyright &copy; 2019 Rebilly Inc.'
