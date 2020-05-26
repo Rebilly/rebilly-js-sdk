@@ -34,9 +34,5 @@ export default function PaymentCardsResource({apiHandler}) {
         deactivate({id}) {
             return apiHandler.post(`payment-cards/${id}/deactivation`);
         },
-
-        migrate({data}) {
-            return apiHandler.post(`payment-cards-migrations`, data);
-        }
     };
 };

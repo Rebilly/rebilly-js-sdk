@@ -65,18 +65,6 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
 
-        getLeadSource({id}) {
-            return apiHandler.get(`subscriptions/${id}/lead-source`);
-        },
-
-        createLeadSource({id, data}) {
-            return apiHandler.put(`subscriptions/${id}/lead-source`, data);
-        },
-
-        deleteLeadSource({id}) {
-            return apiHandler.delete(`subscriptions/${id}/lead-source`);
-        },
-
         getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
             const params = {
                 limit,

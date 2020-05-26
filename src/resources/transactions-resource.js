@@ -57,22 +57,6 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions/${id}/gateway-logs`);
         },
 
-        getLeadSource({id}) {
-            return apiHandler.get(`transactions/${id}/lead-source`);
-        },
-
-        createLeadSource({id, data}) {
-            return apiHandler.put(`transactions/${id}/lead-source`, data);
-        },
-
-        updateLeadSource({id, data}) {
-            return apiHandler.put(`transactions/${id}/lead-source`, data);
-        },
-
-        deleteLeadSource({id}) {
-            return apiHandler.delete(`transactions/${id}/lead-source`);
-        },
-
         getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
