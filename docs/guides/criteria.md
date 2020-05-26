@@ -1,3 +1,0 @@
-# Criteria
-
-N/A
