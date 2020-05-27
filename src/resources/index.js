@@ -10,7 +10,6 @@ import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
-import CustomEventsResource from './custom-events-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
 import EventsResource from './events-resource';
@@ -25,7 +24,6 @@ import KycDocumentsResource from './kyc-documents-resource';
 import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
-import NotesResource from './notes-resource';
 import PaymentCardsResource from './payment-cards-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentTokensResource from './payment-tokens-resource';
@@ -65,7 +63,6 @@ const Resources = {
     CreditMemosResource,
     CustomerAuthenticationResource,
     CustomersResource,
-    CustomEventsResource,
     CustomFieldsResource,
     DisputesResource,
     EventsResource,
@@ -80,7 +77,6 @@ const Resources = {
     LayoutsResource,
     ListsResource,
     MembershipsResource,
-    NotesResource,
     PaymentCardsResource,
     PaymentCardsBankNamesResource,
     PaymentTokensResource,

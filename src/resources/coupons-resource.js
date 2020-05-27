@@ -46,7 +46,7 @@ export default function CouponsResource({apiHandler}) {
             return apiHandler.post(`coupons-redemptions`, data);
         },
 
-        setExpiry({redemptionCode, data}) {
+        setExpiration({redemptionCode, data}) {
             return apiHandler.post(`coupons/${redemptionCode}/expiration`, data);
         }
     };

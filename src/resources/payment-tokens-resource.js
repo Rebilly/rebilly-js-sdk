@@ -15,9 +15,5 @@ export default function PaymentTokensResource({apiHandler}) {
         create({data}) {
             return apiHandler.post(`tokens`, data);
         },
-
-        expire({id}) {
-            return apiHandler.post(`tokens/${id}/expiration`);
-        }
     };
 };
