@@ -144,5 +144,13 @@ export default function InvoicesResource({apiHandler}) {
 
             return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
         },
+
+        applyTransaction({id, transactionId, amount = null}) {
+            const data = {
+                transactionId, 
+                amount 
+            };
+            return apiHandler.post(`invoices/${id}/transaction`, data);
+        },
     };
 };
