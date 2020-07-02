@@ -78,5 +78,9 @@ export default function TransactionsResource({apiHandler}) {
         createTimelineComment({id, data}) {
             return apiHandler.create(`transactions/${id}/timeline`, '', data);
         },
+
+        patch({id, data}) {
+            return apiHandler.patch(`transactions/${id}`, data);
+        },
     };
 };
