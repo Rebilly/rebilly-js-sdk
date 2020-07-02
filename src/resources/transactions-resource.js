@@ -45,6 +45,10 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.post(`transactions`, data, {params});
         },
 
+        patch({id, data}) {
+            return apiHandler.patch(`transactions/${id}`, data);
+        },
+
         cancel({id}) {
             return apiHandler.post(`transactions/${id}/cancel`);
         },
