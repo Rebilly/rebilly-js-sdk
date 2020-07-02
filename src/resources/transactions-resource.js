@@ -45,6 +45,10 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.post(`transactions`, data, {params});
         },
 
+        patch({id, data}) {
+            return apiHandler.patch(`transactions/${id}`, data);
+        },
+
         cancel({id}) {
             return apiHandler.post(`transactions/${id}/cancel`);
         },
@@ -77,10 +81,6 @@ export default function TransactionsResource({apiHandler}) {
 
         createTimelineComment({id, data}) {
             return apiHandler.create(`transactions/${id}/timeline`, '', data);
-        },
-
-        patch({id, data}) {
-            return apiHandler.patch(`transactions/${id}`, data);
         },
     };
 };
