@@ -5,6 +5,7 @@ import BankAccountsResource from './bank-accounts-resource';
 import BlacklistsResource from './blacklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutPagesResource from './checkout-pages-resource';
+import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
@@ -58,6 +59,7 @@ const Resources = {
     BlacklistsResource,
     BroadcastMessagesResource,
     CheckoutPagesResource,
+    CheckoutFormsResource,
     CouponsResource,
     CredentialHashesResource,
     CreditMemosResource,
