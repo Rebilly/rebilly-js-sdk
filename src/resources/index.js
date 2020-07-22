@@ -2,7 +2,7 @@ import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
-import BlacklistsResource from './blacklists-resource';
+import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutPagesResource from './checkout-pages-resource';
 import CouponsResource from './coupons-resource';
@@ -55,7 +55,7 @@ const Resources = {
     AmlResource,
     ApiKeysResource,
     BankAccountsResource,
-    BlacklistsResource,
+    BlocklistsResource,
     BroadcastMessagesResource,
     CheckoutPagesResource,
     CouponsResource,
