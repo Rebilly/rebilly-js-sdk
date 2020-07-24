@@ -24,6 +24,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.bankAccounts).to.be.an('object');
         expect(apiInstance.blacklists).to.be.an('object');
         expect(apiInstance.checkoutPages).to.be.an('object');
+        expect(apiInstance.checkoutForms).to.be.an('object');
         expect(apiInstance.coupons).to.be.an('object');
         expect(apiInstance.customers).to.be.an('object');
         expect(apiInstance.customerAuthentication).to.be.an('object');
