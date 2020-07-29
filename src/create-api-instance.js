@@ -105,6 +105,7 @@ export function createStorefrontApiInstance({apiHandler}) {
     return {
         account: StorefrontResources.AccountResource({apiHandler}),
         authorization: StorefrontResources.AuthorizationResource({apiHandler}),
+        checkoutForm: StorefrontResources.CheckoutFormResource({apiHandler}),
         invoices: StorefrontResources.InvoicesResource({apiHandler}),
         kycDocuments: StorefrontResources.KycDocumentsResource({apiHandler}),
         paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
