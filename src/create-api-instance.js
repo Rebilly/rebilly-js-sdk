@@ -16,6 +16,7 @@ export default function createApiInstance({apiHandler}) {
         blocklists: Resources.BlocklistsResource({apiHandler}),
         broadcastMessages: Resources.BroadcastMessagesResource({apiHandler}),
         checkoutPages: Resources.CheckoutPagesResource({apiHandler}),
+        checkoutForms: Resources.CheckoutFormsResource({apiHandler}),
         coupons: Resources.CouponsResource({apiHandler}),
         customers: Resources.CustomersResource({apiHandler}),
         customerAuthentication: Resources.CustomerAuthenticationResource({apiHandler}),
@@ -104,6 +105,7 @@ export function createStorefrontApiInstance({apiHandler}) {
     return {
         account: StorefrontResources.AccountResource({apiHandler}),
         authorization: StorefrontResources.AuthorizationResource({apiHandler}),
+        checkoutForm: StorefrontResources.CheckoutFormResource({apiHandler}),
         invoices: StorefrontResources.InvoicesResource({apiHandler}),
         kycDocuments: StorefrontResources.KycDocumentsResource({apiHandler}),
         paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
