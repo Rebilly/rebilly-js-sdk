@@ -1,4 +1,4 @@
-export default function BlacklistsResource({apiHandler}) {
+export default function BlocklistsResource({apiHandler}) {
     return {
         getAll({limit = null, offset = null, sort = null, q = null, filter = null} = {}) {
             const params = {
@@ -8,19 +8,19 @@ export default function BlacklistsResource({apiHandler}) {
                 q,
                 filter
             };
-            return apiHandler.getAll(`blacklists`, params);
+            return apiHandler.getAll(`blocklists`, params);
         },
 
         get({id}) {
-            return apiHandler.get(`blacklists/${id}`);
+            return apiHandler.get(`blocklists/${id}`);
         },
 
         create({id = '', data}) {
-            return apiHandler.create(`blacklists/${id}`, id, data);
+            return apiHandler.create(`blocklists/${id}`, id, data);
         },
 
         delete({id}) {
-            return apiHandler.delete(`blacklists/${id}`);
+            return apiHandler.delete(`blocklists/${id}`);
         }
     };
 };
