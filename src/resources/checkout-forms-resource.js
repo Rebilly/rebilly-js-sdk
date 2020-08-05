@@ -1,11 +1,12 @@
 export default function CheckoutFormsResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, expand = null, q = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 expand,
+                filter,
                 q
             };
             return apiHandler.getAll(`checkout-forms`, params);
