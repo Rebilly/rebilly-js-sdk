@@ -111,6 +111,7 @@ export function createStorefrontApiInstance({apiHandler}) {
         paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
         plans: StorefrontResources.PlansResource({apiHandler}),
         products: StorefrontResources.ProductResource({apiHandler}),
+        purchase: StorefrontResources.PurchaseResource({apiHandler}),
         transactions: StorefrontResources.TransactionsResource({apiHandler}),
         website: StorefrontResources.WebsiteResource({apiHandler}),
 

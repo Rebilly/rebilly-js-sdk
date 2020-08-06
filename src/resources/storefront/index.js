@@ -6,6 +6,7 @@ import KycDocumentsResource from './kyc-documents-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
 import PlansResource from './plans-resource';
 import ProductResource from './products-resource';
+import PurchaseResource from './purchase-resource';
 import TransactionsResource from './transactions-resource';
 import WebsiteResource from './website-resource';
 
@@ -18,6 +19,7 @@ const StorefrontResources = {
   PaymentInstrumentsResource,
   PlansResource,
   ProductResource,
+  PurchaseResource,
   TransactionsResource,
   WebsiteResource
 };
