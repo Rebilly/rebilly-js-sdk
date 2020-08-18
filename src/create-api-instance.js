@@ -30,6 +30,7 @@ export default function createApiInstance({apiHandler}) {
         emailNotifications: Resources.EmailNotificationsResource({apiHandler}),
         files: Resources.FilesResource({apiHandler}),
         gatewayAccounts: Resources.GatewayAccountsResource({apiHandler}),
+        plaidCredentials: Resources.PlaidCredentialsResource({apiHandler}),
         integrations: Resources.IntegrationsResource({apiHandler}),
         invoices:  Resources.InvoicesResource({apiHandler}),
         kycDocuments:  Resources.KycDocumentsResource({apiHandler}),
