@@ -50,7 +50,7 @@ import UsersResource from './users-resource';
 import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
 import OrganizationsResource from './organizations-resource';
-import PlaidCredentialsResource from "./plaid-credentials-resource";
+import PlaidCredentialsResource from './plaid-credentials-resource';
 
 const Resources = {
     AccountResource,

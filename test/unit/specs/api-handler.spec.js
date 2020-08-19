@@ -91,6 +91,11 @@ describe('when I use an API handler', () => {
         expect(gatewayAccount.then).to.be.a('function');
     });
 
+    it('should return a promise when I make a PATCH request', () => {
+        const plaidCredential = api.plaidCredentials.update({id: '1234', data: {}});
+        expect(plaidCredential.then).to.be.a('function');
+    });
+
     it('should return a promise when I make a DELETE request', () => {
         const gatewayAccount = api.gatewayAccounts.delete({id: '1234', data: {}});
         expect(gatewayAccount.then).to.be.a('function');
