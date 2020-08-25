@@ -15,10 +15,6 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.getAll(`invoices`, params);
         },
 
-        getAllMatchedRules({id}) {
-            return apiHandler.getAll(`invoices/${id}/matched-rules`);
-        },
-
         get({id, expand = null}) {
             const params = {expand};
             return apiHandler.get(`invoices/${id}`, params);
@@ -147,8 +143,8 @@ export default function InvoicesResource({apiHandler}) {
 
         applyTransaction({id, transactionId, amount = null}) {
             const data = {
-                transactionId, 
-                amount 
+                transactionId,
+                amount
             };
             return apiHandler.post(`invoices/${id}/transaction`, data);
         },
