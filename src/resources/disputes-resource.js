@@ -15,10 +15,6 @@ export default function DisputesResource({apiHandler}) {
             return apiHandler.getAll(`disputes`, params);
         },
 
-        getAllMatchedRules({id}) {
-            return apiHandler.getAll(`disputes/${id}/matched-rules`);
-        },
-
         downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {

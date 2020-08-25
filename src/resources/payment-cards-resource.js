@@ -11,10 +11,6 @@ export default function PaymentCardsResource({apiHandler}) {
             return apiHandler.getAll(`payment-cards`, params);
         },
 
-        getAllMatchedRules({id}) {
-            return apiHandler.getAll(`payment-cards/${id}/matched-rules`);
-        },
-
         get({id}) {
             return apiHandler.get(`payment-cards/${id}`);
         },

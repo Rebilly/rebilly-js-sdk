@@ -15,10 +15,6 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions`, params);
         },
 
-        getAllMatchedRules({id}) {
-            return apiHandler.getAll(`transactions/${id}/matched-rules`);
-        },
-
         downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const config = {
                 params: {
