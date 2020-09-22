@@ -28,6 +28,7 @@ import MembershipsResource from './memberships-resource';
 import PaymentCardsResource from './payment-cards-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentTokensResource from './payment-tokens-resource';
+import PayoutsResource from './payouts-resource';
 import PayPalAccountsResource from './paypal-accounts-resource';
 import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
@@ -84,6 +85,7 @@ const Resources = {
     PaymentCardsResource,
     PaymentCardsBankNamesResource,
     PaymentTokensResource,
+    PayoutsResource,
     PayPalAccountsResource,
     PlansResource,
     PreviewsResource,
