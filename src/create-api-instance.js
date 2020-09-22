@@ -41,6 +41,7 @@ export default function createApiInstance({apiHandler}) {
         paymentCards: Resources.PaymentCardsResource({apiHandler}),
         paymentCardsBankNames: Resources.PaymentCardsBankNamesResource({apiHandler}),
         paymentTokens: Resources.PaymentTokensResource({apiHandler}),
+        payouts: Resources.PayoutsResource({apiHandler}),
         paypalAccounts: Resources.PayPalAccountsResource({apiHandler}),
         plans: Resources.PlansResource({apiHandler}),
         previews: Resources.PreviewsResource({apiHandler}),
@@ -128,4 +129,4 @@ export function createStorefrontApiInstance({apiHandler}) {
         setEndpoints: apiHandler.setEndpoints,
         getCancellationToken: apiHandler.getCancellationToken
     }
-};
+}
