@@ -8,6 +8,8 @@ export default function PayoutsResource({apiHandler}) {
                    paymentInstrumentId = null,
                    token = null,
                    methods = null,
+                   requestId,
+                   description,
                }) {
             return apiHandler.post(`payouts`, {
                 amount,
@@ -19,6 +21,8 @@ export default function PayoutsResource({apiHandler}) {
                     token,
                     methods,
                 },
+                requestId,
+                description,
             });
         },
     };
