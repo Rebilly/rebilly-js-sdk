@@ -52,6 +52,7 @@ import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
 import OrganizationsResource from './organizations-resource';
 import PlaidCredentialsResource from './plaid-credentials-resource';
+import PaymentInstrumentsResource from './payment-instruments-resource';
 
 const Resources = {
     AccountResource,
@@ -82,6 +83,7 @@ const Resources = {
     LayoutsResource,
     ListsResource,
     MembershipsResource,
+    PaymentInstrumentsResource,
     PaymentCardsResource,
     PaymentCardsBankNamesResource,
     PaymentTokensResource,
