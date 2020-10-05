@@ -7,5 +7,9 @@ export default function PurchaseResource({apiHandler}) {
     preview({data = {}} = {}) {
       return apiHandler.post(`preview-purchase`, data);
     },
+
+    readyToPay({data = {}} = {}) {
+      return apiHandler.post(`ready-to-pay`, data);
+    },
   };
 };
