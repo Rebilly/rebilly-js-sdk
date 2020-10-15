@@ -41,6 +41,10 @@ export default function GatewayAccountsResource({apiHandler}) {
             return apiHandler.post(`gateway-accounts/${id}/close`);
         },
 
+        checkCredentials({id}) {
+            return apiHandler.post(`gateway-accounts/${id}/check-credentials`);
+        },
+
         getAllDowntimeSchedules({id, limit = null, offset = null, filter = null} = {}) {
             const params = {
                 limit,
