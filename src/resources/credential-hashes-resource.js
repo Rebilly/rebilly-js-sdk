@@ -81,6 +81,10 @@ export default function CredentialHashesResource({apiHandler}) {
             return apiHandler.post(`credential-hashes/experian`, data);
         },
 
+        updateExperianCredential({hash, data}) {
+            return apiHandler.patch(`credential-hashes/experian/${hash}`, data);
+        },
+
         createSendGridCredential({data}) {
             return apiHandler.post(`credential-hashes/sendgrid`, data);
         },
