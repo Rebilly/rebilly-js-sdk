@@ -16,6 +16,14 @@ export default function CredentialHashesResource({apiHandler}) {
             return apiHandler.get(`credential-hashes/aws-ses/${hash}`);
         },
 
+        getAllExperianCredentials() {
+          return apiHandler.getAll(`credential-hashes/experian`);
+        },
+
+        getExperianCredential({hash}) {
+            return apiHandler.get(`credential-hashes/experian/${hash}`);
+        },
+
         getSendGridCredential({hash}) {
             return apiHandler.get(`credential-hashes/sendgrid/${hash}`);
         },
@@ -67,6 +75,14 @@ export default function CredentialHashesResource({apiHandler}) {
 
         createAWSSESCredential({data}) {
             return apiHandler.post(`credential-hashes/aws-ses`, data);
+        },
+
+        createExperianCredential({data}) {
+            return apiHandler.post(`credential-hashes/experian`, data);
+        },
+
+        updateExperianCredential({hash, data}) {
+            return apiHandler.patch(`credential-hashes/experian/${hash}`, data);
         },
 
         createSendGridCredential({data}) {
