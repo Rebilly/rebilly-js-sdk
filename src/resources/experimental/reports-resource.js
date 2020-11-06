@@ -155,10 +155,6 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/retry-transaction`, params);
         },
 
-        getStatistics() {
-            return apiHandler.get(`reports/statistics`);
-        },
-
         getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
@@ -207,17 +203,6 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/time-series-transaction`, params);
         },
 
-        getTransactionsPlan({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                tz
-            };
-            return apiHandler.getAll(`reports/transactions-plan`, params);
-        },
-
         getTransactionsTimeDispute({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
@@ -244,17 +229,6 @@ export default function ReportsResource({apiHandler}) {
                 tz
             };
             return apiHandler.get(`reports/transactions`, params);
-        },
-
-        getPaymentsSuccessByDeclineReason({periodStart, periodEnd, limit = null, offset = null, filter = null} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                filter
-            };
-            return apiHandler.getAll(`reports/payments-success-by-decline-reason`, params);
         },
 
         getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
