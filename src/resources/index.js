@@ -4,7 +4,6 @@ import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
-import CheckoutPagesResource from './checkout-pages-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
@@ -61,7 +60,6 @@ const Resources = {
     BankAccountsResource,
     BlocklistsResource,
     BroadcastMessagesResource,
-    CheckoutPagesResource,
     CheckoutFormsResource,
     CouponsResource,
     CredentialHashesResource,
