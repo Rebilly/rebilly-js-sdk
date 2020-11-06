@@ -12,19 +12,6 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/api-log-summary`, params);
         },
 
-        getCumulativeSubscriptionsPlans({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                filter,
-                criteria,
-                tz
-            };
-            return apiHandler.getAll(`reports/cumulative-subscriptions-plans`, params);
-        },
-
         getCumulativeSubscriptions({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
