@@ -14,7 +14,6 @@ describe('when I use an API handler', () => {
         version: 1,
         apiEndpoints: {live: '', sandbox: ''},
         apiKey: '000000000',
-        apiVersion: 'v1',
         isSandbox: false,
         requestTimeout: 1,
         jwt: null
@@ -42,7 +41,6 @@ describe('when I use an API handler', () => {
             version: 1,
             apiEndpoints: {live: '', sandbox: ''},
             apiKey: '000000000',
-            apiVersion: 'v1',
             isSandbox: false,
             requestTimeout: 1,
             jwt: null,
@@ -64,11 +62,11 @@ describe('when I use an API handler', () => {
 
     it('should allow the endpoints to be set', () => {
         apiHandler.setEndpoints({live: 'live-endpoint.rebilly.com', sandbox: 'sandbox-endpoint.rebilly.com'});
-        expect(apiHandler.getInstance().defaults.baseURL).to.equal('live-endpoint.rebilly.com/v1');
-        options.apiVersion = 'v2';
+        expect(apiHandler.getInstance().defaults.baseURL).to.equal('live-endpoint.rebilly.com/');
+        options.apiVersion = 'experimental';
         options.isSandbox = true;
         apiHandler.setEndpoints({live: 'live-endpoint.rebilly.com', sandbox: 'sandbox-endpoint.rebilly.com'});
-        expect(apiHandler.getInstance().defaults.baseURL).to.equal('sandbox-endpoint.rebilly.com/v2');
+        expect(apiHandler.getInstance().defaults.baseURL).to.equal('sandbox-endpoint.rebilly.com/experimental');
     });
 
     it('should return a promise when I call the apiHandler\'s create function with an ID', async () => {

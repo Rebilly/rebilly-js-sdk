@@ -3,7 +3,6 @@ import createApiInstance, {createExperimentalApiInstance, createStorefrontApiIns
 import Errors from './errors';
 import cancellation from './cancellation';
 
-const baseApiVersion = 'v2.1';
 const baseEndpoints = {
     live: 'https://api.rebilly.com',
     sandbox: 'https://api-sandbox.rebilly.com',
@@ -13,7 +12,6 @@ const baseTimeoutMs = 6000;
 /**
  * Create an instance of the Rebilly API
  * @param apiKey {string} private API key; if provided will be used for all requests
- * @param version {string} specify a different version of the API to use than the current stable release
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
  * @param timeout {number} timeout in milliseconds
  * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
@@ -21,7 +19,7 @@ const baseTimeoutMs = 6000;
  * @returns {{account, apiKeys, bankAccounts, blocklists, checkoutForms, coupons, customers, customerAuthentication, customFields, credentialHashes, disputes, events, files, gatewayAccounts, invoices, layouts, lists, organizations, paymentCards, paymentCardsBankNames, paymentTokens, paypalAccounts, plans, previews, products, profile, search, segments, sessions, shippingZones, status, subscriptions, tracking, transactions, threeDSecure, users, webhooks, websites, addRequestInterceptor, removeRequestInterceptor, addResponseInterceptor, removeResponseInterceptor, setTimeout, setProxyAgent, setSessionToken, setEndpoints, getCancellationToken, plaidCredentials, paymentInstruments}}
  * @constructor
  */
-export default function RebillyAPI({apiKey = null, version = baseApiVersion, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+export default function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
@@ -35,7 +33,7 @@ export default function RebillyAPI({apiKey = null, version = baseApiVersion, san
     const options = {
         apiEndpoints: urls,
         apiKey: apiKey,
-        apiVersion: version,
+        apiVersion: '',
         isSandbox: sandbox,
         requestTimeout: timeout,
         jwt: null,
@@ -85,14 +83,13 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
  * Create an instance of the storefront API.
  * @param apiKey {string} publishable API key; if provided will be used for all requests
  * @param sandbox {boolean} whether to use the sandbox endpoint or the live
- * @param version {string} specify a different version of the API to use than the current stable release
  * @param timeout {number} timeout in milliseconds
  * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
  * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
  * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
  * @constructor
  */
-function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, version = 'v1', timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
@@ -107,7 +104,7 @@ function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = fals
         apiEndpoints: urls,
         publishableKey: publishableKey,
         jwt: jwt,
-        apiVersion: `storefront/${version}`,
+        apiVersion: `storefront`,
         isSandbox: sandbox,
         requestTimeout: timeout,
         organizationId: organizationId,
