@@ -7,7 +7,6 @@ const options = {
     version: 1,
     apiEndpoints: {live: 'new-live-url', sandbox: 'new-sandbox-url'},
     apiKey: '0123456789',
-    apiVersion: 1,
     isSandbox: false,
     requestTimeout: 1,
     jwt: null
