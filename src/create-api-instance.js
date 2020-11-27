@@ -38,6 +38,7 @@ export default function createApiInstance({apiHandler}) {
         memberships: Resources.MembershipsResource({apiHandler}),
         organizations: Resources.OrganizationsResource({apiHandler}),
         paymentInstruments: Resources.PaymentInstrumentsResource({apiHandler}),
+        paymentMethods: Resources.PaymentMethodsResource({apiHandler}),
         paymentCards: Resources.PaymentCardsResource({apiHandler}),
         paymentCardsBankNames: Resources.PaymentCardsBankNamesResource({apiHandler}),
         paymentTokens: Resources.PaymentTokensResource({apiHandler}),
