@@ -12,10 +12,10 @@ import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
-import EventsResource from './events-resource';
 import EmailDeliverySettingsResource from './email-delivery-settings-resource';
 import EmailMessagesResource from './email-messages-resource';
 import EmailNotificationsResource from './email-notifications-resource';
+import EventsResource from './events-resource';
 import FilesResource from './files-resource';
 import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
@@ -24,11 +24,15 @@ import KycDocumentsResource from './kyc-documents-resource';
 import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
-import PaymentCardsResource from './payment-cards-resource';
+import OrganizationsResource from './organizations-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
+import PaymentCardsResource from './payment-cards-resource';
+import PaymentInstrumentsResource from './payment-instruments-resource';
+import PaymentMethodsResource from './payment-methods-resource';
 import PaymentTokensResource from './payment-tokens-resource';
 import PayoutsResource from './payouts-resource';
 import PayPalAccountsResource from './paypal-accounts-resource';
+import PlaidCredentialsResource from './plaid-credentials-resource';
 import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
@@ -39,19 +43,17 @@ import SendThroughAttributionResource from './send-through-attribution-resource'
 import SessionsResource from './sessions-resource';
 import ShippingZonesResource from './shipping-zones-resource';
 import StatusResource from './status-resource';
-import SubscriptionsResource from './subscriptions-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
+import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
+import ThreeDSecureResource from './three-d-secure-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
-import ThreeDSecureResource from './three-d-secure-resource';
 import UsersResource from './users-resource';
 import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
-import OrganizationsResource from './organizations-resource';
-import PlaidCredentialsResource from './plaid-credentials-resource';
-import PaymentInstrumentsResource from './payment-instruments-resource';
+
 
 const Resources = {
     AccountResource,
@@ -68,25 +70,27 @@ const Resources = {
     CustomersResource,
     CustomFieldsResource,
     DisputesResource,
-    EventsResource,
     EmailDeliverySettingsResource,
     EmailMessagesResource,
     EmailNotificationsResource,
+    EventsResource,
     FilesResource,
     GatewayAccountsResource,
-    PlaidCredentialsResource,
     IntegrationsResource,
     InvoicesResource,
     KycDocumentsResource,
     LayoutsResource,
     ListsResource,
     MembershipsResource,
-    PaymentInstrumentsResource,
-    PaymentCardsResource,
+    OrganizationsResource,
     PaymentCardsBankNamesResource,
+    PaymentCardsResource,
+    PaymentInstrumentsResource,
+    PaymentMethodsResource,
     PaymentTokensResource,
     PayoutsResource,
     PayPalAccountsResource,
+    PlaidCredentialsResource,
     PlansResource,
     PreviewsResource,
     ProductsResource,
@@ -97,17 +101,16 @@ const Resources = {
     SessionsResource,
     ShippingZonesResource,
     StatusResource,
-    SubscriptionsResource,
     SubscriptionCancellationsResource,
     SubscriptionReactivationsResource,
+    SubscriptionsResource,
     TagsResource,
+    ThreeDSecureResource,
     TrackingResource,
     TransactionsResource,
-    ThreeDSecureResource,
     UsersResource,
     WebhooksResource,
     WebsitesResource,
-    OrganizationsResource,
 };
 
 export default Resources;
