@@ -5,6 +5,7 @@ export default function MembershipsResource({apiHandler}) {
                 limit,
                 offset,
                 filter,
+                sort,
             };
             return apiHandler.getAll(`memberships`, params);
         },
