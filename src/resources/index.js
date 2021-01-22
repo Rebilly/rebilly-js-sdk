@@ -21,7 +21,6 @@ import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
-import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import OrganizationsResource from './organizations-resource';
@@ -79,7 +78,6 @@ const Resources = {
     IntegrationsResource,
     InvoicesResource,
     KycDocumentsResource,
-    LayoutsResource,
     ListsResource,
     MembershipsResource,
     OrganizationsResource,
