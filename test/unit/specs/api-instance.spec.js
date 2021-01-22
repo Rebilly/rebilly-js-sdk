@@ -37,7 +37,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.gatewayAccounts).to.be.an('object');
         expect(apiInstance.plaidCredentials).to.be.an('object');
         expect(apiInstance.invoices).to.be.an('object');
-        expect(apiInstance.layouts).to.be.an('object');
         expect(apiInstance.lists).to.be.an('object');
         expect(apiInstance.organizations).to.be.an('object');
         expect(apiInstance.paymentInstruments).to.be.an('object');

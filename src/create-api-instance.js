@@ -33,7 +33,6 @@ export default function createApiInstance({apiHandler}) {
         integrations: Resources.IntegrationsResource({apiHandler}),
         invoices:  Resources.InvoicesResource({apiHandler}),
         kycDocuments:  Resources.KycDocumentsResource({apiHandler}),
-        layouts: Resources.LayoutsResource({apiHandler}),
         lists: Resources.ListsResource({apiHandler}),
         memberships: Resources.MembershipsResource({apiHandler}),
         organizations: Resources.OrganizationsResource({apiHandler}),
