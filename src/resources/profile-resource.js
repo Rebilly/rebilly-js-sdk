@@ -14,6 +14,14 @@ export default function ProfileResource({apiHandler}) {
 
         resetTotp() {
             return apiHandler.post(`profile/totp-reset`);
+        },
+
+        startPermissionsEmulation({data}) {
+            return apiHandler.post(`permissions-emulation`, data);
+        },
+
+        stopPermissionsEmulation() {
+            return apiHandler.delete(`permissions-emulation`);
         }
     };
 };
