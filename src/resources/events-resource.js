@@ -24,7 +24,7 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.put(`events/${eventType}/rules`, data);
         },
 
-        getRulesHistory({eventType, limit = null, offset = null} = {}) {
+        getRulesHistory({eventType = null, limit = null, offset = null} = {}) {
             const params = {
                 limit,
                 offset

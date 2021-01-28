@@ -8,7 +8,7 @@ export default function PlansResource({apiHandler}) {
       return apiHandler.getAll(`plans`, params);
     },
 
-    get({id} = {}) {
+    get({id = null} = {}) {
       return apiHandler.get(`plans/${id}`);
     },
   }

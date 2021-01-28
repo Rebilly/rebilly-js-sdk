@@ -70,7 +70,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.post(`invoices/${id}/void`, null);
         },
 
-        getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
+        getAllInvoiceItems({id = null, limit = null, offset = null, expand = null}) {
             const params = {
                 limit,
                 offset,
@@ -99,7 +99,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.delete(`invoices/${id}/lead-source`);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -109,7 +109,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.getAll(`invoices/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id, messageId = ''} = {}) {
+        getTimelineMessage({id = null, messageId = ''} = {}) {
             return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
         },
 
@@ -121,7 +121,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.create(`invoices/${id}/timeline`, '', data);
         },
 
-        getAllCreditMemos({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllCreditMemos({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -132,7 +132,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.getAll(`invoices/${id}/credit-memos`, params);
         },
 
-        getAllTransactionAllocations({id, limit = null, offset = null}) {
+        getAllTransactionAllocations({id = null, limit = null, offset = null}) {
             const params = {
                 limit,
                 offset,

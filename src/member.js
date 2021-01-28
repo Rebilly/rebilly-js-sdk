@@ -1,3 +1,4 @@
+// @ts-nocheck
 import deepFreeze from './deep-freeze';
 
 /**

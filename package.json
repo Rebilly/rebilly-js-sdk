@@ -4,6 +4,7 @@
   "description": "Official Rebilly API JS library for the browser and Node",
   "browser": "./dist/rebilly-js-sdk.js",
   "main": "./dist/rebilly-js-sdk.node.js",
+  "types": "./typings/rebilly-js-sdk/index.d.ts",
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
     "build:prod": "npm run clean && webpack --env=prod",
@@ -12,7 +13,18 @@
     "unit": "mocha --require babel-register --require babel-polyfill --colors ./test/unit/specs/*.spec.js",
     "unit:watch": "npm run unit -- --watch",
     "coverage": "npm run clean && cross-env NODE_ENV=test nyc npm run unit",
-    "test": "npm run unit"
+    "test": "npm run unit",
+    "generate-rebilly-typesOnline": "npx openapi-typescript https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json --output ./typings/rebilly/generated.d.ts",
+    "generate-rebilly-types": "npx openapi-typescript ./schema.json --camelCase --output ./typings/rebilly/generated.d.ts",
+    "generate-sdk-types": "node ./scripts/generate-sdk-types",
+    "tsc:comment-headers": "node ./scripts/comment-headers.js",
+    "generate-storefront-types": "npx openapi-typescript https://api.redoc.ly/registry/rebilly/storefront/storefront/bundle/master/openapi.json --output ./typings/rebilly-storefront/generated.d.ts",
+    "tsc": "npx tsc -p jsconfig-tsc.json",
+    "tsc:watch": "npx tsc -w -p jsconfig-tsc.json",
+    "tsc:simple": "npx tsc -p tsc-simple.json --typeRoots typings",
+    "tsc:fix-type-name": "node ./scripts/fix-type-name.js",
+    "tsc:copy-types": "rm -rf ../frontend-recomm/typings && cp -rf ./typings ../frontend-recomm/typings",
+    "tsc:bundle-types": "yarn generate-rebilly-typesOnline && yarn generate-sdk-types && yarn tsc:comment-headers && yarn tsc:simple && yarn tsc:fix-type-name && yarn tsc:copy-types"
   },
   "repository": {
     "type": "git",
@@ -53,6 +65,8 @@
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1",
+    "openapi-typescript": "2.5.0",
+    "rebilly": "file:./typings",
     "rimraf": "^2.6.1",
     "sinon": "^7.2.5",
     "sinon-chai": "^3.3.0",

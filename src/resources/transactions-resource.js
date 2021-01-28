@@ -57,7 +57,7 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions/${id}/gateway-logs`);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -67,7 +67,7 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id, messageId = ''} = {}) {
+        getTimelineMessage({id = null, messageId = ''} = {}) {
             return apiHandler.get(`transactions/${id}/timeline/${messageId}`);
         },
 

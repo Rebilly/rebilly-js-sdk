@@ -1,27 +1,49 @@
-export default function AccountResource({apiHandler}) {
-    return {
-        signUp({data}) {
-            return apiHandler.post(`signup`, data, {authenticate: false});
-        },
+export default class AccountResource {
 
-        signIn({data}) {
-            return apiHandler.post(`signin`, data, {authenticate: false});
-        },
+    constructor({apiHandler}) {
+        this.apiHandler = apiHandler
+    }
+    
+    /**
+    * @param { rebilly.PostSignupRequestDataRequest } data
+    * @returns { rebilly.PostSignupResponse } response
+    */
+    signUp({data}) {
+        return this.apiHandler.post(`signup`, data, {authenticate: false});
+    }
 
-        logout() {
-            return apiHandler.post(`logout`);
-        },
+    /**
+    * @param { rebilly.PostSigninRequestDataRequest } data
+    * @returns { rebilly.PostSigninResponse } response
+    */
+    signIn({data}) {
+        return this.apiHandler.post(`signin`, data, {authenticate: false});
+    }
 
-        activate({token}) {
-            return apiHandler.post(`activation/${token}`, null, {authenticate: false});
-        },
-
-        forgotPassword({data}) {
-            return apiHandler.post(`forgot-password`, data, {authenticate: false});
-        },
-
-        resetSandbox() {
-            return apiHandler.post(`reset-sandbox`);
-        }
-    };
+    /**
+    * @returns { rebilly.PostLogoutResponse } response
+    */
+    logout() {
+        return this.apiHandler.post(`logout`);
+    }
+    
+    /**
+    * @returns { rebilly.PostActivationResponse } response
+    */
+    activate({token}) {
+        return this.apiHandler.post(`activation/${token}`, null, {authenticate: false});
+    }
+    
+    /**
+    * @param { rebilly.PostForgotPasswordRequestDataRequest } data
+    * @returns { rebilly.PostForgotPasswordResponse } response
+    */
+    forgotPassword({data}) {
+        return this.apiHandler.post(`forgot-password`, data, {authenticate: false});
+    }
+    
+    resetSandbox() {
+        return this.apiHandler.post(`reset-sandbox`);
+    }
 };
+

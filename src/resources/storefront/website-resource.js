@@ -1,6 +1,6 @@
 export default function WebsiteResource({apiHandler}) {
     return {
-        get({id} = {}) {
+        get({id = null} = {}) {
             return apiHandler.get(`websites/${id}`);
         },
     }

@@ -11,7 +11,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.getAll(`invoices`, params);
         },
 
-        get({id} = {}) {
+        get({id = null} = {}) {
             return apiHandler.get(`invoices/${id}`);
         },
     }

@@ -8,15 +8,15 @@ export default function KycDocumentsResource({apiHandler}) {
             return apiHandler.getAll(`kyc-documents`, params);
         },
 
-        get({id} = {}) {
+        get({id = null} = {}) {
             return apiHandler.get(`kyc-documents/${id}`);
         },
 
-        create({data} = {}) {
+        create({data = null} = {}) {
             return apiHandler.post(`kyc-documents`, data);
         },
 
-        update({id, data} = {}) {
+        update({id = null, data = null} = {}) {
             return apiHandler.patch(`kyc-documents/${id}`, data);
         }
     }

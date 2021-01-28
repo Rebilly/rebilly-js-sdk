@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios';
 import Member from './member';
 import Collection from './collection';

@@ -1,6 +1,6 @@
 export default function CustomFieldsResource({apiHandler}) {
     return {
-        getAll({resource, limit = null, offset = null, fields = null} = {}) {
+        getAll({resource = null, limit = null, offset = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,

@@ -1,6 +1,6 @@
 export default function ReportsResource({apiHandler}) {
     return {
-        getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+        getApiLogSummary({aggregationField = null, periodStart = null, periodEnd = null, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 aggregationField,
                 periodStart,

@@ -1,6 +1,6 @@
 export default function CheckoutFormsResource({apiHandler}) {
   return {
-    get({id} = {}) {
+    get({id = null} = {}) {
       return apiHandler.get(`checkout-forms/${id}`);
     },
   }

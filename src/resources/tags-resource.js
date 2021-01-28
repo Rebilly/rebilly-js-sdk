@@ -27,10 +27,6 @@ export default function TagsResource({apiHandler}) {
             return apiHandler.get(`${RESOURCE}/${tag}`);
         },
 
-        /**
-         * @param tag {String} The tag name
-         * @param name {String} New unique tag name
-         */
         update ({tag, name}) {
             return apiHandler.patch(`${RESOURCE}/${tag}`, {name});
         },

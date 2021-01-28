@@ -1,17 +1,30 @@
 import Resources from './resources';
-import ExperimentalResources from './resources/experimental';
-import StorefrontResources from './resources/storefront';
+import AccountResource from './resources/account-resource';
+import ApiKeysResource from './resources/api-keys-resource';
+//import ExperimentalResources from './resources/experimental';
+//import StorefrontResources from './resources/storefront';
+
+export class ApiInstance {
+    constructor({apiHandler}) {
+        this.account = new Resources.AccountResource({apiHandler})
+        this.apiKeys = new Resources.ApiKeysResource({apiHandler})
+    }
+}
 
 /**
- * Create an API instance using the provided API handler.
- * @param apiHandler {Object}
- * @returns {Object}
- */
+* Create an API instance using the provided API handler.
+* @returns {ApiInstance} apiInstance
+*/
 export default function createApiInstance({apiHandler}) {
-    return {
-        account: Resources.AccountResource({apiHandler}),
-        aml: Resources.AmlResource({apiHandler}),
-        apiKeys: Resources.ApiKeysResource({apiHandler}),
+    // return {
+    //     account: new Resources.AccountResource({apiHandler}),
+    //     apiKeys: new Resources.ApiKeysResource({apiHandler}),
+    // }
+    
+    return new ApiInstance({apiHandler})
+   /* return {
+        account: new Resources.AccountResource({apiHandler}),
+        /*aml: Resources.AmlResource({apiHandler}),
         bankAccounts: Resources.BankAccountsResource({apiHandler}),
         blocklists: Resources.BlocklistsResource({apiHandler}),
         broadcastMessages: Resources.BroadcastMessagesResource({apiHandler}),
@@ -64,8 +77,10 @@ export default function createApiInstance({apiHandler}) {
         users: Resources.UsersResource({apiHandler}),
         webhooks: Resources.WebhooksResource({apiHandler}),
         websites: Resources.WebsitesResource({apiHandler}),
+        */
 
         //expose apiHandler methods to the API instance
+        /*
         addRequestInterceptor: apiHandler.addRequestInterceptor,
         removeRequestInterceptor: apiHandler.removeRequestInterceptor,
         addResponseInterceptor: apiHandler.addResponseInterceptor,
@@ -76,58 +91,79 @@ export default function createApiInstance({apiHandler}) {
         setEndpoints: apiHandler.setEndpoints,
         getCancellationToken: apiHandler.getCancellationToken,
         generateSignature: apiHandler.generateSignature
-    };
+        */
+    //};
 }
 
-export function createExperimentalApiInstance({apiHandler}) {
-    return {
-        customers: ExperimentalResources.CustomersResource({apiHandler}),
-        dataExports: ExperimentalResources.DataExportsResource({apiHandler}),
-        histograms: ExperimentalResources.HistogramsResource({apiHandler}),
-        organizations: ExperimentalResources.OrganizationsResource({apiHandler}),
-        reports: ExperimentalResources.ReportsResource({apiHandler}),
-        subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
-        timelines: ExperimentalResources.TimelinesResource({apiHandler}),
-        transactions: ExperimentalResources.TransactionsResource({apiHandler}),
-        location: ExperimentalResources.LocationResource({apiHandler}),
+// export class ExperimentalApiInstance {
+//     constructor({apiHandler}) {
+//         // expose apiHandler methods to the API instance
+//         this.addRequestInterceptor = apiHandler.addRequestInterceptor
+//     }
+// }
 
-        //expose apiHandler methods to the API instance
-        addRequestInterceptor: apiHandler.addRequestInterceptor,
-        removeRequestInterceptor: apiHandler.removeRequestInterceptor,
-        addResponseInterceptor: apiHandler.addResponseInterceptor,
-        removeResponseInterceptor: apiHandler.removeResponseInterceptor,
-        setTimeout: apiHandler.setTimeout,
-        setProxyAgent: apiHandler.setProxyAgent,
-        setSessionToken: apiHandler.setSessionToken,
-        setEndpoints: apiHandler.setEndpoints,
-        getCancellationToken: apiHandler.getCancellationToken
-    };
+/**
+ * @typedef {Object} ExperimentalApiInstance
+ * @property {Function} addRequestInterceptor
+ */
+
+/**
+* Create an experimental API instance using the provided API handler.
+* @returns {ExperimentalApiInstance} experimentalApiInstance
+*/
+export function createExperimentalApiInstance({apiHandler}) {
+    return { 
+        addRequestInterceptor: apiHandler.addRequestInterceptor
+    }
+    // return new ExperimentalApiInstance({apiHandler});
+//     return {
+//         // customers: ExperimentalResources.CustomersResource({apiHandler}),
+//         // dataExports: ExperimentalResources.DataExportsResource({apiHandler}),
+//         // histograms: ExperimentalResources.HistogramsResource({apiHandler}),
+//         // organizations: ExperimentalResources.OrganizationsResource({apiHandler}),
+//         // reports: ExperimentalResources.ReportsResource({apiHandler}),
+//         // subscriptions: ExperimentalResources.SubscriptionsResource({apiHandler}),
+//         // timelines: ExperimentalResources.TimelinesResource({apiHandler}),
+//         // transactions: ExperimentalResources.TransactionsResource({apiHandler}),
+//         // location: ExperimentalResources.LocationResource({apiHandler}),
+
+//         // //expose apiHandler methods to the API instance
+//         // addRequestInterceptor: apiHandler.addRequestInterceptor,
+//         // removeRequestInterceptor: apiHandler.removeRequestInterceptor,
+//         // addResponseInterceptor: apiHandler.addResponseInterceptor,
+//         // removeResponseInterceptor: apiHandler.removeResponseInterceptor,
+//         // setTimeout: apiHandler.setTimeout,
+//         // setProxyAgent: apiHandler.setProxyAgent,
+//         // setSessionToken: apiHandler.setSessionToken,
+//         // setEndpoints: apiHandler.setEndpoints,
+//         // getCancellationToken: apiHandler.getCancellationToken
+//     };
 }
 
 export function createStorefrontApiInstance({apiHandler}) {
     return {
-        account: StorefrontResources.AccountResource({apiHandler}),
-        authorization: StorefrontResources.AuthorizationResource({apiHandler}),
-        checkoutForm: StorefrontResources.CheckoutFormResource({apiHandler}),
-        invoices: StorefrontResources.InvoicesResource({apiHandler}),
-        kycDocuments: StorefrontResources.KycDocumentsResource({apiHandler}),
-        paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
-        plans: StorefrontResources.PlansResource({apiHandler}),
-        products: StorefrontResources.ProductResource({apiHandler}),
-        purchase: StorefrontResources.PurchaseResource({apiHandler}),
-        transactions: StorefrontResources.TransactionsResource({apiHandler}),
-        website: StorefrontResources.WebsiteResource({apiHandler}),
+        // account: StorefrontResources.AccountResource({apiHandler}),
+        // authorization: StorefrontResources.AuthorizationResource({apiHandler}),
+        // checkoutForm: StorefrontResources.CheckoutFormResource({apiHandler}),
+        // invoices: StorefrontResources.InvoicesResource({apiHandler}),
+        // kycDocuments: StorefrontResources.KycDocumentsResource({apiHandler}),
+        // paymentInstruments: StorefrontResources.PaymentInstrumentsResource({apiHandler}),
+        // plans: StorefrontResources.PlansResource({apiHandler}),
+        // products: StorefrontResources.ProductResource({apiHandler}),
+        // purchase: StorefrontResources.PurchaseResource({apiHandler}),
+        // transactions: StorefrontResources.TransactionsResource({apiHandler}),
+        // website: StorefrontResources.WebsiteResource({apiHandler}),
 
-        //expose apiHandler methods to the API instance
-        addRequestInterceptor: apiHandler.addRequestInterceptor,
-        removeRequestInterceptor: apiHandler.removeRequestInterceptor,
-        addResponseInterceptor: apiHandler.addResponseInterceptor,
-        removeResponseInterceptor: apiHandler.removeResponseInterceptor,
-        setTimeout: apiHandler.setTimeout,
-        setProxyAgent: apiHandler.setProxyAgent,
-        setSessionToken: apiHandler.setSessionToken,
-        setPublishableKey: apiHandler.setPublishableKey,
-        setEndpoints: apiHandler.setEndpoints,
-        getCancellationToken: apiHandler.getCancellationToken
+        // //expose apiHandler methods to the API instance
+        // addRequestInterceptor: apiHandler.addRequestInterceptor,
+        // removeRequestInterceptor: apiHandler.removeRequestInterceptor,
+        // addResponseInterceptor: apiHandler.addResponseInterceptor,
+        // removeResponseInterceptor: apiHandler.removeResponseInterceptor,
+        // setTimeout: apiHandler.setTimeout,
+        // setProxyAgent: apiHandler.setProxyAgent,
+        // setSessionToken: apiHandler.setSessionToken,
+        // setPublishableKey: apiHandler.setPublishableKey,
+        // setEndpoints: apiHandler.setEndpoints,
+        // getCancellationToken: apiHandler.getCancellationToken
     }
 }
