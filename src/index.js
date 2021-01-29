@@ -122,4 +122,3 @@ function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = fals
  }
 
 export {Errors as RebillyErrors, RebillyExperimentalAPI, RebillyStorefrontAPI, cancellation};
-export {RebillyExperimentalAPI};
