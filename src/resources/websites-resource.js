@@ -20,6 +20,7 @@ export default function WebsitesResource({apiHandler}) {
                     limit,
                     offset,
                     sort,
+                    // @ts-ignore
                     expand,
                     filter,
                     q,

@@ -6,7 +6,7 @@ export default class CustomersResource {
     }
 
     /**
-    * @param { rebilly.GetCustomerCollectionQuery } data
+    * @param { rebilly.GetCustomerCollectionRequest } data
     * @returns { rebilly.GetCustomerCollectionResponse } response
     * Criteria parameter is @deprecated and should be replaced by filter
     */

@@ -4,13 +4,13 @@ declare module "resources/account-resource" {
             apiHandler: any;
         });
         apiHandler: any;
-        signUp({ data }: rebilly.PostSignupRequestDataRequest): rebilly.PostSignupResponse;
-        signIn({ data }: rebilly.PostSigninRequestDataRequest): rebilly.PostSigninResponse;
-        logout(): rebilly.PostLogoutResponse;
+        signUp({ data }: rebilly.PostSignupRequestDataRequest): rebilly.PostSignupRequestResponse;
+        signIn({ data }: rebilly.PostSigninRequestDataRequest): rebilly.PostSigninRequestResponse;
+        logout(): rebilly.PostLogoutRequestResponse;
         activate({ token }: {
             token: any;
         }): rebilly.PostActivationResponse;
-        forgotPassword({ data }: rebilly.PostForgotPasswordRequestDataRequest): rebilly.PostForgotPasswordResponse;
+        forgotPassword({ data }: rebilly.PostForgotPasswordRequestDataRequest): rebilly.PostForgotPasswordRequestResponse;
         resetSandbox(): any;
     }
 }
@@ -32,7 +32,7 @@ declare module "resources/api-keys-resource" {
             apiHandler: any;
         });
         apiHandler: any;
-        getAll({ limit, offset, sort }?: rebilly.GetApiKeyCollectionQuery): rebilly.GetApiKeyCollectionResponse;
+        getAll({ limit, offset, sort }?: any): rebilly.GetApiKeyCollectionResponse;
         get({ id }: {
             id: any;
         }): any;
@@ -58,7 +58,7 @@ declare module "resources/customers-resource" {
             apiHandler: any;
         });
         apiHandler: any;
-        getAll({ limit, offset, sort, expand, filter, q, criteria, fields }?: rebilly.GetCustomerCollectionQuery): rebilly.GetCustomerCollectionResponse;
+        getAll({ limit, offset, sort, expand, filter, q, criteria, fields }?: rebilly.GetCustomerCollectionRequest): rebilly.GetCustomerCollectionResponse;
         downloadCSV({ limit, offset, sort, expand, filter, q, criteria }?: {
             limit?: any;
             offset?: any;
@@ -134,7 +134,7 @@ declare module "resources/bank-accounts-resource" {
     export default function BankAccountsResource({ apiHandler }: {
         apiHandler: any;
     }): {
-        getAll({ limit, offset, sort, filter, q }?: rebilly.GetBankAccountCollectionQuery): rebilly.GetBankAccountCollectionResponse;
+        getAll({ limit, offset, sort, filter, q }?: rebilly.GetBankAccountCollectionRequest): rebilly.GetBankAccountCollectionResponse;
         get({ id }: {
             id: any;
         }): rebilly.GetBankAccountResponse;
@@ -667,7 +667,7 @@ declare module "resources/gateway-accounts-resource" {
     export default function GatewayAccountsResource({ apiHandler }: {
         apiHandler: any;
     }): {
-        getAll({ limit, offset, sort, filter, q, criteria, fields }?: rebilly.GetGatewayAccountCollectionQuery): rebilly.GetGatewayAccountCollectionResponse;
+        getAll({ limit, offset, sort, filter, q, criteria, fields }?: rebilly.GetGatewayAccountCollectionRequest): rebilly.GetGatewayAccountCollectionResponse;
         get({ id }: {
             id: any;
         }): rebilly.GetGatewayAccountCollectionResponse;
@@ -704,7 +704,7 @@ declare module "resources/gateway-accounts-resource" {
             id: any;
             downtimeScheduleId: any;
         }): rebilly.DeleteGatewayAccountDowntimeScheduleResponse;
-        getAllVolumeLimits({ id }: rebilly.GetGatewayAccountLimitCollectionQuery): rebilly.GetGatewayAccountLimitCollectionResponse;
+        getAllVolumeLimits({ id }: rebilly.GetGatewayAccountLimitCollectionRequest): rebilly.GetGatewayAccountLimitCollectionResponse;
         getVolumeLimit({ id, volumeLimitId }: {
             id: any;
             volumeLimitId: any;
@@ -715,7 +715,7 @@ declare module "resources/gateway-accounts-resource" {
             id: any;
             volumeLimitId: any;
         }): rebilly.DeleteGatewayAccountLimitResponse;
-        getAllTimelineMessages({ id, limit, offset, sort, filter }?: rebilly.GetGatewayAccountTimelineCollectionQuery): rebilly.GetGatewayAccountTimelineCollectionResponse;
+        getAllTimelineMessages({ id, limit, offset, sort, filter }?: rebilly.GetGatewayAccountTimelineCollectionRequest): rebilly.GetGatewayAccountTimelineCollectionResponse;
         getTimelineMessage({ id, messageId }?: {
             id?: any;
             messageId?: string;
@@ -724,7 +724,7 @@ declare module "resources/gateway-accounts-resource" {
             id: any;
             messageId: any;
         }): rebilly.DeleteGatewayAccountTimelineResponse;
-        createTimelineComment({ id, data }: rebilly.PostGatewayAccountTimelineDataRequest): rebilly.PostGatewayAccountTimelineResponse;
+        createTimelineComment({ id, data }: rebilly.PostGatewayAccountTimelineRequest): rebilly.PostGatewayAccountTimelineResponse;
     };
 }
 declare module "resources/integrations-resource" {
@@ -742,15 +742,7 @@ declare module "resources/invoices-resource" {
     export default function InvoicesResource({ apiHandler }: {
         apiHandler: any;
     }): {
-        getAll({ limit, offset, sort, expand, filter, q, criteria }?: {
-            limit?: any;
-            offset?: any;
-            sort?: any;
-            expand?: any;
-            filter?: any;
-            q?: any;
-            criteria?: any;
-        }): any;
+        getAll({ limit, offset, sort, expand, filter, q, criteria }?: rebilly.GetInvoiceCollectionRequest): rebilly.GetInvoiceCollectionResponse;
         get({ id, expand }: {
             id: any;
             expand?: any;
@@ -886,30 +878,6 @@ declare module "resources/kyc-documents-resource" {
             data: any;
         }): any;
         review({ id }: {
-            id: any;
-        }): any;
-    };
-}
-declare module "resources/layouts-resource" {
-    export default function LayoutsResource({ apiHandler }: {
-        apiHandler: any;
-    }): {
-        getAll({ limit, offset }?: {
-            limit?: any;
-            offset?: any;
-        }): any;
-        get({ id }: {
-            id: any;
-        }): any;
-        create({ id, data }: {
-            id?: string;
-            data: any;
-        }): any;
-        update({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
-        delete({ id }: {
             id: any;
         }): any;
     };
@@ -1250,6 +1218,10 @@ declare module "resources/profile-resource" {
             data: any;
         }): any;
         resetTotp(): any;
+        startPermissionsEmulation({ data }: {
+            data: any;
+        }): any;
+        stopPermissionsEmulation(): any;
     };
 }
 declare module "resources/search-resource" {
@@ -1777,7 +1749,6 @@ declare module "resources/index" {
     namespace Resources {
         export { AccountResource };
         export { ApiKeysResource };
-        export { CustomersResource };
         export { AmlResource };
         export { BankAccountsResource };
         export { BlocklistsResource };
@@ -1787,6 +1758,7 @@ declare module "resources/index" {
         export { CredentialHashesResource };
         export { CreditMemosResource };
         export { CustomerAuthenticationResource };
+        export { CustomersResource };
         export { CustomFieldsResource };
         export { DisputesResource };
         export { EmailDeliverySettingsResource };
@@ -1798,7 +1770,6 @@ declare module "resources/index" {
         export { IntegrationsResource };
         export { InvoicesResource };
         export { KycDocumentsResource };
-        export { LayoutsResource };
         export { ListsResource };
         export { MembershipsResource };
         export { OrganizationsResource };
@@ -1833,7 +1804,6 @@ declare module "resources/index" {
     }
     import AccountResource from "resources/account-resource";
     import ApiKeysResource from "resources/api-keys-resource";
-    import CustomersResource from "resources/customers-resource";
     import AmlResource from "resources/aml-resource";
     import BankAccountsResource from "resources/bank-accounts-resource";
     import BlocklistsResource from "resources/blocklists-resource";
@@ -1843,6 +1813,7 @@ declare module "resources/index" {
     import CredentialHashesResource from "resources/credential-hashes-resource";
     import CreditMemosResource from "resources/credit-memos-resource";
     import CustomerAuthenticationResource from "resources/customer-authentication-resource";
+    import CustomersResource from "resources/customers-resource";
     import CustomFieldsResource from "resources/custom-fields-resource";
     import DisputesResource from "resources/disputes-resource";
     import EmailDeliverySettingsResource from "resources/email-delivery-settings-resource";
@@ -1854,7 +1825,6 @@ declare module "resources/index" {
     import IntegrationsResource from "resources/integrations-resource";
     import InvoicesResource from "resources/invoices-resource";
     import KycDocumentsResource from "resources/kyc-documents-resource";
-    import LayoutsResource from "resources/layouts-resource";
     import ListsResource from "resources/lists-resource";
     import MembershipsResource from "resources/memberships-resource";
     import OrganizationsResource from "resources/organizations-resource";
@@ -2102,7 +2072,59 @@ declare module "create-api-handler" {
     import Collection from "collection";
 }
 declare module "index" {
-    export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams): import("create-api-instance").ApiInstance;
+    export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams): {
+        account;
+        apiKeys;
+        bankAccounts;
+        blocklists;
+        checkoutForms;
+        coupons;
+        customers;
+        customerAuthentication;
+        customFields;
+        credentialHashes;
+        disputes;
+        events;
+        files;
+        gatewayAccounts;
+        invoices;
+        lists;
+        organizations;
+        paymentCards;
+        paymentCardsBankNames;
+        paymentTokens;
+        paypalAccounts;
+        plans;
+        previews;
+        products;
+        profile;
+        search;
+        segments;
+        sessions;
+        shippingZones;
+        status;
+        subscriptions;
+        tracking;
+        transactions;
+        threeDSecure;
+        users;
+        webhooks;
+        websites;
+        addRequestInterceptor;
+        removeRequestInterceptor;
+        addResponseInterceptor;
+        removeResponseInterceptor;
+        setTimeout;
+        setProxyAgent;
+        setSessionToken;
+        setEndpoints;
+        getCancellationToken;
+        plaidCredentials;
+        paymentInstruments;
+    };
+    export default class RebillyAPI {
+        constructor({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams);
+    }
     export type ApiParams = {
         apiKey?: string;
         sandbox: boolean;

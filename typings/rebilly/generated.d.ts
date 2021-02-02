@@ -8294,9 +8294,9 @@ export interface components {
       | "Airpay"
       | "Alfa-click"
       | "Alipay"
+      | "APAR"
       | "Apple Pay"
       | "AstroPay Card"
-      | "BankSend"
       | "bank-transfer"
       | "bank-transfer-2"
       | "bank-transfer-3"
@@ -9437,11 +9437,11 @@ export interface components {
       | "Adyen"
       | "Airpay"
       | "AmexVPC"
+      | "APAR"
       | "ApcoPay"
       | "AsiaPaymentGateway"
       | "AstroPayCard"
       | "AuthorizeNet"
-      | "BankSend"
       | "Bambora"
       | "BitPay"
       | "BlueSnap"
@@ -9593,6 +9593,7 @@ export interface components {
         | "conn-error"
         | "disputed"
         | "never-sent"
+        | "offsite"
         | "partially-refunded"
         | "pending"
         | "refunded"
@@ -9666,12 +9667,12 @@ export interface components {
       | "Alipay"
       | "AIB"
       | "Airpay"
+      | "APAR"
       | "ApcoPay"
       | "AsiaPaymentGateway"
       | "AstroPay Card"
       | "Ipay Options"
       | "B+S"
-      | "BankSend"
       | "Bambora"
       | "BitPay"
       | "Bank of America"
@@ -10448,6 +10449,14 @@ export interface components {
         url: string;
       };
     };
+    /** APAR config. */
+    APAR: components["schemas"]["GatewayAccount"] & {
+      /** APAR credentials object. */
+      credentials: {
+        merchantId: string;
+        merchantToken: string;
+      };
+    };
     /** ApcoPay config. */
     ApcoPay: components["schemas"]["GatewayAccount"] & {
       /** ApcoPay credentials object. */
@@ -10507,14 +10516,6 @@ export interface components {
         apiLoginId: string;
         /** AuthorizeNet Gateway Transaction Key. */
         transactionKey: string;
-      };
-    };
-    /** BankSend config. */
-    BankSend: components["schemas"]["GatewayAccount"] & {
-      /** BankSend credentials object. */
-      credentials: {
-        marchantId: string;
-        merchantToken: string;
       };
     };
     /** Bambora Gateway config. */
@@ -11677,6 +11678,13 @@ export interface components {
         /** Paymero API key. */
         apiKey: string;
       };
+      /** Paymero settings object. */
+      settings?: {
+        /** Tolerance percentage (from 1 to 100) for settled amount for crypto currency method. */
+        tolerancePercentage?: number;
+        /** This will be the currency to which you want to auto-convert the received cryptocurrency in to. */
+        targetCurrency?: components["schemas"]["CurrencyCode"];
+      };
     };
     /** Payr Gateway config. */
     Payr: components["schemas"]["GatewayAccount"] & {
@@ -12829,8 +12837,12 @@ export interface components {
       documentType: "identity-proof" | "address-proof" | "funds-proof";
       /** Document subtype submitted for validation. */
       documentSubtype?: "passport" | "id-card" | "driver-license";
+      /** The level of strictness for the document matches. */
+      matchLevel?: number;
       /** Status of the validation. */
       status: "pending" | "in-progress" | "accepted" | "rejected";
+      /** Reason for uploading. */
+      reason?: string;
       rejectionReason?: components["schemas"]["KycDocumentRejection"];
       /** Creation date/time. */
       createdTime?: components["schemas"]["ServerTimestamp"];

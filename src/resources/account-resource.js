@@ -6,7 +6,7 @@ export default class AccountResource {
     
     /**
     * @param { rebilly.PostSignupRequestDataRequest } data
-    * @returns { rebilly.PostSignupResponse } response
+    * @returns { rebilly.PostSignupRequestResponse } response
     */
     signUp({data}) {
         return this.apiHandler.post(`signup`, data, {authenticate: false});
@@ -14,16 +14,17 @@ export default class AccountResource {
 
     /**
     * @param { rebilly.PostSigninRequestDataRequest } data
-    * @returns { rebilly.PostSigninResponse } response
+    * @returns { rebilly.PostSigninRequestResponse } response
     */
     signIn({data}) {
         return this.apiHandler.post(`signin`, data, {authenticate: false});
     }
 
     /**
-    * @returns { rebilly.PostLogoutResponse } response
+    * @returns { rebilly.PostLogoutRequestResponse } response
     */
     logout() {
+        // @ts-ignore
         return this.apiHandler.post(`logout`);
     }
     
@@ -31,14 +32,16 @@ export default class AccountResource {
     * @returns { rebilly.PostActivationResponse } response
     */
     activate({token}) {
+        // @ts-ignore
         return this.apiHandler.post(`activation/${token}`, null, {authenticate: false});
     }
     
     /**
     * @param { rebilly.PostForgotPasswordRequestDataRequest } data
-    * @returns { rebilly.PostForgotPasswordResponse } response
+    * @returns { rebilly.PostForgotPasswordRequestResponse } response
     */
     forgotPassword({data}) {
+        // @ts-ignore
         return this.apiHandler.post(`forgot-password`, data, {authenticate: false});
     }
     

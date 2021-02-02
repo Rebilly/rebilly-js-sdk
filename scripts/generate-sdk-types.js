@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { generatedTypes } = require('./types-to-generate');
+const { generateSDKTypesFromSchema } = require('./from-schema-to-sdk-types');
 
 console.log('🦊 Auto generating custom SDK types')
 
@@ -8,10 +8,10 @@ const customFilename = './typings/rebilly/custom.d.ts';
 const indexFilename = './typings/rebilly/index.d.ts';
 fs.readFile(customFilename, 'utf8', (error, data) => {
     if (error) throw error;
-    // data = data.replace('AUTO-GENERATED-TYPES-HERE', generatedTypes);
-    data = data.replace('//**AUTO-GENERATED-TYPES-HERE**', generatedTypes);
-
-    fs.writeFile(indexFilename, data, 'utf8', (err) => {
-        if (err) return console.log(err);
+    generateSDKTypesFromSchema().then(types => {
+        data = data.replace('//**AUTO-GENERATED-TYPES-HERE**', types)
+        fs.writeFile(indexFilename, data, 'utf8', (err) => {
+            if (err) return console.log(err);
+        });
     });
 });

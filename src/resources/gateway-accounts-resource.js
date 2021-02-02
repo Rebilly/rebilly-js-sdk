@@ -1,7 +1,7 @@
 export default function GatewayAccountsResource({apiHandler}) {
     return {
         /**
-        * @param { rebilly.GetGatewayAccountCollectionQuery } data
+        * @param { rebilly.GetGatewayAccountCollectionRequest } data
         * @returns { rebilly.GetGatewayAccountCollectionResponse } collection
         */
         getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null}={}) {
@@ -44,6 +44,7 @@ export default function GatewayAccountsResource({apiHandler}) {
         * @returns { rebilly.DeleteGatewayAccountResponse } response
         */
        delete({id}) {
+           // @ts-ignore
            return apiHandler.delete(`gateway-accounts/${id}`);
         },
         
@@ -110,11 +111,12 @@ export default function GatewayAccountsResource({apiHandler}) {
         * @returns { rebilly.DeleteGatewayAccountDowntimeScheduleResponse } response
         */
        deleteDowntimeSchedule({id, downtimeScheduleId}) {
+           // @ts-ignore
            return apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
         
         /**
-         * @param { rebilly.GetGatewayAccountLimitCollectionQuery } data
+         * @param { rebilly.GetGatewayAccountLimitCollectionRequest } data
          * @returns { rebilly.GetGatewayAccountLimitCollectionResponse } collection
          */
         getAllVolumeLimits({id}) {
@@ -148,13 +150,15 @@ export default function GatewayAccountsResource({apiHandler}) {
         * @returns { rebilly.DeleteGatewayAccountLimitResponse } response
         */
        deleteVolumeLimit({id, volumeLimitId}) {
+           // @ts-ignore
            return apiHandler.delete(`gateway-accounts/${id}/limits/${volumeLimitId}`);
         },
         
         /**
-         * @param { rebilly.GetGatewayAccountTimelineCollectionQuery } data
+         * @param { rebilly.GetGatewayAccountTimelineCollectionRequest } data
          * @returns { rebilly.GetGatewayAccountTimelineCollectionResponse } collection
          */
+        // @ts-ignore
         getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
@@ -176,13 +180,15 @@ export default function GatewayAccountsResource({apiHandler}) {
         * @returns { rebilly.DeleteGatewayAccountTimelineResponse } response
         */
        deleteTimelineMessage({id, messageId}) {
+           // @ts-ignore
            return apiHandler.delete(`gateway-accounts/${id}/timeline/${messageId}`);
         },
         
         /**
-        * @param { rebilly.PostGatewayAccountTimelineDataRequest } response
+        * @param { rebilly.PostGatewayAccountTimelineRequest } response
         * @returns { rebilly.PostGatewayAccountTimelineResponse } response
         */
+        // @ts-ignore
         createTimelineComment({id, data}) {
             return apiHandler.create(`gateway-accounts/${id}/timeline`, '', data);
         },

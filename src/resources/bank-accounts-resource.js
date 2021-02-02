@@ -1,7 +1,7 @@
 export default function BankAccountsResource({apiHandler}) {
     return {
         /**
-        * @param { rebilly.GetBankAccountCollectionQuery } data
+        * @param { rebilly.GetBankAccountCollectionRequest } data
         * @returns { rebilly.GetBankAccountCollectionResponse } collection
         */
         getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {

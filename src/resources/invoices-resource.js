@@ -2,6 +2,10 @@ import {pdfHeader, csvHeader} from '../request-headers';
 
 export default function InvoicesResource({apiHandler}) {
     return {
+        /**
+        * @param { rebilly.GetInvoiceCollectionRequest } data
+        * @returns { rebilly.GetInvoiceCollectionResponse } response
+        */
         getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
             const params = {
                 limit,
