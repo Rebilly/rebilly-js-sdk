@@ -891,4 +891,12 @@ declare module rebilly {
   type PostSigninRequestDataRequest = {data: PostSigninRequestRequest};
   
   type PostSignupRequestDataRequest = {data: PostSignupRequestRequest};
+  
+  type PostInvoiceIssuanceDataRequest = {id: String, data: PostInvoiceIssuanceRequest};
+  
+  type PostInvoiceReissuanceDataRequest = {id: String, data: PostInvoiceReissuanceRequest};
+  
+  type PostInvoiceItemDataRequest = {id: String, data: PostInvoiceItemRequest};
+  
+  type PutCustomerLeadSourceDataRequest = {id: String, data: PutCustomerLeadSourceRequest};
 }

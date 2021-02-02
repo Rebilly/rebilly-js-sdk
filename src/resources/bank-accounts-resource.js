@@ -4,6 +4,7 @@ export default function BankAccountsResource({apiHandler}) {
         * @param { rebilly.GetBankAccountCollectionRequest } data
         * @returns { rebilly.GetBankAccountCollectionResponse } collection
         */
+        // @ts-ignore
         getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,

@@ -704,7 +704,9 @@ declare module "resources/gateway-accounts-resource" {
             id: any;
             downtimeScheduleId: any;
         }): rebilly.DeleteGatewayAccountDowntimeScheduleResponse;
-        getAllVolumeLimits({ id }: rebilly.GetGatewayAccountLimitCollectionRequest): rebilly.GetGatewayAccountLimitCollectionResponse;
+        getAllVolumeLimits({ id }: {
+            id: any;
+        }): rebilly.GetGatewayAccountLimitCollectionResponse;
         getVolumeLimit({ id, volumeLimitId }: {
             id: any;
             volumeLimitId: any;
@@ -743,10 +745,7 @@ declare module "resources/invoices-resource" {
         apiHandler: any;
     }): {
         getAll({ limit, offset, sort, expand, filter, q, criteria }?: rebilly.GetInvoiceCollectionRequest): rebilly.GetInvoiceCollectionResponse;
-        get({ id, expand }: {
-            id: any;
-            expand?: any;
-        }): any;
+        get({ id, expand }: rebilly.GetInvoiceRequest): rebilly.GetInvoiceResponse;
         downloadPDF({ id }: {
             id: any;
         }): any;
@@ -759,69 +758,35 @@ declare module "resources/invoices-resource" {
             q?: any;
             criteria?: any;
         }): any;
-        create({ id, data, expand }: {
-            id?: string;
-            data: any;
-            expand?: any;
-        }): any;
-        update({ id, data, expand }: {
-            id: any;
-            data: any;
-            expand?: any;
-        }): any;
-        issue({ id, data }: {
-            id: any;
-            data?: {};
-        }): any;
-        reissue({ id, data }: {
-            id: any;
-            data?: {};
-        }): any;
+        create({ id, data, expand }: rebilly.PostInvoiceRequest): rebilly.PostInvoiceResponse;
+        update({ id, data, expand }: rebilly.PutInvoiceRequest): rebilly.PutInvoiceResponse;
+        issue({ id, data }: rebilly.PostInvoiceIssuanceDataRequest): rebilly.PostInvoiceIssuanceResponse;
+        reissue({ id, data }: rebilly.PostInvoiceReissuanceDataRequest): rebilly.PostInvoiceReissuanceResponse;
         abandon({ id }: {
             id: any;
-        }): any;
+        }): rebilly.PostInvoiceAbandonmentResponse;
         void({ id }: {
             id: any;
-        }): any;
-        getAllInvoiceItems({ id, limit, offset, expand }: {
-            id?: any;
-            limit?: any;
-            offset?: any;
-            expand?: any;
-        }): any;
-        createInvoiceItem({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
+        }): rebilly.PostInvoiceVoidResponse;
+        getAllInvoiceItems({ id, limit, offset, expand }: rebilly.GetInvoiceItemCollectionRequest): rebilly.GetInvoiceItemCollectionResponse;
+        createInvoiceItem({ id, data }: rebilly.PostInvoiceItemDataRequest): rebilly.PostInvoiceItemResponse;
         getLeadSource({ id }: {
             id: any;
-        }): any;
-        createLeadSource({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
-        updateLeadSource({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
+        }): rebilly.GetCustomerLeadSourceResponse;
+        createLeadSource({ id, data }: rebilly.PutCustomerLeadSourceDataRequest): rebilly.PutCustomerLeadSourceResponse;
+        updateLeadSource({ id, data }: rebilly.PutCustomerLeadSourceDataRequest): rebilly.PutCustomerLeadSourceResponse;
         deleteLeadSource({ id }: {
             id: any;
-        }): any;
-        getAllTimelineMessages({ id, limit, offset, sort, filter }?: {
-            id?: any;
-            limit?: any;
-            offset?: any;
-            sort?: any;
-            filter?: any;
-        }): any;
+        }): rebilly.DeleteCustomerLeadSourceResponse;
+        getAllTimelineMessages({ id, limit, offset, sort, filter }?: rebilly.GetInvoiceTimelineCollectionRequest): rebilly.GetInvoiceTimelineCollectionResponse;
         getTimelineMessage({ id, messageId }?: {
             id?: any;
             messageId?: string;
-        }): any;
+        }): rebilly.GetInvoiceTimelineResponse;
         deleteTimelineMessage({ id, messageId }: {
             id: any;
             messageId: any;
-        }): any;
+        }): rebilly.DeleteCustomerTimelineResponse;
         createTimelineComment({ id, data }: {
             id: any;
             data: any;
@@ -837,7 +802,7 @@ declare module "resources/invoices-resource" {
             id?: any;
             limit?: any;
             offset?: any;
-        }): any;
+        }): rebilly.GetInvoiceTransactionAllocationCollectionResponse;
         applyTransaction({ id, transactionId, amount }: {
             id: any;
             transactionId: any;

@@ -4,6 +4,7 @@ export default function GatewayAccountsResource({apiHandler}) {
         * @param { rebilly.GetGatewayAccountCollectionRequest } data
         * @returns { rebilly.GetGatewayAccountCollectionResponse } collection
         */
+        // @ts-ignore
         getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null}={}) {
             const params = {
                 limit,
@@ -116,7 +117,6 @@ export default function GatewayAccountsResource({apiHandler}) {
         },
         
         /**
-         * @param { rebilly.GetGatewayAccountLimitCollectionRequest } data
          * @returns { rebilly.GetGatewayAccountLimitCollectionResponse } collection
          */
         getAllVolumeLimits({id}) {
