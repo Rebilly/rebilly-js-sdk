@@ -1,3 +1,7 @@
+/**
+ * WARNING: This file is not used anymore and we must remove it once 
+ * we decide how to integrate Type generation in our CI workflows
+ */
 const generatedTypes = 
 `
   /*GENERATED TYPES: DON'T MANUALLY UPDATE AFTER THIS COMMENT*/
@@ -20,8 +24,7 @@ const generatedTypes =
 
   
   //Api keys Resource
-  ${CollectionQueryType('GetApiKeyCollection')}
-  ${CollectionResponseType('GetApiKeyCollection')}
+  ${generateCollectionQueryAndResponse('GetApiKeyCollection')}
   
   ${ResponseType('GetApiKey', '200')}
   
@@ -34,8 +37,7 @@ const generatedTypes =
   ${Response204Type('DeleteApiKey')}
   
   //Bank accounts resource
-  ${CollectionQueryType('GetBankAccountCollection')}
-  ${CollectionResponseType('GetBankAccountCollection')}
+  ${generateCollectionQueryAndResponse('GetBankAccountCollection')}
   
   //missing GetBankAccountRequest
   ${ResponseType('GetBankAccount', '200')}
@@ -50,8 +52,7 @@ const generatedTypes =
   ${ResponseType('PostBankAccountDeactivation')}
 
   // GatewayAccount Resource
-  ${CollectionQueryType('GetGatewayAccountCollection')}
-  ${CollectionResponseType('GetGatewayAccountCollection')}
+  ${generateCollectionQueryAndResponse('GetGatewayAccountCollection')}
   
   //missing GetGatewayAccountRequest
   ${ResponseType('GetGatewayAccount', '200')}
@@ -88,8 +89,7 @@ const generatedTypes =
   //Missing request for all DeleteGatewayAccountDowntimeScheduleRequest
   ${Response204Type('DeleteGatewayAccountDowntimeSchedule')}
   
-  ${CollectionQueryType('GetGatewayAccountLimitCollection')}
-  ${CollectionResponseType('GetGatewayAccountLimitCollection')}
+  ${generateCollectionQueryAndResponse('GetGatewayAccountLimitCollection')}
   
   ${ResponseType('GetGatewayAccountLimit', '200')}
   
@@ -98,8 +98,7 @@ const generatedTypes =
   
   ${Response204Type('DeleteGatewayAccountLimit')}
   
-  ${CollectionQueryType('GetGatewayAccountTimelineCollection')}
-  ${CollectionResponseType('GetGatewayAccountTimelineCollection')}
+  ${generateCollectionQueryAndResponse('GetGatewayAccountTimelineCollection')}
   
   ${ResponseType('GetGatewayAccountTimeline', '200')}
   
@@ -109,11 +108,15 @@ const generatedTypes =
   ${ResponseType('PostGatewayAccountTimeline')}
   
   //Customers resource
-  ${CollectionQueryType('GetCustomerCollection')}
-  ${CollectionResponseType('GetCustomerCollection')}
+  ${generateCollectionQueryAndResponse('GetCustomerCollection')}
   
   // Missing Customer request
   ${ResponseType('GetCustomer', '200')}
+  
+  //Invoices resource
+  ${generateCollectionQueryAndResponse('GetInvoiceCollection')}
+  
+  
 
 
 
@@ -145,6 +148,11 @@ function RequestAccountLimitDataType(operationName) {
 function EmptyRequestType(operationName) {
     return `type ${operationName}Request = operations['${operationName}']['requestBody']`;
 };
+
+function generateCollectionQueryAndResponse(operationName) {
+    return `${CollectionQueryType(operationName)}
+  ${CollectionResponseType(operationName)}`
+}
 
 function CollectionQueryType(operationName) {
     return `type ${operationName}Query = operations['${operationName}']['parameters']['query']`;
