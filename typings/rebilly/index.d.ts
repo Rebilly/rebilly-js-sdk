@@ -6,867 +6,867 @@ declare module rebilly {
     
   type Get3DSecureCollectionRequest = operations['Get3DSecureCollection']['parameters']['query']
   
-  type Get3DSecureCollectionResponse = operations['Get3DSecureCollection']['responses']['200']
+  type Get3DSecureCollectionResponse = Promise<{ items: operations['Get3DSecureCollection']['responses']['200']['application/json']}>
   type Post3DSecureRequest = operations['Post3DSecure']['requestBody']['application/json']
-  type Post3DSecureResponse = operations['Post3DSecure']['responses']['201']['application/json']
+  type Post3DSecureResponse = Promise<{fields: operations['Post3DSecure']['responses']['201']['application/json']}>
   
-  type Get3DSecureResponse = operations['Get3DSecure']['responses']['200']
+  type Get3DSecureResponse = Promise<{fields: operations['Get3DSecure']['responses']['200']}>
   
   type GetAttachmentCollectionRequest = operations['GetAttachmentCollection']['parameters']['query']
   
-  type GetAttachmentCollectionResponse = operations['GetAttachmentCollection']['responses']['200']
+  type GetAttachmentCollectionResponse = Promise<{ items: operations['GetAttachmentCollection']['responses']['200']['application/json']}>
   type PostAttachmentRequest = operations['PostAttachment']['requestBody']
-  type PostAttachmentResponse = operations['PostAttachment']['responses']['201']
+  type PostAttachmentResponse = Promise<{fields: operations['PostAttachment']['responses']['201']}>
   
-  type GetAttachmentResponse = operations['GetAttachment']['responses']['200']
+  type GetAttachmentResponse = Promise<{fields: operations['GetAttachment']['responses']['200']}>
   type PutAttachmentRequest = operations['PutAttachment']['requestBody']
-  type PutAttachmentResponse = operations['PutAttachment']['responses']['201']
-  type DeleteAttachmentResponse = operations['DeleteAttachment']['responses']['204']
+  type PutAttachmentResponse = Promise<{fields: operations['PutAttachment']['responses']['201']}>
+  type DeleteAttachmentResponse = Promise<{fields: operations['DeleteAttachment']['responses']['204']}>
   
-  type GetAuthenticationOptionResponse = operations['GetAuthenticationOption']['responses']['200']
+  type GetAuthenticationOptionResponse = Promise<{fields: operations['GetAuthenticationOption']['responses']['200']}>
   type PutAuthenticationOptionRequest = operations['PutAuthenticationOption']['requestBody']['application/json']
-  type PutAuthenticationOptionResponse = operations['PutAuthenticationOption']['responses']['200']['application/json']
+  type PutAuthenticationOptionResponse = Promise<{fields: operations['PutAuthenticationOption']['responses']['200']['application/json']}>
   
   type GetAuthenticationTokenCollectionRequest = operations['GetAuthenticationTokenCollection']['parameters']['query']
   
-  type GetAuthenticationTokenCollectionResponse = operations['GetAuthenticationTokenCollection']['responses']['200']
+  type GetAuthenticationTokenCollectionResponse = Promise<{ items: operations['GetAuthenticationTokenCollection']['responses']['200']['application/json']}>
   type PostAuthenticationTokenRequest = operations['PostAuthenticationToken']['requestBody']['application/json']
-  type PostAuthenticationTokenResponse = operations['PostAuthenticationToken']['responses']['201']['application/json']
+  type PostAuthenticationTokenResponse = Promise<{fields: operations['PostAuthenticationToken']['responses']['201']['application/json']}>
   
-  type GetAuthenticationTokenVerificationResponse = operations['GetAuthenticationTokenVerification']['responses']['200']
-  type DeleteAuthenticationTokenResponse = operations['DeleteAuthenticationToken']['responses']['204']
+  type GetAuthenticationTokenVerificationResponse = Promise<{fields: operations['GetAuthenticationTokenVerification']['responses']['200']}>
+  type DeleteAuthenticationTokenResponse = Promise<{fields: operations['DeleteAuthenticationToken']['responses']['204']}>
   
   type PostAuthenticationTokenExchangeRequest = operations['PostAuthenticationTokenExchange']['requestBody']['application/json']
-  type PostAuthenticationTokenExchangeResponse = operations['PostAuthenticationTokenExchange']['responses']['201']['application/json']
+  type PostAuthenticationTokenExchangeResponse = Promise<{fields: operations['PostAuthenticationTokenExchange']['responses']['201']['application/json']}>
   
   type GetBankAccountCollectionRequest = operations['GetBankAccountCollection']['parameters']['query']
   
-  type GetBankAccountCollectionResponse = operations['GetBankAccountCollection']['responses']['200']
+  type GetBankAccountCollectionResponse = Promise<{ items: operations['GetBankAccountCollection']['responses']['200']['application/json']}>
   type PostBankAccountRequest = operations['PostBankAccount']['requestBody']['application/json']
-  type PostBankAccountResponse = operations['PostBankAccount']['responses']['201']['application/json']
+  type PostBankAccountResponse = Promise<{fields: operations['PostBankAccount']['responses']['201']['application/json']}>
   
-  type GetBankAccountResponse = operations['GetBankAccount']['responses']['200']
+  type GetBankAccountResponse = Promise<{fields: operations['GetBankAccount']['responses']['200']}>
   type PutBankAccountRequest = operations['PutBankAccount']['requestBody']['application/json']
-  type PutBankAccountResponse = operations['PutBankAccount']['responses']['201']['application/json']
+  type PutBankAccountResponse = Promise<{fields: operations['PutBankAccount']['responses']['201']['application/json']}>
   type PatchBankAccountRequest = operations['PatchBankAccount']['requestBody']['application/json']
-  type PatchBankAccountResponse = operations['PatchBankAccount']['responses']['200']['application/json']
+  type PatchBankAccountResponse = Promise<{fields: operations['PatchBankAccount']['responses']['200']['application/json']}>
   
-  type PostBankAccountDeactivationResponse = operations['PostBankAccountDeactivation']['responses']['201']
+  type PostBankAccountDeactivationResponse = Promise<{fields: operations['PostBankAccountDeactivation']['responses']['201']}>
   
   type GetBlocklistCollectionRequest = operations['GetBlocklistCollection']['parameters']['query']
   
-  type GetBlocklistCollectionResponse = operations['GetBlocklistCollection']['responses']['200']
+  type GetBlocklistCollectionResponse = Promise<{ items: operations['GetBlocklistCollection']['responses']['200']['application/json']}>
   type PostBlocklistRequest = operations['PostBlocklist']['requestBody']
-  type PostBlocklistResponse = operations['PostBlocklist']['responses']['201']
+  type PostBlocklistResponse = Promise<{fields: operations['PostBlocklist']['responses']['201']}>
   
-  type GetBlocklistResponse = operations['GetBlocklist']['responses']['200']
+  type GetBlocklistResponse = Promise<{fields: operations['GetBlocklist']['responses']['200']}>
   type PutBlocklistRequest = operations['PutBlocklist']['requestBody']
-  type PutBlocklistResponse = operations['PutBlocklist']['responses']['201']
-  type DeleteBlocklistResponse = operations['DeleteBlocklist']['responses']['204']
+  type PutBlocklistResponse = Promise<{fields: operations['PutBlocklist']['responses']['201']}>
+  type DeleteBlocklistResponse = Promise<{fields: operations['DeleteBlocklist']['responses']['204']}>
   
   type GetCouponRedemptionCollectionRequest = operations['GetCouponRedemptionCollection']['parameters']['query']
   
-  type GetCouponRedemptionCollectionResponse = operations['GetCouponRedemptionCollection']['responses']['200']
+  type GetCouponRedemptionCollectionResponse = Promise<{ items: operations['GetCouponRedemptionCollection']['responses']['200']['application/json']}>
   type PostCouponRedemptionRequest = operations['PostCouponRedemption']['requestBody']['application/json']
-  type PostCouponRedemptionResponse = operations['PostCouponRedemption']['responses']['201']['application/json']
+  type PostCouponRedemptionResponse = Promise<{fields: operations['PostCouponRedemption']['responses']['201']['application/json']}>
   
-  type GetCouponRedemptionResponse = operations['GetCouponRedemption']['responses']['200']
+  type GetCouponRedemptionResponse = Promise<{fields: operations['GetCouponRedemption']['responses']['200']}>
   
-  type PostCouponRedemptionCancellationResponse = operations['PostCouponRedemptionCancellation']['responses']['201']
+  type PostCouponRedemptionCancellationResponse = Promise<{fields: operations['PostCouponRedemptionCancellation']['responses']['201']}>
   
   type GetCouponCollectionRequest = operations['GetCouponCollection']['parameters']['query']
   
-  type GetCouponCollectionResponse = operations['GetCouponCollection']['responses']['200']
+  type GetCouponCollectionResponse = Promise<{ items: operations['GetCouponCollection']['responses']['200']['application/json']}>
   type PostCouponRequest = operations['PostCoupon']['requestBody']
-  type PostCouponResponse = operations['PostCoupon']['responses']['201']
+  type PostCouponResponse = Promise<{fields: operations['PostCoupon']['responses']['201']}>
   
-  type GetCouponResponse = operations['GetCoupon']['responses']['200']
+  type GetCouponResponse = Promise<{fields: operations['GetCoupon']['responses']['200']}>
   type PutCouponRequest = operations['PutCoupon']['requestBody']
-  type PutCouponResponse = operations['PutCoupon']['responses']['201']
+  type PutCouponResponse = Promise<{fields: operations['PutCoupon']['responses']['201']}>
   
   type PostCouponExpirationRequest = operations['PostCouponExpiration']['requestBody']['application/json']
-  type PostCouponExpirationResponse = operations['PostCouponExpiration']['responses']['201']['application/json']
+  type PostCouponExpirationResponse = Promise<{fields: operations['PostCouponExpiration']['responses']['201']['application/json']}>
   
   type GetCredentialCollectionRequest = operations['GetCredentialCollection']['parameters']['query']
   
-  type GetCredentialCollectionResponse = operations['GetCredentialCollection']['responses']['200']
+  type GetCredentialCollectionResponse = Promise<{ items: operations['GetCredentialCollection']['responses']['200']['application/json']}>
   type PostCredentialRequest = operations['PostCredential']['requestBody']
-  type PostCredentialResponse = operations['PostCredential']['responses']['201']
+  type PostCredentialResponse = Promise<{fields: operations['PostCredential']['responses']['201']}>
   
-  type GetCredentialResponse = operations['GetCredential']['responses']['200']
+  type GetCredentialResponse = Promise<{fields: operations['GetCredential']['responses']['200']}>
   type PutCredentialRequest = operations['PutCredential']['requestBody']
-  type PutCredentialResponse = operations['PutCredential']['responses']['201']
-  type DeleteCredentialResponse = operations['DeleteCredential']['responses']['204']
+  type PutCredentialResponse = Promise<{fields: operations['PutCredential']['responses']['201']}>
+  type DeleteCredentialResponse = Promise<{fields: operations['DeleteCredential']['responses']['204']}>
   
-  type GetCustomFieldCollectionResponse = operations['GetCustomFieldCollection']['responses']['200']
+  type GetCustomFieldCollectionResponse = Promise<{ items: operations['GetCustomFieldCollection']['responses']['200']['application/json']}>
   
-  type GetCustomFieldResponse = operations['GetCustomField']['responses']['200']
+  type GetCustomFieldResponse = Promise<{fields: operations['GetCustomField']['responses']['200']}>
   type PutCustomFieldRequest = operations['PutCustomField']['requestBody']['application/json']
-  type PutCustomFieldResponse = operations['PutCustomField']['responses']['201']['application/json']
+  type PutCustomFieldResponse = Promise<{fields: operations['PutCustomField']['responses']['201']['application/json']}>
   
   type GetCustomerCollectionRequest = operations['GetCustomerCollection']['parameters']['query']
   
-  type GetCustomerCollectionResponse = operations['GetCustomerCollection']['responses']['200']
+  type GetCustomerCollectionResponse = Promise<{ items: operations['GetCustomerCollection']['responses']['200']['application/json']}>
   type PostCustomerRequest = operations['PostCustomer']['requestBody']
-  type PostCustomerResponse = operations['PostCustomer']['responses']['201']
+  type PostCustomerResponse = Promise<{fields: operations['PostCustomer']['responses']['201']}>
   
-  type GetCustomerResponse = operations['GetCustomer']['responses']['200']
+  type GetCustomerResponse = Promise<{fields: operations['GetCustomer']['responses']['200']}>
   type PutCustomerRequest = operations['PutCustomer']['requestBody']
-  type PutCustomerResponse = operations['PutCustomer']['responses']['201']
-  type DeleteCustomerResponse = operations['DeleteCustomer']['responses']['204']
+  type PutCustomerResponse = Promise<{fields: operations['PutCustomer']['responses']['201']}>
+  type DeleteCustomerResponse = Promise<{fields: operations['DeleteCustomer']['responses']['204']}>
   
   type GetCustomerTimelineCustomEventTypeCollectionRequest = operations['GetCustomerTimelineCustomEventTypeCollection']['parameters']['query']
   
-  type GetCustomerTimelineCustomEventTypeCollectionResponse = operations['GetCustomerTimelineCustomEventTypeCollection']['responses']['200']
+  type GetCustomerTimelineCustomEventTypeCollectionResponse = Promise<{ items: operations['GetCustomerTimelineCustomEventTypeCollection']['responses']['200']['application/json']}>
   type PostCustomerTimelineCustomEventTypeRequest = operations['PostCustomerTimelineCustomEventType']['requestBody']['application/json']
-  type PostCustomerTimelineCustomEventTypeResponse = operations['PostCustomerTimelineCustomEventType']['responses']['201']['application/json']
+  type PostCustomerTimelineCustomEventTypeResponse = Promise<{fields: operations['PostCustomerTimelineCustomEventType']['responses']['201']['application/json']}>
   
-  type GetCustomerTimelineCustomEventTypeResponse = operations['GetCustomerTimelineCustomEventType']['responses']['200']
+  type GetCustomerTimelineCustomEventTypeResponse = Promise<{fields: operations['GetCustomerTimelineCustomEventType']['responses']['200']}>
   
   type GetCustomerTimelineEventCollectionRequest = operations['GetCustomerTimelineEventCollection']['parameters']['query']
   
-  type GetCustomerTimelineEventCollectionResponse = operations['GetCustomerTimelineEventCollection']['responses']['200']
+  type GetCustomerTimelineEventCollectionResponse = Promise<{ items: operations['GetCustomerTimelineEventCollection']['responses']['200']['application/json']}>
   
-  type GetCustomerLeadSourceResponse = operations['GetCustomerLeadSource']['responses']['200']
+  type GetCustomerLeadSourceResponse = Promise<{fields: operations['GetCustomerLeadSource']['responses']['200']}>
   type PutCustomerLeadSourceRequest = operations['PutCustomerLeadSource']['requestBody']['application/json']
-  type PutCustomerLeadSourceResponse = operations['PutCustomerLeadSource']['responses']['201']['application/json']
-  type DeleteCustomerLeadSourceResponse = operations['DeleteCustomerLeadSource']['responses']['204']
+  type PutCustomerLeadSourceResponse = Promise<{fields: operations['PutCustomerLeadSource']['responses']['201']['application/json']}>
+  type DeleteCustomerLeadSourceResponse = Promise<{fields: operations['DeleteCustomerLeadSource']['responses']['204']}>
   
   type GetCustomerTimelineCollectionRequest = operations['GetCustomerTimelineCollection']['parameters']['query']
   
-  type GetCustomerTimelineCollectionResponse = operations['GetCustomerTimelineCollection']['responses']['200']
+  type GetCustomerTimelineCollectionResponse = Promise<{ items: operations['GetCustomerTimelineCollection']['responses']['200']['application/json']}>
   type PostCustomerTimelineRequest = operations['PostCustomerTimeline']['requestBody']['application/json']
-  type PostCustomerTimelineResponse = operations['PostCustomerTimeline']['responses']['201']['application/json']
+  type PostCustomerTimelineResponse = Promise<{fields: operations['PostCustomerTimeline']['responses']['201']['application/json']}>
   
-  type GetCustomerTimelineResponse = operations['GetCustomerTimeline']['responses']['200']
-  type DeleteCustomerTimelineResponse = operations['DeleteCustomerTimeline']['responses']['204']
+  type GetCustomerTimelineResponse = Promise<{fields: operations['GetCustomerTimeline']['responses']['200']}>
+  type DeleteCustomerTimelineResponse = Promise<{fields: operations['DeleteCustomerTimeline']['responses']['204']}>
   
   type GetCustomerUpcomingInvoiceCollectionRequest = operations['GetCustomerUpcomingInvoiceCollection']['parameters']['query']
   
-  type GetCustomerUpcomingInvoiceCollectionResponse = operations['GetCustomerUpcomingInvoiceCollection']['responses']['200']
+  type GetCustomerUpcomingInvoiceCollectionResponse = Promise<{ items: operations['GetCustomerUpcomingInvoiceCollection']['responses']['200']['application/json']}>
   
   type GetDisputeCollectionRequest = operations['GetDisputeCollection']['parameters']['query']
   
-  type GetDisputeCollectionResponse = operations['GetDisputeCollection']['responses']['200']
+  type GetDisputeCollectionResponse = Promise<{ items: operations['GetDisputeCollection']['responses']['200']['application/json']}>
   type PostDisputeRequest = operations['PostDispute']['requestBody']
-  type PostDisputeResponse = operations['PostDispute']['responses']['201']
+  type PostDisputeResponse = Promise<{fields: operations['PostDispute']['responses']['201']}>
   
-  type GetDisputeResponse = operations['GetDispute']['responses']['200']
+  type GetDisputeResponse = Promise<{fields: operations['GetDispute']['responses']['200']}>
   type PutDisputeRequest = operations['PutDispute']['requestBody']
-  type PutDisputeResponse = operations['PutDispute']['responses']['201']
+  type PutDisputeResponse = Promise<{fields: operations['PutDispute']['responses']['201']}>
   
   type GetFileCollectionRequest = operations['GetFileCollection']['parameters']['query']
   
-  type GetFileCollectionResponse = operations['GetFileCollection']['responses']['200']
+  type GetFileCollectionResponse = Promise<{ items: operations['GetFileCollection']['responses']['200']['application/json']}>
   type PostFileRequest = operations['PostFile']['requestBody']['application/json']
-  type PostFileResponse = operations['PostFile']['responses']['201']['application/json']
+  type PostFileResponse = Promise<{fields: operations['PostFile']['responses']['201']['application/json']}>
   
-  type GetFileResponse = operations['GetFile']['responses']['200']
+  type GetFileResponse = Promise<{fields: operations['GetFile']['responses']['200']}>
   type PutFileRequest = operations['PutFile']['requestBody']['application/json']
-  type PutFileResponse = operations['PutFile']['responses']['200']['application/json']
-  type DeleteFileResponse = operations['DeleteFile']['responses']['204']
+  type PutFileResponse = Promise<{fields: operations['PutFile']['responses']['200']['application/json']}>
+  type DeleteFileResponse = Promise<{fields: operations['DeleteFile']['responses']['204']}>
   
-  type GetFileDownloadResponse = operations['GetFileDownload']['responses']['200']
+  type GetFileDownloadResponse = Promise<{fields: operations['GetFileDownload']['responses']['200']}>
   
-  type GetFileDownloadExtensionResponse = operations['GetFileDownloadExtension']['responses']['200']
+  type GetFileDownloadExtensionResponse = Promise<{fields: operations['GetFileDownloadExtension']['responses']['200']}>
   
   type GetInvoiceCollectionRequest = operations['GetInvoiceCollection']['parameters']['query']
   
-  type GetInvoiceCollectionResponse = operations['GetInvoiceCollection']['responses']['200']
+  type GetInvoiceCollectionResponse = Promise<{ items: operations['GetInvoiceCollection']['responses']['200']['application/json']}>
   type PostInvoiceRequest = operations['PostInvoice']['requestBody']
-  type PostInvoiceResponse = operations['PostInvoice']['responses']['201']
+  type PostInvoiceResponse = Promise<{fields: operations['PostInvoice']['responses']['201']}>
   
   type GetInvoiceRequest = operations['GetInvoice']['parameters']
   
-  type GetInvoiceResponse = operations['GetInvoice']['responses']['200']
+  type GetInvoiceResponse = Promise<{fields: operations['GetInvoice']['responses']['200']}>
   type PutInvoiceRequest = operations['PutInvoice']['requestBody']
-  type PutInvoiceResponse = operations['PutInvoice']['responses']['201']
+  type PutInvoiceResponse = Promise<{fields: operations['PutInvoice']['responses']['201']}>
   
-  type PostInvoiceAbandonmentResponse = operations['PostInvoiceAbandonment']['responses']['201']
+  type PostInvoiceAbandonmentResponse = Promise<{fields: operations['PostInvoiceAbandonment']['responses']['201']}>
   
   type PostInvoiceIssuanceRequest = operations['PostInvoiceIssuance']['requestBody']['application/json']
-  type PostInvoiceIssuanceResponse = operations['PostInvoiceIssuance']['responses']['201']['application/json']
+  type PostInvoiceIssuanceResponse = Promise<{fields: operations['PostInvoiceIssuance']['responses']['201']['application/json']}>
   
   type GetInvoiceItemCollectionRequest = operations['GetInvoiceItemCollection']['parameters']['query']
   
-  type GetInvoiceItemCollectionResponse = operations['GetInvoiceItemCollection']['responses']['200']
+  type GetInvoiceItemCollectionResponse = Promise<{ items: operations['GetInvoiceItemCollection']['responses']['200']['application/json']}>
   type PostInvoiceItemRequest = operations['PostInvoiceItem']['requestBody']['application/json']
-  type PostInvoiceItemResponse = operations['PostInvoiceItem']['responses']['201']['application/json']
+  type PostInvoiceItemResponse = Promise<{fields: operations['PostInvoiceItem']['responses']['201']['application/json']}>
   
-  type PostInvoiceRecalculationResponse = operations['PostInvoiceRecalculation']['responses']['201']
+  type PostInvoiceRecalculationResponse = Promise<{fields: operations['PostInvoiceRecalculation']['responses']['201']}>
   
   type PostInvoiceReissuanceRequest = operations['PostInvoiceReissuance']['requestBody']['application/json']
-  type PostInvoiceReissuanceResponse = operations['PostInvoiceReissuance']['responses']['201']['application/json']
+  type PostInvoiceReissuanceResponse = Promise<{fields: operations['PostInvoiceReissuance']['responses']['201']['application/json']}>
   
   type GetInvoiceTimelineCollectionRequest = operations['GetInvoiceTimelineCollection']['parameters']['query']
   
-  type GetInvoiceTimelineCollectionResponse = operations['GetInvoiceTimelineCollection']['responses']['200']
+  type GetInvoiceTimelineCollectionResponse = Promise<{ items: operations['GetInvoiceTimelineCollection']['responses']['200']['application/json']}>
   type PostInvoiceTimelineRequest = operations['PostInvoiceTimeline']['requestBody']['application/json']
-  type PostInvoiceTimelineResponse = operations['PostInvoiceTimeline']['responses']['201']['application/json']
+  type PostInvoiceTimelineResponse = Promise<{fields: operations['PostInvoiceTimeline']['responses']['201']['application/json']}>
   
-  type GetInvoiceTimelineResponse = operations['GetInvoiceTimeline']['responses']['200']
-  type DeleteInvoiceTimelineResponse = operations['DeleteInvoiceTimeline']['responses']['204']
+  type GetInvoiceTimelineResponse = Promise<{fields: operations['GetInvoiceTimeline']['responses']['200']}>
+  type DeleteInvoiceTimelineResponse = Promise<{fields: operations['DeleteInvoiceTimeline']['responses']['204']}>
   
-  type GetInvoiceTransactionAllocationCollectionResponse = operations['GetInvoiceTransactionAllocationCollection']['responses']['200']
+  type GetInvoiceTransactionAllocationCollectionResponse = Promise<{ items: operations['GetInvoiceTransactionAllocationCollection']['responses']['200']['application/json']}>
   
-  type PostInvoiceVoidResponse = operations['PostInvoiceVoid']['responses']['201']
+  type PostInvoiceVoidResponse = Promise<{fields: operations['PostInvoiceVoid']['responses']['201']}>
   
   type GetKycDocumentCollectionRequest = operations['GetKycDocumentCollection']['parameters']['query']
   
-  type GetKycDocumentCollectionResponse = operations['GetKycDocumentCollection']['responses']['200']
+  type GetKycDocumentCollectionResponse = Promise<{ items: operations['GetKycDocumentCollection']['responses']['200']['application/json']}>
   type PostKycDocumentRequest = operations['PostKycDocument']['requestBody']['application/json']
-  type PostKycDocumentResponse = operations['PostKycDocument']['responses']['201']['application/json']
+  type PostKycDocumentResponse = Promise<{fields: operations['PostKycDocument']['responses']['201']['application/json']}>
   
-  type GetKycDocumentResponse = operations['GetKycDocument']['responses']['200']
+  type GetKycDocumentResponse = Promise<{fields: operations['GetKycDocument']['responses']['200']}>
   type PutKycDocumentRequest = operations['PutKycDocument']['requestBody']['application/json']
-  type PutKycDocumentResponse = operations['PutKycDocument']['responses']['201']['application/json']
+  type PutKycDocumentResponse = Promise<{fields: operations['PutKycDocument']['responses']['201']['application/json']}>
   
-  type PostKycDocumentAcceptanceResponse = operations['PostKycDocumentAcceptance']['responses']['201']
+  type PostKycDocumentAcceptanceResponse = Promise<{fields: operations['PostKycDocumentAcceptance']['responses']['201']}>
   
   type PostKycDocumentRejectionRequest = operations['PostKycDocumentRejection']['requestBody']['application/json']
-  type PostKycDocumentRejectionResponse = operations['PostKycDocumentRejection']['responses']['201']['application/json']
+  type PostKycDocumentRejectionResponse = Promise<{fields: operations['PostKycDocumentRejection']['responses']['201']['application/json']}>
   
-  type PostKycDocumentReviewResponse = operations['PostKycDocumentReview']['responses']['201']
+  type PostKycDocumentReviewResponse = Promise<{fields: operations['PostKycDocumentReview']['responses']['201']}>
   
   type GetPasswordTokenCollectionRequest = operations['GetPasswordTokenCollection']['parameters']['query']
   
-  type GetPasswordTokenCollectionResponse = operations['GetPasswordTokenCollection']['responses']['200']
+  type GetPasswordTokenCollectionResponse = Promise<{ items: operations['GetPasswordTokenCollection']['responses']['200']['application/json']}>
   type PostPasswordTokenRequest = operations['PostPasswordToken']['requestBody']['application/json']
-  type PostPasswordTokenResponse = operations['PostPasswordToken']['responses']['201']['application/json']
+  type PostPasswordTokenResponse = Promise<{fields: operations['PostPasswordToken']['responses']['201']['application/json']}>
   
-  type GetPasswordTokenResponse = operations['GetPasswordToken']['responses']['200']
-  type DeletePasswordTokenResponse = operations['DeletePasswordToken']['responses']['204']
+  type GetPasswordTokenResponse = Promise<{fields: operations['GetPasswordToken']['responses']['200']}>
+  type DeletePasswordTokenResponse = Promise<{fields: operations['DeletePasswordToken']['responses']['204']}>
   
   type GetPaymentInstrumentCollectionRequest = operations['GetPaymentInstrumentCollection']['parameters']['query']
   
-  type GetPaymentInstrumentCollectionResponse = operations['GetPaymentInstrumentCollection']['responses']['200']
+  type GetPaymentInstrumentCollectionResponse = Promise<{ items: operations['GetPaymentInstrumentCollection']['responses']['200']['application/json']}>
   type PostPaymentInstrumentRequest = operations['PostPaymentInstrument']['requestBody']
-  type PostPaymentInstrumentResponse = operations['PostPaymentInstrument']['responses']['201']
+  type PostPaymentInstrumentResponse = Promise<{fields: operations['PostPaymentInstrument']['responses']['201']}>
   
-  type GetPaymentInstrumentResponse = operations['GetPaymentInstrument']['responses']['200']
+  type GetPaymentInstrumentResponse = Promise<{fields: operations['GetPaymentInstrument']['responses']['200']}>
   type PatchPaymentInstrumentRequest = operations['PatchPaymentInstrument']['requestBody']
-  type PatchPaymentInstrumentResponse = operations['PatchPaymentInstrument']['responses']['200']
+  type PatchPaymentInstrumentResponse = Promise<{fields: operations['PatchPaymentInstrument']['responses']['200']}>
   
-  type PostPaymentInstrumentDeactivationResponse = operations['PostPaymentInstrumentDeactivation']['responses']['201']
+  type PostPaymentInstrumentDeactivationResponse = Promise<{fields: operations['PostPaymentInstrumentDeactivation']['responses']['201']}>
   
   type GetPaymentCardCollectionRequest = operations['GetPaymentCardCollection']['parameters']['query']
   
-  type GetPaymentCardCollectionResponse = operations['GetPaymentCardCollection']['responses']['200']
+  type GetPaymentCardCollectionResponse = Promise<{ items: operations['GetPaymentCardCollection']['responses']['200']['application/json']}>
   type PostPaymentCardRequest = operations['PostPaymentCard']['requestBody']['application/json']
-  type PostPaymentCardResponse = operations['PostPaymentCard']['responses']['201']['application/json']
+  type PostPaymentCardResponse = Promise<{fields: operations['PostPaymentCard']['responses']['201']['application/json']}>
   
-  type GetPaymentCardResponse = operations['GetPaymentCard']['responses']['200']
+  type GetPaymentCardResponse = Promise<{fields: operations['GetPaymentCard']['responses']['200']}>
   type PutPaymentCardRequest = operations['PutPaymentCard']['requestBody']['application/json']
-  type PutPaymentCardResponse = operations['PutPaymentCard']['responses']['201']['application/json']
+  type PutPaymentCardResponse = Promise<{fields: operations['PutPaymentCard']['responses']['201']['application/json']}>
   type PatchPaymentCardRequest = operations['PatchPaymentCard']['requestBody']['application/json']
-  type PatchPaymentCardResponse = operations['PatchPaymentCard']['responses']['200']['application/json']
+  type PatchPaymentCardResponse = Promise<{fields: operations['PatchPaymentCard']['responses']['200']['application/json']}>
   
   type PostPaymentCardAuthorizationRequest = operations['PostPaymentCardAuthorization']['requestBody']['application/json']
-  type PostPaymentCardAuthorizationResponse = operations['PostPaymentCardAuthorization']['responses']['201']['application/json']
+  type PostPaymentCardAuthorizationResponse = Promise<{fields: operations['PostPaymentCardAuthorization']['responses']['201']['application/json']}>
   
-  type PostPaymentCardDeactivationResponse = operations['PostPaymentCardDeactivation']['responses']['201']
+  type PostPaymentCardDeactivationResponse = Promise<{fields: operations['PostPaymentCardDeactivation']['responses']['201']}>
   
-  type GetPaymentMethodCollectionResponse = operations['GetPaymentMethodCollection']['responses']['200']
+  type GetPaymentMethodCollectionResponse = Promise<{ items: operations['GetPaymentMethodCollection']['responses']['200']['application/json']}>
   
-  type GetPaymentMethodResponse = operations['GetPaymentMethod']['responses']['200']
+  type GetPaymentMethodResponse = Promise<{fields: operations['GetPaymentMethod']['responses']['200']}>
   
   type GetPayPalAccountCollectionRequest = operations['GetPayPalAccountCollection']['parameters']['query']
   
-  type GetPayPalAccountCollectionResponse = operations['GetPayPalAccountCollection']['responses']['200']
+  type GetPayPalAccountCollectionResponse = Promise<{ items: operations['GetPayPalAccountCollection']['responses']['200']['application/json']}>
   type PostPayPalAccountRequest = operations['PostPayPalAccount']['requestBody']['application/json']
-  type PostPayPalAccountResponse = operations['PostPayPalAccount']['responses']['201']['application/json']
+  type PostPayPalAccountResponse = Promise<{fields: operations['PostPayPalAccount']['responses']['201']['application/json']}>
   
-  type GetPayPalAccountResponse = operations['GetPayPalAccount']['responses']['200']
+  type GetPayPalAccountResponse = Promise<{fields: operations['GetPayPalAccount']['responses']['200']}>
   type PutPayPalAccountRequest = operations['PutPayPalAccount']['requestBody']['application/json']
-  type PutPayPalAccountResponse = operations['PutPayPalAccount']['responses']['201']['application/json']
+  type PutPayPalAccountResponse = Promise<{fields: operations['PutPayPalAccount']['responses']['201']['application/json']}>
   
   type PostPayPalAccountActivationRequest = operations['PostPayPalAccountActivation']['requestBody']['application/json']
-  type PostPayPalAccountActivationResponse = operations['PostPayPalAccountActivation']['responses']['201']['application/json']
+  type PostPayPalAccountActivationResponse = Promise<{fields: operations['PostPayPalAccountActivation']['responses']['201']['application/json']}>
   
-  type PostPayPalAccountDeactivationResponse = operations['PostPayPalAccountDeactivation']['responses']['201']
+  type PostPayPalAccountDeactivationResponse = Promise<{fields: operations['PostPayPalAccountDeactivation']['responses']['201']}>
   
   type PostPermissionsEmulationRequest = operations['PostPermissionsEmulation']['requestBody']['application/json']
-  type PostPermissionsEmulationResponse = operations['PostPermissionsEmulation']['responses']['201']['application/json']
-  type DeletePermissionsEmulationResponse = operations['DeletePermissionsEmulation']['responses']['201']
+  type PostPermissionsEmulationResponse = Promise<{fields: operations['PostPermissionsEmulation']['responses']['201']['application/json']}>
+  type DeletePermissionsEmulationResponse = Promise<{fields: operations['DeletePermissionsEmulation']['responses']['201']}>
   
   type GetPlanCollectionRequest = operations['GetPlanCollection']['parameters']['query']
   
-  type GetPlanCollectionResponse = operations['GetPlanCollection']['responses']['200']
+  type GetPlanCollectionResponse = Promise<{ items: operations['GetPlanCollection']['responses']['200']['application/json']}>
   type PostPlanRequest = operations['PostPlan']['requestBody']
-  type PostPlanResponse = operations['PostPlan']['responses']['201']
+  type PostPlanResponse = Promise<{fields: operations['PostPlan']['responses']['201']}>
   
-  type GetPlanResponse = operations['GetPlan']['responses']['200']
+  type GetPlanResponse = Promise<{fields: operations['GetPlan']['responses']['200']}>
   type PutPlanRequest = operations['PutPlan']['requestBody']
-  type PutPlanResponse = operations['PutPlan']['responses']['201']
-  type DeletePlanResponse = operations['DeletePlan']['responses']['204']
+  type PutPlanResponse = Promise<{fields: operations['PutPlan']['responses']['201']}>
+  type DeletePlanResponse = Promise<{fields: operations['DeletePlan']['responses']['204']}>
   
   type GetProductCollectionRequest = operations['GetProductCollection']['parameters']['query']
   
-  type GetProductCollectionResponse = operations['GetProductCollection']['responses']['200']
+  type GetProductCollectionResponse = Promise<{ items: operations['GetProductCollection']['responses']['200']['application/json']}>
   type PostProductRequest = operations['PostProduct']['requestBody']
-  type PostProductResponse = operations['PostProduct']['responses']['201']
+  type PostProductResponse = Promise<{fields: operations['PostProduct']['responses']['201']}>
   
-  type GetProductResponse = operations['GetProduct']['responses']['200']
+  type GetProductResponse = Promise<{fields: operations['GetProduct']['responses']['200']}>
   type PutProductRequest = operations['PutProduct']['requestBody']
-  type PutProductResponse = operations['PutProduct']['responses']['201']
-  type DeleteProductResponse = operations['DeleteProduct']['responses']['204']
+  type PutProductResponse = Promise<{fields: operations['PutProduct']['responses']['201']}>
+  type DeleteProductResponse = Promise<{fields: operations['DeleteProduct']['responses']['204']}>
   
   type GetSearchRequest = operations['GetSearch']['parameters']
   
-  type GetSearchResponse = operations['GetSearch']['responses']['200']
+  type GetSearchResponse = Promise<{fields: operations['GetSearch']['responses']['200']}>
   
   type GetShippingZoneCollectionRequest = operations['GetShippingZoneCollection']['parameters']['query']
   
-  type GetShippingZoneCollectionResponse = operations['GetShippingZoneCollection']['responses']['200']
+  type GetShippingZoneCollectionResponse = Promise<{ items: operations['GetShippingZoneCollection']['responses']['200']['application/json']}>
   type PostShippingZoneRequest = operations['PostShippingZone']['requestBody']['application/json']
-  type PostShippingZoneResponse = operations['PostShippingZone']['responses']['201']['application/json']
+  type PostShippingZoneResponse = Promise<{fields: operations['PostShippingZone']['responses']['201']['application/json']}>
   
-  type GetShippingZoneResponse = operations['GetShippingZone']['responses']['200']
+  type GetShippingZoneResponse = Promise<{fields: operations['GetShippingZone']['responses']['200']}>
   type PutShippingZoneRequest = operations['PutShippingZone']['requestBody']['application/json']
-  type PutShippingZoneResponse = operations['PutShippingZone']['responses']['201']['application/json']
-  type DeleteShippingZoneResponse = operations['DeleteShippingZone']['responses']['204']
+  type PutShippingZoneResponse = Promise<{fields: operations['PutShippingZone']['responses']['201']['application/json']}>
+  type DeleteShippingZoneResponse = Promise<{fields: operations['DeleteShippingZone']['responses']['204']}>
   
   type GetSubscriptionCancellationCollectionRequest = operations['GetSubscriptionCancellationCollection']['parameters']['query']
   
-  type GetSubscriptionCancellationCollectionResponse = operations['GetSubscriptionCancellationCollection']['responses']['200']
+  type GetSubscriptionCancellationCollectionResponse = Promise<{ items: operations['GetSubscriptionCancellationCollection']['responses']['200']['application/json']}>
   type PostSubscriptionCancellationRequest = operations['PostSubscriptionCancellation']['requestBody']
-  type PostSubscriptionCancellationResponse = operations['PostSubscriptionCancellation']['responses']['201']
+  type PostSubscriptionCancellationResponse = Promise<{fields: operations['PostSubscriptionCancellation']['responses']['201']}>
   
-  type GetSubscriptionCancellationResponse = operations['GetSubscriptionCancellation']['responses']['200']
+  type GetSubscriptionCancellationResponse = Promise<{fields: operations['GetSubscriptionCancellation']['responses']['200']}>
   type PutSubscriptionCancellationRequest = operations['PutSubscriptionCancellation']['requestBody']
-  type PutSubscriptionCancellationResponse = operations['PutSubscriptionCancellation']['responses']['201']
-  type DeleteSubscriptionCancellationResponse = operations['DeleteSubscriptionCancellation']['responses']['204']
+  type PutSubscriptionCancellationResponse = Promise<{fields: operations['PutSubscriptionCancellation']['responses']['201']}>
+  type DeleteSubscriptionCancellationResponse = Promise<{fields: operations['DeleteSubscriptionCancellation']['responses']['204']}>
   
   type GetSubscriptionReactivationCollectionRequest = operations['GetSubscriptionReactivationCollection']['parameters']['query']
   
-  type GetSubscriptionReactivationCollectionResponse = operations['GetSubscriptionReactivationCollection']['responses']['200']
+  type GetSubscriptionReactivationCollectionResponse = Promise<{ items: operations['GetSubscriptionReactivationCollection']['responses']['200']['application/json']}>
   type PostSubscriptionReactivationRequest = operations['PostSubscriptionReactivation']['requestBody']['application/json']
-  type PostSubscriptionReactivationResponse = operations['PostSubscriptionReactivation']['responses']['201']['application/json']
+  type PostSubscriptionReactivationResponse = Promise<{fields: operations['PostSubscriptionReactivation']['responses']['201']['application/json']}>
   
-  type GetSubscriptionReactivationResponse = operations['GetSubscriptionReactivation']['responses']['200']
+  type GetSubscriptionReactivationResponse = Promise<{fields: operations['GetSubscriptionReactivation']['responses']['200']}>
   
   type GetSubscriptionCollectionRequest = operations['GetSubscriptionCollection']['parameters']['query']
   
-  type GetSubscriptionCollectionResponse = operations['GetSubscriptionCollection']['responses']['200']
+  type GetSubscriptionCollectionResponse = Promise<{ items: operations['GetSubscriptionCollection']['responses']['200']['application/json']}>
   type PostSubscriptionRequest = operations['PostSubscription']['requestBody']
-  type PostSubscriptionResponse = operations['PostSubscription']['responses']['201']
+  type PostSubscriptionResponse = Promise<{fields: operations['PostSubscription']['responses']['201']}>
   
   type GetSubscriptionRequest = operations['GetSubscription']['parameters']
   
-  type GetSubscriptionResponse = operations['GetSubscription']['responses']['200']
+  type GetSubscriptionResponse = Promise<{fields: operations['GetSubscription']['responses']['200']}>
   type PutSubscriptionRequest = operations['PutSubscription']['requestBody']
-  type PutSubscriptionResponse = operations['PutSubscription']['responses']['201']
+  type PutSubscriptionResponse = Promise<{fields: operations['PutSubscription']['responses']['201']}>
   
   type PostSubscriptionPlanChangeRequest = operations['PostSubscriptionPlanChange']['requestBody']['application/json']
-  type PostSubscriptionPlanChangeResponse = operations['PostSubscriptionPlanChange']['responses']['201']['application/json']
+  type PostSubscriptionPlanChangeResponse = Promise<{fields: operations['PostSubscriptionPlanChange']['responses']['201']['application/json']}>
   
   type PostSubscriptionInterimInvoiceRequest = operations['PostSubscriptionInterimInvoice']['requestBody']['application/json']
-  type PostSubscriptionInterimInvoiceResponse = operations['PostSubscriptionInterimInvoice']['responses']['201']['application/json']
+  type PostSubscriptionInterimInvoiceResponse = Promise<{fields: operations['PostSubscriptionInterimInvoice']['responses']['201']['application/json']}>
   
   type GetSubscriptionTimelineCollectionRequest = operations['GetSubscriptionTimelineCollection']['parameters']['query']
   
-  type GetSubscriptionTimelineCollectionResponse = operations['GetSubscriptionTimelineCollection']['responses']['200']
+  type GetSubscriptionTimelineCollectionResponse = Promise<{ items: operations['GetSubscriptionTimelineCollection']['responses']['200']['application/json']}>
   type PostSubscriptionTimelineRequest = operations['PostSubscriptionTimeline']['requestBody']['application/json']
-  type PostSubscriptionTimelineResponse = operations['PostSubscriptionTimeline']['responses']['201']['application/json']
+  type PostSubscriptionTimelineResponse = Promise<{fields: operations['PostSubscriptionTimeline']['responses']['201']['application/json']}>
   
-  type GetSubscriptionTimelineResponse = operations['GetSubscriptionTimeline']['responses']['200']
-  type DeleteSubscriptionTimelineResponse = operations['DeleteSubscriptionTimeline']['responses']['204']
+  type GetSubscriptionTimelineResponse = Promise<{fields: operations['GetSubscriptionTimeline']['responses']['200']}>
+  type DeleteSubscriptionTimelineResponse = Promise<{fields: operations['DeleteSubscriptionTimeline']['responses']['204']}>
   
   type GetSubscriptionUpcomingInvoiceCollectionRequest = operations['GetSubscriptionUpcomingInvoiceCollection']['parameters']['query']
   
-  type GetSubscriptionUpcomingInvoiceCollectionResponse = operations['GetSubscriptionUpcomingInvoiceCollection']['responses']['200']
+  type GetSubscriptionUpcomingInvoiceCollectionResponse = Promise<{ items: operations['GetSubscriptionUpcomingInvoiceCollection']['responses']['200']['application/json']}>
   
   type PostUpcomingInvoiceIssuanceRequest = operations['PostUpcomingInvoiceIssuance']['requestBody']['application/json']
-  type PostUpcomingInvoiceIssuanceResponse = operations['PostUpcomingInvoiceIssuance']['responses']['201']['application/json']
+  type PostUpcomingInvoiceIssuanceResponse = Promise<{fields: operations['PostUpcomingInvoiceIssuance']['responses']['201']['application/json']}>
   
   type GetTagCollectionRequest = operations['GetTagCollection']['parameters']['query']
   
-  type GetTagCollectionResponse = operations['GetTagCollection']['responses']['200']
+  type GetTagCollectionResponse = Promise<{ items: operations['GetTagCollection']['responses']['200']['application/json']}>
   type PostTagRequest = operations['PostTag']['requestBody']
-  type PostTagResponse = operations['PostTag']['responses']['201']
+  type PostTagResponse = Promise<{fields: operations['PostTag']['responses']['201']}>
   
-  type GetTagResponse = operations['GetTag']['responses']['200']
+  type GetTagResponse = Promise<{fields: operations['GetTag']['responses']['200']}>
   type PatchTagRequest = operations['PatchTag']['requestBody']
-  type PatchTagResponse = operations['PatchTag']['responses']['200']
-  type DeleteTagResponse = operations['DeleteTag']['responses']['204']
+  type PatchTagResponse = Promise<{fields: operations['PatchTag']['responses']['200']}>
+  type DeleteTagResponse = Promise<{fields: operations['DeleteTag']['responses']['204']}>
   
   type PostTagCustomerCollectionRequest = operations['PostTagCustomerCollection']['requestBody']['application/json']
-  type PostTagCustomerCollectionResponse = operations['PostTagCustomerCollection']['responses']['204']['application/json']
+  type PostTagCustomerCollectionResponse = Promise<{ items: operations['PostTagCustomerCollection']['responses']['204']['application/json']['application/json']}>
   type DeleteTagCustomerCollectionRequest = operations['DeleteTagCustomerCollection']['requestBody']['application/json']
-  type DeleteTagCustomerCollectionResponse = operations['DeleteTagCustomerCollection']['responses']['204']
+  type DeleteTagCustomerCollectionResponse = Promise<{ items: operations['DeleteTagCustomerCollection']['responses']['204']['application/json']['application/json']}>
   
-  type PostTagCustomerResponse = operations['PostTagCustomer']['responses']['204']
-  type DeleteTagCustomerResponse = operations['DeleteTagCustomer']['responses']['204']
+  type PostTagCustomerResponse = Promise<{fields: operations['PostTagCustomer']['responses']['204']}>
+  type DeleteTagCustomerResponse = Promise<{fields: operations['DeleteTagCustomer']['responses']['204']}>
   
   type GetTokenCollectionRequest = operations['GetTokenCollection']['parameters']['query']
   
-  type GetTokenCollectionResponse = operations['GetTokenCollection']['responses']['200']
+  type GetTokenCollectionResponse = Promise<{ items: operations['GetTokenCollection']['responses']['200']['application/json']}>
   type PostTokenRequest = operations['PostToken']['requestBody']['application/json']
-  type PostTokenResponse = operations['PostToken']['responses']['201']['application/json']
+  type PostTokenResponse = Promise<{fields: operations['PostToken']['responses']['201']['application/json']}>
   
-  type GetTokenResponse = operations['GetToken']['responses']['200']
+  type GetTokenResponse = Promise<{fields: operations['GetToken']['responses']['200']}>
   
   type PostDigitalWalletValidationRequest = operations['PostDigitalWalletValidation']['requestBody']['application/json']
-  type PostDigitalWalletValidationResponse = operations['PostDigitalWalletValidation']['responses']['201']['application/json']
+  type PostDigitalWalletValidationResponse = Promise<{fields: operations['PostDigitalWalletValidation']['responses']['201']['application/json']}>
   
   type GetTransactionCollectionRequest = operations['GetTransactionCollection']['parameters']['query']
   
-  type GetTransactionCollectionResponse = operations['GetTransactionCollection']['responses']['200']
+  type GetTransactionCollectionResponse = Promise<{ items: operations['GetTransactionCollection']['responses']['200']['application/json']}>
   type PostTransactionRequest = operations['PostTransaction']['requestBody']
-  type PostTransactionResponse = operations['PostTransaction']['responses']['201']
+  type PostTransactionResponse = Promise<{fields: operations['PostTransaction']['responses']['201']}>
   
-  type GetTransactionResponse = operations['GetTransaction']['responses']['200']
+  type GetTransactionResponse = Promise<{fields: operations['GetTransaction']['responses']['200']}>
   type PatchTransactionRequest = operations['PatchTransaction']['requestBody']
-  type PatchTransactionResponse = operations['PatchTransaction']['responses']['200']
+  type PatchTransactionResponse = Promise<{fields: operations['PatchTransaction']['responses']['200']}>
   
   type PostPayoutRequest = operations['PostPayout']['requestBody']
-  type PostPayoutResponse = operations['PostPayout']['responses']['201']
+  type PostPayoutResponse = Promise<{fields: operations['PostPayout']['responses']['201']}>
   
-  type PostTransactionCancellationResponse = operations['PostTransactionCancellation']['responses']['201']
+  type PostTransactionCancellationResponse = Promise<{fields: operations['PostTransactionCancellation']['responses']['201']}>
   
-  type GetTransactionGatewayLogCollectionResponse = operations['GetTransactionGatewayLogCollection']['responses']['200']
+  type GetTransactionGatewayLogCollectionResponse = Promise<{ items: operations['GetTransactionGatewayLogCollection']['responses']['200']['application/json']}>
   
   type PostTransactionRefundRequest = operations['PostTransactionRefund']['requestBody']['application/json']
-  type PostTransactionRefundResponse = operations['PostTransactionRefund']['responses']['201']['application/json']
+  type PostTransactionRefundResponse = Promise<{fields: operations['PostTransactionRefund']['responses']['201']['application/json']}>
   
   type GetTransactionTimelineCollectionRequest = operations['GetTransactionTimelineCollection']['parameters']['query']
   
-  type GetTransactionTimelineCollectionResponse = operations['GetTransactionTimelineCollection']['responses']['200']
+  type GetTransactionTimelineCollectionResponse = Promise<{ items: operations['GetTransactionTimelineCollection']['responses']['200']['application/json']}>
   type PostTransactionTimelineRequest = operations['PostTransactionTimeline']['requestBody']['application/json']
-  type PostTransactionTimelineResponse = operations['PostTransactionTimeline']['responses']['201']['application/json']
+  type PostTransactionTimelineResponse = Promise<{fields: operations['PostTransactionTimeline']['responses']['201']['application/json']}>
   
-  type GetTransactionTimelineResponse = operations['GetTransactionTimeline']['responses']['200']
-  type DeleteTransactionTimelineResponse = operations['DeleteTransactionTimeline']['responses']['204']
+  type GetTransactionTimelineResponse = Promise<{fields: operations['GetTransactionTimeline']['responses']['200']}>
+  type DeleteTransactionTimelineResponse = Promise<{fields: operations['DeleteTransactionTimeline']['responses']['204']}>
   
-  type PostActivationResponse = operations['PostActivation']['responses']['204']
+  type PostActivationResponse = Promise<{fields: operations['PostActivation']['responses']['204']}>
   
   type GetApiKeyCollectionRequest = operations['GetApiKeyCollection']['parameters']['query']
   
-  type GetApiKeyCollectionResponse = operations['GetApiKeyCollection']['responses']['200']
+  type GetApiKeyCollectionResponse = Promise<{ items: operations['GetApiKeyCollection']['responses']['200']['application/json']}>
   type PostApiKeyRequest = operations['PostApiKey']['requestBody']
-  type PostApiKeyResponse = operations['PostApiKey']['responses']['201']
+  type PostApiKeyResponse = Promise<{fields: operations['PostApiKey']['responses']['201']}>
   
-  type GetApiKeyResponse = operations['GetApiKey']['responses']['200']
+  type GetApiKeyResponse = Promise<{fields: operations['GetApiKey']['responses']['200']}>
   type PutApiKeyRequest = operations['PutApiKey']['requestBody']
-  type PutApiKeyResponse = operations['PutApiKey']['responses']['201']
-  type DeleteApiKeyResponse = operations['DeleteApiKey']['responses']['204']
+  type PutApiKeyResponse = Promise<{fields: operations['PutApiKey']['responses']['201']}>
+  type DeleteApiKeyResponse = Promise<{fields: operations['DeleteApiKey']['responses']['204']}>
   
-  type GetBroadcastMessageCollectionResponse = operations['GetBroadcastMessageCollection']['responses']['200']
+  type GetBroadcastMessageCollectionResponse = Promise<{ items: operations['GetBroadcastMessageCollection']['responses']['200']['application/json']}>
   type PostBroadcastMessageRequest = operations['PostBroadcastMessage']['requestBody']['application/json']
-  type PostBroadcastMessageResponse = operations['PostBroadcastMessage']['responses']['201']['application/json']
+  type PostBroadcastMessageResponse = Promise<{fields: operations['PostBroadcastMessage']['responses']['201']['application/json']}>
   
-  type GetBroadcastMessageResponse = operations['GetBroadcastMessage']['responses']['200']
+  type GetBroadcastMessageResponse = Promise<{fields: operations['GetBroadcastMessage']['responses']['200']}>
   type PatchBroadcastMessageRequest = operations['PatchBroadcastMessage']['requestBody']['application/json']
-  type PatchBroadcastMessageResponse = operations['PatchBroadcastMessage']['responses']['200']['application/json']
-  type DeleteBroadcastMessageResponse = operations['DeleteBroadcastMessage']['responses']['204']
+  type PatchBroadcastMessageResponse = Promise<{fields: operations['PatchBroadcastMessage']['responses']['200']['application/json']}>
+  type DeleteBroadcastMessageResponse = Promise<{fields: operations['DeleteBroadcastMessage']['responses']['204']}>
   
-  type GetCheckoutFormCollectionResponse = operations['GetCheckoutFormCollection']['responses']['200']
+  type GetCheckoutFormCollectionResponse = Promise<{ items: operations['GetCheckoutFormCollection']['responses']['200']['application/json']}>
   type PostCheckoutFormRequest = operations['PostCheckoutForm']['requestBody']['application/json']
-  type PostCheckoutFormResponse = operations['PostCheckoutForm']['responses']['201']['application/json']
+  type PostCheckoutFormResponse = Promise<{fields: operations['PostCheckoutForm']['responses']['201']['application/json']}>
   
-  type GetCheckoutFormResponse = operations['GetCheckoutForm']['responses']['200']
+  type GetCheckoutFormResponse = Promise<{fields: operations['GetCheckoutForm']['responses']['200']}>
   type PutCheckoutFormRequest = operations['PutCheckoutForm']['requestBody']['application/json']
-  type PutCheckoutFormResponse = operations['PutCheckoutForm']['responses']['201']['application/json']
-  type DeleteCheckoutFormResponse = operations['DeleteCheckoutForm']['responses']['204']
+  type PutCheckoutFormResponse = Promise<{fields: operations['PutCheckoutForm']['responses']['201']['application/json']}>
+  type DeleteCheckoutFormResponse = Promise<{fields: operations['DeleteCheckoutForm']['responses']['204']}>
   
   type PostAwsSesCredentialHashRequest = operations['PostAwsSesCredentialHash']['requestBody']['application/json']
-  type PostAwsSesCredentialHashResponse = operations['PostAwsSesCredentialHash']['responses']['201']['application/json']
+  type PostAwsSesCredentialHashResponse = Promise<{fields: operations['PostAwsSesCredentialHash']['responses']['201']['application/json']}>
   
-  type GetAwsSesCredentialHashResponse = operations['GetAwsSesCredentialHash']['responses']['200']
+  type GetAwsSesCredentialHashResponse = Promise<{fields: operations['GetAwsSesCredentialHash']['responses']['200']}>
   type PatchAwsSesCredentialHashRequest = operations['PatchAwsSesCredentialHash']['requestBody']['application/json']
-  type PatchAwsSesCredentialHashResponse = operations['PatchAwsSesCredentialHash']['responses']['200']['application/json']
+  type PatchAwsSesCredentialHashResponse = Promise<{fields: operations['PatchAwsSesCredentialHash']['responses']['200']['application/json']}>
   
   type PostEmailCredentialHashRequest = operations['PostEmailCredentialHash']['requestBody']['application/json']
-  type PostEmailCredentialHashResponse = operations['PostEmailCredentialHash']['responses']['201']['application/json']
+  type PostEmailCredentialHashResponse = Promise<{fields: operations['PostEmailCredentialHash']['responses']['201']['application/json']}>
   
-  type GetEmailCredentialHashResponse = operations['GetEmailCredentialHash']['responses']['200']
+  type GetEmailCredentialHashResponse = Promise<{fields: operations['GetEmailCredentialHash']['responses']['200']}>
   type PatchEmailCredentialHashRequest = operations['PatchEmailCredentialHash']['requestBody']['application/json']
-  type PatchEmailCredentialHashResponse = operations['PatchEmailCredentialHash']['responses']['200']['application/json']
+  type PatchEmailCredentialHashResponse = Promise<{fields: operations['PatchEmailCredentialHash']['responses']['200']['application/json']}>
   
   type PostMailgunCredentialHashRequest = operations['PostMailgunCredentialHash']['requestBody']['application/json']
-  type PostMailgunCredentialHashResponse = operations['PostMailgunCredentialHash']['responses']['201']['application/json']
+  type PostMailgunCredentialHashResponse = Promise<{fields: operations['PostMailgunCredentialHash']['responses']['201']['application/json']}>
   
-  type GetMailgunCredentialHashResponse = operations['GetMailgunCredentialHash']['responses']['200']
+  type GetMailgunCredentialHashResponse = Promise<{fields: operations['GetMailgunCredentialHash']['responses']['200']}>
   type PatchMailgunCredentialHashRequest = operations['PatchMailgunCredentialHash']['requestBody']['application/json']
-  type PatchMailgunCredentialHashResponse = operations['PatchMailgunCredentialHash']['responses']['200']['application/json']
+  type PatchMailgunCredentialHashResponse = Promise<{fields: operations['PatchMailgunCredentialHash']['responses']['200']['application/json']}>
   
-  type GetOauth2CredentialHashCollectionResponse = operations['GetOauth2CredentialHashCollection']['responses']['200']
+  type GetOauth2CredentialHashCollectionResponse = Promise<{ items: operations['GetOauth2CredentialHashCollection']['responses']['200']['application/json']}>
   type PostOauth2CredentialHashRequest = operations['PostOauth2CredentialHash']['requestBody']
-  type PostOauth2CredentialHashResponse = operations['PostOauth2CredentialHash']['responses']['201']
+  type PostOauth2CredentialHashResponse = Promise<{fields: operations['PostOauth2CredentialHash']['responses']['201']}>
   
-  type GetOauth2CredentialHashResponse = operations['GetOauth2CredentialHash']['responses']['200']
+  type GetOauth2CredentialHashResponse = Promise<{fields: operations['GetOauth2CredentialHash']['responses']['200']}>
   type PatchOauth2CredentialHashRequest = operations['PatchOauth2CredentialHash']['requestBody']
-  type PatchOauth2CredentialHashResponse = operations['PatchOauth2CredentialHash']['responses']['200']
+  type PatchOauth2CredentialHashResponse = Promise<{fields: operations['PatchOauth2CredentialHash']['responses']['200']}>
   
-  type GetOauth2CredentialHashItemCollectionResponse = operations['GetOauth2CredentialHashItemCollection']['responses']['200']
+  type GetOauth2CredentialHashItemCollectionResponse = Promise<{ items: operations['GetOauth2CredentialHashItemCollection']['responses']['200']['application/json']}>
   
   type GetPlaidCredentialCollectionRequest = operations['GetPlaidCredentialCollection']['parameters']['query']
   
-  type GetPlaidCredentialCollectionResponse = operations['GetPlaidCredentialCollection']['responses']['200']
+  type GetPlaidCredentialCollectionResponse = Promise<{ items: operations['GetPlaidCredentialCollection']['responses']['200']['application/json']}>
   type PostPlaidCredentialHashRequest = operations['PostPlaidCredentialHash']['requestBody']['application/json']
-  type PostPlaidCredentialHashResponse = operations['PostPlaidCredentialHash']['responses']['201']['application/json']
+  type PostPlaidCredentialHashResponse = Promise<{fields: operations['PostPlaidCredentialHash']['responses']['201']['application/json']}>
   
-  type GetPlaidCredentialHashResponse = operations['GetPlaidCredentialHash']['responses']['200']
+  type GetPlaidCredentialHashResponse = Promise<{fields: operations['GetPlaidCredentialHash']['responses']['200']}>
   type PatchPlaidCredentialHashRequest = operations['PatchPlaidCredentialHash']['requestBody']['application/json']
-  type PatchPlaidCredentialHashResponse = operations['PatchPlaidCredentialHash']['responses']['200']['application/json']
+  type PatchPlaidCredentialHashResponse = Promise<{fields: operations['PatchPlaidCredentialHash']['responses']['200']['application/json']}>
   
   type PostPostmarkCredentialHashRequest = operations['PostPostmarkCredentialHash']['requestBody']['application/json']
-  type PostPostmarkCredentialHashResponse = operations['PostPostmarkCredentialHash']['responses']['201']['application/json']
+  type PostPostmarkCredentialHashResponse = Promise<{fields: operations['PostPostmarkCredentialHash']['responses']['201']['application/json']}>
   
-  type GetPostmarkCredentialHashResponse = operations['GetPostmarkCredentialHash']['responses']['200']
+  type GetPostmarkCredentialHashResponse = Promise<{fields: operations['GetPostmarkCredentialHash']['responses']['200']}>
   type PatchPostmarkCredentialHashRequest = operations['PatchPostmarkCredentialHash']['requestBody']['application/json']
-  type PatchPostmarkCredentialHashResponse = operations['PatchPostmarkCredentialHash']['responses']['200']['application/json']
+  type PatchPostmarkCredentialHashResponse = Promise<{fields: operations['PatchPostmarkCredentialHash']['responses']['200']['application/json']}>
   
   type PostSendGridCredentialHashRequest = operations['PostSendGridCredentialHash']['requestBody']['application/json']
-  type PostSendGridCredentialHashResponse = operations['PostSendGridCredentialHash']['responses']['201']['application/json']
+  type PostSendGridCredentialHashResponse = Promise<{fields: operations['PostSendGridCredentialHash']['responses']['201']['application/json']}>
   
-  type GetSendGridCredentialHashResponse = operations['GetSendGridCredentialHash']['responses']['200']
+  type GetSendGridCredentialHashResponse = Promise<{fields: operations['GetSendGridCredentialHash']['responses']['200']}>
   type PatchSendGridCredentialHashRequest = operations['PatchSendGridCredentialHash']['requestBody']['application/json']
-  type PatchSendGridCredentialHashResponse = operations['PatchSendGridCredentialHash']['responses']['200']['application/json']
+  type PatchSendGridCredentialHashResponse = Promise<{fields: operations['PatchSendGridCredentialHash']['responses']['200']['application/json']}>
   
   type PostWebhookCredentialHashRequest = operations['PostWebhookCredentialHash']['requestBody']['application/json']
-  type PostWebhookCredentialHashResponse = operations['PostWebhookCredentialHash']['responses']['201']['application/json']
+  type PostWebhookCredentialHashResponse = Promise<{fields: operations['PostWebhookCredentialHash']['responses']['201']['application/json']}>
   
-  type GetWebhookCredentialHashResponse = operations['GetWebhookCredentialHash']['responses']['200']
+  type GetWebhookCredentialHashResponse = Promise<{fields: operations['GetWebhookCredentialHash']['responses']['200']}>
   type PatchWebhookCredentialHashRequest = operations['PatchWebhookCredentialHash']['requestBody']['application/json']
-  type PatchWebhookCredentialHashResponse = operations['PatchWebhookCredentialHash']['responses']['200']['application/json']
+  type PatchWebhookCredentialHashResponse = Promise<{fields: operations['PatchWebhookCredentialHash']['responses']['200']['application/json']}>
   
-  type GetExperianCredentialHashCollectionResponse = operations['GetExperianCredentialHashCollection']['responses']['200']
+  type GetExperianCredentialHashCollectionResponse = Promise<{ items: operations['GetExperianCredentialHashCollection']['responses']['200']['application/json']}>
   type PostExperianCredentialHashRequest = operations['PostExperianCredentialHash']['requestBody']['application/json']
-  type PostExperianCredentialHashResponse = operations['PostExperianCredentialHash']['responses']['201']['application/json']
+  type PostExperianCredentialHashResponse = Promise<{fields: operations['PostExperianCredentialHash']['responses']['201']['application/json']}>
   
-  type GetExperianCredentialHashResponse = operations['GetExperianCredentialHash']['responses']['200']
+  type GetExperianCredentialHashResponse = Promise<{fields: operations['GetExperianCredentialHash']['responses']['200']}>
   type PatchExperianCredentialHashRequest = operations['PatchExperianCredentialHash']['requestBody']['application/json']
-  type PatchExperianCredentialHashResponse = operations['PatchExperianCredentialHash']['responses']['200']['application/json']
+  type PatchExperianCredentialHashResponse = Promise<{fields: operations['PatchExperianCredentialHash']['responses']['200']['application/json']}>
   
-  type VerifyEmailDeliverySettingsResponse = operations['VerifyEmailDeliverySettings']['responses']['200']
+  type VerifyEmailDeliverySettingsResponse = Promise<{fields: operations['VerifyEmailDeliverySettings']['responses']['200']}>
   
-  type GetEmailDeliverySettingCollectionResponse = operations['GetEmailDeliverySettingCollection']['responses']['200']
+  type GetEmailDeliverySettingCollectionResponse = Promise<{ items: operations['GetEmailDeliverySettingCollection']['responses']['200']['application/json']}>
   type PostEmailDeliverySettingRequest = operations['PostEmailDeliverySetting']['requestBody']['application/json']
-  type PostEmailDeliverySettingResponse = operations['PostEmailDeliverySetting']['responses']['201']['application/json']
+  type PostEmailDeliverySettingResponse = Promise<{fields: operations['PostEmailDeliverySetting']['responses']['201']['application/json']}>
   
-  type GetEmailDeliverySettingResponse = operations['GetEmailDeliverySetting']['responses']['200']
+  type GetEmailDeliverySettingResponse = Promise<{fields: operations['GetEmailDeliverySetting']['responses']['200']}>
   type PatchEmailDeliverySettingsRequest = operations['PatchEmailDeliverySettings']['requestBody']['application/json']
-  type PatchEmailDeliverySettingsResponse = operations['PatchEmailDeliverySettings']['responses']['200']['application/json']
-  type DeleteEmailDeliverySettingResponse = operations['DeleteEmailDeliverySetting']['responses']['204']
+  type PatchEmailDeliverySettingsResponse = Promise<{fields: operations['PatchEmailDeliverySettings']['responses']['200']['application/json']}>
+  type DeleteEmailDeliverySettingResponse = Promise<{fields: operations['DeleteEmailDeliverySetting']['responses']['204']}>
   
-  type ResendEmailDeliverySettingVerificationResponse = operations['ResendEmailDeliverySettingVerification']['responses']['200']
+  type ResendEmailDeliverySettingVerificationResponse = Promise<{fields: operations['ResendEmailDeliverySettingVerification']['responses']['200']}>
   
-  type GetEmailMessageCollectionResponse = operations['GetEmailMessageCollection']['responses']['200']
+  type GetEmailMessageCollectionResponse = Promise<{ items: operations['GetEmailMessageCollection']['responses']['200']['application/json']}>
   type PostEmailMessageRequest = operations['PostEmailMessage']['requestBody']['application/json']
-  type PostEmailMessageResponse = operations['PostEmailMessage']['responses']['201']['application/json']
+  type PostEmailMessageResponse = Promise<{fields: operations['PostEmailMessage']['responses']['201']['application/json']}>
   
-  type GetEmailMessageResponse = operations['GetEmailMessage']['responses']['200']
+  type GetEmailMessageResponse = Promise<{fields: operations['GetEmailMessage']['responses']['200']}>
   type PatchEmailMessageRequest = operations['PatchEmailMessage']['requestBody']['application/json']
-  type PatchEmailMessageResponse = operations['PatchEmailMessage']['responses']['200']['application/json']
-  type DeleteEmailMessageResponse = operations['DeleteEmailMessage']['responses']['204']
+  type PatchEmailMessageResponse = Promise<{fields: operations['PatchEmailMessage']['responses']['200']['application/json']}>
+  type DeleteEmailMessageResponse = Promise<{fields: operations['DeleteEmailMessage']['responses']['204']}>
   
-  type GetEmailNotificationCollectionResponse = operations['GetEmailNotificationCollection']['responses']['200']
+  type GetEmailNotificationCollectionResponse = Promise<{ items: operations['GetEmailNotificationCollection']['responses']['200']['application/json']}>
   
-  type GetEventCollectionResponse = operations['GetEventCollection']['responses']['200']
+  type GetEventCollectionResponse = Promise<{ items: operations['GetEventCollection']['responses']['200']['application/json']}>
   
-  type GetEventResponse = operations['GetEvent']['responses']['200']
+  type GetEventResponse = Promise<{fields: operations['GetEvent']['responses']['200']}>
   
-  type GetEventRuleCollectionResponse = operations['GetEventRuleCollection']['responses']['200']
+  type GetEventRuleCollectionResponse = Promise<{ items: operations['GetEventRuleCollection']['responses']['200']['application/json']}>
   type PutEventRuleCollectionRequest = operations['PutEventRuleCollection']['requestBody']
-  type PutEventRuleCollectionResponse = operations['PutEventRuleCollection']['responses']['200']
+  type PutEventRuleCollectionResponse = Promise<{ items: operations['PutEventRuleCollection']['responses']['200']['application/json']}>
   
   type GetEventRuleHistoryCollectionRequest = operations['GetEventRuleHistoryCollection']['parameters']['query']
   
-  type GetEventRuleHistoryCollectionResponse = operations['GetEventRuleHistoryCollection']['responses']['200']
+  type GetEventRuleHistoryCollectionResponse = Promise<{ items: operations['GetEventRuleHistoryCollection']['responses']['200']['application/json']}>
   
   type GetEventRuleHistoryVersionRequest = operations['GetEventRuleHistoryVersion']['parameters']
   
-  type GetEventRuleHistoryVersionResponse = operations['GetEventRuleHistoryVersion']['responses']['200']
+  type GetEventRuleHistoryVersionResponse = Promise<{fields: operations['GetEventRuleHistoryVersion']['responses']['200']}>
   
   type GetEventRuleVersionRequest = operations['GetEventRuleVersion']['parameters']
   
-  type GetEventRuleVersionResponse = operations['GetEventRuleVersion']['responses']['200']
+  type GetEventRuleVersionResponse = Promise<{fields: operations['GetEventRuleVersion']['responses']['200']}>
   
   type PostForgotPasswordRequestRequest = operations['PostForgotPasswordRequest']['requestBody']['application/json']
-  type PostForgotPasswordRequestResponse = operations['PostForgotPasswordRequest']['responses']['204']['application/json']
+  type PostForgotPasswordRequestResponse = Promise<{fields: operations['PostForgotPasswordRequest']['responses']['204']['application/json']}>
   
   type GetGatewayAccountCollectionRequest = operations['GetGatewayAccountCollection']['parameters']['query']
   
-  type GetGatewayAccountCollectionResponse = operations['GetGatewayAccountCollection']['responses']['200']
+  type GetGatewayAccountCollectionResponse = Promise<{ items: operations['GetGatewayAccountCollection']['responses']['200']['application/json']}>
   type PostGatewayAccountRequest = operations['PostGatewayAccount']['requestBody']
-  type PostGatewayAccountResponse = operations['PostGatewayAccount']['responses']['201']
+  type PostGatewayAccountResponse = Promise<{fields: operations['PostGatewayAccount']['responses']['201']}>
   
-  type GetGatewayAccountResponse = operations['GetGatewayAccount']['responses']['200']
+  type GetGatewayAccountResponse = Promise<{fields: operations['GetGatewayAccount']['responses']['200']}>
   type PutGatewayAccountRequest = operations['PutGatewayAccount']['requestBody']
-  type PutGatewayAccountResponse = operations['PutGatewayAccount']['responses']['201']
+  type PutGatewayAccountResponse = Promise<{fields: operations['PutGatewayAccount']['responses']['201']}>
   type PatchGatewayAccountRequest = operations['PatchGatewayAccount']['requestBody']
-  type PatchGatewayAccountResponse = operations['PatchGatewayAccount']['responses']['200']
-  type DeleteGatewayAccountResponse = operations['DeleteGatewayAccount']['responses']['204']
+  type PatchGatewayAccountResponse = Promise<{fields: operations['PatchGatewayAccount']['responses']['200']}>
+  type DeleteGatewayAccountResponse = Promise<{fields: operations['DeleteGatewayAccount']['responses']['204']}>
   
-  type PostGatewayAccountClosureResponse = operations['PostGatewayAccountClosure']['responses']['201']
+  type PostGatewayAccountClosureResponse = Promise<{fields: operations['PostGatewayAccountClosure']['responses']['201']}>
   
-  type PostGatewayAccountDisablementResponse = operations['PostGatewayAccountDisablement']['responses']['201']
+  type PostGatewayAccountDisablementResponse = Promise<{fields: operations['PostGatewayAccountDisablement']['responses']['201']}>
   
   type GetGatewayAccountDowntimeScheduleCollectionRequest = operations['GetGatewayAccountDowntimeScheduleCollection']['parameters']['query']
   
-  type GetGatewayAccountDowntimeScheduleCollectionResponse = operations['GetGatewayAccountDowntimeScheduleCollection']['responses']['200']
+  type GetGatewayAccountDowntimeScheduleCollectionResponse = Promise<{ items: operations['GetGatewayAccountDowntimeScheduleCollection']['responses']['200']['application/json']}>
   type PostGatewayAccountDowntimeScheduleRequest = operations['PostGatewayAccountDowntimeSchedule']['requestBody']
-  type PostGatewayAccountDowntimeScheduleResponse = operations['PostGatewayAccountDowntimeSchedule']['responses']['201']
+  type PostGatewayAccountDowntimeScheduleResponse = Promise<{fields: operations['PostGatewayAccountDowntimeSchedule']['responses']['201']}>
   
-  type GetGatewayAccountDowntimeScheduleResponse = operations['GetGatewayAccountDowntimeSchedule']['responses']['200']
+  type GetGatewayAccountDowntimeScheduleResponse = Promise<{fields: operations['GetGatewayAccountDowntimeSchedule']['responses']['200']}>
   type PutGatewayAccountDowntimeScheduleRequest = operations['PutGatewayAccountDowntimeSchedule']['requestBody']
-  type PutGatewayAccountDowntimeScheduleResponse = operations['PutGatewayAccountDowntimeSchedule']['responses']['200']
-  type DeleteGatewayAccountDowntimeScheduleResponse = operations['DeleteGatewayAccountDowntimeSchedule']['responses']['204']
+  type PutGatewayAccountDowntimeScheduleResponse = Promise<{fields: operations['PutGatewayAccountDowntimeSchedule']['responses']['200']}>
+  type DeleteGatewayAccountDowntimeScheduleResponse = Promise<{fields: operations['DeleteGatewayAccountDowntimeSchedule']['responses']['204']}>
   
-  type PostGatewayAccountEnablementResponse = operations['PostGatewayAccountEnablement']['responses']['201']
+  type PostGatewayAccountEnablementResponse = Promise<{fields: operations['PostGatewayAccountEnablement']['responses']['201']}>
   
   type GetGatewayAccountLimitCollectionRequest = operations['GetGatewayAccountLimitCollection']['parameters']['query']
   
-  type GetGatewayAccountLimitCollectionResponse = operations['GetGatewayAccountLimitCollection']['responses']['200']
+  type GetGatewayAccountLimitCollectionResponse = Promise<{ items: operations['GetGatewayAccountLimitCollection']['responses']['200']['application/json']}>
   
-  type GetGatewayAccountLimitResponse = operations['GetGatewayAccountLimit']['responses']['200']
+  type GetGatewayAccountLimitResponse = Promise<{fields: operations['GetGatewayAccountLimit']['responses']['200']}>
   type PutGatewayAccountLimitRequest = operations['PutGatewayAccountLimit']['requestBody']['application/json']
-  type PutGatewayAccountLimitResponse = operations['PutGatewayAccountLimit']['responses']['200']['application/json']
-  type DeleteGatewayAccountLimitResponse = operations['DeleteGatewayAccountLimit']['responses']['204']
+  type PutGatewayAccountLimitResponse = Promise<{fields: operations['PutGatewayAccountLimit']['responses']['200']['application/json']}>
+  type DeleteGatewayAccountLimitResponse = Promise<{fields: operations['DeleteGatewayAccountLimit']['responses']['204']}>
   
   type GetGatewayAccountTimelineCollectionRequest = operations['GetGatewayAccountTimelineCollection']['parameters']['query']
   
-  type GetGatewayAccountTimelineCollectionResponse = operations['GetGatewayAccountTimelineCollection']['responses']['200']
+  type GetGatewayAccountTimelineCollectionResponse = Promise<{ items: operations['GetGatewayAccountTimelineCollection']['responses']['200']['application/json']}>
   type PostGatewayAccountTimelineRequest = operations['PostGatewayAccountTimeline']['requestBody']['application/json']
-  type PostGatewayAccountTimelineResponse = operations['PostGatewayAccountTimeline']['responses']['201']['application/json']
+  type PostGatewayAccountTimelineResponse = Promise<{fields: operations['PostGatewayAccountTimeline']['responses']['201']['application/json']}>
   
-  type GetGatewayAccountTimelineResponse = operations['GetGatewayAccountTimeline']['responses']['200']
-  type DeleteGatewayAccountTimelineResponse = operations['DeleteGatewayAccountTimeline']['responses']['204']
+  type GetGatewayAccountTimelineResponse = Promise<{fields: operations['GetGatewayAccountTimeline']['responses']['200']}>
+  type DeleteGatewayAccountTimelineResponse = Promise<{fields: operations['DeleteGatewayAccountTimeline']['responses']['204']}>
   
   type GetGridSegmentCollectionRequest = operations['GetGridSegmentCollection']['parameters']['query']
   
-  type GetGridSegmentCollectionResponse = operations['GetGridSegmentCollection']['responses']['200']
+  type GetGridSegmentCollectionResponse = Promise<{ items: operations['GetGridSegmentCollection']['responses']['200']['application/json']}>
   type PostGridSegmentRequest = operations['PostGridSegment']['requestBody']
-  type PostGridSegmentResponse = operations['PostGridSegment']['responses']['201']
+  type PostGridSegmentResponse = Promise<{fields: operations['PostGridSegment']['responses']['201']}>
   
-  type GetGridSegmentResponse = operations['GetGridSegment']['responses']['200']
+  type GetGridSegmentResponse = Promise<{fields: operations['GetGridSegment']['responses']['200']}>
   type PutGridSegmentRequest = operations['PutGridSegment']['requestBody']['application/json']
-  type PutGridSegmentResponse = operations['PutGridSegment']['responses']['200']['application/json']
-  type DeleteGridSegmentResponse = operations['DeleteGridSegment']['responses']['204']
+  type PutGridSegmentResponse = Promise<{fields: operations['PutGridSegment']['responses']['200']['application/json']}>
+  type DeleteGridSegmentResponse = Promise<{fields: operations['DeleteGridSegment']['responses']['204']}>
   
-  type GetIntegrationCollectionResponse = operations['GetIntegrationCollection']['responses']['200']
+  type GetIntegrationCollectionResponse = Promise<{ items: operations['GetIntegrationCollection']['responses']['200']['application/json']}>
   
-  type GetIntegrationResponse = operations['GetIntegration']['responses']['200']
+  type GetIntegrationResponse = Promise<{fields: operations['GetIntegration']['responses']['200']}>
   
   type GetListCollectionRequest = operations['GetListCollection']['parameters']['query']
   
-  type GetListCollectionResponse = operations['GetListCollection']['responses']['200']
+  type GetListCollectionResponse = Promise<{ items: operations['GetListCollection']['responses']['200']['application/json']}>
   type PostListRequest = operations['PostList']['requestBody']
-  type PostListResponse = operations['PostList']['responses']['201']
+  type PostListResponse = Promise<{fields: operations['PostList']['responses']['201']}>
   
-  type GetListResponse = operations['GetList']['responses']['200']
+  type GetListResponse = Promise<{fields: operations['GetList']['responses']['200']}>
   type PutListRequest = operations['PutList']['requestBody']
-  type PutListResponse = operations['PutList']['responses']['201']
-  type DeleteListResponse = operations['DeleteList']['responses']['204']
+  type PutListResponse = Promise<{fields: operations['PutList']['responses']['201']}>
+  type DeleteListResponse = Promise<{fields: operations['DeleteList']['responses']['204']}>
   
-  type GetListVersionResponse = operations['GetListVersion']['responses']['200']
+  type GetListVersionResponse = Promise<{fields: operations['GetListVersion']['responses']['200']}>
   
-  type PostLogoutRequestResponse = operations['PostLogoutRequest']['responses']['204']
+  type PostLogoutRequestResponse = Promise<{fields: operations['PostLogoutRequest']['responses']['204']}>
   
   type GetMembershipCollectionRequest = operations['GetMembershipCollection']['parameters']['query']
   
-  type GetMembershipCollectionResponse = operations['GetMembershipCollection']['responses']['200']
+  type GetMembershipCollectionResponse = Promise<{ items: operations['GetMembershipCollection']['responses']['200']['application/json']}>
   
-  type GetMembershipResponse = operations['GetMembership']['responses']['200']
+  type GetMembershipResponse = Promise<{fields: operations['GetMembership']['responses']['200']}>
   type PutMembershipRequest = operations['PutMembership']['requestBody']['application/json']
-  type PutMembershipResponse = operations['PutMembership']['responses']['201']['application/json']
-  type DeleteMembershipResponse = operations['DeleteMembership']['responses']['204']
+  type PutMembershipResponse = Promise<{fields: operations['PutMembership']['responses']['201']['application/json']}>
+  type DeleteMembershipResponse = Promise<{fields: operations['DeleteMembership']['responses']['204']}>
   
   type GetOrganizationCollectionRequest = operations['GetOrganizationCollection']['parameters']['query']
   
-  type GetOrganizationCollectionResponse = operations['GetOrganizationCollection']['responses']['200']
+  type GetOrganizationCollectionResponse = Promise<{ items: operations['GetOrganizationCollection']['responses']['200']['application/json']}>
   type PostOrganizationRequest = operations['PostOrganization']['requestBody']
-  type PostOrganizationResponse = operations['PostOrganization']['responses']['201']
+  type PostOrganizationResponse = Promise<{fields: operations['PostOrganization']['responses']['201']}>
   
-  type GetOrganizationResponse = operations['GetOrganization']['responses']['200']
+  type GetOrganizationResponse = Promise<{fields: operations['GetOrganization']['responses']['200']}>
   type PutOrganizationRequest = operations['PutOrganization']['requestBody']
-  type PutOrganizationResponse = operations['PutOrganization']['responses']['201']
-  type DeleteOrganizationResponse = operations['DeleteOrganization']['responses']['204']
+  type PutOrganizationResponse = Promise<{fields: operations['PutOrganization']['responses']['201']}>
+  type DeleteOrganizationResponse = Promise<{fields: operations['DeleteOrganization']['responses']['204']}>
   
   type GetPaymentCardBankNameCollectionRequest = operations['GetPaymentCardBankNameCollection']['parameters']['query']
   
-  type GetPaymentCardBankNameCollectionResponse = operations['GetPaymentCardBankNameCollection']['responses']['200']
+  type GetPaymentCardBankNameCollectionResponse = Promise<{ items: operations['GetPaymentCardBankNameCollection']['responses']['200']['application/json']}>
   
   type PostPreviewRuleActionEmailSendingRequest = operations['PostPreviewRuleActionEmailSending']['requestBody']['application/json']
-  type PostPreviewRuleActionEmailSendingResponse = operations['PostPreviewRuleActionEmailSending']['responses']['200']['application/json']
+  type PostPreviewRuleActionEmailSendingResponse = Promise<{fields: operations['PostPreviewRuleActionEmailSending']['responses']['200']['application/json']}>
   
   type PostPreviewRuleActionWebhookTriggerRequest = operations['PostPreviewRuleActionWebhookTrigger']['requestBody']['application/json']
-  type PostPreviewRuleActionWebhookTriggerResponse = operations['PostPreviewRuleActionWebhookTrigger']['responses']['200']['application/json']
+  type PostPreviewRuleActionWebhookTriggerResponse = Promise<{fields: operations['PostPreviewRuleActionWebhookTrigger']['responses']['200']['application/json']}>
   
   type PostPreviewWebhookRequest = operations['PostPreviewWebhook']['requestBody']
-  type PostPreviewWebhookResponse = operations['PostPreviewWebhook']['responses']['204']
+  type PostPreviewWebhookResponse = Promise<{fields: operations['PostPreviewWebhook']['responses']['204']}>
   
-  type GetProfileResponse = operations['GetProfile']['responses']['200']
+  type GetProfileResponse = Promise<{fields: operations['GetProfile']['responses']['200']}>
   type PutProfileRequest = operations['PutProfile']['requestBody']['application/json']
-  type PutProfileResponse = operations['PutProfile']['responses']['200']['application/json']
+  type PutProfileResponse = Promise<{fields: operations['PutProfile']['responses']['200']['application/json']}>
   
   type PostProfilePasswordChangeRequest = operations['PostProfilePasswordChange']['requestBody']
-  type PostProfilePasswordChangeResponse = operations['PostProfilePasswordChange']['responses']['201']
+  type PostProfilePasswordChangeResponse = Promise<{fields: operations['PostProfilePasswordChange']['responses']['201']}>
   
-  type PostProfileTotpResetResponse = operations['PostProfileTotpReset']['responses']['201']
+  type PostProfileTotpResetResponse = Promise<{fields: operations['PostProfileTotpReset']['responses']['201']}>
   
-  type GetPasswordResetTokenResponse = operations['GetPasswordResetToken']['responses']['200']
+  type GetPasswordResetTokenResponse = Promise<{fields: operations['GetPasswordResetToken']['responses']['200']}>
   type PostPasswordResetRequest = operations['PostPasswordReset']['requestBody']['application/json']
-  type PostPasswordResetResponse = operations['PostPasswordReset']['responses']['201']['application/json']
+  type PostPasswordResetResponse = Promise<{fields: operations['PostPasswordReset']['responses']['201']['application/json']}>
   
-  type GetSendThroughAttributionCollectionResponse = operations['GetSendThroughAttributionCollection']['responses']['200']
+  type GetSendThroughAttributionCollectionResponse = Promise<{ items: operations['GetSendThroughAttributionCollection']['responses']['200']['application/json']}>
   
   type PostSigninRequestRequest = operations['PostSigninRequest']['requestBody']['application/json']
-  type PostSigninRequestResponse = operations['PostSigninRequest']['responses']['201']['application/json']
+  type PostSigninRequestResponse = Promise<{fields: operations['PostSigninRequest']['responses']['201']['application/json']}>
   
   type PostSignupRequestRequest = operations['PostSignupRequest']['requestBody']['application/json']
-  type PostSignupRequestResponse = operations['PostSignupRequest']['responses']['201']['application/json']
+  type PostSignupRequestResponse = Promise<{fields: operations['PostSignupRequest']['responses']['201']['application/json']}>
   
-  type GetStatusResponse = operations['GetStatus']['responses']['200']
+  type GetStatusResponse = Promise<{fields: operations['GetStatus']['responses']['200']}>
   
   type GetTrackingApiCollectionRequest = operations['GetTrackingApiCollection']['parameters']['query']
   
-  type GetTrackingApiCollectionResponse = operations['GetTrackingApiCollection']['responses']['200']
+  type GetTrackingApiCollectionResponse = Promise<{ items: operations['GetTrackingApiCollection']['responses']['200']['application/json']}>
   
-  type GetTrackingApiResponse = operations['GetTrackingApi']['responses']['200']
+  type GetTrackingApiResponse = Promise<{fields: operations['GetTrackingApi']['responses']['200']}>
   
   type GetTrackingListCollectionRequest = operations['GetTrackingListCollection']['parameters']['query']
   
-  type GetTrackingListCollectionResponse = operations['GetTrackingListCollection']['responses']['200']
+  type GetTrackingListCollectionResponse = Promise<{ items: operations['GetTrackingListCollection']['responses']['200']['application/json']}>
   
   type GetTrackingWebhookCollectionRequest = operations['GetTrackingWebhookCollection']['parameters']['query']
   
-  type GetTrackingWebhookCollectionResponse = operations['GetTrackingWebhookCollection']['responses']['200']
+  type GetTrackingWebhookCollectionResponse = Promise<{ items: operations['GetTrackingWebhookCollection']['responses']['200']['application/json']}>
   
-  type GetTrackingWebhookResponse = operations['GetTrackingWebhook']['responses']['200']
+  type GetTrackingWebhookResponse = Promise<{fields: operations['GetTrackingWebhook']['responses']['200']}>
   
-  type GetTrackingWebhookHistoryCollectionResponse = operations['GetTrackingWebhookHistoryCollection']['responses']['200']
+  type GetTrackingWebhookHistoryCollectionResponse = Promise<{ items: operations['GetTrackingWebhookHistoryCollection']['responses']['200']['application/json']}>
   
-  type PostTrackingWebhookResendRequestResponse = operations['PostTrackingWebhookResendRequest']['responses']['204']
+  type PostTrackingWebhookResendRequestResponse = Promise<{fields: operations['PostTrackingWebhookResendRequest']['responses']['204']}>
   
   type GetUserCollectionRequest = operations['GetUserCollection']['parameters']['query']
   
-  type GetUserCollectionResponse = operations['GetUserCollection']['responses']['200']
+  type GetUserCollectionResponse = Promise<{ items: operations['GetUserCollection']['responses']['200']['application/json']}>
   type PostUserRequest = operations['PostUser']['requestBody']
-  type PostUserResponse = operations['PostUser']['responses']['201']
+  type PostUserResponse = Promise<{fields: operations['PostUser']['responses']['201']}>
   
-  type GetUserResponse = operations['GetUser']['responses']['200']
+  type GetUserResponse = Promise<{fields: operations['GetUser']['responses']['200']}>
   type PutUserRequest = operations['PutUser']['requestBody']
-  type PutUserResponse = operations['PutUser']['responses']['201']
-  type DeleteUserResponse = operations['DeleteUser']['responses']['204']
+  type PutUserResponse = Promise<{fields: operations['PutUser']['responses']['201']}>
+  type DeleteUserResponse = Promise<{fields: operations['DeleteUser']['responses']['204']}>
   
   type PostUserPasswordChangeRequest = operations['PostUserPasswordChange']['requestBody']
-  type PostUserPasswordChangeResponse = operations['PostUserPasswordChange']['responses']['201']
+  type PostUserPasswordChangeResponse = Promise<{fields: operations['PostUserPasswordChange']['responses']['201']}>
   
-  type PostUserTotpResetResponse = operations['PostUserTotpReset']['responses']['201']
+  type PostUserTotpResetResponse = Promise<{fields: operations['PostUserTotpReset']['responses']['201']}>
   
   type GetWebhookCollectionRequest = operations['GetWebhookCollection']['parameters']['query']
   
-  type GetWebhookCollectionResponse = operations['GetWebhookCollection']['responses']['200']
+  type GetWebhookCollectionResponse = Promise<{ items: operations['GetWebhookCollection']['responses']['200']['application/json']}>
   type PostWebhookRequest = operations['PostWebhook']['requestBody']
-  type PostWebhookResponse = operations['PostWebhook']['responses']['201']
+  type PostWebhookResponse = Promise<{fields: operations['PostWebhook']['responses']['201']}>
   
-  type GetWebhookResponse = operations['GetWebhook']['responses']['200']
+  type GetWebhookResponse = Promise<{fields: operations['GetWebhook']['responses']['200']}>
   type PutWebhookRequest = operations['PutWebhook']['requestBody']
-  type PutWebhookResponse = operations['PutWebhook']['responses']['201']
+  type PutWebhookResponse = Promise<{fields: operations['PutWebhook']['responses']['201']}>
   
   type GetWebsiteCollectionRequest = operations['GetWebsiteCollection']['parameters']['query']
   
-  type GetWebsiteCollectionResponse = operations['GetWebsiteCollection']['responses']['200']
+  type GetWebsiteCollectionResponse = Promise<{ items: operations['GetWebsiteCollection']['responses']['200']['application/json']}>
   type PostWebsiteRequest = operations['PostWebsite']['requestBody']
-  type PostWebsiteResponse = operations['PostWebsite']['responses']['201']
+  type PostWebsiteResponse = Promise<{fields: operations['PostWebsite']['responses']['201']}>
   
-  type GetWebsiteResponse = operations['GetWebsite']['responses']['200']
+  type GetWebsiteResponse = Promise<{fields: operations['GetWebsite']['responses']['200']}>
   type PutWebsiteRequest = operations['PutWebsite']['requestBody']
-  type PutWebsiteResponse = operations['PutWebsite']['responses']['201']
-  type DeleteWebsiteResponse = operations['DeleteWebsite']['responses']['204']
+  type PutWebsiteResponse = Promise<{fields: operations['PutWebsite']['responses']['201']}>
+  type DeleteWebsiteResponse = Promise<{fields: operations['DeleteWebsite']['responses']['204']}>
   
-  type GetCustomerSummaryMetricReportResponse = operations['GetCustomerSummaryMetricReport']['responses']['200']
+  type GetCustomerSummaryMetricReportResponse = Promise<{fields: operations['GetCustomerSummaryMetricReport']['responses']['200']}>
   
-  type GetDataExportCollectionResponse = operations['GetDataExportCollection']['responses']['200']
+  type GetDataExportCollectionResponse = Promise<{ items: operations['GetDataExportCollection']['responses']['200']['application/json']}>
   type PostDataExportRequest = operations['PostDataExport']['requestBody']
-  type PostDataExportResponse = operations['PostDataExport']['responses']['201']
+  type PostDataExportResponse = Promise<{fields: operations['PostDataExport']['responses']['201']}>
   
-  type GetDataExportResponse = operations['GetDataExport']['responses']['200']
+  type GetDataExportResponse = Promise<{fields: operations['GetDataExport']['responses']['200']}>
   type PutDataExportRequest = operations['PutDataExport']['requestBody']
-  type PutDataExportResponse = operations['PutDataExport']['responses']['201']
-  type DeleteDataExportResponse = operations['DeleteDataExport']['responses']['204']
+  type PutDataExportResponse = Promise<{fields: operations['PutDataExport']['responses']['201']}>
+  type DeleteDataExportResponse = Promise<{fields: operations['DeleteDataExport']['responses']['204']}>
   
   type GetHistogramTransactionReportRequest = operations['GetHistogramTransactionReport']['parameters']
   
-  type GetHistogramTransactionReportResponse = operations['GetHistogramTransactionReport']['responses']['200']
+  type GetHistogramTransactionReportResponse = Promise<{fields: operations['GetHistogramTransactionReport']['responses']['200']}>
   
   type ExperimentalPostOrganizationRequest = operations['ExperimentalPostOrganization']['requestBody']
-  type ExperimentalPostOrganizationResponse = operations['ExperimentalPostOrganization']['responses']['201']
+  type ExperimentalPostOrganizationResponse = Promise<{fields: operations['ExperimentalPostOrganization']['responses']['201']}>
   
   type PatchOrganizationRequest = operations['PatchOrganization']['requestBody']
-  type PatchOrganizationResponse = operations['PatchOrganization']['responses']['200']
+  type PatchOrganizationResponse = Promise<{fields: operations['PatchOrganization']['responses']['200']}>
   
   type GetApiLogSummaryReportRequest = operations['GetApiLogSummaryReport']['parameters']
   
-  type GetApiLogSummaryReportResponse = operations['GetApiLogSummaryReport']['responses']['200']
+  type GetApiLogSummaryReportResponse = Promise<{fields: operations['GetApiLogSummaryReport']['responses']['200']}>
   
   type GetCumulativeSubscriptionReportRequest = operations['GetCumulativeSubscriptionReport']['parameters']
   
-  type GetCumulativeSubscriptionReportResponse = operations['GetCumulativeSubscriptionReport']['responses']['200']
+  type GetCumulativeSubscriptionReportResponse = Promise<{fields: operations['GetCumulativeSubscriptionReport']['responses']['200']}>
   
   type GetDashboardReportRequest = operations['GetDashboardReport']['parameters']
   
-  type GetDashboardReportResponse = operations['GetDashboardReport']['responses']['200']
+  type GetDashboardReportResponse = Promise<{fields: operations['GetDashboardReport']['responses']['200']}>
   
   type GetDccMarkupReportRequest = operations['GetDccMarkupReport']['parameters']
   
-  type GetDccMarkupReportResponse = operations['GetDccMarkupReport']['responses']['200']
+  type GetDccMarkupReportResponse = Promise<{fields: operations['GetDccMarkupReport']['responses']['200']}>
   
   type GetDisputeReportRequest = operations['GetDisputeReport']['parameters']
   
-  type GetDisputeReportResponse = operations['GetDisputeReport']['responses']['200']
+  type GetDisputeReportResponse = Promise<{fields: operations['GetDisputeReport']['responses']['200']}>
   
   type GetTriggeredEventReportRequest = operations['GetTriggeredEventReport']['parameters']
   
-  type GetTriggeredEventReportResponse = operations['GetTriggeredEventReport']['responses']['200']
+  type GetTriggeredEventReportResponse = Promise<{fields: operations['GetTriggeredEventReport']['responses']['200']}>
   
   type GetTriggeredEventRuleReportRequest = operations['GetTriggeredEventRuleReport']['parameters']
   
-  type GetTriggeredEventRuleReportResponse = operations['GetTriggeredEventRuleReport']['responses']['200']
+  type GetTriggeredEventRuleReportResponse = Promise<{fields: operations['GetTriggeredEventRuleReport']['responses']['200']}>
   
   type GetFutureRenewalReportRequest = operations['GetFutureRenewalReport']['parameters']
   
-  type GetFutureRenewalReportResponse = operations['GetFutureRenewalReport']['responses']['200']
+  type GetFutureRenewalReportResponse = Promise<{fields: operations['GetFutureRenewalReport']['responses']['200']}>
   
   type GetRenewalSaleReportRequest = operations['GetRenewalSaleReport']['parameters']
   
-  type GetRenewalSaleReportResponse = operations['GetRenewalSaleReport']['responses']['200']
+  type GetRenewalSaleReportResponse = Promise<{fields: operations['GetRenewalSaleReport']['responses']['200']}>
   
   type GetRetentionPercentageReportRequest = operations['GetRetentionPercentageReport']['parameters']
   
-  type GetRetentionPercentageReportResponse = operations['GetRetentionPercentageReport']['responses']['200']
+  type GetRetentionPercentageReportResponse = Promise<{fields: operations['GetRetentionPercentageReport']['responses']['200']}>
   
   type GetRetentionValueReportRequest = operations['GetRetentionValueReport']['parameters']
   
-  type GetRetentionValueReportResponse = operations['GetRetentionValueReport']['responses']['200']
+  type GetRetentionValueReportResponse = Promise<{fields: operations['GetRetentionValueReport']['responses']['200']}>
   
   type GetTransactionRetryReportRequest = operations['GetTransactionRetryReport']['parameters']
   
-  type GetTransactionRetryReportResponse = operations['GetTransactionRetryReport']['responses']['200']
+  type GetTransactionRetryReportResponse = Promise<{fields: operations['GetTransactionRetryReport']['responses']['200']}>
   
   type GetSubscriptionCancellationReportRequest = operations['GetSubscriptionCancellationReport']['parameters']
   
-  type GetSubscriptionCancellationReportResponse = operations['GetSubscriptionCancellationReport']['responses']['200']
+  type GetSubscriptionCancellationReportResponse = Promise<{fields: operations['GetSubscriptionCancellationReport']['responses']['200']}>
   
   type GetSubscriptionRenewalReportRequest = operations['GetSubscriptionRenewalReport']['parameters']
   
-  type GetSubscriptionRenewalReportResponse = operations['GetSubscriptionRenewalReport']['responses']['200']
+  type GetSubscriptionRenewalReportResponse = Promise<{fields: operations['GetSubscriptionRenewalReport']['responses']['200']}>
   
   type GetTimeSeriesTransactionReportRequest = operations['GetTimeSeriesTransactionReport']['parameters']
   
-  type GetTimeSeriesTransactionReportResponse = operations['GetTimeSeriesTransactionReport']['responses']['200']
+  type GetTimeSeriesTransactionReportResponse = Promise<{fields: operations['GetTimeSeriesTransactionReport']['responses']['200']}>
   
   type GetTransactionTimeDisputeReportRequest = operations['GetTransactionTimeDisputeReport']['parameters']
   
-  type GetTransactionTimeDisputeReportResponse = operations['GetTransactionTimeDisputeReport']['responses']['200']
+  type GetTransactionTimeDisputeReportResponse = Promise<{fields: operations['GetTransactionTimeDisputeReport']['responses']['200']}>
   
   type GetTransactionReportRequest = operations['GetTransactionReport']['parameters']
   
-  type GetTransactionReportResponse = operations['GetTransactionReport']['responses']['200']
+  type GetTransactionReportResponse = Promise<{fields: operations['GetTransactionReport']['responses']['200']}>
   
-  type GetSubscriptionSummaryMetricReportResponse = operations['GetSubscriptionSummaryMetricReport']['responses']['200']
+  type GetSubscriptionSummaryMetricReportResponse = Promise<{fields: operations['GetSubscriptionSummaryMetricReport']['responses']['200']}>
   
   
 

@@ -1837,6 +1837,7 @@ declare module "create-api-instance" {
             apiHandler: any;
         });
         account: AccountResource;
+        customers: import("resources/customers-resource").default;
         apiKeys: ApiKeysResource;
     }
     export type ExperimentalApiInstance = {
@@ -2037,59 +2038,16 @@ declare module "create-api-handler" {
     import Collection from "collection";
 }
 declare module "rebilly-js-sdk" {
-    export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams): {
-        account;
-        apiKeys;
-        bankAccounts;
-        blocklists;
-        checkoutForms;
-        coupons;
-        customers;
-        customerAuthentication;
-        customFields;
-        credentialHashes;
-        disputes;
-        events;
-        files;
-        gatewayAccounts;
-        invoices;
-        lists;
-        organizations;
-        paymentCards;
-        paymentCardsBankNames;
-        paymentTokens;
-        paypalAccounts;
-        plans;
-        previews;
-        products;
-        profile;
-        search;
-        segments;
-        sessions;
-        shippingZones;
-        status;
-        subscriptions;
-        tracking;
-        transactions;
-        threeDSecure;
-        users;
-        webhooks;
-        websites;
-        addRequestInterceptor;
-        removeRequestInterceptor;
-        addResponseInterceptor;
-        removeResponseInterceptor;
-        setTimeout;
-        setProxyAgent;
-        setSessionToken;
-        setEndpoints;
-        getCancellationToken;
-        plaidCredentials;
-        paymentInstruments;
-    };
-    export default class RebillyAPI {
-        constructor({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams);
-    }
+    export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: {
+        apiKey?: any;
+        sandbox?: boolean;
+        timeout?: number;
+        organizationId?: any;
+        urls?: {
+            live: string;
+            sandbox: string;
+        };
+    }): import("create-api-instance").ApiInstance;
     export type ApiParams = {
         apiKey?: string;
         sandbox: boolean;

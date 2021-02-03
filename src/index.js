@@ -12,29 +12,12 @@ const baseTimeoutMs = 6000;
 
 /**
  * Create an instance of the Rebilly API
-<<<<<<< HEAD
  * @typedef {Object} ApiParams
  * @property {string} [apiKey] private API key; if provided will be used for all requests
  * @property {boolean} sandbox whether to use the sandbox endpoint or the live
  * @property {number} timeout timeout in milliseconds
  * @property {string} [organizationId]  Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
  * @property {object} [urls] which urls the sdk will use for the base url for live or sandbox modes
- */
-
-/**
- * Create an instance of the Rebilly API
- * @param {ApiParams} params
- * @module RebillyAPI
- * @exports module:RebillyAPI
-=======
- * @param apiKey {string} private API key; if provided will be used for all requests
- * @param sandbox {boolean} whether to use the sandbox endpoint or the live
- * @param timeout {number} timeout in milliseconds
- * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
- * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
- * @returns {{account, apiKeys, bankAccounts, blocklists, checkoutForms, coupons, customers, customerAuthentication, customFields, credentialHashes, disputes, events, files, gatewayAccounts, invoices, lists, organizations, paymentCards, paymentCardsBankNames, paymentTokens, paypalAccounts, plans, previews, products, profile, search, segments, sessions, shippingZones, status, subscriptions, tracking, transactions, threeDSecure, users, webhooks, websites, addRequestInterceptor, removeRequestInterceptor, addResponseInterceptor, removeResponseInterceptor, setTimeout, setProxyAgent, setSessionToken, setEndpoints, getCancellationToken, plaidCredentials, paymentInstruments}}
- * @constructor
->>>>>>> master
  */
 export default function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {

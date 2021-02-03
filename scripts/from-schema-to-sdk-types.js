@@ -123,49 +123,32 @@ function processSchema(schema) {
         return requestType + newLineAndTab
     }
     
-    function generatePostResponseType(operationId, postPath) {
-        const responseTypeName = operationId + 'Response'
-        if (!getResponseCode(postPath)) warn(`🚨 Missing response code for POST!!! (${operationId})`)
-        let responseType = `type ${responseTypeName} = operations['${operationId}']['responses']['${getResponseCode(postPath)}']`
-        if (hasApplicationJson(postPath)) {
-            responseType += "['application/json']"
-        }
-        return responseType + newLineAndTab
+    function generatePostResponseType(operationId, path) {
+        if (!getResponseCode(path)) warn(`🚨 Missing response code for POST!!! (${operationId})`)
+        return createResponseType(operationId, path)
     }
 
     function generateGetResponseType(operationId, path) {
-        const responseTypeName = operationId + 'Response'
         if (!getResponseCode(path)) warn(`🚨 Missing response code for GET!!! (${operationId})`)
-        let responseType = `type ${responseTypeName} = operations['${operationId}']['responses']['${getResponseCode(path)}']`
-        if (hasApplicationJson(path)) {
-            responseType += "['application/json']"
-        }
-        return responseType + newLineAndTab
+        return createResponseType(operationId, path)
     }
   
     function generatePutResponseType(operationId, path) {
-        const responseTypeName = operationId + 'Response'
         if (!getResponseCode(path)) warn(`🚨 Missing response code for PUT!!! (${operationId})`)
-        let responseType = `type ${responseTypeName} = operations['${operationId}']['responses']['${getResponseCode(path)}']`
+        return createResponseType(operationId, path)
+    }
+
+    function generateDeleteResponseType(operationId, path) {
+        if (!getResponseCode(path)) warn(`🚨 Missing response code for DELETE!!!(${operationId})`)
+        return createResponseType(operationId, path)
+    }
+
+    function promise(operationId, path) {
+        let response = `operations['${operationId}']['responses']['${getResponseCode(path)}']`
         if (hasApplicationJson(path)) {
-            responseType += "['application/json']"
+            response += "['application/json']"
         }
-        return responseType + newLineAndTab
-    }
-
-    function generateDeleteResponseType(operationId, deletePath) {
-        const responseTypeName = operationId + 'Response'
-        if (!getResponseCode(deletePath)) warn(`🚨 Missing response code for DELETE!!!(${operationId})`)
-        const responseType = `type ${responseTypeName} = operations['${operationId}']['responses']['${getResponseCode(deletePath)}']`
-        return responseType + newLineAndTab
-    }
-
-    function hasApplicationJson(path) {
-       return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
-    }
-  
-    function hasQueryProperty(path) {
-       return (path.parameters.query) 
+        return (operationId.endsWith('Collection')) ? itemsPromise(response) : fieldsPromise(response)
     }
 
     function getResponseCode(path) {
@@ -177,7 +160,26 @@ function processSchema(schema) {
             return '200'
         }
     }
+
+    function fieldsPromise(response) {
+        return `Promise<{fields: ${response}}>`
+    }
     
+    function itemsPromise(response) {
+        //TODO: Sometimes we have getJSON function wrapping items
+        return `Promise<{ items: ${response}['application/json']}>`
+    }
+
+    function createResponseType(operationId, path) {
+        const responseTypeName = operationId + 'Response'
+        let responseType = `type ${responseTypeName} = ${promise(operationId, path)}`
+        return responseType + newLineAndTab
+    }
+
+    function hasApplicationJson(path) {
+        return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
+    }
+
     function warn(message) {
         //If verbose
         //console.warn(message)

@@ -7,6 +7,7 @@ import ApiKeysResource from './resources/api-keys-resource';
 export class ApiInstance {
     constructor({apiHandler}) {
         this.account = new Resources.AccountResource({apiHandler})
+        this.customers = new Resources.CustomersResource({apiHandler})
         this.apiKeys = new Resources.ApiKeysResource({apiHandler})
     }
 }
@@ -30,7 +31,6 @@ export default function createApiInstance({apiHandler}) {
         broadcastMessages: Resources.BroadcastMessagesResource({apiHandler}),
         checkoutForms: Resources.CheckoutFormsResource({apiHandler}),
         coupons: Resources.CouponsResource({apiHandler}),
-        customers: Resources.CustomersResource({apiHandler}),
         customerAuthentication: Resources.CustomerAuthenticationResource({apiHandler}),
         customFields: Resources.CustomFieldsResource({apiHandler}),
         credentialHashes: Resources.CredentialHashesResource({apiHandler}),
