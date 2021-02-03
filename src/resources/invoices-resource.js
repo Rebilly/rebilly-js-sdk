@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {pdfHeader, csvHeader} from '../request-headers';
 
 export default function InvoicesResource({apiHandler}) {

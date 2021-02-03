@@ -8226,30 +8226,70 @@ export interface components {
     ResourceCustomFields: { [key: string]: any };
     /** Browser data used for 3DS and risk scoring. */
     BrowserData: {
-      /** The browser's accept header value. */
-      acceptHeader?: string;
       /** The browser's color depth in bits per pixel obtained using the `screen.colorDepth` property. */
-      colorDepth: 1 | 4 | 8 | 15 | 16 | 24 | 32 | 48;
-      /** The browser's IP address (ipv4 or ipv6). */
-      ipAddress?: string;
+      colorDepth: number;
       /** Whether Java is enabled in a browser or not. Value is returned from the `navigator.javaEnabled` property. */
-      javaEnabled: boolean;
+      isJavaEnabled: boolean;
       /** The browser's language settings returned from the `navigator.language` property. */
       language: string;
-      /** The browser's screen height returned from the `screen.height` property. */
-      screenHeight: number;
       /** The browser's screen width returned from the `screen.width` property. */
       screenWidth: number;
+      /** The browser's screen height returned from the `screen.height` property. */
+      screenHeight: number;
       /**
        * The browser's time zone offset in minutes from UTC.
        * A positive offset indicates the local time is behind UTC, and negative is ahead.
        * Can find it with `(new Date()).getTimezoneOffset()` property.
        */
       timeZoneOffset: number;
-      /** The user-agent header. */
-      userAgent?: string;
-      /** The device fingerprint hash. See [Valve's fingerprintjs2](https://github.com/Valve/fingerprintjs2). */
-      deviceFingerprintHash?: string;
+    };
+    /** Risk metadata used for 3DS and risk scoring. */
+    RiskMetadata: {
+      /** The customer's IP. */
+      ipAddress?: string;
+      /** The fingerprint. */
+      fingerprint?: string;
+      /** HTTP headers. */
+      httpHeaders?: { [key: string]: string };
+      browserData?: components["schemas"]["BrowserData"];
+      /** True if customer's ip address is related to proxy. */
+      isProxy?: boolean;
+      /** True if customer's ip address is related to VPN. */
+      isVpn?: boolean;
+      /** True if customer's ip address is related to TOR. */
+      isTor?: boolean;
+      /** True if customer's ip address is related to hosting. */
+      isHosting?: boolean;
+      /** VPN service name, if available. */
+      vpnServiceName?: string;
+      /** Internet Service Provider name, if available. */
+      isp?: string;
+      /** Country ISO Alpha-2 code for specified ipAddress. */
+      country?: string;
+      /** Region for specified ipAddress. */
+      region?: string;
+      /** City for specified ipAddress. */
+      city?: string;
+      /** Latitude for specified ipAddress. */
+      latitude?: number;
+      /** Longitude for specified ipAddress. */
+      longitude?: number;
+      /** Postal code for specified ipAddress. */
+      postalCode?: string;
+      /** Time zone for specified ipAddress. */
+      timeZone?: string;
+      /** Accuracy radius for specified ipAddress (kilometers). */
+      accuracyRadius?: number;
+      /** Distance between IP Address and Billing Address geolocation (kilometers). */
+      distance?: number;
+      /** True if the billing address country and geo-IP address are not the same. */
+      hasMismatchedBillingAddressCountry?: boolean;
+      /** True if the bank country and geo-IP address are not the same. */
+      hasMismatchedBankCountry?: boolean;
+      /** True if the browser time zone and IP address associated time zone are not the same. */
+      hasMismatchedTimeZone?: boolean;
+      /** Risk score computed per all the factors. */
+      score?: number;
     };
     CommonBankAccount: {
       /** The payment instrument ID. */
@@ -8281,7 +8321,7 @@ export interface components {
       /** Bank account updated time. */
       updatedTime?: components["schemas"]["ServerTimestamp"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     /** The payment method. */
     PaymentMethod:
@@ -8610,7 +8650,7 @@ export interface components {
       /** The billing address. */
       billingAddress: components["schemas"]["ContactObject"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     /** IBAN type object. */
     IBANType: {
@@ -8632,7 +8672,7 @@ export interface components {
       /** The billing address. */
       billingAddress: components["schemas"]["ContactObject"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     BankAccountCreatePlain: Partial<components["schemas"]["BBANType"]> &
       Partial<components["schemas"]["IBANType"]>;
@@ -9557,6 +9597,8 @@ export interface components {
       | "Stripe"
       | "TestProcessor"
       | "ToditoCash"
+      | "TrustPay"
+      | "TrustsPay"
       | "Trustly"
       | "TWINT"
       | "UPayCard"
@@ -9790,6 +9832,7 @@ export interface components {
       | "ToditoCash"
       | "Trustly"
       | "TrustPay"
+      | "TrustsPay"
       | "TSYS"
       | "TWINT"
       | "UPayCard"
@@ -9827,52 +9870,6 @@ export interface components {
       customFields?: components["schemas"]["ResourceCustomFields"];
     };
     PurchaseBumpOfferList: components["schemas"]["PurchaseBumpOffer"][];
-    RiskMetadata: {
-      /** The customer's IP. */
-      ipAddress?: string;
-      /** True if customer's ip address is related to proxy. */
-      isProxy?: boolean;
-      /** True if customer's ip address is related to VPN. */
-      isVpn?: boolean;
-      /** True if customer's ip address is related to TOR. */
-      isTor?: boolean;
-      /** True if customer's ip address is related to hosting. */
-      isHosting?: boolean;
-      /** VPN service name, if available. */
-      vpnServiceName?: string;
-      /** Internet Service Provider name, if available. */
-      isp?: string;
-      /** Country ISO Alpha-2 code for specified ipAddress. */
-      country?: string;
-      /** Region for specified ipAddress. */
-      region?: string;
-      /** City for specified ipAddress. */
-      city?: string;
-      /** Latitude for specified ipAddress. */
-      latitude?: number;
-      /** Longitude for specified ipAddress. */
-      longitude?: number;
-      /** Postal code for specified ipAddress. */
-      postalCode?: string;
-      /** Time zone for specified ipAddress. */
-      timeZone?: string;
-      /** Accuracy radius for specified ipAddress (kilometers). */
-      accuracyRadius?: number;
-      /** The fingerprint. */
-      fingerprint?: string;
-      /** HTTP headers. */
-      httpHeaders?: { [key: string]: string };
-      /** Distance between IP Address and Billing Address geolocation (kilometers). */
-      distance?: number;
-      /** True if the billing address country and geo-IP address are not the same. */
-      hasMismatchedBillingAddressCountry?: boolean;
-      /** True if the bank country and geo-IP address are not the same. */
-      hasMismatchedBankCountry?: boolean;
-      /** True if the browser time zone and IP address associated time zone are not the same. */
-      hasMismatchedTimeZone?: boolean;
-      /** Risk score computed per all the factors. */
-      score?: number;
-    };
     /**
      * The URL where a server-to-server POST notification will be sent.  It  will be sent when the
      * transaction's result is finalized after a timeout or an offsite interaction. Do not trust the
@@ -11993,6 +11990,23 @@ export interface components {
         apiKey: string;
       };
     };
+    /** TrustPay config. */
+    TrustPay: components["schemas"]["GatewayAccount"] & {
+      /** TrustPay credentials object. */
+      credentials: {
+        entityId: string;
+        accessToken: string;
+      };
+    };
+    /** TrustsPay config. */
+    TrustsPay: components["schemas"]["GatewayAccount"] & {
+      /** TrustsPay credentials object. */
+      credentials: {
+        merchantNo: string;
+        gatewayNo: string;
+        signkey: string;
+      };
+    };
     /** Trustly config. */
     Trustly: components["schemas"]["GatewayAccount"] & {
       /** Trustly credentials object. */
@@ -12367,7 +12381,7 @@ export interface components {
       /** Payment instrument updated time. */
       updatedTime?: components["schemas"]["ServerTimestamp"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     AuthTransactionLink: components["schemas"]["Link"] & {
       /** The link type. */
@@ -12958,7 +12972,7 @@ export interface components {
       /** PayPal account updated time. */
       updatedTime?: components["schemas"]["ServerTimestamp"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     PayPalAccount: components["schemas"]["CommonPayPalAccount"] & {
       /** The links related to resource. */
@@ -12996,7 +13010,7 @@ export interface components {
       /** The payment instrument updated time. */
       updatedTime?: components["schemas"]["ServerTimestamp"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
       /** Links related to the resource. */
       _links?: (Partial<components["schemas"]["SelfLink"]> &
         Partial<components["schemas"]["CustomerLink"]>)[];
@@ -13031,7 +13045,7 @@ export interface components {
       /** The billing address. */
       billingAddress: components["schemas"]["ContactObject"];
       customFields?: components["schemas"]["ResourceCustomFields"];
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
     };
     PaymentInstrumentUpdateToken: {
       /** Payment token ID. */
@@ -13564,7 +13578,7 @@ export interface components {
       /** Whether the token was already used. */
       isUsed?: boolean;
       method: string;
-      browserData?: components["schemas"]["BrowserData"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
       leadSource?: components["schemas"]["LeadSource"];
       /** Token created time. */
       createdTime?: components["schemas"]["ServerTimestamp"];

@@ -2036,7 +2036,7 @@ declare module "create-api-handler" {
     import Member from "member";
     import Collection from "collection";
 }
-declare module "index" {
+declare module "rebilly-js-sdk" {
     export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams): {
         account;
         apiKeys;
