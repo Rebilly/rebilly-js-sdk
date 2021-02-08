@@ -78,13 +78,8 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
 
 /**
  * Create an instance of the storefront API.
- * @param apiKey {string} publishable API key; if provided will be used for all requests
- * @param sandbox {boolean} whether to use the sandbox endpoint or the live
- * @param timeout {number} timeout in milliseconds
- * @param organizationId {string} Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
- * @param urls {object} which urls the sdk will use for the base url for live or sandbox modes
- * @returns {{histograms, reports, customers, setEndpoints, setTimeout}}
- * @constructor
+ *  @param {ApiParams} params
+ * 
  */
 function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {

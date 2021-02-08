@@ -4495,16 +4495,7 @@ declare module "rebilly-js-sdk" {
     };
     import Errors from "errors";
     export function RebillyExperimentalAPI({ apiKey, sandbox, timeout, organizationId, urls }?: ApiParams): import("create-api-instance").ExperimentalApiInstance;
-    export function RebillyStorefrontAPI({ publishableKey, jwt, sandbox, timeout, organizationId, urls }?: string): {
-        histograms;
-        reports;
-        customers;
-        setEndpoints;
-        setTimeout;
-    };
-    export class RebillyStorefrontAPI {
-        constructor({ publishableKey, jwt, sandbox, timeout, organizationId, urls }?: string);
-    }
+    export function RebillyStorefrontAPI({ publishableKey, jwt, sandbox, timeout, organizationId, urls }?: ApiParams): import("create-api-instance").StorefrontApiInstance;
     import cancellation from "cancellation";
     export { Errors as RebillyErrors, cancellation };
 }

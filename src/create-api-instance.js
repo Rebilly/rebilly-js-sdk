@@ -83,6 +83,15 @@ export default function createApiInstance({apiHandler}) {
 
 export class ExperimentalApiInstance {
     constructor({apiHandler}) {
+        this.customers = ExperimentalResources.CustomersResource({apiHandler}),
+        this.dataExports = ExperimentalResources.DataExportsResource({apiHandler}),
+        this.histograms = ExperimentalResources.HistogramsResource({apiHandler}),
+        this.organizations = ExperimentalResources.OrganizationsResource({apiHandler}),
+        this.reports = ExperimentalResources.ReportsResource({apiHandler}),
+        this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
+        this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
+        this.transactions = ExperimentalResources.TransactionsResource({apiHandler}),
+        this.location = ExperimentalResources.LocationResource({apiHandler}),
         // expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
         this.removeRequestInterceptor = apiHandler.removeRequestInterceptor,
@@ -92,16 +101,7 @@ export class ExperimentalApiInstance {
         this.setProxyAgent = apiHandler.setProxyAgent,
         this.setSessionToken = apiHandler.setSessionToken,
         this.setEndpoints = apiHandler.setEndpoints,
-        this.getCancellationToken = apiHandler.getCancellationToken,
-        this.customers = ExperimentalResources.CustomersResource({apiHandler}),
-        this.dataExports = ExperimentalResources.DataExportsResource({apiHandler}),
-        this.histograms = ExperimentalResources.HistogramsResource({apiHandler}),
-        this.organizations = ExperimentalResources.OrganizationsResource({apiHandler}),
-        this.reports = ExperimentalResources.ReportsResource({apiHandler}),
-        this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
-        this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
-        this.transactions = ExperimentalResources.TransactionsResource({apiHandler}),
-        this.location = ExperimentalResources.LocationResource({apiHandler})
+        this.getCancellationToken = apiHandler.getCancellationToken
     }
 }
 
