@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+console.log('🦓  Fixing index name');
+
 const filename = './typings/rebilly-js-sdk/index.d.ts';
 
 fs.readFile(filename, 'utf8', (error, data) => {

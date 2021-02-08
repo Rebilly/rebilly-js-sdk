@@ -11030,6 +11030,8 @@ export interface components {
         recipientHolder: string;
       };
     };
+    /** Tolerance percentage for settled amount. */
+    AmountAdjustmentTolerance: number;
     /** Finrax config. */
     Finrax: components["schemas"]["GatewayAccount"] & {
       /** Finrax credentials object. */
@@ -11043,8 +11045,7 @@ export interface components {
       };
       /** Finrax settings object. */
       settings?: {
-        /** Tolerance percentage for settled amount. */
-        tolerancePercentage?: string;
+        tolerancePercentage: components["schemas"]["AmountAdjustmentTolerance"];
       };
     };
     /** Flexepin Gateway config. */
@@ -11677,8 +11678,7 @@ export interface components {
       };
       /** Paymero settings object. */
       settings?: {
-        /** Tolerance percentage (from 1 to 100) for settled amount for crypto currency method. */
-        tolerancePercentage?: number;
+        tolerancePercentage: components["schemas"]["AmountAdjustmentTolerance"];
         /** This will be the currency to which you want to auto-convert the received cryptocurrency in to. */
         targetCurrency?: components["schemas"]["CurrencyCode"];
       };
@@ -12054,8 +12054,7 @@ export interface components {
       };
       /** UpayCard settings object. */
       settings?: {
-        /** Tolerance percentage for settled amount. */
-        tolerancePercentage?: string;
+        tolerancePercentage: components["schemas"]["AmountAdjustmentTolerance"];
       };
     };
     /** USAePay Gateway config. */
@@ -13907,6 +13906,7 @@ export interface components {
       /** The URL to redirect the end-user when an offsite transaction is completed. Defaults to the website's configured URL. You may use `{id}` or `{result}` as placeholders in the URL and we will replace them with the transaction's id and result accordingly. */
       redirectUrl?: string | null;
       customFields?: components["schemas"]["ResourceCustomFields"];
+      riskMetadata?: components["schemas"]["RiskMetadata"];
       /** True if transaction was processed outside Rebilly. */
       isProcessedOutside?: boolean;
       /** True if the transaction was initiated by the merchant. */
