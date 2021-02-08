@@ -50,7 +50,7 @@ function processSchema(schema) {
         } else {
             result+= generateQueryType(operationId, getPath) + newLineAndTab
         }
-        result += generateGetResponseType(operationId, getPath)
+        result += generateResponseType(operationId, getPath)
         return result
     }
 
@@ -62,7 +62,7 @@ function processSchema(schema) {
         } else {
             result += generateRequestType(operationId, postPath)
         }
-        result += generatePostResponseType(operationId, postPath)
+        result += generateResponseType(operationId, postPath)
         return result
     }
 
@@ -74,7 +74,7 @@ function processSchema(schema) {
         } else {
             result += generateRequestType(operationId, putPath)
         }
-        result += generatePutResponseType(operationId, putPath)
+        result += generateResponseType(operationId, putPath)
         return result
     }
     
@@ -86,7 +86,7 @@ function processSchema(schema) {
         } else {
             result += generateRequestType(operationId, patchPath)
         }
-        result += generatePutResponseType(operationId, patchPath)
+        result += generateResponseType(operationId, patchPath)
         return result
     }
 
@@ -98,7 +98,7 @@ function processSchema(schema) {
         } else if (deletePath.parameters && deletePath.parameters.query) {
             result += generateQueryType(operationId, deletePath) 
         }
-        result += generateDeleteResponseType(operationId, deletePath)
+        result += generateResponseType(operationId, deletePath)
         return result
     }
 
@@ -108,9 +108,6 @@ function processSchema(schema) {
         if (operationId.endsWith('Collection')) {
             requestType += "['query']"
         }
-        // if (operationId === 'GetInvoiceRequest')
-        //     console.log('GetInvoiceRequest', path)
-        //if (path.parameters.query) requestType += "['query']"
         return requestType + newLineAndTab
     }
 
@@ -123,42 +120,31 @@ function processSchema(schema) {
         return requestType + newLineAndTab
     }
     
-    function generatePostResponseType(operationId, path) {
-        if (!getResponseCode(path)) warn(`🚨 Missing response code for POST!!! (${operationId})`)
-        return createResponseType(operationId, path)
-    }
-
-    function generateGetResponseType(operationId, path) {
-        if (!getResponseCode(path)) warn(`🚨 Missing response code for GET!!! (${operationId})`)
-        return createResponseType(operationId, path)
-    }
-  
-    function generatePutResponseType(operationId, path) {
-        if (!getResponseCode(path)) warn(`🚨 Missing response code for PUT!!! (${operationId})`)
-        return createResponseType(operationId, path)
-    }
-
-    function generateDeleteResponseType(operationId, path) {
-        if (!getResponseCode(path)) warn(`🚨 Missing response code for DELETE!!!(${operationId})`)
-        return createResponseType(operationId, path)
+    function generateResponseType(operationId, path) {
+        const responseTypeName = operationId + 'Response'
+        let responseType = `type ${responseTypeName} = ${promise(operationId, path)}`
+        return responseType + newLineAndTab
     }
 
     function promise(operationId, path) {
-        let response = `operations['${operationId}']['responses']['${getResponseCode(path)}']`
-        if (hasApplicationJson(path)) {
-            response += "['application/json']"
-        }
+        let response = `operations['${operationId}']['responses']${getResponseCode(path)}`
         return (operationId.endsWith('Collection')) ? itemsPromise(response) : fieldsPromise(response)
     }
-
+            
     function getResponseCode(path) {
+        let code = null
         if (path.responses['201']) {
-            return '201'
+            code = '201'
         } else if (path.responses['204']) {
-            return '204'
+            code = '204'
         } else if (path.responses['200']) {
-            return '200'
+            code = '200'
         }
+        let result = `['${code}']`
+        if (path.responses[code].content && path.responses[code].content['application/json']) {
+            result += `['application/json']`
+        }
+        return result
     }
 
     function fieldsPromise(response) {
@@ -167,19 +153,13 @@ function processSchema(schema) {
     
     function itemsPromise(response) {
         //TODO: Sometimes we have getJSON function wrapping items
-        return `Promise<{ items: ${response}['application/json']}>`
-    }
-
-    function createResponseType(operationId, path) {
-        const responseTypeName = operationId + 'Response'
-        let responseType = `type ${responseTypeName} = ${promise(operationId, path)}`
-        return responseType + newLineAndTab
+        return `Promise<{ items: ${response}}>`
     }
 
     function hasApplicationJson(path) {
         return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
     }
-
+  
     function warn(message) {
         //If verbose
         //console.warn(message)
