@@ -15056,6 +15056,7 @@ export interface components {
       | "transaction-discrepancy-found"
       | "transaction-process-requested"
       | "transaction-processed"
+      | "transaction-reconciled"
       | "transaction-timeout-resolved"
       | "waiting-gateway-transaction-completed";
     GlobalWebhook: {

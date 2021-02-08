@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function ReportsResource({apiHandler}) {
     return {
         getApiLogSummary({aggregationField = null, periodStart = null, periodEnd = null, limit = null, offset = null, tz = null} = {}) {

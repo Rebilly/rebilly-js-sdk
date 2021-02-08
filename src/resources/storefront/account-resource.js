@@ -28,7 +28,7 @@ export default function AccountResource({apiHandler}) {
             return apiHandler.post(`account/resend-verification`, data);
         },
 
-        verifyEmail({token} = {}) {
+        verifyEmail({token = null} = {}) {
             return apiHandler.post(`account/verification/${token}`);
         }
     }

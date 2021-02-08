@@ -1,49 +1,47 @@
-// @ts-nocheck
-export default class ApiKeysResource {
-    constructor({apiHandler}) {
-        this.apiHandler = apiHandler
-    }
+export default function ApiKeysResource({apiHandler}) {
+    return {
         /**
-    * @param { rebilly.GetApiKeyCollectionQuery } data
-    * @returns { rebilly.GetApiKeyCollectionResponse } collection
-    */
-    getAll({limit = null, offset = null, sort = null} = {}) {
-        const params = {
-            limit,
-            offset,
-            sort
-        };
-        return this.apiHandler.getAll(`api-keys`, params);
-    }
+        * @param { rebilly.GetApiKeyCollectionRequest } data
+        * @returns { rebilly.GetApiKeyCollectionResponse } collection
+        */
+        // @ts-ignore
+        getAll({limit = null, offset = null, sort = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort
+            };
+            return apiHandler.getAll(`api-keys`, params);
+        },
 
-    /**
-    * @returns { rebilly.GetApiKeysResponse } response
-    */
-    get({id}) {
-        return this.apiHandler.get(`api-keys/${id}`);
-    }
+        /**
+        * @returns { rebilly.GetApiKeyResponse } response
+        */
+        get({id}) {
+            return apiHandler.get(`api-keys/${id}`);
+        },
 
-    /**
-    * @param { rebilly.PostApiKeyRequest } data
-    * @returns { rebilly.PostApiKeyResponse } response
-    */
-    create({id = '', data}) {
-        return this.apiHandler.create(`api-keys/${id}`, id, data);
-    }
+        /**
+        * @param { rebilly.PostApiKeyDataRequest } data
+        * @returns { rebilly.PostApiKeyResponse } response
+        */
+        create({id = '', data}) {
+            return apiHandler.create(`api-keys/${id}`, id, data);
+        },
 
-    /**
-    * @param { rebilly.PutApiKeyRequest } data
-    * @returns { rebilly.PutApiKeyResponse} response
-    */
-    update({id, data}) {
-        return this.apiHandler.put(`api-keys/${id}`, data);
-    }
+        /**
+        * @param { rebilly.PutApiKeyDataRequest } data
+        * @returns { rebilly.PutApiKeyResponse} response
+        */
+        update({id, data}) {
+            return apiHandler.put(`api-keys/${id}`, data);
+        },
 
-    /**
-    * @returns { rebilly.DeleteApiKeyResponse} response
-    */
-    delete({id}) {
-        return this.apiHandler.delete(`api-keys/${id}`);
-    }
-
+        /**
+        * @returns { rebilly.DeleteApiKeyResponse} response
+        */
+        delete({id}) {
+            return apiHandler.delete(`api-keys/${id}`);
+        }
+    };
 };

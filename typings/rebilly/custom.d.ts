@@ -8,6 +8,10 @@ declare module rebilly {
 
   //TODO: 
   // Decided if we remove these superfluous Response "data wrappers"
+  type PostApiKeyDataRequest = {id: String, data: PostApiKeyRequest};
+  
+  type PutApiKeyDataRequest = {id: String, data: PutApiKeyRequest};
+  
   type PostGatewayAccountDataRequest = {id: String, data: PostGatewayAccountRequest};
   
   type PutGatewayAccountDataRequest = {id: String, data: PutGatewayAccountRequest};
@@ -20,7 +24,7 @@ declare module rebilly {
   
   type PutBankAccountDataRequest = {id: String, data: PutBankAccountRequest};
   
-  type PostBankAccountDataRequest = {id: String, data: PostBankAccountDataRequest};
+  type PostBankAccountDataRequest = {id: String, data: PostBankAccountRequest};
   
   type PostForgotPasswordRequestDataRequest = {data: PostForgotPasswordRequestRequest};
   
@@ -35,4 +39,7 @@ declare module rebilly {
   type PostInvoiceItemDataRequest = {id: String, data: PostInvoiceItemRequest};
   
   type PutCustomerLeadSourceDataRequest = {id: String, data: PutCustomerLeadSourceRequest};
+  
+  type PostBlocklistDataRequest = {id: String, data: PostBlocklistRequest};
+
 }
