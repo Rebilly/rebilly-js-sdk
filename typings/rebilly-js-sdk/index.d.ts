@@ -2133,7 +2133,7 @@ declare module "resources/storefront/account-resource" {
             data?: any;
         }): any;
         verifyEmail({ token }?: {
-            token: any;
+            token?: any;
         }): any;
     };
 }
@@ -4161,7 +4161,7 @@ declare module "create-api-instance" {
                 data?: any;
             }): any;
             verifyEmail({ token }?: {
-                token: any;
+                token?: any;
             }): any;
         };
         authorization: {
@@ -4475,7 +4475,7 @@ declare module "create-api-handler" {
     import Member from "member";
     import Collection from "collection";
 }
-declare module "index" {
+declare module "rebilly-js-sdk" {
     export default function RebillyAPI({ apiKey, sandbox, timeout, organizationId, urls }?: {
         apiKey?: any;
         sandbox?: boolean;
