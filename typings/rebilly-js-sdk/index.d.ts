@@ -3883,15 +3883,6 @@ declare module "create-api-instance" {
         constructor({ apiHandler }: {
             apiHandler: any;
         });
-        addRequestInterceptor: any;
-        removeRequestInterceptor: any;
-        addResponseInterceptor: any;
-        removeResponseInterceptor: any;
-        setTimeout: any;
-        setProxyAgent: any;
-        setSessionToken: any;
-        setEndpoints: any;
-        getCancellationToken: any;
         customers: {
             getCustomerLifetimeSummaryMetrics({ customerId }?: {
                 customerId?: string;
@@ -4134,6 +4125,15 @@ declare module "create-api-instance" {
         location: {
             query(): any;
         };
+        addRequestInterceptor: any;
+        removeRequestInterceptor: any;
+        addResponseInterceptor: any;
+        removeResponseInterceptor: any;
+        setTimeout: any;
+        setProxyAgent: any;
+        setSessionToken: any;
+        setEndpoints: any;
+        getCancellationToken: any;
     }
     export class StorefrontApiInstance {
         constructor({ apiHandler }: {

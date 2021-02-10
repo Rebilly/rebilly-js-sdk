@@ -9569,6 +9569,7 @@ export interface components {
       | "Payeezy"
       | "Payflow"
       | "PaymenTechnologies"
+      | "PaymentsOS"
       | "Paymero"
       | "PayPal"
       | "Payr"
@@ -9803,6 +9804,7 @@ export interface components {
       | "Pay4fun"
       | "PayCash"
       | "PaymenTechnologies"
+      | "PaymentsOS"
       | "Paymero"
       | "Paynetics"
       | "PayPal"
@@ -11669,6 +11671,13 @@ export interface components {
         use3DSEndpoint?: boolean;
       };
     };
+    /** PaymentsOS config. */
+    PaymentsOS: components["schemas"]["GatewayAccount"] & {
+      credentials: {
+        appId: string;
+        privateKey: string;
+      };
+    };
     /** Paymero config. */
     Paymero: components["schemas"]["GatewayAccount"] & {
       /** Paymero credentials object. */
@@ -11678,9 +11687,10 @@ export interface components {
       };
       /** Paymero settings object. */
       settings?: {
-        tolerancePercentage: components["schemas"]["AmountAdjustmentTolerance"];
+        /** Tolerance percentage for settled amount. */
+        tolerancePercentage: number;
         /** This will be the currency to which you want to auto-convert the received cryptocurrency in to. */
-        targetCurrency?: components["schemas"]["CurrencyCode"];
+        targetCurrency?: string;
       };
     };
     /** Payr Gateway config. */
