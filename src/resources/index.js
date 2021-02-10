@@ -1,7 +1,6 @@
 import AccountResource from './account-resource';
-import ApiKeysResource from './api-keys-resource';
 import AmlResource from './aml-resource';
-import CustomersResource from './customers-resource';
+import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
@@ -10,6 +9,7 @@ import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
+import CustomersResource from './customers-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import DisputesResource from './disputes-resource';
 import EmailDeliverySettingsResource from './email-delivery-settings-resource';
@@ -21,6 +21,7 @@ import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
+import LayoutsResource from './layouts-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import OrganizationsResource from './organizations-resource';
@@ -56,8 +57,8 @@ import WebsitesResource from './websites-resource';
 
 const Resources = {
     AccountResource,
-    ApiKeysResource,
     AmlResource,
+    ApiKeysResource,
     BankAccountsResource,
     BlocklistsResource,
     BroadcastMessagesResource,
@@ -78,6 +79,7 @@ const Resources = {
     IntegrationsResource,
     InvoicesResource,
     KycDocumentsResource,
+    LayoutsResource,
     ListsResource,
     MembershipsResource,
     OrganizationsResource,

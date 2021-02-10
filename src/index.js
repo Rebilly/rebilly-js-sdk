@@ -44,8 +44,6 @@ export default function RebillyAPI({apiKey = null, sandbox = false, timeout = ba
     return createApiInstance({apiHandler});
 };
 
-
-
 /**
  * Create an instance of the experimental Rebilly API
  * @param {ApiParams} params
@@ -79,7 +77,6 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
 /**
  * Create an instance of the storefront API.
  *  @param {ApiParams} params
- * 
  */
 function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
@@ -106,7 +103,7 @@ function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = fals
 
     apiHandler.setSessionToken(options.jwt);
 
-     return createStorefrontApiInstance({apiHandler});
+    return createStorefrontApiInstance({apiHandler});
  }
 
 export {Errors as RebillyErrors, RebillyExperimentalAPI, RebillyStorefrontAPI, cancellation};
