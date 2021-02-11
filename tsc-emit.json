@@ -9,13 +9,13 @@
       "checkJs": true,
       "emitDeclarationOnly": true,    
       "declaration": true,
-      "outFile": "types/rebilly-js-sdk/index.d.ts",
+      "outFile": "typings/rebilly-js-sdk/index.d.ts",
       "removeComments": true,
       "strict": false,
       "noImplicitThis": true,
       "alwaysStrict": true,
       "types": [
-        "./types/rebilly"
+        "./typings/rebilly"
       ],
       "esModuleInterop": true
     },

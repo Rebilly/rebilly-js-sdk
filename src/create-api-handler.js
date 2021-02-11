@@ -10,7 +10,7 @@ import RequestsCache from './requests-cache';
 import {Cancellation} from './cancellation';
 
 /**
- * Availble types of axios interceptors
+ * Available types of axios interceptors
  */
 export const interceptorTypes = {
     request: 'request',
