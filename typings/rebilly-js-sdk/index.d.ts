@@ -39,91 +39,6 @@ declare module "resources/api-keys-resource" {
         }): rebilly.DeleteApiKeyResponse;
     };
 }
-declare module "request-headers" {
-    export namespace csvHeader {
-        const Accept: string;
-    }
-    export namespace pdfHeader {
-        const Accept_1: string;
-        export { Accept_1 as Accept };
-    }
-}
-declare module "resources/customers-resource" {
-    export default function CustomersResource({ apiHandler }: {
-        apiHandler: any;
-    }): {
-        getAll({ limit, offset, sort, expand, filter, q, criteria, fields }?: rebilly.GetCustomerCollectionRequest): rebilly.GetCustomerCollectionResponse;
-        downloadCSV({ limit, offset, sort, expand, filter, q, criteria }?: {
-            limit?: any;
-            offset?: any;
-            sort?: any;
-            expand?: any;
-            filter?: any;
-            q?: any;
-            criteria?: any;
-        }): any;
-        get({ id, expand, fields }: {
-            id: any;
-            expand?: any;
-            fields?: any;
-        }): rebilly.GetCustomerResponse;
-        create({ id, data, expand }: {
-            id?: string;
-            data: any;
-            expand?: any;
-        }): any;
-        update({ id, data, expand }: {
-            id: any;
-            data: any;
-            expand?: any;
-        }): any;
-        merge({ id, targetId }: {
-            id: any;
-            targetId?: string;
-        }): any;
-        getLeadSource({ id }: {
-            id: any;
-        }): any;
-        createLeadSource({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
-        updateLeadSource({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
-        deleteLeadSource({ id }: {
-            id: any;
-        }): any;
-        getAllUpcomingInvoices({ id, limit, offset, sort, filter, expand }?: {
-            id?: any;
-            limit?: any;
-            offset?: any;
-            sort?: any;
-            filter?: any;
-            expand?: any;
-        }): any;
-        getAllTimelineMessages({ id, limit, offset, sort, filter }?: {
-            id?: any;
-            limit?: any;
-            offset?: any;
-            sort?: any;
-            filter?: any;
-        }): any;
-        getTimelineMessage({ id, messageId }?: {
-            id?: any;
-            messageId?: string;
-        }): any;
-        deleteTimelineMessage({ id, messageId }: {
-            id: any;
-            messageId: any;
-        }): any;
-        createTimelineComment({ id, data }: {
-            id: any;
-            data: any;
-        }): any;
-    };
-}
 declare module "resources/bank-accounts-resource" {
     export default function BankAccountsResource({ apiHandler }: {
         apiHandler: any;
@@ -418,6 +333,91 @@ declare module "resources/customer-authentication-resource" {
         }): any;
         deleteResetPasswordToken({ id }: {
             id: any;
+        }): any;
+    };
+}
+declare module "request-headers" {
+    export namespace csvHeader {
+        const Accept: string;
+    }
+    export namespace pdfHeader {
+        const Accept_1: string;
+        export { Accept_1 as Accept };
+    }
+}
+declare module "resources/customers-resource" {
+    export default function CustomersResource({ apiHandler }: {
+        apiHandler: any;
+    }): {
+        getAll({ limit, offset, sort, expand, filter, q, criteria, fields }?: rebilly.GetCustomerCollectionRequest): rebilly.GetCustomerCollectionResponse;
+        downloadCSV({ limit, offset, sort, expand, filter, q, criteria }?: {
+            limit?: any;
+            offset?: any;
+            sort?: any;
+            expand?: any;
+            filter?: any;
+            q?: any;
+            criteria?: any;
+        }): any;
+        get({ id, expand, fields }: {
+            id: any;
+            expand?: any;
+            fields?: any;
+        }): rebilly.GetCustomerResponse;
+        create({ id, data, expand }: {
+            id?: string;
+            data: any;
+            expand?: any;
+        }): any;
+        update({ id, data, expand }: {
+            id: any;
+            data: any;
+            expand?: any;
+        }): any;
+        merge({ id, targetId }: {
+            id: any;
+            targetId?: string;
+        }): any;
+        getLeadSource({ id }: {
+            id: any;
+        }): any;
+        createLeadSource({ id, data }: {
+            id: any;
+            data: any;
+        }): any;
+        updateLeadSource({ id, data }: {
+            id: any;
+            data: any;
+        }): any;
+        deleteLeadSource({ id }: {
+            id: any;
+        }): any;
+        getAllUpcomingInvoices({ id, limit, offset, sort, filter, expand }?: {
+            id?: any;
+            limit?: any;
+            offset?: any;
+            sort?: any;
+            filter?: any;
+            expand?: any;
+        }): any;
+        getAllTimelineMessages({ id, limit, offset, sort, filter }?: {
+            id?: any;
+            limit?: any;
+            offset?: any;
+            sort?: any;
+            filter?: any;
+        }): any;
+        getTimelineMessage({ id, messageId }?: {
+            id?: any;
+            messageId?: string;
+        }): any;
+        deleteTimelineMessage({ id, messageId }: {
+            id: any;
+            messageId: any;
+        }): any;
+        createTimelineComment({ id, data }: {
+            id: any;
+            data: any;
         }): any;
     };
 }
@@ -1698,8 +1698,8 @@ declare module "resources/index" {
     export default Resources;
     namespace Resources {
         export { AccountResource };
-        export { ApiKeysResource };
         export { AmlResource };
+        export { ApiKeysResource };
         export { BankAccountsResource };
         export { BlocklistsResource };
         export { BroadcastMessagesResource };
@@ -1753,8 +1753,8 @@ declare module "resources/index" {
         export { WebsitesResource };
     }
     import AccountResource from "resources/account-resource";
-    import ApiKeysResource from "resources/api-keys-resource";
     import AmlResource from "resources/aml-resource";
+    import ApiKeysResource from "resources/api-keys-resource";
     import BankAccountsResource from "resources/bank-accounts-resource";
     import BlocklistsResource from "resources/blocklists-resource";
     import BroadcastMessagesResource from "resources/broadcast-messages-resource";

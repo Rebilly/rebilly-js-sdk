@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const filename = './typings/rebilly/generated.d.ts';
+const filename = './types/rebilly/generated.d.ts';
 
 console.log('✂️  Commenting headers');
 

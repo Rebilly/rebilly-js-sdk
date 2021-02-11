@@ -4,7 +4,7 @@
   "description": "Official Rebilly API JS library for the browser and Node",
   "browser": "./dist/rebilly-js-sdk.js",
   "main": "./dist/rebilly-js-sdk.node.js",
-  "types": "./typings/rebilly-js-sdk/index.d.ts",
+  "types": "./types/rebilly-js-sdk/index.d.ts",
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
     "build:prod": "npm run clean && webpack --env=prod",
@@ -16,12 +16,12 @@
     "test": "npm run unit",
     "tsc": "npx tsc -p jsconfig-tsc.json",
     "tsc:watch": "npx tsc -w -p jsconfig-tsc.json",
-    "ts:generate-rebilly-types": "npx openapi-typescript https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json --output ./typings/rebilly/generated.d.ts",
+    "ts:generate-rebilly-types": "npx openapi-typescript https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json --output ./types/rebilly/generated.d.ts",
     "ts:generate-sdk-types": "node ./scripts/generate-sdk-types",
     "ts:comment-headers": "node ./scripts/comment-headers.js",
-    "ts:extract-types": "npx tsc -p tsc-simple.json --typeRoots typings",
+    "ts:extract-types": "npx tsc -p tsc-emit.json --typeRoots types",
     "ts:fix-type-name": "node ./scripts/fix-type-name.js",
-    "ts:copy-types": "rm -rf ../frontend-recomm/typings && cp -rf ./typings ../frontend-recomm/typings",
+    "ts:copy-types": "rm -rf ../frontend-recomm/types && cp -rf ./types ../frontend-recomm/types",
     "ts:bundle-types": "yarn ts:generate-rebilly-types && yarn ts:generate-sdk-types && yarn ts:comment-headers && yarn ts:extract-types && yarn ts:fix-type-name && yarn ts:copy-types"
   },
   "repository": {
@@ -64,7 +64,7 @@
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1",
     "openapi-typescript": "2.5.0",
-    "rebilly": "file:./typings",
+    "rebilly": "file:./types",
     "rimraf": "^2.6.1",
     "sinon": "^7.2.5",
     "sinon-chai": "^3.3.0",

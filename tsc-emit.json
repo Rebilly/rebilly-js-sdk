@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "lib": ["es2017", "dom"],
+      "noEmit": false,
+      "allowJs": true,
+      "checkJs": true,
+      "emitDeclarationOnly": true,    
+      "declaration": true,
+      "outFile": "types/rebilly-js-sdk/index.d.ts",
+      "removeComments": true,
+      "strict": false,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "types": [
+        "./types/rebilly"
+      ],
+      "esModuleInterop": true
+    },
+    "include": [
+      "src/create-api-instance.js",
+      "src/index.js"
+    ]
+  }
