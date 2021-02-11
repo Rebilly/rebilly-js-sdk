@@ -62,7 +62,7 @@
     "webpack-cli": "^3.3.7"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-runtime": "^6.25.0",
     "shortid": "^2.2.14"
   },
