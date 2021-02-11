@@ -16,5 +16,5 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: yarn install --non-interactive --ignore-engines
+      - run: yarn install --frozen-lockfile --non-interactive --ignore-engines
       - run: yarn run unit
