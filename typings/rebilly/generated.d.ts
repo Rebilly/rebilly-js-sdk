@@ -8224,6 +8224,8 @@ export interface components {
     };
     /** Custom Fields list as a map `{"custom field name": "custom field value", ...}`. The format must follow the saved format (see Custom Fields section for the formats). */
     ResourceCustomFields: { [key: string]: any };
+    /** The HTTP headers. */
+    HttpHeaders: { [key: string]: string };
     /** Browser data used for 3DS and risk scoring. */
     BrowserData: {
       /** The browser's color depth in bits per pixel obtained using the `screen.colorDepth` property. */
@@ -8249,8 +8251,7 @@ export interface components {
       ipAddress?: string;
       /** The fingerprint. */
       fingerprint?: string;
-      /** HTTP headers. */
-      httpHeaders?: { [key: string]: string };
+      httpHeaders?: components["schemas"]["HttpHeaders"];
       browserData?: components["schemas"]["BrowserData"];
       /** True if customer's ip address is related to proxy. */
       isProxy?: boolean;
@@ -11691,6 +11692,8 @@ export interface components {
         tolerancePercentage: number;
         /** This will be the currency to which you want to auto-convert the received cryptocurrency in to. */
         targetCurrency?: string;
+        /** This will be the blockchain on which currency runs. */
+        mainCurrency?: "TRX" | "ETH";
       };
     };
     /** Payr Gateway config. */
@@ -15248,8 +15251,8 @@ export interface components {
       request?: string;
       /** Response JSON-string. */
       response?: string;
-      requestHeaders?: { [key: string]: string };
-      responseHeaders?: { [key: string]: string };
+      requestHeaders?: components["schemas"]["HttpHeaders"];
+      responseHeaders?: components["schemas"]["HttpHeaders"];
       /** The user who has made a request. */
       user?: {
         userId?: components["schemas"]["ResourceId"];
@@ -15829,9 +15832,9 @@ export interface components {
     /** Customer. */
     Customer: {
       headers: {
-        // Rate-Limit-Limit": components["headers"]["Rate-Limit-Limit"];
-        // "Rate-Limit-Remaining": components["headers"]["Rate-Limit-Remaining"];
-        // "Rate-Limit-Remaining": components["headers"]["Rate-Limit-Reset"];
+        "Rate-Limit-Limit": components["headers"]["Rate-Limit-Limit"];
+        "Rate-Limit-Remaining": components["headers"]["Rate-Limit-Remaining"];
+        "Rate-Limit-Reset": components["headers"]["Rate-Limit-Reset"];
       };
       content: {
         "application/json": components["schemas"]["Customer"];
