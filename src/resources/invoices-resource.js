@@ -121,17 +121,6 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.create(`invoices/${id}/timeline`, '', data);
         },
 
-        getAllCreditMemos({id, limit = null, offset = null, sort = null, filter = null} = {}) {
-            const params = {
-                limit,
-                offset,
-                sort,
-                filter,
-            };
-
-            return apiHandler.getAll(`invoices/${id}/credit-memos`, params);
-        },
-
         getAllTransactionAllocations({id, limit = null, offset = null}) {
             const params = {
                 limit,
