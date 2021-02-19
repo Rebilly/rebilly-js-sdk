@@ -7,7 +7,6 @@ import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
-import CreditMemosResource from './credit-memos-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
 import CustomFieldsResource from './custom-fields-resource';
@@ -64,7 +63,6 @@ const Resources = {
     CheckoutFormsResource,
     CouponsResource,
     CredentialHashesResource,
-    CreditMemosResource,
     CustomerAuthenticationResource,
     CustomersResource,
     CustomFieldsResource,
