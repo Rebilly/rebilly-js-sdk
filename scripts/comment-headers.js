@@ -8,7 +8,7 @@ fs.readFile(filename, 'utf8', (error, data) => {
     if (error) throw error;
     data = data.replace(
         `"Rate-Limit-Limit":`, 
-        `// Rate-Limit-Limit":`
+        `// "Rate-Limit-Limit":`
     );
 
     data = data.replace(
