@@ -1,3 +1,6 @@
+import { create } from 'domain';
+import { resourceUsage } from 'process';
+
 const axios = require('axios');
 const prettier = require('prettier');
 const camelCase = require('lodash.camelcase');
@@ -6,17 +9,13 @@ const fs = require('fs').promises;
 
 function generateSDKFromSchema() {
     return axios.get('https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json')
-    .then(response => processSchema(response.data))
+    .then(response => new SDKGenerator(response.data).processSchema());
 }
-
-module.exports = {generateSDKFromSchema} 
 
 const newLineAndTab = '\n  '
 
-
-function resourceName(pathName) {
+function formatResourceName(pathName) {
     let result = pathName;
-    console.log('pathName', pathName)
     // Exception for 3dSecure
     if (pathName.startsWith('/3d')) {
         return 'ThreeDSecure';
@@ -29,28 +28,46 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-function processSchema(schema) {
-    const paths = schema.paths;
+function createResourcesFiles(resourceContent) {
+    Object.keys(resourceContent).forEach(filename => {
+        resourceContent[filename]
+        fs.writeFile(filename, resourceContent[filename], 'utf8');
+    })
+}
 
-    const processedResources = [];
+// I need a table matching paths and resource names or is it any automatic way to detect them?
 
-    //TODO: limiting to first pathName (3Dsecure)
-    // Object.keys(schema.paths).forEach(pathName => {
-        const pathName = Object.keys(schema.paths)[0];
-        let resource = `export default function ${resourceName(pathName)}Resource({apiHandler}){return {${generateResourceFunctions(pathName)}}}`;
-        resource = prettier.format(resource, { semi: true, parser: "babel" });
-        const filename = kebabCase(resourceName(pathName)) + '-resource.js';
-        fs.writeFile(filename, resource, 'utf8');
-    // })
+export class SDKGenerator {
+    constructor(schema, customFunctionNames={}) {
+        this.schema = schema;
+        this.paths = schema.paths;
+        this.customFunctionNames = customFunctionNames;
+    }
 
-    function generateResourceFunctions(pathName) {
-        const resourceName = pathName.split('/')[1]
-        if (processedResources.includes(resourceName)) return
+    processSchema() {
 
-        const resourcePaths = Object.keys(paths).filter(path => path.startsWith('/' + resourceName))
+        const processedResources = {};
+
+        //Object.keys(schema.paths).forEach(pathName => {
+            //Temporary avoid iteration to test/debug just one path at a time
+            const pathName = Object.keys(this.schema.paths)[5];
+            const resourceName = pathName.split('/')[1]
+            // Avoid processing resource if it was already processed
+            if (processedResources.hasOwnProperty(resourceName)) return
+            let resourceContent = `export default function ${formatResourceName(pathName)}Resource({apiHandler}){return {${this.generateResourceFunctions(pathName)}}}`;
+            resourceContent = prettier.format(resourceContent, { semi: true, parser: "babel", singleQuote: true });
+            const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
+            processedResources[filename] = resourceContent;
+        // })
+        return processedResources;
+    }
+
+    generateResourceFunctions(pathName) {
+        const resourcePaths = Object.keys(this.paths).filter(path => path.startsWith(pathName))
 
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
-            functions.push(generatePathFunctions(resourceName, resourcePath));
+            functions.push(this.generatePathFunctions(pathName, resourcePath));
+            // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all functions", functions)
             return functions;
         }, []);
         // @ts-ignore
@@ -72,114 +89,81 @@ function processSchema(schema) {
         // }
     }
 
-    
-    function generatePathFunctions(resourceName, resourcePath) {
-        const verbs = ['get', ];
-        const path = paths[resourcePath];
+
+    generatePathFunctions(resourceName, resourcePath) {
+        const verbs = ['get', 'post'];
+        const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
             if (!path[verb]) return functions
-            functions.push(generateGet(resourceName, path[verb]))
+            const generator = this.buildGenerator(verb)
+            functions.push(generator(resourceName, resourcePath, path[verb]))
+            // console.log("🚀🚀🚀🚀🚀🚀🚀 ~ PATH functions", functions)
             return functions;
         }, []);
         return functions;
     }
 
-    function getParamName(param) {
-        const pathKeys = param['$ref'].substring(2).split('/')
-        const parameter = pathKeys.reduce((acc, key) => acc[key], schema);
-        return parameter.name;
-    }
-
-    function fromParamNamesToDefaultParams(paramNames) {
-        const object = paramNames.reduce((acc, p) => {
-            acc[p] = null;
-            return acc;
-        }, {})
-        return JSON.stringify(object).replace(/"/g, '').replace(/:/g, '=');
-    }
-
-    function generateGetAllFunction(resourceName, paramNames) {
-        return `getAll(${fromParamNamesToDefaultParams(paramNames)} = {}) {
-            const params = {
-                ${paramNames.join(',')}
-            };
-            return apiHandler.getAll('${resourceName}', params);
-        }`
-    }
-   
-    function generateGetFunction(resourceName) {
-        return `get({id}) {
-            return apiHandler.get('${resourceName}/' + id);
-        },`
-    }
-
-    function generateGet(resourceName, getPath) {
-        const accumulateNames =  (paramNames, param) => {
-            paramNames.push(getParamName(param));
-            return paramNames;
-        }
-        const paramNames = getPath.parameters 
-            ? getPath.parameters.reduce(accumulateNames, []) 
-            : [];
-
-        const operationId = getPath.operationId;
-        if (operationId.endsWith('Collection')) {
-            return generateGetAllFunction(resourceName, paramNames);
-        } else {
-            return generateGetFunction(resourceName);
+    buildGenerator(httpVerb) {
+        switch (httpVerb) {
+            case 'get':
+                return getGenerator(this.schema, this.customFunctionNames);
+            case 'post':
+                return postGenerator(this.schema, this.customFunctionNames);
+            default:
+                break;
         }
     }
 
-    function generatePost(postPath) {
+    generatePost2(postPath) {
         let result = ''
         const operationId = postPath.operationId
         if (!postPath.requestBody) {
-            warn(`⚠️  Missing requestBody for Post operationId ${operationId}`)
+            this.warn(`⚠️  Missing requestBody for Post operationId ${operationId}`)
         } else {
-            result += generateRequestType(operationId, postPath)
+            result += this.generateRequestType(operationId, postPath)
         }
-        result += generateResponseType(operationId, postPath)
+        result += this.generateResponseType(operationId, postPath)
         return result
     }
 
-    function generatePut(putPath) {
+    generatePut(putPath) {
         let result = ''
         const operationId = putPath.operationId
         if (!putPath.requestBody) {
-            warn(`⚠️  Missing requestBody for Put operationId ${operationId}`)
+            this.warn(`⚠️  Missing requestBody for Put operationId ${operationId}`)
         } else {
-            result += generateRequestType(operationId, putPath)
+            result += this.generateRequestType(operationId, putPath)
         }
-        result += generateResponseType(operationId, putPath)
-        return result
-    }
-    
-    function generatePatch(patchPath) {
-        let result = ''
-        const operationId = patchPath.operationId
-        if (!patchPath.requestBody) {
-            warn(`⚠️ Missing requestBody for Patch operationId ${operationId}`)
-        } else {
-            result += generateRequestType(operationId, patchPath)
-        }
-        result += generateResponseType(operationId, patchPath)
+        result += this.generateResponseType(operationId, putPath)
         return result
     }
 
-    function generateDelete(deletePath) {
+    generatePatch(patchPath) {
+        let result = ''
+        const operationId = patchPath.operationId
+        if (!patchPath.requestBody) {
+            this.warn(`⚠️ Missing requestBody for Patch operationId ${operationId}`)
+        } else {
+            result += this.generateRequestType(operationId, patchPath)
+        }
+        result += this.generateResponseType(operationId, patchPath)
+        return result
+    }
+
+    generateDelete(deletePath) {
         let result = ''
         const operationId = deletePath.operationId
         if (deletePath.requestBody) {
-            result += generateRequestType(operationId, deletePath) 
+            result += this.generateRequestType(operationId, deletePath) 
         } else if (deletePath.parameters && deletePath.parameters.query) {
-            result += generateQueryType(operationId, deletePath) 
+            result += this.generateQueryType(operationId, deletePath) 
         }
-        result += generateResponseType(operationId, deletePath)
+        result += this.generateResponseType(operationId, deletePath)
         return result
     }
-   
-    function generateQueryType(operationId, path) {
+
+    generateQueryType(operationId, path) {
         const requestTypeName = operationId + 'Request'
         let requestType = `type ${requestTypeName} = operations['${operationId}']['parameters']`
         if (operationId.endsWith('Collection')) {
@@ -188,27 +172,27 @@ function processSchema(schema) {
         return requestType + newLineAndTab
     }
 
-    function generateRequestType(operationId, path) {
+    generateRequestType(operationId, path) {
         const requestTypeName = operationId + 'Request'
         let requestType = `type ${requestTypeName} = operations['${operationId}']['requestBody']`
-        if (hasApplicationJson(path)) {
+        if (this.hasApplicationJson(path)) {
             requestType += "['application/json']"
         }
         return requestType + newLineAndTab
     }
-    
-    function generateResponseType(operationId, path) {
+
+    generateResponseType(operationId, path) {
         const responseTypeName = operationId + 'Response'
-        let responseType = `type ${responseTypeName} = ${promise(operationId, path)}`
+        let responseType = `type ${responseTypeName} = ${this.promise(operationId, path)}`
         return responseType + newLineAndTab
     }
 
-    function promise(operationId, path) {
-        let response = `operations['${operationId}']['responses']${getResponseCode(path)}`
-        return (operationId.endsWith('Collection')) ? itemsPromise(response) : fieldsPromise(response)
+    promise(operationId, path) {
+        let response = `operations['${operationId}']['responses']${this.getResponseCode(path)}`
+        return (operationId.endsWith('Collection')) ? this.itemsPromise(response) : this.fieldsPromise(response)
     }
             
-    function getResponseCode(path) {
+    getResponseCode(path) {
         let code = null
         if (path.responses['201']) {
             code = '201'
@@ -224,21 +208,117 @@ function processSchema(schema) {
         return result
     }
 
-    function fieldsPromise(response) {
+    fieldsPromise(response) {
         return `Promise<{fields: ${response}}>`
     }
-    
-    function itemsPromise(response) {
+
+    itemsPromise(response) {
         //TODO: Sometimes we have getJSON function wrapping items
         return `Promise<{ items: ${response}}>`
     }
 
-    function hasApplicationJson(path) {
+    hasApplicationJson(path) {
         return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
     }
-  
-    function warn(message) {
+
+    warn(message) {
         //If verbose
-        //console.warn(message)
+        //console.this.warn(message)
     }
 }
+
+function getGenerator(schema, customFunctionNames = {}) {
+
+    return function generateGet(resourceName, resourcePath, getPath) {
+        const accumulateNames =  (paramNames, param) => {
+            paramNames.push(getParamName(schema, param));
+            return paramNames;
+        }
+        
+        const paramNames = getPath.parameters 
+        ? getPath.parameters.reduce(accumulateNames, []) 
+        : [];
+        
+        const operationId = getPath.operationId;
+        if (operationId.endsWith('Collection')) {
+            return generateGetAllFunction(resourceName, paramNames);
+        } else {
+            return generateGetFunction(resourcePath);
+        }
+    }
+    
+    function generateGetAllFunction(resourceName, paramNames) {
+        return `getAll(${fromParamNamesToDefaultParams(paramNames)} = {}) {
+            const params = {
+                ${paramNames.join(',')}
+            };
+            return apiHandler.getAll('${resourceName}', params);
+        }`
+    }
+    
+    function generateGetFunction(resourcePath) {
+        const dynamicParams = extractParametersFromResourcePath(resourcePath);
+
+        return `get({${dynamicParams}}) {
+            return apiHandler.get(${formatResourcePath(resourcePath)});
+        }`
+    }
+    
+    function fromParamNamesToDefaultParams(paramNames) {
+        const object = paramNames.reduce((acc, p) => {
+            acc[p] = null;
+            return acc;
+        }, {})
+        return JSON.stringify(object).replace(/"/g, '').replace(/:/g, '=');
+    }
+    
+    function getParamName(schema, param) {
+        // This should have a better name and signature: we access the schema from keys
+        const pathKeys = param['$ref'].substring(2).split('/');
+        const parameter = pathKeys.reduce((acc, key) => acc[key], schema);
+        return parameter.name;
+    }
+}
+
+function postGenerator(schema, customFunctionNames = {}) {
+    return function (resourceName, resourcePath, postPath) {
+        // console.log('generating post for resourcePath', resourcePath);
+        // console.log('generating post for path', postPath);
+
+        /*
+            If we wanted to improve signature code 
+        */
+        // const requestBody = postPath.requestBody.content['application/json'].schema.$ref;
+        // const schemaIndex = 3;
+        // const schemaName = requestBody.split('/')[schemaIndex];
+        // const requestSchema = schema.components.schemas[schemaName];
+
+
+        const dynamicParams = extractParametersFromResourcePath(resourcePath);
+        const functionName = customFunctionNames[resourcePath] || 'create';
+
+        const result = `${functionName}({${dynamicParams} data}) {
+            return apiHandler.post(${formatResourcePath(resourcePath)}, data);
+        }`
+        return result;
+        
+        // const operationId = postPath.operationId;
+        // if (operationId.endsWith('Collection')) {
+        //     return generateGetAllFunction(resourceName, paramNames);
+        // } else {
+        //     return generateGetFunction(resourceName);
+        // }
+    }
+}
+
+function extractParametersFromResourcePath(resourcePath) {
+    let dynamicParams = resourcePath.match(/{(.*?)}/g)
+    if (dynamicParams) dynamicParams = dynamicParams.map(param => param.replace(/{|}/g, ''));
+    return (dynamicParams) ? dynamicParams += ',' : [];
+}
+
+function formatResourcePath(resourcePath) {
+    return `\`${resourcePath.replace('{', '${')}\``;
+}
+
+module.exports = {generateSDKFromSchema, SDKGenerator} 

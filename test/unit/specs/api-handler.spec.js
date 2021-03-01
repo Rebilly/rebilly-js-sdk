@@ -1,13 +1,7 @@
-import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import {version} from '../../../package.json';
 import {interceptorTypes, isInterceptorType} from '../../../src/create-api-handler';
-
-const expect = chai.expect;
-chai.use(sinonChai);
 
 describe('when I use an API handler', () => {
     const options = {
