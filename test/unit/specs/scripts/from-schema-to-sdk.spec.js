@@ -1,4 +1,5 @@
 import { SDKGenerator } from "@scripts/from-schema-to-sdk";
+import { expect } from 'chai';
 import fullSchema from "./fixtures/full-schema.json";
 import { simplified3DSecureSchema } from "./fixtures/simplified-3D-secure-schema";
 
@@ -40,14 +41,16 @@ it.only("generates all resources", async () => {
     fullSchema,
     customFunctionNames
   ).processSchema();
-  jestExpect(Object.keys(processedResources)).toMatchInlineSnapshot(`
-    Array [
-      "authentication-tokens-resource.js",
-    ]
-  `);
+  
+  const resourceKeys = Object.keys(processedResources);
+  expect(resourceKeys.length).to.eql(217);
+  expect(resourceKeys[0]).to.eql('three-d-secure-resource.js');
+  expect(resourceKeys[100]).to.eql('transactions-id-refund-resource.js');
+  expect(resourceKeys[216]).to.eql('subscriptions-subscription-id-summary-metrics-resource.js');
+  
 });
 
-it("generates all functions for one resource", async () => {
+it("generates all functions for one resource with custom name", async () => {
   const customResourceName = {
     authentication: "customer-authentication",
   };
@@ -58,6 +61,17 @@ it("generates all functions for one resource", async () => {
   ).generateResourceFunctions("authentication-tokens");
 
   console.log(authFunctions);
+});
+
+it("generates all functions for one resource with custom name DEBUG", async () => {
+  const customResourceName = {};
+
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generateResourceFunctions("/payment-cards-bank-names");
+
+  console.log(functions);
 });
 
 it("generates one function for path with dynamic parameter", async () => {
@@ -90,6 +104,28 @@ it("generates one function for path with 2 dynamic parameters", async () => {
     Array [
       "get({resource,name,}) {
                 return apiHandler.get(\`/custom-fields/\${resource}/{name}\`);
+            }",
+    ]
+  `);
+});
+
+it("generates resource function ignoring Organization-Id parameter", async () => {
+  // GetPaymentCardBankNameCollection operation has organizationId as parameter
+  const pathFunctions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions(
+    "payment-cards-bank-names",
+    "/payment-cards-bank-names"
+  );
+
+  jestExpect(pathFunctions).toMatchInlineSnapshot(`
+    Array [
+      "getAll({limit=null,q=null} = {}) {
+                const params = {
+                    limit,q
+                };
+                return apiHandler.getAll(\`/payment-cards-bank-names\`, params);
             }",
     ]
   `);

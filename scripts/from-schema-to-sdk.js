@@ -48,9 +48,9 @@ export class SDKGenerator {
 
         const processedResources = {};
 
-        //Object.keys(schema.paths).forEach(pathName => {
+        Object.keys(this.schema.paths).forEach(pathName => {
             //Temporary avoid iteration to test/debug just one path at a time
-            const pathName = Object.keys(this.schema.paths)[5];
+            // const pathName = Object.keys(this.schema.paths)[5];
             const resourceName = pathName.split('/')[1]
             // Avoid processing resource if it was already processed
             if (processedResources.hasOwnProperty(resourceName)) return
@@ -58,20 +58,20 @@ export class SDKGenerator {
             resourceContent = prettier.format(resourceContent, { semi: true, parser: "babel", singleQuote: true });
             const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
             processedResources[filename] = resourceContent;
-        // })
+        })
         return processedResources;
     }
 
     generateResourceFunctions(pathName) {
-        const resourcePaths = Object.keys(this.paths).filter(path => path.startsWith(pathName))
+        const resourcePaths = Object.keys(this.paths).filter(path => path === pathName || path.startsWith(pathName + '/'))
 
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
             functions.push(this.generatePathFunctions(pathName, resourcePath));
-            // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all functions", functions)
             return functions;
         }, []);
         // @ts-ignore
         allResourceFunctions = allResourceFunctions.flat(1); //Merge first depth level
+        // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
 
         return allResourceFunctions;
 
@@ -91,7 +91,8 @@ export class SDKGenerator {
 
 
     generatePathFunctions(resourceName, resourcePath) {
-        const verbs = ['get', 'post'];
+        // const verbs = ['get', 'post'];
+        const verbs = ['get'];
         const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
@@ -230,29 +231,34 @@ export class SDKGenerator {
 function getGenerator(schema, customFunctionNames = {}) {
 
     return function generateGet(resourceName, resourcePath, getPath) {
-        const accumulateNames =  (paramNames, param) => {
-            paramNames.push(getParamName(schema, param));
+        const accumulateNamesFn =  (paramNames, param) => {
+            const paramName = getParamName(schema, param);
+            // Discard organization-Id from parameters
+            if (paramName === 'Organization-Id') return paramNames;
+            paramNames.push(paramName);
             return paramNames;
         }
         
         const paramNames = getPath.parameters 
-        ? getPath.parameters.reduce(accumulateNames, []) 
+        ? getPath.parameters.reduce(accumulateNamesFn, []) 
         : [];
-        
+
         const operationId = getPath.operationId;
+        // console.log('🐼🐼🐼🐼🐼 GET operationId', operationId)
+        // console.log('⎨⎨⎨⎨ paramNames', paramNames)
         if (operationId.endsWith('Collection')) {
-            return generateGetAllFunction(resourceName, paramNames);
+            return generateGetAllFunction(resourceName, resourcePath,paramNames);
         } else {
             return generateGetFunction(resourcePath);
         }
     }
     
-    function generateGetAllFunction(resourceName, paramNames) {
+    function generateGetAllFunction(resourceName, resourcePath, paramNames) {
         return `getAll(${fromParamNamesToDefaultParams(paramNames)} = {}) {
             const params = {
                 ${paramNames.join(',')}
             };
-            return apiHandler.getAll('${resourceName}', params);
+            return apiHandler.getAll(${formatResourcePath(resourcePath)}, params);
         }`
     }
     
@@ -274,6 +280,7 @@ function getGenerator(schema, customFunctionNames = {}) {
     
     function getParamName(schema, param) {
         // This should have a better name and signature: we access the schema from keys
+        if (param.name) return param.name;
         const pathKeys = param['$ref'].substring(2).split('/');
         const parameter = pathKeys.reduce((acc, key) => acc[key], schema);
         return parameter.name;
