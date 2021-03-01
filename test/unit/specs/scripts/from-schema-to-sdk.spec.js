@@ -1,5 +1,5 @@
 import { SDKGenerator } from "@scripts/from-schema-to-sdk";
-import { expect } from 'chai';
+import { expect } from "chai";
 import fullSchema from "./fixtures/full-schema.json";
 import { simplified3DSecureSchema } from "./fixtures/simplified-3D-secure-schema";
 
@@ -9,7 +9,7 @@ const customFunctionNames = {
   "/authentication-tokens": "login",
 };
 
-it.skip("generates proper resources", async () => {
+it("generates proper resources", async () => {
   const processedResources = new SDKGenerator(
     simplified3DSecureSchema
   ).processSchema();
@@ -22,13 +22,13 @@ it.skip("generates proper resources", async () => {
             limit,
             offset,
           };
-          return apiHandler.getAll('3dsecure', params);
+          return apiHandler.getAll(\`/3dsecure\`, params);
         },
         create({ data }) {
-          return apiHandler.post('3dsecure', data);
+          return apiHandler.post(\`/3dsecure\`, data);
         },
         get({ id }) {
-          return apiHandler.get('3dsecure/' + id);
+          return apiHandler.get(\`/3dsecure/\${id}\`);
         },
       };
     }
@@ -36,18 +36,19 @@ it.skip("generates proper resources", async () => {
   `);
 });
 
-it.only("generates all resources", async () => {
+it("generates all resources", async () => {
   const processedResources = new SDKGenerator(
     fullSchema,
     customFunctionNames
   ).processSchema();
-  
+
   const resourceKeys = Object.keys(processedResources);
   expect(resourceKeys.length).to.eql(217);
-  expect(resourceKeys[0]).to.eql('three-d-secure-resource.js');
-  expect(resourceKeys[100]).to.eql('transactions-id-refund-resource.js');
-  expect(resourceKeys[216]).to.eql('subscriptions-subscription-id-summary-metrics-resource.js');
-  
+  expect(resourceKeys[0]).to.eql("three-d-secure-resource.js");
+  expect(resourceKeys[100]).to.eql("transactions-id-refund-resource.js");
+  expect(resourceKeys[216]).to.eql(
+    "subscriptions-subscription-id-summary-metrics-resource.js"
+  );
 });
 
 it("generates all functions for one resource with custom name", async () => {
@@ -58,9 +59,8 @@ it("generates all functions for one resource with custom name", async () => {
   const authFunctions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generateResourceFunctions("authentication-tokens");
+  ).generateResourceFunctions("/authentication-tokens");
 
-  console.log(authFunctions);
 });
 
 it("generates all functions for one resource with custom name DEBUG", async () => {
@@ -71,7 +71,6 @@ it("generates all functions for one resource with custom name DEBUG", async () =
     customFunctionNames
   ).generateResourceFunctions("/payment-cards-bank-names");
 
-  console.log(functions);
 });
 
 it("generates one function for path with dynamic parameter", async () => {

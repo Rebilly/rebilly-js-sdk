@@ -52,11 +52,11 @@ export class SDKGenerator {
             //Temporary avoid iteration to test/debug just one path at a time
             // const pathName = Object.keys(this.schema.paths)[5];
             const resourceName = pathName.split('/')[1]
+            const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
             // Avoid processing resource if it was already processed
-            if (processedResources.hasOwnProperty(resourceName)) return
+            if (processedResources.hasOwnProperty(filename)) return
             let resourceContent = `export default function ${formatResourceName(pathName)}Resource({apiHandler}){return {${this.generateResourceFunctions(pathName)}}}`;
             resourceContent = prettier.format(resourceContent, { semi: true, parser: "babel", singleQuote: true });
-            const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
             processedResources[filename] = resourceContent;
         })
         return processedResources;
@@ -91,8 +91,8 @@ export class SDKGenerator {
 
 
     generatePathFunctions(resourceName, resourcePath) {
-        // const verbs = ['get', 'post'];
-        const verbs = ['get'];
+        // const verbs = ['get'];
+        const verbs = ['get', 'post'];
         const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
@@ -111,6 +111,8 @@ export class SDKGenerator {
                 return getGenerator(this.schema, this.customFunctionNames);
             case 'post':
                 return postGenerator(this.schema, this.customFunctionNames);
+            case 'put':
+                return putGenerator(this.schema, this.customFunctionNames);
             default:
                 break;
         }
@@ -308,13 +310,21 @@ function postGenerator(schema, customFunctionNames = {}) {
             return apiHandler.post(${formatResourcePath(resourcePath)}, data);
         }`
         return result;
-        
-        // const operationId = postPath.operationId;
-        // if (operationId.endsWith('Collection')) {
-        //     return generateGetAllFunction(resourceName, paramNames);
-        // } else {
-        //     return generateGetFunction(resourceName);
-        // }
+    }
+}
+
+function putGenerator(schema, customFunctionNames = {}) {
+    return function (resourceName, resourcePath, putPath) {
+        // console.log('generating post for resourcePath', resourcePath);
+        // console.log('generating post for path', postPath);
+       
+        const dynamicParams = extractParametersFromResourcePath(resourcePath);
+        const functionName = customFunctionNames[resourcePath] || 'update';
+
+        const result = `${functionName}({${dynamicParams} data}) {
+            return apiHandler.put(${formatResourcePath(resourcePath)}, data);
+        }`
+        return result;
     }
 }
 
