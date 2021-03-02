@@ -1,12 +1,27 @@
-import { SDKGenerator } from "@scripts/from-schema-to-sdk";
+import {
+  SDKGenerator,
+  getResourceFromPath,
+  getResourceType,
+} from "@scripts/from-schema-to-sdk";
 import { expect } from "chai";
 import fullSchema from "./fixtures/full-schema.json";
+import storefrontSchema from "./fixtures/storefront-schema.json";
 import { simplified3DSecureSchema } from "./fixtures/simplified-3D-secure-schema";
+const util = require("util");
+util.inspect.defaultOptions.maxArrayLength = null;
 
 // We could also use an x-data in openApi but I prefer to have the definition closer to the place where it is generated to avoid delay/complexity
+//Should we have one special for storefront???
 const customFunctionNames = {
   "/authentication-tokens/{token}/exchange": "exchangeToken",
   "/authentication-tokens": "login",
+
+  //Storefront
+  "/account/password": "changePassword",
+  "/account/forgot-password": "requestPasswordReset",
+  "/account/reset-password/{token}": "confirmPasswordReset",
+  "/account/resend-verification": "resendEmailVerification",
+  "/account/verification/{token}": "verifyEmail",
 };
 
 it("generates proper resources", async () => {
@@ -36,19 +51,198 @@ it("generates proper resources", async () => {
   `);
 });
 
-it("generates all resources", async () => {
+it.only("DEBUG", async () => {
+  const processedResources = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).processSchema();
+
+  console.log(processedResources)
+});
+
+it("generates custom resource file names", async () => {
+  // console.dir(Object.keys(fullSchema.paths).splice(200, 100));
+  expect(getResourceFromPath("/3dsecure")).to.eql("three-d-secure-resource.js");
+  expect(getResourceFromPath("/3dsecure/{id}")).to.eql(
+    "three-d-secure-resource.js"
+  );
+
+  expect(getResourceFromPath("/attachments")).to.eql("files-resource.js");
+
+  expect(getResourceFromPath("/authentication-options")).to.eql(
+    "customer-authentication-resource.js"
+  );
+  expect(getResourceFromPath("/authentication-tokens")).to.eql(
+    "customer-authentication-resource.js"
+  );
+  expect(getResourceFromPath("/authentication-tokens/{token}/exchange")).to.eql(
+    "customer-authentication-resource.js"
+  );
+
+  expect(getResourceFromPath("/bank-accounts")).to.eql(
+    "bank-accounts-resource.js"
+  );
+  expect(getResourceFromPath("/bank-accounts/{id}")).to.eql(
+    "bank-accounts-resource.js"
+  );
+  expect(getResourceFromPath("/bank-accounts/{id}/deactivation")).to.eql(
+    "bank-accounts-resource.js"
+  );
+
+  expect(getResourceFromPath("/coupons-redemptions")).to.eql(
+    "coupons-resource.js"
+  );
+  expect(getResourceFromPath("/coupons-redemptions/{id}/cancel")).to.eql(
+    "coupons-resource.js"
+  );
+  expect(getResourceFromPath("/coupons")).to.eql("coupons-resource.js");
+
+  expect(getResourceFromPath("/credentials")).to.eql(
+    "customer-authentication-resource.js"
+  );
+  expect(getResourceFromPath("/credentials/{id}")).to.eql(
+    "customer-authentication-resource.js"
+  );
+
+  expect(getResourceFromPath("/customers/{id}")).to.eql(
+    "customers-resource.js"
+  );
+  expect(getResourceFromPath("/customers/{id}/lead-source")).to.eql(
+    "customers-resource.js"
+  );
+  expect(getResourceFromPath("/customers/{id}/timeline")).to.eql(
+    "customers-resource.js"
+  );
+  expect(getResourceFromPath("/customers/{id}/timeline/{messageId}")).to.eql(
+    "customers-resource.js"
+  );
+
+  //TODO
+  expect(getResourceFromPath("/customer-timeline-custom-events")).to.eql(
+    "todo-resource.js"
+  );
+  expect(getResourceFromPath("/customer-timeline-custom-events/{id}")).to.eql(
+    "todo-resource.js"
+  );
+
+  //TODO
+  expect(getResourceFromPath("/customer-timeline-events")).to.eql(
+    "timelines-resource.js"
+  );
+
+  expect(getResourceFromPath("/password-tokens")).to.eql(
+    "customer-authentication-resource.js"
+  );
+  expect(getResourceFromPath("/password-tokens/{id}")).to.eql(
+    "customer-authentication-resource.js"
+  );
+
+  expect(getResourceFromPath("/permissions-emulation")).to.eql(
+    "profile-resource.js"
+  );
+
+  //TODO
+  expect(getResourceFromPath("/digital-wallets/validation")).to.eql(
+    "todo-resource.js"
+  );
+  expect(getResourceFromPath("/activation")).to.eql("todo-resource.js");
+
+  expect(
+    getResourceFromPath("/email-delivery-setting-verifications/{token}")
+  ).to.eql("email-delivery-settings-resource.js");
+  expect(getResourceFromPath("/email-delivery-settings")).to.eql(
+    "email-delivery-settings-resource.js"
+  );
+
+  expect(getResourceFromPath("/forgot-password")).to.eql("account-resource.js");
+
+  expect(getResourceFromPath("/logout")).to.eql("account-resource.js");
+
+  // We have reset-password in users-resource also
+  expect(getResourceFromPath("/reset-password")).to.eql("account-resource.js");
+
+  expect(getResourceFromPath("/signin")).to.eql("account-resource.js");
+  expect(getResourceFromPath("/signup")).to.eql("account-resource.js");
+
+  expect(getResourceFromPath("/customers/{customerId}/summary-metrics")).to.eql(
+    "customers-resource.js"
+  );
+
+  expect(getResourceFromPath("/experimental/organizations")).to.eql(
+    "todo-resource.js"
+  );
+});
+
+it("generates custom resource file names for storefront", async () => {
+  expect(getResourceFromPath("/login")).to.eql("authorization-resource.js");
+  //TODO: find easy way to override in the context of Storefront (probably manually adding it is the simplest way for now)
+  // expect(getResourceFromPath("/logout")).to.eql("authorization-resource.js");
+
+  //TODO -> "/payment" does not appear in any resource but it does appear in storefront path
+  expect(getResourceFromPath("/payment")).to.eql("payment-resource.js");
+  expect(getResourceFromPath("/preview-purchase")).to.eql(
+    "purchase-resource.js"
+  );
+  expect(getResourceFromPath("/ready-to-pay")).to.eql("purchase-resource.js");
+  expect(getResourceFromPath("/register")).to.eql("account-resource.js");
+});
+
+it("generates custom experimental resource file names", async () => {
+  expect(getResourceType("coupons")).to.eql("default");
+  expect(getResourceType("/reports/events-triggered/{eventType}/rules")).to.eql(
+    "experimental"
+  );
+  expect(getResourceType("/customers/{customerId}/summary-metrics")).to.eql(
+    "experimental"
+  );
+  expect(getResourceType("/transactions/{id}/timeline")).to.eql("experimental");
+  expect(getResourceType("/customers/{id}/timeline")).to.eql("experimental");
+  expect(getResourceType("/histograms/transactions")).to.eql("experimental");
+  expect(getResourceType("/data-exports")).to.eql("experimental");
+  expect(getResourceType("/data-exports/{id}")).to.eql("experimental");
+  expect(
+    getResourceType("/subscriptions/{subscriptionId}/summary-metrics")
+  ).to.eql("experimental");
+  //TODO: location is missing from paths (do we need to manually add it??)
+  //TODO: activity-feed is missing from paths (do we need to manually add it??)
+  //TODO: transactions/{id}/reschedule is missing from paths (do we need to manually add it??)
+  //TODO: organizations/${id} has some verbs in experimental and some verbs in default --> how do we deal with that??
+  //check if we have more cases like that one and decide if it's worthy to change the design
+});
+
+it("DEBUG generate path functions", async () => {
+  const debugFunctions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions("password-tokens", "/password-tokens");
+  // console.log(debugFunctions)
+});
+
+it("generates all combined resources", async () => {
   const processedResources = new SDKGenerator(
     fullSchema,
     customFunctionNames
   ).processSchema();
 
   const resourceKeys = Object.keys(processedResources);
-  expect(resourceKeys.length).to.eql(217);
+  expect(resourceKeys.length).to.eql(55);
   expect(resourceKeys[0]).to.eql("three-d-secure-resource.js");
-  expect(resourceKeys[100]).to.eql("transactions-id-refund-resource.js");
-  expect(resourceKeys[216]).to.eql(
-    "subscriptions-subscription-id-summary-metrics-resource.js"
-  );
+  expect(resourceKeys[25]).to.eql("tags-resource.js");
+  expect(resourceKeys[54]).to.eql("reports-resource.js");
+});
+
+it("generates all storefront resources", async () => {
+  const processedResources = new SDKGenerator(
+    storefrontSchema,
+    customFunctionNames
+  ).processSchema();
+
+  const resourceKeys = Object.keys(processedResources);
+  expect(resourceKeys.length).to.eql(12);
+  // expect(resourceKeys[0]).to.eql("three-d-secure-resource.js");
+  expect(resourceKeys[0]).to.eql("account-resource.js");
+  // expect(resourceKeys[6]).to.eql("tags-resource.js");
+  expect(resourceKeys[11]).to.eql("websites-resource.js");
 });
 
 it("generates all functions for one resource with custom name", async () => {
@@ -60,17 +254,41 @@ it("generates all functions for one resource with custom name", async () => {
     fullSchema,
     customFunctionNames
   ).generateResourceFunctions("/authentication-tokens");
-
 });
 
-it("generates all functions for one resource with custom name DEBUG", async () => {
+it("generates all functions for one storefront resource", async () => {
   const customResourceName = {};
 
-  const functions = new SDKGenerator(
-    fullSchema,
+  const authFunctions = new SDKGenerator(
+    storefrontSchema,
     customFunctionNames
-  ).generateResourceFunctions("/payment-cards-bank-names");
+  ).generateResourceFunctions("/account");
 
+  jestExpect(authFunctions).toMatchInlineSnapshot(`
+    Array [
+      "get({}) {
+                return apiHandler.get(\`/account\`);
+            }",
+      "update({ data}) {
+                return apiHandler.patch(\`/account\`, data);
+            }",
+      "create({ data}) {
+                return apiHandler.post(\`/account/forgot-password\`, data);
+            }",
+      "update({ data}) {
+                return apiHandler.patch(\`/account/password\`, data);
+            }",
+      "create({ data}) {
+                return apiHandler.post(\`/account/resend-verification\`, data);
+            }",
+      "create({token, data}) {
+                return apiHandler.post(\`/account/reset-password/\${token}\`, data);
+            }",
+      "create({token, data}) {
+                return apiHandler.post(\`/account/verification/\${token}\`, data);
+            }",
+    ]
+  `);
 });
 
 it("generates one function for path with dynamic parameter", async () => {
@@ -84,7 +302,7 @@ it("generates one function for path with dynamic parameter", async () => {
 
   jestExpect(pathFunctions).toMatchInlineSnapshot(`
     Array [
-      "exchangeToken({token, data}) {
+      "create({token, data}) {
                 return apiHandler.post(\`/authentication-tokens/\${token}/exchange\`, data);
             }",
     ]
@@ -103,6 +321,9 @@ it("generates one function for path with 2 dynamic parameters", async () => {
     Array [
       "get({resource,name,}) {
                 return apiHandler.get(\`/custom-fields/\${resource}/{name}\`);
+            }",
+      "update({resource,name, data}) {
+                return apiHandler.put(\`/custom-fields/\${resource}/{name}\`, data);
             }",
     ]
   `);

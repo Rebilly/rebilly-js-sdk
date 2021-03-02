@@ -1,26 +1,121 @@
-import { create } from 'domain';
-import { resourceUsage } from 'process';
-
 const axios = require('axios');
 const prettier = require('prettier');
 const camelCase = require('lodash.camelcase');
 const kebabCase = require('lodash.kebabcase');
-const fs = require('fs').promises;
+
+// We could also use an x-data in openApi but I prefer to have the definition closer to the place where it is generated to avoid delay/complexity
+//Should we have one special for storefront???
+const customFunctionNames = {
+    "/authentication-tokens/{token}/exchange": "exchangeToken",
+    "/authentication-tokens": "login",
+  
+    //Storefront
+    "/account/password": "changePassword",
+    "/account/forgot-password": "requestPasswordReset",
+    "/account/reset-password/{token}": "confirmPasswordReset",
+    "/account/resend-verification": "resendEmailVerification",
+    "/account/verification/{token}": "verifyEmail",
+  };
 
 function generateSDKFromSchema() {
     return axios.get('https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json')
-    .then(response => new SDKGenerator(response.data).processSchema());
+    .then(response => new SDKGenerator(response.data, customFunctionNames).processSchema());
+}
+
+// Is it possible that we have an experimental not combined schema???
+function generateSDKFromSchemaStorefront() {
+    return axios.get('https://api.redoc.ly/registry/rebilly/storefront/storefront/bundle/master/openapi.json')
+    .then(response => new SDKGenerator(response.data, customFunctionNames).processSchema());
 }
 
 const newLineAndTab = '\n  '
 
 function formatResourceName(pathName) {
-    let result = pathName;
-    // Exception for 3dSecure
-    if (pathName.startsWith('/3d')) {
-        return 'ThreeDSecure';
+    // Paths starting with these keys belong to a resource with the custom name given by the value
+    const customResourceNames = {
+        '/3d': 'ThreeDSecure',
+        '/authentication': 'CustomerAuthentication',
+        '/attachments': 'Files',
+        '/coupons': 'Coupons',
+        '/credentials': 'CustomerAuthentication',
+        '/customer-timeline-custom-events': 'Todo',
+        '/customer-timeline-events': 'Timelines',
+        '/password-tokens': 'CustomerAuthentication',
+        '/permissions-emulation': 'Profile',
+        '/tokens': 'PaymentTokens',
+        '/digital-wallets': 'Todo',
+        '/activation': 'Todo',
+        '/email-delivery-setting-verifications': 'EmailDeliverySettings',
+        '/forgot-password': 'Account',
+        '/grid-segments': 'Segments',
+        '/logout': 'Account',
+        '/reset-password': 'Account',
+        '/signin': 'Account',
+        '/signup': 'Account',
+        '/experimental/organizations': 'Todo',
+
+        //Storefront
+        '/register': 'Account',
+        
+        '/login': 'Authorization',
+        //TODO: find easy way to override in the context of Storefront
+        // '/logout': 'Authorization',
+
+        '/preview-purchase': 'Purchase',
+        '/ready-to-pay': 'Purchase'
+    };
+
+    const storefrontCustomResourceNames = {
+    
+    };
+
+    for (const [key, value] of Object.entries(customResourceNames)) {
+        if(pathName.startsWith(key)) return value;
     }
-    return capitalize(camelCase(result));
+
+    const firstResourcePathSegment = pathName.split('/')[1];
+    // console.log('resourceName', resourceName)
+    // console.log('pathName', pathName)
+    if(pathName === '/' + firstResourcePathSegment || pathName.startsWith(`/${firstResourcePathSegment}/`)) {
+        return capitalize(camelCase(firstResourcePathSegment)) 
+    }
+
+    return capitalize(camelCase(pathName));
+}
+
+function getResourceType(pathName) {
+    const experimentalPaths = [
+        '/subscriptions/{subscriptionId}/summary-metrics',
+        '/reports/api-log-summary',
+        '/reports/cumulative-subscriptions',
+        '/reports/dcc-markup',
+        '/reports/disputes',
+        '/reports/events-triggered',
+        '/reports/events-triggered/{eventType}/rules',
+        '/reports/future-renewals',
+        '/reports/renewal-sales',
+        '/reports/retention-percentage',
+        '/reports/retention-value',
+        '/reports/retry-transaction',
+        '/reports/subscription-cancellation',
+        '/reports/subscription-renewal-list',
+        '/reports/subscription-renewal',
+        '/reports/time-series-transaction',
+        '/reports/transactions-time-dispute',
+        '/reports/transactions',
+        '/reports/dashboard',
+        '/customers/{customerId}/summary-metrics',
+        '/transactions/{id}/timeline',
+        '/customers/{id}/timeline',
+        '/histograms/transactions',
+        '/data-exports',
+        '/data-exports/{id}'
+    ];
+
+    if (experimentalPaths.includes(pathName)) {
+        return 'experimental';
+    }
+    return 'default'
 }
 
 function capitalize(s) {
@@ -28,17 +123,10 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-function createResourcesFiles(resourceContent) {
-    Object.keys(resourceContent).forEach(filename => {
-        resourceContent[filename]
-        fs.writeFile(filename, resourceContent[filename], 'utf8');
-    })
-}
-
 // I need a table matching paths and resource names or is it any automatic way to detect them?
 
-export class SDKGenerator {
-    constructor(schema, customFunctionNames={}) {
+class SDKGenerator {
+    constructor(schema, customFunctionNames = {}) {
         this.schema = schema;
         this.paths = schema.paths;
         this.customFunctionNames = customFunctionNames;
@@ -52,6 +140,11 @@ export class SDKGenerator {
             //Temporary avoid iteration to test/debug just one path at a time
             // const pathName = Object.keys(this.schema.paths)[5];
             const resourceName = pathName.split('/')[1]
+            // console.log('pathName', pathName)
+            //this.schema.paths[pathName].VERBO
+
+            //HERE we have to get the path 
+
             const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
             // Avoid processing resource if it was already processed
             if (processedResources.hasOwnProperty(filename)) return
@@ -74,25 +167,12 @@ export class SDKGenerator {
         // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
 
         return allResourceFunctions;
-
-        // if (path.post) {
-        //     result += generatePost(path.post)
-        // }
-        // if (path.put) {
-        //     result += generatePut(path.put)
-        // }
-        // if (path.patch) {
-        //     result += generatePatch(path.patch)
-        // }
-        // if (path.delete) {
-        //     result += generateDelete(path.delete)
-        // }
     }
 
 
     generatePathFunctions(resourceName, resourcePath) {
         // const verbs = ['get'];
-        const verbs = ['get', 'post'];
+        const verbs = ['get', 'post', 'put', 'delete', 'patch'];
         const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
@@ -113,120 +193,17 @@ export class SDKGenerator {
                 return postGenerator(this.schema, this.customFunctionNames);
             case 'put':
                 return putGenerator(this.schema, this.customFunctionNames);
+            case 'delete':
+                return deleteGenerator(this.schema, this.customFunctionNames);
+            case 'patch':
+                return patchGenerator(this.schema, this.customFunctionNames);
             default:
                 break;
         }
     }
 
-    generatePost2(postPath) {
-        let result = ''
-        const operationId = postPath.operationId
-        if (!postPath.requestBody) {
-            this.warn(`⚠️  Missing requestBody for Post operationId ${operationId}`)
-        } else {
-            result += this.generateRequestType(operationId, postPath)
-        }
-        result += this.generateResponseType(operationId, postPath)
-        return result
-    }
-
-    generatePut(putPath) {
-        let result = ''
-        const operationId = putPath.operationId
-        if (!putPath.requestBody) {
-            this.warn(`⚠️  Missing requestBody for Put operationId ${operationId}`)
-        } else {
-            result += this.generateRequestType(operationId, putPath)
-        }
-        result += this.generateResponseType(operationId, putPath)
-        return result
-    }
-
-    generatePatch(patchPath) {
-        let result = ''
-        const operationId = patchPath.operationId
-        if (!patchPath.requestBody) {
-            this.warn(`⚠️ Missing requestBody for Patch operationId ${operationId}`)
-        } else {
-            result += this.generateRequestType(operationId, patchPath)
-        }
-        result += this.generateResponseType(operationId, patchPath)
-        return result
-    }
-
-    generateDelete(deletePath) {
-        let result = ''
-        const operationId = deletePath.operationId
-        if (deletePath.requestBody) {
-            result += this.generateRequestType(operationId, deletePath) 
-        } else if (deletePath.parameters && deletePath.parameters.query) {
-            result += this.generateQueryType(operationId, deletePath) 
-        }
-        result += this.generateResponseType(operationId, deletePath)
-        return result
-    }
-
-    generateQueryType(operationId, path) {
-        const requestTypeName = operationId + 'Request'
-        let requestType = `type ${requestTypeName} = operations['${operationId}']['parameters']`
-        if (operationId.endsWith('Collection')) {
-            requestType += "['query']"
-        }
-        return requestType + newLineAndTab
-    }
-
-    generateRequestType(operationId, path) {
-        const requestTypeName = operationId + 'Request'
-        let requestType = `type ${requestTypeName} = operations['${operationId}']['requestBody']`
-        if (this.hasApplicationJson(path)) {
-            requestType += "['application/json']"
-        }
-        return requestType + newLineAndTab
-    }
-
-    generateResponseType(operationId, path) {
-        const responseTypeName = operationId + 'Response'
-        let responseType = `type ${responseTypeName} = ${this.promise(operationId, path)}`
-        return responseType + newLineAndTab
-    }
-
-    promise(operationId, path) {
-        let response = `operations['${operationId}']['responses']${this.getResponseCode(path)}`
-        return (operationId.endsWith('Collection')) ? this.itemsPromise(response) : this.fieldsPromise(response)
-    }
-            
-    getResponseCode(path) {
-        let code = null
-        if (path.responses['201']) {
-            code = '201'
-        } else if (path.responses['204']) {
-            code = '204'
-        } else if (path.responses['200']) {
-            code = '200'
-        }
-        let result = `['${code}']`
-        if (path.responses[code].content && path.responses[code].content['application/json']) {
-            result += `['application/json']`
-        }
-        return result
-    }
-
-    fieldsPromise(response) {
-        return `Promise<{fields: ${response}}>`
-    }
-
-    itemsPromise(response) {
-        //TODO: Sometimes we have getJSON function wrapping items
-        return `Promise<{ items: ${response}}>`
-    }
-
     hasApplicationJson(path) {
         return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
-    }
-
-    warn(message) {
-        //If verbose
-        //console.this.warn(message)
     }
 }
 
@@ -328,6 +305,36 @@ function putGenerator(schema, customFunctionNames = {}) {
     }
 }
 
+function deleteGenerator(schema, customFunctionNames = {}) {
+    return function (resourceName, resourcePath, deletePath) {
+        // console.log('generating post for resourcePath', resourcePath);
+        // console.log('generating post for path', postPath);
+    
+        const dynamicParams = extractParametersFromResourcePath(resourcePath);
+        const functionName = customFunctionNames[resourcePath] || 'delete';
+
+        const result = `${functionName}({${dynamicParams} data}) {
+            return apiHandler.delete(${formatResourcePath(resourcePath)}, data);
+        }`
+        return result;
+    }
+}
+
+function patchGenerator(schema, customFunctionNames = {}) {
+    return function (resourceName, resourcePath, deletePath) {
+        // console.log('generating post for resourcePath', resourcePath);
+        // console.log('generating post for path', postPath);
+    
+        const dynamicParams = extractParametersFromResourcePath(resourcePath);
+        const functionName = customFunctionNames[resourcePath] || 'update';
+
+        const result = `${functionName}({${dynamicParams} data}) {
+            return apiHandler.patch(${formatResourcePath(resourcePath)}, data);
+        }`
+        return result;
+    }
+}
+
 function extractParametersFromResourcePath(resourcePath) {
     let dynamicParams = resourcePath.match(/{(.*?)}/g)
     if (dynamicParams) dynamicParams = dynamicParams.map(param => param.replace(/{|}/g, ''));
@@ -338,4 +345,10 @@ function formatResourcePath(resourcePath) {
     return `\`${resourcePath.replace('{', '${')}\``;
 }
 
-module.exports = {generateSDKFromSchema, SDKGenerator} 
+function getResourceFromPath(pathName) {
+    return kebabCase(formatResourceName(pathName)) + '-resource.js';
+
+
+}
+
+module.exports = {generateSDKFromSchema, generateSDKFromSchemaStorefront, SDKGenerator, getResourceFromPath, getResourceType} 
