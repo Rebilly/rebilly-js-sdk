@@ -18,6 +18,6 @@ function createResourcesFiles(resourceContent) {
        console.log('Saving resources to files');
        Object.keys(resourceContent).forEach(filename => {
               resourceContent[filename]
-              fs.writeFile('testing-resources/' + filename, resourceContent[filename], 'utf8');
+              fs.writeFile('debug-resources/' + filename, resourceContent[filename], 'utf8');
        })
 }

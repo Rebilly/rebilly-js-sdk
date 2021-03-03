@@ -12,3 +12,4 @@ yarn-error.log*
 .nyc_output
 /site
 package-lock.json
+/debug-resources

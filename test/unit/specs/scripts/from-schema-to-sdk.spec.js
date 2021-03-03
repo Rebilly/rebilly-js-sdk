@@ -4,6 +4,7 @@ import {
   getResourceType,
 } from "@scripts/from-schema-to-sdk";
 import { expect } from "chai";
+//We should download this file before running tests -> the fresher the copy the better
 import fullSchema from "./fixtures/full-schema.json";
 import storefrontSchema from "./fixtures/storefront-schema.json";
 import { simplified3DSecureSchema } from "./fixtures/simplified-3D-secure-schema";
@@ -31,33 +32,19 @@ it("generates proper resources", async () => {
   jestExpect(processedResources["three-d-secure-resource.js"])
     .toMatchInlineSnapshot(`
     "export default function ThreeDSecureResource({ apiHandler }) {
-      return {
-        getAll({ limit = null, offset = null } = {}) {
-          const params = {
-            limit,
-            offset,
-          };
-          return apiHandler.getAll(\`/3dsecure\`, params);
-        },
-        create({ data }) {
-          return apiHandler.post(\`/3dsecure\`, data);
-        },
-        get({ id }) {
-          return apiHandler.get(\`/3dsecure/\${id}\`);
-        },
-      };
+      return {};
     }
     "
   `);
 });
 
-it.only("DEBUG", async () => {
+it.skip("DEBUG", async () => {
   const processedResources = new SDKGenerator(
     fullSchema,
     customFunctionNames
   ).processSchema();
 
-  console.log(processedResources)
+  console.log(processedResources["aml-resource.js"]);
 });
 
 it("generates custom resource file names", async () => {
@@ -225,10 +212,10 @@ it("generates all combined resources", async () => {
   ).processSchema();
 
   const resourceKeys = Object.keys(processedResources);
-  expect(resourceKeys.length).to.eql(55);
+  expect(resourceKeys.length).to.eql(29);
   expect(resourceKeys[0]).to.eql("three-d-secure-resource.js");
   expect(resourceKeys[25]).to.eql("tags-resource.js");
-  expect(resourceKeys[54]).to.eql("reports-resource.js");
+  expect(resourceKeys[28]).to.eql("payouts-resource.js");
 });
 
 it("generates all storefront resources", async () => {
@@ -266,26 +253,11 @@ it("generates all functions for one storefront resource", async () => {
 
   jestExpect(authFunctions).toMatchInlineSnapshot(`
     Array [
-      "get({}) {
-                return apiHandler.get(\`/account\`);
+      "create({}) {
+                return apiHandler.post(\`logout\` );
             }",
-      "update({ data}) {
-                return apiHandler.patch(\`/account\`, data);
-            }",
-      "create({ data}) {
-                return apiHandler.post(\`/account/forgot-password\`, data);
-            }",
-      "update({ data}) {
-                return apiHandler.patch(\`/account/password\`, data);
-            }",
-      "create({ data}) {
-                return apiHandler.post(\`/account/resend-verification\`, data);
-            }",
-      "create({token, data}) {
-                return apiHandler.post(\`/account/reset-password/\${token}\`, data);
-            }",
-      "create({token, data}) {
-                return apiHandler.post(\`/account/verification/\${token}\`, data);
+      "create({data}) {
+                return apiHandler.post(\`register\` , data);
             }",
     ]
   `);
@@ -302,8 +274,8 @@ it("generates one function for path with dynamic parameter", async () => {
 
   jestExpect(pathFunctions).toMatchInlineSnapshot(`
     Array [
-      "create({token, data}) {
-                return apiHandler.post(\`/authentication-tokens/\${token}/exchange\`, data);
+      "exchangeToken({token,data}) {
+                return apiHandler.post(\`authentication-tokens/\${token}/exchange\` , data);
             }",
     ]
   `);
@@ -319,18 +291,19 @@ it("generates one function for path with 2 dynamic parameters", async () => {
 
   jestExpect(functions).toMatchInlineSnapshot(`
     Array [
-      "get({resource,name,}) {
-                return apiHandler.get(\`/custom-fields/\${resource}/{name}\`);
+      "get({resource,name}) {
+                return apiHandler.get(\`custom-fields/\${resource}/\${name}\`);
             }",
-      "update({resource,name, data}) {
-                return apiHandler.put(\`/custom-fields/\${resource}/{name}\`, data);
+      "update({resource,name,data}) {
+                return apiHandler.put(\`custom-fields/\${resource}/\${name}\` , data);
             }",
     ]
   `);
 });
 
-it("generates resource function ignoring Organization-Id parameter", async () => {
+it.skip("generates resource function ignoring Organization-Id parameter", async () => {
   // GetPaymentCardBankNameCollection operation has organizationId as parameter
+  //TODO: check which api has this definition (not in core)
   const pathFunctions = new SDKGenerator(
     fullSchema,
     customFunctionNames
@@ -350,3 +323,27 @@ it("generates resource function ignoring Organization-Id parameter", async () =>
     ]
   `);
 });
+
+it("generates all resource functions merging paths with different patterns (coupons and coupons-redemptions)", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generateResourceFunctions("/coupons");
+
+  expect(functions.length).to.eql(9);
+});
+
+it.skip("DEBUG generates all functions for core resource", async () => {
+  const customResourceName = {};
+
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generateResourceFunctions("/custom-fields");
+  console.log(functions);
+});
+
+//TODO:
+//downloadCSV function inside websites resource does not follow the standard (how do we add it)
+// return apiHandler.download(`websites`, config);
+// Custom addons to add extra functions?? Let's wait to see how many cases
