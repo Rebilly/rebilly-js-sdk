@@ -32,7 +32,21 @@ it("generates proper resources", async () => {
   jestExpect(processedResources["three-d-secure-resource.js"])
     .toMatchInlineSnapshot(`
     "export default function ThreeDSecureResource({ apiHandler }) {
-      return {};
+      return {
+        getAll({ limit = null, offset = null } = {}) {
+          const params = {
+            limit,
+            offset,
+          };
+          return apiHandler.getAll(\`3dsecure\`, params);
+        },
+        create({ id = '', data }) {
+          return apiHandler.create(\`3dsecure/\${id}\`, id, data);
+        },
+        get({ id }) {
+          return apiHandler.get(\`3dsecure/\${id}\`);
+        },
+      };
     }
     "
   `);
@@ -233,10 +247,6 @@ it("generates all storefront resources", async () => {
 });
 
 it("generates all functions for one resource with custom name", async () => {
-  const customResourceName = {
-    authentication: "customer-authentication",
-  };
-
   const authFunctions = new SDKGenerator(
     fullSchema,
     customFunctionNames
@@ -244,8 +254,6 @@ it("generates all functions for one resource with custom name", async () => {
 });
 
 it("generates all functions for one storefront resource", async () => {
-  const customResourceName = {};
-
   const authFunctions = new SDKGenerator(
     storefrontSchema,
     customFunctionNames
@@ -253,12 +261,14 @@ it("generates all functions for one storefront resource", async () => {
 
   jestExpect(authFunctions).toMatchInlineSnapshot(`
     Array [
-      "create({}) {
-                return apiHandler.post(\`logout\` );
-            }",
-      "create({data}) {
-                return apiHandler.post(\`register\` , data);
-            }",
+      "create({id = ''}) {
+                    
+                    return apiHandler.create(\`logout/\${id}\` ,id, data );
+                }",
+      "create({id = '',data}) {
+                    
+                    return apiHandler.create(\`register/\${id}\` ,id, data );
+                }",
     ]
   `);
 });
@@ -274,9 +284,9 @@ it("generates one function for path with dynamic parameter", async () => {
 
   jestExpect(pathFunctions).toMatchInlineSnapshot(`
     Array [
-      "exchangeToken({token,data}) {
-                return apiHandler.post(\`authentication-tokens/\${token}/exchange\` , data);
-            }",
+      "exchangeToken({token,data}) { 
+            return apiHandler.post(\`authentication-tokens/\${token}/exchange\` , data );
+        }",
     ]
   `);
 });
@@ -291,12 +301,12 @@ it("generates one function for path with 2 dynamic parameters", async () => {
 
   jestExpect(functions).toMatchInlineSnapshot(`
     Array [
-      "get({resource,name}) {
-                return apiHandler.get(\`custom-fields/\${resource}/\${name}\`);
-            }",
-      "update({resource,name,data}) {
-                return apiHandler.put(\`custom-fields/\${resource}/\${name}\` , data);
-            }",
+      "get({resource,name}) { 
+            return apiHandler.get(\`custom-fields/\${resource}/\${name}\`  );
+        }",
+      "update({resource,name,data}) { 
+            return apiHandler.put(\`custom-fields/\${resource}/\${name}\` , data );
+        }",
     ]
   `);
 });
@@ -333,17 +343,79 @@ it("generates all resource functions merging paths with different patterns (coup
   expect(functions.length).to.eql(9);
 });
 
-it.skip("DEBUG generates all functions for core resource", async () => {
-  const customResourceName = {};
+it("generates create function with optional id for post operation", async () => {
+  const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
+    "customers",
+    "/customers"
+  );
+  jestExpect(pathFunctions).toMatchInlineSnapshot(`
+    Array [
+      "getAll({limit=null,offset=null,filter=null,q=null,expand=null,fields=null,sort=null} = {}) {
+                const params = {
+                    limit,offset,filter,q,expand,fields,sort
+                };
+                return apiHandler.getAll(\`customers\`, params);
+            }",
+      "create({id = '',data,expand = null}) {
+                    const params = {expand};
+                    return apiHandler.create(\`customers/\${id}\` ,id, data ,params);
+                }",
+    ]
+  `);
+});
 
+it("generates get function with expand and fields params", async () => {
+  const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
+    "customers",
+    "/customers/{id}"
+  );
+  jestExpect(pathFunctions).toMatchInlineSnapshot(`
+    Array [
+      "get({id}) { 
+            return apiHandler.get(\`customers/\${id}\`  );
+        }",
+      "update({id,data,expand = null}) { const params = {expand};
+            return apiHandler.put(\`customers/\${id}\` , data ,params);
+        }",
+      "merge({id}) { 
+            return apiHandler.delete(\`customers/\${id}\`  );
+        }",
+    ]
+  `);
+});
+
+it.skip("DEBUG generates all functions for core resource", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generateResourceFunctions("/custom-fields");
+  ).generateResourceFunctions("/invoices");
+  console.log(functions);
+});
+
+it.skip("DEBUG generates one path functions for core resource", async () => {
+  const functions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
+    "authentication-options",
+    "/authentication-options"
+  );
   console.log(functions);
 });
 
 //TODO:
-//downloadCSV function inside websites resource does not follow the standard (how do we add it)
+//downloadCSV function inside websites/customers/disputes/invoices/subscriptions resource does not follow the standard (how do we add it)
 // return apiHandler.download(`websites`, config);
 // Custom addons to add extra functions?? Let's wait to see how many cases
+
+//TODO:
+//There are some special functions in create-api-handler:
+// - create instead of post
+// - download
+// - deleteAll
+// - getAll
+// We must look for all those occurrences and decide how to auto-generate them
+
+//TODO: generate proper customer-resource merge function with query string
+
+//TODO: check InvoiceTransaction requestBody which is required and
+// defines data content (transactionId and amount) in openAPI.
+// is it an exception or is it the expected behaviour?? Having typed data would help
+// a lot with typings

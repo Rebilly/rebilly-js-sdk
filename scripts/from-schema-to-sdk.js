@@ -6,8 +6,101 @@ const kebabCase = require('lodash.kebabcase');
 // We could also use an x-data in openApi but I prefer to have the definition closer to the place where it is generated to avoid delay/complexity
 //Should we have one special for storefront???
 const customFunctionNames = {
-    "/authentication-tokens/{token}/exchange": "exchangeToken",
-    "/authentication-tokens": "login",
+    //Authentication Resource
+    "/authentication-options": {get: 'getAuthOptions', put: 'updateAuthOptions'},
+    "/authentication-tokens/{token}/exchange":  'exchangeToken',
+    "/authentication-tokens": {get: 'getAllAuthTokens', post: "login"},
+    "/authentication-tokens/{token}": {get: 'verify', delete: "logout"},
+    '/credentials': {get: 'getAllCredentials', post: 'createCredential'}, // this one uses create instead of post 
+    '/credentials/{id}': {
+        get: 'getCredential',
+        put: 'updateCredential', 
+        delete: 'deleteCredential', 
+        post: 'createCredential' // this one uses create instead of post 
+    }, 
+    '/password-tokens': {get: 'getAllResetPasswordTokens', post: 'createResetPasswordToken'},
+    '/password-tokens/{id}': {get: 'getResetPasswordToken', delete: 'deleteResetPasswordToken'},
+
+    //Customer Resource
+    '/customers/{id}': {delete: 'merge', post: 'create'},
+    '/customers/{id}/lead-source': {
+        get: 'getLeadSource', 
+        put: 'createLeadSource', 
+        delete: 'deleteLeadSource'
+    },
+    '/customers/{id}/upcoming-invoices': 'getAllUpcomingInvoices',
+    '/customers/{id}/timeline': {get: 'getAllTimelineMessages', post: 'createTimelineComment'},
+    '/customers/{id}/timeline/{messageId}': {get: 'getTimelineMessage', delete: 'deleteTimelineMessage'},
+
+    //Files Resource
+    '/attachments': {get: 'getAllAttachments', post: 'attach'},
+    '/attachments/{id}': {get: 'getAttachment', put: 'updateAttachment', delete: 'detach'},
+    '/files': {post: 'upload', get: 'getAll'},
+    '/files/{id}/download': 'download',
+
+    //Invoices resource
+    '/invoices/{id}/issue': 'issue',
+    '/invoices/{id}/reissue': 'reissue',
+    '/invoices/{id}/abandon': 'abandon',
+    '/invoices/{id}/void': 'void',
+    '/invoices/{id}/items': {get: 'getAllInvoiceItems', post: 'createInvoiceItem'},
+    '/invoices/{id}/lead-source': {
+        get: 'getLeadSource', 
+        put: 'createLeadSource',
+        delete: 'deleteLeadSource'
+    },
+    '/invoices/{id}/timeline': {get: 'getAllTimelineMessages', post: 'createTimelineComment'},
+    '/invoices/{id}/timeline/{messageId}': {get: 'getTimelineMessage', delete: 'deleteTimelineMessage'},
+    '/invoices/{id}/credit-memos': 'getAllCreditMemos',
+    '/invoices/{id}/transaction-allocations': 'getAllTransactionAllocations',
+    '/invoices/{id}/transaction': 'applyTransaction',
+    '/invoices/{id}/recalculate': 'recalculate',
+
+    //kyc-documents
+    '/kyc-documents/{id}/acceptance': 'accept',
+    '/kyc-documents/{id}/rejection': 'reject',
+    '/kyc-documents/{id}/review': 'review',
+
+    //Payment cards
+    '/payment-cards/{id}': {post: 'create', patch: 'patch'},
+    '/payment-cards/{id}/deactivation': 'deactivate',
+
+    //PaymentInstruments
+    '/payment-instruments/{id}/deactivation': 'deactivate',
+    
+    //PaypalAccounts
+    '/paypal-accounts/{id}/deactivation': 'deactivate',
+    '/paypal-accounts/{id}/activation': 'activate',
+
+    //SubscriptionReactivations
+    '/subscription-reactivations': {get: 'getAll', post: 'reactivate'},
+
+    //Subscriptions
+    '/subscriptions/{id}/cancel': 'cancel',
+    '/subscriptions/{id}/change-plan': 'changePlan',
+    '/subscriptions/{id}/upcoming-invoices': 'getAllUpcomingInvoices',
+    '/subscriptions/{id}/upcoming-invoices/{invoiceId}/issue': 'issueUpcomingInvoice',
+    '/subscriptions/{id}/timeline': {
+        get: 'getAllTimelineMessages',
+        post: 'createTimelineComment'
+    },
+    '/subscriptions/{id}/timeline/{messageId}': {
+        get: 'getTimelineMessage',
+        delete: 'deleteTimelineMessage'
+    },
+    '/subscriptions/{id}/interim-invoice': 'createInterimInvoice',
+
+    //Tags
+    '/tags/{tag}/customers': {
+        post: 'tagCustomers',
+        delete : 'untagCustomers'
+    },
+    '/tags/{tag}/customers/{customerId}': {
+        post: 'tagCustomer',
+        delete : 'untagCustomer'
+    },
+    
+
 
     '/bank-accounts/{id}/deactivation': 'deactivate',
 
@@ -41,9 +134,12 @@ const newLineAndTab = '\n  '
 
 // Paths starting with these keys belong to a resource with the custom name given by the value
 const customResourceNames = {
-    '/3d': 'ThreeDSecure',
+    '/3dsecure': 'ThreeDSecure',
     '/authentication': 'CustomerAuthentication',
+    '/authentication-options': 'CustomerAuthentication',
+    '/authentication-tokens': 'CustomerAuthentication',
     '/attachments': 'Files',
+    '/files': 'Files',
     '/coupons': 'Coupons',
     '/coupons-redemptions': 'Coupons',
     '/credentials': 'CustomerAuthentication',
@@ -175,6 +271,7 @@ class SDKGenerator {
 
     generateResourceFunctions(pathName) {
         const sharedPathNames = getPathNamesWithSameCustomResourceName(pathName);
+        // console.log(sharedPathNames);
         const doesPathStartWithOneOfTheSharedPathNames = (path)=> sharedPathNames.find(name => path.startsWith(name + '/'));
         const resourcePaths = Object.keys(this.paths).filter(path => sharedPathNames.includes(path) || doesPathStartWithOneOfTheSharedPathNames(path));
 
@@ -206,7 +303,8 @@ class SDKGenerator {
     }
 
     buildGenerator(httpVerb) {
-        if (httpVerb=== 'get') return getGenerator(this.schema, this.customFunctionNames);
+        if (httpVerb === 'get') return getGenerator(this.schema);
+        if (httpVerb === 'post') return postGenerator(this.schema);
         return functionGenerator(this.schema, httpVerb);
     }
 
@@ -215,7 +313,7 @@ class SDKGenerator {
     }
 }
 
-function getGenerator(schema, customFunctionNames = {}) {
+function getGenerator(schema) {
 
     return function generateGet(resourceName, resourcePath, getPath) {
         const accumulateNamesFn =  (paramNames, param) => {
@@ -245,13 +343,16 @@ function getGenerator(schema, customFunctionNames = {}) {
         // console.log('⎨⎨⎨⎨ paramNames', paramNames)
         // console.log('ᚬᚬᚬᚬ getPath', getPath)
         // console.log('ᚬᚬᚬᚬ getPath.responses.content', getPath.responses['200'].content['application/json'].schema.type === 'array')
-        if(getPath.responses['200'].content['application/json'].schema.type === 'array') {
-            return generateGetAllFunction(resourcePath, paramNames, customName);
-        }
+        //TODO: Check how to detect cases that don't end up in collection
+        //This does not work for array typed get operations like getAuthOptions in customer-authentication 
+        // if(getPath.responses['200'].content['application/json'].schema.type === 'array') {
+        //     return generateGetAllFunction(resourcePath, paramNames, customName);
+        // }
         if (operationId.endsWith('Collection')) {
             return generateGetAllFunction(resourcePath, paramNames, customName);
         } else {
-            return generateGetFunction(resourcePath, customName);
+            return generateFunction(schema, resourcePath, 'get');
+            // return generateGetFunction(resourcePath, customName);
         }
     }
     
@@ -308,16 +409,42 @@ function functionGenerator(schema, httpVerb) {
     return function (resourceName, resourcePath) {
         // console.log('generating post for resourcePath', resourcePath);
         // console.log('generating post for path', postPath);
-
-        const appendDataIfNeeded = hasRequestParams(schema, resourcePath, httpVerb) ? ', data' : '';
-        const result = `${generateFunctionSignature(schema, resourcePath, httpVerb)} {
-            return apiHandler.${httpVerb}(${formatResourcePath(resourcePath)} ${appendDataIfNeeded});
-        }`
-        return result;
+        return generateFunction(schema, resourcePath, httpVerb)
     }
 }
 
+function generateFunction(schema, resourcePath, httpVerb) {
+    const appendDataIfNeeded = hasRequestParams(schema, resourcePath, httpVerb) ? ', data' : '';
+    const expandParams = generateExpandParams(schema, resourcePath, httpVerb);
+    const appendParamsIfNeeded = expandParams ? ',params' : '';
+    const result = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${expandParams}
+        return apiHandler.${httpVerb}(${formatResourcePath(resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});
+    }`
+    return result;
+}
 
+function postGenerator(schema) {
+    return function (resourceName, resourcePath) {
+        // console.log('generating post for resourcePath', resourcePath);
+        // console.log('generating post for path', postPath);
+
+        const expandParams = generateExpandParams(schema, resourcePath, 'post');
+        const appendParamsIfNeeded = expandParams ? ',params' : '';
+
+        let handlerFunction = 'post'; 
+        if (!resourcePath.includes('{')) {
+            // Create case
+            handlerFunction = 'create';
+            const result = `${generateFunctionSignature(schema, resourcePath, 'post')} {
+                ${expandParams}
+                return apiHandler.create(${formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
+            }`
+            return result;
+        } else {
+            return generateFunction(schema, resourcePath, 'post');
+        }
+    }
+}
 
 function generateFunctionSignature(schema, resourcePath, httpVerb) {
     const findCustomName = (resourcePath) => {
@@ -337,14 +464,55 @@ function generateFunctionSignature(schema, resourcePath, httpVerb) {
 
     const functionName = findCustomName(resourcePath) || defaultFunctionNames[httpVerb];
     const dynamicParams = extractParametersFromResourcePath(resourcePath);
+    
+    //Special case for create
+    if (httpVerb === 'post' && !resourcePath.includes('{')) {
+        dynamicParams.push("id = ''");
+    }
+    
     if (hasRequestParams(schema, resourcePath, httpVerb)) {
         dynamicParams.push('data');
+    }
+    
+    if (hasEmbeddedParams(schema, resourcePath, httpVerb)) {
+        dynamicParams.push('expand = null');
     }
     
     return `${functionName}({${dynamicParams.join(',')}})`;
 }
 
+function generateExpandParams(schema, resourcePath, httpVerb) {
+    return hasEmbeddedParams(schema, resourcePath, httpVerb) 
+            ? 'const params = {expand};'
+            : '';
+
+}
+
 const hasRequestParams = (schema, resourcePath, httpVerb) => schema.paths[resourcePath][httpVerb].requestBody;
+const hasRequestParameterRef = (schema, resourcePath, httpVerb) => {
+    const requestBody = schema.paths[resourcePath][httpVerb].requestBody;
+    if (!requestBody) return false;
+    return !!requestBody.$ref;
+}
+
+const hasEmbeddedParams = (schema, resourcePath, httpVerb) => {
+    if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
+    const parameterSchema = getParameterSchema(schema, resourcePath, httpVerb);
+    if (parameterSchema.type !== 'object') return false;
+    return parameterSchema.properties.hasOwnProperty('_embedded');
+}
+
+function getParameterSchema(schema, resourcePath, httpVerb) {
+    if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
+    const parameterRef = schema.paths[resourcePath][httpVerb].requestBody.$ref;
+    const parameterSchema = schema.components.schemas[parameterRef.split('/').pop()];
+    if (!parameterSchema) {
+        //TODO: review storefront tests when we uncomment this
+        //  console.warn(`${parameterRef} does not have proper parameter schema inside components`);
+         return {type: undefined};
+    }
+    return parameterSchema;
+}
 
 function extractParametersFromResourcePath(resourcePath) {
     let dynamicParams = resourcePath.match(/{(.*?)}/g)
@@ -360,8 +528,6 @@ function formatResourcePath(resourcePath) {
 
 function getResourceFromPath(pathName) {
     return kebabCase(formatResourceName(pathName)) + '-resource.js';
-
-
 }
 
 function getPathNamesWithSameCustomResourceName(pathName) {
