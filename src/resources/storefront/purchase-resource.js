@@ -1,5 +1,9 @@
 export default function PurchaseResource({apiHandler}) {
   return {
+    payment({data = {}} = {}) {
+      return apiHandler.post(`payment`, data);
+    },
+
     purchase({data = {}} = {}) {
       return apiHandler.post(`purchase`, data);
     },

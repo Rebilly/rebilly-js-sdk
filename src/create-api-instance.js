@@ -17,7 +17,6 @@ export class ApiInstance {
         this.customerAuthentication = Resources.CustomerAuthenticationResource({apiHandler}),
         this.customFields = Resources.CustomFieldsResource({apiHandler}),
         this.credentialHashes = Resources.CredentialHashesResource({apiHandler}),
-        this.creditMemos = Resources.CreditMemosResource({apiHandler}),
         this.disputes = Resources.DisputesResource({apiHandler}),
         this.events = Resources.EventsResource({apiHandler}),
         this.emailDeliverySettings = Resources.EmailDeliverySettingsResource({apiHandler}),

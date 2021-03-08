@@ -201,7 +201,7 @@ export default function InvoicesResource({apiHandler}) {
         /**
         * @returns { rebilly.GetInvoiceTransactionAllocationCollectionResponse } response
         */
-        getAllTransactionAllocations({id = null, limit = null, offset = null}) {
+       getAllTransactionAllocations({id = null, limit = null, offset = null}) {
             const params = {
                 limit,
                 offset,

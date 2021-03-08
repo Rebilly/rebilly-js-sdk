@@ -51,7 +51,6 @@ const customFunctionNames = {
     },
     '/invoices/{id}/timeline': {get: 'getAllTimelineMessages', post: 'createTimelineComment'},
     '/invoices/{id}/timeline/{messageId}': {get: 'getTimelineMessage', delete: 'deleteTimelineMessage'},
-    '/invoices/{id}/credit-memos': 'getAllCreditMemos',
     '/invoices/{id}/transaction-allocations': 'getAllTransactionAllocations',
     '/invoices/{id}/transaction': 'applyTransaction',
     '/invoices/{id}/recalculate': 'recalculate',
