@@ -296,7 +296,6 @@ class SDKGenerator {
             if (!path[verb]) return functions
             const {functionName, functionCode} = generator(resourceName, resourcePath, path[verb]);
             functions[functionName] = functionCode;
-            // console.log("🚀🚀🚀🚀🚀🚀🚀 ~ PATH functions", functions)
             return functions;
         }, {});
 
@@ -502,8 +501,9 @@ const hasRequestParameterRef = (schema, resourcePath, httpVerb) => {
 const hasEmbeddedParams = (schema, resourcePath, httpVerb) => {
     if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
     const parameterSchema = getParameterSchema(schema, resourcePath, httpVerb);
-    if (parameterSchema.type !== 'object') return false;
-    return parameterSchema.properties.hasOwnProperty('_embedded');
+    if (parameterSchema.type === 'object') return parameterSchema.properties.hasOwnProperty('_embedded');
+    if (parameterSchema.allOf) return parameterSchema.allOf.some(schema => schema.properties && schema.properties.hasOwnProperty('_embedded'));
+    return false;
 }
 
 function getParameterSchema(schema, resourcePath, httpVerb) {

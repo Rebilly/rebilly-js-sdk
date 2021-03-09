@@ -423,12 +423,39 @@ it.skip("generates alias functions for invoices", async () => {
   `);
 });
 
+it("generates expand parameter for put functions", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions("invoices", "/invoices/{id}");
+
+  jestExpect(functions.update).toMatchInlineSnapshot(`
+    "update({id,data,expand = null}) { const params = {expand};
+            return apiHandler.put(\`invoices/\${id}\` , data ,params);
+        }"
+  `);
+});
+
+it("generates expand parameter for post functions", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions("invoices", "/invoices");
+
+  jestExpect(functions.create).toMatchInlineSnapshot(`
+    "create({id = '',data,expand = null}) {
+                    const params = {expand};
+                    return apiHandler.create(\`invoices/\${id}\` ,id, data ,params);
+                }"
+  `);
+});
+
 it.skip("DEBUG generates all functions for core resource", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generateResourceFunctions("/invoices");
-  console.log(functions);
+  ).generatePathFunctions("invoices", "/invoices/{id}");
+  console.log(functions.update);
 });
 
 it.skip("DEBUG generates one path functions for core resource", async () => {
