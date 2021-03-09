@@ -1,7 +1,7 @@
 import {
   SDKGenerator,
   getResourceType,
-  getResourceFromPath
+  getResourceFromPath,
 } from "@scripts/sdk-generation/from-schema-to-sdk";
 import { expect } from "chai";
 //We should download this file before running tests -> the fresher the copy the better
@@ -381,7 +381,8 @@ it("generates alias functions for customers", async () => {
     "getLeadSource",
     "createLeadSource",
     "deleteLeadSource",
-    "updateLeadSource",
+    "downloadCSV",
+    "updateLeadSource"
   ]);
 
   jestExpect(pathFunctions.createLeadSource).toMatchInlineSnapshot(`
@@ -469,6 +470,30 @@ it("generates expand parameters when they are appear inside shared parameters (i
   `);
 });
 
+it("generates downloadCSV function for custom components", async () => {
+  const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
+    "customers",
+    "/customers"
+  );
+  jestExpect(pathFunctions.downloadCSV).toMatchInlineSnapshot(`
+    "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        const config = {
+            params: {
+                limit,
+                offset,
+                sort,
+                expand,
+                filter,
+                q,
+                criteria
+            },
+            headers: csvHeader
+        };
+        return apiHandler.download('customers', config);
+    }"
+  `);
+});
+
 it.skip("DEBUG generates all functions for core resource", async () => {
   const functions = new SDKGenerator(
     fullSchema,
@@ -484,11 +509,6 @@ it.skip("DEBUG generates one path functions for core resource", async () => {
   );
   console.log(functions);
 });
-
-//TODO:
-//downloadCSV function inside websites/customers/disputes/invoices/subscriptions resource does not follow the standard (how do we add it)
-// return apiHandler.download(`websites`, config);
-// Custom addons to add extra functions?? Let's wait to see how many cases
 
 //TODO:
 //There are some special functions in create-api-handler:

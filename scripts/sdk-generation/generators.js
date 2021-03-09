@@ -1,6 +1,6 @@
 const kebabCase = require('lodash.kebabcase');
 const camelCase = require('lodash.camelcase');
-const { customResourceNames, customFunctionNames } = require('./customizations');
+const { customResourceNames, customFunctionNames } = require('./customizations/customizations');
 
 function formatResourceName(pathName) {
     // console.log({pathName})

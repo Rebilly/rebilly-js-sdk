@@ -7,7 +7,8 @@ const {getPathNamesWithSameCustomResourceName,
     getGenerator, 
     postGenerator
 } = require('./generators');
-const { customFunctionNames } = require('./customizations');
+const { customFunctionNames } = require('./customizations/customizations');
+const { pathsWithDownloadCSV } = require('./customizations/download-functions');
 
 function generateSDKFromSchema() {
     return axios.get('https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json')
@@ -101,15 +102,16 @@ class SDKGenerator {
         const doesPathStartWithOneOfTheSharedPathNames = (path)=> sharedPathNames.find(name => path.startsWith(name + '/'));
         const resourcePaths = Object.keys(this.paths).filter(path => sharedPathNames.includes(path) || doesPathStartWithOneOfTheSharedPathNames(path));
 
-
+        
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
             const newFunctions = this.generatePathFunctions(pathName, resourcePath);
             return {...functions, ...newFunctions}
         }, {});
+        
+        this.appendAliasDownloadCSVMethodIfNeeded(pathName, allResourceFunctions);
         // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
         return allResourceFunctions;
     }
-
 
     generatePathFunctions(resourceName, resourcePath) {
         const verbs = ['get', 'post', 'put', 'delete', 'patch'];
@@ -138,6 +140,26 @@ class SDKGenerator {
             functionCode = functionCode.replace(originalFunctionName, name);
             functions[name] = functionCode;
         } 
+    }
+
+    appendAliasDownloadCSVMethodIfNeeded(pathName, functions) {
+        if (pathsWithDownloadCSV.includes(pathName)) {
+            functions['downloadCSV'] = `downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+    const config = {
+        params: {
+            limit,
+            offset,
+            sort,
+            expand,
+            filter,
+            q,
+            criteria
+        },
+        headers: csvHeader
+    };
+    return apiHandler.download('${pathName.substr(1)}', config);
+}`;
+        };
     }
 
     buildGenerator(httpVerb) {
