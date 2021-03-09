@@ -450,6 +450,25 @@ it("generates expand parameter for post functions", async () => {
   `);
 });
 
+it("generates expand parameters when they are appear inside shared parameters (instead of inside requestBody)", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions("subscriptions", "/subscriptions/{id}");
+
+  jestExpect(functions.update).toMatchInlineSnapshot(`
+    "update({id,data,expand = null}) { const params = {expand};
+            return apiHandler.put(\`subscriptions/\${id}\` , data ,params);
+        }"
+  `);
+
+  jestExpect(functions.get).toMatchInlineSnapshot(`
+    "get({id,expand = null}) { const params = {expand};
+            return apiHandler.get(\`subscriptions/\${id}\`  ,params);
+        }"
+  `);
+});
+
 it.skip("DEBUG generates all functions for core resource", async () => {
   const functions = new SDKGenerator(
     fullSchema,

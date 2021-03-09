@@ -499,11 +499,27 @@ const hasRequestParameterRef = (schema, resourcePath, httpVerb) => {
 }
 
 const hasEmbeddedParams = (schema, resourcePath, httpVerb) => {
+    const globalParameters = schema.paths[resourcePath][httpVerb].parameters;
+    if (globalParameters && someEmbeddedInsideParameters(schema, resourcePath, globalParameters)) return true;
     if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
     const parameterSchema = getParameterSchema(schema, resourcePath, httpVerb);
-    if (parameterSchema.type === 'object') return parameterSchema.properties.hasOwnProperty('_embedded');
+    if (parameterSchema.type === 'object' && parameterSchema.properties.hasOwnProperty('_embedded')) return true;
     if (parameterSchema.allOf) return parameterSchema.allOf.some(schema => schema.properties && schema.properties.hasOwnProperty('_embedded'));
     return false;
+}
+
+function someEmbeddedInsideParameters(schema, resourcePath, parameters) {
+    return parameters.some(parameter => {
+        if (parameter.$ref) {
+            const pathKeys = parameter.$ref.substring(2).split('/');
+            return lookup(schema, pathKeys).name === 'expand';
+        }
+        return false;
+    }); 
+}
+
+function getGlobalParameters(schema, resourcePath) {
+    return schema.paths[resourcePath]
 }
 
 function getParameterSchema(schema, resourcePath, httpVerb) {
