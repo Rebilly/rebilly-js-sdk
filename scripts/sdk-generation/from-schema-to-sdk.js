@@ -109,6 +109,7 @@ class SDKGenerator {
         }, {});
         
         this.appendAliasDownloadCSVMethodIfNeeded(pathName, allResourceFunctions);
+        this.appendDownloadPDFIfNeeded(pathName, allResourceFunctions);
         // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
         return allResourceFunctions;
     }
@@ -145,21 +146,33 @@ class SDKGenerator {
     appendAliasDownloadCSVMethodIfNeeded(pathName, functions) {
         if (pathsWithDownloadCSV.includes(pathName)) {
             functions['downloadCSV'] = `downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
-    const config = {
-        params: {
-            limit,
-            offset,
-            sort,
-            expand,
-            filter,
-            q,
-            criteria
-        },
-        headers: csvHeader
-    };
-    return apiHandler.download('${pathName.substr(1)}', config);
-}`;
+                const config = {
+                    params: {
+                        limit,
+                        offset,
+                        sort,
+                        expand,
+                        filter,
+                        q,
+                        criteria
+                    },
+                    headers: csvHeader
+                };
+                return apiHandler.download('${pathName.substr(1)}', config);
+            }`;
         };
+    }
+
+    appendDownloadPDFIfNeeded(pathName, functions) {
+        if (pathName === '/invoices') {
+            functions['downloadPDF'] = `downloadPDF({id}) {
+                const config = {
+                    headers: pdfHeader,
+                    responseType: 'arraybuffer'
+                };
+                return apiHandler.download(\`invoices/\${id}\`, config);
+            },`;
+        }
     }
 
     buildGenerator(httpVerb) {

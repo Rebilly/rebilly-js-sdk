@@ -347,6 +347,41 @@ it("generates all resource functions merging paths with different patterns (coup
   ]);
 });
 
+it("generates downloadCSV function for customers resource", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generateResourceFunctions("/customers");
+
+  jestExpect(functions.downloadCSV).toMatchInlineSnapshot(`
+    "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+                    const config = {
+                        params: {
+                            limit,
+                            offset,
+                            sort,
+                            expand,
+                            filter,
+                            q,
+                            criteria
+                        },
+                        headers: csvHeader
+                    };
+                    return apiHandler.download('customers', config);
+                }"
+  `);
+});
+
+it("generates downloadCSV and downloadPDF for invoice resource", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generateResourceFunctions("/invoices");
+
+  expect(functions.downloadCSV).to.exist;
+  expect(functions.downloadPDF).to.exist;
+});
+
 it("generates create function with optional id for post operation", async () => {
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
     "customers",
@@ -382,7 +417,7 @@ it("generates alias functions for customers", async () => {
     "createLeadSource",
     "deleteLeadSource",
     "downloadCSV",
-    "updateLeadSource"
+    "updateLeadSource",
   ]);
 
   jestExpect(pathFunctions.createLeadSource).toMatchInlineSnapshot(`
@@ -467,30 +502,6 @@ it("generates expand parameters when they are appear inside shared parameters (i
     "get({id,expand = null}) { const params = {expand};
             return apiHandler.get(\`subscriptions/\${id}\`  ,params);
         }"
-  `);
-});
-
-it("generates downloadCSV function for custom components", async () => {
-  const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "customers",
-    "/customers"
-  );
-  jestExpect(pathFunctions.downloadCSV).toMatchInlineSnapshot(`
-    "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
-        const config = {
-            params: {
-                limit,
-                offset,
-                sort,
-                expand,
-                filter,
-                q,
-                criteria
-            },
-            headers: csvHeader
-        };
-        return apiHandler.download('customers', config);
-    }"
   `);
 });
 
