@@ -400,7 +400,6 @@ function functionGenerator(schema, httpVerb) {
 function generateFunction(schema, resourcePath, httpVerb) {
     const appendDataIfNeeded = hasRequestParams(schema, resourcePath, httpVerb) ? ', data' : '';
     const expandParams = generateExpandParams(schema, resourcePath, httpVerb);
-    if (httpVerb === 'get') console.log('CUCUCUC', expandParams)
     const appendParamsIfNeeded = expandParams ? ',params' : '';
     const functionCode = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${expandParams}
         return apiHandler.${httpVerb}(${formatResourcePath(resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});
@@ -489,8 +488,6 @@ const hasRequestParameterRef = (schema, resourcePath, httpVerb) => {
 }
 
 const hasEmbeddedParams = (schema, resourcePath, httpVerb) => {
-    if (httpVerb === 'get') console.log('hasEmbeddedParams', resourcePath)
-
     if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
     const parameterSchema = getParameterSchema(schema, resourcePath, httpVerb);
     if (parameterSchema.type !== 'object') return false;
