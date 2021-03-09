@@ -1,8 +1,8 @@
 import {
   SDKGenerator,
-  getResourceFromPath,
   getResourceType,
-} from "@scripts/from-schema-to-sdk";
+  getResourceFromPath
+} from "@scripts/sdk-generation/from-schema-to-sdk";
 import { expect } from "chai";
 //We should download this file before running tests -> the fresher the copy the better
 import fullSchema from "./fixtures/full-schema.json";

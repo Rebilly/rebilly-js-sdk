@@ -24,7 +24,7 @@
     "ts:fix-type-name": "node ./scripts/fix-type-name.js",
     "ts:copy-types": "rm -rf ../frontend-recomm/typings && cp -rf ./typings ../frontend-recomm/typings",
     "ts:bundle-types": "yarn ts:generate-rebilly-types && yarn ts:generate-sdk-types && yarn ts:comment-headers && yarn ts:extract-types && yarn ts:fix-type-name && yarn ts:copy-types",
-    "ts:generate-sdk-code": "node ./scripts/generate-sdk-code"
+    "ts:generate-sdk-code": "node ./scripts/sdk-generation/generate-sdk-code"
   },
   "repository": {
     "type": "git",
