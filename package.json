@@ -14,7 +14,7 @@
     "test:unit:coverage": "jest --collect-coverage --no-cache",
     "test:unit:debug": "node --inspect-brk jest --no-cache --runInBand",
     "test:unit:watch": "jest --watchAll",
-    "test": "npm test:run unit",
+    "test": "npm test:unit",
     "tsc": "npx tsc -p jsconfig-tsc.json",
     "tsc:watch": "npx tsc -w -p jsconfig-tsc.json",
     "ts:generate-rebilly-types": "npx openapi-typescript https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json --output ./typings/rebilly/generated.d.ts",
