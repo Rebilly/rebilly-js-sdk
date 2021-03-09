@@ -372,24 +372,53 @@ it("generates get function with expand params", async () => {
   `);
 });
 
-it("generates multiple functions when alias has array type", async () => {
+it("generates alias functions for customers", async () => {
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
     "customers",
     "/customers/{id}/lead-source"
   );
-  jestExpect(pathFunctions.getLeadSource).toMatchInlineSnapshot(`
-    "getLeadSource({id}) { 
-            return apiHandler.get(\`customers/\${id}/lead-source\`  );
-        }"
-  `);
+  expect(Object.keys(pathFunctions)).to.eql([
+    "getLeadSource",
+    "createLeadSource",
+    "deleteLeadSource",
+    "updateLeadSource",
+  ]);
+
   jestExpect(pathFunctions.createLeadSource).toMatchInlineSnapshot(`
     "createLeadSource({id,data}) { 
             return apiHandler.put(\`customers/\${id}/lead-source\` , data );
         }"
   `);
-  jestExpect(pathFunctions.deleteLeadSource).toMatchInlineSnapshot(`
-    "deleteLeadSource({id}) { 
-            return apiHandler.delete(\`customers/\${id}/lead-source\`  );
+
+  jestExpect(pathFunctions.updateLeadSource).toMatchInlineSnapshot(`
+    "updateLeadSource({id,data}) { 
+            return apiHandler.put(\`customers/\${id}/lead-source\` , data );
+        }"
+  `);
+});
+
+it.skip("generates alias functions for invoices", async () => {
+  //TODO: this path is not in core API
+  const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
+    "invoices",
+    "/invoices/{id}/lead-source"
+  );
+  expect(Object.keys(pathFunctions)).to.eql([
+    "getLeadSource",
+    "createLeadSource",
+    "deleteLeadSource",
+    "updateLeadSource",
+  ]);
+
+  jestExpect(pathFunctions.createLeadSource).toMatchInlineSnapshot(`
+    "createLeadSource({id,data}) { 
+            return apiHandler.put(\`invoices/\${id}/lead-source\` , data );
+        }"
+  `);
+
+  jestExpect(pathFunctions.updateLeadSource).toMatchInlineSnapshot(`
+    "updateLeadSource({id,data}) { 
+            return apiHandler.put(\`invoices/\${id}/lead-source\` , data );
         }"
   `);
 });

@@ -48,7 +48,7 @@ const customFunctionNames = {
     '/invoices/{id}/lead-source': {
         get: 'getLeadSource', 
         put: 'createLeadSource',
-        alias: 'updateLeadSource',
+        alias: {verb: 'put', name: 'updateLeadSource'},
         delete: 'deleteLeadSource'
     },
     '/invoices/{id}/timeline': {get: 'getAllTimelineMessages', post: 'createTimelineComment'},
@@ -299,10 +299,22 @@ class SDKGenerator {
             // console.log("🚀🚀🚀🚀🚀🚀🚀 ~ PATH functions", functions)
             return functions;
         }, {});
-        // if (customFunctionNames[resourcePath]['alias']) {
-        //     functions.push(this.buildGenerator('alias')(resourceName, resourcePath, 'alias'))
-        // } 
+
+        this.appendAliasMethodIfNeeded(resourceName, resourcePath, functions);
         return functions;
+    }
+
+    appendAliasMethodIfNeeded(resourceName, resourcePath, functions) {
+        if (!customFunctionNames[resourcePath]) return;
+        const path = this.paths[resourcePath];
+        if (customFunctionNames[resourcePath]['alias']) {
+            const {verb, name} = customFunctionNames[resourcePath]['alias'];
+            const generator = this.buildGenerator(verb)
+            let {functionCode} = generator(resourceName, resourcePath, path[verb]);
+            const originalFunctionName = functionCode.split('(')[0];
+            functionCode = functionCode.replace(originalFunctionName, name);
+            functions[name] = functionCode;
+        } 
     }
 
     buildGenerator(httpVerb) {
