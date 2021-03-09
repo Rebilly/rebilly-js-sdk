@@ -25,7 +25,8 @@ const customFunctionNames = {
     '/customers/{id}': {delete: 'merge', post: 'create'},
     '/customers/{id}/lead-source': {
         get: 'getLeadSource', 
-        put: 'createLeadSource', 
+        put: 'createLeadSource',
+        alias: {verb: 'put', name: 'updateLeadSource'},
         delete: 'deleteLeadSource'
     },
     '/customers/{id}/upcoming-invoices': 'getAllUpcomingInvoices',
@@ -47,6 +48,7 @@ const customFunctionNames = {
     '/invoices/{id}/lead-source': {
         get: 'getLeadSource', 
         put: 'createLeadSource',
+        alias: 'updateLeadSource',
         delete: 'deleteLeadSource'
     },
     '/invoices/{id}/timeline': {get: 'getAllTimelineMessages', post: 'createTimelineComment'},
@@ -263,7 +265,8 @@ class SDKGenerator {
         const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
         // Avoid processing resource if it was already processed
         if (processedResources.hasOwnProperty(filename)) return
-        let resourceContent = `export default function ${formatResourceName(pathName)}Resource({apiHandler}){return {${this.generateResourceFunctions(pathName)}}}`;
+        const allFunctionsCode = Object.values(this.generateResourceFunctions(pathName)).join(',');
+        let resourceContent = `export default function ${formatResourceName(pathName)}Resource({apiHandler}){return {${allFunctionsCode}}}`;
         resourceContent = prettier.format(resourceContent, { semi: true, parser: "babel", singleQuote: true });
         processedResources[filename] = resourceContent;
     }
@@ -276,13 +279,10 @@ class SDKGenerator {
 
 
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
-            functions.push(this.generatePathFunctions(pathName, resourcePath));
-            return functions;
-        }, []);
-        // @ts-ignore
-        allResourceFunctions = allResourceFunctions.flat(1); //Merge first depth level
+            const newFunctions = this.generatePathFunctions(pathName, resourcePath);
+            return {...functions, ...newFunctions}
+        }, {});
         // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
-
         return allResourceFunctions;
     }
 
@@ -292,12 +292,16 @@ class SDKGenerator {
         const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
-            if (!path[verb]) return functions
             const generator = this.buildGenerator(verb)
-            functions.push(generator(resourceName, resourcePath, path[verb]))
+            if (!path[verb]) return functions
+            const {functionName, functionCode} = generator(resourceName, resourcePath, path[verb]);
+            functions[functionName] = functionCode;
             // console.log("🚀🚀🚀🚀🚀🚀🚀 ~ PATH functions", functions)
             return functions;
-        }, []);
+        }, {});
+        // if (customFunctionNames[resourcePath]['alias']) {
+        //     functions.push(this.buildGenerator('alias')(resourceName, resourcePath, 'alias'))
+        // } 
         return functions;
     }
 
@@ -323,19 +327,9 @@ function getGenerator(schema) {
             return paramNames;
         }
         
-        //TODO: generatize passing verb and customFunctionNames??
-        const findCustomName = (resourcePath) => {
-            const customName = customFunctionNames[resourcePath];
-            if (!customName) return false;
-            if (typeof customName === 'string') return customName;
-            return customName.get;
-        }
-        
         const paramNames = getPath.parameters 
         ? getPath.parameters.reduce(accumulateNamesFn, []) 
         : [];
-
-        const customName = findCustomName(resourcePath);
 
         const operationId = getPath.operationId;
         // console.log('🐼🐼🐼🐼🐼 GET operationId', operationId)
@@ -348,33 +342,24 @@ function getGenerator(schema) {
         //     return generateGetAllFunction(resourcePath, paramNames, customName);
         // }
         if (operationId.endsWith('Collection')) {
-            return generateGetAllFunction(resourcePath, paramNames, customName);
+            return generateGetAllFunction(resourcePath, paramNames);
         } else {
             return generateFunction(schema, resourcePath, 'get');
-            // return generateGetFunction(resourcePath, customName);
         }
     }
     
-    function generateGetAllFunction(resourcePath, paramNames, customName = null) {
-        const functionName = customName || 'getAll';
+    function generateGetAllFunction(resourcePath, paramNames) {
         const dynamicParams = extractParametersFromResourcePath(resourcePath);
         paramNames = [...paramNames, ...dynamicParams];
 
-        return `${functionName}(${fromParamNamesToDefaultParams(paramNames)} = {}) {
+        const functionName = findCustomName(resourcePath, 'get') || 'getAll';
+        const functionCode = `${functionName}(${fromParamNamesToDefaultParams(paramNames)} = {}) {
             const params = {
                 ${paramNames.join(',')}
             };
             return apiHandler.getAll(${formatResourcePath(resourcePath)}, params);
         }`
-    }
-    
-    function generateGetFunction(resourcePath, customName = null) {
-        const functionName = customName || 'get';
-        const dynamicParams = extractParametersFromResourcePath(resourcePath).join(',');
-
-        return `${functionName}({${dynamicParams}}) {
-            return apiHandler.get(${formatResourcePath(resourcePath)});
-        }`
+        return {functionName, functionCode};
     }
     
     function fromParamNamesToDefaultParams(paramNames) {
@@ -415,11 +400,13 @@ function functionGenerator(schema, httpVerb) {
 function generateFunction(schema, resourcePath, httpVerb) {
     const appendDataIfNeeded = hasRequestParams(schema, resourcePath, httpVerb) ? ', data' : '';
     const expandParams = generateExpandParams(schema, resourcePath, httpVerb);
+    if (httpVerb === 'get') console.log('CUCUCUC', expandParams)
     const appendParamsIfNeeded = expandParams ? ',params' : '';
-    const result = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${expandParams}
+    const functionCode = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${expandParams}
         return apiHandler.${httpVerb}(${formatResourcePath(resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});
     }`
-    return result;
+    const functionName = generateFunctionName(resourcePath, httpVerb);
+    return {functionName, functionCode};
 }
 
 function postGenerator(schema) {
@@ -434,11 +421,12 @@ function postGenerator(schema) {
         if (!resourcePath.includes('{')) {
             // Create case
             handlerFunction = 'create';
-            const result = `${generateFunctionSignature(schema, resourcePath, 'post')} {
+            const functionCode = `${generateFunctionSignature(schema, resourcePath, 'post')} {
                 ${expandParams}
                 return apiHandler.create(${formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
             }`
-            return result;
+            const functionName = generateFunctionName(resourcePath, 'post');
+            return {functionName, functionCode};
         } else {
             return generateFunction(schema, resourcePath, 'post');
         }
@@ -446,22 +434,7 @@ function postGenerator(schema) {
 }
 
 function generateFunctionSignature(schema, resourcePath, httpVerb) {
-    const findCustomName = (resourcePath) => {
-        const customName = customFunctionNames[resourcePath];
-        if (!customName) return false;
-        if (typeof customName === 'string') return customName;
-        return customName[httpVerb];
-    }
-
-    const defaultFunctionNames = {
-        'get': 'get',
-        'put': 'update',
-        'patch': 'update',
-        'post': 'create',
-        'delete': 'delete',
-    };
-
-    const functionName = findCustomName(resourcePath) || defaultFunctionNames[httpVerb];
+    
     const dynamicParams = extractParametersFromResourcePath(resourcePath);
     
     //Special case for create
@@ -476,8 +449,29 @@ function generateFunctionSignature(schema, resourcePath, httpVerb) {
     if (hasEmbeddedParams(schema, resourcePath, httpVerb)) {
         dynamicParams.push('expand = null');
     }
+
+    const functionName = generateFunctionName(resourcePath, httpVerb);
     
     return `${functionName}({${dynamicParams.join(',')}})`;
+}
+
+function findCustomName(resourcePath, httpVerb) {
+    const customName = customFunctionNames[resourcePath];
+    if (!customName) return false;
+    if (typeof customName === 'string') return customName;
+    return customName[httpVerb];
+}
+
+function generateFunctionName(resourcePath, httpVerb) {
+    const defaultFunctionNames = {
+        'get': 'get',
+        'put': 'update',
+        'patch': 'update',
+        'post': 'create',
+        'delete': 'delete',
+    };
+
+    return findCustomName(resourcePath, httpVerb) || defaultFunctionNames[httpVerb];
 }
 
 function generateExpandParams(schema, resourcePath, httpVerb) {
@@ -495,6 +489,8 @@ const hasRequestParameterRef = (schema, resourcePath, httpVerb) => {
 }
 
 const hasEmbeddedParams = (schema, resourcePath, httpVerb) => {
+    if (httpVerb === 'get') console.log('hasEmbeddedParams', resourcePath)
+
     if (!hasRequestParameterRef(schema, resourcePath, httpVerb)) return false;
     const parameterSchema = getParameterSchema(schema, resourcePath, httpVerb);
     if (parameterSchema.type !== 'object') return false;
