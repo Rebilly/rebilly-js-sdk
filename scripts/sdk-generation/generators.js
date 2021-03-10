@@ -1,4 +1,3 @@
-const kebabCase = require('lodash.kebabcase');
 const camelCase = require('lodash.camelcase');
 const { customResourceNames, customFunctionNames } = require('./customizations/customizations');
 
@@ -28,18 +27,7 @@ function capitalize(s) {
 function getGenerator(schema) {
 
     return function generateGet(resourceName, resourcePath, getPath) {
-        const accumulateNamesFn =  (paramNames, param) => {
-            const paramName = getParamName(schema, param);
-            // Discard organization-Id from parameters
-            if (paramName === 'Organization-Id') return paramNames;
-            paramNames.push(paramName);
-            return paramNames;
-        }
-        
-        const paramNames = getPath.parameters 
-        ? getPath.parameters.reduce(accumulateNamesFn, []) 
-        : [];
-
+       
         const operationId = getPath.operationId;
         // console.log('🐼🐼🐼🐼🐼 GET operationId', operationId)
         // console.log('⎨⎨⎨⎨ paramNames', paramNames)
@@ -51,18 +39,19 @@ function getGenerator(schema) {
         //     return generateGetAllFunction(resourcePath, paramNames, customName);
         // }
         if (operationId.endsWith('Collection')) {
-            return generateGetAllFunction(resourcePath, paramNames);
+            return generateGetAllFunction(resourcePath);
         } else {
             return generateFunction(schema, resourcePath, 'get');
         }
     }
     
-    function generateGetAllFunction(resourcePath, paramNames) {
+    function generateGetAllFunction(resourcePath) {
         const dynamicParams = extractParametersFromResourcePath(resourcePath);
-        paramNames = [...paramNames, ...dynamicParams];
+        const paramNamesWithDefaultValues = [...getNamedParametersWithDefaultValues(schema, resourcePath, 'get'), ...dynamicParams];
+        const paramNames = [...getNamedParameters(schema, resourcePath, 'get'), ...dynamicParams];
 
         const functionName = findCustomName(resourcePath, 'get') || 'getAll';
-        const functionCode = `${functionName}(${fromParamNamesToDefaultParams(paramNames)} = {}) {
+        const functionCode = `${functionName}(${fromParamNamesToDefaultParams(paramNamesWithDefaultValues)} = {}) {
             const params = {
                 ${paramNames.join(',')}
             };
@@ -70,7 +59,7 @@ function getGenerator(schema) {
         }`
         return {functionName, functionCode};
     }
-    
+
     function fromParamNamesToDefaultParams(paramNames) {
         const object = paramNames.reduce((acc, p) => {
             acc[p] = null;
@@ -78,13 +67,47 @@ function getGenerator(schema) {
         }, {})
         return JSON.stringify(object).replace(/"/g, '').replace(/:/g, '=');
     }
-    
-    function getParamName(schema, param) {
-        if (param.name) return param.name;
-        const pathKeys = param['$ref'].substring(2).split('/');
-        const parameter = lookup(schema, pathKeys);
-        return parameter.name;
+}
+
+function getNamedParametersWithDefaultValues(schema, resourcePath, httpVerb) {
+    const accumulateParamsFn =  (params, param) => {
+        const paramName = getParamName(schema, param);
+        // Discard organization-Id from parameters
+        if (paramName === 'Organization-Id') return params;
+        if (param.required === false || paramName === 'expand') {
+            params.push(`${paramName} = null`);
+        } else {
+            params.push(paramName);
+        }
+        return params;
     }
+    
+    const pathSchema = schema.paths[resourcePath][httpVerb];
+    return pathSchema.parameters 
+    ? pathSchema.parameters.reduce(accumulateParamsFn, []) 
+    : [];
+}
+
+function getNamedParameters(schema, resourcePath, httpVerb) {
+    const accumulateParamsFn =  (params, param) => {
+        const paramName = getParamName(schema, param);
+        // Discard organization-Id from parameters
+        if (paramName === 'Organization-Id') return params;
+        params.push(paramName);
+        return params;
+    }
+    
+    const pathSchema = schema.paths[resourcePath][httpVerb];
+    return pathSchema.parameters 
+    ? pathSchema.parameters.reduce(accumulateParamsFn, []) 
+    : [];
+}
+
+function getParamName(schema, param) {
+    if (param.name) return param.name;
+    const pathKeys = param['$ref'].substring(2).split('/');
+    const parameter = lookup(schema, pathKeys);
+    return parameter.name;
 }
 
 /**
@@ -97,7 +120,6 @@ function lookup(schema, pathKeys) {
     return pathKeys.reduce((acc, key) => acc[key], schema);
 }
 
-
 function functionGenerator(schema, httpVerb) {
     return function (resourceName, resourcePath) {
         // console.log('generating post for resourcePath', resourcePath);
@@ -108,13 +130,19 @@ function functionGenerator(schema, httpVerb) {
 
 function generateFunction(schema, resourcePath, httpVerb) {
     const appendDataIfNeeded = hasRequestParams(schema, resourcePath, httpVerb) ? ', data' : '';
-    const expandParams = generateExpandParams(schema, resourcePath, httpVerb);
-    const appendParamsIfNeeded = expandParams ? ',params' : '';
-    const functionCode = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${expandParams}
+    const paramsConstant = generateParamsConstant(schema, resourcePath, httpVerb);
+    const appendParamsIfNeeded = paramsConstant ? ',params' : '';
+    const functionCode = `${generateFunctionSignature(schema, resourcePath, httpVerb)} { ${paramsConstant}
         return apiHandler.${httpVerb}(${formatResourcePath(resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});
     }`
     const functionName = generateFunctionName(resourcePath, httpVerb);
     return {functionName, functionCode};
+}
+
+function generateParamsConstant (schema, resourcePath, httpVerb) {
+    const namedParams = generateNamedParamsConstant(schema, resourcePath, httpVerb);
+    const expandParams = generateExpandParamsConstant(schema, resourcePath, httpVerb);
+    return namedParams || expandParams;
 }
 
 function postGenerator(schema) {
@@ -122,7 +150,7 @@ function postGenerator(schema) {
         // console.log('generating post for resourcePath', resourcePath);
         // console.log('generating post for path', postPath);
 
-        const expandParams = generateExpandParams(schema, resourcePath, 'post');
+        const expandParams = generateExpandParamConstant(schema, resourcePath, 'post');
         const appendParamsIfNeeded = expandParams ? ',params' : '';
 
         let handlerFunction = 'post'; 
@@ -144,6 +172,7 @@ function postGenerator(schema) {
 function generateFunctionSignature(schema, resourcePath, httpVerb) {
     
     const dynamicParams = extractParametersFromResourcePath(resourcePath);
+    const namedParams = getNamedParametersWithDefaultValues(schema, resourcePath, httpVerb);
     
     //Special case for create
     if (httpVerb === 'post' && !resourcePath.includes('{')) {
@@ -154,13 +183,14 @@ function generateFunctionSignature(schema, resourcePath, httpVerb) {
         dynamicParams.push('data');
     }
     
-    if (hasEmbeddedParams(schema, resourcePath, httpVerb)) {
+    if (hasEmbeddedParams(schema, resourcePath, httpVerb) && !namedParams.includes('expand = null')) {
         dynamicParams.push('expand = null');
     }
-
-    const functionName = generateFunctionName(resourcePath, httpVerb);
     
-    return `${functionName}({${dynamicParams.join(',')}})`;
+    const functionName = generateFunctionName(resourcePath, httpVerb);
+    const allParams = [...dynamicParams,...namedParams];
+    
+    return `${functionName}({${allParams.join(',')}})`;
 }
 
 function findCustomName(resourcePath, httpVerb) {
@@ -168,6 +198,12 @@ function findCustomName(resourcePath, httpVerb) {
     if (!customName) return false;
     if (typeof customName === 'string') return customName;
     return customName[httpVerb];
+}
+
+function generateExpandParamsConstant(schema, resourcePath, httpVerb) {
+    return hasEmbeddedParams(schema, resourcePath, httpVerb) 
+            ? 'const params = {expand};'
+            : '';
 }
 
 function generateFunctionName(resourcePath, httpVerb) {
@@ -182,11 +218,17 @@ function generateFunctionName(resourcePath, httpVerb) {
     return findCustomName(resourcePath, httpVerb) || defaultFunctionNames[httpVerb];
 }
 
-function generateExpandParams(schema, resourcePath, httpVerb) {
+function generateExpandParamConstant(schema, resourcePath, httpVerb) {
     return hasEmbeddedParams(schema, resourcePath, httpVerb) 
-            ? 'const params = {expand};'
-            : '';
+    ? 'const params = {expand};'
+    : '';
+}
 
+function generateNamedParamsConstant(schema, resourcePath, httpVerb) {
+    const namedParameters = getNamedParameters(schema, resourcePath, httpVerb);
+    return namedParameters.length > 0
+        ? `const params = {${namedParameters.join(',')}};`
+        : '';
 }
 
 const hasRequestParams = (schema, resourcePath, httpVerb) => schema.paths[resourcePath][httpVerb].requestBody;
@@ -214,10 +256,6 @@ function someEmbeddedInsideParameters(schema, resourcePath, parameters) {
         }
         return false;
     }); 
-}
-
-function getGlobalParameters(schema, resourcePath) {
-    return schema.paths[resourcePath]
 }
 
 function getParameterSchema(schema, resourcePath, httpVerb) {

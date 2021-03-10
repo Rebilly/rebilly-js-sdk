@@ -416,7 +416,6 @@ it("generates alias functions for customers", async () => {
     "getLeadSource",
     "createLeadSource",
     "deleteLeadSource",
-    "downloadCSV",
     "updateLeadSource",
   ]);
 
@@ -486,6 +485,20 @@ it("generates expand parameter for post functions", async () => {
   `);
 });
 
+it("generates required and optional parameters when they are declared as raw parameters in the operation", async () => {
+  const functions = new SDKGenerator(
+    fullSchema,
+    customFunctionNames
+  ).generatePathFunctions("aml", "/aml");
+
+  //TODO: Double check if passing dob/country as null affects the BE result
+  jestExpect(functions.get).toMatchInlineSnapshot(`
+    "get({firstName,lastName,dob = null,country = null}) { const params = {firstName,lastName,dob,country};
+            return apiHandler.get(\`aml\`  ,params);
+        }"
+  `);
+});
+
 it("generates expand parameters when they are appear inside shared parameters (instead of inside requestBody)", async () => {
   const functions = new SDKGenerator(
     fullSchema,
@@ -515,12 +528,11 @@ it.skip("DEBUG generates all functions for core resource", async () => {
 
 it.skip("DEBUG generates one path functions for core resource", async () => {
   const functions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "authentication-options",
-    "/authentication-options"
+    "files",
+    "/files"
   );
   console.log(functions);
 });
-
 
 //TODO:
 //There are some special functions in create-api-handler:
