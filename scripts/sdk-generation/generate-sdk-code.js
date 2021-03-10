@@ -17,7 +17,19 @@ generateSDKFromSchema().then(resources => {
 function createResourcesFiles(resourceContent) {
        console.log('Saving resources to files');
        Object.keys(resourceContent).forEach(filename => {
-              resourceContent[filename]
-              fs.writeFile('debug-resources/' + filename, resourceContent[filename], 'utf8');
+              const content = addHeaderImports(resourceContent[filename]);
+              fs.writeFile('debug-resources/' + filename, content, 'utf8');
        })
+}
+
+function addHeaderImports(content) {
+       if (content.includes('pdfHeader') && content.includes('csvHeader')) {
+              content = `// @ts-nocheck\nimport {pdfHeader, csvHeader} from '../request-headers';\n\n` + content;
+              return content;
+       }
+       if (content.includes('csvHeader')) {
+              content = `// @ts-nocheck\nimport {csvHeader} from '../request-headers';\n\n` + content;
+              return content;
+       }
+       return content;
 }
