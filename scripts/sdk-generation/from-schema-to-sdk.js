@@ -1,11 +1,12 @@
 const axios = require('axios');
 const prettier = require('prettier');
 const kebabCase = require('lodash.kebabcase');
-const {getPathNamesWithSameCustomResourceName, 
-    formatResourceName, 
+const camelCase = require('lodash.camelcase');
+
+const {  
     FunctionGenerator
-} = require('./generators');
-const { customFunctionNames } = require('./customizations/customizations');
+} = require('./function-generator');
+const { customFunctionNames, customResourceNames } = require('./customizations/customizations');
 const { pathsWithDownloadCSV } = require('./customizations/download-functions');
 
 function generateSDKFromSchema() {
@@ -59,17 +60,15 @@ function getResourceType(pathName) {
 }
 
 class SDKGenerator {
-    constructor(schema, customFunctionNames = {}) {
+    constructor(schema) {
         this.schema = schema;
         this.paths = schema.paths;
-        this.customFunctionNames = customFunctionNames;
     }
 
     processSchema() {
-
         let processedResources = {};
 
-        Object.keys(this.schema.paths).forEach(pathName => {
+        Object.keys(this.paths).forEach(pathName => {
             //Temporary avoid iteration to test/debug just one path at a time
             // const pathName = Object.keys(this.schema.paths)[5];
             this.generateResourceFileContent(processedResources, pathName);
@@ -92,7 +91,6 @@ class SDKGenerator {
         const sharedPathNames = getPathNamesWithSameCustomResourceName(pathName);
         const doesPathStartWithOneOfTheSharedPathNames = (path)=> sharedPathNames.find(name => path.startsWith(name + '/'));
         const resourcePaths = Object.keys(this.paths).filter(path => sharedPathNames.includes(path) || doesPathStartWithOneOfTheSharedPathNames(path));
-
         
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
             const newFunctions = this.generatePathFunctions(resourcePath);
@@ -110,7 +108,7 @@ class SDKGenerator {
 
         const functions = verbs.reduce((functions, verb) => {
             if (!path[verb]) return functions
-            const {functionName, functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction(verb);
+            const {functionName, functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction();
             functions[functionName] = functionCode;
             return functions;
         }, {});
@@ -124,7 +122,7 @@ class SDKGenerator {
         const path = this.paths[resourcePath];
         if (customFunctionNames[resourcePath]['alias']) {
             const {verb, name} = customFunctionNames[resourcePath]['alias'];
-            let {functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction(verb);
+            let {functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction();
             const originalFunctionName = functionCode.split('(')[0];
             functionCode = functionCode.replace(originalFunctionName, name);
             functions[name] = functionCode;
@@ -166,6 +164,31 @@ class SDKGenerator {
     hasApplicationJson(path) {
         return (path.requestBody && path.requestBody.content && path.requestBody.content['application/json']) 
     }
+}
+
+function getPathNamesWithSameCustomResourceName(pathName) {
+    const resourceName = formatResourceName(pathName);
+    const sharedPathNames = Object.keys(customResourceNames).filter(key => customResourceNames[key] === resourceName);
+    if (sharedPathNames.length === 0) { sharedPathNames.push(pathName)}
+    return sharedPathNames;
+};
+
+function formatResourceName(pathName) {
+    for (const [key, value] of Object.entries(customResourceNames)) {
+        if(pathName.startsWith(key)) return value;
+    }
+
+    const firstResourcePathSegment = pathName.split('/')[1];
+    if(pathName === '/' + firstResourcePathSegment || pathName.startsWith(`/${firstResourcePathSegment}/`)) {
+        return capitalize(camelCase(firstResourcePathSegment)) 
+    }
+
+    return capitalize(camelCase(pathName));
+}
+
+function capitalize(s) {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
 module.exports = {generateSDKFromSchema, generateSDKFromSchemaStorefront, SDKGenerator, getResourceType, getResourceFromPath} 

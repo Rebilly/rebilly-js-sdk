@@ -1,33 +1,4 @@
-const camelCase = require('lodash.camelcase');
-const { customResourceNames, customFunctionNames } = require('./customizations/customizations');
-
-function formatResourceName(pathName) {
-    // console.log({pathName})
-    for (const [key, value] of Object.entries(customResourceNames)) {
-        if(pathName.startsWith(key)) return value;
-    }
-
-    const firstResourcePathSegment = pathName.split('/')[1];
-    // console.log('resourceName', resourceName)
-    // console.log('pathName', pathName)
-    if(pathName === '/' + firstResourcePathSegment || pathName.startsWith(`/${firstResourcePathSegment}/`)) {
-        return capitalize(camelCase(firstResourcePathSegment)) 
-    }
-
-    return capitalize(camelCase(pathName));
-}
-
-function getPathNamesWithSameCustomResourceName(pathName) {
-    const resourceName = formatResourceName(pathName);
-    const sharedPathNames = Object.keys(customResourceNames).filter(key => customResourceNames[key] === resourceName);
-    if (sharedPathNames.length === 0) { sharedPathNames.push(pathName)}
-    return sharedPathNames;
-};
-
-function capitalize(s) {
-    if (typeof s !== 'string') return ''
-    return s.charAt(0).toUpperCase() + s.slice(1)
-}
+const { customFunctionNames } = require('./customizations/customizations');
 
 /**
  * Traverses the schema by using keys in pathKeys
@@ -39,19 +10,27 @@ function lookup(schema, pathKeys) {
     return pathKeys.reduce((acc, key) => acc[key], schema);
 }
 
-//Command pattern
+function buildFunctionData(schema, resourcePath, httpVerb) {
+    const verbSchema = schema.paths[resourcePath][httpVerb];
+    return {
+        schema,
+        resourcePath,
+        httpVerb,
+        operationId : verbSchema.operationId,
+        pathParameters : verbSchema.parameters,
+        requestBody: verbSchema.requestBody
+    }
+}
+
 class FunctionGenerator {
     constructor(schema, resourcePath, httpVerb) {
-        this.schema = schema;
+        const verbSchema = schema.paths[resourcePath][httpVerb];
+        this. schema = schema;
         this.resourcePath = resourcePath;
         this.httpVerb = httpVerb;
-        this.pathSchema = this.schema.paths[this.resourcePath];
-        this.operationId = this.pathSchema[this.httpVerb].operationId;
-        this.pathParameters = this.pathSchema[httpVerb].parameters;
-    }
-
-    getRequestBody() {
-        return this.pathSchema[this.httpVerb].requestBody;
+        this. operationId = verbSchema.operationId;
+        this.pathParameters = verbSchema.parameters;
+        this.requestBody = verbSchema.requestBody;
     }
 
     generateFunction() {
@@ -251,7 +230,7 @@ class FunctionGenerator {
     }
     
     hasRequestParams(){
-        return this.getRequestBody();
+        return this.requestBody;
     }
 
     hasEmbeddedParams = () => {
@@ -275,7 +254,7 @@ class FunctionGenerator {
 
     getParameterSchema() {
         if (!this.hasRequestParameterRef()) return;
-        const parameterRef = this.getRequestBody().$ref;
+        const parameterRef = this.requestBody.$ref;
         const parameterSchema = this.schema.components.schemas[parameterRef.split('/').pop()];
         if (!parameterSchema) {
             //TODO: review storefront tests when we uncomment this
@@ -286,7 +265,7 @@ class FunctionGenerator {
     }
 
     hasRequestParameterRef = () => {
-        const requestBody = this.getRequestBody();
+        const requestBody = this.requestBody;
         if (!requestBody) return false;
         return !!requestBody.$ref;
     }
@@ -296,17 +275,8 @@ class FunctionGenerator {
         if (dynamicParams) dynamicParams = dynamicParams.map(param => param.replace(/{|}/g, ''));
         return dynamicParams || [];
     }
-    
-    getPathNamesWithSameCustomResourceName(pathName) {
-        const resourceName = formatResourceName(pathName);
-        const sharedPathNames = Object.keys(customResourceNames).filter(key => customResourceNames[key] === resourceName);
-        if (sharedPathNames.length === 0) { sharedPathNames.push(pathName)}
-        return sharedPathNames;
-    };
 }
 
 module.exports = {
-    formatResourceName, 
-    getPathNamesWithSameCustomResourceName, 
     FunctionGenerator
 } 
