@@ -56,7 +56,7 @@ function postGenerator(schema) {
             const functionName = generator.generateFunctionName('post');
             const functionCode = `${generator.generateFunctionSignature('post', functionName)} {
                 ${paramsConstant}
-                return apiHandler.create(${generator.formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
+                return apiHandler.${generator.getApiHandlerMethod('post')}(${generator.formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
             }`
             return {functionName, functionCode};
         } else {
@@ -98,15 +98,25 @@ class Generator {
     generateReturnLine(httpVerb, paramsConstant) {
         const appendParamsIfNeeded = paramsConstant ? ',params' : '';
         const appendDataIfNeeded = this.hasRequestParams(httpVerb) ? ', data' : '';
-        return `return apiHandler.${this.getApiHandlerMethod(httpVerb)}(${this.formatResourcePath(this.resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});`
+        return `return apiHandler.${this.getApiHandlerMethod(httpVerb)}(${this.generateApiPath(httpVerb)} ${appendDataIfNeeded} ${appendParamsIfNeeded});`
+    }
+
+    generateApiPath(httpVerb) {
+        if (this.isCreateFunction(httpVerb)) return `${this.formatResourcePath(this.resourcePath + '/{id}')} ,id`;
+        return this.formatResourcePath(this.resourcePath);
     }
 
     isGetAllFunction(httpVerb) {
         return httpVerb === 'get' && this.getOperationId(httpVerb).endsWith('Collection');
     }
 
+    isCreateFunction(httpVerb) {
+        return httpVerb === 'post' && !this.resourcePath.includes('{'); 
+    }
+
     getApiHandlerMethod(httpVerb) {
         if (this.isGetAllFunction(httpVerb)) return 'getAll';
+        if (this.isCreateFunction(httpVerb)) return 'create';
         return httpVerb;
     }
 
@@ -212,8 +222,6 @@ class Generator {
             return paramName;
         }).join(',');
     }
-
-   
 
     generateFunctionName(httpVerb) {
         const defaultFunctionNames = {

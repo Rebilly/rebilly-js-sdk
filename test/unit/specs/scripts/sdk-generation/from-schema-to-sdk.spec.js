@@ -385,10 +385,9 @@ it("generates create function with optional id for post operation", async () => 
     "/customers"
   );
   jestExpect(pathFunctions.create).toMatchInlineSnapshot(`
-    "create({id = '',data,expand = null}) {
-                    const params = {expand};
-                    return apiHandler.create(\`customers/\${id}\` ,id, data ,params);
-                }"
+    "create({id = '',data,expand = null}) { const params = {expand};
+                return apiHandler.create(\`customers/\${id}\` ,id , data ,params);
+            }"
   `);
 });
 
@@ -475,10 +474,9 @@ it("generates expand parameter for post functions", async () => {
   ).generatePathFunctions("invoices", "/invoices");
 
   jestExpect(functions.create).toMatchInlineSnapshot(`
-    "create({id = '',data,expand = null}) {
-                    const params = {expand};
-                    return apiHandler.create(\`invoices/\${id}\` ,id, data ,params);
-                }"
+    "create({id = '',data,expand = null}) { const params = {expand};
+                return apiHandler.create(\`invoices/\${id}\` ,id , data ,params);
+            }"
   `);
 });
 

@@ -175,7 +175,7 @@ class SDKGenerator {
     }
 
     buildGenerator(httpVerb) {
-        if (httpVerb === 'post') return postGenerator(this.schema);
+        // if (httpVerb === 'post') return postGenerator(this.schema);
         return functionGenerator(this.schema, httpVerb);
     }
 
