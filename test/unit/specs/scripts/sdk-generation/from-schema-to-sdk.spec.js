@@ -288,8 +288,8 @@ it("generates custom named function with dynamic parameter", async () => {
 
   jestExpect(pathFunctions.exchangeToken).toMatchInlineSnapshot(`
     "exchangeToken({token,data}) { 
-            return apiHandler.post(\`authentication-tokens/\${token}/exchange\` , data );
-        }"
+                return apiHandler.post(\`authentication-tokens/\${token}/exchange\` , data );
+            }"
   `);
 });
 
@@ -303,14 +303,14 @@ it("generates functions for path with 2 dynamic parameters", async () => {
 
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({resource,name}) { 
-            return apiHandler.get(\`custom-fields/\${resource}/\${name}\`  );
-        }"
+                return apiHandler.get(\`custom-fields/\${resource}/\${name}\`  );
+            }"
   `);
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({resource,name,data}) { 
-            return apiHandler.put(\`custom-fields/\${resource}/\${name}\` , data );
-        }"
+                return apiHandler.put(\`custom-fields/\${resource}/\${name}\` , data );
+            }"
   `);
 });
 
@@ -402,8 +402,8 @@ it("generates get function with expand params", async () => {
   );
   jestExpect(pathFunctions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
-            return apiHandler.put(\`disputes/\${id}\` , data ,params);
-        }"
+                return apiHandler.put(\`disputes/\${id}\` , data ,params);
+            }"
   `);
 });
 
@@ -421,14 +421,14 @@ it("generates alias functions for customers", async () => {
 
   jestExpect(pathFunctions.createLeadSource).toMatchInlineSnapshot(`
     "createLeadSource({id,data}) { 
-            return apiHandler.put(\`customers/\${id}/lead-source\` , data );
-        }"
+                return apiHandler.put(\`customers/\${id}/lead-source\` , data );
+            }"
   `);
 
   jestExpect(pathFunctions.updateLeadSource).toMatchInlineSnapshot(`
     "updateLeadSource({id,data}) { 
-            return apiHandler.put(\`customers/\${id}/lead-source\` , data );
-        }"
+                return apiHandler.put(\`customers/\${id}/lead-source\` , data );
+            }"
   `);
 });
 
@@ -466,8 +466,8 @@ it("generates expand parameter for put functions", async () => {
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
-            return apiHandler.put(\`invoices/\${id}\` , data ,params);
-        }"
+                return apiHandler.put(\`invoices/\${id}\` , data ,params);
+            }"
   `);
 });
 
@@ -494,8 +494,8 @@ it("generates required and optional parameters when they are declared as raw par
   //TODO: Double check if passing dob/country as null affects the BE result
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({firstName,lastName,dob = null,country = null}) { const params = {firstName,lastName,dob,country};
-            return apiHandler.get(\`aml\`  ,params);
-        }"
+                return apiHandler.get(\`aml\`  ,params);
+            }"
   `);
 });
 
@@ -507,14 +507,14 @@ it("generates expand parameters when they are appear inside shared parameters (i
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
-            return apiHandler.put(\`subscriptions/\${id}\` , data ,params);
-        }"
+                return apiHandler.put(\`subscriptions/\${id}\` , data ,params);
+            }"
   `);
 
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({id,expand = null}) { const params = {expand};
-            return apiHandler.get(\`subscriptions/\${id}\`  ,params);
-        }"
+                return apiHandler.get(\`subscriptions/\${id}\`  ,params);
+            }"
   `);
 });
 
