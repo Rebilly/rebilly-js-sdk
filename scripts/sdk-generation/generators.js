@@ -39,35 +39,9 @@ function lookup(schema, pathKeys) {
     return pathKeys.reduce((acc, key) => acc[key], schema);
 }
 
-function functionGenerator(schema, httpVerb) {
-    return function (resourceName, resourcePath) {
-        const generator = new Generator(schema, resourcePath);
-        return generator.generateFunction(httpVerb)
-    }
-}
-
-function postGenerator(schema) {
-    return function (resourceName, resourcePath) {
-        const generator = new Generator(schema, resourcePath);
-        const paramsConstant = generator.generateParamsConstant('post');
-        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
-
-        if (!resourcePath.includes('{')) {
-            const functionName = generator.generateFunctionName('post');
-            const functionCode = `${generator.generateFunctionSignature('post', functionName)} {
-                ${paramsConstant}
-                return apiHandler.${generator.getApiHandlerMethod('post')}(${generator.formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
-            }`
-            return {functionName, functionCode};
-        } else {
-            return generator.generateFunction('post');
-        }
-    }
-}
-
 //Command pattern
-class Generator {
-    constructor(schema, resourcePath) {
+class FunctionGenerator {
+    constructor(schema, resourcePath, httpVerb) {
         this.schema = schema;
         this.resourcePath = resourcePath;
         this.operationId = resourcePath.operationId;
@@ -86,7 +60,7 @@ class Generator {
         const functionName = this.generateFunctionName(httpVerb);
         const functionCode = `${this.generateFunctionSignature(httpVerb, functionName)} ${this.generateFunctionBody(httpVerb)}`
         return {functionName, functionCode};
-}
+    }
 
     generateFunctionBody(httpVerb) {
         const paramsConstant = this.generateParamsConstant(httpVerb);
@@ -342,7 +316,5 @@ class Generator {
 module.exports = {
     formatResourceName, 
     getPathNamesWithSameCustomResourceName, 
-    functionGenerator,
-    postGenerator,
-    Generator
+    FunctionGenerator
 } 

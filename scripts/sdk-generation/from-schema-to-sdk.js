@@ -3,8 +3,7 @@ const prettier = require('prettier');
 const kebabCase = require('lodash.kebabcase');
 const {getPathNamesWithSameCustomResourceName, 
     formatResourceName, 
-    functionGenerator, 
-    postGenerator
+    FunctionGenerator
 } = require('./generators');
 const { customFunctionNames } = require('./customizations/customizations');
 const { pathsWithDownloadCSV } = require('./customizations/download-functions');
@@ -80,12 +79,6 @@ class SDKGenerator {
     }
 
     generateResourceFileContent(processedResources, pathName) {
-        const resourceName = pathName.split('/')[1]
-        // console.log('pathName', pathName)
-        //this.schema.paths[pathName].VERBO
-
-        //HERE we have to get the path 
-
         const filename = kebabCase(formatResourceName(pathName)) + '-resource.js';
         // Avoid processing resource if it was already processed
         if (processedResources.hasOwnProperty(filename)) return
@@ -97,45 +90,41 @@ class SDKGenerator {
 
     generateResourceFunctions(pathName) {
         const sharedPathNames = getPathNamesWithSameCustomResourceName(pathName);
-        // console.log(sharedPathNames);
         const doesPathStartWithOneOfTheSharedPathNames = (path)=> sharedPathNames.find(name => path.startsWith(name + '/'));
         const resourcePaths = Object.keys(this.paths).filter(path => sharedPathNames.includes(path) || doesPathStartWithOneOfTheSharedPathNames(path));
 
         
         let allResourceFunctions = resourcePaths.reduce((functions, resourcePath) => {
-            const newFunctions = this.generatePathFunctions(pathName, resourcePath);
+            const newFunctions = this.generatePathFunctions(resourcePath);
             return {...functions, ...newFunctions}
         }, {});
         
         this.appendAliasDownloadCSVMethodIfNeeded(pathName, allResourceFunctions);
         this.appendDownloadPDFIfNeeded(pathName, allResourceFunctions);
-        // console.log("💃🏽💃🏽💃🏽💃🏽💃🏽~ all flat allResourceFunctions", allResourceFunctions)
         return allResourceFunctions;
     }
 
-    generatePathFunctions(resourceName, resourcePath) {
+    generatePathFunctions(resourcePath) {
         const verbs = ['get', 'post', 'put', 'delete', 'patch'];
         const path = this.paths[resourcePath];
 
         const functions = verbs.reduce((functions, verb) => {
-            const generator = this.buildGenerator(verb)
             if (!path[verb]) return functions
-            const {functionName, functionCode} = generator(resourceName, resourcePath, path[verb]);
+            const {functionName, functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction(verb);
             functions[functionName] = functionCode;
             return functions;
         }, {});
 
-        this.appendAliasMethodIfNeeded(resourceName, resourcePath, functions);
+        this.appendAliasMethodIfNeeded(resourcePath, functions);
         return functions;
     }
 
-    appendAliasMethodIfNeeded(resourceName, resourcePath, functions) {
+    appendAliasMethodIfNeeded(resourcePath, functions) {
         if (!customFunctionNames[resourcePath]) return;
         const path = this.paths[resourcePath];
         if (customFunctionNames[resourcePath]['alias']) {
             const {verb, name} = customFunctionNames[resourcePath]['alias'];
-            const generator = this.buildGenerator(verb)
-            let {functionCode} = generator(resourceName, resourcePath, path[verb]);
+            let {functionCode} = new FunctionGenerator(this.schema, resourcePath, verb).generateFunction(verb);
             const originalFunctionName = functionCode.split('(')[0];
             functionCode = functionCode.replace(originalFunctionName, name);
             functions[name] = functionCode;
@@ -172,11 +161,6 @@ class SDKGenerator {
                 return apiHandler.download(\`invoices/\${id}\`, config);
             },`;
         }
-    }
-
-    buildGenerator(httpVerb) {
-        // if (httpVerb === 'post') return postGenerator(this.schema);
-        return functionGenerator(this.schema, httpVerb);
     }
 
     hasApplicationJson(path) {

@@ -212,7 +212,7 @@ it("DEBUG generate path functions", async () => {
   const debugFunctions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("password-tokens", "/password-tokens");
+  ).generatePathFunctions("/password-tokens");
   // console.log(debugFunctions)
 });
 
@@ -279,7 +279,6 @@ it("generates custom named function with dynamic parameter", async () => {
     fullSchema,
     customFunctionNames
   ).generatePathFunctions(
-    "authentication-tokens",
     "/authentication-tokens/{token}/exchange"
   );
 
@@ -296,7 +295,7 @@ it("generates functions for path with 2 dynamic parameters", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("custom-fields", "/custom-fields/{resource}/{name}");
+  ).generatePathFunctions("/custom-fields/{resource}/{name}");
 
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({resource,name}) { 
@@ -318,7 +317,6 @@ it.skip("generates resource function ignoring Organization-Id parameter", async 
     fullSchema,
     customFunctionNames
   ).generatePathFunctions(
-    "payment-cards-bank-names",
     "/payment-cards-bank-names"
   );
 
@@ -381,7 +379,6 @@ it("generates downloadCSV and downloadPDF for invoice resource", async () => {
 
 it("generates create function with optional id for post operation", async () => {
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "customers",
     "/customers"
   );
   jestExpect(pathFunctions.create).toMatchInlineSnapshot(`
@@ -393,7 +390,6 @@ it("generates create function with optional id for post operation", async () => 
 
 it("generates get function with expand params", async () => {
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "disputes",
     "/disputes/{id}"
   );
   jestExpect(pathFunctions.update).toMatchInlineSnapshot(`
@@ -405,7 +401,6 @@ it("generates get function with expand params", async () => {
 
 it("generates alias functions for customers", async () => {
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "customers",
     "/customers/{id}/lead-source"
   );
   expect(Object.keys(pathFunctions)).to.eql([
@@ -431,7 +426,6 @@ it("generates alias functions for customers", async () => {
 it.skip("generates alias functions for invoices", async () => {
   //TODO: this path is not in core API
   const pathFunctions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "invoices",
     "/invoices/{id}/lead-source"
   );
   expect(Object.keys(pathFunctions)).to.eql([
@@ -458,7 +452,7 @@ it("generates expand parameter for put functions", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("invoices", "/invoices/{id}");
+  ).generatePathFunctions("/invoices/{id}");
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
@@ -471,7 +465,7 @@ it("generates expand parameter for post functions", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("invoices", "/invoices");
+  ).generatePathFunctions("/invoices");
 
   jestExpect(functions.create).toMatchInlineSnapshot(`
     "create({id = '',data,expand = null}) { const params = {expand};
@@ -484,7 +478,7 @@ it("generates required and optional parameters when they are declared as raw par
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("aml", "/aml");
+  ).generatePathFunctions("/aml");
 
   //TODO: Double check if passing dob/country as null affects the BE result
   jestExpect(functions.get).toMatchInlineSnapshot(`
@@ -498,7 +492,7 @@ it("generates expand parameters when they are appear inside shared parameters (i
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("subscriptions", "/subscriptions/{id}");
+  ).generatePathFunctions("/subscriptions/{id}");
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
@@ -517,13 +511,12 @@ it.skip("DEBUG generates all functions for core resource", async () => {
   const functions = new SDKGenerator(
     fullSchema,
     customFunctionNames
-  ).generatePathFunctions("invoices", "/invoices/{id}");
+  ).generatePathFunctions("/invoices/{id}");
   console.log(functions.update);
 });
 
 it.skip("DEBUG generates one path functions for core resource", async () => {
   const functions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "files",
     "/files"
   );
   console.log(functions);
