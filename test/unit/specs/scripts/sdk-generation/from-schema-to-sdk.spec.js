@@ -34,10 +34,7 @@ it("generates proper resources", async () => {
     "export default function ThreeDSecureResource({ apiHandler }) {
       return {
         getAll({ limit = null, offset = null } = {}) {
-          const params = {
-            limit,
-            offset,
-          };
+          const params = { limit, offset };
           return apiHandler.getAll(\`3dsecure\`, params);
         },
         create({ id = '', data }) {

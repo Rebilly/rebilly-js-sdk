@@ -4,7 +4,6 @@ const kebabCase = require('lodash.kebabcase');
 const {getPathNamesWithSameCustomResourceName, 
     formatResourceName, 
     functionGenerator, 
-    getGenerator, 
     postGenerator
 } = require('./generators');
 const { customFunctionNames } = require('./customizations/customizations');
@@ -176,7 +175,6 @@ class SDKGenerator {
     }
 
     buildGenerator(httpVerb) {
-        if (httpVerb === 'get') return getGenerator(this.schema);
         if (httpVerb === 'post') return postGenerator(this.schema);
         return functionGenerator(this.schema, httpVerb);
     }

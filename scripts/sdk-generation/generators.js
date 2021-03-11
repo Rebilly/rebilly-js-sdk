@@ -17,6 +17,13 @@ function formatResourceName(pathName) {
     return capitalize(camelCase(pathName));
 }
 
+function getPathNamesWithSameCustomResourceName(pathName) {
+    const resourceName = formatResourceName(pathName);
+    const sharedPathNames = Object.keys(customResourceNames).filter(key => customResourceNames[key] === resourceName);
+    if (sharedPathNames.length === 0) { sharedPathNames.push(pathName)}
+    return sharedPathNames;
+};
+
 function capitalize(s) {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
@@ -39,66 +46,16 @@ function functionGenerator(schema, httpVerb) {
     }
 }
 
-function getGenerator(schema) {
-
-    return function generateGet(resourceName, resourcePath, getPath) {
-       
-        const operationId = getPath.operationId;
-        // console.log('🐼🐼🐼🐼🐼 GET operationId', operationId)
-        // console.log('⎨⎨⎨⎨ paramNames', paramNames)
-        // console.log('ᚬᚬᚬᚬ getPath', getPath)
-        // console.log('ᚬᚬᚬᚬ getPath.responses.content', getPath.responses['200'].content['application/json'].schema.type === 'array')
-        //TODO: Check how to detect cases that don't end up in collection
-        //This does not work for array typed get operations like getAuthOptions in customer-authentication 
-        // if(getPath.responses['200'].content['application/json'].schema.type === 'array') {
-        //     return generateGetAllFunction(resourcePath, paramNames, customName);
-        // }
-        if (operationId.endsWith('Collection')) {
-            return generateGetAllFunction(resourcePath);
-        } else {
-            const generator = new Generator(schema, resourcePath);
-            return generator.generateFunction('get');
-        }
-    }
-    
-    function generateGetAllFunction(resourcePath) {
-        const generator = new Generator(schema, resourcePath);
-        const dynamicParams = generator.extractParametersFromResourcePath();
-        const paramNamesWithDefaultValues = [...generator.getNamedParametersWithDefaultValues('get'), ...dynamicParams];
-        const paramNames = [...generator.getNamedParameters('get'), ...dynamicParams];
-
-        const functionName = generator.findCustomName('get') || 'getAll';
-        const functionCode = `${functionName}(${fromParamNamesToDefaultParams(paramNamesWithDefaultValues)} = {}) {
-            const params = {
-                ${paramNames.join(',')}
-            };
-            return apiHandler.getAll(${generator.formatResourcePath(resourcePath)}, params);
-        }`
-        return {functionName, functionCode};
-    }
-
-    function fromParamNamesToDefaultParams(paramNames) {
-        const object = paramNames.reduce((acc, p) => {
-            acc[p] = null;
-            return acc;
-        }, {})
-        return JSON.stringify(object).replace(/"/g, '').replace(/:/g, '=');
-    }
-}
-
 function postGenerator(schema) {
     return function (resourceName, resourcePath) {
         const generator = new Generator(schema, resourcePath);
-        const expandParams = generator.generateExpandParamConstant('post');
-        const appendParamsIfNeeded = expandParams ? ',params' : '';
+        const paramsConstant = generator.generateParamsConstant('post');
+        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
 
-        let handlerFunction = 'post'; 
         if (!resourcePath.includes('{')) {
-            // Create case
-            handlerFunction = 'create';
             const functionName = generator.generateFunctionName('post');
             const functionCode = `${generator.generateFunctionSignature('post', functionName)} {
-                ${expandParams}
+                ${paramsConstant}
                 return apiHandler.create(${generator.formatResourcePath(resourcePath + '/{id}')} ,id, data ${appendParamsIfNeeded});
             }`
             return {functionName, functionCode};
@@ -108,20 +65,17 @@ function postGenerator(schema) {
     }
 }
 
-function getPathNamesWithSameCustomResourceName(pathName) {
-    const resourceName = formatResourceName(pathName);
-    const sharedPathNames = Object.keys(customResourceNames).filter(key => customResourceNames[key] === resourceName);
-    if (sharedPathNames.length === 0) { sharedPathNames.push(pathName)}
-    return sharedPathNames;
-};
-
-
 //Command pattern
 class Generator {
     constructor(schema, resourcePath) {
         this.schema = schema;
         this.resourcePath = resourcePath;
+        this.operationId = resourcePath.operationId;
         this.pathSchema = this.schema.paths[this.resourcePath]
+    }
+
+    getOperationId(httpVerb) {
+        return this.pathSchema[httpVerb].operationId;
     }
 
     getRequestBody(httpVerb) {
@@ -129,18 +83,32 @@ class Generator {
     }
 
     generateFunction(httpVerb) {
-        const appendDataIfNeeded = this.hasRequestParams(httpVerb) ? ', data' : '';
-        const paramsConstant = this.generateParamsConstant(httpVerb);
-        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
-    
-    
         const functionName = this.generateFunctionName(httpVerb);
-        const functionCode = `${this.generateFunctionSignature(httpVerb, functionName)} { ${paramsConstant}
-            return apiHandler.${httpVerb}(${this.formatResourcePath(this.resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});
-        }`
+        const functionCode = `${this.generateFunctionSignature(httpVerb, functionName)} ${this.generateFunctionBody(httpVerb)}`
         return {functionName, functionCode};
+}
+
+    generateFunctionBody(httpVerb) {
+        const paramsConstant = this.generateParamsConstant(httpVerb);
+        return `{ ${paramsConstant}
+            ${this.generateReturnLine(httpVerb, paramsConstant)}
+        }`
     }
 
+    generateReturnLine(httpVerb, paramsConstant) {
+        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
+        const appendDataIfNeeded = this.hasRequestParams(httpVerb) ? ', data' : '';
+        return `return apiHandler.${this.getApiHandlerMethod(httpVerb)}(${this.formatResourcePath(this.resourcePath)} ${appendDataIfNeeded} ${appendParamsIfNeeded});`
+    }
+
+    isGetAllFunction(httpVerb) {
+        return httpVerb === 'get' && this.getOperationId(httpVerb).endsWith('Collection');
+    }
+
+    getApiHandlerMethod(httpVerb) {
+        if (this.isGetAllFunction(httpVerb)) return 'getAll';
+        return httpVerb;
+    }
 
     generateParamsConstant (httpVerb) {
         const namedParams = this.generateNamedParamsConstant(httpVerb);
@@ -156,28 +124,11 @@ class Generator {
 
     // Esta se compone de functionName + params --> es fácil de extraerlos para reutilizar
     generateFunctionSignature(httpVerb, functionName) {
-        return `${functionName}({${this.generateParameterList(httpVerb)}})`;
-    }
+        const argumentList = (this.isGetAllFunction(httpVerb)) 
+            ? this.generateDefaultOptionalArguments('get')
+            : `{${this.generateArgumentsWithDefaults(httpVerb)}}`;
 
-    generateParameterList(httpVerb) {
-        const dynamicParams = this.extractParametersFromResourcePath();
-        const namedParams = this.getNamedParametersWithDefaultValues(httpVerb);
-        
-        //Special case for create
-        if (httpVerb === 'post' && !this.resourcePath.includes('{')) {
-            dynamicParams.push("id = ''");
-        }
-        
-        if (this.hasRequestParams(httpVerb)) {
-            dynamicParams.push('data');
-        }
-        
-        if (this.hasEmbeddedParams(httpVerb) && !namedParams.includes('expand = null')) {
-            dynamicParams.push('expand = null');
-        }
-        
-        const allParams = [...dynamicParams,...namedParams];
-        return allParams.join(',');
+        return `${functionName}(${argumentList})`;
     }
 
     getNamedParametersWithDefaultValues(httpVerb) {
@@ -199,6 +150,71 @@ class Generator {
         : [];
     }
 
+    getAllParamNames(httpVerb) {
+        const dynamicParams = this.extractParametersFromResourcePath();
+        const namedParams = this.getRefParams(httpVerb);
+        
+        //Special case for create
+        if (httpVerb === 'post' && !this.resourcePath.includes('{')) {
+            dynamicParams.push("id");
+        }
+        
+        if (this.hasRequestParams(httpVerb)) {
+            dynamicParams.push('data');
+        }
+        
+        if (this.hasEmbeddedParams(httpVerb) && !namedParams.includes('expand')) {
+            dynamicParams.push('expand');
+        }
+
+        //We use Set to remove duplicates
+        return [...new Set([...dynamicParams,...namedParams])];
+    }
+
+    //TODO: ?? we should improve this name
+    getRefParams(httpVerb) {
+        const accumulateParamsFn =  (params, param) => {
+            const paramName = this.getParamName(param);
+            // Discard organization-Id from parameters
+            if (paramName === 'Organization-Id') return params;
+            params.push(paramName);
+            return params;
+        }
+        
+        const pathSchema = this.pathSchema[httpVerb];
+        return pathSchema.parameters 
+        ? pathSchema.parameters.reduce(accumulateParamsFn, []) 
+        : [];
+    }
+
+    getOptionalParameters(httpVerb) {
+        const parameters = this.pathSchema[httpVerb].parameters;
+        if (!parameters) return [];
+        return parameters
+            .filter(param => (param.required === false || param.name === 'expand'))
+            .map(param => param.name);
+    }
+
+    generateDefaultOptionalArguments(httpVerb) {
+        const argsWithDefaults = this.getAllParamNames(httpVerb).map(param => {
+            param+= ' = null'; 
+            return param;
+        }).join(',');
+        return `{ ${argsWithDefaults} } = {}`; 
+    }
+
+    generateArgumentsWithDefaults(httpVerb) {
+        const optionalParamNames = this.getOptionalParameters(httpVerb);
+        return this.getAllParamNames(httpVerb).map(paramName => {
+            if (optionalParamNames.includes(paramName) || paramName === 'expand') return paramName + ' = null';
+            //Special case for create
+            if (paramName === 'id' && httpVerb === 'post' && !this.resourcePath.includes('{')) return "id = ''";
+            return paramName;
+        }).join(',');
+    }
+
+   
+
     generateFunctionName(httpVerb) {
         const defaultFunctionNames = {
             'get': 'get',
@@ -207,8 +223,9 @@ class Generator {
             'post': 'create',
             'delete': 'delete',
         };
-    
-        return this.findCustomName(httpVerb) || defaultFunctionNames[httpVerb];
+        const defaultFunctionName = (this.isGetAllFunction(httpVerb)) ? 'getAll' : defaultFunctionNames[httpVerb]; 
+
+        return this.findCustomName(httpVerb) || defaultFunctionName;
     }
 
     findCustomName(httpVerb) {
@@ -318,7 +335,6 @@ module.exports = {
     formatResourceName, 
     getPathNamesWithSameCustomResourceName, 
     functionGenerator,
-    getGenerator,
     postGenerator,
     Generator
 } 
