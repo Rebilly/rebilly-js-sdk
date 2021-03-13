@@ -53,6 +53,10 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.post(`transactions/${id}/refund`, data);
         },
 
+        query({id}) {
+            return apiHandler.post(`transactions/${id}/query`, {});
+        },
+
         getGatewayLogs({id}) {
             return apiHandler.getAll(`transactions/${id}/gateway-logs`);
         },
