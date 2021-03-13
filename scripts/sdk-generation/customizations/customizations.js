@@ -6,12 +6,12 @@ const customFunctionNames = {
     "/authentication-tokens/{token}/exchange":  'exchangeToken',
     "/authentication-tokens": {get: 'getAllAuthTokens', post: "login"},
     "/authentication-tokens/{token}": {get: 'verify', delete: "logout"},
-    '/credentials': {get: 'getAllCredentials', post: 'createCredential'}, // this one uses create instead of post 
+    '/credentials': {get: 'getAllCredentials', post: 'createCredential'}, 
     '/credentials/{id}': {
         get: 'getCredential',
         put: 'updateCredential', 
         delete: 'deleteCredential', 
-        post: 'createCredential' // this one uses create instead of post 
+        post: 'createCredential' 
     }, 
     '/password-tokens': {get: 'getAllResetPasswordTokens', post: 'createResetPasswordToken'},
     '/password-tokens/{id}': {get: 'getResetPasswordToken', delete: 'deleteResetPasswordToken'},
@@ -97,7 +97,8 @@ const customFunctionNames = {
     },
     
 
-
+    //Bank account
+    '/bank-accounts/{id}': {get: 'get', patch: 'patch'},
     '/bank-accounts/{id}/deactivation': 'deactivate',
 
     //TODO: unit test this case:
