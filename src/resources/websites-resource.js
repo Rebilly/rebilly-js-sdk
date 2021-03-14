@@ -14,16 +14,14 @@ export default function WebsitesResource({apiHandler}) {
             return apiHandler.getAll(`websites`, params);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
                     offset,
                     sort,
-                    expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };

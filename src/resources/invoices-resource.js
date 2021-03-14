@@ -2,15 +2,14 @@ import {pdfHeader, csvHeader} from '../request-headers';
 
 export default function InvoicesResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 expand,
                 filter,
-                q,
-                criteria
+                q
             };
             return apiHandler.getAll(`invoices`, params);
         },
@@ -28,7 +27,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.download(`invoices/${id}`, config);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -36,8 +35,7 @@ export default function InvoicesResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };
