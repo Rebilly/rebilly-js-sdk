@@ -2,20 +2,19 @@ import {csvHeader} from '../request-headers';
 
 export default function SubscriptionsResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 expand,
                 filter,
-                q,
-                criteria
+                q
             };
             return apiHandler.getAll(`subscriptions`, params);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -23,8 +22,7 @@ export default function SubscriptionsResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };

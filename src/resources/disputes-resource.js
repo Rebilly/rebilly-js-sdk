@@ -2,7 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function DisputesResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -10,12 +10,11 @@ export default function DisputesResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria
             };
             return apiHandler.getAll(`disputes`, params);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -23,8 +22,7 @@ export default function DisputesResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };

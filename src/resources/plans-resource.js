@@ -1,13 +1,12 @@
 export default function PlansResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, expand = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, expand = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
                 q,
-                criteria,
                 expand,
             };
             return apiHandler.getAll(`plans`, params);
