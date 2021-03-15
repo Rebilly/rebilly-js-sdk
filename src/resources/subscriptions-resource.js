@@ -44,17 +44,6 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.put(`subscriptions/${id}`, data, params);
         },
 
-        /**
-         * Use resource `subscriptionCancellations` instead.
-         * @deprecated
-         * @param id
-         * @param data
-         * @returns {Promise<any>}
-         */
-        cancel({id, data}) {
-            return apiHandler.post(`subscriptions/${id}/cancel`, data);
-        },
-
         changePlan({id, data}) {
             return apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
