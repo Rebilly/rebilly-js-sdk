@@ -76,7 +76,7 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id='', limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,

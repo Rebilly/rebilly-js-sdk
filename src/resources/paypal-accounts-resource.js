@@ -19,10 +19,6 @@ export default function PayPalAccountsResource({apiHandler}) {
             return apiHandler.create(`paypal-accounts/${id}`, id, data);
         },
 
-        activate({id, data}) {
-            return apiHandler.post(`paypal-accounts/${id}/activation`, data);
-        },
-
         deactivate({id}) {
             return apiHandler.post(`paypal-accounts/${id}/deactivation`);
         }
