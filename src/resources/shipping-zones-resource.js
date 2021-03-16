@@ -1,11 +1,12 @@
 export default function ShippingZonesResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
-                filter
+                filter,
+                q
             };
             return apiHandler.getAll(`shipping-zones`, params);
         },

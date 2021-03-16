@@ -97,17 +97,18 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.delete(`invoices/${id}/lead-source`);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id= null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                q,
             };
             return apiHandler.getAll(`invoices/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id, messageId = ''} = {}) {
+        getTimelineMessage({id, messageId}) {
             return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
         },
 

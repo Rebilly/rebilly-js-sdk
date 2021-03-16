@@ -65,28 +65,25 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.delete(`customers/${id}/lead-source`);
         },
 
-        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
+        getAllUpcomingInvoices({id='', expand = null} = {}) {
             const params = {
-                limit,
-                offset,
-                sort,
-                filter,
                 expand,
             };
             return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                q
             };
             return apiHandler.getAll(`customers/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id, messageId = ''} = {}) {
+        getTimelineMessage({id, messageId}) {
             return apiHandler.get(`customers/${id}/timeline/${messageId}`);
         },
 
