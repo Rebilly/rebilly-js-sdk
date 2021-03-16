@@ -48,7 +48,7 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
 
-        getAllUpcomingInvoices({id, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
+        getAllUpcomingInvoices({id=null, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -63,17 +63,18 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.post(`subscriptions/${id}/upcoming-invoices/${invoiceId}/issue`, data);
         },
 
-        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                q
             };
             return apiHandler.getAll(`subscriptions/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id, messageId = ''} = {}) {
+        getTimelineMessage({id, messageId}) {
             return apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
         },
 
