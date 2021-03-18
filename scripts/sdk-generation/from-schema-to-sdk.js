@@ -99,6 +99,7 @@ class SDKGenerator {
         
         this.appendAliasDownloadCSVMethodIfNeeded(pathName, allResourceFunctions);
         this.appendDownloadPDFIfNeeded(pathName, allResourceFunctions);
+        this.avoidUpdateFunctionForSomeResources(pathName, allResourceFunctions);
         return allResourceFunctions;
     }
 
@@ -158,6 +159,14 @@ class SDKGenerator {
                 };
                 return apiHandler.download(\`invoices/\${id}\`, config);
             },`;
+        }
+    }
+
+    // There certain resources where we already allow post and put though create function
+    // so that we don't want to include explicit update function
+    avoidUpdateFunctionForSomeResources(pathName, functions) {
+        if (['/subscription-cancellations', '/bank-accounts'].includes(pathName)) {
+            delete functions.update;
         }
     }
 

@@ -25,6 +25,11 @@ const customFunctionNames = {
   "/account/verification/{token}": "verifyEmail",
 };
 
+const fullSchemaGenerator = new SDKGenerator(
+  fullSchema,
+  customFunctionNames
+);
+
 it("generates proper resources", async () => {
   const processedResources = new SDKGenerator(
     simplified3DSecureSchema
@@ -50,10 +55,7 @@ it("generates proper resources", async () => {
 });
 
 it.skip("DEBUG", async () => {
-  const processedResources = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).processSchema();
+  const processedResources = fullSchemaGenerator.processSchema();
 
   console.log(processedResources["aml-resource.js"]);
 });
@@ -209,18 +211,12 @@ it("generates custom experimental resource file names", async () => {
 });
 
 it("DEBUG generate path functions", async () => {
-  const debugFunctions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/password-tokens");
+  const debugFunctions = fullSchemaGenerator.generatePathFunctions("/password-tokens");
   // console.log(debugFunctions)
 });
 
 it("generates all combined resources", async () => {
-  const processedResources = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).processSchema();
+  const processedResources = fullSchemaGenerator.processSchema();
 
   const resourceKeys = Object.keys(processedResources);
   expect(resourceKeys.length).to.eql(29);
@@ -244,10 +240,7 @@ it("generates all storefront resources", async () => {
 });
 
 it("generates all functions for one resource with custom name", async () => {
-  const authFunctions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generateResourceFunctions("/authentication-tokens");
+  const authFunctions = fullSchemaGenerator.generateResourceFunctions("/authentication-tokens");
 });
 
 it.skip("generates all functions for one storefront resource", async () => {
@@ -275,10 +268,7 @@ it.skip("generates all functions for one storefront resource", async () => {
 });
 
 it("generates custom named function with dynamic parameter", async () => {
-  const pathFunctions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions(
+  const pathFunctions = fullSchemaGenerator.generatePathFunctions(
     "/authentication-tokens/{token}/exchange"
   );
 
@@ -292,10 +282,7 @@ it("generates custom named function with dynamic parameter", async () => {
 it("generates functions for path with 2 dynamic parameters", async () => {
   const customFunctionNames = {};
 
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/custom-fields/{resource}/{name}");
+  const functions = fullSchemaGenerator.generatePathFunctions("/custom-fields/{resource}/{name}");
 
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({resource,name}) { 
@@ -313,10 +300,7 @@ it("generates functions for path with 2 dynamic parameters", async () => {
 it.skip("generates resource function ignoring Organization-Id parameter", async () => {
   // GetPaymentCardBankNameCollection operation has organizationId as parameter
   //TODO: check which api has this definition (not in core)
-  const pathFunctions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions(
+  const pathFunctions = fullSchemaGenerator.generatePathFunctions(
     "/payment-cards-bank-names"
   );
 
@@ -324,10 +308,7 @@ it.skip("generates resource function ignoring Organization-Id parameter", async 
 });
 
 it("generates all resource functions merging paths with different patterns (coupons and coupons-redemptions)", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generateResourceFunctions("/coupons");
+  const functions = fullSchemaGenerator.generateResourceFunctions("/coupons");
 
   expect(Object.keys(functions)).to.eql([
     "getAllRedemptions",
@@ -342,11 +323,18 @@ it("generates all resource functions merging paths with different patterns (coup
   ]);
 });
 
+it("Avoids update function when create and patch are present", async () => {
+  const generator = fullSchemaGenerator;
+
+  let functions = generator.generateResourceFunctions("/bank-accounts");
+  expect(functions.hasOwnProperty('update')).to.be.false;
+  
+  functions = generator.generateResourceFunctions("/subscription-cancellations");
+  expect(functions.hasOwnProperty('update')).to.be.false;
+});
+
 it("generates downloadCSV function for customers resource", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generateResourceFunctions("/customers");
+  const functions = fullSchemaGenerator.generateResourceFunctions("/customers");
 
   jestExpect(functions.downloadCSV).toMatchInlineSnapshot(`
     "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
@@ -368,10 +356,7 @@ it("generates downloadCSV function for customers resource", async () => {
 });
 
 it("generates downloadCSV and downloadPDF for invoice resource", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generateResourceFunctions("/invoices");
+  const functions = fullSchemaGenerator.generateResourceFunctions("/invoices");
 
   expect(functions.downloadCSV).to.exist;
   expect(functions.downloadPDF).to.exist;
@@ -449,10 +434,7 @@ it.skip("generates alias functions for invoices", async () => {
 });
 
 it("generates expand parameter for put functions", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/invoices/{id}");
+  const functions = fullSchemaGenerator.generatePathFunctions("/invoices/{id}");
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
@@ -462,10 +444,7 @@ it("generates expand parameter for put functions", async () => {
 });
 
 it("generates expand parameter for post functions", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/invoices");
+  const functions = fullSchemaGenerator.generatePathFunctions("/invoices");
 
   jestExpect(functions.create).toMatchInlineSnapshot(`
     "create({id = '',data,expand = null}) { const params = {expand};
@@ -475,10 +454,7 @@ it("generates expand parameter for post functions", async () => {
 });
 
 it("generates required and optional parameters when they are declared as raw parameters in the operation", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/aml");
+  const functions = fullSchemaGenerator.generatePathFunctions("/aml");
 
   //TODO: Double check if passing dob/country as null affects the BE result
   jestExpect(functions.get).toMatchInlineSnapshot(`
@@ -489,10 +465,7 @@ it("generates required and optional parameters when they are declared as raw par
 });
 
 it("generates expand parameters when they are appear inside shared parameters (instead of inside requestBody)", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/subscriptions/{id}");
+  const functions = fullSchemaGenerator.generatePathFunctions("/subscriptions/{id}");
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
@@ -508,10 +481,7 @@ it("generates expand parameters when they are appear inside shared parameters (i
 });
 
 it.skip("DEBUG generates all functions for core resource", async () => {
-  const functions = new SDKGenerator(
-    fullSchema,
-    customFunctionNames
-  ).generatePathFunctions("/invoices/{id}");
+  const functions = fullSchemaGenerator.generatePathFunctions("/invoices/{id}");
   console.log(functions.update);
 });
 
