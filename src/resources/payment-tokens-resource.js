@@ -8,8 +8,8 @@ export default function PaymentTokensResource({apiHandler}) {
             return apiHandler.getAll(`tokens`, params);
         },
 
-        get({id}) {
-            return apiHandler.get(`tokens/${id}`);
+        get({token}) {
+            return apiHandler.get(`tokens/${token}`);
         },
 
         create({data}) {
