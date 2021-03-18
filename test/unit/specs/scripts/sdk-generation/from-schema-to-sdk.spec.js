@@ -494,8 +494,7 @@ it.skip("DEBUG generates one path functions for core resource", async () => {
 
 //TODO:
 //There are some special functions in create-api-handler:
-// - create instead of post
-// - download
+
 // - deleteAll
 // - getAll
 // We must look for all those occurrences and decide how to auto-generate them

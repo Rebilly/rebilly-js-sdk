@@ -132,7 +132,7 @@ class SDKGenerator {
 
     appendAliasDownloadCSVMethodIfNeeded(pathName, functions) {
         if (pathsWithDownloadCSV.includes(pathName)) {
-            functions['downloadCSV'] = `downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+            functions['downloadCSV'] = `downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
                 const config = {
                     params: {
                         limit,
@@ -140,8 +140,7 @@ class SDKGenerator {
                         sort,
                         expand,
                         filter,
-                        q,
-                        criteria
+                        q
                     },
                     headers: csvHeader
                 };
