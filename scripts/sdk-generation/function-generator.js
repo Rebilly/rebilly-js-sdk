@@ -25,7 +25,7 @@ function buildFunctionData(schema, resourcePath, httpVerb) {
 class FunctionGenerator {
     constructor(schema, resourcePath, httpVerb) {
         const verbSchema = schema.paths[resourcePath][httpVerb];
-        this. schema = schema;
+        this.schema = schema;
         this.resourcePath = resourcePath;
         this.httpVerb = httpVerb;
         this. operationId = verbSchema.operationId;
@@ -35,7 +35,7 @@ class FunctionGenerator {
 
     generateFunction() {
         const functionName = this.generateFunctionName();
-        const functionCode = `${this.generateFunctionSignature(functionName)} ${this.generateFunctionBody()}`
+        const functionCode = `${this.generateFunctionSignature(functionName)} ${this.generateFunctionBody()}`;
         return {functionName, functionCode};
     }
 
@@ -47,20 +47,31 @@ class FunctionGenerator {
     }
 
     generateReturnLine(paramsConstant) {
-        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
         const appendDataIfNeeded = this.hasRequestParams() ? ', data' : '';
+        const appendParamsIfNeeded = paramsConstant ? ',params' : '';
         return `return apiHandler.${this.getApiHandlerMethod()}(${this.generateApiPath()} ${appendDataIfNeeded} ${appendParamsIfNeeded});`
+    }
+
+    buildQueryString() {
+        const queryParams = this.getQueryParameters();
+        const searchParams = queryParams.reduce((params, paramName) => {
+            params[paramName] = `\${${paramName}}`;
+            return params;
+        }, {});
+        const queryString = Object.keys(searchParams)
+            .map(k => k + '=' + searchParams[k]).join('&');
+        if (queryString === '') return ''
+        return '?' + queryString;
     }
 
     generateApiPath() {
         const getApiPath = (resourcePath) => {
             const pathWithoutLeadingSlash = resourcePath.substring(1);
-            return `\`${pathWithoutLeadingSlash.split('{').join('${')}\``;
+            return `\`${pathWithoutLeadingSlash.split('{').join('${')}${this.buildQueryString()}\``;
         }
         if (this.isCreateFunction()) return `${getApiPath(this.resourcePath + '/{id}')} ,id`;
-        return getApiPath(this.resourcePath);
+        return getApiPath(this.resourcePath)
     }
-
 
     isGetAllFunction() {
         return this.httpVerb === 'get' && this.operationId.endsWith('Collection');
@@ -213,7 +224,22 @@ class FunctionGenerator {
             const paramName = this.getParamName(param);
             // Discard organization-Id from parameters
             if (paramName === 'Organization-Id') return params;
+            if (param.in === 'query') return params;
             params.push(paramName);
+            return params;
+        }
+        
+        return this.pathParameters 
+        ? this.pathParameters.reduce(accumulateParamsFn, []) 
+        : [];
+    }
+
+    getQueryParameters() {
+        const accumulateParamsFn = (params, param) => {
+            const paramName = this.getParamName(param);
+            // Discard organization-Id from parameters
+            if (paramName === 'Organization-Id') return params;
+            if (param.in === 'query') params.push(paramName);
             return params;
         }
         

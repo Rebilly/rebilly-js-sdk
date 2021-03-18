@@ -26,3 +26,10 @@ test('gets optional arguments for aml', ()=> {
      expect(generatorFor('/aml', 'get').getOptionalParameters()).to.eql(["dob", "country"]);
      expect(generatorFor('/aml', 'get').generateArgumentsWithDefaults()).to.eql("firstName,lastName,dob = null,country = null");
 })
+
+test('appends query params to api path', ()=> {
+    const generator = generatorFor('/customers/{id}', 'delete');
+    expect(generator.buildQueryString()).to.eql('?targetCustomerId=${targetCustomerId}');
+    expect(generator.getQueryParameters()).to.eql(['targetCustomerId']);
+    expect(generator.generateApiPath()).to.eql("`customers/${id}?targetCustomerId=${targetCustomerId}`");
+})

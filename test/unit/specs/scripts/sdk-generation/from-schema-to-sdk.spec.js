@@ -25,10 +25,7 @@ const customFunctionNames = {
   "/account/verification/{token}": "verifyEmail",
 };
 
-const fullSchemaGenerator = new SDKGenerator(
-  fullSchema,
-  customFunctionNames
-);
+const fullSchemaGenerator = new SDKGenerator(fullSchema, customFunctionNames);
 
 it("generates proper resources", async () => {
   const processedResources = new SDKGenerator(
@@ -211,7 +208,9 @@ it("generates custom experimental resource file names", async () => {
 });
 
 it("DEBUG generate path functions", async () => {
-  const debugFunctions = fullSchemaGenerator.generatePathFunctions("/password-tokens");
+  const debugFunctions = fullSchemaGenerator.generatePathFunctions(
+    "/password-tokens"
+  );
   // console.log(debugFunctions)
 });
 
@@ -240,7 +239,9 @@ it("generates all storefront resources", async () => {
 });
 
 it("generates all functions for one resource with custom name", async () => {
-  const authFunctions = fullSchemaGenerator.generateResourceFunctions("/authentication-tokens");
+  const authFunctions = fullSchemaGenerator.generateResourceFunctions(
+    "/authentication-tokens"
+  );
 });
 
 it.skip("generates all functions for one storefront resource", async () => {
@@ -282,7 +283,9 @@ it("generates custom named function with dynamic parameter", async () => {
 it("generates functions for path with 2 dynamic parameters", async () => {
   const customFunctionNames = {};
 
-  const functions = fullSchemaGenerator.generatePathFunctions("/custom-fields/{resource}/{name}");
+  const functions = fullSchemaGenerator.generatePathFunctions(
+    "/custom-fields/{resource}/{name}"
+  );
 
   jestExpect(functions.get).toMatchInlineSnapshot(`
     "get({resource,name}) { 
@@ -327,17 +330,19 @@ it("Avoids update function when create and patch are present", async () => {
   const generator = fullSchemaGenerator;
 
   let functions = generator.generateResourceFunctions("/bank-accounts");
-  expect(functions.hasOwnProperty('update')).to.be.false;
-  
-  functions = generator.generateResourceFunctions("/subscription-cancellations");
-  expect(functions.hasOwnProperty('update')).to.be.false;
+  expect(functions.hasOwnProperty("update")).to.be.false;
+
+  functions = generator.generateResourceFunctions(
+    "/subscription-cancellations"
+  );
+  expect(functions.hasOwnProperty("update")).to.be.false;
 });
 
 it("generates downloadCSV function for customers resource", async () => {
   const functions = fullSchemaGenerator.generateResourceFunctions("/customers");
 
   jestExpect(functions.downloadCSV).toMatchInlineSnapshot(`
-    "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+    "downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
                     const config = {
                         params: {
                             limit,
@@ -345,8 +350,7 @@ it("generates downloadCSV function for customers resource", async () => {
                             sort,
                             expand,
                             filter,
-                            q,
-                            criteria
+                            q
                         },
                         headers: csvHeader
                     };
@@ -458,14 +462,16 @@ it("generates required and optional parameters when they are declared as raw par
 
   //TODO: Double check if passing dob/country as null affects the BE result
   jestExpect(functions.get).toMatchInlineSnapshot(`
-    "get({firstName,lastName,dob = null,country = null}) { const params = {firstName,lastName,dob,country};
-                return apiHandler.get(\`aml\`  ,params);
+    "get({firstName,lastName,dob = null,country = null}) { 
+                return apiHandler.get(\`aml?firstName=\${firstName}&lastName=\${lastName}&dob=\${dob}&country=\${country}\`  );
             }"
   `);
 });
 
 it("generates expand parameters when they are appear inside shared parameters (instead of inside requestBody)", async () => {
-  const functions = fullSchemaGenerator.generatePathFunctions("/subscriptions/{id}");
+  const functions = fullSchemaGenerator.generatePathFunctions(
+    "/subscriptions/{id}"
+  );
 
   jestExpect(functions.update).toMatchInlineSnapshot(`
     "update({id,data,expand = null}) { const params = {expand};
