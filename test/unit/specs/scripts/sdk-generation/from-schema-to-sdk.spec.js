@@ -491,11 +491,25 @@ it.skip("DEBUG generates all functions for core resource", async () => {
   console.log(functions.update);
 });
 
-it.skip("DEBUG generates one path functions for core resource", async () => {
-  const functions = new SDKGenerator(fullSchema, {}).generatePathFunctions(
-    "/files"
+it.only("adds special functions (detachAndDelete/uploadAndUpdate) to files resource", async () => {
+  const functions = fullSchemaGenerator.generateResourceFunctions(
+    "/attachments"
   );
-  console.log(functions);
+  expect(Object.keys(functions)).to.eql([
+    'getAllAttachments',
+    'attach',
+    'getAttachment',
+    'updateAttachment',
+    'detach',
+    'getAll',
+    'upload',
+    'get',
+    'update',
+    'delete',
+    'download',
+    'detachAndDelete', 
+    'uploadAndUpdate'
+  ]);
 });
 
 //TODO:
