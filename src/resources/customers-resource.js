@@ -45,8 +45,8 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.put(`customers/${id}`, data, params);
         },
 
-        merge({id, targetId = ''}) {
-            return apiHandler.delete(`customers/${id}?targetCustomerId=${targetId}`);
+        merge({id, targetCustomerId = ''}) {
+            return apiHandler.delete(`customers/${id}?targetCustomerId=${targetCustomerId}`);
         },
 
         getLeadSource({id}) {
