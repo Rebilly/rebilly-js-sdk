@@ -24,7 +24,7 @@ test('gets optional arguments', ()=> {
 
 test('gets optional arguments for aml', ()=> {
      expect(generatorFor('/aml', 'get').getOptionalParameters()).to.eql(["dob", "country"]);
-     expect(generatorFor('/aml', 'get').generateArgumentsWithDefaults()).to.eql("firstName,lastName,dob = null,country = null");
+     expect(generatorFor('/aml', 'get').generateArgumentsWithDefaults()).to.eql("expand = null,firstName,lastName,dob = null,country = null");
 })
 
 test('appends query params to api path', ()=> {
@@ -33,3 +33,32 @@ test('appends query params to api path', ()=> {
     expect(generator.getQueryParameters()).to.eql(['targetCustomerId']);
     expect(generator.generateApiPath()).to.eql("`customers/${id}?targetCustomerId=${targetCustomerId}`");
 })
+
+test('gets request payload params', ()=> {
+    let generator = generatorFor('/invoices/{id}/transaction', 'post');
+    expect(generator.getRequestPayloadParams()).to.eql([{transactionId: 'required'}, {amount:'null'}]);
+    
+    generator = generatorFor('/tags/{tag}/customers', 'post');
+    expect(generator.getRequestPayloadParams()).to.eql([{"customerIds": "required"}]);
+    
+    generator = generatorFor('/payouts', 'post');
+    expect(generator.getRequestPayloadParams()).to.eql([
+        {"websiteId": "required"},
+        {"customerId": "required"},
+        {"currency": "required"},
+        {"amount": "required"},
+        {"invoiceIds": "null"},
+        {"paymentInstruction": "null"},
+        {"paymentInstrument": "null"},
+        {"billingAddress": "null"},
+        {"requestId": "null"},
+        {"gatewayAccountId": "null"},
+        {"description": "null"},
+        {"notificationUrl": "null"},
+        {"redirectUrl": "null"},
+        {"customFields": "null"}, 
+        {"riskMetadata": "null"},
+        {"isProcessedOutside": "null"},
+        {"isMerchantInitiated": "null"},
+        {"processedTime": "null"}]);
+    })

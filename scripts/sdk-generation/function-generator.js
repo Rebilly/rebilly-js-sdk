@@ -250,9 +250,13 @@ class FunctionGenerator {
     
     getParamName(param) {
         if (param.name) return param.name;
-        const pathKeys = param['$ref'].substring(2).split('/');
-        const parameter = lookup(this.schema, pathKeys);
+        const parameter = this.getParameterFromRef(param.$ref);
         return parameter.name;
+    }
+
+    getParameterFromRef(ref) {
+        const pathKeys = ref.substring(2).split('/');
+        return lookup(this.schema, pathKeys);
     }
     
     hasRequestParams(){
@@ -271,8 +275,7 @@ class FunctionGenerator {
     hasEmbeddedPathParameters() {
         return this.pathParameters && this.pathParameters.some(parameter => {
             if (parameter.$ref) {
-                const pathKeys = parameter.$ref.substring(2).split('/');
-                return lookup(this.schema, pathKeys).name === 'expand';
+                return this.getParameterFromRef(parameter.$ref);
             }
             return false;
         }); 
@@ -288,6 +291,38 @@ class FunctionGenerator {
              return {type: undefined};
         }
         return parameterSchema;
+    }
+
+    /**
+     * Returns an array of params indicating if each param is required or not
+     * We are not using it for now but it would be very useful if we want to replace 
+     * data with the actual structure of data
+     */
+    getRequestPayloadParams() {
+        const getRequestPayloadSchema = ()=> {
+            const parameterSchema = this.getParameterSchema();
+            if (parameterSchema && parameterSchema.allOf) {
+                //We limit to allOf of one object
+                return parameterSchema.allOf.map(param => this.getParameterFromRef(param.$ref))[0];
+            }
+            const requestBodyContent = this.requestBody.content;
+            if (requestBodyContent && requestBodyContent['application/json'].schema.$ref) 
+            {
+                return this.getParameterFromRef(this.requestBody.content['application/json'].schema.$ref);
+            }
+            if (requestBodyContent && requestBodyContent['application/json'].schema) {
+                return this.requestBody.content['application/json'].schema;
+            } 
+        }
+        const parametersSchema = getRequestPayloadSchema();
+        if (parametersSchema.type === 'object') {
+            return Object.keys(parametersSchema.properties).map(propertyKey => {
+                if (parametersSchema.required.includes(propertyKey)) {
+                    return {[propertyKey]: 'required'};
+                }
+                return {[propertyKey]: 'null'};
+            })
+        }
     }
 
     hasRequestParameterRef = () => {

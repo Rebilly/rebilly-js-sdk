@@ -160,7 +160,17 @@ const storefrontCustomResourceNames = {
 
 };
 
+// This functions have explicit parameter request structure instead of using the generic data parameter
+const functionsWithExplicitRequestFields = {
+    // key is resourcePath
+    //value is function verb
+    '/invoices/{id}/transaction': 'post',
+    '/payouts': 'post',
+    '/tags/{tag}/customers': 'post',
+};
+
 module.exports = {
     customFunctionNames,
-    customResourceNames
+    customResourceNames,
+    functionsWithExplicitRequestFields
 }
