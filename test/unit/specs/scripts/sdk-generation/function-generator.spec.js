@@ -61,4 +61,20 @@ test('gets request payload params', ()=> {
         {"isProcessedOutside": "null"},
         {"isMerchantInitiated": "null"},
         {"processedTime": "null"}]);
-    })
+})
+
+test('detects when to use custom create function', ()=> {
+    let generator = generatorFor('/invoices', 'post');
+    expect(generator.isCreateFunction()).to.be.true;
+    
+    generator = generatorFor('/payouts', 'post');
+    expect(generator.isCreateFunction()).to.be.false;
+
+    generator = generatorFor('/tags', 'post');
+    expect(generator.isCreateFunction()).to.be.false;
+})
+
+test.skip('DEBUG', ()=> {
+    let generator = generatorFor('/payouts', 'post');
+    console.log(generator.generateFunction());
+})

@@ -78,7 +78,11 @@ class FunctionGenerator {
     }
 
     isCreateFunction() {
-        return this.httpVerb === 'post' && !this.resourcePath.includes('{'); 
+        const putPath = this.resourcePath + '/{id}';
+        return this.httpVerb === 'post' 
+            && !this.resourcePath.includes('{')
+            && !!this.schema.paths.hasOwnProperty(putPath)
+            && this.schema.paths[putPath].hasOwnProperty('put'); 
     }
 
     getApiHandlerMethod() {
@@ -181,9 +185,10 @@ class FunctionGenerator {
         return this.getAllParamNames().map(paramName => {
             if (optionalParamNames.includes(paramName) || paramName === 'expand') return paramName + ' = null';
             //Special case for create
-            if (paramName === 'id' && this.httpVerb === 'post' && !this.resourcePath.includes('{')) return "id = ''";
+            if (paramName === 'id' && this.isCreateFunction()) return "id = ''";
+            if (paramName === 'id' && !this.resourcePath.includes('/{id}')) return null;
             return paramName;
-        }).join(',');
+        }).filter(p => p !== null).join(',');
     }
 
     generateFunctionName() {

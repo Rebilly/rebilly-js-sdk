@@ -39,8 +39,8 @@ it("generates proper resources", async () => {
           const params = { limit, offset };
           return apiHandler.getAll(\`3dsecure\`, params);
         },
-        create({ id = '', data }) {
-          return apiHandler.create(\`3dsecure/\${id}\`, id, data);
+        create({ data }) {
+          return apiHandler.post(\`3dsecure\`, data);
         },
         get({ id }) {
           return apiHandler.get(\`3dsecure/\${id}\`);
