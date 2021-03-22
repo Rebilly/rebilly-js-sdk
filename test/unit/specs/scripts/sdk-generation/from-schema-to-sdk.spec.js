@@ -35,7 +35,7 @@ it("generates proper resources", async () => {
     .toMatchInlineSnapshot(`
     "export default function ThreeDSecureResource({ apiHandler }) {
       return {
-        getAll({ limit = null, offset = null } = {}) {
+        getAll({ expand = null, limit = null, offset = null } = {}) {
           const params = { limit, offset };
           return apiHandler.getAll(\`3dsecure\`, params);
         },
@@ -462,8 +462,8 @@ it("generates required and optional parameters when they are declared as raw par
 
   //TODO: Double check if passing dob/country as null affects the BE result
   jestExpect(functions.get).toMatchInlineSnapshot(`
-    "get({firstName,lastName,dob = null,country = null}) { 
-                return apiHandler.get(\`aml?firstName=\${firstName}&lastName=\${lastName}&dob=\${dob}&country=\${country}\`  );
+    "get({expand = null,firstName,lastName,dob = null,country = null}) { const params = {expand};
+                return apiHandler.get(\`aml?firstName=\${firstName}&lastName=\${lastName}&dob=\${dob}&country=\${country}\`  ,params);
             }"
   `);
 });
@@ -491,25 +491,29 @@ it.skip("DEBUG generates all functions for core resource", async () => {
   console.log(functions.update);
 });
 
-it.only("adds special functions (detachAndDelete/uploadAndUpdate) to files resource", async () => {
+it("adds special functions (detachAndDelete/uploadAndUpdate) to files resource", async () => {
   const functions = fullSchemaGenerator.generateResourceFunctions(
     "/attachments"
   );
   expect(Object.keys(functions)).to.eql([
-    'getAllAttachments',
-    'attach',
-    'getAttachment',
-    'updateAttachment',
-    'detach',
-    'getAll',
-    'upload',
-    'get',
-    'update',
-    'delete',
-    'download',
-    'detachAndDelete', 
-    'uploadAndUpdate'
+    "getAllAttachments",
+    "attach",
+    "getAttachment",
+    "updateAttachment",
+    "detach",
+    "getAll",
+    "upload",
+    "get",
+    "update",
+    "delete",
+    "download",
+    "detachAndDelete",
+    "uploadAndUpdate",
   ]);
+});
+
+it.skip("DEBUG generates all functions for all resources", async () => {
+  const result = fullSchemaGenerator.processSchema();
 });
 
 //TODO:
