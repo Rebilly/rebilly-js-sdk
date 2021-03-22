@@ -128,12 +128,8 @@ export default function InvoicesResource({apiHandler}) {
 
             return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
         },
-
-        applyTransaction({id, transactionId, amount = null}) {
-            const data = {
-                transactionId,
-                amount
-            };
+        
+        applyTransaction({ id, data }) {
             return apiHandler.post(`invoices/${id}/transaction`, data);
         },
     };
