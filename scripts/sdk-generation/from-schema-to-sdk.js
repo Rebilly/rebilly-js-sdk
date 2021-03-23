@@ -8,6 +8,7 @@ const {
 } = require('./function-generator');
 const { customFunctionNames, customResourceNames } = require('./customizations/customizations');
 const { pathsWithDownloadCSV } = require('./customizations/download-functions');
+const { prettierSetup } = require('./customizations/prettier-setup');
 
 function generateSDKFromSchema() {
     return axios.get('https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json')
@@ -83,7 +84,7 @@ class SDKGenerator {
         if (processedResources.hasOwnProperty(filename)) return
         const allFunctionsCode = Object.values(this.generateResourceFunctions(pathName)).join(',');
         let resourceContent = `export default function ${formatResourceName(pathName)}Resource({apiHandler}){return {${allFunctionsCode}}}`;
-        resourceContent = prettier.format(resourceContent, { semi: true, parser: "babel", singleQuote: true });
+        resourceContent = prettier.format(resourceContent, prettierSetup);
         processedResources[filename] = resourceContent;
     }
 
