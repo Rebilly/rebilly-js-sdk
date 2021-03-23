@@ -129,7 +129,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
         },
         
-        applyTransaction({ id, data }) {
+        applyTransaction({id, data}) {
             return apiHandler.post(`invoices/${id}/transaction`, data);
         },
     };
