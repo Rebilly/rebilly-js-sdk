@@ -85,7 +85,7 @@ const customFunctionNames = {
         delete: 'deleteTimelineMessage'
     },
     '/subscriptions/{id}/interim-invoice': 'createInterimInvoice',
-
+    
     //Tags
     '/tags/{tag}/customers': {
         post: 'tagCustomers',
@@ -96,7 +96,9 @@ const customFunctionNames = {
         delete : 'untagCustomer'
     },
     
-
+    //Purchase resource
+    '/ready-to-pay': 'readyToPay',
+    
     //Bank account
     '/bank-accounts/{id}': {get: 'get', patch: 'patch'},
     '/bank-accounts/{id}/deactivation': 'deactivate',
