@@ -40,8 +40,9 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.get(`events/${eventType}/rules/versions/${version}`);
         },
 
-        getAllDraftRulesets({eventType = null, limit = null, offset = null} = {}) {
+        getAllDraftRulesets({eventType = null, filter = null, limit = null, offset = null} = {}) {
             const params = {
+                filter,
                 limit,
                 offset
             };
