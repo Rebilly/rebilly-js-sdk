@@ -59,7 +59,7 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
         },
 
-        issueUpcomingInvoice({id, invoiceId, data = {}}) {
+        issueUpcomingInvoice({id, invoiceId, data}) {
             return apiHandler.post(`subscriptions/${id}/upcoming-invoices/${invoiceId}/issue`, data);
         },
 

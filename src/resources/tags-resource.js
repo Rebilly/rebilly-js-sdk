@@ -1,58 +1,38 @@
-
-const RESOURCE = 'tags';
-
 export default function TagsResource({apiHandler}) {
-    return {
-        getAll({
-            limit = null,
-            offset = null,
-            filter = null,
-            q = null,
-            sort = null,
-        } = {}) {
-            return apiHandler.getAll(RESOURCE, {
-                limit,
-                offset,
-                filter,
-                q,
-                sort,
-            });
-        },
-
-        create({name}) {
-            return apiHandler.post(`${RESOURCE}/`, {name});
-        },
-
-        get ({tag}) {
-            return apiHandler.get(`${RESOURCE}/${tag}`);
-        },
-
-        /**
-         * @param tag {String} The tag name
-         * @param name {String} New unique tag name
-         */
-        update ({tag, name}) {
-            return apiHandler.patch(`${RESOURCE}/${tag}`, {name});
-        },
-
-        delete ({tag}) {
-            return apiHandler.delete(`${RESOURCE}/${tag}`);
-        },
-
-        tagCustomers ({tag, ids}) {
-            return apiHandler.post(`${RESOURCE}/${tag}/customers`, {customerIds: ids});
-        },
-
-        tagCustomer ({tag, id}) {
-            return apiHandler.post(`${RESOURCE}/${tag}/customers/${id}`);
-        },
-
-        untagCustomers ({tag, ids}) {
-            return apiHandler.deleteAll(`${RESOURCE}/${tag}/customers`, {customerIds: ids});
-        },
-
-        untagCustomer ({tag, id}) {
-            return apiHandler.delete(`${RESOURCE}/${tag}/customers/${id}`);
-        },
-    };
-};
+  return {
+    getAll({
+      limit = null,
+      offset = null,
+      filter = null,
+      q = null,
+      sort = null,
+    } = {}) {
+      const params = {limit, offset, filter, q, sort};
+      return apiHandler.getAll(`tags`, params);
+    },
+    create({data}) {
+      return apiHandler.post(`tags`, data);
+    },
+    get({tag}) {
+      return apiHandler.get(`tags/${tag}`);
+    },
+    delete({tag}) {
+      return apiHandler.delete(`tags/${tag}`);
+    },
+    update({tag, data}) {
+      return apiHandler.patch(`tags/${tag}`, data);
+    },
+    tagCustomers({tag, data}) {
+      return apiHandler.post(`tags/${tag}/customers`, data);
+    },
+    untagCustomers({tag, data}) {
+      return apiHandler.delete(`tags/${tag}/customers`, data);
+    },
+    tagCustomer({tag, customerId}) {
+      return apiHandler.post(`tags/${tag}/customers/${customerId}`);
+    },
+    untagCustomer({tag, customerId}) {
+      return apiHandler.delete(`tags/${tag}/customers/${customerId}`);
+    },
+  };
+}
