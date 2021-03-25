@@ -61,11 +61,11 @@ export default function InvoicesResource({apiHandler}) {
         },
 
         abandon({id}) {
-            return apiHandler.post(`invoices/${id}/abandon`, null);
+            return apiHandler.post(`invoices/${id}/abandon`);
         },
 
         void({id}) {
-            return apiHandler.post(`invoices/${id}/void`, null);
+            return apiHandler.post(`invoices/${id}/void`);
         },
 
         getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
@@ -128,12 +128,8 @@ export default function InvoicesResource({apiHandler}) {
 
             return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
         },
-
-        applyTransaction({id, transactionId, amount = null}) {
-            const data = {
-                transactionId,
-                amount
-            };
+        
+        applyTransaction({id, data}) {
             return apiHandler.post(`invoices/${id}/transaction`, data);
         },
     };
