@@ -1,6 +1,8 @@
 // We could also use an x-data in openApi but I prefer to have the definition closer to the place where it is generated to avoid delay/complexity
 //Should we have one special for storefront???
 const customFunctionNames = {
+    "/aml": 'getAll',
+
     //Authentication Resource
     "/authentication-options": {get: 'getAuthOptions', put: 'updateAuthOptions'},
     "/authentication-tokens/{token}/exchange":  'exchangeToken',

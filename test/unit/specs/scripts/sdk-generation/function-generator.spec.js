@@ -14,23 +14,22 @@ test('gets all parameter names', ()=> {
     expect(generatorFor('/customers', 'post').getAllParamNames('put')).to.eql(['id', 'data', 'expand']);
 })
 
-test('generates default optional arguments', ()=> {
-    expect(generatorFor('/customers', 'get').generateDefaultOptionalArguments()).to.eql('{ limit = null,offset = null,filter = null,q = null,expand = null,fields = null,sort = null } = {}');
+test('generates arguments with optional and required parameters', ()=> {
+    expect(generatorFor('/customers', 'post').generateArgumentsWithDefaults()).to.eql("id = '',data,expand = null");
 })
 
-test('gets optional arguments', ()=> {
-     expect(generatorFor('/customers', 'post').generateArgumentsWithDefaults()).to.eql("id = '',data,expand = null");
+test('generates getAll arguments when no required parameters detected', ()=> {
+    expect(generatorFor('/customers', 'get').generateGetAllArguments()).to.eql('{ limit = null,offset = null,filter = null,q = null,expand = null,fields = null,sort = null } = {}');
 })
 
-test('gets optional arguments for aml', ()=> {
-     expect(generatorFor('/aml', 'get').getOptionalParameters()).to.eql(["dob", "country"]);
-     expect(generatorFor('/aml', 'get').generateArgumentsWithDefaults()).to.eql("expand = null,firstName,lastName,dob = null,country = null");
+test('generates getAll arguments when required parameters detected', ()=> {
+     expect(generatorFor('/aml', 'get').generateGetAllArguments()).to.eql("{ expand = null,firstName,lastName,dob = null,country = null }");
 })
 
 test('appends query params to api path', ()=> {
     const generator = generatorFor('/customers/{id}', 'delete');
     expect(generator.buildQueryString()).to.eql('?targetCustomerId=${targetCustomerId}');
-    expect(generator.getQueryParameters()).to.eql(['targetCustomerId']);
+    expect(generator.getQueryParameterNames()).to.eql(['targetCustomerId']);
     expect(generator.generateApiPath()).to.eql("`customers/${id}?targetCustomerId=${targetCustomerId}`");
 })
 

@@ -33,16 +33,16 @@ it("generates proper resources", async () => {
   ).processSchema();
   jestExpect(processedResources["three-d-secure-resource.js"])
     .toMatchInlineSnapshot(`
-    "export default function ThreeDSecureResource({ apiHandler }) {
+    "export default function ThreeDSecureResource({apiHandler}) {
       return {
-        getAll({ expand = null, limit = null, offset = null } = {}) {
-          const params = { limit, offset };
+        getAll({expand = null, limit = null, offset = null} = {}) {
+          const params = {limit, offset, expand};
           return apiHandler.getAll(\`3dsecure\`, params);
         },
-        create({ data }) {
+        create({data}) {
           return apiHandler.post(\`3dsecure\`, data);
         },
-        get({ id }) {
+        get({id}) {
           return apiHandler.get(\`3dsecure/\${id}\`);
         },
       };
@@ -460,10 +460,9 @@ it("generates expand parameter for post functions", async () => {
 it("generates required and optional parameters when they are declared as raw parameters in the operation", async () => {
   const functions = fullSchemaGenerator.generatePathFunctions("/aml");
 
-  //TODO: Double check if passing dob/country as null affects the BE result
-  jestExpect(functions.get).toMatchInlineSnapshot(`
-    "get({expand = null,firstName,lastName,dob = null,country = null}) { const params = {expand};
-                return apiHandler.get(\`aml?firstName=\${firstName}&lastName=\${lastName}&dob=\${dob}&country=\${country}\`  ,params);
+  jestExpect(functions.getAll).toMatchInlineSnapshot(`
+    "getAll({ expand = null,firstName,lastName,dob = null,country = null }) { const params = {firstName,lastName,dob,country,expand};
+                return apiHandler.getAll(\`aml\`  ,params);
             }"
   `);
 });

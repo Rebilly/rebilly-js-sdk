@@ -10,6 +10,10 @@ function lookup(schema, pathKeys) {
     return pathKeys.reduce((acc, key) => acc[key], schema);
 }
 
+function mergeWithoutDuplicates(a, b) {
+    return [...new Set([...a,...b])];
+}
+
 function buildFunctionData(schema, resourcePath, httpVerb) {
     const verbSchema = schema.paths[resourcePath][httpVerb];
     return {
@@ -53,7 +57,8 @@ class FunctionGenerator {
     }
 
     buildQueryString() {
-        const queryParams = this.getQueryParameters();
+        if (this.isGetAllFunction()) return '';
+        const queryParams = this.getQueryParameterNames();
         const searchParams = queryParams.reduce((params, paramName) => {
             params[paramName] = `\${${paramName}}`;
             return params;
@@ -74,7 +79,8 @@ class FunctionGenerator {
     }
 
     isGetAllFunction() {
-        return this.httpVerb === 'get' && this.operationId.endsWith('Collection');
+        return this.httpVerb === 'get' 
+            && (this.operationId.endsWith('Collection') || this.operationId === 'GetAmlEntry');
     }
 
     isCreateFunction() {
@@ -92,7 +98,7 @@ class FunctionGenerator {
     }
 
     generateParamsConstant () {
-        const namedParams = this.generateNamedParamsConstant();
+        const namedParams = this.generateRequestParametersConstant();
         const expandParams = this.generateExpandParamsConstant();
         return namedParams || expandParams;
     }
@@ -105,7 +111,7 @@ class FunctionGenerator {
 
     generateFunctionSignature(functionName) {
         const argumentList = (this.isGetAllFunction()) 
-            ? this.generateDefaultOptionalArguments()
+            ? this.generateGetAllArguments()
             : `{${this.generateArgumentsWithDefaults()}}`;
 
         return `${functionName}(${argumentList})`;
@@ -146,8 +152,7 @@ class FunctionGenerator {
             dynamicParams.push('expand');
         }
 
-        //We use Set to remove duplicates
-        return [...new Set([...dynamicParams,...namedParams])];
+        return mergeWithoutDuplicates(dynamicParams, namedParams);
     }
 
     getRefPathParameters() {
@@ -172,12 +177,21 @@ class FunctionGenerator {
             .map(param => param.name);
     }
 
-    generateDefaultOptionalArguments() {
-        const argsWithDefaults = this.getAllParamNames().map(param => {
-            param+= ' = null'; 
-            return param;
-        }).join(',');
-        return `{ ${argsWithDefaults} } = {}`; 
+    generateGetAllArguments() {
+        if (this.hasRequiredParameters()) {
+            return `{ ${this.generateArgumentsWithDefaults()} }`
+        } else {
+            const argsWithDefaults = this.getAllParamNames().map(param => {
+                 param+= ' = null'; 
+                 return param;
+            }).join(',');
+            return `{ ${argsWithDefaults} } = {}`
+        }
+    }
+
+    hasRequiredParameters() {
+        return this.getOptionalParameters().length > 0
+        && this.getAllParamNames() !== this.getOptionalParameters();
     }
 
     generateArgumentsWithDefaults() {
@@ -217,19 +231,22 @@ class FunctionGenerator {
         : '';
     }
     
-    generateNamedParamsConstant() {
-        const namedParameters = this.getNamedParameters();
+    generateRequestParametersConstant() {
+        let namedParameters = this.getRequestParameterNames();
+        if (this.hasEmbeddedParams()) {
+             namedParameters = mergeWithoutDuplicates(namedParameters, ['expand']);
+        }
         return namedParameters.length > 0
             ? `const params = {${namedParameters.join(',')}};`
             : '';
     }
 
-    getNamedParameters() {
+    getRequestParameterNames() {
         const accumulateParamsFn = (params, param) => {
             const paramName = this.getParamName(param);
             // Discard organization-Id from parameters
             if (paramName === 'Organization-Id') return params;
-            if (param.in === 'query') return params;
+            if (param.in === 'query' && !this.isGetAllFunction()) return params;
             params.push(paramName);
             return params;
         }
@@ -239,7 +256,7 @@ class FunctionGenerator {
         : [];
     }
 
-    getQueryParameters() {
+    getQueryParameterNames() {
         const accumulateParamsFn = (params, param) => {
             const paramName = this.getParamName(param);
             // Discard organization-Id from parameters
@@ -252,7 +269,7 @@ class FunctionGenerator {
         ? this.pathParameters.reduce(accumulateParamsFn, []) 
         : [];
     }
-    
+           
     getParamName(param) {
         if (param.name) return param.name;
         const parameter = this.getParameterFromRef(param.$ref);
