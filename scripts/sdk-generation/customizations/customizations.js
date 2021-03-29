@@ -35,6 +35,7 @@ const customFunctionNames = {
     '/attachments/{id}': {get: 'getAttachment', put: 'updateAttachment', delete: 'detach'},
     '/files': {post: 'upload', get: 'getAll'},
     '/files/{id}/download': 'download',
+    '/files/{id}/download{extension}': 'downloadWithExtension',
 
     //Invoices resource
     '/invoices/{id}/issue': 'issue',

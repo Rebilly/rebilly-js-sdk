@@ -102,6 +102,7 @@ class SDKGenerator {
         this.appendDownloadPDFIfNeeded(pathName, allResourceFunctions);
         this.avoidUpdateFunctionForSomeResources(pathName, allResourceFunctions);
         this.appendSpecialFunctionsToFilesResource(pathName, allResourceFunctions);
+        this.avoidUnnecessaryFunctions(pathName, allResourceFunctions);
         return allResourceFunctions;
     }
 
@@ -168,6 +169,13 @@ class SDKGenerator {
     avoidUpdateFunctionForSomeResources(pathName, functions) {
         if (['/subscription-cancellations', '/bank-accounts'].includes(pathName)) {
             delete functions.update;
+        }
+    }
+ 
+    avoidUnnecessaryFunctions(pathName, functions) {
+        if (pathName === '/attachments') {
+            // Path /files/{id}/download{extension} is not used by anyone and we don't want to publish it for now
+            delete functions.downloadWithExtension;
         }
     }
 
