@@ -3,20 +3,14 @@ import {pdfHeader, csvHeader} from '../request-headers';
 
 export default function InvoicesResource({apiHandler}) {
     return {
-        /**
-        * @param { rebilly.GetInvoiceCollectionRequest } data
-        * @returns { rebilly.GetInvoiceCollectionResponse } response
-        */
-        // @ts-ignore
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 expand,
                 filter,
-                q,
-                criteria
+                q
             };
             return apiHandler.getAll(`invoices`, params);
         },
@@ -38,7 +32,7 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.download(`invoices/${id}`, config);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -46,8 +40,7 @@ export default function InvoicesResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };
@@ -92,14 +85,14 @@ export default function InvoicesResource({apiHandler}) {
         * @returns { rebilly.PostInvoiceAbandonmentResponse } response
         */
         abandon({id}) {
-            return apiHandler.post(`invoices/${id}/abandon`, null);
+            return apiHandler.post(`invoices/${id}/abandon`);
         },
 
         /**
         * @returns { rebilly.PostInvoiceVoidResponse } response
         */
         void({id}) {
-            return apiHandler.post(`invoices/${id}/void`, null);
+            return apiHandler.post(`invoices/${id}/void`);
         },
 
         /**
@@ -154,24 +147,18 @@ export default function InvoicesResource({apiHandler}) {
             return apiHandler.delete(`invoices/${id}/lead-source`);
         },
 
-        /**
-        * @param { rebilly.GetInvoiceTimelineCollectionRequest } request
-        * @returns { rebilly.GetInvoiceTimelineCollectionResponse } response
-        */
-        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id= null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                q,
             };
             return apiHandler.getAll(`invoices/${id}/timeline`, params);
         },
 
-        /**
-        * @returns { rebilly.GetInvoiceTimelineResponse } response
-        */
-        getTimelineMessage({id = null, messageId = ''} = {}) {
+        getTimelineMessage({id, messageId}) {
             return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
         },
 
@@ -209,13 +196,8 @@ export default function InvoicesResource({apiHandler}) {
 
             return apiHandler.getAll(`invoices/${id}/transaction-allocations`, params);
         },
-
-        //TODO: add types
-        applyTransaction({id, transactionId, amount = null}) {
-            const data = {
-                transactionId,
-                amount
-            };
+        
+        applyTransaction({id, data}) {
             return apiHandler.post(`invoices/${id}/transaction`, data);
         },
     };

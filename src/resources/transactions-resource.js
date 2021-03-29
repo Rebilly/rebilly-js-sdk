@@ -15,7 +15,7 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions`, params);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -23,8 +23,7 @@ export default function TransactionsResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };
@@ -55,6 +54,10 @@ export default function TransactionsResource({apiHandler}) {
 
         query({id}) {
             return apiHandler.post(`transactions/${id}/query`, {});
+        },
+
+        update({id, data}) {
+            return apiHandler.post(`transactions/${id}/update`, data);
         },
 
         getGatewayLogs({id}) {

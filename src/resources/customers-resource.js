@@ -2,13 +2,7 @@ import {csvHeader} from '../request-headers';
 
 export default function CustomersResource({apiHandler}) {
     return {
-        /**
-        * @param { rebilly.GetCustomerCollectionRequest } data
-        * @returns { rebilly.GetCustomerCollectionResponse } response
-        * Criteria parameter is @deprecated and should be replaced by filter
-        */
-        // @ts-ignore
-        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null, fields = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -16,13 +10,12 @@ export default function CustomersResource({apiHandler}) {
                 expand,
                 filter,
                 q,
-                criteria,
                 fields
             };
             return apiHandler.getAll(`customers`, params);
         },
 
-        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null, criteria = null} = {}) {
+        downloadCSV({limit = null, offset = null, sort = null, expand = null, filter = null, q = null} = {}) {
             const config = {
                 params: {
                     limit,
@@ -30,8 +23,7 @@ export default function CustomersResource({apiHandler}) {
                     sort,
                     expand,
                     filter,
-                    q,
-                    criteria
+                    q
                 },
                 headers: csvHeader
             };
@@ -56,8 +48,8 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.put(`customers/${id}`, data, params);
         },
 
-        merge({id, targetId = ''}) {
-            return apiHandler.delete(`customers/${id}?targetCustomerId=${targetId}`);
+        merge({id, targetCustomerId = ''}) {
+            return apiHandler.delete(`customers/${id}?targetCustomerId=${targetCustomerId}`);
         },
 
         getLeadSource({id}) {
@@ -76,28 +68,25 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.delete(`customers/${id}/lead-source`);
         },
 
-        getAllUpcomingInvoices({id = null, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
+        getAllUpcomingInvoices({id='', expand = null} = {}) {
             const params = {
-                limit,
-                offset,
-                sort,
-                filter,
                 expand,
             };
             return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
         },
 
-        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
+        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
+                q
             };
             return apiHandler.getAll(`customers/${id}/timeline`, params);
         },
 
-        getTimelineMessage({id = null, messageId = ''} = {}) {
+        getTimelineMessage({id, messageId}) {
             return apiHandler.get(`customers/${id}/timeline/${messageId}`);
         },
 

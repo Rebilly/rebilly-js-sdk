@@ -1,13 +1,12 @@
 export default function FilesResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null} = {}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
             const params = {
                 limit,
                 offset,
                 sort,
                 filter,
-                q,
-                criteria,
+                q
             };
             return apiHandler.getAll(`files`, params);
         },

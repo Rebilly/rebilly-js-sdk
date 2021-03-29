@@ -23,10 +23,6 @@ export default function PaymentCardsResource({apiHandler}) {
             return apiHandler.patch(`payment-cards/${id}`, data);
         },
 
-        authorize({id, data}) {
-            return apiHandler.post(`payment-cards/${id}/authorization`, data);
-        },
-
         deactivate({id}) {
             return apiHandler.post(`payment-cards/${id}/deactivation`);
         },
