@@ -61,7 +61,7 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.put(`events/${eventType}/rules/drafts/${id}`, data);
         },
 
-        deleteDraftRuleset({eventType, id} = {}) {
+        deleteDraftRuleset({eventType, id}) {
             return apiHandler.delete(`events/${eventType}/rules/drafts/${id}`);
         }
     };
