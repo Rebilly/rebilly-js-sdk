@@ -1,3 +1,4 @@
+const { generateCollectionRequestType, generateCreateRequestType } = require('../type-generation/type-generators');
 const { customFunctionNames } = require('./customizations/customizations');
 
 /**
@@ -39,8 +40,19 @@ class FunctionGenerator {
 
     generateFunction() {
         const functionName = this.generateFunctionName();
+        // We avoid automatically adding types to the generated code to simplify PR review process 
+        // const functionCode = this.generateFunctionTypes() + `${this.generateFunctionSignature(functionName)} ${this.generateFunctionBody()}`;
         const functionCode = `${this.generateFunctionSignature(functionName)} ${this.generateFunctionBody()}`;
         return {functionName, functionCode};
+    }
+    
+    generateFunctionTypes() {
+        if (this.isCreateFunction()) return generateCreateRequestType(this.operationId) + '\n';
+        if (this.isGetAllFunction()) {
+            const isExpandable = this.hasEmbeddedParams();
+            return generateCollectionRequestType(this.operationId, isExpandable) + '\n';
+        }
+        return '';
     }
 
     generateFunctionBody() {

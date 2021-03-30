@@ -59,7 +59,7 @@
     "mocha": "^4.0.1",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1",
-    "openapi-typescript": "2.5.0",
+    "openapi-typescript": "3.2.0",
     "prettier": "^2.2.1",
     "rebilly": "file:./typings",
     "rimraf": "^2.6.1",

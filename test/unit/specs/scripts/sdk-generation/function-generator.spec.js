@@ -73,7 +73,7 @@ test('detects when to use custom create function', ()=> {
     expect(generator.isCreateFunction()).to.be.false;
 })
 
-test.only('DEBUG', ()=> {
+test.skip('DEBUG', ()=> {
     let generator = generatorFor('/coupons', 'get');
     console.log(generator.generateFunction());
 })

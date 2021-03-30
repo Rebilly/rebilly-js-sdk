@@ -10,7 +10,7 @@ const { customFunctionNames, customResourceNames } = require('./customizations/c
 const { pathsWithDownloadCSV } = require('./customizations/download-functions');
 const { prettierSetup } = require('./customizations/prettier-setup');
 
-function generateSDKFromSchema() {
+function generateSDKCodeFromSchema() {
     return axios.get('https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json')
     .then(response => new SDKGenerator(response.data).processSchema());
 }
@@ -266,4 +266,4 @@ function capitalize(s) {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
-module.exports = {generateSDKFromSchema, generateSDKFromSchemaStorefront, SDKGenerator, getResourceType, getResourceFromPath} 
+module.exports = {generateSDKCodeFromSchema, generateSDKFromSchemaStorefront, SDKGenerator, getResourceType, getResourceFromPath} 
