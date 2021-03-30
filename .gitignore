@@ -13,3 +13,4 @@ yarn-error.log*
 /site
 package-lock.json
 /debug-resources
+/typings
