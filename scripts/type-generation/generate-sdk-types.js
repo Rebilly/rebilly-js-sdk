@@ -1,21 +1,43 @@
+const { readFileSync, writeFileSync } = require("fs");
 const axios = require('axios');
+const swaggerToTS = require("openapi-typescript").default;
+
+const coreApiSchema = 'https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json';
+// const coreApiSchema = 'https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json';
 
 function generateSDKTypesFromSchema() {
-    return axios.get('https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json')
+    return axios.get(coreApiSchema)
     .then(response => processSchema(response.data))
 }
 
-module.exports = {generateSDKTypesFromSchema} 
+function processSchema(openApiSchema) {
+    console.log('🛠  Processing core openapi json with openapi-typescript');
+    const openApiTypes = replaceHeaders(swaggerToTS(openApiSchema));
+    console.log('📇 Generating custom SDK types with custom rebilly script');
+    const sdkTypes = generateSdkTypes(openApiSchema);
+    console.log('🍹 Mixing openapi-typescript types and custom SDK types into the same file (/typings/rebilly/index.d.ts)');
+    insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes);
+}
+
+function insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes) {
+    const templateFilename = './types-generation/template.d.ts';
+    let templateData = readFileSync(templateFilename, 'utf-8'); 
+    templateData = templateData.replace('//<open-api-types>', openApiTypes);
+    templateData = templateData.replace('//<sdk-types>', sdkTypes);
+    
+    writeFileSync("./typings/rebilly/index.d.ts", templateData); 
+}
 
 const newLineAndTab = '\n  '
 
-function processSchema(schema) {
+
+function generateSdkTypes(schema) {
     let result = '' 
     const paths = schema.paths;
 
     Object.keys(schema.paths).forEach(pathName => result += openPath(pathName))
     
-    return result
+    return result;
 
     function openPath(pathName) {
         let result = ''
@@ -115,6 +137,8 @@ function processSchema(schema) {
         const requestTypeName = operationId + 'Request'
         let requestType = `type ${requestTypeName} = operations['${operationId}']['requestBody']`
         if (hasApplicationJson(path)) {
+            //openpi-typescript 3.5.0
+            //requestType += "['content']['application/json']"
             requestType += "['application/json']"
         }
         return requestType + newLineAndTab
@@ -142,6 +166,8 @@ function processSchema(schema) {
         }
         let result = `['${code}']`
         if (path.responses[code].content && path.responses[code].content['application/json']) {
+             //openpi-typescript 3.5.0
+            //result += `['content']['application/json']`
             result += `['application/json']`
         }
         return result
@@ -165,3 +191,26 @@ function processSchema(schema) {
         //console.warn(message)
     }
 }
+
+function replaceHeaders(data) {
+    //This is needed until we migrate to openapi-typescript 3.5.0
+    data = data.replace(
+        `"Rate-Limit-Limit":`, 
+        `// "Rate-Limit-Limit":`
+    );
+
+    data = data.replace(
+        `"Rate-Limit-Remaining":`, 
+        `// "Rate-Limit-Remaining":`
+    );
+    
+    data = data.replace(
+        `"Rate-Limit-Reset":`, 
+        `// "Rate-Limit-Remaining":`
+    );
+    return data
+}
+
+console.log('🦊 Auto generating custom SDK types')
+
+generateSDKTypesFromSchema();

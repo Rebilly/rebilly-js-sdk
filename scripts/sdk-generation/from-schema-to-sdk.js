@@ -70,10 +70,7 @@ class SDKGenerator {
         let processedResources = {};
 
         Object.keys(this.paths).forEach(pathName => {
-            //Temporary avoid iteration to test/debug just one path at a time
-            // const pathName = Object.keys(this.schema.paths)[5];
             this.generateResourceFileContent(processedResources, pathName);
-          
         })
         return processedResources;
     }
@@ -164,7 +161,7 @@ class SDKGenerator {
         }
     }
 
-    // There certain resources where we already allow post and put though create function
+    // There are certain resources where we already allow post and put though create function
     // so that we don't want to include explicit update function
     avoidUpdateFunctionForSomeResources(pathName, functions) {
         if (['/subscription-cancellations', '/bank-accounts'].includes(pathName)) {

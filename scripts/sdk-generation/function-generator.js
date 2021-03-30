@@ -32,7 +32,7 @@ class FunctionGenerator {
         this.schema = schema;
         this.resourcePath = resourcePath;
         this.httpVerb = httpVerb;
-        this. operationId = verbSchema.operationId;
+        this.operationId = verbSchema.operationId;
         this.pathParameters = verbSchema.parameters;
         this.requestBody = verbSchema.requestBody;
     }
@@ -178,15 +178,20 @@ class FunctionGenerator {
     }
 
     generateGetAllArguments() {
-        if (this.hasRequiredParameters()) {
-            return `{ ${this.generateArgumentsWithDefaults()} }`
-        } else {
-            const argsWithDefaults = this.getAllParamNames().map(param => {
+        return this.hasRequiredParameters() 
+            ? `{ ${this.generateArgumentsWithDefaults()} }`
+            : this.generateAllArgumentsWithEmptyDefault();
+    }
+
+    generateAllArgumentsWithEmptyDefault() {
+        const argsWithDefaults = this.getAllParamNames().map(param => {
+            param+= ' = null'; 
                  param+= ' = null'; 
-                 return param;
-            }).join(',');
-            return `{ ${argsWithDefaults} } = {}`
-        }
+            param+= ' = null'; 
+            return param;
+       }).join(',');
+       return `{ ${argsWithDefaults} } = {}`
+    }
     }
 
     hasRequiredParameters() {
