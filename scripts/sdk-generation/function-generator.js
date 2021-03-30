@@ -7,7 +7,6 @@ const { customFunctionNames } = require('./customizations/customizations');
  * @param {array} pathKeys 
  */
 function lookup(schema, pathKeys) {
-    // This should have a better name and signature: we access the schema from keys
     return pathKeys.reduce((acc, key) => acc[key], schema);
 }
 

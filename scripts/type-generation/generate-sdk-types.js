@@ -3,7 +3,6 @@ const axios = require('axios');
 const swaggerToTS = require("openapi-typescript").default;
 
 const coreApiSchema = 'https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json';
-// const coreApiSchema = 'https://api.redoc.ly/registry/rebilly/combined/combined/bundle/master/openapi.json';
 
 function generateSDKTypesFromSchema() {
     return axios.get(coreApiSchema)

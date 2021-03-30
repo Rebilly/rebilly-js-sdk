@@ -15,7 +15,6 @@ function generateSDKCodeFromSchema() {
     .then(response => new SDKGenerator(response.data).processSchema());
 }
 
-// Is it possible that we have an experimental not combined schema???
 function generateSDKFromSchemaStorefront() {
     return axios.get('https://api.redoc.ly/registry/rebilly/storefront/storefront/bundle/master/openapi.json')
     .then(response => new SDKGenerator(response.data).processSchema());

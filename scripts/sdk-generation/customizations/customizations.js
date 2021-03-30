@@ -1,5 +1,10 @@
-// We could also use an x-data in openApi but I prefer to have the definition closer to the place where it is generated to avoid delay/complexity
-//Should we have one special for storefront???
+/**
+ * This customizations allow us to keep compatibility with our previous manual SDK by: 
+ * 
+ * - Choosing custom names for our resource functions (customFunctionNames)
+ * - Choosing custom resource file names mixing verbs from different path origins (customResourceNames) 
+ */
+
 const customFunctionNames = {
     "/aml": 'getAll',
 
@@ -161,9 +166,8 @@ const customResourceNames = {
     '/ready-to-pay': 'Purchase'
 };
 
-const storefrontCustomResourceNames = {
-
-};
+//TBD
+const storefrontCustomResourceNames = {};
 
 // This functions have explicit parameter request structure instead of using the generic data parameter
 const functionsWithExplicitRequestFields = {

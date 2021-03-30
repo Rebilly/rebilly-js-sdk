@@ -1,3 +1,4 @@
+/* These are the resource paths whose resources have download functions */
 const pathsWithDownloadCSV = [
     '/customers',
     '/disputes',
