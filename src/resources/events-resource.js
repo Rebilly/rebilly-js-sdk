@@ -50,7 +50,7 @@ export default function EventsResource({apiHandler}) {
         },
 
         getDraftRuleset({eventType = null, id = null} = {}) {
-            return apiHandler.getAll(`events/${eventType}/rules/drafts/${id}`);
+            return apiHandler.get(`events/${eventType}/rules/drafts/${id}`);
         },
 
         createDraftRuleset({eventType = null, data = {}} = {}) {
