@@ -186,12 +186,9 @@ class FunctionGenerator {
     generateAllArgumentsWithEmptyDefault() {
         const argsWithDefaults = this.getAllParamNames().map(param => {
             param+= ' = null'; 
-                 param+= ' = null'; 
-            param+= ' = null'; 
             return param;
        }).join(',');
        return `{ ${argsWithDefaults} } = {}`
-    }
     }
 
     hasRequiredParameters() {
