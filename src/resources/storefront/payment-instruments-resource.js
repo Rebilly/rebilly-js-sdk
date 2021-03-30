@@ -8,19 +8,19 @@ export default function PaymentInstruments({apiHandler}) {
         return apiHandler.getAll(`payment-instruments`, params);
       },
 
-      create({data = null} = {}) {
+      create({data} = {}) {
           return apiHandler.post(`payment-instruments`, data);
       },
 
-      get({id = null}  = {}) {
+      get({id} = {}) {
         return apiHandler.get(`payment-instruments/${id}`);
       },
 
-      update({id = null, data = null} = {}) {
+      update({id, data} = {}) {
         return apiHandler.patch(`payment-instruments/${id}`, data);
       },
 
-      deactivate({id = null}  = {}) {
+      deactivate({id} = {}) {
         return apiHandler.post(`payment-instruments/${id}/deactivate`);
       }
     };

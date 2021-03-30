@@ -30,9 +30,6 @@ export default function CustomersResource({apiHandler}) {
             return apiHandler.download(`customers`, config);
         },
 
-        /**
-        * @returns { rebilly.GetCustomerResponse } response
-        */
         get({id, expand = null, fields = null}) {
             const params = {expand, fields};
             return apiHandler.get(`customers/${id}`, params);

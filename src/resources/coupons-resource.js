@@ -5,10 +5,6 @@
 
 export default function CouponsResource({apiHandler}) {
   return {
-    /**
-     * @param { rebilly.Expandable<rebilly.GetCouponRedemptionCollectionRequest> } request
-     * @returns { rebilly.GetCouponRedemptionCollectionResponse } response
-     */
     getAllRedemptions({
       expand = null,
       limit = null,
@@ -29,10 +25,6 @@ export default function CouponsResource({apiHandler}) {
     cancelRedemption({id}) {
       return apiHandler.post(`coupons-redemptions/${id}/cancel`);
     },
-    /**
-     * @param { rebilly.Expandable<rebilly.GetCouponCollectionRequest> } request
-     * @returns { rebilly.GetCouponCollectionResponse } response
-     */
     getAll({
       expand = null,
       limit = null,
@@ -44,10 +36,6 @@ export default function CouponsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort, expand};
       return apiHandler.getAll(`coupons`, params);
     },
-    /**
-     * @param { rebilly.CreateCouponRequest } request
-     * @returns { rebilly.PostCouponResponse } response
-     */
     create({id = '', data}) {
       return apiHandler.create(`coupons/${id}`, id, data);
     },

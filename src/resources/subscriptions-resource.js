@@ -48,7 +48,7 @@ export default function SubscriptionsResource({apiHandler}) {
             return apiHandler.post(`subscriptions/${id}/change-plan`, data);
         },
 
-        getAllUpcomingInvoices({id = null, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
+        getAllUpcomingInvoices({id=null, limit = null, offset = null, sort = null, filter = null, expand = null} = {}) {
             const params = {
                 limit,
                 offset,

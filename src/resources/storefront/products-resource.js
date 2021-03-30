@@ -8,7 +8,7 @@ export default function ProductsResource({apiHandler}) {
             return apiHandler.getAll(`products`, params);
         },
 
-        get({id = null} = {}) {
+        get({id} = {}) {
             return apiHandler.get(`products/${id}`);
         },
     }

@@ -88,7 +88,7 @@ export default function TrackingResource({apiHandler}) {
             return apiHandler.get(`tracking/webhooks/${id}`);
         },
 
-        resendWebhook({id= null} = {}) {
+        resendWebhook({id} = {}) {
             return apiHandler.post(`tracking/webhooks/${id}/resend`);
         },
 

@@ -11,11 +11,11 @@ export default function TransactionsResource({apiHandler}) {
             return apiHandler.getAll(`transactions`, params);
         },
 
-        get({id = null} = {}) {
+        get({id} = {}) {
             return apiHandler.get(`transactions/${id}`);
         },
 
-        update({id = null, data = null} = {}) {
+        update({id, data} = {}) {
            return apiHandler.patch(`transactions/${id}`, data);
         }
     }

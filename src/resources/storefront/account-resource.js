@@ -4,31 +4,31 @@ export default function AccountResource({apiHandler}) {
             return apiHandler.get(`account`);
         },
 
-        update({data = null} = {}) {
+        update({data} = {}) {
             return apiHandler.patch(`account`, data);
         },
 
-        register({data = null} = {}) {
+        register({data} = {}) {
             return apiHandler.post(`register`, data);
         },
 
-        changePassword({data = null} = {}) {
+        changePassword({data} = {}) {
             return apiHandler.patch(`account/password`, data);
         },
 
-        requestPasswordReset({data = null} = {}) {
+        requestPasswordReset({data} = {}) {
             return apiHandler.post(`account/forgot-password`, data);
         },
 
-        confirmPasswordReset({token = null, data = null} = {}) {
+        confirmPasswordReset({token, data} = {}) {
             return apiHandler.post(`account/reset-password/${token}`, data);
         },
 
-        resendEmailVerification({data = null} = {}) {
+        resendEmailVerification({data} = {}) {
             return apiHandler.post(`account/resend-verification`, data);
         },
 
-        verifyEmail({token = null} = {}) {
+        verifyEmail({token} = {}) {
             return apiHandler.post(`account/verification/${token}`);
         }
     }

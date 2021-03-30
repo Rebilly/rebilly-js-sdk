@@ -23,7 +23,7 @@ function processSchema(openApiSchema) {
 function fixProperties(openApiSchema) {
     // Redocly is generating properties like Customer-2 or Invoice-2 that cause problems in the prettier configuration
     // Here we simple remove those - to avoid problems
-    const problematicProperties = ['Customer', 'Invoice', 'Dispute', 'PaymentInstrument', 'Subscription'];
+    const problematicProperties = ['Customer', 'Invoice', 'Dispute', 'Subscription'];
     let stringSchema = JSON.stringify(openApiSchema);
     problematicProperties.forEach(p => {
         stringSchema = stringSchema.replace(p + '-2', p + '2');
@@ -41,7 +41,6 @@ function insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes) {
 }
 
 const newLineAndTab = '\n  '
-
 
 function generateSdkTypes(schema) {
     let result = '' 

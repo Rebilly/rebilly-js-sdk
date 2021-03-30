@@ -24,7 +24,7 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.put(`events/${eventType}/rules`, data);
         },
 
-        getRulesHistory({eventType = null, limit = null, offset = null} = {}) {
+        getRulesHistory({eventType, limit = null, offset = null} = {}) {
             const params = {
                 limit,
                 offset
@@ -61,7 +61,7 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.put(`events/${eventType}/rules/drafts/${id}`, data);
         },
 
-        deleteDraftRuleset({eventType, id}) {
+        deleteDraftRuleset({eventType, id} = {}) {
             return apiHandler.delete(`events/${eventType}/rules/drafts/${id}`);
         }
     };

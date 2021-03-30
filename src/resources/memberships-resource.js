@@ -1,6 +1,6 @@
 export default function MembershipsResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, filter = null, sort = null}={}) {
+        getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
             const params = {
                 limit,
                 offset,

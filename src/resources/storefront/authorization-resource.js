@@ -1,6 +1,6 @@
 export default function AuthorizationResource({apiHandler}) {
     return {
-        login({data = null} = {}) {
+        login({data} = {}) {
             return apiHandler.post(`login`, data);
         },
 

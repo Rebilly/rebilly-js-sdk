@@ -1,6 +1,6 @@
 export default function GatewayAccountsResource({apiHandler}) {
     return {
-        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null}={}) {
+        getAll({limit = null, offset = null, sort = null, filter = null, q = null, criteria = null, fields = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -21,78 +21,77 @@ export default function GatewayAccountsResource({apiHandler}) {
             return apiHandler.create(`gateway-accounts/${id}`, id, data);
         },
 
-       update({id, data}) {
-           return apiHandler.patch(`gateway-accounts/${id}`, data);
+        update({id, data}) {
+            return apiHandler.patch(`gateway-accounts/${id}`, data);
         },
-        
-       delete({id}) {
-           return apiHandler.delete(`gateway-accounts/${id}`);
+
+        delete({id}) {
+            return apiHandler.delete(`gateway-accounts/${id}`);
         },
-        
-       enable({id}) {
-           return apiHandler.post(`gateway-accounts/${id}/enable`);
+
+        enable({id}) {
+            return apiHandler.post(`gateway-accounts/${id}/enable`);
         },
-        
-       disable({id}) {
-           return apiHandler.post(`gateway-accounts/${id}/disable`);
+
+        disable({id}) {
+            return apiHandler.post(`gateway-accounts/${id}/disable`);
         },
-        
-       close({id}) {
-           return apiHandler.post(`gateway-accounts/${id}/close`);
+
+        close({id}) {
+            return apiHandler.post(`gateway-accounts/${id}/close`);
         },
-        
+
         checkCredentials({id}) {
             return apiHandler.post(`gateway-accounts/${id}/check-credentials`);
         },
-        
-       getAllDowntimeSchedules({id = null, limit = null, offset = null, filter = null} = {}) {
-           const params = {
-               limit,
-               offset,
-               filter,
+
+        getAllDowntimeSchedules({id, limit = null, offset = null, filter = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                filter,
             };
             return apiHandler.getAll(`gateway-accounts/${id}/downtime-schedules`, params);
         },
-        
-        //TODO: fix add type
+
         getDowntimeSchedule({id, downtimeScheduleId}) {
             return apiHandler.get(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
-        
-       createDowntimeSchedule({id, data}) {
-           // Id for a downtime-schedules cannot be set, is read only.
-           return apiHandler.create(`gateway-accounts/${id}/downtime-schedules`, '', data);
+
+        createDowntimeSchedule({id, data}) {
+            // Id for a downtime-schedules cannot be set, is read only.
+            return apiHandler.create(`gateway-accounts/${id}/downtime-schedules`, '', data);
         },
-        
+
         updateDowntimeSchedule({id, downtimeScheduleId, data}) {
             return apiHandler.put(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`, data);
         },
-        
-       deleteDowntimeSchedule({id, downtimeScheduleId}) {
-           return apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
+
+        deleteDowntimeSchedule({id, downtimeScheduleId}) {
+            return apiHandler.delete(`gateway-accounts/${id}/downtime-schedules/${downtimeScheduleId}`);
         },
-        
+
         getAllVolumeLimits({id}) {
             return apiHandler.getAll(`gateway-accounts/${id}/limits`);
         },
-        
+
         getVolumeLimit({id, volumeLimitId}) {
             return apiHandler.get(`gateway-accounts/${id}/limits/${volumeLimitId}`);
         },
 
-       createVolumeLimit({id, volumeLimitId, data}) {
-           return apiHandler.put(`gateway-accounts/${id}/limits/${volumeLimitId}`, data);
+        createVolumeLimit({id, volumeLimitId, data}) {
+            return apiHandler.put(`gateway-accounts/${id}/limits/${volumeLimitId}`, data);
         },
-        
+
         updateVolumeLimit({id, volumeLimitId, data}) {
             return apiHandler.put(`gateway-accounts/${id}/limits/${volumeLimitId}`, data);
         },
 
-       deleteVolumeLimit({id, volumeLimitId}) {
-           return apiHandler.delete(`gateway-accounts/${id}/limits/${volumeLimitId}`);
+        deleteVolumeLimit({id, volumeLimitId}) {
+            return apiHandler.delete(`gateway-accounts/${id}/limits/${volumeLimitId}`);
         },
-        
-        getAllTimelineMessages({id = null, limit = null, offset = null, sort = null, filter = null} = {}) {
+
+        getAllTimelineMessages({id, limit = null, offset = null, sort = null, filter = null} = {}) {
             const params = {
                 limit,
                 offset,
@@ -101,15 +100,15 @@ export default function GatewayAccountsResource({apiHandler}) {
             };
             return apiHandler.getAll(`gateway-accounts/${id}/timeline`, params);
         },
-        
-       getTimelineMessage({id = null, messageId = ''} = {}) {
-           return apiHandler.get(`gateway-accounts/${id}/timeline/${messageId}`);
+
+        getTimelineMessage({id, messageId = ''} = {}) {
+            return apiHandler.get(`gateway-accounts/${id}/timeline/${messageId}`);
         },
-        
-       deleteTimelineMessage({id, messageId}) {
-           return apiHandler.delete(`gateway-accounts/${id}/timeline/${messageId}`);
+
+        deleteTimelineMessage({id, messageId}) {
+            return apiHandler.delete(`gateway-accounts/${id}/timeline/${messageId}`);
         },
-        
+
         createTimelineComment({id, data}) {
             return apiHandler.create(`gateway-accounts/${id}/timeline`, '', data);
         },
