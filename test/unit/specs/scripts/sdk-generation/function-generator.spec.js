@@ -7,7 +7,7 @@ function generatorFor(resourcePath, httpVerb) {
 }
 
 test('gets all parameter names', ()=> {
-    expect(generatorFor('/customers/{id}', 'get').getAllParamNames('get')).to.eql(['id']);
+    expect(generatorFor('/customers/{id}', 'get').getAllParamNames('get')).to.eql(['id', 'expand', 'fields']);
     expect(generatorFor('/customers/{id}', 'put').getAllParamNames('put')).to.eql(['id', 'data', 'expand']);
     
     expect(generatorFor('/customers', 'get').getAllParamNames('put')).to.eql(['limit','offset', 'filter','q', 'expand' ,'fields','sort']);
@@ -73,7 +73,7 @@ test('detects when to use custom create function', ()=> {
     expect(generator.isCreateFunction()).to.be.false;
 })
 
-test.skip('DEBUG', ()=> {
-    let generator = generatorFor('/payouts', 'post');
+test.only('DEBUG', ()=> {
+    let generator = generatorFor('/coupons', 'get');
     console.log(generator.generateFunction());
 })
