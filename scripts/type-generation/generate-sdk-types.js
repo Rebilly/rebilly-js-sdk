@@ -148,7 +148,6 @@ function generateSdkTypes(schema) {
     function generateRequestType(operationId, path) {
         const requestTypeName = operationId + 'Request';
         let requestType = `type ${requestTypeName} = operations['${operationId}']['requestBody']`;
-        console.log('OPERATION ID', operationId);
         if (hasJsonRequest(path)) {
             requestType += "['content']['application/json']"
         }

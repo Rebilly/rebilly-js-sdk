@@ -5448,9 +5448,6 @@ readdirp@~3.5.0:
   dependencies:
     picomatch "^2.2.1"
 
-"rebilly@file:./typings":
-  version "0.0.0"
-
 redent@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/redent/-/redent-3.0.0.tgz#e557b7998316bb53c9f1f56fa626352c6963059f"
