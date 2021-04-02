@@ -41,6 +41,7 @@ export class ApiInstance {
         this.previews = Resources.PreviewsResource({apiHandler}),
         this.products = Resources.ProductsResource({apiHandler}),
         this.profile = Resources.ProfileResource({apiHandler}),
+        this.purchase = Resources.PurchaseResource({apiHandler}),
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
@@ -77,7 +78,7 @@ export class ApiInstance {
 * @returns {ApiInstance} apiInstance
 */
 export default function createApiInstance({apiHandler}) {
-    return new ApiInstance({apiHandler})
+    return new ApiInstance({apiHandler});
 }
 
 export class ExperimentalApiInstance {
@@ -89,7 +90,6 @@ export class ExperimentalApiInstance {
         this.reports = ExperimentalResources.ReportsResource({apiHandler}),
         this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
         this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
-        this.transactions = ExperimentalResources.TransactionsResource({apiHandler}),
         this.location = ExperimentalResources.LocationResource({apiHandler}),
         // expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
