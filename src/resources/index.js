@@ -35,6 +35,7 @@ import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
 import ProfileResource from './profile-resource';
+import PurchaseResource from './purchase-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
@@ -91,6 +92,7 @@ const Resources = {
     PreviewsResource,
     ProductsResource,
     ProfileResource,
+    PurchaseResource,
     SearchResource,
     SegmentsResource,
     SendThroughAttributionResource,
