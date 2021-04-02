@@ -5,7 +5,7 @@
 
 export default function AmlResource({apiHandler}) {
   return {
-    getAll({expand = null, firstName, lastName, dob = null, country = null}) {
+    getAll({firstName, lastName, dob = null, country = null, expand = null}) {
       const params = {firstName, lastName, dob, country, expand};
       return apiHandler.getAll(`aml`, params);
     },

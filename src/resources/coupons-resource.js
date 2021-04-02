@@ -6,12 +6,12 @@
 export default function CouponsResource({apiHandler}) {
   return {
     getAllRedemptions({
-      expand = null,
       limit = null,
       offset = null,
       filter = null,
       q = null,
       sort = null,
+      expand = null,
     } = {}) {
       const params = {limit, offset, filter, q, sort, expand};
       return apiHandler.getAll(`coupons-redemptions`, params);
@@ -26,12 +26,12 @@ export default function CouponsResource({apiHandler}) {
       return apiHandler.post(`coupons-redemptions/${id}/cancel`);
     },
     getAll({
-      expand = null,
       limit = null,
       offset = null,
       filter = null,
       q = null,
       sort = null,
+      expand = null,
     } = {}) {
       const params = {limit, offset, filter, q, sort, expand};
       return apiHandler.getAll(`coupons`, params);

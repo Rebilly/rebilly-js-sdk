@@ -5,7 +5,7 @@
 
 export default function BankAccountsResource({apiHandler}) {
   return {
-    getAll({expand = null, limit = null, offset = null} = {}) {
+    getAll({limit = null, offset = null, expand = null} = {}) {
       const params = {limit, offset, expand};
       return apiHandler.getAll(`bank-accounts`, params);
     },
