@@ -89,7 +89,6 @@ export class ExperimentalApiInstance {
         this.reports = ExperimentalResources.ReportsResource({apiHandler}),
         this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
         this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
-        this.transactions = ExperimentalResources.TransactionsResource({apiHandler}),
         this.location = ExperimentalResources.LocationResource({apiHandler}),
         // expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
