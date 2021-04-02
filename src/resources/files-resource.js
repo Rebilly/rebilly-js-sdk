@@ -41,6 +41,7 @@ export default function FilesResource({apiHandler}) {
             };
 
             const result = handler();
+            // @ts-ignore
             result.cancel = () => {
                 requests.forEach(req => req.cancel());
             };
@@ -75,6 +76,7 @@ export default function FilesResource({apiHandler}) {
             };
 
             const result = handler();
+            // @ts-ignore
             result.cancel = () => {
                 requests.forEach(req => req.cancel());
             };

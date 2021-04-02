@@ -1,3 +1,4 @@
+// @ts-nocheck
 import CachedRequest from './cached-request';
 
 /**

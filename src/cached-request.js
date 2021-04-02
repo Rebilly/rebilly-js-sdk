@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios';
 import shortid from 'shortid';
 import deepFreeze from './deep-freeze';
@@ -19,7 +20,7 @@ import deepFreeze from './deep-freeze';
  * @prop {CancelToken} cancelToken - axios CancelToken
  */
 export default class CachedRequest {
-    constructor({id, created} = {}) {
+    constructor({id=null, created=null} = {}) {
         this.id = id || shortid.generate();
         this.created = created || new Date().getTime();
 

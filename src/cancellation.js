@@ -8,6 +8,7 @@ export class Cancellation {
     /**
      * Cancel single request by request id.
      *
+     * @typedef {String} CachedRequestId - unique request id
      * @param {CachedRequestId} id
      * @param {string} [reason]
      */
