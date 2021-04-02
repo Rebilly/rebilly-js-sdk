@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Deep freeze an object. Based on `substack/deep-freeze`.
  * @param obj {Object}

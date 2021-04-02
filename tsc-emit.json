@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "lib": ["es2017", "dom"],
+      "noEmit": false,
+      "allowJs": true,
+      "checkJs": true,
+      "emitDeclarationOnly": true,    
+      "declaration": true,
+      "outFile": "typings/rebilly-js-sdk/index.d.ts",
+      "removeComments": true,
+      "strict": false,
+      "noImplicitThis": true,
+      "alwaysStrict": true,
+      "types": [
+        "./typings/rebilly"
+      ],
+      "esModuleInterop": true
+    },
+    "include": [
+      "src"
+    ]
+  }
