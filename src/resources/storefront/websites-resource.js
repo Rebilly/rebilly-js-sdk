@@ -3,10 +3,10 @@
 * Do not make direct changes to this file.
 */
 
-export default function CheckoutFormsResource({apiHandler}) {
+export default function WebsitesResource({apiHandler}) {
   return {
     get({id}) {
-      return apiHandler.get(`checkout-forms/${id}`);
+      return apiHandler.get(`websites/${id}`);
     },
   };
 }
