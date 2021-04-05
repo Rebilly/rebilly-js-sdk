@@ -124,7 +124,7 @@ export class StorefrontApiInstance {
         this.products = StorefrontResources.ProductResource({apiHandler}),
         this.purchase = StorefrontResources.PurchaseResource({apiHandler}),
         this.transactions = StorefrontResources.TransactionsResource({apiHandler}),
-        this.website = StorefrontResources.WebsiteResource({apiHandler}),
+        this.website = StorefrontResources.WebsitesResource({apiHandler}),
         
         //expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
