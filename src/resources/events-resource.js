@@ -18,7 +18,7 @@ export default function EventsResource({apiHandler}) {
       getRules({eventType = null} = {}) {
         return apiHandler.getAll(`events/${eventType}/rules`);
       },
-      updateRule({eventType, data}) {
+      updateRules({eventType, data}) {
         return apiHandler.put(`events/${eventType}/rules`, data);
       },
       getAllTimelineMessages({
