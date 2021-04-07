@@ -40,7 +40,7 @@ export default function EventsResource({apiHandler}) {
       deleteTimelineMessage({eventType, messageId}) {
         return apiHandler.delete(`events/${eventType}/timeline/${messageId}`);
       },
-      getAllRulesHistory({
+      getRulesHistory({
         eventType = null,
         limit = null,
         offset = null,
