@@ -10,7 +10,7 @@ export default function OrganizationsResource({apiHandler}) {
       return apiHandler.getAll(`organizations`, params);
     },
     create({data}) {
-      return apiHandler.patch(`organizations`, data);
+      return apiHandler.post(`organizations`, data);
     },
     get({id}) {
       return apiHandler.get(`organizations/${id}`);
