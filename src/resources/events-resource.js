@@ -5,7 +5,16 @@
 
 export default function EventsResource({apiHandler}) {
     return {
-  
+      getAll({limit = null, offset = null} = {}) {
+          const params = {
+              limit,
+              offset
+          };
+          return apiHandler.getAll(`events`, params);
+      },
+      get({eventType}) {
+          return apiHandler.get(`events/${eventType}`);
+      },
       getAllRules({eventType = null} = {}) {
         return apiHandler.getAll(`events/${eventType}/rules`);
       },
