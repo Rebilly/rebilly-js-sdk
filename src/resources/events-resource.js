@@ -15,8 +15,8 @@ export default function EventsResource({apiHandler}) {
       get({eventType}) {
           return apiHandler.get(`events/${eventType}`);
       },
-      getRules({eventType = null} = {}) {
-        return apiHandler.getAll(`events/${eventType}/rules`);
+      getRules({eventType}) {
+        return apiHandler.get(`events/${eventType}/rules`);
       },
       updateRules({eventType, data}) {
         return apiHandler.put(`events/${eventType}/rules`, data);
