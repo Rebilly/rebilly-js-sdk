@@ -1,10 +1,6 @@
 {
   "name": "rebilly-js-sdk",
-<<<<<<< HEAD
-  "version": "31.2.1",
-=======
-  "version": "31.2.0",
->>>>>>> origin/master
+  "version": "31.3.0",
   "description": "Official Rebilly API JS library for the browser and Node",
   "browser": "./dist/rebilly-js-sdk.js",
   "main": "./dist/rebilly-js-sdk.node.js",
