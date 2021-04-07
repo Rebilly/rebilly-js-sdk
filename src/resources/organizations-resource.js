@@ -9,8 +9,8 @@ export default function OrganizationsResource({apiHandler}) {
       const params = {limit, offset, expand};
       return apiHandler.getAll(`organizations`, params);
     },
-    create({id = '', data}) {
-      return apiHandler.create(`organizations/${id}`, id, data);
+    create({data}) {
+      return apiHandler.patch(`organizations`, data);
     },
     get({id}) {
       return apiHandler.get(`organizations/${id}`);
