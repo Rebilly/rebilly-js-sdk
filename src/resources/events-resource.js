@@ -60,7 +60,7 @@ export default function EventsResource({apiHandler}) {
           params
         );
       },
-      getRuleVersion({eventType, version, fields, expand = null}) {
+      getRulesVersionDetail({eventType, version, fields, expand = null}) {
         const params = {fields, expand};
         return apiHandler.get(
           `events/${eventType}/rules/versions/${version}`,
