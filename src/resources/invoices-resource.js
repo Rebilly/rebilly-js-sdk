@@ -14,17 +14,16 @@ export default function InvoicesResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
-      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
+      const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`invoices`, params);
     },
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`invoices/${id}`, id, data, params);
     },
-    get({id, Accept, expand = null}) {
-      const params = {Accept, expand};
+    get({id, expand = null}) {
+      const params = {expand};
       return apiHandler.get(`invoices/${id}`, params);
     },
     update({id, data, expand = null}) {
@@ -62,9 +61,8 @@ export default function InvoicesResource({apiHandler}) {
       id = null,
       limit = null,
       offset = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, expand};
+      const params = {limit, offset};
       return apiHandler.getAll(
         `invoices/${id}/transaction-allocations`,
         params
@@ -80,9 +78,8 @@ export default function InvoicesResource({apiHandler}) {
       filter = null,
       sort = null,
       q = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, sort, q, expand};
+      const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`invoices/${id}/timeline`, params);
     },
     createTimelineComment({id, data}) {
