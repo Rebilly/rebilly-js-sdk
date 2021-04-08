@@ -4,22 +4,29 @@
 */
 
 export default function PaypalAccountsResource({apiHandler}) {
-    return {
-      getAll({limit = null, offset = null, expand = null} = {}) {
-        const params = {limit, offset, expand};
-        return apiHandler.getAll(`paypal-accounts`, params);
-      },
-      create({id = '', data}) {
-        return apiHandler.create(`paypal-accounts/${id}`, id, data);
-      },
-      get({id}) {
-        return apiHandler.get(`paypal-accounts/${id}`);
-      },
-      update({id, data}) {
-        return apiHandler.put(`paypal-accounts/${id}`, data);
-      },
-      deactivate({id}) {
-        return apiHandler.post(`paypal-accounts/${id}/deactivation`);
-      },
-    };
-  }
+  return {
+    getAll({
+      filter = null,
+      sort = null,
+      limit = null,
+      offset = null,
+      q = null,
+      expand = null,
+    } = {}) {
+      const params = {filter, sort, limit, offset, q, expand};
+      return apiHandler.getAll(`paypal-accounts`, params);
+    },
+    create({id = '', data}) {
+      return apiHandler.create(`paypal-accounts/${id}`, id, data);
+    },
+    get({id}) {
+      return apiHandler.get(`paypal-accounts/${id}`);
+    },
+    update({id, data}) {
+      return apiHandler.put(`paypal-accounts/${id}`, data);
+    },
+    deactivate({id}) {
+      return apiHandler.post(`paypal-accounts/${id}/deactivation`);
+    },
+  };
+}
