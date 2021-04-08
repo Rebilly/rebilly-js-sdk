@@ -86,7 +86,6 @@ export class ExperimentalApiInstance {
         this.customers = ExperimentalResources.CustomersResource({apiHandler}),
         this.dataExports = ExperimentalResources.DataExportsResource({apiHandler}),
         this.histograms = ExperimentalResources.HistogramsResource({apiHandler}),
-        this.organizations = ExperimentalResources.OrganizationsResource({apiHandler}),
         this.reports = ExperimentalResources.ReportsResource({apiHandler}),
         this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
         this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
