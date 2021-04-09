@@ -11,16 +11,15 @@ export default function PaymentInstrumentsResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
-      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
+      const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`payment-instruments`, params);
     },
     create({data}) {
       return apiHandler.post(`payment-instruments`, data);
     },
-    get({id, limit, offset, expand = null}) {
-      const params = {limit, offset, expand};
+    get({id, limit, offset}) {
+      const params = {limit, offset};
       return apiHandler.get(`payment-instruments/${id}`, params);
     },
     update({id, data}) {

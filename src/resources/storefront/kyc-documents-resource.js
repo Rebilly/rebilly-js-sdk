@@ -5,8 +5,8 @@
 
 export default function KycDocumentsResource({apiHandler}) {
   return {
-    getAll({limit = null, offset = null, expand = null} = {}) {
-      const params = {limit, offset, expand};
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
       return apiHandler.getAll(`kyc-documents`, params);
     },
     create({data}) {
