@@ -1,6 +1,6 @@
 import chai from 'chai';
 import createApiTestHandler from '../create-api-test-handler';
-import createApiInstance, {createExperimentalApiInstance} from '../../../src/create-api-instance';
+import createApiInstance, {createExperimentalApiInstance, createStorefrontApiInstance} from '../../../src/create-api-instance';
 
 const expect = chai.expect;
 const options = {
@@ -14,6 +14,7 @@ const options = {
 const apiHandler = createApiTestHandler({options});
 const apiInstance = createApiInstance({apiHandler});
 const apiInstanceExperimental = createExperimentalApiInstance({apiHandler});
+const apiInstanceStorefront = createStorefrontApiInstance({apiHandler});
 
 describe('when I create an API instance', () => {
     it('should expose resource methods', () => {
@@ -90,5 +91,20 @@ describe('when I create an API instance', () => {
         expect(apiInstanceExperimental.setTimeout).to.be.a('function');
         expect(apiInstanceExperimental.setProxyAgent).to.be.a('function');
         expect(apiInstanceExperimental.setEndpoints).to.be.a('function');
+    });
+
+    it('should expose storefront resource methods', () => {
+        expect(apiInstanceStorefront.account).to.be.an('object');
+        expect(apiInstanceStorefront.authorization).to.be.an('object');
+        expect(apiInstanceStorefront.checkoutForm).to.be.an('object');
+        expect(apiInstanceStorefront.invoices).to.be.an('object');
+        expect(apiInstanceStorefront.kycDocuments).to.be.an('object');
+        expect(apiInstanceStorefront.paymentInstruments).to.be.an('object');
+        expect(apiInstanceStorefront.plans).to.be.an('object');
+        expect(apiInstanceStorefront.products).to.be.an('object');
+        expect(apiInstanceStorefront.purchase).to.be.an('object');
+        expect(apiInstanceStorefront.transactions).to.be.an('object');
+        expect(apiInstanceStorefront.websites).to.be.an('object');
+
     });
 });
