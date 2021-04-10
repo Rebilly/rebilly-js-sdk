@@ -8,7 +8,7 @@ import PlansResource from './plans-resource';
 import ProductResource from './products-resource';
 import PurchaseResource from './purchase-resource';
 import TransactionsResource from './transactions-resource';
-import WebsiteResource from './website-resource';
+import WebsitesResource from './websites-resource';
 
 const StorefrontResources = {
   AccountResource,
@@ -21,7 +21,7 @@ const StorefrontResources = {
   ProductResource,
   PurchaseResource,
   TransactionsResource,
-  WebsiteResource
+  WebsitesResource
 };
 
 export default StorefrontResources;
