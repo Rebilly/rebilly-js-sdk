@@ -49,7 +49,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.products).to.be.an('object');
         expect(apiInstance.profile).to.be.an('object');
         expect(apiInstance.purchase).to.be.an('object');
-        expect(apiInstance.sessions).to.be.an('object');
         expect(apiInstance.shippingZones).to.be.an('object');
         expect(apiInstance.status).to.be.an('object');
         expect(apiInstance.subscriptions).to.be.an('object');
