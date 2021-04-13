@@ -32,6 +32,29 @@ export default function EventsResource({apiHandler}) {
             return apiHandler.getAll(`events/${eventType}/rules/history`, params);
         },
 
+        getAllTimelineMessages({eventType = null, limit = null, offset = null, sort = null, filter = null, q = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                q
+            };
+            return apiHandler.getAll(`events/${eventType}/timeline`, params);
+        },
+
+        getTimelineMessage({eventType, messageId}) {
+            return apiHandler.get(`events/${eventType}/timeline/${messageId}`);
+        },
+
+        deleteTimelineMessage({eventType, messageId}) {
+            return apiHandler.delete(`events/${eventType}/timeline/${messageId}`);
+        },
+
+        createTimelineComment({eventType, data}) {
+            return apiHandler.create(`events/${eventType}/timeline`, '', data);
+        },
+
         getRulesVersionNumber({eventType, version}) {
             return apiHandler.get(`events/${eventType}/rules/history/${version}`);
         },
