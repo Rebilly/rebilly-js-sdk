@@ -45,7 +45,6 @@ export class ApiInstance {
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
-        this.sessions = Resources.SessionsResource({apiHandler}),
         this.shippingZones = Resources.ShippingZonesResource({apiHandler}),
         this.status = Resources.StatusResource({apiHandler}),
         this.subscriptions = Resources.SubscriptionsResource({apiHandler}),
