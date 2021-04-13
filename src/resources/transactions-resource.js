@@ -26,8 +26,8 @@ export default function TransactionsResource({apiHandler}) {
       const params = {expand};
       return apiHandler.get(`transactions/${id}`, params);
     },
-    update({id, data}) {
-      return apiHandler.post(`transactions/${id}/update`, data);
+    patch({id, data}) {
+      return apiHandler.patch(`transactions/${id}`, data);
     },
     cancel({id}) {
       return apiHandler.post(`transactions/${id}/cancel`);
@@ -37,6 +37,9 @@ export default function TransactionsResource({apiHandler}) {
     },
     query({id}) {
       return apiHandler.post(`transactions/${id}/query`);
+    },
+    update({id, data}) {
+      return apiHandler.post(`transactions/${id}/update`, data);
     },
     refund({id, data}) {
       return apiHandler.post(`transactions/${id}/refund`, data);
