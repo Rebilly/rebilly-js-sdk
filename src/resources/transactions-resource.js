@@ -18,11 +18,13 @@ export default function TransactionsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`transactions`, params);
     },
-    create({data}) {
-      return apiHandler.post(`transactions`, data);
+    create({data, expand = null}) {
+      const params = {expand};
+      return apiHandler.post(`transactions`, data, params);
     },
-    get({id}) {
-      return apiHandler.get(`transactions/${id}`);
+    get({id, expand = null}) {
+      const params = {expand};
+      return apiHandler.get(`transactions/${id}`, params);
     },
     update({id, data}) {
       return apiHandler.post(`transactions/${id}/update`, data);
