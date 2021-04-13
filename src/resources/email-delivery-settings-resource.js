@@ -8,8 +8,15 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
     verify({token}) {
       return apiHandler.put(`email-delivery-setting-verifications/${token}`);
     },
-    getAll() {
-      return apiHandler.getAll(`email-delivery-settings`);
+    getAll({
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      q = null,
+    } = {}) {
+      const params = {limit, offset, filter, sort, q};
+      return apiHandler.getAll(`email-delivery-settings`, params);
     },
     create({data}) {
       return apiHandler.post(`email-delivery-settings`, data);
