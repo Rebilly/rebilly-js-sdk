@@ -45,7 +45,6 @@ export class ApiInstance {
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
-        this.sessions = Resources.SessionsResource({apiHandler}),
         this.shippingZones = Resources.ShippingZonesResource({apiHandler}),
         this.status = Resources.StatusResource({apiHandler}),
         this.subscriptions = Resources.SubscriptionsResource({apiHandler}),
@@ -86,7 +85,6 @@ export class ExperimentalApiInstance {
         this.customers = ExperimentalResources.CustomersResource({apiHandler}),
         this.dataExports = ExperimentalResources.DataExportsResource({apiHandler}),
         this.histograms = ExperimentalResources.HistogramsResource({apiHandler}),
-        this.organizations = ExperimentalResources.OrganizationsResource({apiHandler}),
         this.reports = ExperimentalResources.ReportsResource({apiHandler}),
         this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
         this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
@@ -124,7 +122,7 @@ export class StorefrontApiInstance {
         this.products = StorefrontResources.ProductResource({apiHandler}),
         this.purchase = StorefrontResources.PurchaseResource({apiHandler}),
         this.transactions = StorefrontResources.TransactionsResource({apiHandler}),
-        this.website = StorefrontResources.WebsiteResource({apiHandler}),
+        this.websites = StorefrontResources.WebsitesResource({apiHandler}),
         
         //expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
