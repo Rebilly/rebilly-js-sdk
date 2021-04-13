@@ -14,9 +14,8 @@ export default function TransactionsResource({apiHandler}) {
       filter = null,
       q = null,
       sort = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, q, sort, expand};
+      const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`transactions`, params);
     },
     create({data}) {
@@ -31,7 +30,7 @@ export default function TransactionsResource({apiHandler}) {
     cancel({id}) {
       return apiHandler.post(`transactions/${id}/cancel`);
     },
-    getGatewayLogs({id = null} = {}) {
+    getGatewayLogs({id}) {
       return apiHandler.getAll(`transactions/${id}/gateway-logs`);
     },
     query({id}) {
@@ -40,17 +39,11 @@ export default function TransactionsResource({apiHandler}) {
     refund({id, data}) {
       return apiHandler.post(`transactions/${id}/refund`, data);
     },
-    getAllTimelineMessages({
-      id = null,
-      limit = null,
-      offset = null,
-      filter = null,
-      expand = null,
-    } = {}) {
-      const params = {limit, offset, filter, expand};
+    getAllTimelineMessages({id, limit, offset, filter}) {
+      const params = {limit, offset, filter};
       return apiHandler.getAll(`transactions/${id}/timeline`, params);
     },
-    createTimelineMessage({id, data}) {
+    createTimelineComment({id, data}) {
       return apiHandler.post(`transactions/${id}/timeline`, data);
     },
     getTimelineMessage({id, messageId}) {
