@@ -4,30 +4,29 @@
 */
 
 export default function EmailDeliverySettingsResource({apiHandler}) {
-    return {
-      verify({token}) {
-        return apiHandler.put(`email-delivery-setting-verifications/${token}`);
-      },
-      getAll() {
-        return apiHandler.getAll(`email-delivery-settings`);
-      },
-      create({data}) {
-        return apiHandler.post(`email-delivery-settings`, data);
-      },
-      get({id}) {
-        return apiHandler.get(`email-delivery-settings/${id}`);
-      },
-      delete({id}) {
-        return apiHandler.delete(`email-delivery-settings/${id}`);
-      },
-      update({id, data}) {
-        return apiHandler.patch(`email-delivery-settings/${id}`, data);
-      },
-      resendVerification({id}) {
-        return apiHandler.post(
-          `email-delivery-settings/${id}/resend-email-verification`
-        );
-      },
-    };
-  }
-  
+  return {
+    verify({token}) {
+      return apiHandler.put(`email-delivery-setting-verifications/${token}`);
+    },
+    getAll() {
+      return apiHandler.getAll(`email-delivery-settings`);
+    },
+    create({data}) {
+      return apiHandler.post(`email-delivery-settings`, data);
+    },
+    get({id}) {
+      return apiHandler.get(`email-delivery-settings/${id}`);
+    },
+    delete({id}) {
+      return apiHandler.delete(`email-delivery-settings/${id}`);
+    },
+    update({id, data}) {
+      return apiHandler.patch(`email-delivery-settings/${id}`, data);
+    },
+    resendVerification({id}) {
+      return apiHandler.post(
+        `email-delivery-settings/${id}/resend-email-verification`
+      );
+    },
+  };
+}
