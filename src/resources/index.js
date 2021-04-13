@@ -39,7 +39,6 @@ import PurchaseResource from './purchase-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
-import SessionsResource from './sessions-resource';
 import ShippingZonesResource from './shipping-zones-resource';
 import StatusResource from './status-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
@@ -96,7 +95,6 @@ const Resources = {
     SearchResource,
     SegmentsResource,
     SendThroughAttributionResource,
-    SessionsResource,
     ShippingZonesResource,
     StatusResource,
     SubscriptionCancellationsResource,
