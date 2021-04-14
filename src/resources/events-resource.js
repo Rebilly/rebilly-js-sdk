@@ -25,8 +25,10 @@ export default function EventsResource({apiHandler}) {
       limit = null,
       offset = null,
       filter = null,
+      sort = null,
+      q = null,
     }) {
-      const params = {limit, offset, filter};
+      const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`events/${eventType}/timeline`, params);
     },
     createTimelineComment({eventType, data}) {
