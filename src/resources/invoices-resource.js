@@ -14,8 +14,9 @@ export default function InvoicesResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q};
+      const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`invoices`, params);
     },
     create({id = '', data, expand = null}) {
@@ -30,12 +31,7 @@ export default function InvoicesResource({apiHandler}) {
       const params = {expand};
       return apiHandler.put(`invoices/${id}`, data, params);
     },
-    getAllInvoiceItems({
-      id = null,
-      limit = null,
-      offset = null,
-      expand = null,
-    } = {}) {
+    getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
       const params = {limit, offset, expand};
       return apiHandler.getAll(`invoices/${id}/items`, params);
     },
@@ -57,11 +53,7 @@ export default function InvoicesResource({apiHandler}) {
     reissue({id, data}) {
       return apiHandler.post(`invoices/${id}/reissue`, data);
     },
-    getAllTransactionAllocations({
-      id = null,
-      limit = null,
-      offset = null,
-    } = {}) {
+    getAllTransactionAllocations({id, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.getAll(
         `invoices/${id}/transaction-allocations`,
@@ -72,13 +64,13 @@ export default function InvoicesResource({apiHandler}) {
       return apiHandler.post(`invoices/${id}/transaction`, data);
     },
     getAllTimelineMessages({
-      id = null,
+      id,
       limit = null,
       offset = null,
       filter = null,
       sort = null,
       q = null,
-    } = {}) {
+    }) {
       const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`invoices/${id}/timeline`, params);
     },

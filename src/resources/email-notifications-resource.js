@@ -4,9 +4,9 @@
 */
 
 export default function EmailNotificationsResource({apiHandler}) {
-    return {
-      getAll() {
-        return apiHandler.getAll(`email-notifications`);
-      },
-    };
-  }
+  return {
+    getAll() {
+      return apiHandler.getAll(`email-notifications`);
+    },
+  };
+}

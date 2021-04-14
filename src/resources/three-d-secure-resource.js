@@ -4,16 +4,16 @@
 */
 
 export default function ThreeDSecureResource({apiHandler}) {
-    return {
-      getAll({limit = null, offset = null, expand = null} = {}) {
-        const params = {limit, offset, expand};
-        return apiHandler.getAll(`3dsecure`, params);
-      },
-      create({data}) {
-        return apiHandler.post(`3dsecure`, data);
-      },
-      get({id}) {
-        return apiHandler.get(`3dsecure/${id}`);
-      },
-    };
-  }
+  return {
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`3dsecure`, params);
+    },
+    create({data}) {
+      return apiHandler.post(`3dsecure`, data);
+    },
+    get({id}) {
+      return apiHandler.get(`3dsecure/${id}`);
+    },
+  };
+}

@@ -4,28 +4,28 @@
 */
 
 export default function CheckoutFormsResource({apiHandler}) {
-    return {
-      getAll({
-        limit = null,
-        offset = null,
-        sort = null,
-        filter = null,
-        q = null,
-      } = {}) {
-        const params = {limit, offset, sort, filter, q};
-        return apiHandler.getAll(`checkout-forms`, params);
-      },
-      create({id = '', data}) {
-        return apiHandler.create(`checkout-forms/${id}`, id, data);
-      },
-      get({id}) {
-        return apiHandler.get(`checkout-forms/${id}`);
-      },
-      update({id, data}) {
-        return apiHandler.put(`checkout-forms/${id}`, data);
-      },
-      delete({id}) {
-        return apiHandler.delete(`checkout-forms/${id}`);
-      },
-    };
-  }
+  return {
+    getAll({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
+      const params = {limit, offset, sort, filter, q};
+      return apiHandler.getAll(`checkout-forms`, params);
+    },
+    create({id = '', data}) {
+      return apiHandler.create(`checkout-forms/${id}`, id, data);
+    },
+    get({id}) {
+      return apiHandler.get(`checkout-forms/${id}`);
+    },
+    update({id, data}) {
+      return apiHandler.put(`checkout-forms/${id}`, data);
+    },
+    delete({id}) {
+      return apiHandler.delete(`checkout-forms/${id}`);
+    },
+  };
+}

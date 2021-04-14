@@ -11,9 +11,8 @@ export default function CouponsResource({apiHandler}) {
       filter = null,
       q = null,
       sort = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, q, sort, expand};
+      const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`coupons-redemptions`, params);
     },
     redeem({data}) {
@@ -31,9 +30,8 @@ export default function CouponsResource({apiHandler}) {
       filter = null,
       q = null,
       sort = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, q, sort, expand};
+      const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`coupons`, params);
     },
     create({id = '', data}) {

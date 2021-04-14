@@ -4,61 +4,57 @@
 */
 
 export default function CustomerAuthenticationResource({apiHandler}) {
-    return {
-      getAuthOptions() {
-        return apiHandler.get(`authentication-options`);
-      },
-      updateAuthOptions({data}) {
-        return apiHandler.put(`authentication-options`, data);
-      },
-      getAllAuthTokens({limit = null, offset = null, expand = null} = {}) {
-        const params = {limit, offset, expand};
-        return apiHandler.getAll(`authentication-tokens`, params);
-      },
-      login({data}) {
-        return apiHandler.post(`authentication-tokens`, data);
-      },
-      verify({token}) {
-        return apiHandler.get(`authentication-tokens/${token}`);
-      },
-      logout({token}) {
-        return apiHandler.delete(`authentication-tokens/${token}`);
-      },
-      exchangeToken({token, data}) {
-        return apiHandler.post(`authentication-tokens/${token}/exchange`, data);
-      },
-      getAllCredentials({limit = null, offset = null, expand = null} = {}) {
-        const params = {limit, offset, expand};
-        return apiHandler.getAll(`credentials`, params);
-      },
-      createCredential({id = '', data}) {
-        return apiHandler.create(`credentials/${id}`, id, data);
-      },
-      getCredential({id}) {
-        return apiHandler.get(`credentials/${id}`);
-      },
-      updateCredential({id, data}) {
-        return apiHandler.put(`credentials/${id}`, data);
-      },
-      deleteCredential({id}) {
-        return apiHandler.delete(`credentials/${id}`);
-      },
-      getAllResetPasswordTokens({
-        limit = null,
-        offset = null,
-        expand = null,
-      } = {}) {
-        const params = {limit, offset, expand};
-        return apiHandler.getAll(`password-tokens`, params);
-      },
-      createResetPasswordToken({data}) {
-        return apiHandler.post(`password-tokens`, data);
-      },
-      getResetPasswordToken({id}) {
-        return apiHandler.get(`password-tokens/${id}`);
-      },
-      deleteResetPasswordToken({id}) {
-        return apiHandler.delete(`password-tokens/${id}`);
-      },
-    };
-  }
+  return {
+    getAuthOptions() {
+      return apiHandler.get(`authentication-options`);
+    },
+    updateAuthOptions({data}) {
+      return apiHandler.put(`authentication-options`, data);
+    },
+    getAllAuthTokens({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`authentication-tokens`, params);
+    },
+    login({data}) {
+      return apiHandler.post(`authentication-tokens`, data);
+    },
+    verify({token}) {
+      return apiHandler.get(`authentication-tokens/${token}`);
+    },
+    logout({token}) {
+      return apiHandler.delete(`authentication-tokens/${token}`);
+    },
+    exchangeToken({token, data}) {
+      return apiHandler.post(`authentication-tokens/${token}/exchange`, data);
+    },
+    getAllCredentials({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`credentials`, params);
+    },
+    createCredential({id = '', data}) {
+      return apiHandler.create(`credentials/${id}`, id, data);
+    },
+    getCredential({id}) {
+      return apiHandler.get(`credentials/${id}`);
+    },
+    updateCredential({id, data}) {
+      return apiHandler.put(`credentials/${id}`, data);
+    },
+    deleteCredential({id}) {
+      return apiHandler.delete(`credentials/${id}`);
+    },
+    getAllResetPasswordTokens({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`password-tokens`, params);
+    },
+    createResetPasswordToken({data}) {
+      return apiHandler.post(`password-tokens`, data);
+    },
+    getResetPasswordToken({id}) {
+      return apiHandler.get(`password-tokens/${id}`);
+    },
+    deleteResetPasswordToken({id}) {
+      return apiHandler.delete(`password-tokens/${id}`);
+    },
+  };
+}

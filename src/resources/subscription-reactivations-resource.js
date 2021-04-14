@@ -4,22 +4,16 @@
 */
 
 export default function SubscriptionReactivationsResource({apiHandler}) {
-    return {
-      getAll({
-        limit = null,
-        offset = null,
-        filter = null,
-        sort = null,
-        expand = null,
-      } = {}) {
-        const params = {limit, offset, filter, sort, expand};
-        return apiHandler.getAll(`subscription-reactivations`, params);
-      },
-      reactivate({data}) {
-        return apiHandler.post(`subscription-reactivations`, data);
-      },
-      get({id}) {
-        return apiHandler.get(`subscription-reactivations/${id}`);
-      },
-    };
-  }
+  return {
+    getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
+      const params = {limit, offset, filter, sort};
+      return apiHandler.getAll(`subscription-reactivations`, params);
+    },
+    reactivate({data}) {
+      return apiHandler.post(`subscription-reactivations`, data);
+    },
+    get({id}) {
+      return apiHandler.get(`subscription-reactivations/${id}`);
+    },
+  };
+}

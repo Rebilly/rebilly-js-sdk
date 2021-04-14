@@ -4,25 +4,19 @@
 */
 
 export default function SubscriptionCancellationsResource({apiHandler}) {
-    return {
-      getAll({
-        limit = null,
-        offset = null,
-        filter = null,
-        sort = null,
-        expand = null,
-      } = {}) {
-        const params = {limit, offset, filter, sort, expand};
-        return apiHandler.getAll(`subscription-cancellations`, params);
-      },
-      create({id = '', data}) {
-        return apiHandler.create(`subscription-cancellations/${id}`, id, data);
-      },
-      get({id}) {
-        return apiHandler.get(`subscription-cancellations/${id}`);
-      },
-      delete({id}) {
-        return apiHandler.delete(`subscription-cancellations/${id}`);
-      },
-    };
-  }
+  return {
+    getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
+      const params = {limit, offset, filter, sort};
+      return apiHandler.getAll(`subscription-cancellations`, params);
+    },
+    create({id = '', data}) {
+      return apiHandler.create(`subscription-cancellations/${id}`, id, data);
+    },
+    get({id}) {
+      return apiHandler.get(`subscription-cancellations/${id}`);
+    },
+    delete({id}) {
+      return apiHandler.delete(`subscription-cancellations/${id}`);
+    },
+  };
+}

@@ -8,18 +8,36 @@ import {csvHeader} from '../request-headers';
 
 export default function TrackingResource({apiHandler}) {
   return {
-    getAllApiLogs({limit, offset}) {
-      const params = {limit, offset};
+    getAllApiLogs({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
+      const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/api`, params);
     },
     getApiLog({id}) {
       return apiHandler.get(`tracking/api/${id}`);
     },
-    getAllListsChangesHistory({limit, offset, sort, filter, q}) {
+    getAllListsChangesHistory({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/lists`, params);
     },
-    getAllWebhookTrackingLogs({limit, offset, sort, filter, q}) {
+    getAllWebhookTrackingLogs({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/webhooks`, params);
     },
