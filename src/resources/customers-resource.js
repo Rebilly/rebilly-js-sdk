@@ -33,10 +33,8 @@ export default function CustomersResource({apiHandler}) {
       return apiHandler.put(`customers/${id}`, data, params);
     },
     merge({id, targetCustomerId}) {
-      const params = {targetCustomerId};
       return apiHandler.delete(
-        `customers/${id}?targetCustomerId=${targetCustomerId}`,
-        params
+        `customers/${id}?targetCustomerId=${targetCustomerId}`
       );
     },
     getLeadSource({id}) {
