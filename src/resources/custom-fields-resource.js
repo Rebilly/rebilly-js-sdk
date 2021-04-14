@@ -12,6 +12,9 @@ export default function CustomFieldsResource({apiHandler}) {
     get({resource, name}) {
       return apiHandler.get(`custom-fields/${resource}/${name}`);
     },
+    create({resource, name, data}) {
+      return apiHandler.put(`custom-fields/${resource}/${name}`, data);
+    },
     update({resource, name, data}) {
       return apiHandler.put(`custom-fields/${resource}/${name}`, data);
     },
