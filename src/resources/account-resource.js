@@ -4,22 +4,21 @@
 */
 
 export default function AccountResource({apiHandler}) {
-    return {
-      activate({token}) {
-        return apiHandler.post(`activation/${token}`, {authenticate: false});
-      },
-      forgotPassword({data}) {
-        return apiHandler.post(`forgot-password`, data, {authenticate: false});
-      },
-      logout() {
-        return apiHandler.post(`logout`);
-      },
-      signIn({data}) {
-        return apiHandler.post(`signin`, data, {authenticate: false});
-      },
-      signUp({data}) {
-        return apiHandler.post(`signup`, data, {authenticate: false});
-      },
-    };
-  }
- 
+  return {
+    activate({token}) {
+      return apiHandler.post(`activation/${token}`, {authenticate: false});
+    },
+    forgotPassword({data}) {
+      return apiHandler.post(`forgot-password`, data, {authenticate: false});
+    },
+    logout() {
+      return apiHandler.post(`logout`);
+    },
+    signIn({data}) {
+      return apiHandler.post(`signin`, data, {authenticate: false});
+    },
+    signUp({data}) {
+      return apiHandler.post(`signup`, data, {authenticate: false});
+    },
+  };
+}

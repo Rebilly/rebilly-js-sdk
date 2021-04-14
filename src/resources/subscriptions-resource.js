@@ -37,7 +37,7 @@ export default function SubscriptionsResource({apiHandler}) {
     createInterimInvoice({id, data}) {
       return apiHandler.post(`subscriptions/${id}/interim-invoice`, data);
     },
-    getAllUpcomingInvoices({id = null, expand = null} = {}) {
+    getAllUpcomingInvoices({id, expand = null}) {
       const params = {expand};
       return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
     },
@@ -48,15 +48,14 @@ export default function SubscriptionsResource({apiHandler}) {
       );
     },
     getAllTimelineMessages({
-      id = null,
+      id,
       limit = null,
       offset = null,
       filter = null,
       sort = null,
       q = null,
-      expand = null,
-    } = {}) {
-      const params = {limit, offset, filter, sort, q, expand};
+    }) {
+      const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`subscriptions/${id}/timeline`, params);
     },
     createTimelineComment({id, data}) {

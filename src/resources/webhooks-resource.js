@@ -4,20 +4,19 @@
 */
 
 export default function WebhooksResource({apiHandler}) {
-    return {
-      getAll({limit = null, offset = null, filter = null} = {}) {
-        const params = {limit, offset, filter};
-        return apiHandler.getAll(`webhooks`, params);
-      },
-      create({id = '', data}) {
-        return apiHandler.create(`webhooks/${id}`, id, data);
-      },
-      get({id}) {
-        return apiHandler.get(`webhooks/${id}`);
-      },
-      update({id, data}) {
-        return apiHandler.put(`webhooks/${id}`, data);
-      },
-    };
-  }
-  
+  return {
+    getAll({limit = null, offset = null, filter = null} = {}) {
+      const params = {limit, offset, filter};
+      return apiHandler.getAll(`webhooks`, params);
+    },
+    create({id = '', data}) {
+      return apiHandler.create(`webhooks/${id}`, id, data);
+    },
+    get({id}) {
+      return apiHandler.get(`webhooks/${id}`);
+    },
+    update({id, data}) {
+      return apiHandler.put(`webhooks/${id}`, data);
+    },
+  };
+}

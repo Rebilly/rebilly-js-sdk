@@ -11,9 +11,8 @@ export default function PaymentInstrumentsResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
-      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
+      const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`payment-instruments`, params);
     },
     create({data}) {

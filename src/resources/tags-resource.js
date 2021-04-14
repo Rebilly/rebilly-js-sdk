@@ -11,9 +11,8 @@ export default function TagsResource({apiHandler}) {
       filter = null,
       q = null,
       sort = null,
-      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, q, sort, expand};
+      const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`tags`, params);
     },
     create({data}) {

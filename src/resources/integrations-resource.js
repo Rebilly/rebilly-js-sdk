@@ -4,12 +4,12 @@
 */
 
 export default function IntegrationsResource({apiHandler}) {
-    return {
-      getAll() {
-        return apiHandler.getAll(`integrations`);
-      },
-      get({label}) {
-        return apiHandler.get(`integrations/${label}`);
-      },
-    };
-  }
+  return {
+    getAll() {
+      return apiHandler.getAll(`integrations`);
+    },
+    get({label}) {
+      return apiHandler.get(`integrations/${label}`);
+    },
+  };
+}

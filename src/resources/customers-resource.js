@@ -33,8 +33,10 @@ export default function CustomersResource({apiHandler}) {
       return apiHandler.put(`customers/${id}`, data, params);
     },
     merge({id, targetCustomerId}) {
+      const params = {targetCustomerId};
       return apiHandler.delete(
-        `customers/${id}?targetCustomerId=${targetCustomerId}`
+        `customers/${id}?targetCustomerId=${targetCustomerId}`,
+        params
       );
     },
     getLeadSource({id}) {
@@ -50,15 +52,14 @@ export default function CustomersResource({apiHandler}) {
       return apiHandler.put(`customers/${id}/lead-source`, data);
     },
     getAllTimelineMessages({
-      id = null,
+      id,
       limit = null,
       offset = null,
       filter = null,
       sort = null,
       q = null,
-      expand = null,
-    } = {}) {
-      const params = {limit, offset, filter, sort, q, expand};
+    }) {
+      const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`customers/${id}/timeline`, params);
     },
     createTimelineComment({id, data}) {
@@ -70,7 +71,7 @@ export default function CustomersResource({apiHandler}) {
     deleteTimelineMessage({id, messageId}) {
       return apiHandler.delete(`customers/${id}/timeline/${messageId}`);
     },
-    getAllUpcomingInvoices({id = null, expand = null} = {}) {
+    getAllUpcomingInvoices({id, expand = null}) {
       const params = {expand};
       return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
     },

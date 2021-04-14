@@ -4,10 +4,9 @@
 */
 
 export default function SendThroughAttributionResource({apiHandler}) {
-    return {
-      getAll({eventType = null} = {}) {
-        return apiHandler.getAll(`send-through-attribution/${eventType}`);
-      },
-    };
-  }
-  
+  return {
+    getAll({eventType}) {
+      return apiHandler.getAll(`send-through-attribution/${eventType}`);
+    },
+  };
+}
