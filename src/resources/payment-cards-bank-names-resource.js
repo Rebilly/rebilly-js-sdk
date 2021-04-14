@@ -4,10 +4,10 @@
 */
 
 export default function PaymentCardsBankNamesResource({apiHandler}) {
-    return {
-      getAll({limit = null, q = null} = {}) {
-        const params = {limit, q};
-        return apiHandler.getAll(`payment-cards-bank-names`, params);
-      },
-    };
-  }
+  return {
+    getAll({limit = null, q = null} = {}) {
+      const params = {limit, q};
+      return apiHandler.getAll(`payment-cards-bank-names`, params);
+    },
+  };
+}

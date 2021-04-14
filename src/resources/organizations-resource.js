@@ -5,8 +5,8 @@
 
 export default function OrganizationsResource({apiHandler}) {
   return {
-    getAll({limit = null, offset = null, expand = null} = {}) {
-      const params = {limit, offset, expand};
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
       return apiHandler.getAll(`organizations`, params);
     },
     create({data}) {
@@ -17,9 +17,6 @@ export default function OrganizationsResource({apiHandler}) {
     },
     update({id, data}) {
       return apiHandler.patch(`organizations/${id}`, data);
-    },
-    delete({id}) {
-      return apiHandler.delete(`organizations/${id}`);
     },
   };
 }

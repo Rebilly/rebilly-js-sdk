@@ -14,8 +14,9 @@ export default function TransactionsResource({apiHandler}) {
       filter = null,
       q = null,
       sort = null,
+      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, q, sort};
+      const params = {limit, offset, filter, q, sort, expand};
       return apiHandler.getAll(`transactions`, params);
     },
     create({data, expand = null}) {
@@ -44,7 +45,7 @@ export default function TransactionsResource({apiHandler}) {
     refund({id, data}) {
       return apiHandler.post(`transactions/${id}/refund`, data);
     },
-    getAllTimelineMessages({id, limit, offset, filter}) {
+    getAllTimelineMessages({id, limit = null, offset = null, filter = null}) {
       const params = {limit, offset, filter};
       return apiHandler.getAll(`transactions/${id}/timeline`, params);
     },

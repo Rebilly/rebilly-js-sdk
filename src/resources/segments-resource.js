@@ -4,29 +4,28 @@
 */
 
 export default function SegmentsResource({apiHandler}) {
-    return {
-      getAll({
-        limit = null,
-        offset = null,
-        sort = null,
-        filter = null,
-        q = null,
-      } = {}) {
-        const params = {limit, offset, sort, filter, q};
-        return apiHandler.getAll(`grid-segments`, params);
-      },
-      create({id = '', data}) {
-        return apiHandler.create(`grid-segments/${id}`, id, data);
-      },
-      get({id}) {
-        return apiHandler.get(`grid-segments/${id}`);
-      },
-      update({id, data}) {
-        return apiHandler.put(`grid-segments/${id}`, data);
-      },
-      delete({id}) {
-        return apiHandler.delete(`grid-segments/${id}`);
-      },
-    };
-  }
-  
+  return {
+    getAll({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
+      const params = {limit, offset, sort, filter, q};
+      return apiHandler.getAll(`grid-segments`, params);
+    },
+    create({id = '', data}) {
+      return apiHandler.create(`grid-segments/${id}`, id, data);
+    },
+    get({id}) {
+      return apiHandler.get(`grid-segments/${id}`);
+    },
+    update({id, data}) {
+      return apiHandler.put(`grid-segments/${id}`, data);
+    },
+    delete({id}) {
+      return apiHandler.delete(`grid-segments/${id}`);
+    },
+  };
+}

@@ -4,10 +4,9 @@
 */
 
 export default function StatusResource({apiHandler}) {
-    return {
-      get() {
-        return apiHandler.get(`status`);
-      },
-    };
-  }
-  
+  return {
+    get() {
+      return apiHandler.get(`status`);
+    },
+  };
+}
