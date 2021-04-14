@@ -34,7 +34,13 @@ export default function GatewayAccountsResource({apiHandler}) {
     disable({id}) {
       return apiHandler.post(`gateway-accounts/${id}/disable`);
     },
-    getAllDowntimeSchedules({id, limit, offset, filter, sort}) {
+    getAllDowntimeSchedules({
+      id,
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+    }) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(
         `gateway-accounts/${id}/downtime-schedules`,
@@ -75,7 +81,14 @@ export default function GatewayAccountsResource({apiHandler}) {
     deleteVolumeLimit({id, limitId}) {
       return apiHandler.delete(`gateway-accounts/${id}/limits/${limitId}`);
     },
-    getAllTimelineMessages({id, limit, offset, filter, sort, q}) {
+    getAllTimelineMessages({
+      id,
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      q = null,
+    }) {
       const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`gateway-accounts/${id}/timeline`, params);
     },
