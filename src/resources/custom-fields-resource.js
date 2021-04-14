@@ -5,7 +5,7 @@
 
 export default function CustomFieldsResource({apiHandler}) {
   return {
-    getAll({resource, limit, offset}) {
+    getAll({resource, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.getAll(`custom-fields/${resource}`, params);
     },
