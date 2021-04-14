@@ -5,8 +5,8 @@
 
 export default function SearchResource({apiHandler}) {
   return {
-    get({sort = null, limit = null, offset = null, q = null}) {
-      const params = {sort, limit, offset, q};
+    get({sort, limit, offset, q, expand = null}) {
+      const params = {sort, limit, offset, q, expand};
       return apiHandler.get(`search`, params);
     },
   };
