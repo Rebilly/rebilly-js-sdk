@@ -19,7 +19,7 @@ export default function ListsResource({apiHandler}) {
     create({id = '', data}) {
       return apiHandler.create(`lists/${id}`, id, data);
     },
-    get({id, version}) {
+    get({id, version = ''}) {
       return apiHandler.get(`lists/${id}/${version}`);
     },
     update({id, data}) {
