@@ -11,8 +11,9 @@ export default function PaypalAccountsResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q};
+      const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`paypal-accounts`, params);
     },
     create({id = '', data}) {

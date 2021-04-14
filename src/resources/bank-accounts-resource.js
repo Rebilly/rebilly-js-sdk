@@ -11,8 +11,9 @@ export default function BankAccountsResource({apiHandler}) {
       q = null,
       sort = null,
       filter = null,
+      expand = null,
     } = {}) {
-      const params = {limit, offset, q, sort, filter};
+      const params = {limit, offset, q, sort, filter, expand};
       return apiHandler.getAll(`bank-accounts`, params);
     },
     create({id = '', data}) {

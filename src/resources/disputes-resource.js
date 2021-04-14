@@ -14,8 +14,9 @@ export default function DisputesResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q};
+      const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`disputes`, params);
     },
     create({id = '', data, expand = null}) {

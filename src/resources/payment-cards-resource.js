@@ -11,8 +11,9 @@ export default function PaymentCardsResource({apiHandler}) {
       filter = null,
       sort = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {limit, offset, filter, sort, q};
+      const params = {limit, offset, filter, sort, q, expand};
       return apiHandler.getAll(`payment-cards`, params);
     },
     create({id = '', data}) {
