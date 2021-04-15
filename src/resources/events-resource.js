@@ -83,7 +83,7 @@ export default function EventsResource({apiHandler}) {
     createDraftRuleset({eventType, data}) {
       return apiHandler.post(`events/${eventType}/rules/drafts`, data);
     },
-    getAllDraftRuleset({eventType, id, fields = null, expand = null}) {
+    getDraftRuleset({eventType, id, fields = null, expand = null}) {
       const params = {fields, expand};
       return apiHandler.get(`events/${eventType}/rules/drafts/${id}`, params);
     },
