@@ -15,4 +15,6 @@ jobs:
 
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
-      - run: ls
+        run: |
+          ls
+          yarn
