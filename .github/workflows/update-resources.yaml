@@ -30,3 +30,4 @@ jobs:
         run: |
           npm install
           ls ../api-definitions/dist
+          npm run generate-sdk-code 
