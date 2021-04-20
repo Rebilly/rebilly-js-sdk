@@ -18,22 +18,26 @@ jobs:
       #   run: |
       #     npm install
       #     npx openapi bundle -o dist --ext json
-      - name: Checkout sdk generator repo
-        uses: actions/checkout@v2
-        with:
-          repository: 'Rebilly/rebilly-sdk-generator'
-          path: 'rebilly-sdk-generator'
-          ref: 'master'
-          token: ${{ secrets.SDK_GENERATOR_PAT }}
-      - name: Executes sdk generation
-        working-directory: ./rebilly-sdk-generator
+      # - name: Checkout sdk generator repo
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: 'Rebilly/rebilly-sdk-generator'
+      #     path: 'rebilly-sdk-generator'
+      #     ref: 'master'
+      #     token: ${{ secrets.SDK_GENERATOR_PAT }}
+      # - name: Executes sdk generation
+      #   working-directory: ./rebilly-sdk-generator
+      #   run: |
+      #     npm install
+      #     ls ../api-definitions/dist
+      #     mkdir resources
+      #     npm run generate-sdk-code 
+      #     echo 'listing root dir'
+      #     ls ../../
+      #     echo 'listing GITHUB_WORKSPACE'
+      #     ls ${{ env.GITHUB_WORKSPACE }}
+      - name: Debug step
         run: |
-          npm install
-          ls ../api-definitions/dist
-          mkdir resources
-          npm run generate-sdk-code 
-          echo 'listing root dir'
-          ls ../../
           echo 'listing GITHUB_WORKSPACE'
           ls ${{ env.GITHUB_WORKSPACE }}
       - name: Create PR
