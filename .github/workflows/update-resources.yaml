@@ -35,7 +35,7 @@ jobs:
           echo 'listing root dir'
           ls ../../
           echo 'listing GITHUB_WORKSPACE'
-          ls ${{ GITHUB_WORKSPACE }}
+          ls ${{ env.GITHUB_WORKSPACE }}
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         working-directory: ./rebilly-sdk-generator
