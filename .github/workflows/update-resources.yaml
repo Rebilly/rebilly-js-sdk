@@ -43,6 +43,8 @@ jobs:
         run: |
           echo 'listing GITHUB_WORKSPACE'
           ls ${{ env.GITHUB_WORKSPACE }}
+          cd src/resources
+          touch test.txt
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
