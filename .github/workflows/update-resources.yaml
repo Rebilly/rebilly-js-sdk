@@ -11,7 +11,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: 'Rebilly/rebilly-sdk-generator'
-          ref: 'master'
+          path: rebilly-sdk-generator
+          ref: master
 
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
