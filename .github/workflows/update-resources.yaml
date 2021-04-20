@@ -14,7 +14,5 @@ jobs:
         ref: 'master'
 
       - name: Executes sdk generation
-      - run: |
-        cd rebilly-sdk-generator
-        npm run install
-        echo 'Success'
+        working-directory: ./rebilly-sdk-generator
+      - run: ls
