@@ -47,13 +47,13 @@ jobs:
           ls ${{ env.GITHUB_WORKSPACE }}
           cd src/resources
           touch test.txt
-      - name: Create PR
-        uses: peter-evans/create-pull-request@v3
-        with:
-          token: ${{ secrets.SDK_GENERATOR_PAT }}
-          title: 'First automated sample PR'
-          draft: true
-          branch: 'auto-pr'
-          base: 'master'
+      # - name: Create PR
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     token: ${{ secrets.SDK_GENERATOR_PAT }}
+      #     title: 'First automated sample PR'
+      #     draft: true
+      #     branch: 'auto-pr'
+      #     base: 'master'
       - name: Update api definitions PR
         run: gh pr list
