@@ -1,0 +1,21 @@
+name: Updates SDK resources based on api-definitions
+
+on: 
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sdk generator repo
+        uses: actions/checkout@v2
+        with:
+        repository: 'Rebilly/rebilly-sdk-generator'
+        ref: 'master'
+
+      - name: Executes sdk generation
+        - run: |
+          cd rebilly-sdk-generator
+          yarn
+
+
