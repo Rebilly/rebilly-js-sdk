@@ -54,3 +54,4 @@ jobs:
           title: 'First automated sample PR'
           draft: true
           branch: 'auto-pr'
+          base: 'master'
