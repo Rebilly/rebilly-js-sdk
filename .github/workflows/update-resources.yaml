@@ -57,3 +57,5 @@ jobs:
       #     base: 'master'
       - name: Update api definitions PR
         run: gh pr list
+        env:
+          GITHUB_TOKEN: ${{ secrets.SDK_GENERATOR_PAT }}
