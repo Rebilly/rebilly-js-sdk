@@ -38,7 +38,6 @@ jobs:
           ls ${{ env.GITHUB_WORKSPACE }}
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
-        working-directory: ./rebilly-sdk-generator
         with:
           token: ${{ secrets.SDK_GENERATOR_PAT }}
           title: 'First automated sample PR'
