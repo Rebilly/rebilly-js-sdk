@@ -13,11 +13,12 @@ jobs:
           repository: 'Rebilly/api-definitions'
           path: 'api-definitions'
           ref: 'master'
-      #  - name: Builds openAPI json schemas
-      #   working-directory: api-definitions
-      #   run: |
-      #     npm install
-      #     npx openapi bundle -o dist --ext json
+
+       - name: Builds openAPI json schemas
+        working-directory: 'api-definitions'
+        run: |
+          npm install
+          npx openapi bundle -o dist --ext json
       # - name: Checkout sdk generator repo
       #   uses: actions/checkout@v2
       #   with:
