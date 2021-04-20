@@ -16,5 +16,5 @@ jobs:
       - name: Executes sdk generation
       - run: |
         cd rebilly-sdk-generator
-        yarn
+        npm run install
         echo 'Success'
