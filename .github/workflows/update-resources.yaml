@@ -14,8 +14,7 @@ jobs:
         ref: 'master'
 
       - name: Executes sdk generation
-        - run: |
-          cd rebilly-sdk-generator
-          yarn
-
-
+      - run: |
+        cd rebilly-sdk-generator
+        yarn
+        echo 'Success'
