@@ -32,3 +32,11 @@ jobs:
           ls ../api-definitions/dist
           mkdir resources
           npm run generate-sdk-code 
+          ls ../
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.SDK_GENERATOR_PAT }}
+          title: 'First automated sample PR'
+
+      
