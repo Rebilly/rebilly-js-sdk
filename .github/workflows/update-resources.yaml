@@ -36,6 +36,9 @@ jobs:
       #     ls ../../
       #     echo 'listing GITHUB_WORKSPACE'
       #     ls ${{ env.GITHUB_WORKSPACE }}
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Debug step
         run: |
           echo 'listing GITHUB_WORKSPACE'
