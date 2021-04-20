@@ -39,6 +39,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
+      - name: Set new branch name
+        run: echo ::set-output name=branch-name::"test"
       - name: Debug step
         run: |
           echo 'listing GITHUB_WORKSPACE'
@@ -52,5 +54,3 @@ jobs:
           title: 'First automated sample PR'
           draft: true
           branch: 'auto-pr'
-
-      
