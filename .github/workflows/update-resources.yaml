@@ -55,3 +55,5 @@ jobs:
           draft: true
           branch: 'auto-pr'
           base: 'master'
+      - name: Update api definitions PR
+        run: gh pr list
