@@ -56,7 +56,8 @@ jobs:
       #     branch: 'auto-pr'
       #     base: 'master'
       - name: Update api definitions PR
-        run: gh pr list
-        run: gh pr status --repo rebilly/rebilly-js-sdk
+        run: |
+          gh pr list
+          gh pr status --repo rebilly/rebilly-js-sdk
         env:
           GITHUB_TOKEN: ${{ secrets.SDK_GENERATOR_PAT }}
