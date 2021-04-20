@@ -13,7 +13,6 @@ jobs:
           repository: 'Rebilly/api-definitions'
           path: 'api-definitions'
           ref: 'master'
-
        - name: Builds openAPI json schemas
         working-directory: 'api-definitions'
         run: |
