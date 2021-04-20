@@ -7,15 +7,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout api-definitions repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'Rebilly/api-definitions'
+          path: api-definitions
+          ref: master
+
+       - name: Builds openAPI json schemas
+        working-directory: api-definitions
+        run: |
+          npm install
+          npx openapi bundle -o dist --ext json
+      
       - name: Checkout sdk generator repo
         uses: actions/checkout@v2
         with:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: rebilly-sdk-generator
           ref: master
+          token: ${{ secrets.SDK_GENERATOR_PAT }}
 
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
         run: |
+          npm install
           ls
-          yarn
