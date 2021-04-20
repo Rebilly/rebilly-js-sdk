@@ -26,7 +26,7 @@ jobs:
           ref: 'master'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
       - name: Executes sdk generation
-          working-directory: ./rebilly-sdk-generator
-          run: |
-            npm install
-            ls
+        working-directory: ./rebilly-sdk-generator
+        run: |
+          npm install
+          ls
