@@ -37,16 +37,6 @@ jobs:
         run: |
           npm install
           npm run generate-sdk-code --local
-          echo 'listing GITHUB_WORKSPACE'
-          ls ${{ env.GITHUB_WORKSPACE }}
-      # - name: Set new branch name
-      #   run: echo ::set-output name=branch-name::"test"
-      # - name: Debug step
-      #   run: |
-      #     cd ../rebilly-js-sdk/src/resources
-      #     touch test.txt
-      #     echo 'listing resources'
-      #     ls
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
         with:
@@ -54,6 +44,7 @@ jobs:
           path: 'rebilly-js-sdk'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
           title: 'Second automated sample PR'
+          body: 'Don't forget to bump version'
           draft: true
           branch: 'auto-pr'
           base: 'master'
