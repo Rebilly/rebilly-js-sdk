@@ -27,6 +27,9 @@ jobs:
           # This will end up being master once we merge the last version of the generator 
           ref: 'add-local-generation'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
         run: |
@@ -37,9 +40,6 @@ jobs:
           ls ../../
           echo 'listing GITHUB_WORKSPACE'
           ls ${{ env.GITHUB_WORKSPACE }}
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Set new branch name
         run: echo ::set-output name=branch-name::"test"
       - name: Debug step
