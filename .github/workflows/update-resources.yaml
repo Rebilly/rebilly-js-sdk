@@ -18,7 +18,7 @@ jobs:
         working-directory: 'api-definitions'
         run: |
           npm install
-          npm run build --ext json
+          npx openapi bundle -o dist --ext json
       - name: Checkout sdk generator repo
         uses: actions/checkout@v2
         with:
