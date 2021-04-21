@@ -20,6 +20,7 @@ jobs:
           npm install
           npx openapi bundle -o dist --ext json
       - name: Checkout rebilly-js-sdk repo
+        working-directory: ./rebilly-js-sdk
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
@@ -37,7 +38,10 @@ jobs:
           npm install
           echo 'LS:'
           ls
+          echo 'LS: api definitions'
           ls ../api-definitions/dist
+          echo 'LS: api sdk'
+          ls ../rebilly-js-sdk/src/resources
           npm run generate-sdk-code --local
           echo 'listing root dir'
           ls ../../
