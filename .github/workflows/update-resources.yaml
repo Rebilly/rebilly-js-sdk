@@ -48,9 +48,11 @@ jobs:
           echo 'listing resources'
           ls
       - name: Create PR
-        working-directory: 'rebilly-js-sdk'
         uses: peter-evans/create-pull-request@v3
+        working-directory: 'rebilly-js-sdk'
         with:
+          # Path of the checked-out repo where we placed the generated resources  
+          path: 'rebilly-js-sdk'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
           title: 'Second automated sample PR'
           draft: true
