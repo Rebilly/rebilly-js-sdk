@@ -40,6 +40,7 @@ jobs:
           ls
           echo 'LS: api definitions'
           ls ../api-definitions/dist
+          cat ../api-definitions/dist/storefront.json
           echo 'LS: api sdk'
           ls ../rebilly-js-sdk/src/resources
           npm run generate-sdk-code --local
