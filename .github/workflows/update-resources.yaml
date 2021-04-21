@@ -44,7 +44,7 @@ jobs:
           path: 'rebilly-js-sdk'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
           title: 'Second automated sample PR'
-          body: 'Don't forget to bump version'
+          body: 'Do not forget to bump version'
           draft: true
           branch: 'auto-pr'
           base: 'master'
