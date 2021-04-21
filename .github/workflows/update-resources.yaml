@@ -49,7 +49,6 @@ jobs:
           ls
       - name: Create PR
         uses: peter-evans/create-pull-request@v3
-        working-directory: 'rebilly-js-sdk'
         with:
           # Path of the checked-out repo where we placed the generated resources  
           path: 'rebilly-js-sdk'
