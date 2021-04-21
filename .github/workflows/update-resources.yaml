@@ -36,37 +36,24 @@ jobs:
         working-directory: ./rebilly-sdk-generator
         run: |
           npm install
-          echo 'LS:'
-          ls
-          echo 'LS: api definitions'
-          ls ../api-definitions/dist
-          cat ../api-definitions/dist/storefront.json
-          echo 'LS: api sdk'
-          ls ../rebilly-js-sdk/src/resources
           npm run generate-sdk-code --local
-          echo 'listing root dir'
-          ls ../../
           echo 'listing GITHUB_WORKSPACE'
           ls ${{ env.GITHUB_WORKSPACE }}
       - name: Set new branch name
         run: echo ::set-output name=branch-name::"test"
       - name: Debug step
         run: |
-          echo 'listing GITHUB_WORKSPACE'
-          ls ${{ env.GITHUB_WORKSPACE }}
-          cd src/resources
+          cd ../rebilly-js-sdk/src/resources
           touch test.txt
-      # - name: Create PR
-      #   uses: peter-evans/create-pull-request@v3
-      #   with:
-      #     token: ${{ secrets.SDK_GENERATOR_PAT }}
-      #     title: 'First automated sample PR'
-      #     draft: true
-      #     branch: 'auto-pr'
-      #     base: 'master'
-      - name: Update api definitions PR
-        run: |
-          gh pr list
-          gh pr status --repo rebilly/rebilly-js-sdk
-        env:
-          GITHUB_TOKEN: ${{ secrets.SDK_GENERATOR_PAT }}
+          echo 'listing resources'
+          ls
+      - name: Create PR
+        working-directory: 'rebilly-js-sdk'
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.SDK_GENERATOR_PAT }}
+          title: 'Second automated sample PR'
+          draft: true
+          branch: 'auto-pr'
+          base: 'master'
+
