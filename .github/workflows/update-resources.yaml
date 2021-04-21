@@ -17,8 +17,8 @@ jobs:
       - name: Builds openAPI json schemas
         working-directory: 'api-definitions'
         run: |
-          npm install
-          npm run bundle --ext json
+          yarn install
+          yarn bundle --ext json
       - name: Checkout sdk generator repo
         uses: actions/checkout@v2
         with:
