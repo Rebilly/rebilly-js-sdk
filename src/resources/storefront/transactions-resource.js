@@ -18,5 +18,8 @@ export default function TransactionsResource({apiHandler}) {
     get({id}) {
       return apiHandler.get(`transactions/${id}`);
     },
+    update({id, data}) {
+      return apiHandler.patch(`transactions/${id}`, data);
+    },
   };
 }
