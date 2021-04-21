@@ -19,6 +19,10 @@ jobs:
         run: |
           npm install
           npx openapi bundle -o dist --ext json
+      - name: Checkout rebilly-js-sdk repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Checkout sdk generator repo
         uses: actions/checkout@v2
         with:
@@ -27,13 +31,12 @@ jobs:
           # This will end up being master once we merge the last version of the generator 
           ref: 'add-local-generation'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
         run: |
           npm install
+          echo 'LS:'
+          ls
           ls ../api-definitions/dist
           npm run generate-sdk-code --local
           echo 'listing root dir'
