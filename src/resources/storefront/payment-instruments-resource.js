@@ -18,7 +18,7 @@ export default function PaymentInstrumentsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`payment-instruments`, data);
     },
-    get({id, limit, offset}) {
+    get({id, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.get(`payment-instruments/${id}`, params);
     },
