@@ -19,14 +19,17 @@ export default function ListsResource({apiHandler}) {
     create({id = '', data}) {
       return apiHandler.create(`lists/${id}`, id, data);
     },
-    get({id, version = ''}) {
-      return apiHandler.get(`lists/${id}/${version}`);
+    getLatestVersion({id}) {
+      return apiHandler.get(`lists/${id}`);
     },
     update({id, data}) {
       return apiHandler.put(`lists/${id}`, data);
     },
     delete({id}) {
       return apiHandler.delete(`lists/${id}`);
+    },
+    getByVersion({id, version}) {
+      return apiHandler.get(`lists/${id}/${version}`);
     },
   };
 }
