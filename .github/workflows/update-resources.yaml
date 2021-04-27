@@ -12,8 +12,8 @@ jobs:
         with:
           repository: 'Rebilly/api-definitions'
           path: 'api-definitions'
-          # Here we need to use the name of the branch that triggered this workflow  
-          ref: 'add-sdk-names-to-operations'
+          # Here we need to use the name of the branch that triggered this workflow (instead of master)
+          ref: 'master'
       - name: Builds openAPI json schemas
         working-directory: 'api-definitions'
         run: |
