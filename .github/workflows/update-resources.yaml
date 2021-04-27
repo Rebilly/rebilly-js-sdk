@@ -29,8 +29,7 @@ jobs:
         with:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: 'rebilly-sdk-generator'
-          # This will end up being master once we merge the last version of the generator 
-          ref: 'add-local-generation'
+          ref: 'master'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
