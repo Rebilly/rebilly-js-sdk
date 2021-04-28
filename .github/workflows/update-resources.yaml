@@ -14,6 +14,10 @@ jobs:
           path: 'api-definitions'
           # Here we need to use the name of the branch that triggered this workflow (instead of master)
           ref: 'master'
+      - uses: actions/setup-node@v2
+        with:
+          # We need node LTS to run rebilly-SDK-generator
+          node-version: '14'
       - name: Builds openAPI json schemas
         working-directory: 'api-definitions'
         run: |
@@ -29,7 +33,8 @@ jobs:
         with:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: 'rebilly-sdk-generator'
-          ref: 'master'
+          # Here we will use master once we have merged
+          ref: 'add-eslint'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
