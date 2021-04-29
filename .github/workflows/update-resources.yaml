@@ -1,7 +1,7 @@
 name: Updates SDK resources based on api-definitions
 
 on: 
-  pull_request
+  workflow_dispatch
 
 jobs:
   build:
