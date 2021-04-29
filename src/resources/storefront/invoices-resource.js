@@ -4,20 +4,19 @@
 */
 
 export default function InvoicesResource({apiHandler}) {
-    return {
-      getAll({
-        limit = null,
-        offset = null,
-        filter = null,
-        q = null,
-        sort = null,
-        expand = null,
-      } = {}) {
-        const params = {limit, offset, filter, q, sort, expand};
-        return apiHandler.getAll(`invoices`, params);
-      },
-      get({id}) {
-        return apiHandler.get(`invoices/${id}`);
-      },
-    };
-  }
+  return {
+    getAll({
+      filter = null,
+      sort = null,
+      limit = null,
+      offset = null,
+      q = null,
+    } = {}) {
+      const params = {filter, sort, limit, offset, q};
+      return apiHandler.getAll(`invoices`, params);
+    },
+    get({id}) {
+      return apiHandler.get(`invoices/${id}`);
+    },
+  };
+}
