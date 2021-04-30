@@ -1,7 +1,14 @@
 name: Updates SDK resources based on api-definitions
 
-on: 
-  workflow_dispatch
+# on: push
+    
+on:
+  workflow_dispatch:
+    inputs:
+      api-definitions-branch:
+        description: 'api-definitions branch triggering the current workflow'
+        required: true
+        default: 'master'
 
 jobs:
   build:
@@ -13,7 +20,7 @@ jobs:
           repository: 'Rebilly/api-definitions'
           path: 'api-definitions'
           # Here we need to use the name of the branch that triggered this workflow (instead of master)
-          ref: 'master'
+          ref: '${{ github.event.inputs.api-definitions-branch }}'
       - uses: actions/setup-node@v2
         with:
           # We need node LTS to run rebilly-SDK-generator
@@ -34,7 +41,7 @@ jobs:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: 'rebilly-sdk-generator'
           # Here we will use master once we have merged
-          ref: 'add-eslint'
+          ref: 'master'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
@@ -50,5 +57,7 @@ jobs:
           title: 'Second automated sample PR'
           body: 'Do not forget to bump version'
           draft: true
-          branch: 'auto-pr'
+          # If the api-definitions branch that triggered this workflow is named foo
+          # we will create from-foo branch in rebilly-js-sdk 
+          branch: 'from-${{ github.event.inputs.api-definitions-branch }}'
           base: 'master'
