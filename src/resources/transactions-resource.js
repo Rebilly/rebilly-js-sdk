@@ -30,9 +30,6 @@ export default function TransactionsResource({apiHandler}) {
     patch({id, data}) {
       return apiHandler.patch(`transactions/${id}`, data);
     },
-    cancel({id}) {
-      return apiHandler.post(`transactions/${id}/cancel`);
-    },
     getGatewayLogs({id}) {
       return apiHandler.getAll(`transactions/${id}/gateway-logs`);
     },

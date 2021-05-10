@@ -34,9 +34,6 @@ export default function SubscriptionsResource({apiHandler}) {
     changeItems({id, data}) {
       return apiHandler.post(`subscriptions/${id}/change-items`, data);
     },
-    changePlan({id, data}) {
-      return apiHandler.post(`subscriptions/${id}/change-plan`, data);
-    },
     createInterimInvoice({id, data}) {
       return apiHandler.post(`subscriptions/${id}/interim-invoice`, data);
     },

@@ -43,11 +43,11 @@ export default function CustomersResource({apiHandler}) {
     createLeadSource({id, data}) {
       return apiHandler.put(`customers/${id}/lead-source`, data);
     },
-    deleteLeadSource({id}) {
-      return apiHandler.delete(`customers/${id}/lead-source`);
-    },
     updateLeadSource({id, data}) {
       return apiHandler.put(`customers/${id}/lead-source`, data);
+    },
+    deleteLeadSource({id}) {
+      return apiHandler.delete(`customers/${id}/lead-source`);
     },
     getAllTimelineMessages({
       id,
