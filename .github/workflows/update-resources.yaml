@@ -1,14 +1,17 @@
 name: Updates SDK resources based on api-definitions
 
-# on: push
-    
-on:
+on: 
+  push:
   workflow_dispatch:
     inputs:
       api-definitions-branch:
         description: 'api-definitions branch triggering the current workflow'
         required: true
         default: 'master'
+      auto-pr-title:
+        description: 'title of the PR to be created'
+        required: true
+        default: 'Auto generated PR'
 
 jobs:
   build:
