@@ -2,6 +2,7 @@ import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
 import BankAccountsResource from './bank-accounts-resource';
+import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
@@ -58,6 +59,7 @@ const Resources = {
     AmlResource,
     ApiKeysResource,
     BankAccountsResource,
+    BillingPortalsResource,
     BlocklistsResource,
     BroadcastMessagesResource,
     CheckoutFormsResource,
