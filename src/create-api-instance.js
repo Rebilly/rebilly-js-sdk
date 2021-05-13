@@ -115,6 +115,7 @@ export class StorefrontApiInstance {
     constructor({apiHandler}) {
         this.account = StorefrontResources.AccountResource({apiHandler}),
         this.authorization = StorefrontResources.AuthorizationResource({apiHandler}),
+        this.billingPortal = StorefrontResources.BillingPortalResource({apiHandler}),
         this.checkoutForm = StorefrontResources.CheckoutFormResource({apiHandler}),
         this.invoices = StorefrontResources.InvoicesResource({apiHandler}),
         this.kycDocuments = StorefrontResources.KycDocumentsResource({apiHandler}),
