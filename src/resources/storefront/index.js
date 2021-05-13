@@ -1,5 +1,6 @@
 import AccountResource from './account-resource';
 import AuthorizationResource from './authorization-resource';
+import BillingPortalResource from './billing-portals-resource';
 import CheckoutFormResource from './checkout-forms-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
@@ -13,6 +14,7 @@ import WebsitesResource from './websites-resource';
 const StorefrontResources = {
   AccountResource,
   AuthorizationResource,
+  BillingPortalResource,
   CheckoutFormResource,
   InvoicesResource,
   KycDocumentsResource,
