@@ -4,7 +4,7 @@
 */
 
 // @ts-nocheck
-import {csvHeader} from '../request-headers';
+import {csvHeader} from '@/request-headers';
 
 export default function TrackingResource({apiHandler}) {
   return {

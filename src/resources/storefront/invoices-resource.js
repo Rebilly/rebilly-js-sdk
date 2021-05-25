@@ -4,7 +4,7 @@
 */
 
 // @ts-nocheck
-import {pdfHeader} from '../request-headers';
+import {pdfHeader} from '@/request-headers';
 
 export default function InvoicesResource({apiHandler}) {
   return {
