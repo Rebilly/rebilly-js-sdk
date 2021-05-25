@@ -18,5 +18,12 @@ export default function InvoicesResource({apiHandler}) {
     get({id}) {
       return apiHandler.get(`invoices/${id}`);
     },
+    downloadPDF({id}) {
+      const config = {
+        headers: pdfHeader,
+        responseType: 'arraybuffer',
+      };
+      return apiHandler.download(`invoices/${id}`, config);
+    },
   };
 }
