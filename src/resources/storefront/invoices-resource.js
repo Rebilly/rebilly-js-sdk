@@ -3,6 +3,9 @@
 * Do not make direct changes to this file.
 */
 
+// @ts-nocheck
+import {pdfHeader} from '@/request-headers';
+
 export default function InvoicesResource({apiHandler}) {
   return {
     getAll({
@@ -17,6 +20,13 @@ export default function InvoicesResource({apiHandler}) {
     },
     get({id}) {
       return apiHandler.get(`invoices/${id}`);
+    },
+    downloadPDF({id}) {
+      const config = {
+        headers: pdfHeader,
+        responseType: 'arraybuffer',
+      };
+      return apiHandler.download(`invoices/${id}`, config);
     },
   };
 }

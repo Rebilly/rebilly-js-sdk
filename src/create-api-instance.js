@@ -119,13 +119,14 @@ export class StorefrontApiInstance {
         this.checkoutForm = StorefrontResources.CheckoutFormResource({apiHandler}),
         this.invoices = StorefrontResources.InvoicesResource({apiHandler}),
         this.kycDocuments = StorefrontResources.KycDocumentsResource({apiHandler}),
+        this.orders = StorefrontResources.OrdersResource({apiHandler}),
         this.paymentInstruments = StorefrontResources.PaymentInstrumentsResource({apiHandler}),
         this.plans = StorefrontResources.PlansResource({apiHandler}),
         this.products = StorefrontResources.ProductResource({apiHandler}),
         this.purchase = StorefrontResources.PurchaseResource({apiHandler}),
         this.transactions = StorefrontResources.TransactionsResource({apiHandler}),
         this.websites = StorefrontResources.WebsitesResource({apiHandler}),
-        
+
         //expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
         this.removeRequestInterceptor = apiHandler.removeRequestInterceptor,
