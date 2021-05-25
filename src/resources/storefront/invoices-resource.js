@@ -3,6 +3,9 @@
 * Do not make direct changes to this file.
 */
 
+// @ts-nocheck
+import {pdfHeader} from '../request-headers';
+
 export default function InvoicesResource({apiHandler}) {
   return {
     getAll({
