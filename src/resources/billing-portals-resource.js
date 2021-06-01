@@ -3,7 +3,7 @@
 * Do not make direct changes to this file.
 */
 
-export default function CheckoutFormsResource({apiHandler}) {
+export default function BillingPortalsResource({apiHandler}) {
   return {
     getAll({
       limit = null,
@@ -13,19 +13,19 @@ export default function CheckoutFormsResource({apiHandler}) {
       q = null,
     } = {}) {
       const params = {limit, offset, sort, filter, q};
-      return apiHandler.getAll(`checkout-forms`, params);
+      return apiHandler.getAll(`billing-portals`, params);
     },
     create({id = '', data}) {
-      return apiHandler.create(`checkout-forms/${id}`, id, data);
+      return apiHandler.create(`billing-portals/${id}`, id, data);
     },
     get({id}) {
-      return apiHandler.get(`checkout-forms/${id}`);
+      return apiHandler.get(`billing-portals/${id}`);
     },
     update({id, data}) {
-      return apiHandler.put(`checkout-forms/${id}`, data);
+      return apiHandler.put(`billing-portals/${id}`, data);
     },
     delete({id}) {
-      return apiHandler.delete(`checkout-forms/${id}`);
+      return apiHandler.delete(`billing-portals/${id}`);
     },
   };
 }

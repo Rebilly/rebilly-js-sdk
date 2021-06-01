@@ -3,10 +3,10 @@
 * Do not make direct changes to this file.
 */
 
-export default function PayoutsResource({apiHandler}) {
+export default function KycRequestsResource({apiHandler}) {
   return {
-    create({data}) {
-      return apiHandler.post(`payouts`, data);
+    get({id}) {
+      return apiHandler.get(`kyc-requests/${id}`);
     },
   };
 }

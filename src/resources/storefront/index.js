@@ -1,27 +1,33 @@
 import AccountResource from './account-resource';
 import AuthorizationResource from './authorization-resource';
+import BillingPortalResource from './billing-portals-resource';
 import CheckoutFormResource from './checkout-forms-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
+import KycRequestsResource from './kyc-requests-resource';
+import OrdersResource from './orders-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
 import PlansResource from './plans-resource';
 import ProductResource from './products-resource';
 import PurchaseResource from './purchase-resource';
 import TransactionsResource from './transactions-resource';
-import WebsiteResource from './website-resource';
+import WebsitesResource from './websites-resource';
 
 const StorefrontResources = {
   AccountResource,
   AuthorizationResource,
+  BillingPortalResource,
   CheckoutFormResource,
   InvoicesResource,
   KycDocumentsResource,
+  KycRequestsResource,
+  OrdersResource,
   PaymentInstrumentsResource,
   PlansResource,
   ProductResource,
   PurchaseResource,
   TransactionsResource,
-  WebsiteResource
+  WebsitesResource
 };
 
 export default StorefrontResources;

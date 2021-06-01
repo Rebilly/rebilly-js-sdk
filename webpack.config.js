@@ -45,6 +45,11 @@ module.exports = (env = {}) => {
             module: {
                 rules: [{test: /\.js$/, use: 'babel-loader'}]
             },
+            resolve: {
+                alias: {
+                    '@': path.resolve(__dirname + '/src'),
+                },
+            },
             plugins: generatePlugins(isProd),
             devtool: 'source-map',
             mode: isProd ? 'production' : 'development',

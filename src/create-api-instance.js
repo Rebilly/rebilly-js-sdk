@@ -8,6 +8,7 @@ export class ApiInstance {
         this.aml = Resources.AmlResource({apiHandler})
         this.apiKeys = Resources.ApiKeysResource({apiHandler})
         this.bankAccounts = Resources.BankAccountsResource({apiHandler}),
+        this.billingPortals = Resources.BillingPortalsResource({apiHandler}),
         this.blocklists = Resources.BlocklistsResource({apiHandler}),
         this.gatewayAccounts = Resources.GatewayAccountsResource({apiHandler})
         this.broadcastMessages = Resources.BroadcastMessagesResource({apiHandler}),
@@ -27,6 +28,7 @@ export class ApiInstance {
         this.integrations = Resources.IntegrationsResource({apiHandler}),
         this.invoices =  Resources.InvoicesResource({apiHandler}),
         this.kycDocuments =  Resources.KycDocumentsResource({apiHandler}),
+        this.kycRequests =  Resources.KycRequestsResource({apiHandler}),
         this.lists = Resources.ListsResource({apiHandler}),
         this.memberships = Resources.MembershipsResource({apiHandler}),
         this.organizations = Resources.OrganizationsResource({apiHandler}),
@@ -41,10 +43,10 @@ export class ApiInstance {
         this.previews = Resources.PreviewsResource({apiHandler}),
         this.products = Resources.ProductsResource({apiHandler}),
         this.profile = Resources.ProfileResource({apiHandler}),
+        this.purchase = Resources.PurchaseResource({apiHandler}),
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
-        this.sessions = Resources.SessionsResource({apiHandler}),
         this.shippingZones = Resources.ShippingZonesResource({apiHandler}),
         this.status = Resources.StatusResource({apiHandler}),
         this.subscriptions = Resources.SubscriptionsResource({apiHandler}),
@@ -77,7 +79,7 @@ export class ApiInstance {
 * @returns {ApiInstance} apiInstance
 */
 export default function createApiInstance({apiHandler}) {
-    return new ApiInstance({apiHandler})
+    return new ApiInstance({apiHandler});
 }
 
 export class ExperimentalApiInstance {
@@ -85,11 +87,9 @@ export class ExperimentalApiInstance {
         this.customers = ExperimentalResources.CustomersResource({apiHandler}),
         this.dataExports = ExperimentalResources.DataExportsResource({apiHandler}),
         this.histograms = ExperimentalResources.HistogramsResource({apiHandler}),
-        this.organizations = ExperimentalResources.OrganizationsResource({apiHandler}),
         this.reports = ExperimentalResources.ReportsResource({apiHandler}),
         this.subscriptions = ExperimentalResources.SubscriptionsResource({apiHandler}),
         this.timelines = ExperimentalResources.TimelinesResource({apiHandler}),
-        this.transactions = ExperimentalResources.TransactionsResource({apiHandler}),
         this.location = ExperimentalResources.LocationResource({apiHandler}),
         // expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
@@ -116,16 +116,19 @@ export class StorefrontApiInstance {
     constructor({apiHandler}) {
         this.account = StorefrontResources.AccountResource({apiHandler}),
         this.authorization = StorefrontResources.AuthorizationResource({apiHandler}),
+        this.billingPortal = StorefrontResources.BillingPortalResource({apiHandler}),
         this.checkoutForm = StorefrontResources.CheckoutFormResource({apiHandler}),
         this.invoices = StorefrontResources.InvoicesResource({apiHandler}),
         this.kycDocuments = StorefrontResources.KycDocumentsResource({apiHandler}),
+        this.kycRequests = StorefrontResources.KycRequestsResource({apiHandler}),
+        this.orders = StorefrontResources.OrdersResource({apiHandler}),
         this.paymentInstruments = StorefrontResources.PaymentInstrumentsResource({apiHandler}),
         this.plans = StorefrontResources.PlansResource({apiHandler}),
         this.products = StorefrontResources.ProductResource({apiHandler}),
         this.purchase = StorefrontResources.PurchaseResource({apiHandler}),
         this.transactions = StorefrontResources.TransactionsResource({apiHandler}),
-        this.website = StorefrontResources.WebsiteResource({apiHandler}),
-        
+        this.websites = StorefrontResources.WebsitesResource({apiHandler}),
+
         //expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
         this.removeRequestInterceptor = apiHandler.removeRequestInterceptor,

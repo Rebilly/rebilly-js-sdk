@@ -3,7 +3,7 @@
 * Do not make direct changes to this file.
 */
 
-export default function PlansResource({apiHandler}) {
+export default function OrdersResource({apiHandler}) {
   return {
     getAll({
       filter = null,
@@ -13,19 +13,16 @@ export default function PlansResource({apiHandler}) {
       q = null,
     } = {}) {
       const params = {filter, sort, limit, offset, q};
-      return apiHandler.getAll(`plans`, params);
-    },
-    create({id = '', data}) {
-      return apiHandler.create(`plans/${id}`, id, data);
+      return apiHandler.getAll(`orders`, params);
     },
     get({id}) {
-      return apiHandler.get(`plans/${id}`);
+      return apiHandler.get(`orders/${id}`);
     },
     update({id, data}) {
-      return apiHandler.put(`plans/${id}`, data);
+      return apiHandler.patch(`orders/${id}`, data);
     },
-    delete({id}) {
-      return apiHandler.delete(`plans/${id}`);
+    cancel({id, data}) {
+      return apiHandler.post(`orders/${id}/cancellation`, data);
     },
   };
 }
