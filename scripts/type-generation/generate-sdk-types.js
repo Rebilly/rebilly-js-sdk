@@ -124,7 +124,7 @@ function generateSdkTypes(schema) {
   }
 
   function generateResponseType(operationId, path) {
-    const responseTypeName = schemaPrefix + operationId + 'Response';
+    const responseTypeName = operationId + 'Response';
     let responseType = `type ${responseTypeName} = ${promise(
       operationId,
       path
