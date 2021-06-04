@@ -83,7 +83,7 @@ function generateSdkTypes(schema) {
   }
 
   function generateRequestTypeName(operationId) {
-    return schemaPrefix + operationId + 'Request';
+    return operationId + 'Request';
   }
 
   function generateDelete(deletePath) {
