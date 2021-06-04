@@ -84,7 +84,7 @@ function insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes) {
  * Example: yarn ts:generate-types --local
  */
 const argv = minimist(process.argv.slice(2));
-const getSchemas = argv.online ? getOnlineSchemas : readLocalSchemas;
+const getSchemas = argv.local ? readLocalSchemas : getOnlineSchemas;
 
 getSchemas().then((schemas) => {
   generateTypesFromSchemas(schemas);
