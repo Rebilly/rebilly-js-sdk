@@ -78,7 +78,7 @@ function insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes) {
 }
 
 /**
- * We accept two command line parameters:
+ * We accept one optional command line parameter:
  * --local: indicates that schemas should be read from local api-definition files (instead of downloading them from github)
  *
  * Example: yarn ts:generate-types --local
