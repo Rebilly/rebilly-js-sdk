@@ -18,3 +18,4 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn run test
+      - run: yarn run ts:bundle-types-from-redocly
