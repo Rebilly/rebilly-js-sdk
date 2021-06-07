@@ -7,9 +7,9 @@
   "types": "./dist/rebilly-js-sdk.d.ts",
   "scripts": {
     "clean": "rimraf dist && rimraf coverage",
-    "build:prod": "npm run clean && webpack --env=prod && yarn ts:bundle-types-from-redocly",
-    "build:dev": "npm run clean && webpack --env=dev && yarn ts:bundle-types-from-redocly",
-    "prepublishOnly": "npm run build:prod",
+    "build:prod": "npm run clean && webpack --env=prod",
+    "build:dev": "npm run clean && webpack --env=dev",
+    "prepublishOnly": "npm run build:prod && npm run ts:bundle-types-from-redocly",
     "test:unit": "jest",
     "test:unit:coverage": "jest --collect-coverage --no-cache",
     "test:unit:debug": "node --inspect-brk jest --no-cache --runInBand",
