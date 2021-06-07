@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '14', '12', '10' ]
+        node: [ '14' ]
 
     name: Run tests using node ${{ matrix.node }}
     steps:
@@ -17,4 +17,5 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: yarn install --frozen-lockfile --non-interactive
-      - run: yarn run test
+      - run: ls -la
+      - run: npm publish --access public
