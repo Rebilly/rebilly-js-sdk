@@ -1,6 +1,4 @@
 const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
-const resolve = (relativePath) =>
-  require('path').resolve(process.cwd(), relativePath);
 
 function merge() {
   console.log('🧑‍💻  Merging rebilly api types into js-sdk package types');
@@ -14,9 +12,7 @@ function merge() {
     mkdirSync('./dist/');
   }
 
-  writeFileSync(resolve('./dist/rebilly-js-sdk.d.ts'), data1 + data2, {
-    flag: 'wx',
-  });
+  writeFileSync('./dist/rebilly-js-sdk.d.ts', data1 + data2);
 }
 
 merge();
