@@ -15,7 +15,7 @@
     "test:unit:debug": "node --inspect-brk jest --no-cache --runInBand",
     "test:unit:watch": "jest --watchAll",
     "test": "npm run test:unit",
-    "ts:generate-types": "node ./scripts/type-generation/generate-TS-types.js",
+    "ts:generate-types": "node ./scripts/type-generation/generate-ts-types.js",
     "ts:merge-types": "node ./scripts/merge-types.js",
     "ts:compile": "npx tsc -p tsc-emit.json --typeRoots typings",
     "ts:compile-and-merge": "yarn ts:compile && yarn ts:merge-types",
