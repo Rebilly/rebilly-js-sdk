@@ -39,3 +39,15 @@ Generate coverage report
 ```
 npm run coverage
 ```
+
+## Typescript types generation
+
+Types are automatically created because `npm run ts:bundle-types-from-redocly` is called as part of `npm run build:prod`.
+
+But if you want to test TS types before the related `api-definitions` have been merged into master, you can run:  
+
+```bash
+    npm run ts:bundle-types-from-local
+```
+
+which will build your local `api-definitions` branch to generate new TS types that can be tested in your local consumer apps.

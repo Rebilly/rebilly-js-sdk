@@ -1,5 +1,5 @@
 const minimist = require('minimist');
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 const openapiTS = require('openapi-typescript').default;
 const { getOnlineSchemas, readLocalSchemas } = require('./schema-sources');
 const { generateSdkTypes } = require('./generate-sdk-types');
@@ -31,7 +31,7 @@ function generateTypesFromSchemas(schemas) {
   console.log(
     '🍹 Mixing openapi-typescript types and custom SDK types into the same file (/typings/rebilly/index.d.ts)'
   );
-  insertOpenApiTypesIntoTemplate(combinedApiTypes, combinedSDKTypes);
+  mergeTypesIntoTemplate(combinedApiTypes, combinedSDKTypes);
 }
 
 function processSchema(openApiSchema, schemaType) {
@@ -68,11 +68,19 @@ function fixProperties(openApiSchema) {
   return JSON.parse(stringSchema);
 }
 
-function insertOpenApiTypesIntoTemplate(openApiTypes, sdkTypes) {
+function createTemporaryTypingsDirectory() {
+  if (!existsSync('./typings/rebilly/')) {
+    mkdirSync('./typings/rebilly/');
+  }
+}
+
+function mergeTypesIntoTemplate(openApiTypes, sdkTypes) {
   const templateFilename = './types-generation/template.d.ts';
   let templateData = readFileSync(templateFilename, 'utf-8');
   templateData = templateData.replace('//<open-api-types>', openApiTypes);
   templateData = templateData.replace('//<sdk-types>', sdkTypes);
+
+  createTemporaryTypingsDirectory();
 
   writeFileSync('./typings/rebilly/index.d.ts', templateData);
 }
