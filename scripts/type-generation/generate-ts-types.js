@@ -3,8 +3,6 @@ const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 const openapiTS = require('openapi-typescript').default;
 const { getOnlineSchemas, readLocalSchemas } = require('./schema-sources');
 const { generateSdkTypes } = require('./generate-sdk-types');
-const resolve = (relativePath) =>
-  require('path').resolve(process.cwd(), relativePath);
 
 const schemaTypes = {
   CORE: 'core',
@@ -71,21 +69,21 @@ function fixProperties(openApiSchema) {
 }
 
 function createTemporaryTypingsDirectory() {
-  const tempTypingsDir = resolve('./typings/rebilly/');
+  const tempTypingsDir = './typings/rebilly/';
   if (!existsSync(tempTypingsDir)) {
     mkdirSync(tempTypingsDir, { recursive: true });
   }
 }
 
 function mergeTypesIntoTemplate(openApiTypes, sdkTypes) {
-  const templateFilename = resolve('./types-generation/template.d.ts');
+  const templateFilename = './types-generation/template.d.ts';
   let templateData = readFileSync(templateFilename, 'utf-8');
   templateData = templateData.replace('//<open-api-types>', openApiTypes);
   templateData = templateData.replace('//<sdk-types>', sdkTypes);
 
   createTemporaryTypingsDirectory();
 
-  writeFileSync(resolve('./typings/rebilly/index.d.ts'), templateData);
+  writeFileSync('./typings/rebilly/index.d.ts', templateData);
 }
 
 /**

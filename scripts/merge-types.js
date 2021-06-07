@@ -12,6 +12,7 @@ function merge() {
     mkdirSync('./dist/');
   }
 
+  //./dist directory should have been created by build process
   writeFileSync('./dist/rebilly-js-sdk.d.ts', data1 + data2);
 }
 
