@@ -73,7 +73,7 @@ function fixProperties(openApiSchema) {
 function createTemporaryTypingsDirectory() {
   const tempTypingsDir = resolve('./typings/rebilly/');
   if (!existsSync(tempTypingsDir)) {
-    mkdirSync(tempTypingsDir);
+    mkdirSync(tempTypingsDir, { recursive: true });
   }
 }
 
