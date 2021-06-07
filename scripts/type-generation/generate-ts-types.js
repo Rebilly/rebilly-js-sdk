@@ -3,6 +3,7 @@ const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 const openapiTS = require('openapi-typescript').default;
 const { getOnlineSchemas, readLocalSchemas } = require('./schema-sources');
 const { generateSdkTypes } = require('./generate-sdk-types');
+const { resolveDir } = require('../type-generation/resolve-dir');
 
 const schemaTypes = {
   CORE: 'core',
@@ -69,7 +70,7 @@ function fixProperties(openApiSchema) {
 }
 
 function createTemporaryTypingsDirectory() {
-  const tempTypingsDir = './typings/rebilly/';
+  const tempTypingsDir = resolveDir('./typings/rebilly/');
   if (!existsSync(tempTypingsDir)) {
     mkdirSync(tempTypingsDir, { recursive: true });
   }

@@ -1,6 +1,5 @@
 const { readFileSync, writeFileSync } = require('fs');
-const path = require('path');
-const resolveDir = (relativePath) => path.resolve(process.cwd(), relativePath);
+const { resolveDir } = require('./type-generation/resolve-dir');
 
 function merge() {
   console.log('🧑‍💻  Merging rebilly api types into js-sdk package types');
