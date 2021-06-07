@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '14', '12', '10' ]
+        node: [ '14']
 
     name: Run tests using node ${{ matrix.node }}
     steps:

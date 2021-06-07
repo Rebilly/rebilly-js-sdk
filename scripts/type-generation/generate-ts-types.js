@@ -3,7 +3,8 @@ const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 const openapiTS = require('openapi-typescript').default;
 const { getOnlineSchemas, readLocalSchemas } = require('./schema-sources');
 const { generateSdkTypes } = require('./generate-sdk-types');
-const resolve = require('path').resolve;
+const resolve = (relativePath) =>
+  require('path').resolve(process.cwd(), relativePath);
 
 const schemaTypes = {
   CORE: 'core',
