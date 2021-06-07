@@ -10,7 +10,9 @@ function merge() {
   let data1 = readFileSync(rebillyApiTypesFilename, 'utf-8');
   let data2 = readFileSync(SDKTypesFilename, 'utf-8');
 
-  writeFileSync(resolve('./dist/rebilly-js-sdk.d.ts'), data1 + data2);
+  writeFileSync(resolve('./dist/rebilly-js-sdk.d.ts'), data1 + data2, {
+    flag: 'wx',
+  });
 }
 
 merge();
