@@ -69,8 +69,9 @@ function fixProperties(openApiSchema) {
 }
 
 function createTemporaryTypingsDirectory() {
-  if (!existsSync('./typings/rebilly/')) {
-    mkdirSync('./typings/rebilly/');
+  const tempTypingsDir = './typings/rebilly/';
+  if (!existsSync(tempTypingsDir)) {
+    mkdirSync(tempTypingsDir, { recursive: true });
   }
 }
 
