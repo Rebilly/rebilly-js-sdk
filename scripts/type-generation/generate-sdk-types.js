@@ -1,6 +1,6 @@
 const newLineAndTab = '\n  ';
 
-function generateSdkTypes(schema) {
+function generateSdkTypes(schema, verbose = false) {
   let result = '';
   const paths = schema.paths;
 
@@ -179,8 +179,7 @@ function generateSdkTypes(schema) {
   }
 
   function warn(message) {
-    //If verbose
-    //console.warn(message);
+    if (verbose) console.warn(message);
   }
 }
 
