@@ -44,6 +44,7 @@ export class ApiInstance {
         this.products = Resources.ProductsResource({apiHandler}),
         this.profile = Resources.ProfileResource({apiHandler}),
         this.purchase = Resources.PurchaseResource({apiHandler}),
+        this.roles = Resources.RolesResource({apiHandler}),
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
