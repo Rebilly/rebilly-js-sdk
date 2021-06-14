@@ -5,6 +5,10 @@
 
 export default function ShippingZonesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetShippingZoneCollectionRequest } request
+     * @returns { rebilly.GetShippingZoneCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,12 +19,22 @@ export default function ShippingZonesResource({apiHandler}) {
       const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`shipping-zones`, params);
     },
+    /**
+     * @param { rebilly.CreateShippingZoneRequest } request
+     * @returns { rebilly.PostShippingZoneResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`shipping-zones/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetShippingZoneResponse } response
+     */
     get({id}) {
       return apiHandler.get(`shipping-zones/${id}`);
     },
+    /**
+     * @returns { rebilly.PutShippingZoneResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`shipping-zones/${id}`, data);
     },

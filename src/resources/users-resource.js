@@ -5,12 +5,19 @@
 
 export default function UsersResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetPasswordResetTokenResponse } response
+     */
     getResetPasswordToken({token}) {
       return apiHandler.get(`reset-password/${token}`);
     },
     resetPassword({token, data}) {
       return apiHandler.post(`reset-password/${token}`, data);
     },
+    /**
+     * @param { rebilly.GetUserCollectionRequest } request
+     * @returns { rebilly.GetUserCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -21,12 +28,22 @@ export default function UsersResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`users`, params);
     },
+    /**
+     * @param { rebilly.CreateUserRequest } request
+     * @returns { rebilly.PostUserResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`users/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetUserResponse } response
+     */
     get({id}) {
       return apiHandler.get(`users/${id}`);
     },
+    /**
+     * @returns { rebilly.PutUserResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`users/${id}`, data);
     },

@@ -5,6 +5,10 @@
 
 export default function KycDocumentsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetKycDocumentCollectionRequest } request
+     * @returns { rebilly.StorefrontGetKycDocumentCollectionResponse } response
+     */
     getAll({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`kyc-documents`, params);
@@ -12,6 +16,9 @@ export default function KycDocumentsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`kyc-documents`, data);
     },
+    /**
+     * @returns { rebilly.StorefrontGetKycDocumentResponse } response
+     */
     get({id}) {
       return apiHandler.get(`kyc-documents/${id}`);
     },

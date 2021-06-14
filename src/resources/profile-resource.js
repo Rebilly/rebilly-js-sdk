@@ -11,9 +11,15 @@ export default function ProfileResource({apiHandler}) {
     stopPermissionsEmulation() {
       return apiHandler.delete(`permissions-emulation`);
     },
+    /**
+     * @returns { rebilly.GetProfileResponse } response
+     */
     get() {
       return apiHandler.get(`profile`);
     },
+    /**
+     * @returns { rebilly.PutProfileResponse } response
+     */
     update({data}) {
       return apiHandler.put(`profile`, data);
     },

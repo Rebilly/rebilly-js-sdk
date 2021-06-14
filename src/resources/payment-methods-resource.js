@@ -5,9 +5,16 @@
 
 export default function PaymentMethodsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetPaymentMethodCollectionRequest } request
+     * @returns { rebilly.GetPaymentMethodCollectionResponse } response
+     */
     getAll() {
       return apiHandler.getAll(`payment-methods`);
     },
+    /**
+     * @returns { rebilly.GetPaymentMethodResponse } response
+     */
     get({apiName}) {
       return apiHandler.get(`payment-methods/${apiName}`);
     },

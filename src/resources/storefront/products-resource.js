@@ -5,6 +5,10 @@
 
 export default function ProductsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetProductCollectionRequest } request
+     * @returns { rebilly.StorefrontGetProductCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -15,6 +19,9 @@ export default function ProductsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`products`, params);
     },
+    /**
+     * @returns { rebilly.StorefrontGetProductResponse } response
+     */
     get({id}) {
       return apiHandler.get(`products/${id}`);
     },

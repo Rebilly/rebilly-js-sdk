@@ -5,6 +5,10 @@
 
 export default function EmailMessagesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetEmailMessageCollectionRequest } request
+     * @returns { rebilly.GetEmailMessageCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -18,6 +22,9 @@ export default function EmailMessagesResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`email-messages`, data);
     },
+    /**
+     * @returns { rebilly.GetEmailMessageResponse } response
+     */
     get({id}) {
       return apiHandler.get(`email-messages/${id}`);
     },

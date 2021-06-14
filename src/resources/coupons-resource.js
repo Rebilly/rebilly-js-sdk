@@ -5,6 +5,10 @@
 
 export default function CouponsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetCouponRedemptionCollectionRequest } request
+     * @returns { rebilly.GetCouponRedemptionCollectionResponse } response
+     */
     getAllRedemptions({
       limit = null,
       offset = null,
@@ -18,12 +22,19 @@ export default function CouponsResource({apiHandler}) {
     redeem({data}) {
       return apiHandler.post(`coupons-redemptions`, data);
     },
+    /**
+     * @returns { rebilly.GetCouponRedemptionResponse } response
+     */
     getRedemption({id}) {
       return apiHandler.get(`coupons-redemptions/${id}`);
     },
     cancelRedemption({id}) {
       return apiHandler.post(`coupons-redemptions/${id}/cancel`);
     },
+    /**
+     * @param { rebilly.GetCouponCollectionRequest } request
+     * @returns { rebilly.GetCouponCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -34,12 +45,22 @@ export default function CouponsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`coupons`, params);
     },
+    /**
+     * @param { rebilly.CreateCouponRequest } request
+     * @returns { rebilly.PostCouponResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`coupons/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetCouponResponse } response
+     */
     get({id}) {
       return apiHandler.get(`coupons/${id}`);
     },
+    /**
+     * @returns { rebilly.PutCouponResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`coupons/${id}`, data);
     },

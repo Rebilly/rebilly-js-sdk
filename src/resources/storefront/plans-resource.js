@@ -5,6 +5,10 @@
 
 export default function PlansResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetPlanCollectionRequest } request
+     * @returns { rebilly.StorefrontGetPlanCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -15,6 +19,9 @@ export default function PlansResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`plans`, params);
     },
+    /**
+     * @returns { rebilly.StorefrontGetPlanResponse } response
+     */
     get({id}) {
       return apiHandler.get(`plans/${id}`);
     },

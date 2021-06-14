@@ -5,6 +5,10 @@
 
 export default function ProductsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetProductCollectionRequest } request
+     * @returns { rebilly.GetProductCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -15,12 +19,22 @@ export default function ProductsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`products`, params);
     },
+    /**
+     * @param { rebilly.CreateProductRequest } request
+     * @returns { rebilly.PostProductResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`products/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetProductResponse } response
+     */
     get({id}) {
       return apiHandler.get(`products/${id}`);
     },
+    /**
+     * @returns { rebilly.PutProductResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`products/${id}`, data);
     },

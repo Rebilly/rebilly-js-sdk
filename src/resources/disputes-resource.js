@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function DisputesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetDisputeCollectionRequest } request
+     * @returns { rebilly.GetDisputeCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -19,13 +23,23 @@ export default function DisputesResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`disputes`, params);
     },
+    /**
+     * @param { rebilly.CreateDisputeRequest } request
+     * @returns { rebilly.PostDisputeResponse } response
+     */
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`disputes/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetDisputeResponse } response
+     */
     get({id}) {
       return apiHandler.get(`disputes/${id}`);
     },
+    /**
+     * @returns { rebilly.PutDisputeResponse } response
+     */
     update({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`disputes/${id}`, data, params);

@@ -5,6 +5,10 @@
 
 export default function PaymentTokensResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetTokenCollectionRequest } request
+     * @returns { rebilly.GetTokenCollectionResponse } response
+     */
     getAll({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`tokens`, params);
@@ -12,6 +16,9 @@ export default function PaymentTokensResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`tokens`, data);
     },
+    /**
+     * @returns { rebilly.GetTokenResponse } response
+     */
     get({token}) {
       return apiHandler.get(`tokens/${token}`);
     },

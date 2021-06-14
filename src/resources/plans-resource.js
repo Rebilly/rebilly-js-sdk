@@ -5,6 +5,10 @@
 
 export default function PlansResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetPlanCollectionRequest } request
+     * @returns { rebilly.GetPlanCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -15,12 +19,22 @@ export default function PlansResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`plans`, params);
     },
+    /**
+     * @param { rebilly.CreatePlanRequest } request
+     * @returns { rebilly.PostPlanResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`plans/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetPlanResponse } response
+     */
     get({id}) {
       return apiHandler.get(`plans/${id}`);
     },
+    /**
+     * @returns { rebilly.PutPlanResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`plans/${id}`, data);
     },

@@ -5,6 +5,10 @@
 
 export default function PaymentCardsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetPaymentCardCollectionRequest } request
+     * @returns { rebilly.GetPaymentCardCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -16,12 +20,22 @@ export default function PaymentCardsResource({apiHandler}) {
       const params = {limit, offset, filter, sort, q, expand};
       return apiHandler.getAll(`payment-cards`, params);
     },
+    /**
+     * @param { rebilly.CreatePaymentCardRequest } request
+     * @returns { rebilly.PostPaymentCardResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`payment-cards/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetPaymentCardResponse } response
+     */
     get({id}) {
       return apiHandler.get(`payment-cards/${id}`);
     },
+    /**
+     * @returns { rebilly.PutPaymentCardResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`payment-cards/${id}`, data);
     },

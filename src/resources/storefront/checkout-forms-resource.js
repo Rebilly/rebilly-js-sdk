@@ -5,6 +5,9 @@
 
 export default function CheckoutFormsResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.StorefrontGetCheckoutFormResponse } response
+     */
     get({id}) {
       return apiHandler.get(`checkout-forms/${id}`);
     },

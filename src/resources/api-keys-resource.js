@@ -5,16 +5,30 @@
 
 export default function ApiKeysResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetApiKeyCollectionRequest } request
+     * @returns { rebilly.GetApiKeyCollectionResponse } response
+     */
     getAll({limit = null, offset = null, sort = null} = {}) {
       const params = {limit, offset, sort};
       return apiHandler.getAll(`api-keys`, params);
     },
+    /**
+     * @param { rebilly.CreateApiKeyRequest } request
+     * @returns { rebilly.PostApiKeyResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`api-keys/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetApiKeyResponse } response
+     */
     get({id}) {
       return apiHandler.get(`api-keys/${id}`);
     },
+    /**
+     * @returns { rebilly.PutApiKeyResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`api-keys/${id}`, data);
     },

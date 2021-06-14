@@ -5,6 +5,10 @@
 
 export default function SubscriptionReactivationsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetSubscriptionReactivationCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionReactivationCollectionResponse } response
+     */
     getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(`subscription-reactivations`, params);
@@ -12,6 +16,9 @@ export default function SubscriptionReactivationsResource({apiHandler}) {
     reactivate({data}) {
       return apiHandler.post(`subscription-reactivations`, data);
     },
+    /**
+     * @returns { rebilly.GetSubscriptionReactivationResponse } response
+     */
     get({id}) {
       return apiHandler.get(`subscription-reactivations/${id}`);
     },

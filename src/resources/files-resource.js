@@ -5,6 +5,10 @@
 
 export default function FilesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetAttachmentCollectionRequest } request
+     * @returns { rebilly.GetAttachmentCollectionResponse } response
+     */
     getAllAttachments({
       limit = null,
       offset = null,
@@ -17,13 +21,22 @@ export default function FilesResource({apiHandler}) {
       const params = {limit, offset, filter, q, expand, fields, sort};
       return apiHandler.getAll(`attachments`, params);
     },
+    /**
+     * @returns { rebilly.PostAttachmentResponse } response
+     */
     attach({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`attachments/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetAttachmentResponse } response
+     */
     getAttachment({id}) {
       return apiHandler.get(`attachments/${id}`);
     },
+    /**
+     * @returns { rebilly.PutAttachmentResponse } response
+     */
     updateAttachment({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`attachments/${id}`, data, params);
@@ -31,6 +44,10 @@ export default function FilesResource({apiHandler}) {
     detach({id}) {
       return apiHandler.delete(`attachments/${id}`);
     },
+    /**
+     * @param { rebilly.GetFileCollectionRequest } request
+     * @returns { rebilly.GetFileCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -46,9 +63,15 @@ export default function FilesResource({apiHandler}) {
     upload({fileObject}) {
       return apiHandler.post('files', fileObject);
     },
+    /**
+     * @returns { rebilly.GetFileResponse } response
+     */
     get({id}) {
       return apiHandler.get(`files/${id}`);
     },
+    /**
+     * @returns { rebilly.PutFileResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`files/${id}`, data);
     },
@@ -72,6 +95,7 @@ export default function FilesResource({apiHandler}) {
         const attachmentsResult = await attachments;
 
         const promises = attachmentsResult.items.map((attachment) =>
+          // @ts-ignore
           this.detach({id: attachment.fields.id})
         );
         requests = [...requests, promises];

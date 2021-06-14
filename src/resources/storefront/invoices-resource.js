@@ -8,6 +8,10 @@ import {pdfHeader} from '@/request-headers';
 
 export default function InvoicesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetInvoiceCollectionRequest } request
+     * @returns { rebilly.StorefrontGetInvoiceCollectionResponse } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -18,6 +22,9 @@ export default function InvoicesResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`invoices`, params);
     },
+    /**
+     * @returns { rebilly.StorefrontGetInvoiceResponse } response
+     */
     get({id}) {
       return apiHandler.get(`invoices/${id}`);
     },

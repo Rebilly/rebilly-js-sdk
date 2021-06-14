@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function CustomersResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetCustomerCollectionRequest } request
+     * @returns { rebilly.GetCustomerCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -20,14 +24,24 @@ export default function CustomersResource({apiHandler}) {
       const params = {limit, offset, filter, q, expand, fields, sort};
       return apiHandler.getAll(`customers`, params);
     },
+    /**
+     * @param { rebilly.CreateCustomerRequest } request
+     * @returns { rebilly.PostCustomerResponse } response
+     */
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`customers/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetCustomerResponse } response
+     */
     get({id, expand = null, fields = null}) {
       const params = {expand, fields};
       return apiHandler.get(`customers/${id}`, params);
     },
+    /**
+     * @returns { rebilly.PutCustomerResponse } response
+     */
     update({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`customers/${id}`, data, params);
@@ -37,18 +51,31 @@ export default function CustomersResource({apiHandler}) {
         `customers/${id}?targetCustomerId=${targetCustomerId}`
       );
     },
+    /**
+     * @returns { rebilly.GetCustomerLeadSourceResponse } response
+     */
     getLeadSource({id}) {
       return apiHandler.get(`customers/${id}/lead-source`);
     },
+    /**
+     * @returns { rebilly.PutCustomerLeadSourceResponse } response
+     */
     createLeadSource({id, data}) {
       return apiHandler.put(`customers/${id}/lead-source`, data);
     },
+    /**
+     * @returns { rebilly.PutCustomerLeadSourceResponse } response
+     */
     updateLeadSource({id, data}) {
       return apiHandler.put(`customers/${id}/lead-source`, data);
     },
     deleteLeadSource({id}) {
       return apiHandler.delete(`customers/${id}/lead-source`);
     },
+    /**
+     * @param { rebilly.GetCustomerTimelineCollectionRequest } request
+     * @returns { rebilly.GetCustomerTimelineCollectionResponse } response
+     */
     getAllTimelineMessages({
       id,
       limit = null,
@@ -63,12 +90,19 @@ export default function CustomersResource({apiHandler}) {
     createTimelineComment({id, data}) {
       return apiHandler.post(`customers/${id}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetCustomerTimelineResponse } response
+     */
     getTimelineMessage({id, messageId}) {
       return apiHandler.get(`customers/${id}/timeline/${messageId}`);
     },
     deleteTimelineMessage({id, messageId}) {
       return apiHandler.delete(`customers/${id}/timeline/${messageId}`);
     },
+    /**
+     * @param { rebilly.GetCustomerUpcomingInvoiceCollectionRequest } request
+     * @returns { rebilly.GetCustomerUpcomingInvoiceCollectionResponse } response
+     */
     getAllUpcomingInvoices({id, expand = null}) {
       const params = {expand};
       return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);

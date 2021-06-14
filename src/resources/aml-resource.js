@@ -5,6 +5,9 @@
 
 export default function AmlResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetAmlEntryResponse } response
+     */
     getAll({firstName, lastName, dob = null, country = null}) {
       const params = {firstName, lastName, dob, country};
       return apiHandler.getAll(`aml`, params);

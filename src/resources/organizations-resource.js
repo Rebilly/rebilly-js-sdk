@@ -5,6 +5,10 @@
 
 export default function OrganizationsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetOrganizationCollectionRequest } request
+     * @returns { rebilly.GetOrganizationCollectionResponse } response
+     */
     getAll({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`organizations`, params);
@@ -12,6 +16,9 @@ export default function OrganizationsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`organizations`, data);
     },
+    /**
+     * @returns { rebilly.GetOrganizationResponse } response
+     */
     get({id}) {
       return apiHandler.get(`organizations/${id}`);
     },

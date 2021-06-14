@@ -5,6 +5,10 @@
 
 export default function TagsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetTagCollectionRequest } request
+     * @returns { rebilly.GetTagCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -18,6 +22,9 @@ export default function TagsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`tags`, data);
     },
+    /**
+     * @returns { rebilly.GetTagResponse } response
+     */
     get({tag}) {
       return apiHandler.get(`tags/${tag}`);
     },

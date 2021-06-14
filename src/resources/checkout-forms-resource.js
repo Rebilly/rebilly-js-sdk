@@ -5,6 +5,10 @@
 
 export default function CheckoutFormsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetCheckoutFormCollectionRequest } request
+     * @returns { rebilly.GetCheckoutFormCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,12 +19,22 @@ export default function CheckoutFormsResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`checkout-forms`, params);
     },
+    /**
+     * @param { rebilly.CreateCheckoutFormRequest } request
+     * @returns { rebilly.PostCheckoutFormResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`checkout-forms/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetCheckoutFormResponse } response
+     */
     get({id}) {
       return apiHandler.get(`checkout-forms/${id}`);
     },
+    /**
+     * @returns { rebilly.PutCheckoutFormResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`checkout-forms/${id}`, data);
     },

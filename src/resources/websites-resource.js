@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function WebsitesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetWebsiteCollectionRequest } request
+     * @returns { rebilly.GetWebsiteCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -18,12 +22,22 @@ export default function WebsitesResource({apiHandler}) {
       const params = {limit, offset, q, filter, sort};
       return apiHandler.getAll(`websites`, params);
     },
+    /**
+     * @param { rebilly.CreateWebsiteRequest } request
+     * @returns { rebilly.PostWebsiteResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`websites/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetWebsiteResponse } response
+     */
     get({id}) {
       return apiHandler.get(`websites/${id}`);
     },
+    /**
+     * @returns { rebilly.PutWebsiteResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`websites/${id}`, data);
     },

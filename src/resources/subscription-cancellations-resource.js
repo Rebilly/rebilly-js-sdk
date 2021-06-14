@@ -5,13 +5,24 @@
 
 export default function SubscriptionCancellationsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetSubscriptionCancellationCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionCancellationCollectionResponse } response
+     */
     getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(`subscription-cancellations`, params);
     },
+    /**
+     * @param { rebilly.CreateSubscriptionCancellationRequest } request
+     * @returns { rebilly.PostSubscriptionCancellationResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`subscription-cancellations/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetSubscriptionCancellationResponse } response
+     */
     get({id}) {
       return apiHandler.get(`subscription-cancellations/${id}`);
     },

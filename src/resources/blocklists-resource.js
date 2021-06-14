@@ -5,6 +5,10 @@
 
 export default function BlocklistsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetBlocklistCollectionRequest } request
+     * @returns { rebilly.GetBlocklistCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,9 +19,16 @@ export default function BlocklistsResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`blocklists`, params);
     },
+    /**
+     * @param { rebilly.CreateBlocklistRequest } request
+     * @returns { rebilly.PostBlocklistResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`blocklists/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetBlocklistResponse } response
+     */
     get({id}) {
       return apiHandler.get(`blocklists/${id}`);
     },

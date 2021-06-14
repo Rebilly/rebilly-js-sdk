@@ -5,6 +5,10 @@
 
 export default function RolesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetRoleCollectionRequest } request
+     * @returns { rebilly.GetRoleCollectionResponse } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -16,13 +20,23 @@ export default function RolesResource({apiHandler}) {
       const params = {limit, offset, filter, sort, q, expand};
       return apiHandler.getAll(`roles`, params);
     },
+    /**
+     * @param { rebilly.CreateRoleRequest } request
+     * @returns { rebilly.PostRoleResponse } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`roles/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetRoleResponse } response
+     */
     get({id, expand = null}) {
       const params = {expand};
       return apiHandler.get(`roles/${id}`, params);
     },
+    /**
+     * @returns { rebilly.PutRoleResponse } response
+     */
     update({id, data}) {
       return apiHandler.put(`roles/${id}`, data);
     },

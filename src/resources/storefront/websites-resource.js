@@ -5,6 +5,9 @@
 
 export default function WebsitesResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.StorefrontGetWebsiteResponse } response
+     */
     get({id}) {
       return apiHandler.get(`websites/${id}`);
     },
