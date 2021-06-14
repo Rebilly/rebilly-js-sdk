@@ -157,6 +157,10 @@ function generateSdkTypes(schema, verbose = false) {
     ) {
       result += `['content']['application/json']`;
     }
+    // Assuming that $ref will always contain application/json
+    if (code === '201' && path.responses[code]['$ref']) {
+      result += `['content']['application/json']`;
+    }
     return result;
   }
 
