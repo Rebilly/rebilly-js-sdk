@@ -5,6 +5,10 @@
 
 export default function KycRequestsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetKycRequestCollectionRequest } request
+     * @returns { rebilly.GetKycRequestCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(`kyc-requests`, params);
@@ -12,6 +16,9 @@ export default function KycRequestsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`kyc-requests`, data);
     },
+    /**
+     * @returns { rebilly.GetKycRequestResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`kyc-requests/${id}`);
     },

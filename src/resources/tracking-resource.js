@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function TrackingResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetTrackingApiCollectionRequest } request
+     * @returns { rebilly.GetTrackingApiCollectionResponsePromise } response
+     */
     getAllApiLogs({
       limit = null,
       offset = null,
@@ -18,9 +22,16 @@ export default function TrackingResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/api`, params);
     },
+    /**
+     * @returns { rebilly.GetTrackingApiResponsePromise } response
+     */
     getApiLog({id}) {
       return apiHandler.get(`tracking/api/${id}`);
     },
+    /**
+     * @param { rebilly.GetTrackingListCollectionRequest } request
+     * @returns { rebilly.GetTrackingListCollectionResponsePromise } response
+     */
     getAllListsChangesHistory({
       limit = null,
       offset = null,
@@ -31,6 +42,10 @@ export default function TrackingResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/lists`, params);
     },
+    /**
+     * @param { rebilly.GetTrackingWebhookCollectionRequest } request
+     * @returns { rebilly.GetTrackingWebhookCollectionResponsePromise } response
+     */
     getAllWebhookTrackingLogs({
       limit = null,
       offset = null,
@@ -41,6 +56,9 @@ export default function TrackingResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`tracking/webhooks`, params);
     },
+    /**
+     * @returns { rebilly.GetTrackingWebhookResponsePromise } response
+     */
     getWebhookTrackingLog({id}) {
       return apiHandler.get(`tracking/webhooks/${id}`);
     },

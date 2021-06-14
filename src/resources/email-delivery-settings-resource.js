@@ -5,9 +5,16 @@
 
 export default function EmailDeliverySettingsResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.VerifyEmailDeliverySettingsResponsePromise } response
+     */
     verify({token}) {
       return apiHandler.put(`email-delivery-setting-verifications/${token}`);
     },
+    /**
+     * @param { rebilly.GetEmailDeliverySettingCollectionRequest } request
+     * @returns { rebilly.GetEmailDeliverySettingCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -21,6 +28,9 @@ export default function EmailDeliverySettingsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`email-delivery-settings`, data);
     },
+    /**
+     * @returns { rebilly.GetEmailDeliverySettingResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`email-delivery-settings/${id}`);
     },

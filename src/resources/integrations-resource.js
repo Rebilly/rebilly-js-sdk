@@ -5,9 +5,16 @@
 
 export default function IntegrationsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetIntegrationCollectionRequest } request
+     * @returns { rebilly.GetIntegrationCollectionResponsePromise } response
+     */
     getAll() {
       return apiHandler.getAll(`integrations`);
     },
+    /**
+     * @returns { rebilly.GetIntegrationResponsePromise } response
+     */
     get({label}) {
       return apiHandler.get(`integrations/${label}`);
     },

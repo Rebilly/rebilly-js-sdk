@@ -5,6 +5,9 @@
 
 export default function AccountResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.StorefrontGetAccountResponsePromise } response
+     */
     get() {
       return apiHandler.get(`account`);
     },

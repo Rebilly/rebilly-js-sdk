@@ -5,6 +5,10 @@
 
 export default function PaypalAccountsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetPayPalAccountCollectionRequest } request
+     * @returns { rebilly.GetPayPalAccountCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -16,12 +20,22 @@ export default function PaypalAccountsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`paypal-accounts`, params);
     },
+    /**
+     * @param { rebilly.CreatePayPalAccountRequest } request
+     * @returns { rebilly.PostPayPalAccountResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`paypal-accounts/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetPayPalAccountResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`paypal-accounts/${id}`);
     },
+    /**
+     * @returns { rebilly.PutPayPalAccountResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`paypal-accounts/${id}`, data);
     },

@@ -5,6 +5,9 @@
 
 export default function SearchResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetSearchResponsePromise } response
+     */
     get({sort = null, limit = null, offset = null, q = null}) {
       const params = {sort, limit, offset, q};
       return apiHandler.get(`search`, params);

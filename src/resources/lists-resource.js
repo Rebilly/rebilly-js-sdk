@@ -5,6 +5,10 @@
 
 export default function ListsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetListCollectionRequest } request
+     * @returns { rebilly.GetListCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -16,18 +20,31 @@ export default function ListsResource({apiHandler}) {
       const params = {limit, offset, filter, sort, fields, q};
       return apiHandler.getAll(`lists`, params);
     },
+    /**
+     * @param { rebilly.CreateListRequest } request
+     * @returns { rebilly.PostListResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`lists/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetListResponsePromise } response
+     */
     getLatestVersion({id}) {
       return apiHandler.get(`lists/${id}`);
     },
+    /**
+     * @returns { rebilly.PutListResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`lists/${id}`, data);
     },
     delete({id}) {
       return apiHandler.delete(`lists/${id}`);
     },
+    /**
+     * @returns { rebilly.GetListVersionResponsePromise } response
+     */
     getByVersion({id, version}) {
       return apiHandler.get(`lists/${id}/${version}`);
     },

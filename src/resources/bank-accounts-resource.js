@@ -5,6 +5,10 @@
 
 export default function BankAccountsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetBankAccountCollectionRequest } request
+     * @returns { rebilly.GetBankAccountCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -16,9 +20,16 @@ export default function BankAccountsResource({apiHandler}) {
       const params = {limit, offset, q, sort, filter, expand};
       return apiHandler.getAll(`bank-accounts`, params);
     },
+    /**
+     * @param { rebilly.CreateBankAccountRequest } request
+     * @returns { rebilly.PostBankAccountResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`bank-accounts/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetBankAccountResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`bank-accounts/${id}`);
     },

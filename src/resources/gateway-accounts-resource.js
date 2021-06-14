@@ -5,6 +5,10 @@
 
 export default function GatewayAccountsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetGatewayAccountCollectionRequest } request
+     * @returns { rebilly.GetGatewayAccountCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -16,9 +20,16 @@ export default function GatewayAccountsResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q, fields};
       return apiHandler.getAll(`gateway-accounts`, params);
     },
+    /**
+     * @param { rebilly.CreateGatewayAccountRequest } request
+     * @returns { rebilly.PostGatewayAccountResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`gateway-accounts/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`gateway-accounts/${id}`);
     },
@@ -34,6 +45,9 @@ export default function GatewayAccountsResource({apiHandler}) {
     disable({id}) {
       return apiHandler.post(`gateway-accounts/${id}/disable`);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountDowntimeScheduleCollectionResponsePromise } response
+     */
     getAllDowntimeSchedules({
       id,
       limit = null,
@@ -50,11 +64,17 @@ export default function GatewayAccountsResource({apiHandler}) {
     createDowntimeSchedule({id, data}) {
       return apiHandler.post(`gateway-accounts/${id}/downtime-schedules`, data);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountDowntimeScheduleResponsePromise } response
+     */
     getDowntimeSchedule({id, downtimeId}) {
       return apiHandler.get(
         `gateway-accounts/${id}/downtime-schedules/${downtimeId}`
       );
     },
+    /**
+     * @returns { rebilly.PutGatewayAccountDowntimeScheduleResponsePromise } response
+     */
     updateDowntimeSchedule({id, downtimeId, data}) {
       return apiHandler.put(
         `gateway-accounts/${id}/downtime-schedules/${downtimeId}`,
@@ -69,18 +89,30 @@ export default function GatewayAccountsResource({apiHandler}) {
     enable({id}) {
       return apiHandler.post(`gateway-accounts/${id}/enable`);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountLimitCollectionResponsePromise } response
+     */
     getAllVolumeLimits({id}) {
       return apiHandler.getAll(`gateway-accounts/${id}/limits`);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountLimitResponsePromise } response
+     */
     getVolumeLimit({id, limitId}) {
       return apiHandler.get(`gateway-accounts/${id}/limits/${limitId}`);
     },
+    /**
+     * @returns { rebilly.PutGatewayAccountLimitResponsePromise } response
+     */
     updateVolumeLimit({id, limitId, data}) {
       return apiHandler.put(`gateway-accounts/${id}/limits/${limitId}`, data);
     },
     deleteVolumeLimit({id, limitId}) {
       return apiHandler.delete(`gateway-accounts/${id}/limits/${limitId}`);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountTimelineCollectionResponsePromise } response
+     */
     getAllTimelineMessages({
       id,
       limit = null,
@@ -95,6 +127,9 @@ export default function GatewayAccountsResource({apiHandler}) {
     createTimelineComment({id, data}) {
       return apiHandler.post(`gateway-accounts/${id}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountTimelineResponsePromise } response
+     */
     getTimelineMessage({id, messageId}) {
       return apiHandler.get(`gateway-accounts/${id}/timeline/${messageId}`);
     },

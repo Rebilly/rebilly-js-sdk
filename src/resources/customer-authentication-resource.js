@@ -5,12 +5,22 @@
 
 export default function CustomerAuthenticationResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetAuthenticationOptionResponsePromise } response
+     */
     getAuthOptions() {
       return apiHandler.get(`authentication-options`);
     },
+    /**
+     * @returns { rebilly.PutAuthenticationOptionResponsePromise } response
+     */
     updateAuthOptions({data}) {
       return apiHandler.put(`authentication-options`, data);
     },
+    /**
+     * @param { rebilly.GetAuthenticationTokenCollectionRequest } request
+     * @returns { rebilly.GetAuthenticationTokenCollectionResponsePromise } response
+     */
     getAllAuthTokens({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`authentication-tokens`, params);
@@ -18,6 +28,9 @@ export default function CustomerAuthenticationResource({apiHandler}) {
     login({data}) {
       return apiHandler.post(`authentication-tokens`, data);
     },
+    /**
+     * @returns { rebilly.GetAuthenticationTokenVerificationResponsePromise } response
+     */
     verify({token}) {
       return apiHandler.get(`authentication-tokens/${token}`);
     },
@@ -27,22 +40,40 @@ export default function CustomerAuthenticationResource({apiHandler}) {
     exchangeToken({token, data}) {
       return apiHandler.post(`authentication-tokens/${token}/exchange`, data);
     },
+    /**
+     * @param { rebilly.GetCredentialCollectionRequest } request
+     * @returns { rebilly.GetCredentialCollectionResponsePromise } response
+     */
     getAllCredentials({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`credentials`, params);
     },
+    /**
+     * @param { rebilly.CreateCredentialRequest } request
+     * @returns { rebilly.PostCredentialResponsePromise } response
+     */
     createCredential({id = '', data}) {
       return apiHandler.create(`credentials/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetCredentialResponsePromise } response
+     */
     getCredential({id}) {
       return apiHandler.get(`credentials/${id}`);
     },
+    /**
+     * @returns { rebilly.PutCredentialResponsePromise } response
+     */
     updateCredential({id, data}) {
       return apiHandler.put(`credentials/${id}`, data);
     },
     deleteCredential({id}) {
       return apiHandler.delete(`credentials/${id}`);
     },
+    /**
+     * @param { rebilly.GetPasswordTokenCollectionRequest } request
+     * @returns { rebilly.GetPasswordTokenCollectionResponsePromise } response
+     */
     getAllResetPasswordTokens({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`password-tokens`, params);
@@ -50,6 +81,9 @@ export default function CustomerAuthenticationResource({apiHandler}) {
     createResetPasswordToken({data}) {
       return apiHandler.post(`password-tokens`, data);
     },
+    /**
+     * @returns { rebilly.GetPasswordTokenResponsePromise } response
+     */
     getResetPasswordToken({id}) {
       return apiHandler.get(`password-tokens/${id}`);
     },

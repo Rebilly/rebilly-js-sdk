@@ -5,16 +5,28 @@
 
 export default function CustomFieldsResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetCustomFieldCollectionResponsePromise } response
+     */
     getAll({resource, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.getAll(`custom-fields/${resource}`, params);
     },
+    /**
+     * @returns { rebilly.GetCustomFieldResponsePromise } response
+     */
     get({resource, name}) {
       return apiHandler.get(`custom-fields/${resource}/${name}`);
     },
+    /**
+     * @returns { rebilly.PutCustomFieldResponsePromise } response
+     */
     create({resource, name, data}) {
       return apiHandler.put(`custom-fields/${resource}/${name}`, data);
     },
+    /**
+     * @returns { rebilly.PutCustomFieldResponsePromise } response
+     */
     update({resource, name, data}) {
       return apiHandler.put(`custom-fields/${resource}/${name}`, data);
     },

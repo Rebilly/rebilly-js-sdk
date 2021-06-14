@@ -5,13 +5,23 @@
 
 export default function MembershipsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetMembershipCollectionRequest } request
+     * @returns { rebilly.GetMembershipCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(`memberships`, params);
     },
+    /**
+     * @returns { rebilly.GetMembershipResponsePromise } response
+     */
     get({organizationId, userId}) {
       return apiHandler.get(`memberships/${organizationId}/${userId}`);
     },
+    /**
+     * @returns { rebilly.PutMembershipResponsePromise } response
+     */
     update({organizationId, userId, data}) {
       return apiHandler.put(`memberships/${organizationId}/${userId}`, data);
     },
