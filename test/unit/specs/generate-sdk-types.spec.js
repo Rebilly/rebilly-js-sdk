@@ -13,7 +13,7 @@ const responses = {
   403: {},
 };
 
-it('Generates TS type for collection getAll response', async () => {
+it('Generates TS types for collection getAll response', async () => {
   const schema = {
     paths: {
       '/customers': {
@@ -27,11 +27,12 @@ it('Generates TS type for collection getAll response', async () => {
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type GetCustomerCollectionResponse = Promise<{ items: operations['GetCustomerCollection']['responses']['200']['content']['application/json']}>`
+    `type GetCustomerCollectionResponse = operations['GetCustomerCollection']['responses']['200']['content']['application/json']
+  type GetCustomerCollectionResponsePromise = Promise<{ items: GetCustomerCollectionResponse}>`
   );
 });
 
-it('Generates TS type for collection getAll response in storefront schema', async () => {
+it('Generates TS types for collection getAll response in storefront schema', async () => {
   const schema = {
     paths: {
       '/transactions': {
@@ -45,11 +46,12 @@ it('Generates TS type for collection getAll response in storefront schema', asyn
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type StorefrontGetTransactionCollectionResponse = Promise<{ items: operations['StorefrontGetTransactionCollection']['responses']['200']['content']['application/json']}>`
+    `type StorefrontGetTransactionCollectionResponse = operations['StorefrontGetTransactionCollection']['responses']['200']['content']['application/json']
+  type StorefrontGetTransactionCollectionResponsePromise = Promise<{ items: StorefrontGetTransactionCollectionResponse}>`
   );
 });
 
-it('Generates TS type for resource get response', async () => {
+it('Generates TS types for resource get response', async () => {
   const schema = {
     paths: {
       '/customers/{id}': {
@@ -63,11 +65,12 @@ it('Generates TS type for resource get response', async () => {
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type GetCustomerResponse = Promise<{fields: operations['GetCustomer']['responses']['200']['content']['application/json']}>`
+    `type GetCustomerResponse = operations['GetCustomer']['responses']['200']['content']['application/json']
+  type GetCustomerResponsePromise = Promise<{fields: GetCustomerResponse}>`
   );
 });
 
-it('Generates TS type for resource put response', async () => {
+it('Generates TS types for resource put response', async () => {
   const putResponses = {
     ...responses,
     ...{
@@ -87,6 +90,7 @@ it('Generates TS type for resource put response', async () => {
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type PutCustomerResponse = Promise<{fields: operations['PutCustomer']['responses']['201']['content']['application/json']}>`
+    `type PutCustomerResponse = operations['PutCustomer']['responses']['201']['content']['application/json']
+  type PutCustomerResponsePromise = Promise<{fields: PutCustomerResponse}>`
   );
 });

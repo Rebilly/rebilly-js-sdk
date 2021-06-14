@@ -41,7 +41,7 @@ function generateSdkTypes(schema, verbose = false) {
     } else {
       result += generateQueryType(operationId, getPath) + newLineAndTab;
     }
-    result += generateResponseType(operationId, getPath);
+    result += generateResponseTypes(operationId, getPath);
     return result;
   }
 
@@ -54,7 +54,7 @@ function generateSdkTypes(schema, verbose = false) {
       result += generateRequestType(operationId, postPath);
       result += generateCreateType(operationId);
     }
-    result += generateResponseType(operationId, postPath);
+    result += generateResponseTypes(operationId, postPath);
     return result;
   }
 
@@ -66,7 +66,7 @@ function generateSdkTypes(schema, verbose = false) {
     } else {
       result += generateRequestType(operationId, putPath);
     }
-    result += generateResponseType(operationId, putPath);
+    result += generateResponseTypes(operationId, putPath);
     return result;
   }
 
@@ -78,7 +78,7 @@ function generateSdkTypes(schema, verbose = false) {
     } else {
       result += generateRequestType(operationId, patchPath);
     }
-    result += generateResponseType(operationId, patchPath);
+    result += generateResponseTypes(operationId, patchPath);
     return result;
   }
 
@@ -94,7 +94,7 @@ function generateSdkTypes(schema, verbose = false) {
     } else if (deletePath.parameters && deletePath.parameters.query) {
       result += generateQueryType(operationId, deletePath);
     }
-    result += generateResponseType(operationId, deletePath);
+    result += generateResponseTypes(operationId, deletePath);
     return result;
   }
 
@@ -123,22 +123,24 @@ function generateSdkTypes(schema, verbose = false) {
     return requestType + newLineAndTab;
   }
 
-  function generateResponseType(operationId, path) {
+  function generateResponseTypes(operationId, path) {
     const responseTypeName = operationId + 'Response';
-    let responseType = `type ${responseTypeName} = ${promise(
-      operationId,
+
+    let responseType = `type ${responseTypeName} = ${`operations['${operationId}']['responses']${getResponseCode(
       path
+    )}`}`;
+
+    let responsePromiseType = `type ${responseTypeName}Promise = ${promise(
+      operationId,
+      responseTypeName
     )}`;
-    return responseType + newLineAndTab;
+    return responseType + newLineAndTab + responsePromiseType + newLineAndTab;
   }
 
-  function promise(operationId, path) {
-    let response = `operations['${operationId}']['responses']${getResponseCode(
-      path
-    )}`;
+  function promise(operationId, responseTypeName) {
     return operationId.endsWith('Collection')
-      ? itemsPromise(response)
-      : fieldsPromise(response);
+      ? itemsPromise(responseTypeName)
+      : fieldsPromise(responseTypeName);
   }
 
   function getResponseCode(path) {
