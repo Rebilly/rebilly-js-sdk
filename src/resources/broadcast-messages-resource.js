@@ -5,6 +5,10 @@
 
 export default function BroadcastMessagesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetBroadcastMessageCollectionRequest } request
+     * @returns { rebilly.GetBroadcastMessageCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null, sort = null, filter = null} = {}) {
       const params = {limit, offset, sort, filter};
       return apiHandler.getAll(`broadcast-messages`, params);
@@ -12,6 +16,9 @@ export default function BroadcastMessagesResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`broadcast-messages`, data);
     },
+    /**
+     * @returns { rebilly.GetBroadcastMessageResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`broadcast-messages/${id}`);
     },

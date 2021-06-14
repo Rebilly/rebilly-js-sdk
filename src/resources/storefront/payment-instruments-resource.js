@@ -5,6 +5,10 @@
 
 export default function PaymentInstrumentsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetPaymentInstrumentCollectionRequest } request
+     * @returns { rebilly.StorefrontGetPaymentInstrumentCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -18,6 +22,9 @@ export default function PaymentInstrumentsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`payment-instruments`, data);
     },
+    /**
+     * @returns { rebilly.StorefrontGetPaymentInstrumentResponsePromise } response
+     */
     get({id, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.get(`payment-instruments/${id}`, params);

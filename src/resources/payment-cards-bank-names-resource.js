@@ -5,6 +5,10 @@
 
 export default function PaymentCardsBankNamesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetPaymentCardBankNameCollectionRequest } request
+     * @returns { rebilly.GetPaymentCardBankNameCollectionResponsePromise } response
+     */
     getAll({limit = null, q = null} = {}) {
       const params = {limit, q};
       return apiHandler.getAll(`payment-cards-bank-names`, params);

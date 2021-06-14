@@ -5,6 +5,9 @@
 
 export default function BillingPortalsResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.StorefrontGetBillingPortalResponsePromise } response
+     */
     get({slug}) {
       return apiHandler.get(`billing-portals/${slug}`);
     },

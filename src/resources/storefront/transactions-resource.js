@@ -5,6 +5,10 @@
 
 export default function TransactionsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetTransactionCollectionRequest } request
+     * @returns { rebilly.StorefrontGetTransactionCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,6 +19,9 @@ export default function TransactionsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`transactions`, params);
     },
+    /**
+     * @returns { rebilly.StorefrontGetTransactionResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`transactions/${id}`);
     },

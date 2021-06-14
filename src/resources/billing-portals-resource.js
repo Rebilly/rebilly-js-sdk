@@ -5,6 +5,10 @@
 
 export default function BillingPortalsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetBillingPortalCollectionRequest } request
+     * @returns { rebilly.GetBillingPortalCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,12 +19,22 @@ export default function BillingPortalsResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`billing-portals`, params);
     },
+    /**
+     * @param { rebilly.CreateBillingPortalRequest } request
+     * @returns { rebilly.PostBillingPortalResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`billing-portals/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetBillingPortalResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`billing-portals/${id}`);
     },
+    /**
+     * @returns { rebilly.PutBillingPortalResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`billing-portals/${id}`, data);
     },

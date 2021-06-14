@@ -5,21 +5,40 @@
 
 export default function EventsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetEventCollectionRequest } request
+     * @returns { rebilly.GetEventCollectionResponsePromise } response
+     */
     getAll() {
       return apiHandler.getAll(`events`);
     },
+    /**
+     * @returns { rebilly.GetEventResponsePromise } response
+     */
     get({eventType}) {
       return apiHandler.get(`events/${eventType}`);
     },
+    /**
+     * @returns { rebilly.GetEventRuleCollectionResponsePromise } response
+     */
     getRules({eventType}) {
       return apiHandler.get(`events/${eventType}/rules`);
     },
+    /**
+     * @returns { rebilly.PutEventRuleResponsePromise } response
+     */
     createRules({eventType, data}) {
       return apiHandler.put(`events/${eventType}/rules`, data);
     },
+    /**
+     * @returns { rebilly.PutEventRuleResponsePromise } response
+     */
     updateRules({eventType, data}) {
       return apiHandler.put(`events/${eventType}/rules`, data);
     },
+    /**
+     * @returns { rebilly.GetRulesEngineTimelineCollectionResponsePromise } response
+     */
     getAllTimelineMessages({
       eventType,
       limit = null,
@@ -34,12 +53,18 @@ export default function EventsResource({apiHandler}) {
     createTimelineComment({eventType, data}) {
       return apiHandler.post(`events/${eventType}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetRulesEngineTimelineResponsePromise } response
+     */
     getTimelineMessage({eventType, messageId}) {
       return apiHandler.get(`events/${eventType}/timeline/${messageId}`);
     },
     deleteTimelineMessage({eventType, messageId}) {
       return apiHandler.delete(`events/${eventType}/timeline/${messageId}`);
     },
+    /**
+     * @returns { rebilly.GetEventRuleHistoryCollectionResponsePromise } response
+     */
     getRulesHistory({
       eventType,
       limit = null,
@@ -53,6 +78,9 @@ export default function EventsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort, fields, expand};
       return apiHandler.getAll(`events/${eventType}/rules/history`, params);
     },
+    /**
+     * @returns { rebilly.GetEventRuleHistoryVersionResponsePromise } response
+     */
     getRulesVersionNumber({eventType, version, fields = null, expand = null}) {
       const params = {fields, expand};
       return apiHandler.get(
@@ -60,6 +88,9 @@ export default function EventsResource({apiHandler}) {
         params
       );
     },
+    /**
+     * @returns { rebilly.GetEventRuleVersionResponsePromise } response
+     */
     getRulesVersionDetail({eventType, version, fields = null, expand = null}) {
       const params = {fields, expand};
       return apiHandler.get(
@@ -67,6 +98,9 @@ export default function EventsResource({apiHandler}) {
         params
       );
     },
+    /**
+     * @returns { rebilly.GetEventRuleSetDraftCollectionResponsePromise } response
+     */
     getAllDraftRulesets({
       eventType,
       limit = null,
@@ -83,10 +117,16 @@ export default function EventsResource({apiHandler}) {
     createDraftRuleset({eventType, data}) {
       return apiHandler.post(`events/${eventType}/rules/drafts`, data);
     },
+    /**
+     * @returns { rebilly.GetEventRuleSetDraftResponsePromise } response
+     */
     getDraftRuleset({eventType, id, fields = null, expand = null}) {
       const params = {fields, expand};
       return apiHandler.get(`events/${eventType}/rules/drafts/${id}`, params);
     },
+    /**
+     * @returns { rebilly.PutEventRuleSetDraftResponsePromise } response
+     */
     updateDraftRuleset({eventType, id, data}) {
       return apiHandler.put(`events/${eventType}/rules/drafts/${id}`, data);
     },

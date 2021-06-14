@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function SubscriptionsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetSubscriptionCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -19,14 +23,24 @@ export default function SubscriptionsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`subscriptions`, params);
     },
+    /**
+     * @param { rebilly.CreateSubscriptionRequest } request
+     * @returns { rebilly.PostSubscriptionResponsePromise } response
+     */
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`subscriptions/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetSubscriptionResponsePromise } response
+     */
     get({id, expand = null}) {
       const params = {expand};
       return apiHandler.get(`subscriptions/${id}`, params);
     },
+    /**
+     * @returns { rebilly.PutSubscriptionResponsePromise } response
+     */
     update({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`subscriptions/${id}`, data, params);
@@ -37,6 +51,10 @@ export default function SubscriptionsResource({apiHandler}) {
     createInterimInvoice({id, data}) {
       return apiHandler.post(`subscriptions/${id}/interim-invoice`, data);
     },
+    /**
+     * @param { rebilly.GetSubscriptionUpcomingInvoiceCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionUpcomingInvoiceCollectionResponsePromise } response
+     */
     getAllUpcomingInvoices({id, expand = null}) {
       const params = {expand};
       return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
@@ -47,6 +65,10 @@ export default function SubscriptionsResource({apiHandler}) {
         data
       );
     },
+    /**
+     * @param { rebilly.GetSubscriptionTimelineCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionTimelineCollectionResponsePromise } response
+     */
     getAllTimelineMessages({
       id,
       limit = null,
@@ -61,6 +83,9 @@ export default function SubscriptionsResource({apiHandler}) {
     createTimelineComment({id, data}) {
       return apiHandler.post(`subscriptions/${id}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetSubscriptionTimelineResponsePromise } response
+     */
     getTimelineMessage({id, messageId}) {
       return apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
     },

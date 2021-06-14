@@ -5,16 +5,30 @@
 
 export default function WebhooksResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetWebhookCollectionRequest } request
+     * @returns { rebilly.GetWebhookCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null, filter = null} = {}) {
       const params = {limit, offset, filter};
       return apiHandler.getAll(`webhooks`, params);
     },
+    /**
+     * @param { rebilly.CreateWebhookRequest } request
+     * @returns { rebilly.PostWebhookResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`webhooks/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetWebhookResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`webhooks/${id}`);
     },
+    /**
+     * @returns { rebilly.PutWebhookResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`webhooks/${id}`, data);
     },

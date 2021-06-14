@@ -5,6 +5,10 @@
 
 export default function ThreeDSecureResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.Get3DSecureCollectionRequest } request
+     * @returns { rebilly.Get3DSecureCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null} = {}) {
       const params = {limit, offset};
       return apiHandler.getAll(`3dsecure`, params);
@@ -12,6 +16,9 @@ export default function ThreeDSecureResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`3dsecure`, data);
     },
+    /**
+     * @returns { rebilly.Get3DSecureResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`3dsecure/${id}`);
     },

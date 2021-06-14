@@ -8,6 +8,10 @@ import {csvHeader} from '@/request-headers';
 
 export default function TransactionsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetTransactionCollectionRequest } request
+     * @returns { rebilly.GetTransactionCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -23,6 +27,9 @@ export default function TransactionsResource({apiHandler}) {
       const params = {expand};
       return apiHandler.post(`transactions`, data, params);
     },
+    /**
+     * @returns { rebilly.GetTransactionResponsePromise } response
+     */
     get({id, expand = null}) {
       const params = {expand};
       return apiHandler.get(`transactions/${id}`, params);
@@ -39,6 +46,10 @@ export default function TransactionsResource({apiHandler}) {
     refund({id, data}) {
       return apiHandler.post(`transactions/${id}/refund`, data);
     },
+    /**
+     * @param { rebilly.GetTransactionTimelineCollectionRequest } request
+     * @returns { rebilly.GetTransactionTimelineCollectionResponsePromise } response
+     */
     getAllTimelineMessages({id, limit = null, offset = null, filter = null}) {
       const params = {limit, offset, filter};
       return apiHandler.getAll(`transactions/${id}/timeline`, params);
@@ -46,6 +57,9 @@ export default function TransactionsResource({apiHandler}) {
     createTimelineComment({id, data}) {
       return apiHandler.post(`transactions/${id}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetTransactionTimelineResponsePromise } response
+     */
     getTimelineMessage({id, messageId}) {
       return apiHandler.get(`transactions/${id}/timeline/${messageId}`);
     },

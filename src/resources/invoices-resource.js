@@ -8,6 +8,10 @@ import {pdfHeader, csvHeader} from '@/request-headers';
 
 export default function InvoicesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetInvoiceCollectionRequest } request
+     * @returns { rebilly.GetInvoiceCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -19,18 +23,32 @@ export default function InvoicesResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`invoices`, params);
     },
+    /**
+     * @param { rebilly.CreateInvoiceRequest } request
+     * @returns { rebilly.PostInvoiceResponsePromise } response
+     */
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`invoices/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetInvoiceResponsePromise } response
+     */
     get({id, expand = null}) {
       const params = {expand};
       return apiHandler.get(`invoices/${id}`, params);
     },
+    /**
+     * @returns { rebilly.PutInvoiceResponsePromise } response
+     */
     update({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`invoices/${id}`, data, params);
     },
+    /**
+     * @param { rebilly.GetInvoiceItemCollectionRequest } request
+     * @returns { rebilly.GetInvoiceItemCollectionResponsePromise } response
+     */
     getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
       const params = {limit, offset, expand};
       return apiHandler.getAll(`invoices/${id}/items`, params);
@@ -53,6 +71,10 @@ export default function InvoicesResource({apiHandler}) {
     reissue({id, data}) {
       return apiHandler.post(`invoices/${id}/reissue`, data);
     },
+    /**
+     * @param { rebilly.GetInvoiceTransactionAllocationCollectionRequest } request
+     * @returns { rebilly.GetInvoiceTransactionAllocationCollectionResponsePromise } response
+     */
     getAllTransactionAllocations({id, limit = null, offset = null}) {
       const params = {limit, offset};
       return apiHandler.getAll(
@@ -63,6 +85,10 @@ export default function InvoicesResource({apiHandler}) {
     applyTransaction({id, data}) {
       return apiHandler.post(`invoices/${id}/transaction`, data);
     },
+    /**
+     * @param { rebilly.GetInvoiceTimelineCollectionRequest } request
+     * @returns { rebilly.GetInvoiceTimelineCollectionResponsePromise } response
+     */
     getAllTimelineMessages({
       id,
       limit = null,
@@ -77,6 +103,9 @@ export default function InvoicesResource({apiHandler}) {
     createTimelineComment({id, data}) {
       return apiHandler.post(`invoices/${id}/timeline`, data);
     },
+    /**
+     * @returns { rebilly.GetInvoiceTimelineResponsePromise } response
+     */
     getTimelineMessage({id, messageId}) {
       return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
     },
