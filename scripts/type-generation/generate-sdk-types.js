@@ -130,10 +130,20 @@ function generateSdkTypes(schema, verbose = false) {
       path
     )}`}`;
 
+    if (
+      operationId.endsWith('Collection') &&
+      operationId !== 'GetEventRuleCollection' // This operation is not returning a real collection
+    ) {
+      /* Getting the type of the first element of the collection
+      to be used by {items: fields: []} TS type */
+      responseType += '[0]';
+    }
+
     let responsePromiseType = `type ${responseTypeName}Promise = ${promise(
       operationId,
       responseTypeName
     )}`;
+
     return responseType + newLineAndTab + responsePromiseType + newLineAndTab;
   }
 
@@ -171,8 +181,7 @@ function generateSdkTypes(schema, verbose = false) {
   }
 
   function itemsPromise(response) {
-    //TODO: Sometimes we have getJSON function wrapping items
-    return `Promise<{ items: ${response}}>`;
+    return `Promise<{ items: {fields: ${response}}[], getJSON: object, total?: number, offset?: number, limit?: number }>`;
   }
 
   function hasJsonRequest(path) {

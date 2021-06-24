@@ -27,8 +27,8 @@ it('Generates TS types for collection getAll response', async () => {
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type GetCustomerCollectionResponse = operations['GetCustomerCollection']['responses']['200']['content']['application/json']
-  type GetCustomerCollectionResponsePromise = Promise<{ items: GetCustomerCollectionResponse}>`
+    `type GetCustomerCollectionResponse = operations['GetCustomerCollection']['responses']['200']['content']['application/json'][0]
+  type GetCustomerCollectionResponsePromise = Promise<{ items: {fields: GetCustomerCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>`
   );
 });
 
@@ -46,8 +46,8 @@ it('Generates TS types for collection getAll response in storefront schema', asy
 
   const types = generateSdkTypes(schema).trim();
   expect(types).to.eql(
-    `type StorefrontGetTransactionCollectionResponse = operations['StorefrontGetTransactionCollection']['responses']['200']['content']['application/json']
-  type StorefrontGetTransactionCollectionResponsePromise = Promise<{ items: StorefrontGetTransactionCollectionResponse}>`
+    `type StorefrontGetTransactionCollectionResponse = operations['StorefrontGetTransactionCollection']['responses']['200']['content']['application/json'][0]
+  type StorefrontGetTransactionCollectionResponsePromise = Promise<{ items: {fields: StorefrontGetTransactionCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>`
   );
 });
 
