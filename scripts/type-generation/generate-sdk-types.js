@@ -130,10 +130,13 @@ function generateSdkTypes(schema, verbose = false) {
       path
     )}`}`;
 
-    if (operationId.endsWith('Collection')) {
-      if (operationId !== 'GetEventRuleCollection')
-        // Getting the type of the first element of the collection
-        responseType += '[0]';
+    if (
+      operationId.endsWith('Collection') &&
+      operationId !== 'GetEventRuleCollection' //This operation is not returning a real collection
+    ) {
+      /*Getting the type of the first element of the collection
+      to be used by {items: fields: []} TS type */
+      responseType += '[0]';
     }
 
     let responsePromiseType = `type ${responseTypeName}Promise = ${promise(
