@@ -47,6 +47,9 @@ function processSchema(openApiSchema, schemaType) {
   openApiTypes = openApiTypes
     .replace(/components/g, schemaType + 'Components')
     .replace(/paths/g, schemaType + 'Paths');
+
+  openApiTypes = fixSpecialTypes(openApiTypes);
+
   // Generating custom SDK types with custom rebilly script
   const sdkTypes = generateSdkTypes(openApiSchema);
   return { openApiTypes, sdkTypes };
@@ -67,6 +70,18 @@ function fixProperties(openApiSchema) {
     stringSchema = stringSchema.replace(p + '-2', p + '2');
   });
   return JSON.parse(stringSchema);
+}
+
+function fixSpecialTypes(openApiTypes) {
+  /* There special cases where openapi-typescript interprets the openAPI spec in a different way than we expect
+   For example: 
+    buttonText: string; is considered required because it has a default value but we expect it to be optional
+   */
+  openApiTypes = openApiTypes.replace(
+    'buttonText: string;',
+    'buttonText?: string;'
+  );
+  return openApiTypes;
 }
 
 function createTemporaryTypingsDirectory() {
