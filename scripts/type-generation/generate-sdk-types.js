@@ -132,9 +132,9 @@ function generateSdkTypes(schema, verbose = false) {
 
     if (
       operationId.endsWith('Collection') &&
-      operationId !== 'GetEventRuleCollection' //This operation is not returning a real collection
+      operationId !== 'GetEventRuleCollection' // This operation is not returning a real collection
     ) {
-      /*Getting the type of the first element of the collection
+      /* Getting the type of the first element of the collection
       to be used by {items: fields: []} TS type */
       responseType += '[0]';
     }
