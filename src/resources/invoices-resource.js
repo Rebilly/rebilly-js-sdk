@@ -56,6 +56,15 @@ export default function InvoicesResource({apiHandler}) {
     createInvoiceItem({id, data}) {
       return apiHandler.post(`invoices/${id}/items`, data);
     },
+    /**
+     * @returns { rebilly.PutInvoiceItemResponsePromise } response
+     */
+    updateInvoiceItem({id, itemId, data}) {
+      return apiHandler.put(`invoices/${id}/items/${itemId}`, data);
+    },
+    deleteInvoiceItem({id, itemId}) {
+      return apiHandler.delete(`invoices/${id}/items/${itemId}`);
+    },
     issue({id, data}) {
       return apiHandler.post(`invoices/${id}/issue`, data);
     },
