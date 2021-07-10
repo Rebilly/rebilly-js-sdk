@@ -13,3 +13,5 @@ yarn-error.log*
 /site
 package-lock.json
 /typings
+/api-definitions
+/rebilly-sdk-generator
