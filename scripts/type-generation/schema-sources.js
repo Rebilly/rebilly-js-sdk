@@ -3,7 +3,7 @@ const fs = require('fs');
 const resolve = require('path').resolve;
 
 function getOnlineSchemas() {
-  console.log('⬇️  Downloading json schemas from redoc.ly registry [master]');
+  console.log('⬇️  Downloading json schemas from redoc.ly registry [main]');
 
   return Promise.all([
     axios.get(
