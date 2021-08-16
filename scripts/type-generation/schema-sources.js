@@ -7,13 +7,13 @@ function getOnlineSchemas() {
 
   return Promise.all([
     axios.get(
-      'https://api.redoc.ly/registry/rebilly/core-api/core/bundle/master/openapi.json'
+      'https://api.redoc.ly/registry/rebilly/core-api/core/bundle/main/openapi.json'
     ),
     axios.get(
-      'https://api.redoc.ly/registry/rebilly/storefront/storefront/bundle/master/openapi.json'
+      'https://api.redoc.ly/registry/rebilly/storefront/storefront/bundle/main/openapi.json'
     ),
     axios.get(
-      'https://api.redoc.ly/registry/rebilly/users/users/bundle/master/openapi.json'
+      'https://api.redoc.ly/registry/rebilly/users/users/bundle/main/openapi.json'
     ),
   ]).then((response) => {
     const [coreResponse, storefrontResponse, usersResponse] = response;
