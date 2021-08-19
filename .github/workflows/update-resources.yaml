@@ -44,7 +44,7 @@ jobs:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: 'rebilly-sdk-generator'
           # Here we will use master once we have merged
-          ref: 'master'
+          ref: 'main'
           token: ${{ secrets.SDK_GENERATOR_PAT }}
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
