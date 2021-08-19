@@ -21,7 +21,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.customers).to.be.an('object');
         expect(apiInstance.account).to.be.an('object');
         expect(apiInstance.apiKeys).to.be.an('object');
-        expect(apiInstance.bankAccounts).to.be.an('object');
         expect(apiInstance.blocklists).to.be.an('object');
         expect(apiInstance.checkoutForms).to.be.an('object');
         expect(apiInstance.coupons).to.be.an('object');
@@ -41,9 +40,7 @@ describe('when I create an API instance', () => {
         expect(apiInstance.lists).to.be.an('object');
         expect(apiInstance.organizations).to.be.an('object');
         expect(apiInstance.paymentInstruments).to.be.an('object');
-        expect(apiInstance.paymentCards).to.be.an('object');
         expect(apiInstance.paymentTokens).to.be.an('object');
-        expect(apiInstance.paypalAccounts).to.be.an('object');
         expect(apiInstance.plans).to.be.an('object');
         expect(apiInstance.previews).to.be.an('object');
         expect(apiInstance.products).to.be.an('object');
@@ -57,7 +54,6 @@ describe('when I create an API instance', () => {
         expect(apiInstance.tags).to.be.an('object');
         expect(apiInstance.tracking).to.be.an('object');
         expect(apiInstance.transactions).to.be.an('object');
-        expect(apiInstance.threeDSecure).to.be.an('object');
         expect(apiInstance.users).to.be.an('object');
         expect(apiInstance.webhooks).to.be.an('object');
         expect(apiInstance.websites).to.be.an('object');
