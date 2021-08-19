@@ -7,7 +7,7 @@ on:
       api-definitions-branch:
         description: 'api-definitions branch triggering the current workflow'
         required: true
-        default: 'master'
+        default: 'main'
       auto-pr-title:
         description: 'title of the PR to be created'
         required: true
