@@ -7,7 +7,6 @@ export class ApiInstance {
         this.account = Resources.AccountResource({apiHandler})
         this.aml = Resources.AmlResource({apiHandler})
         this.apiKeys = Resources.ApiKeysResource({apiHandler})
-        this.bankAccounts = Resources.BankAccountsResource({apiHandler}),
         this.billingPortals = Resources.BillingPortalsResource({apiHandler}),
         this.blocklists = Resources.BlocklistsResource({apiHandler}),
         this.gatewayAccounts = Resources.GatewayAccountsResource({apiHandler})
@@ -34,11 +33,9 @@ export class ApiInstance {
         this.organizations = Resources.OrganizationsResource({apiHandler}),
         this.paymentInstruments = Resources.PaymentInstrumentsResource({apiHandler}),
         this.paymentMethods = Resources.PaymentMethodsResource({apiHandler}),
-        this.paymentCards = Resources.PaymentCardsResource({apiHandler}),
         this.paymentCardsBankNames = Resources.PaymentCardsBankNamesResource({apiHandler}),
         this.paymentTokens = Resources.PaymentTokensResource({apiHandler}),
         this.payouts = Resources.PayoutsResource({apiHandler}),
-        this.paypalAccounts = Resources.PayPalAccountsResource({apiHandler}),
         this.plans = Resources.PlansResource({apiHandler}),
         this.previews = Resources.PreviewsResource({apiHandler}),
         this.products = Resources.ProductsResource({apiHandler}),
@@ -56,7 +53,6 @@ export class ApiInstance {
         this.tags = Resources.TagsResource({apiHandler}),
         this.tracking = Resources.TrackingResource({apiHandler}),
         this.transactions = Resources.TransactionsResource({apiHandler}),
-        this.threeDSecure = Resources.ThreeDSecureResource({apiHandler}),
         this.users = Resources.UsersResource({apiHandler}),
         this.webhooks = Resources.WebhooksResource({apiHandler}),
         this.websites = Resources.WebsitesResource({apiHandler}),
