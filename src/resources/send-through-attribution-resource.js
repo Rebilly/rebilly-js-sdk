@@ -5,6 +5,9 @@
 
 export default function SendThroughAttributionResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetSendThroughAttributionCollectionResponsePromise } response
+     */
     getAll({eventType}) {
       return apiHandler.getAll(`send-through-attribution/${eventType}`);
     },

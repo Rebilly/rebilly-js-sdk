@@ -4,10 +4,14 @@
 */
 
 // @ts-nocheck
-import {csvHeader} from '../request-headers';
+import {csvHeader} from '@/request-headers';
 
 export default function WebsitesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetWebsiteCollectionRequest } request
+     * @returns { rebilly.GetWebsiteCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -18,12 +22,22 @@ export default function WebsitesResource({apiHandler}) {
       const params = {limit, offset, q, filter, sort};
       return apiHandler.getAll(`websites`, params);
     },
+    /**
+     * @param { rebilly.CreateWebsiteRequest } request
+     * @returns { rebilly.PostWebsiteResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`websites/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetWebsiteResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`websites/${id}`);
     },
+    /**
+     * @returns { rebilly.PutWebsiteResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`websites/${id}`, data);
     },

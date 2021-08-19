@@ -5,6 +5,10 @@
 
 export default function SegmentsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetGridSegmentCollectionRequest } request
+     * @returns { rebilly.GetGridSegmentCollectionResponsePromise } response
+     */
     getAll({
       limit = null,
       offset = null,
@@ -15,12 +19,22 @@ export default function SegmentsResource({apiHandler}) {
       const params = {limit, offset, sort, filter, q};
       return apiHandler.getAll(`grid-segments`, params);
     },
+    /**
+     * @param { rebilly.CreateGridSegmentRequest } request
+     * @returns { rebilly.PostGridSegmentResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`grid-segments/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetGridSegmentResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`grid-segments/${id}`);
     },
+    /**
+     * @returns { rebilly.PutGridSegmentResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`grid-segments/${id}`, data);
     },

@@ -5,16 +5,30 @@
 
 export default function KycDocumentsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetKycDocumentCollectionRequest } request
+     * @returns { rebilly.GetKycDocumentCollectionResponsePromise } response
+     */
     getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
       const params = {limit, offset, filter, sort};
       return apiHandler.getAll(`kyc-documents`, params);
     },
+    /**
+     * @param { rebilly.CreateKycDocumentRequest } request
+     * @returns { rebilly.PostKycDocumentResponsePromise } response
+     */
     create({id = '', data}) {
       return apiHandler.create(`kyc-documents/${id}`, id, data);
     },
+    /**
+     * @returns { rebilly.GetKycDocumentResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`kyc-documents/${id}`);
     },
+    /**
+     * @returns { rebilly.PutKycDocumentResponsePromise } response
+     */
     update({id, data}) {
       return apiHandler.put(`kyc-documents/${id}`, data);
     },

@@ -7,7 +7,7 @@ export class ApiInstance {
         this.account = Resources.AccountResource({apiHandler})
         this.aml = Resources.AmlResource({apiHandler})
         this.apiKeys = Resources.ApiKeysResource({apiHandler})
-        this.bankAccounts = Resources.BankAccountsResource({apiHandler}),
+        this.billingPortals = Resources.BillingPortalsResource({apiHandler}),
         this.blocklists = Resources.BlocklistsResource({apiHandler}),
         this.gatewayAccounts = Resources.GatewayAccountsResource({apiHandler})
         this.broadcastMessages = Resources.BroadcastMessagesResource({apiHandler}),
@@ -27,21 +27,21 @@ export class ApiInstance {
         this.integrations = Resources.IntegrationsResource({apiHandler}),
         this.invoices =  Resources.InvoicesResource({apiHandler}),
         this.kycDocuments =  Resources.KycDocumentsResource({apiHandler}),
+        this.kycRequests =  Resources.KycRequestsResource({apiHandler}),
         this.lists = Resources.ListsResource({apiHandler}),
         this.memberships = Resources.MembershipsResource({apiHandler}),
         this.organizations = Resources.OrganizationsResource({apiHandler}),
         this.paymentInstruments = Resources.PaymentInstrumentsResource({apiHandler}),
         this.paymentMethods = Resources.PaymentMethodsResource({apiHandler}),
-        this.paymentCards = Resources.PaymentCardsResource({apiHandler}),
         this.paymentCardsBankNames = Resources.PaymentCardsBankNamesResource({apiHandler}),
         this.paymentTokens = Resources.PaymentTokensResource({apiHandler}),
         this.payouts = Resources.PayoutsResource({apiHandler}),
-        this.paypalAccounts = Resources.PayPalAccountsResource({apiHandler}),
         this.plans = Resources.PlansResource({apiHandler}),
         this.previews = Resources.PreviewsResource({apiHandler}),
         this.products = Resources.ProductsResource({apiHandler}),
         this.profile = Resources.ProfileResource({apiHandler}),
         this.purchase = Resources.PurchaseResource({apiHandler}),
+        this.roles = Resources.RolesResource({apiHandler}),
         this.search = Resources.SearchResource({apiHandler}),
         this.segments = Resources.SegmentsResource({apiHandler}),
         this.sendThroughAttribution = Resources.SendThroughAttributionResource({apiHandler}),
@@ -53,7 +53,6 @@ export class ApiInstance {
         this.tags = Resources.TagsResource({apiHandler}),
         this.tracking = Resources.TrackingResource({apiHandler}),
         this.transactions = Resources.TransactionsResource({apiHandler}),
-        this.threeDSecure = Resources.ThreeDSecureResource({apiHandler}),
         this.users = Resources.UsersResource({apiHandler}),
         this.webhooks = Resources.WebhooksResource({apiHandler}),
         this.websites = Resources.WebsitesResource({apiHandler}),
@@ -114,16 +113,19 @@ export class StorefrontApiInstance {
     constructor({apiHandler}) {
         this.account = StorefrontResources.AccountResource({apiHandler}),
         this.authorization = StorefrontResources.AuthorizationResource({apiHandler}),
+        this.billingPortal = StorefrontResources.BillingPortalResource({apiHandler}),
         this.checkoutForm = StorefrontResources.CheckoutFormResource({apiHandler}),
         this.invoices = StorefrontResources.InvoicesResource({apiHandler}),
         this.kycDocuments = StorefrontResources.KycDocumentsResource({apiHandler}),
+        this.kycRequests = StorefrontResources.KycRequestsResource({apiHandler}),
+        this.orders = StorefrontResources.OrdersResource({apiHandler}),
         this.paymentInstruments = StorefrontResources.PaymentInstrumentsResource({apiHandler}),
         this.plans = StorefrontResources.PlansResource({apiHandler}),
         this.products = StorefrontResources.ProductResource({apiHandler}),
         this.purchase = StorefrontResources.PurchaseResource({apiHandler}),
         this.transactions = StorefrontResources.TransactionsResource({apiHandler}),
         this.websites = StorefrontResources.WebsitesResource({apiHandler}),
-        
+
         //expose apiHandler methods to the API instance
         this.addRequestInterceptor = apiHandler.addRequestInterceptor,
         this.removeRequestInterceptor = apiHandler.removeRequestInterceptor,

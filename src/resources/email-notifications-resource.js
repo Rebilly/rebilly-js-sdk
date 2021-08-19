@@ -5,6 +5,10 @@
 
 export default function EmailNotificationsResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetEmailNotificationCollectionRequest } request
+     * @returns { rebilly.GetEmailNotificationCollectionResponsePromise } response
+     */
     getAll() {
       return apiHandler.getAll(`email-notifications`);
     },

@@ -4,10 +4,14 @@
 */
 
 // @ts-nocheck
-import {csvHeader} from '../request-headers';
+import {csvHeader} from '@/request-headers';
 
 export default function DisputesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.GetDisputeCollectionRequest } request
+     * @returns { rebilly.GetDisputeCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -19,13 +23,23 @@ export default function DisputesResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`disputes`, params);
     },
+    /**
+     * @param { rebilly.CreateDisputeRequest } request
+     * @returns { rebilly.PostDisputeResponsePromise } response
+     */
     create({id = '', data, expand = null}) {
       const params = {expand};
       return apiHandler.create(`disputes/${id}`, id, data, params);
     },
+    /**
+     * @returns { rebilly.GetDisputeResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`disputes/${id}`);
     },
+    /**
+     * @returns { rebilly.PutDisputeResponsePromise } response
+     */
     update({id, data, expand = null}) {
       const params = {expand};
       return apiHandler.put(`disputes/${id}`, data, params);

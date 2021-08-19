@@ -3,8 +3,15 @@
 * Do not make direct changes to this file.
 */
 
+// @ts-nocheck
+import {pdfHeader} from '@/request-headers';
+
 export default function InvoicesResource({apiHandler}) {
   return {
+    /**
+     * @param { rebilly.StorefrontGetInvoiceCollectionRequest } request
+     * @returns { rebilly.StorefrontGetInvoiceCollectionResponsePromise } response
+     */
     getAll({
       filter = null,
       sort = null,
@@ -15,8 +22,18 @@ export default function InvoicesResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`invoices`, params);
     },
+    /**
+     * @returns { rebilly.StorefrontGetInvoiceResponsePromise } response
+     */
     get({id}) {
       return apiHandler.get(`invoices/${id}`);
+    },
+    downloadPDF({id}) {
+      const config = {
+        headers: pdfHeader,
+        responseType: 'arraybuffer',
+      };
+      return apiHandler.download(`invoices/${id}`, config);
     },
   };
 }

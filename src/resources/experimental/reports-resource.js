@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default function ReportsResource({apiHandler}) {
     return {
         getApiLogSummary({aggregationField, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
@@ -127,19 +128,6 @@ export default function ReportsResource({apiHandler}) {
                 tz
             };
             return apiHandler.get(`reports/retention-value`, params);
-        },
-
-        getRetryTransaction({periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                filter,
-                criteria,
-                tz
-            };
-            return apiHandler.get(`reports/retry-transaction`, params);
         },
 
         getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {

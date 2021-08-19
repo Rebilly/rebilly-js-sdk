@@ -1,7 +1,7 @@
 import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
-import BankAccountsResource from './bank-accounts-resource';
+import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
@@ -20,22 +20,22 @@ import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
+import KycRequestsResource from './kyc-requests-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import OrganizationsResource from './organizations-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
-import PaymentCardsResource from './payment-cards-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
 import PaymentMethodsResource from './payment-methods-resource';
 import PaymentTokensResource from './payment-tokens-resource';
 import PayoutsResource from './payouts-resource';
-import PayPalAccountsResource from './paypal-accounts-resource';
 import PlaidCredentialsResource from './plaid-credentials-resource';
 import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
 import ProfileResource from './profile-resource';
 import PurchaseResource from './purchase-resource';
+import RolesResource from './roles-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
@@ -45,7 +45,6 @@ import SubscriptionCancellationsResource from './subscription-cancellations-reso
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
-import ThreeDSecureResource from './three-d-secure-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
 import UsersResource from './users-resource';
@@ -57,7 +56,7 @@ const Resources = {
     AccountResource,
     AmlResource,
     ApiKeysResource,
-    BankAccountsResource,
+    BillingPortalsResource,
     BlocklistsResource,
     BroadcastMessagesResource,
     CheckoutFormsResource,
@@ -76,22 +75,22 @@ const Resources = {
     IntegrationsResource,
     InvoicesResource,
     KycDocumentsResource,
+    KycRequestsResource,
     ListsResource,
     MembershipsResource,
     OrganizationsResource,
     PaymentCardsBankNamesResource,
-    PaymentCardsResource,
     PaymentInstrumentsResource,
     PaymentMethodsResource,
     PaymentTokensResource,
     PayoutsResource,
-    PayPalAccountsResource,
     PlaidCredentialsResource,
     PlansResource,
     PreviewsResource,
     ProductsResource,
     ProfileResource,
     PurchaseResource,
+    RolesResource,
     SearchResource,
     SegmentsResource,
     SendThroughAttributionResource,
@@ -101,7 +100,6 @@ const Resources = {
     SubscriptionReactivationsResource,
     SubscriptionsResource,
     TagsResource,
-    ThreeDSecureResource,
     TrackingResource,
     TransactionsResource,
     UsersResource,

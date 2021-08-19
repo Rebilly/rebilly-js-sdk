@@ -5,6 +5,9 @@
 
 export default function StatusResource({apiHandler}) {
   return {
+    /**
+     * @returns { rebilly.GetStatusResponsePromise } response
+     */
     get() {
       return apiHandler.get(`status`);
     },
