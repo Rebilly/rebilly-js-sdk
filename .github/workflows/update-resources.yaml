@@ -63,4 +63,4 @@ jobs:
           # If the api-definitions branch that triggered this workflow is named foo
           # we will create from-foo branch in rebilly-js-sdk 
           branch: 'from-${{ github.event.inputs.api-definitions-branch }}'
-          base: 'master'
+          base: 'main'
