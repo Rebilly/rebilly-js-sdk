@@ -4,7 +4,7 @@ import MockRebillyAPI from '../mock-rebilly-js-sdk';
 describe('when I download a file', () => {
     const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
     let file;
-    before(async () => {
+    beforeAll(async () => {
         file = await api.transactions.downloadCSV();
     });
     it('should define a property called response', () => {

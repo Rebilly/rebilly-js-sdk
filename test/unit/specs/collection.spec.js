@@ -5,7 +5,7 @@ describe('when I get a collection', () => {
     const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
     let customers;
 
-    before(async () => {
+    beforeAll(async () => {
         customers = await api.customers.getAll();
     });
     it('should define a property called total', () => {
