@@ -24,6 +24,21 @@ export default function CredentialHashesResource({apiHandler}) {
             return apiHandler.get(`credential-hashes/experian/${hash}`);
         },
 
+        getAllTaxJarCredentials({limit = null, offset = null, sort = null, filter = null, q = null, fields = null} = {}) {
+            const params = {
+                limit,
+                offset,
+                sort,
+                filter,
+                q,
+                fields,
+            };
+            return apiHandler.getAll(`credential-hashes/taxjar`, params);
+        },
+
+        getTaxJarCredential({id}) {
+            return apiHandler.get(`credential-hashes/taxjar/${id}`);
+        },
         getSendGridCredential({hash}) {
             return apiHandler.get(`credential-hashes/sendgrid/${hash}`);
         },
@@ -95,6 +110,14 @@ export default function CredentialHashesResource({apiHandler}) {
 
         createOAuth2Credential({data}) {
             return apiHandler.post(`credential-hashes/oauth2`, data);
+        },
+
+        createTaxJarCredential({data}) {
+            return apiHandler.post(`credential-hashes/taxjar`, data);
+        },
+
+        updateTaxJarCredential({id, data}) {
+            return apiHandler.patch(`credential-hashes/taxjar/${id}`, data);
         },
     };
 };

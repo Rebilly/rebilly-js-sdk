@@ -45,7 +45,6 @@ import SubscriptionCancellationsResource from './subscription-cancellations-reso
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
-import TaxJarCredentialsResource from './taxjar-credentials-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
 import UsersResource from './users-resource';
@@ -101,7 +100,6 @@ const Resources = {
     SubscriptionReactivationsResource,
     SubscriptionsResource,
     TagsResource,
-    TaxJarCredentialsResource,
     TrackingResource,
     TransactionsResource,
     UsersResource,
