@@ -2,7 +2,6 @@ import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import {version} from '../../../package.json';
 import {interceptorTypes, isInterceptorType} from '../../../src/create-api-handler';
-import sinon from 'sinon';
 
 describe('when I use an API handler', () => {
     const options = {
@@ -118,9 +117,9 @@ describe('when I use an API handler', () => {
             });
             it('should call axios interceptorManager eject function on interceptor removal', () => {
                 const interceptor = apiHandler.addRequestInterceptor({thenDelegate: () => {}});
-                sinon.spy(apiHandler.getInstance().interceptors.request, 'eject');
+                jest.spyOn(apiHandler.getInstance().interceptors.request, 'eject');
                 apiHandler.removeRequestInterceptor(interceptor);
-                expect(apiHandler.getInstance().interceptors.request.eject).to.have.been.calledWith(interceptor);
+                expect(apiHandler.getInstance().interceptors.request.eject).toHaveBeenCalledWith(interceptor);
             });
         });
         describe('response interceptor', () => {
@@ -130,9 +129,9 @@ describe('when I use an API handler', () => {
             });
             it('should call axios interceptorManager eject function on interceptor removal', () => {
                 const interceptor = apiHandler.addResponseInterceptor({thenDelegate: () => {}});
-                sinon.spy(apiHandler.getInstance().interceptors.response, 'eject');
+                jest.spyOn(apiHandler.getInstance().interceptors.response, 'eject');
                 apiHandler.removeResponseInterceptor(interceptor);
-                expect(apiHandler.getInstance().interceptors.response.eject).to.have.been.calledWith(interceptor);
+                expect(apiHandler.getInstance().interceptors.response.eject).toHaveBeenCalledWith(interceptor);
             });
         });
     });
@@ -164,11 +163,11 @@ describe('when creating a member', ()=> {
     let axiosInstance;
     beforeEach(()=> {
         axiosInstance = apiHandler.getInstance();
-        sinon.stub(axiosInstance, 'post').returns(Promise.resolve({statusText: 201, data: {}}));
-        sinon.stub(axiosInstance, 'put').returns(Promise.resolve({statusText: 200, data: {}}));
+        jest.spyOn(axiosInstance, 'post').mockReturnValue(Promise.resolve({statusText: 201, data: {}}));
+        jest.spyOn(axiosInstance, 'put').mockReturnValue(Promise.resolve({statusText: 200, data: {}}));
     });
     afterEach(()=> {
-        sinon.restore();
+        jest.resetAllMocks();
     })
 
     it('should post a new entity when id is not passed to create method', async () => {
@@ -178,12 +177,8 @@ describe('when creating a member', ()=> {
 
         await apiHandler.create(`customers/${id}`, id, data, params);
         
-        // console.log(axiosInstance.post.lastCall.args);
-
-        sinon.assert.calledOnce(axiosInstance.post);
-        const lastCAllArgs = axiosInstance.post.lastCall.args;
-        expect(lastCAllArgs[0]).toEqual('customers/');
-        expect(lastCAllArgs[1]).toEqual(data);
+        expect(axiosInstance.post).toHaveBeenCalledTimes(1);
+        expect(axiosInstance.post).toHaveBeenCalledWith('customers/', data, {cancelToken: expect.anything()})
     });
 
     it('should put an existent entity when id is provided', async () => {
@@ -192,11 +187,7 @@ describe('when creating a member', ()=> {
 
         await apiHandler.create(`customers/${id}`, id, data);
         
-        // console.log(axiosInstance.post.lastCall.args);
-
-        sinon.assert.calledOnce(axiosInstance.put);
-        const lastCAllArgs = axiosInstance.put.lastCall.args;
-        expect(lastCAllArgs[0]).toEqual('customers/existingId');
-        expect(lastCAllArgs[1]).toEqual(data);
+        expect(axiosInstance.put).toHaveBeenCalledTimes(1);
+        expect(axiosInstance.put).toHaveBeenCalledWith('customers/existingId', data, {params: {}, cancelToken: expect.anything()});
     });
 });
