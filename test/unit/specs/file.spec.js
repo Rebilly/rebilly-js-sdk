@@ -10,11 +10,11 @@ describe('when I download a file', () => {
         file = await api.transactions.downloadCSV();
     });
     it('should define a property called response', () => {
-        expect(file.response).to.not.be.undefined;
-        expect(file.response.status).to.be.equal(200);
+        expect(file.response).toBeDefined();
+        expect(file.response.status).toBe(200);
     });
     it('should return the download data', () => {
-        expect(file.data).to.be.a('array');
+        expect(Array.isArray(file.data)).toBe(true);
     });
 });
 

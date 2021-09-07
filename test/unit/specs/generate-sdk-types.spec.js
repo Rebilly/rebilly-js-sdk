@@ -1,5 +1,4 @@
 import { generateSdkTypes } from '@scripts/type-generation/generate-sdk-types';
-import { expect } from 'chai';
 
 const responses = {
   200: {
@@ -26,7 +25,7 @@ it('Generates TS types for collection getAll response', async () => {
   };
 
   const types = generateSdkTypes(schema).trim();
-  expect(types).to.eql(
+  expect(types).toEqual(
     `type GetCustomerCollectionResponse = operations['GetCustomerCollection']['responses']['200']['content']['application/json'][0]
   type GetCustomerCollectionResponsePromise = Promise<{ items: {fields: GetCustomerCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>`
   );
@@ -45,7 +44,7 @@ it('Generates TS types for collection getAll response in storefront schema', asy
   };
 
   const types = generateSdkTypes(schema).trim();
-  expect(types).to.eql(
+  expect(types).toEqual(
     `type StorefrontGetTransactionCollectionResponse = operations['StorefrontGetTransactionCollection']['responses']['200']['content']['application/json'][0]
   type StorefrontGetTransactionCollectionResponsePromise = Promise<{ items: {fields: StorefrontGetTransactionCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>`
   );
@@ -64,7 +63,7 @@ it('Generates TS types for resource get response', async () => {
   };
 
   const types = generateSdkTypes(schema).trim();
-  expect(types).to.eql(
+  expect(types).toEqual(
     `type GetCustomerResponse = operations['GetCustomer']['responses']['200']['content']['application/json']
   type GetCustomerResponsePromise = Promise<{fields: GetCustomerResponse}>`
   );
@@ -89,7 +88,7 @@ it('Generates TS types for resource put response', async () => {
   };
 
   const types = generateSdkTypes(schema).trim();
-  expect(types).to.eql(
+  expect(types).toEqual(
     `type PutCustomerResponse = operations['PutCustomer']['responses']['201']['content']['application/json']
   type PutCustomerResponsePromise = Promise<{fields: PutCustomerResponse}>`
   );

@@ -19,11 +19,11 @@ describe('when I use an API cancellation', () => {
             ];
             await Promise.all(requests);
             //this assertion should never run
-            expect(true).to.be.equal(false);
+            expect(true).toBe(false);
         }
         catch (error) {
-            expect(error.name).to.be.equal('RebillyCanceledError');
-            expect(error.message).to.be.equal(reason);
+            expect(error.name).toBe('RebillyCanceledError');
+            expect(error.message).toBe(reason);
         }
     });
 
@@ -34,11 +34,11 @@ describe('when I use an API cancellation', () => {
             setTimeout(() => request.cancel(reason), 500);
             await request;
             //this assertion should never run
-            expect(true).to.be.equal(false);
+            expect(true).toBe(false);
         }
         catch (error) {
-            expect(error.name).to.be.equal('RebillyCanceledError');
-            expect(error.message).to.be.equal(reason);
+            expect(error.name).toBe('RebillyCanceledError');
+            expect(error.message).toBe(reason);
         }
     });
 });
