@@ -1,9 +1,7 @@
-import chai from 'chai';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import {version} from '../../../package.json';
 import {cancellation} from '../../../src/index';
 
-const expect = chai.expect;
 
 describe('when I use an API cancellation', () => {
 

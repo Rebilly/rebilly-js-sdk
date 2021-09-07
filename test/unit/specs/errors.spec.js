@@ -1,8 +1,6 @@
 import Errors from '../../../src/errors';
-import chai from 'chai';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 
-const expect = chai.expect;
 
 describe('when using the Errors object', () => {
     it('should expose different Rebilly error types', () => {

@@ -1,8 +1,6 @@
-import chai from 'chai';
 import faker from 'faker';
 import deepFreeze from '../../../src/deep-freeze.js';
 
-const expect = chai.expect;
 
 describe('when I using deep-freeze helper function', () => {
     const testObj = {

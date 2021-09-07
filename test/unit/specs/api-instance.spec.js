@@ -1,8 +1,6 @@
-import chai from 'chai';
 import createApiTestHandler from '../create-api-test-handler';
 import createApiInstance, {createExperimentalApiInstance, createStorefrontApiInstance} from '../../../src/create-api-instance';
 
-const expect = chai.expect;
 const options = {
     version: 1,
     apiEndpoints: {live: 'new-live-url', sandbox: 'new-sandbox-url'},

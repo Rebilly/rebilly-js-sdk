@@ -1,7 +1,6 @@
 import createApiHandler from '../../../src/create-api-handler';
 import createApiInstance from '../../../src/create-api-instance';
 import sinon, { assert, stub, match } from 'sinon';
-import { expect } from 'chai';
 
 describe('when I use an API handler', () => {
     const options = {
