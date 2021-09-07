@@ -36,8 +36,8 @@ export default function CredentialHashesResource({apiHandler}) {
             return apiHandler.getAll(`credential-hashes/taxjar`, params);
         },
 
-        getTaxJarCredential({id}) {
-            return apiHandler.get(`credential-hashes/taxjar/${id}`);
+        getTaxJarCredential({hash}) {
+            return apiHandler.get(`credential-hashes/taxjar/${hash}`);
         },
         getSendGridCredential({hash}) {
             return apiHandler.get(`credential-hashes/sendgrid/${hash}`);
@@ -116,8 +116,8 @@ export default function CredentialHashesResource({apiHandler}) {
             return apiHandler.post(`credential-hashes/taxjar`, data);
         },
 
-        updateTaxJarCredential({id, data}) {
-            return apiHandler.patch(`credential-hashes/taxjar/${id}`, data);
+        updateTaxJarCredential({hash, data}) {
+            return apiHandler.patch(`credential-hashes/taxjar/${hash}`, data);
         },
     };
 };
