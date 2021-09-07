@@ -2,7 +2,7 @@ import createApiTestHandler from '../create-api-test-handler';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import {version} from '../../../package.json';
 import {interceptorTypes, isInterceptorType} from '../../../src/create-api-handler';
-import { assert, stub } from 'sinon';
+import sinon from 'sinon';
 
 describe('when I use an API handler', () => {
     const options = {
@@ -164,8 +164,8 @@ describe('when creating a member', ()=> {
     let axiosInstance;
     beforeEach(()=> {
         axiosInstance = apiHandler.getInstance();
-        stub(axiosInstance, 'post').returns(Promise.resolve({statusText: 201, data: {}}));
-        stub(axiosInstance, 'put').returns(Promise.resolve({statusText: 200, data: {}}));
+        sinon.stub(axiosInstance, 'post').returns(Promise.resolve({statusText: 201, data: {}}));
+        sinon.stub(axiosInstance, 'put').returns(Promise.resolve({statusText: 200, data: {}}));
     });
     afterEach(()=> {
         sinon.restore();
@@ -180,7 +180,7 @@ describe('when creating a member', ()=> {
         
         // console.log(axiosInstance.post.lastCall.args);
 
-        assert.calledOnce(axiosInstance.post);
+        sinon.assert.calledOnce(axiosInstance.post);
         const lastCAllArgs = axiosInstance.post.lastCall.args;
         expect(lastCAllArgs[0]).toEqual('customers/');
         expect(lastCAllArgs[1]).toEqual(data);
@@ -194,7 +194,7 @@ describe('when creating a member', ()=> {
         
         // console.log(axiosInstance.post.lastCall.args);
 
-        assert.calledOnce(axiosInstance.put);
+        sinon.assert.calledOnce(axiosInstance.put);
         const lastCAllArgs = axiosInstance.put.lastCall.args;
         expect(lastCAllArgs[0]).toEqual('customers/existingId');
         expect(lastCAllArgs[1]).toEqual(data);
