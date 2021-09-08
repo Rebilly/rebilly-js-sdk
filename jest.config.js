@@ -15,7 +15,6 @@ module.exports = {
     modulePathIgnorePatterns: ['<rootDir>/dist'],
     coverageReporters: ['lcov', 'text', 'text-summary'],
     collectCoverageFrom: ['src/**/**.js'],
-    setupFilesAfterEnv: ['<rootDir>/test/unit/setup-jest.js'],
     testMatch: [
         '**/test/unit/**/*.spec.(js|ts|tsx)',
     ],
