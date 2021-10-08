@@ -9,8 +9,8 @@ export default function OrganizationsResource({apiHandler}) {
      * @param { rebilly.GetOrganizationCollectionRequest } request
      * @returns { rebilly.GetOrganizationCollectionResponsePromise } response
      */
-    getAll({limit = null, offset = null} = {}) {
-      const params = {limit, offset};
+    getAll({limit = null, offset = null, filter = null, q = null} = {}) {
+      const params = {limit, offset, filter, q};
       return apiHandler.getAll(`organizations`, params);
     },
     create({data}) {
