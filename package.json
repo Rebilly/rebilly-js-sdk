@@ -21,7 +21,8 @@
     "ts:compile-and-merge": "yarn ts:compile && yarn ts:merge-types",
     "ts:bundle-types-from-redocly": "yarn ts:generate-types && yarn ts:compile-and-merge",
     "build-api-definitions": "cd ../api-definitions && yarn build --ext json",
-    "ts:bundle-types-from-local": "yarn build-api-definitions && yarn ts:generate-types --local && yarn ts:compile-and-merge"
+    "ts:bundle-types-from-local": "yarn build-api-definitions && yarn ts:generate-types --local && yarn ts:compile-and-merge",
+    "ts:ci": "npx tsc -p tsc-ci.json"
   },
   "repository": {
     "type": "git",

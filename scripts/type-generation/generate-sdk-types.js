@@ -100,8 +100,13 @@ function generateSdkTypes(schema, verbose = false) {
 
   function generateQueryType(operationId, path) {
     const requestTypeName = generateRequestTypeName(operationId);
-    let requestType = `type ${requestTypeName} = operations['${operationId}']['parameters']`;
+    const parameters = `operations['${operationId}']['parameters']`;
+    let requestType = `type ${requestTypeName} = ${parameters}`;
     if (operationId.endsWith('Collection')) {
+      if (operationId === 'GetInvoiceItemCollection')
+        console.log('DEBUG: GetInvoiceItemCollection PATH', path);
+
+      // requestType += "['query']" + ` & ${parameters}[path]`;
       requestType += "['query']";
     }
     return requestType + newLineAndTab;

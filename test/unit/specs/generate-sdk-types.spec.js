@@ -93,3 +93,39 @@ it('Generates TS types for resource put response', async () => {
   type PutCustomerResponsePromise = Promise<{fields: PutCustomerResponse}>`
   );
 });
+
+it('Generates requests parameters for query request', async () => {
+  const parameters = {
+    // path: {
+    //   /** The resource identifier string. */
+    //   id: { resourceId: 'string' },
+    // },
+    // header: {
+    //   'Organization-Id': { organizationId: 'string' },
+    // },
+    // query: {
+    //   limit: { collectionLimit: 'number' },
+    //   expand: { collectionExpand: 'string' },
+    // },
+  };
+
+  const schema = {
+    paths: {
+      '/invoices/{id}/items': {
+        get: {
+          operationId: 'GetInvoiceItemCollection',
+          responses,
+          parameters,
+        },
+      },
+    },
+  };
+
+  const types = generateSdkTypes(schema).trim();
+  expect(types).toMatchInlineSnapshot(`
+    "type GetInvoiceItemCollectionRequest = operations['GetInvoiceItemCollection']['parameters']['query']
+      
+      type GetInvoiceItemCollectionResponse = operations['GetInvoiceItemCollection']['responses']['200']['content']['application/json'][0]
+      type GetInvoiceItemCollectionResponsePromise = Promise<{ items: {fields: GetInvoiceItemCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
+  `);
+});
