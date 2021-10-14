@@ -17,7 +17,7 @@ const baseTimeoutMs = 6000;
  * @property {boolean} sandbox whether to use the sandbox endpoint or the live
  * @property {number} timeout timeout in milliseconds
  * @property {string} [organizationId]  Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
- * @property {object} [urls] which urls the sdk will use for the base url for live or sandbox modes
+ * @property {Object} [urls] which urls the sdk will use for the base url for live or sandbox modes
  */
 export default function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
