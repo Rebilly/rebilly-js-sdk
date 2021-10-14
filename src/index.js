@@ -1,7 +1,7 @@
 // @ts-nocheck
 import createApiHandler from './create-api-handler';
 import createApiInstance, {createExperimentalApiInstance, createStorefrontApiInstance} from './create-api-instance';
-import Errors from './errors';
+import Errors from './errors/errors';
 import cancellation from './cancellation';
 
 const baseEndpoints = {

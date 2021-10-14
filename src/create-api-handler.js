@@ -3,7 +3,7 @@ import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
 import File from './file';
-import Errors from './errors';
+import Errors from './errors/errors';
 import cloneDeep from 'clone-deep';
 import {version} from '../package.json';
 import RequestsCache from './requests-cache';
