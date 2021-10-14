@@ -124,7 +124,7 @@ function generateSdkTypes(schema, verbose = false) {
   function generateCreateType(operationId) {
     const dataRequestTypeName = generateRequestTypeName(operationId);
     const requestTypeName = dataRequestTypeName.replace('Post', 'Create');
-    let requestType = `type ${requestTypeName} = { id: String,  data: ${dataRequestTypeName} }`;
+    let requestType = `type ${requestTypeName} = { id: String,  data: ${dataRequestTypeName}, expand?: String }`;
     return requestType + newLineAndTab;
   }
 
