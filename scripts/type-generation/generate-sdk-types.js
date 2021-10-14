@@ -100,9 +100,14 @@ function generateSdkTypes(schema, verbose = false) {
 
   function generateQueryType(operationId, path) {
     const requestTypeName = generateRequestTypeName(operationId);
-    let requestType = `type ${requestTypeName} = operations['${operationId}']['parameters']`;
+    const parameters = `operations['${operationId}']['parameters']`;
+    let requestType = `type ${requestTypeName} = ${parameters}`;
     if (operationId.endsWith('Collection')) {
-      requestType += "['query']";
+      // Combine all the object properties from the query and path
+      // properties of parameters. Sometimes parameters does not have
+      // a path property, so use 'extends' to ensure we only union with
+      // the path property when it exists (otherwise we'll get an error).
+      requestType = `type ${requestTypeName} = ${parameters}["query"] & (${parameters} extends {path: {}} ? ${parameters}["path"] : {})`;
     }
     return requestType + newLineAndTab;
   }
