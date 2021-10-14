@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync } = require('fs');
+const { readFileSync, writeFileSync, mkdirSync } = require('fs');
 const { resolveDir } = require('./type-generation/resolve-dir');
 
 function merge() {
@@ -9,7 +9,7 @@ function merge() {
   let data1 = readFileSync(rebillyApiTypesFilename, 'utf-8');
   let data2 = readFileSync(SDKTypesFilename, 'utf-8');
 
-  //./dist directory should have been created by build process
+  mkdirSync(resolveDir('./dist'), {recursive: true});
   writeFileSync(resolveDir('./dist/rebilly-js-sdk.d.ts'), data1 + data2);
 }
 
