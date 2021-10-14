@@ -2,7 +2,8 @@
 /**
  * Deep freeze an object. Based on `substack/deep-freeze`.
  * @param obj {Object}
- * @param exclude {Array}
+ * @param options {Object}
+ * @param options.exclude {Array}
  * @link https://github.com/substack/deep-freeze
  * @returns {Object}
  */
