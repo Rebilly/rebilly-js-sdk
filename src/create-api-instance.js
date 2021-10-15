@@ -7,6 +7,7 @@ export class ApiInstance {
         this.account = Resources.AccountResource({apiHandler})
         this.aml = Resources.AmlResource({apiHandler})
         this.apiKeys = Resources.ApiKeysResource({apiHandler})
+        this.balanceTransactionResource = Resources.BalanceTransactionsResource({apiHandler}),
         this.billingPortals = Resources.BillingPortalsResource({apiHandler}),
         this.blocklists = Resources.BlocklistsResource({apiHandler}),
         this.gatewayAccounts = Resources.GatewayAccountsResource({apiHandler})
@@ -22,6 +23,7 @@ export class ApiInstance {
         this.emailDeliverySettings = Resources.EmailDeliverySettingsResource({apiHandler}),
         this.emailMessages = Resources.EmailMessagesResource({apiHandler}),
         this.emailNotifications = Resources.EmailNotificationsResource({apiHandler}),
+        this.fees = Resources.FeesResource({apiHandler}),
         this.files = Resources.FilesResource({apiHandler}),
         this.plaidCredentials = Resources.PlaidCredentialsResource({apiHandler}),
         this.integrations = Resources.IntegrationsResource({apiHandler}),
