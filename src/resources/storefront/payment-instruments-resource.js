@@ -19,20 +19,30 @@ export default function PaymentInstrumentsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`payment-instruments`, params);
     },
-    create({id, data}) {
-      return apiHandler.post(`payment-instruments/${id}/setup`, data);
+    create({data}) {
+      return apiHandler.post(`payment-instruments`, data);
     },
     /**
-     * @returns { rebilly.StorefrontGetPaymentInstrumentSetupResponsePromise } response
+     * @returns { rebilly.StorefrontGetPaymentInstrumentResponsePromise } response
      */
-    get({id}) {
-      return apiHandler.get(`payment-instruments/${id}/setup`);
+    get({id, limit = null, offset = null}) {
+      const params = {limit, offset};
+      return apiHandler.get(`payment-instruments/${id}`, params);
     },
     update({id, data}) {
       return apiHandler.patch(`payment-instruments/${id}`, data);
     },
     deactivate({id}) {
       return apiHandler.post(`payment-instruments/${id}/deactivation`);
+    },
+    /**
+     * @returns { rebilly.StorefrontGetPaymentInstrumentSetupResponsePromise } response
+     */
+    getSetupTransaction({id}) {
+      return apiHandler.get(`payment-instruments/${id}/setup`);
+    },
+    setup({id, data}) {
+      return apiHandler.post(`payment-instruments/${id}/setup`, data);
     },
   };
 }
