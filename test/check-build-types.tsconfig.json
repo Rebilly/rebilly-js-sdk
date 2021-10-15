@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "../dist/rebilly-js-sdk.d.ts"
+  ]
+}

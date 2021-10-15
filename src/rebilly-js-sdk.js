@@ -1,7 +1,7 @@
 // @ts-nocheck
 import createApiHandler from './create-api-handler';
 import createApiInstance, {createExperimentalApiInstance, createStorefrontApiInstance} from './create-api-instance';
-import Errors from './errors';
+import Errors from './errors/errors';
 import cancellation from './cancellation';
 
 const baseEndpoints = {
@@ -11,13 +11,17 @@ const baseEndpoints = {
 const baseTimeoutMs = 6000;
 
 /**
- * Create an instance of the Rebilly API
  * @typedef {Object} ApiParams
  * @property {string} [apiKey] private API key; if provided will be used for all requests
  * @property {boolean} sandbox whether to use the sandbox endpoint or the live
  * @property {number} timeout timeout in milliseconds
  * @property {string} [organizationId]  Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
- * @property {object} [urls] which urls the sdk will use for the base url for live or sandbox modes
+ * @property {Object} [urls] which urls the sdk will use for the base url for live or sandbox modes
+ */
+
+/**
+ * Create an instance of the Rebilly API
+ * @param {ApiParams} 
  */
 export default function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
@@ -75,8 +79,18 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
 }
 
 /**
+ * @typedef {Object} StorefrontApiParams
+ * @property {string} [jwt] the jwt to use for requests
+ * @property {string} [publishableKey] the publishable api key to use for requests
+ * @property {boolean} sandbox whether to use the sandbox endpoint or the live
+ * @property {number} timeout timeout in milliseconds
+ * @property {string} [organizationId]  Organization identifier in scope of which need to perform request (if not specified, the default organization will be used)
+ * @property {Object} [urls] which urls the sdk will use for the base url for live or sandbox modes
+ */
+
+/**
  * Create an instance of the storefront API.
- *  @param {ApiParams} params
+ *  @param {StorefrontApiParams} params
  */
 function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
     if(!urls.live || !urls.sandbox) {
