@@ -39,6 +39,10 @@ Generate coverage report
 ```
 npm run coverage
 ```
+Check that the generated typescript type file is valid (note: you should build the types first, by using either `npm run ts:bundle-types-from-redocly` or `ts:bundle-types-from-local`)
+```
+npm run test:check-build-types
+```
 
 ## Typescript types generation
 
