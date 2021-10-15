@@ -139,5 +139,17 @@ export default function GatewayAccountsResource({apiHandler}) {
     checkCredentials({id}) {
       return apiHandler.post(`gateway-accounts/${id}/check-credentials`);
     },
+    /**
+     * @returns { rebilly.GetGatewayAccountFinancialSettingsResponsePromise } response
+     */
+    getFinancialSettings({id}) {
+      return apiHandler.get(`gateway-accounts/${id}/financial-settings`);
+    },
+    /**
+     * @returns { rebilly.PutGatewayAccountFinancialSettingsResponsePromise } response
+     */
+    setFinancialSettings({id, data}) {
+      return apiHandler.put(`gateway-accounts/${id}/financial-settings`, data);
+    },
   };
 }
