@@ -19,15 +19,14 @@ export default function PaymentInstrumentsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`payment-instruments`, params);
     },
-    create({data}) {
-      return apiHandler.post(`payment-instruments`, data);
+    create({id, data}) {
+      return apiHandler.post(`payment-instruments/${id}/setup`, data);
     },
     /**
-     * @returns { rebilly.StorefrontGetPaymentInstrumentResponsePromise } response
+     * @returns { rebilly.StorefrontGetPaymentInstrumentSetupResponsePromise } response
      */
-    get({id, limit = null, offset = null}) {
-      const params = {limit, offset};
-      return apiHandler.get(`payment-instruments/${id}`, params);
+    get({id}) {
+      return apiHandler.get(`payment-instruments/${id}/setup`);
     },
     update({id, data}) {
       return apiHandler.patch(`payment-instruments/${id}`, data);
