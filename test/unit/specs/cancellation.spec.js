@@ -1,6 +1,6 @@
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 import {version} from '../../../package.json';
-import {cancellation} from '../../../src/index';
+import {cancellation} from '../../../src/rebilly-js-sdk';
 
 
 describe('when I use an API cancellation', () => {

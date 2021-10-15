@@ -33,7 +33,7 @@ module.exports = (env = {}) => {
     ];
     return targets.map((entry) => {
         return {
-            entry: ['./src/index.js'],
+            entry: ['./src/rebilly-js-sdk.js'],
             target: entry.target,
             output: {
                 path: path.resolve(__dirname, './dist'),
