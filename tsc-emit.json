@@ -9,7 +9,7 @@
       "checkJs": true,
       "emitDeclarationOnly": true,    
       "declaration": true,
-      "outFile": "typings/rebilly-js-sdk/index.d.ts",
+      "outFile": "typings/rebilly-js-sdk/rebilly-js-sdk.d.ts",
       "removeComments": true,
       "strict": false,
       "noImplicitThis": true,

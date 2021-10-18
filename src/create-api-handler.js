@@ -3,7 +3,7 @@ import axios from 'axios';
 import Member from './member';
 import Collection from './collection';
 import File from './file';
-import Errors from './errors';
+import Errors from './errors/errors';
 import cloneDeep from 'clone-deep';
 import {version} from '../package.json';
 import RequestsCache from './requests-cache';
@@ -135,11 +135,12 @@ export default function createApiHandler({options}) {
 
     /**
      * Define a proxy for the current API instance.
-     * @param host {string}
-     * @param port {number}
-     * @param auth {Object}
-     * @prop auth.username {string}
-     * @prop auth.password {string}
+     * @param args {Object}
+     * @param args.host {string}
+     * @param args.port {number}
+     * @param args.auth {Object}
+     * @param args.auth.username {string}
+     * @param args.auth.password {string}
      */
     function setProxyAgent({host, port, auth}) {
         instance.defaults.proxy = {
@@ -151,8 +152,9 @@ export default function createApiHandler({options}) {
 
     /**
      * Update the endpoints URL for live, sandbox or both environments in the current API instance's active URL.
-     * @param live {string}
-     * @param sandbox
+     * @param args {Object}
+     * @param args.live {string}
+     * @param args.sandbox {string}
      * @example
      * const api = RebillyAPI();
      * api.setEndpoints({live: 'https://api-test.rebilly.com'});
@@ -171,8 +173,9 @@ export default function createApiHandler({options}) {
     /**
      * Adds a interceptor to the current API instance.
      * @param type {String} interceptor type (`request`/`response`)
-     * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
-     * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
+     * @param delegates {Object}
+     * @param delegates.thenDelegate {Function} defines the delegate logic to run when the request is completed
+     * @param delegates.catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
      * @return {Number} An ID used to remove interceptor later
      */
     function addInterceptor(type, {thenDelegate, catchDelegate = () => {}}) {
@@ -190,8 +193,9 @@ export default function createApiHandler({options}) {
 
     /**
      * Adds a request interceptor to the current API instance.
-     * @param thenDelegate {Function} defines the delegate logic to run when the request is completed
-     * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
+     * @param args {Object}
+     * @param args.thenDelegate {Function} defines the delegate logic to run when the request is completed
+     * @param args.catchDelegate {Function} (optional) defines a callback to run before the catch block of the request is executed for this interceptor
      * @return {Number} An ID used to remove interceptor later
      */
     function addRequestInterceptor({thenDelegate, catchDelegate = () => {}}) {
@@ -208,8 +212,9 @@ export default function createApiHandler({options}) {
 
     /**
      * Adds a request response to the current API instance.
-     * @param thenDelegate {Function} defines the delegate logic to run before the response is completed
-     * @param catchDelegate {Function} (optional) defines a callback to run before the catch block of the response is executed for this interceptor
+     * @param args {Object}
+     * @param args.thenDelegate {Function} defines the delegate logic to run before the response is completed
+     * @param args.catchDelegate {Function} (optional) defines a callback to run before the catch block of the response is executed for this interceptor
      * @return {Number} An ID used to remove interceptor later
      */
     function addResponseInterceptor({thenDelegate, catchDelegate = () => {}}) {
@@ -226,9 +231,10 @@ export default function createApiHandler({options}) {
 
     /**
      * Wraps an Axios request to handle both the response and errors and return wrapped objects.
-     * @param request {Function}
-     * @param isCollection {boolean} defines whether the request is done to a collection or a member of the API
-     * @param config {Object} a hash of parameters or configuration options to
+     * @param args {Object}
+     * @param args.request {Function}
+     * @param args.isCollection {boolean} defines whether the request is done to a collection or a member of the API
+     * @param args.config {Object} a hash of parameters or configuration options to
      * apply to the request after cleanup
      * @returns {Promise.<*>}
      */
@@ -257,9 +263,10 @@ export default function createApiHandler({options}) {
 
     /**
      * Creates a Member or Collection from the response based on the type flag `isCollection`.
-     * @param response {Object} raw API response
-     * @param isCollection {boolean}
-     * @param config {Object} original request configuration
+     * @param args {Object}
+     * @param args.response {Object} raw API response
+     * @param args.isCollection {boolean}
+     * @param args.config {Object} original request configuration
      * @returns {Member|Collection}
      */
     function processResponse({response, isCollection, config}) {
@@ -271,7 +278,8 @@ export default function createApiHandler({options}) {
 
     /**
      * Throws an instance of a Rebilly Error from the base Axios error.
-     * @param error {Object}
+     * @param args {Object}
+     * @param args.error {Object}
      */
     function processError({error}) {
         // The request was manually cancelled by a token.
@@ -306,7 +314,7 @@ export default function createApiHandler({options}) {
 
     /**
      * Remove null or empty string parameters from the provided configuration parameters and return only defined values.
-     * @param configuration {object}
+     * @param configuration {Object}
      * @returns {Object}
      */
     function cleanUpParameters(configuration) {
@@ -335,7 +343,7 @@ export default function createApiHandler({options}) {
     /**
      * Trigger a GET request on the target URL and return the member received in the response.
      * @param url {string}
-     * @param params {Object=}
+     * @param params {Object}
      * @returns {Member} member
      */
     function get(url, params = {}) {

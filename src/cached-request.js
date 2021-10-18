@@ -10,23 +10,26 @@ import deepFreeze from './deep-freeze';
 /**
  * Cached request object.
  * Used in {@link RequestsCache}
- *
- * @typedef CachedRequest
  * @readonly
- *
- * @prop {CachedRequestId} id - request id
- * @prop {number} created - created time
- * @prop {Canceler} cancel - cancel function, axios Canceler
- * @prop {CancelToken} cancelToken - axios CancelToken
  */
 export default class CachedRequest {
     constructor({id=null, created=null} = {}) {
+        /**
+         * Request Id
+         * @type {CachedRequestId}
+         */
         this.id = id || nanoid();
+
+        /**
+         * Created time
+         * @type {number}
+         */
         this.created = created || new Date().getTime();
 
         this.cancelSource = axios.CancelToken.source();
 
         /**
+         * Cancel function, axios Canceler.
          * please don't forget to delete request
          * from the cache after cancellation
          *
@@ -34,7 +37,13 @@ export default class CachedRequest {
          * @type {Canceler}
          */
         this.cancel = this.cancelSource.cancel;
+
+        /**
+         * Axios CancelToken
+         * @type {CancelToken}
+         */
         this.cancelToken = this.cancelSource.token;
         deepFreeze(this, {exclude: ['cancelSource', 'cancelToken', 'cancel']});
     }
 }
+

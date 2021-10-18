@@ -14,6 +14,7 @@
     "test:unit:coverage": "jest --collect-coverage --no-cache",
     "test:unit:debug": "node --inspect-brk jest --no-cache --runInBand",
     "test:unit:watch": "jest --watchAll",
+    "test:check-build-types": "npx tsc -p ./test/check-build-types.tsconfig.json",
     "test": "npm run test:unit",
     "ts:generate-types": "node ./scripts/type-generation/generate-ts-types.js",
     "ts:merge-types": "node ./scripts/merge-types.js",

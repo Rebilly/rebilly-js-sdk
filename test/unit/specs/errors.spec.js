@@ -1,4 +1,4 @@
-import Errors from '../../../src/errors';
+import Errors from '../../../src/errors/errors';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 
 

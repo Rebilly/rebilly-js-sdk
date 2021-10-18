@@ -50,5 +50,8 @@ export class Cancellation {
  * Public cancellation methods (exported in library)
  */
 export default {
-    cancelAll: Cancellation.cancelAll,
+    /**
+     * @type Cancellation.cancelAll
+     */
+    cancelAll: (...args) => Cancellation.cancelAll(...args),
 };
