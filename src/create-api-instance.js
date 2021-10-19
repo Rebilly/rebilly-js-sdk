@@ -7,7 +7,7 @@ export class ApiInstance {
         this.account = Resources.AccountResource({apiHandler})
         this.aml = Resources.AmlResource({apiHandler})
         this.apiKeys = Resources.ApiKeysResource({apiHandler})
-        this.balanceTransactionResource = Resources.BalanceTransactionsResource({apiHandler}),
+        this.balanceTransactions = Resources.BalanceTransactionsResource({apiHandler}),
         this.billingPortals = Resources.BillingPortalsResource({apiHandler}),
         this.blocklists = Resources.BlocklistsResource({apiHandler}),
         this.gatewayAccounts = Resources.GatewayAccountsResource({apiHandler})
