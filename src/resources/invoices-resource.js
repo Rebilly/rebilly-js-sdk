@@ -57,6 +57,12 @@ export default function InvoicesResource({apiHandler}) {
       return apiHandler.post(`invoices/${id}/items`, data);
     },
     /**
+     * @returns { rebilly.GetInvoiceItemResponsePromise } response
+     */
+    getInvoiceItem({id, itemId}) {
+      return apiHandler.get(`invoices/${id}/items/${itemId}`);
+    },
+    /**
      * @returns { rebilly.PutInvoiceItemResponsePromise } response
      */
     updateInvoiceItem({id, itemId, data}) {

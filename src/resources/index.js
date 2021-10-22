@@ -1,6 +1,7 @@
 import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
+import BalanceTransactionsResource from './balance-transactions-resource';
 import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
@@ -15,6 +16,7 @@ import EmailDeliverySettingsResource from './email-delivery-settings-resource';
 import EmailMessagesResource from './email-messages-resource';
 import EmailNotificationsResource from './email-notifications-resource';
 import EventsResource from './events-resource';
+import FeesResource from "./fees-resource";
 import FilesResource from './files-resource';
 import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
@@ -56,6 +58,7 @@ const Resources = {
     AccountResource,
     AmlResource,
     ApiKeysResource,
+    BalanceTransactionsResource,
     BillingPortalsResource,
     BlocklistsResource,
     BroadcastMessagesResource,
@@ -70,6 +73,7 @@ const Resources = {
     EmailMessagesResource,
     EmailNotificationsResource,
     EventsResource,
+    FeesResource,
     FilesResource,
     GatewayAccountsResource,
     IntegrationsResource,
