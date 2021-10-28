@@ -5,15 +5,6 @@ import deepFreeze from './deep-freeze';
 
 /**
  * A collection of read-only entity members.
- * @typedef Collection
- * @readonly
- * @prop limit {number}
- * @prop offset {number}
- * @prop total {number}
- * @prop items {Array<Member>}
- * @prop response {Object}
- * @prop getJSON {Function: Object}
- * @prop config {Object} original request configuration
  * @example
  * const api = RebillyAPI();
  * const customers = api.customers.getAll();
@@ -22,13 +13,42 @@ import deepFreeze from './deep-freeze';
  */
 export default class Collection {
     constructor({data, status, statusText, headers}, config = {}) {
+        /**
+         * @type {number|null}
+         */
+        this.limit = null;
+
+        /**
+         * @type {number|null}
+         */
+        this.offset = null;
+
+        /**
+         * @type {number|null}
+         */
+        this.total = null;
+
         Object.keys(paginationHeaders).forEach((header) => {
             const value = headers[paginationHeaders[header]];
             this[header] = value ? Number(value) : null;
         });
+
+        /**
+         * @type {Object}
+         */
         this.response = {status, statusText, headers};
+
+        /**
+         * @type {Array<Member>}
+         */
         this.items = data.map(member => new Member({data: member, status, statusText, headers}));
+
+        /**
+         * Original request configuration
+         * @type {Object}
+         */
         this.config = config;
+
         deepFreeze(this, {exclude: ['cancelToken']});
     }
 

@@ -3,17 +3,23 @@ import deepFreeze from './deep-freeze';
 
 /**
  * A single read-only entity member.
- * @typedef Member
- * @readonly
- * @prop response {Object}
- * @prop fields {Object}
- * @prop getJSON {Function: Object}
- * @prop config {Object} original request configuration
  */
 export default class Member {
     constructor({data, status, statusText, headers}, config = {}) {
+        /**
+         * @type {Object}
+         */
         this.response = {status, statusText, headers};
+
+        /**
+         * @type {Object}
+         */
         this.fields = {...data};
+
+        /**
+         * Original request configuration
+         * @type {Object}
+         */
         this.config = config;
         deepFreeze(this, {exclude: ['cancelToken']});
     }

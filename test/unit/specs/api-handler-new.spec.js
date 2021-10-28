@@ -1,7 +1,5 @@
 import createApiHandler from '../../../src/create-api-handler';
 import createApiInstance from '../../../src/create-api-instance';
-import sinon, { assert, stub, match } from 'sinon';
-import { expect } from 'chai';
 
 describe('when I use an API handler', () => {
     const options = {
@@ -18,18 +16,14 @@ describe('when I use an API handler', () => {
 
     it('Ignores get params when they are null', async () => {
         const instance = apiHandler.getInstance();
-        instance.get = stub();
+        instance.get = jest.fn();
 
         api.aml.getAll({firstName: 'Kiko', lastName: 'Rivera', dob: null});
 
-        assert.calledWith(instance.get, 'aml', match({
-            cancelToken: sinon.match.any,
+        expect(instance.get).toHaveBeenCalledTimes(1);
+        expect(instance.get).toHaveBeenCalledWith('aml', {
+            cancelToken: expect.anything(),
             params: { firstName: "Kiko", lastName: "Rivera" }
-        }));
-        
-        expect(instance.get).calledOnceWith('aml', match({
-            cancelToken: sinon.match.any,
-            params: { firstName: "Kiko", lastName: "Rivera" }
-        }));
+        }); 
     });
 });

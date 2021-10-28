@@ -1,40 +1,38 @@
-import chai from 'chai';
 import MockRebillyAPI from '../mock-rebilly-js-sdk';
 
-const expect = chai.expect;
 
 describe('when I get a collection', () => {
     const api = MockRebillyAPI({apiKey: '00000000000000000', sandbox: true});
     let customers;
 
-    before(async () => {
+    beforeAll(async () => {
         customers = await api.customers.getAll();
     });
     it('should define a property called total', () => {
-        expect(customers.total).to.not.be.undefined;
+        expect(customers.total).toBeDefined();
     });
     it('should define a property called offset', () => {
-        expect(customers.offset).to.not.be.undefined;
+        expect(customers.offset).toBeDefined();
     });
     it('should define a property called limit', () => {
-        expect(customers.limit).to.not.be.undefined;
+        expect(customers.limit).toBeDefined();
     });
     it('should define a property called response', () => {
-        expect(customers.response).to.not.be.undefined;
+        expect(customers.response).toBeDefined();
     });
     it('should have an array of items', () => {
-        expect(customers.items).to.be.an('array');
+        expect(Array.isArray(customers.items)).toBe(true);
     });
     it('should have a method named getJSON', () => {
-        expect(customers.getJSON).to.be.a('function');
+        expect(typeof customers.getJSON).toBe('function');
     });
     it('should return a plain JSON object defining items as an array, when using getJSON', () => {
-        expect(customers.getJSON().items).to.be.an('array');
+        expect(Array.isArray(customers.getJSON().items)).toBe(true);
     });
     it('should be immutable', () => {
-        expect(customers.limit).to.be.frozen;
+        expect(Object.isFrozen(customers.limit)).toBe(true);
     });
     it('should return a mutable JSON object when requested', () => {
-        expect(customers.getJSON()).to.not.be.frozen;
+        expect(Object.isFrozen(customers.getJSON())).toBe(false);
     });
 });

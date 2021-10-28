@@ -35,5 +35,14 @@ export default function PaymentInstrumentsResource({apiHandler}) {
     deactivate({id}) {
       return apiHandler.post(`payment-instruments/${id}/deactivation`);
     },
+    /**
+     * @returns { rebilly.StorefrontGetPaymentInstrumentSetupResponsePromise } response
+     */
+    getSetupTransaction({id}) {
+      return apiHandler.get(`payment-instruments/${id}/setup`);
+    },
+    setup({id, data}) {
+      return apiHandler.post(`payment-instruments/${id}/setup`, data);
+    },
   };
 }
