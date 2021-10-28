@@ -1,0 +1,66 @@
+name: Updates SDK resources based on api-definitions
+
+on: 
+  push:
+  workflow_dispatch:
+    inputs:
+      api-definitions-branch:
+        description: 'api-definitions branch triggering the current workflow'
+        required: true
+        default: 'main'
+      auto-pr-title:
+        description: 'title of the PR to be created'
+        required: true
+        default: 'Auto generated PR'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout api-definitions repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'Rebilly/api-definitions'
+          path: 'api-definitions'
+          # Here we need to use the name of the branch that triggered this workflow (instead of master)
+          ref: '${{ github.event.inputs.api-definitions-branch }}'
+      - uses: actions/setup-node@v2
+        with:
+          # We need node LTS to run rebilly-SDK-generator
+          node-version: '14'
+      - name: Builds openAPI json schemas
+        working-directory: 'api-definitions'
+        run: |
+          npm install
+          npx openapi bundle -o dist --ext json
+      - name: Checkout rebilly-js-sdk repo
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+          path: 'rebilly-js-sdk'
+      - name: Checkout sdk generator repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'Rebilly/rebilly-sdk-generator'
+          path: 'rebilly-sdk-generator'
+          # Here we will use master once we have merged
+          ref: 'main'
+          token: ${{ secrets.SDK_GENERATOR_PAT }}
+      - name: Executes sdk generation
+        working-directory: ./rebilly-sdk-generator
+        run: |
+          npm install
+          npm run generate-sdk-code --local
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # Path of the checked-out repo where we placed the generated resources  
+          path: 'rebilly-js-sdk'
+          token: ${{ secrets.SDK_GENERATOR_PAT }}
+          title: 'Second automated sample PR'
+          body: 'Do not forget to bump version'
+          draft: true
+          # If the api-definitions branch that triggered this workflow is named foo
+          # we will create from-foo branch in rebilly-js-sdk 
+          branch: 'from-${{ github.event.inputs.api-definitions-branch }}'
+          base: 'main'
