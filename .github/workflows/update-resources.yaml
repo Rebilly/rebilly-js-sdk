@@ -1,17 +1,13 @@
 name: Updates SDK resources based on api-definitions
 
 on: 
-  push:
   workflow_dispatch:
     inputs:
-      api-definitions-branch:
-        description: 'api-definitions branch triggering the current workflow'
-        required: true
-        default: 'main'
-      auto-pr-title:
-        description: 'title of the PR to be created'
-        required: true
-        default: 'Auto generated PR'
+      trigger-reason:
+        description: |
+          The comment that will be posted to the PR if any changes are added.
+          Used to provide context about the source of the update.
+        required: false
 
 jobs:
   build:
@@ -22,45 +18,53 @@ jobs:
         with:
           repository: 'Rebilly/api-definitions'
           path: 'api-definitions'
-          # Here we need to use the name of the branch that triggered this workflow (instead of master)
-          ref: '${{ github.event.inputs.api-definitions-branch }}'
-      - uses: actions/setup-node@v2
-        with:
-          # We need node LTS to run rebilly-SDK-generator
-          node-version: '14'
-      - name: Builds openAPI json schemas
+
+      - name: Install api-definitions dependencies
         working-directory: 'api-definitions'
-        run: |
-          npm install
-          npx openapi bundle -o dist --ext json
+        run: npm install
+
       - name: Checkout rebilly-js-sdk repo
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.head_ref }}
           path: 'rebilly-js-sdk'
-      - name: Checkout sdk generator repo
+
+      - name: Checkout rebilly-sdk-generator repo
         uses: actions/checkout@v2
         with:
           repository: 'Rebilly/rebilly-sdk-generator'
           path: 'rebilly-sdk-generator'
-          # Here we will use master once we have merged
-          ref: 'main'
-          token: ${{ secrets.SDK_GENERATOR_PAT }}
+          token: ${{ secrets.MACHINE_USER_PAT }}
+
       - name: Executes sdk generation
         working-directory: ./rebilly-sdk-generator
         run: |
-          npm install
-          npm run generate-sdk-code --local
+          yarn install --frozen-lockfile --non-interactive
+          yarn update-sdk-from-local
+
       - name: Create PR
+        id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
           # Path of the checked-out repo where we placed the generated resources  
           path: 'rebilly-js-sdk'
-          token: ${{ secrets.SDK_GENERATOR_PAT }}
-          title: 'Second automated sample PR'
-          body: 'Do not forget to bump version'
-          draft: true
-          # If the api-definitions branch that triggered this workflow is named foo
-          # we will create from-foo branch in rebilly-js-sdk 
-          branch: 'from-${{ github.event.inputs.api-definitions-branch }}'
-          base: 'main'
+          token: ${{ secrets.MACHINE_USER_PAT }}
+          title: 'chore: update SDK from api-definitions'
+          commit-message: update SDK from api-definitions
+          branch: automations/update-sdk-from-api-definitions
+          base: main
+          # Delete the branch when closing PRs or merging
+          delete-branch: true
+          body: This PR is automatically generated and updates SDK based on a change in the API definitions
+
+      - name: Comment trigger reason
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: |
+          (steps.cpr.outputs.pull-request-operation == 'created' ||
+          steps.cpr.outputs.pull-request-operation == 'updated') &&
+          github.event.inputs.trigger-reason != ''
+        with:
+          GITHUB_TOKEN: ${{ secrets.MACHINE_USER_PAT }}
+          append: true
+          number: ${{ steps.cpr.outputs.pull-request-number }}
+          message: |
+            Triggered due to: ${{ github.event.inputs.trigger-reason }}
