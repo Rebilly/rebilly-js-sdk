@@ -14,6 +14,19 @@ jobs:
           node-version: 12
           registry-url: https://registry.npmjs.org/
       - run: yarn install --frozen-lockfile
+      # Setup git credentials used for committing to the Github Actions user
+      # See: https://github.community/t/github-actions-bot-email-address/17204/5
+      - run: git config --global user.name "github-actions[bot]"
+      - run: git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # GH Releases has already created our tag, but npm version will try to create it again. So delete the existing one.
+      - run: git tag -d ${{ github.event.release.tag_name }}
+      # Bump the package.json version to whatever was specified, and commit the change
+      - run: "npm version ${{ github.event.release.tag_name }} -m 'chore(release): bump version to %s'"
+      # Force push the new tag, which points at the new version commit
+      - run: git push origin ${{ github.event.release.tag_name }} --force
+      # Push the new version commit added to main
+      - run: git push origin HEAD:main
+      # Publish the package to npm
       - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
