@@ -33,7 +33,6 @@ describe('when I create an API instance', () => {
         expect(typeof apiInstance.emailNotifications).toBe('object');
         expect(typeof apiInstance.events).toBe('object');
         expect(typeof apiInstance.gatewayAccounts).toBe('object');
-        expect(typeof apiInstance.plaidCredentials).toBe('object');
         expect(typeof apiInstance.invoices).toBe('object');
         expect(typeof apiInstance.lists).toBe('object');
         expect(typeof apiInstance.organizations).toBe('object');

@@ -84,7 +84,7 @@ describe('when I use an API handler', () => {
     });
 
     it('should return a promise when I make a PATCH request', () => {
-        const plaidCredential = api.plaidCredentials.update({id: '1234', data: {}});
+        const plaidCredential = api.credentialHashes.updatePlaidCredential({hash: '1234', data: {}});
         expect(typeof plaidCredential.then).toBe('function');
     });
 
@@ -176,7 +176,7 @@ describe('when creating a member', ()=> {
         const params = null;
 
         await apiHandler.create(`customers/${id}`, id, data, params);
-        
+
         expect(axiosInstance.post).toHaveBeenCalledTimes(1);
         expect(axiosInstance.post).toHaveBeenCalledWith('customers/', data, {cancelToken: expect.anything()})
     });
@@ -186,7 +186,7 @@ describe('when creating a member', ()=> {
         const data = {websiteId: 'www.test.com'};
 
         await apiHandler.create(`customers/${id}`, id, data);
-        
+
         expect(axiosInstance.put).toHaveBeenCalledTimes(1);
         expect(axiosInstance.put).toHaveBeenCalledWith('customers/existingId', data, {params: {}, cancelToken: expect.anything()});
     });
