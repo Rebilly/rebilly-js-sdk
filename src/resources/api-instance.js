@@ -31,7 +31,6 @@ import PaymentInstrumentsResource from './payment-instruments-resource';
 import PaymentMethodsResource from './payment-methods-resource';
 import PaymentTokensResource from './payment-tokens-resource';
 import PayoutsResource from './payouts-resource';
-import PlaidCredentialsResource from './plaid-credentials-resource';
 import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
@@ -78,7 +77,6 @@ export class ApiInstance {
     this.emailNotifications = EmailNotificationsResource({ apiHandler });
     this.fees = FeesResource({ apiHandler });
     this.files = FilesResource({ apiHandler });
-    this.plaidCredentials = PlaidCredentialsResource({ apiHandler });
     this.integrations = IntegrationsResource({ apiHandler });
     this.invoices = InvoicesResource({ apiHandler });
     this.kycDocuments = KycDocumentsResource({ apiHandler });

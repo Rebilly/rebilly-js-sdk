@@ -16,7 +16,7 @@ function generateSdkTypes(schema, verbose = false) {
     const globalParameters = path.parameters;
 
     if (path.get) {
-      result += generateGet(path.get);
+      result += generateGet(path.get, pathName);
     }
     if (path.post) {
       result += generatePost(path.post);
@@ -33,14 +33,10 @@ function generateSdkTypes(schema, verbose = false) {
     return result + newLineAndTab;
   }
 
-  function generateGet(getPath) {
+  function generateGet(getPath, pathName) {
     let result = '';
     const operationId = getPath.operationId;
-    if (!getPath.parameters) {
-      warn(`⚠️  Missing parameters for Get operationId ${operationId}`);
-    } else {
-      result += generateQueryType(operationId, getPath) + newLineAndTab;
-    }
+    result += generateQueryType(operationId, getPath, pathName) + newLineAndTab;
     result += generateResponseTypes(operationId, getPath);
     return result;
   }
@@ -98,8 +94,18 @@ function generateSdkTypes(schema, verbose = false) {
     return result;
   }
 
-  function generateQueryType(operationId, path) {
+  function generateQueryType(operationId, getPath, pathName) {
     const requestTypeName = generateRequestTypeName(operationId);
+    const hasParametersInPathName = pathName.includes('{');
+    if (!getPath.parameters && !hasParametersInPathName) {
+      return '';
+    }
+    if (!getPath.parameters && hasParametersInPathName) {
+      return `type ${generateRequestTypeName(
+        operationId
+      )} = ${generatePathParametersTypeBody(pathName)}\n`;
+    }
+
     const parameters = `operations['${operationId}']['parameters']`;
     let requestType = `type ${requestTypeName} = ${parameters}`;
     if (operationId.endsWith('Collection')) {
@@ -109,6 +115,11 @@ function generateSdkTypes(schema, verbose = false) {
       // the path property when it exists (otherwise we'll get an error).
       requestType = `type ${requestTypeName} = ${parameters}["query"] & (${parameters} extends {path: {}} ? ${parameters}["path"] : {})`;
     }
+
+    if (hasParametersInPathName) {
+      requestType += ' & ' + generatePathParametersTypeBody(pathName);
+    }
+
     return requestType + newLineAndTab;
   }
 
@@ -196,6 +207,17 @@ function generateSdkTypes(schema, verbose = false) {
         path.requestBody.content['application/json']) ||
       path.requestBody.hasOwnProperty('$ref')
     );
+  }
+
+  function generatePathParametersTypeBody(pathName) {
+    const getBindParamsFromPathName = (pathName) =>
+      pathName.match(/(?<=\{).+?(?=\})/g);
+    const pathParams = getBindParamsFromPathName(pathName);
+    const pathParamTypes =
+      '{ ' +
+      pathParams.map((paramName) => paramName + ' : String').join(',') +
+      ' }';
+    return pathParamTypes;
   }
 
   function warn(message) {
