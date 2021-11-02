@@ -6,7 +6,7 @@ jobs:
   frontend-unit-tests:
     runs-on: ubuntu-latest
 
-    name: Run tests
+    name: Run unit tests
     steps:
       - uses: actions/checkout@v2
       - name: Setup node
