@@ -1,0 +1,70 @@
+name: Updates SDK resources based on api-definitions
+
+on: 
+  workflow_dispatch:
+    inputs:
+      trigger-reason:
+        description: |
+          The comment that will be posted to the PR if any changes are added.
+          Used to provide context about the source of the update.
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout api-definitions repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'Rebilly/api-definitions'
+          path: 'api-definitions'
+
+      - name: Install api-definitions dependencies
+        working-directory: 'api-definitions'
+        run: npm install
+
+      - name: Checkout rebilly-js-sdk repo
+        uses: actions/checkout@v2
+        with:
+          path: 'rebilly-js-sdk'
+
+      - name: Checkout rebilly-sdk-generator repo
+        uses: actions/checkout@v2
+        with:
+          repository: 'Rebilly/rebilly-sdk-generator'
+          path: 'rebilly-sdk-generator'
+          token: ${{ secrets.MACHINE_USER_PAT }}
+
+      - name: Executes sdk generation
+        working-directory: ./rebilly-sdk-generator
+        run: |
+          yarn install --frozen-lockfile --non-interactive
+          yarn update-sdk-from-local
+
+      - name: Create PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          # Path of the checked-out repo where we placed the generated resources  
+          path: 'rebilly-js-sdk'
+          token: ${{ secrets.MACHINE_USER_PAT }}
+          title: 'chore: update SDK from api-definitions'
+          commit-message: update SDK from api-definitions
+          branch: automations/update-sdk-from-api-definitions
+          base: main
+          # Delete the branch when closing PRs or merging
+          delete-branch: true
+          body: This PR is automatically generated and updates SDK based on a change in the API definitions
+
+      - name: Comment trigger reason
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: |
+          (steps.cpr.outputs.pull-request-operation == 'created' ||
+          steps.cpr.outputs.pull-request-operation == 'updated') &&
+          github.event.inputs.trigger-reason != ''
+        with:
+          GITHUB_TOKEN: ${{ secrets.MACHINE_USER_PAT }}
+          append: true
+          number: ${{ steps.cpr.outputs.pull-request-number }}
+          message: |
+            Triggered due to: ${{ github.event.inputs.trigger-reason }}
