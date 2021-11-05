@@ -13,6 +13,7 @@ import BroadcastMessagesResource from './broadcast-messages-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
+import CustomDomainsResource from './custom-domains-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
@@ -69,6 +70,7 @@ export class ApiInstance {
     this.checkoutForms = CheckoutFormsResource({apiHandler});
     this.coupons = CouponsResource({apiHandler});
     this.credentialHashes = CredentialHashesResource({apiHandler});
+    this.customDomains = CustomDomainsResource({apiHandler});
     this.customFields = CustomFieldsResource({apiHandler});
     this.customerAuthentication = CustomerAuthenticationResource({apiHandler});
     this.customers = CustomersResource({apiHandler});
