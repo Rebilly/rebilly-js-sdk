@@ -30,7 +30,7 @@ describe('when I use an API handler', () => {
         expect(options.jwt).toBe(token);
     });
 
-    it('should have Organization-Id header if set it up', () => {
+    it('should have organization prefix if set it up', () => {
         const options = {
             version: 1,
             apiEndpoints: {live: '', sandbox: ''},
@@ -41,11 +41,11 @@ describe('when I use an API handler', () => {
             organizationId: 'org-id-123'
         };
         const handler = createApiTestHandler({options});
-        expect(handler.getInstance().defaults.headers['Organization-Id']).toBe('org-id-123');
+        expect(handler.getInstance().defaults.baseURL).toContain('/organizations/org-id-123');
     });
 
-    it('should not have Organization-Id header if it not set', () => {
-        expect(apiHandler.getInstance().defaults.headers['Organization-Id']).toBeUndefined();
+    it('should not have organization prefix header if it not set', () => {
+        expect(apiHandler.getInstance().defaults.baseURL).not.toContain('/organizations/');
     });
 
     it('should allow the proxy agent to be set', () => {
@@ -56,7 +56,7 @@ describe('when I use an API handler', () => {
 
     it('should allow the endpoints to be set', () => {
         apiHandler.setEndpoints({live: 'live-endpoint.rebilly.com', sandbox: 'sandbox-endpoint.rebilly.com'});
-        expect(apiHandler.getInstance().defaults.baseURL).toBe('live-endpoint.rebilly.com/');
+        expect(apiHandler.getInstance().defaults.baseURL).toBe('live-endpoint.rebilly.com');
         options.apiVersion = 'experimental';
         options.isSandbox = true;
         apiHandler.setEndpoints({live: 'live-endpoint.rebilly.com', sandbox: 'sandbox-endpoint.rebilly.com'});

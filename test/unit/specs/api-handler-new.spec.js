@@ -1,5 +1,5 @@
-import createApiHandler from '../../../src/create-api-handler';
 import createApiInstance from '../../../src/create-api-instance';
+import createApiTestHandler from "../create-api-test-handler";
 
 describe('when I use an API handler', () => {
     const options = {
@@ -10,20 +10,19 @@ describe('when I use an API handler', () => {
         requestTimeout: 1,
         jwt: null
     };
-    const apiHandler = createApiHandler({options});
+    const apiHandler = createApiTestHandler({options});
     const api = createApiInstance({apiHandler});
-
 
     it('Ignores get params when they are null', async () => {
         const instance = apiHandler.getInstance();
-        instance.get = jest.fn();
+        instance.get = jest.fn().mockImplementation(instance.get);
 
-        api.aml.getAll({firstName: 'Kiko', lastName: 'Rivera', dob: null});
+        api.customers.getAll({limit: null, filter: 'firstName:Kiko', q: 'Rivera'});
 
         expect(instance.get).toHaveBeenCalledTimes(1);
-        expect(instance.get).toHaveBeenCalledWith('aml', {
+        expect(instance.get).toHaveBeenCalledWith('customers', {
             cancelToken: expect.anything(),
-            params: { firstName: "Kiko", lastName: "Rivera" }
-        }); 
+            params: {filter: 'firstName:Kiko', q: 'Rivera'}
+        });
     });
 });
