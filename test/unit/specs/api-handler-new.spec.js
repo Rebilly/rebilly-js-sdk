@@ -1,5 +1,5 @@
 import createApiInstance from '../../../src/create-api-instance';
-import createApiTestHandler from "../create-api-test-handler";
+import createApiTestHandler from '../create-api-test-handler';
 
 describe('when I use an API handler', () => {
     const options = {
