@@ -72,11 +72,11 @@ export default function createApiHandler({options}) {
      */
     function getBaseURL() {
         let url = options.isSandbox ? options.apiEndpoints.sandbox : options.apiEndpoints.live;
-        if (options.apiVersion) {
-            url = `${url}/${options.apiVersion}`;
-        }
         if (options.organizationId) {
             url = `${url}/organizations/${options.organizationId}`;
+        }
+        if (options.apiVersion) {
+            url = `${url}/${options.apiVersion}`;
         }
         return `${url}`;
     }
