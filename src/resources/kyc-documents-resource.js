@@ -44,5 +44,11 @@ export default function KycDocumentsResource({apiHandler}) {
     review({id}) {
       return apiHandler.post(`kyc-documents/${id}/review`);
     },
+    startReview({id}) {
+      return apiHandler.post(`kyc-documents/${id}/start-review`);
+    },
+    stopReview({id}) {
+      return apiHandler.post(`kyc-documents/${id}/stop-review`);
+    }
   };
 }
