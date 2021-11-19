@@ -38,7 +38,7 @@ module.exports = (env = {}) => {
             output: {
                 path: path.resolve(__dirname, './dist'),
                 filename: entry.filename,
-                library: 'rebilly-js-sdk',
+                library: 'RebillyJsSdk',
                 libraryTarget: 'umd',
                 umdNamedDefine: true
             },
