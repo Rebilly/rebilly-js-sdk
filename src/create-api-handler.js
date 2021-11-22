@@ -71,8 +71,14 @@ export default function createApiHandler({options}) {
      * @returns {string}
      */
     function getBaseURL() {
-        const url = options.isSandbox ? options.apiEndpoints.sandbox : options.apiEndpoints.live;
-        return `${url}/${options.apiVersion || ''}`;
+        let url = options.isSandbox ? options.apiEndpoints.sandbox : options.apiEndpoints.live;
+        if (options.apiVersion) {
+            url = `${url}/${options.apiVersion}`;
+        }
+        if (options.organizationId) {
+            url = `${url}/organizations/${options.organizationId}`;
+        }
+        return `${url}`;
     }
 
     /**
@@ -85,9 +91,6 @@ export default function createApiHandler({options}) {
         };
         if (options.apiKey) {
             headers['REB-APIKEY'] = options.apiKey;
-        }
-        if (options.organizationId) {
-            headers['Organization-Id'] = options.organizationId;
         }
         return headers;
     }
