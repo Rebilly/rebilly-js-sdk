@@ -6,6 +6,8 @@
 import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
+import ApplicationInstancesResource from './application-instances-resource';
+import ApplicationsResource from './applications-resource';
 import BalanceTransactionsResource from './balance-transactions-resource';
 import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
@@ -64,6 +66,8 @@ export class ApiInstance {
     this.account = AccountResource({apiHandler});
     this.aml = AmlResource({apiHandler});
     this.apiKeys = ApiKeysResource({apiHandler});
+    this.applicationInstances = ApplicationInstancesResource({apiHandler});
+    this.applications = ApplicationsResource({apiHandler});
     this.balanceTransactions = BalanceTransactionsResource({apiHandler});
     this.billingPortals = BillingPortalsResource({apiHandler});
     this.blocklists = BlocklistsResource({apiHandler});

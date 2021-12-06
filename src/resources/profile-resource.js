@@ -23,6 +23,18 @@ export default function ProfileResource({apiHandler}) {
     update({data}) {
       return apiHandler.put(`profile`, data);
     },
+    /**
+     * @returns { rebilly.GetProfileMfaResponsePromise } response
+     */
+    getMfa() {
+      return apiHandler.get(`profile/mfa`);
+    },
+    updateMfa() {
+      return apiHandler.post(`profile/mfa`);
+    },
+    deleteMfa() {
+      return apiHandler.delete(`profile/mfa`);
+    },
     updatePassword({data}) {
       return apiHandler.post(`profile/password`, data);
     },
