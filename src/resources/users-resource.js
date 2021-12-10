@@ -47,9 +47,6 @@ export default function UsersResource({apiHandler}) {
     update({id, data}) {
       return apiHandler.put(`users/${id}`, data);
     },
-    delete({id}) {
-      return apiHandler.delete(`users/${id}`);
-    },
     updatePassword({id, data}) {
       return apiHandler.post(`users/${id}/password`, data);
     },
