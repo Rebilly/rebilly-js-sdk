@@ -19,6 +19,7 @@ import CustomDomainsResource from './custom-domains-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
+import DigitalWalletsResource from './digital-wallets-resource';
 import DisputesResource from './disputes-resource';
 import EmailDeliverySettingsResource from './email-delivery-settings-resource';
 import EmailMessagesResource from './email-messages-resource';
@@ -79,6 +80,7 @@ export class ApiInstance {
     this.customFields = CustomFieldsResource({apiHandler});
     this.customerAuthentication = CustomerAuthenticationResource({apiHandler});
     this.customers = CustomersResource({apiHandler});
+    this.digitalWallets = DigitalWalletsResource({apiHandler});
     this.disputes = DisputesResource({apiHandler});
     this.emailDeliverySettings = EmailDeliverySettingsResource({apiHandler});
     this.emailMessages = EmailMessagesResource({apiHandler});
