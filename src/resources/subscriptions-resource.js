@@ -45,6 +45,9 @@ export default function SubscriptionsResource({apiHandler}) {
       const params = {expand};
       return apiHandler.put(`subscriptions/${id}`, data, params);
     },
+    delete({id}) {
+      return apiHandler.delete(`subscriptions/${id}`);
+    },
     changeItems({id, data}) {
       return apiHandler.post(`subscriptions/${id}/change-items`, data);
     },
