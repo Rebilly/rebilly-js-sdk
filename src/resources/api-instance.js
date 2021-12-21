@@ -6,6 +6,8 @@
 import AccountResource from './account-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
+import ApplicationInstancesResource from './application-instances-resource';
+import ApplicationsResource from './applications-resource';
 import BalanceTransactionsResource from './balance-transactions-resource';
 import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
@@ -17,6 +19,7 @@ import CustomDomainsResource from './custom-domains-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
 import CustomersResource from './customers-resource';
+import DigitalWalletsResource from './digital-wallets-resource';
 import DisputesResource from './disputes-resource';
 import EmailDeliverySettingsResource from './email-delivery-settings-resource';
 import EmailMessagesResource from './email-messages-resource';
@@ -46,6 +49,7 @@ import RolesResource from './roles-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
+import ShippingRatesResource from './shipping-rates-resource';
 import ShippingZonesResource from './shipping-zones-resource';
 import StatusResource from './status-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
@@ -63,6 +67,8 @@ export class ApiInstance {
     this.account = AccountResource({apiHandler});
     this.aml = AmlResource({apiHandler});
     this.apiKeys = ApiKeysResource({apiHandler});
+    this.applicationInstances = ApplicationInstancesResource({apiHandler});
+    this.applications = ApplicationsResource({apiHandler});
     this.balanceTransactions = BalanceTransactionsResource({apiHandler});
     this.billingPortals = BillingPortalsResource({apiHandler});
     this.blocklists = BlocklistsResource({apiHandler});
@@ -74,6 +80,7 @@ export class ApiInstance {
     this.customFields = CustomFieldsResource({apiHandler});
     this.customerAuthentication = CustomerAuthenticationResource({apiHandler});
     this.customers = CustomersResource({apiHandler});
+    this.digitalWallets = DigitalWalletsResource({apiHandler});
     this.disputes = DisputesResource({apiHandler});
     this.emailDeliverySettings = EmailDeliverySettingsResource({apiHandler});
     this.emailMessages = EmailMessagesResource({apiHandler});
@@ -103,6 +110,7 @@ export class ApiInstance {
     this.search = SearchResource({apiHandler});
     this.segments = SegmentsResource({apiHandler});
     this.sendThroughAttribution = SendThroughAttributionResource({apiHandler});
+    this.shippingRates = ShippingRatesResource({apiHandler});
     this.shippingZones = ShippingZonesResource({apiHandler});
     this.status = StatusResource({apiHandler});
     this.subscriptionCancellations = SubscriptionCancellationsResource({
