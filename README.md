@@ -6,10 +6,10 @@ The Rebilly JS SDK library allows you to consume the Rebilly API using either No
 [![Try rebilly-js-sdk on RunKit](https://badge.runkitcdn.com/rebilly-js-sdk.svg)](https://npm.runkit.com/rebilly-js-sdk)
 
 ### PCI Compliance note
-If you need to handle raw payment card data, you should use [Rebilly FramePay](https://www.rebilly.com/docs/content/dev-docs/tutorial/frame-pay-getting-started/) to generate tokens for your server-side logic.
+If you need to handle raw payment card data, you should use [Rebilly FramePay](https://www.rebilly.com/docs/content/concepts-and-features/tutorial/framepay/) to generate tokens for your server-side logic.
 
 ### Rebilly API definition
-This library is a semantic representation of the [Rebilly API definition](https://docs.rebilly.com/docs/developer-docs/api/overview/).
+This library is a semantic representation of the [Rebilly API definition](https://api-reference.rebilly.com/).
 
 The definition includes SDK examples for each API operation, listed under *Request samples*.
 
