@@ -29,5 +29,8 @@ export default function SubscriptionCancellationsResource({apiHandler}) {
     delete({id}) {
       return apiHandler.delete(`subscription-cancellations/${id}`);
     },
+    patch({id, data}) {
+      return apiHandler.patch(`subscription-cancellations/${id}`, data);
+    },
   };
 }
