@@ -43,7 +43,6 @@ describe('when I create an API instance', () => {
         expect(typeof apiInstance.products).toBe('object');
         expect(typeof apiInstance.profile).toBe('object');
         expect(typeof apiInstance.purchase).toBe('object');
-        expect(typeof apiInstance.shippingZones).toBe('object');
         expect(typeof apiInstance.status).toBe('object');
         expect(typeof apiInstance.subscriptions).toBe('object');
         expect(typeof apiInstance.subscriptionCancellations).toBe('object');
