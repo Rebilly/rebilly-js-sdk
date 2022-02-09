@@ -71,8 +71,20 @@ export default function CredentialHashesResource({apiHandler}) {
      * @param { rebilly.GetOauth2CredentialHashItemCollectionRequest } request
      * @returns { rebilly.GetOauth2CredentialHashItemCollectionResponsePromise } response
      */
-    getOAuth2CredentialItems({hash}) {
-      return apiHandler.getAll(`credential-hashes/oauth2/${hash}/items`);
+    getOAuth2CredentialItems({
+      hash,
+      limit = null,
+      offset = null,
+      filter = null,
+      q = null,
+      fields = null,
+      sort = null,
+    }) {
+      const params = {limit, offset, filter, q, fields, sort};
+      return apiHandler.getAll(
+        `credential-hashes/oauth2/${hash}/items`,
+        params
+      );
     },
     /**
      * @param { rebilly.GetPlaidCredentialCollectionRequest } request
