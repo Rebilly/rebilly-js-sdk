@@ -20,5 +20,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install --frozen-lockfile --non-interactive
-      - run: yarn ts:bundle-types-from-redocly
-      - run: yarn test:check-build-types
+      # - run: yarn ts:bundle-types-from-redocly
+      # - run: yarn test:check-build-types
