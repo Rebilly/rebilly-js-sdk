@@ -5,6 +5,7 @@ import ReportsResource from './reports-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TimelinesResource from './timelines-resource';
 import LocationResource from './location-resource';
+import TransactionsResource from './transactions-resource';
 
 const ExperimentalResources = {
   CustomersResource,
@@ -14,6 +15,7 @@ const ExperimentalResources = {
   SubscriptionsResource,
   TimelinesResource,
   LocationResource,
+  TransactionsResource
 };
 
 export class ExperimentalApiInstance {
@@ -29,6 +31,7 @@ export class ExperimentalApiInstance {
     });
     this.timelines = ExperimentalResources.TimelinesResource({ apiHandler });
     this.location = ExperimentalResources.LocationResource({ apiHandler });
+    this.transactions = ExperimentalResources.TransactionsResource({ apiHandler });
     // expose apiHandler methods to the API instance
     this.addRequestInterceptor = apiHandler.addRequestInterceptor;
     this.removeRequestInterceptor = apiHandler.removeRequestInterceptor;
