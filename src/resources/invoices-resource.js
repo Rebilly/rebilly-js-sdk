@@ -3,130 +3,34 @@
 * Do not make direct changes to this file.
 */
 
-// @ts-nocheck
-import {pdfHeader, csvHeader} from '@/request-headers';
-
 export default function InvoicesResource({apiHandler}) {
   return {
     /**
-     * @param { rebilly.GetInvoiceCollectionRequest } request
-     * @returns { rebilly.GetInvoiceCollectionResponsePromise } response
+     * @param { rebilly.GetInvoiceTimelineCollectionRequest } request
+     * @returns { rebilly.GetInvoiceTimelineCollectionResponsePromise } response
      */
-    getAll({
-      filter = null,
-      sort = null,
+    getAllTimelineMessages({
+      id,
       limit = null,
       offset = null,
-      q = null,
-      expand = null,
-    } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
-      return apiHandler.getAll(`invoices`, params);
-    },
-    /**
-     * @param { rebilly.CreateInvoiceRequest } request
-     * @returns { rebilly.PostInvoiceResponsePromise } response
-     */
-    create({id = '', data, expand = null}) {
-      const params = {expand};
-      return apiHandler.create(`invoices/${id}`, id, data, params);
-    },
-    /**
-     * @returns { rebilly.GetInvoiceResponsePromise } response
-     */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`invoices/${id}`, params);
-    },
-    /**
-     * @returns { rebilly.PutInvoiceResponsePromise } response
-     */
-    update({id, data, expand = null}) {
-      const params = {expand};
-      return apiHandler.put(`invoices/${id}`, data, params);
-    },
-    /**
-     * @param { rebilly.GetInvoiceItemCollectionRequest } request
-     * @returns { rebilly.GetInvoiceItemCollectionResponsePromise } response
-     */
-    getAllInvoiceItems({id, limit = null, offset = null, expand = null}) {
-      const params = {limit, offset, expand};
-      return apiHandler.getAll(`invoices/${id}/items`, params);
-    },
-    createInvoiceItem({id, data}) {
-      return apiHandler.post(`invoices/${id}/items`, data);
-    },
-    /**
-     * @returns { rebilly.GetInvoiceItemResponsePromise } response
-     */
-    getInvoiceItem({id, itemId}) {
-      return apiHandler.get(`invoices/${id}/items/${itemId}`);
-    },
-    /**
-     * @returns { rebilly.PutInvoiceItemResponsePromise } response
-     */
-    updateInvoiceItem({id, itemId, data}) {
-      return apiHandler.put(`invoices/${id}/items/${itemId}`, data);
-    },
-    deleteInvoiceItem({id, itemId}) {
-      return apiHandler.delete(`invoices/${id}/items/${itemId}`);
-    },
-    issue({id, data}) {
-      return apiHandler.post(`invoices/${id}/issue`, data);
-    },
-    abandon({id}) {
-      return apiHandler.post(`invoices/${id}/abandon`);
-    },
-    void({id}) {
-      return apiHandler.post(`invoices/${id}/void`);
-    },
-    recalculate({id}) {
-      return apiHandler.post(`invoices/${id}/recalculate`);
-    },
-    reissue({id, data}) {
-      return apiHandler.post(`invoices/${id}/reissue`, data);
-    },
-    /**
-     * @param { rebilly.GetInvoiceTransactionAllocationCollectionRequest } request
-     * @returns { rebilly.GetInvoiceTransactionAllocationCollectionResponsePromise } response
-     */
-    getAllTransactionAllocations({id, limit = null, offset = null}) {
-      const params = {limit, offset};
-      return apiHandler.getAll(
-        `invoices/${id}/transaction-allocations`,
-        params
-      );
-    },
-    applyTransaction({id, data}) {
-      return apiHandler.post(`invoices/${id}/transaction`, data);
-    },
-    downloadCSV({
-      limit = null,
-      offset = null,
-      sort = null,
-      expand = null,
       filter = null,
+      sort = null,
       q = null,
-    } = {}) {
-      const config = {
-        params: {
-          limit,
-          offset,
-          sort,
-          expand,
-          filter,
-          q,
-        },
-        headers: csvHeader,
-      };
-      return apiHandler.download('invoices', config);
+    }) {
+      const params = {limit, offset, filter, sort, q};
+      return apiHandler.getAll(`invoices/${id}/timeline`, params);
     },
-    downloadPDF({id}) {
-      const config = {
-        headers: pdfHeader,
-        responseType: 'arraybuffer',
-      };
-      return apiHandler.download(`invoices/${id}`, config);
+    createTimelineComment({id, data}) {
+      return apiHandler.post(`invoices/${id}/timeline`, data);
+    },
+    /**
+     * @returns { rebilly.GetInvoiceTimelineResponsePromise } response
+     */
+    getTimelineMessage({id, messageId}) {
+      return apiHandler.get(`invoices/${id}/timeline/${messageId}`);
+    },
+    deleteTimelineMessage({id, messageId}) {
+      return apiHandler.delete(`invoices/${id}/timeline/${messageId}`);
     },
   };
 }

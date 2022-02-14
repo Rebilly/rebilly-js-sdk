@@ -18,6 +18,8 @@ import CredentialHashesResource from './credential-hashes-resource';
 import CustomDomainsResource from './custom-domains-resource';
 import CustomFieldsResource from './custom-fields-resource';
 import CustomerAuthenticationResource from './customer-authentication-resource';
+import CustomerTimelineCustomEventsResource from './customer-timeline-custom-events-resource';
+import CustomerTimelineEventsResource from './customer-timeline-events-resource';
 import CustomersResource from './customers-resource';
 import DigitalWalletsResource from './digital-wallets-resource';
 import DisputesResource from './disputes-resource';
@@ -78,6 +80,10 @@ export class ApiInstance {
     this.customDomains = CustomDomainsResource({apiHandler});
     this.customFields = CustomFieldsResource({apiHandler});
     this.customerAuthentication = CustomerAuthenticationResource({apiHandler});
+    this.customerTimelineCustomEvents = CustomerTimelineCustomEventsResource({
+      apiHandler,
+    });
+    this.customerTimelineEvents = CustomerTimelineEventsResource({apiHandler});
     this.customers = CustomersResource({apiHandler});
     this.digitalWallets = DigitalWalletsResource({apiHandler});
     this.disputes = DisputesResource({apiHandler});

@@ -3,94 +3,34 @@
 * Do not make direct changes to this file.
 */
 
-// @ts-nocheck
-import {csvHeader} from '@/request-headers';
-
 export default function SubscriptionsResource({apiHandler}) {
   return {
     /**
-     * @param { rebilly.GetSubscriptionCollectionRequest } request
-     * @returns { rebilly.GetSubscriptionCollectionResponsePromise } response
+     * @param { rebilly.GetSubscriptionTimelineCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionTimelineCollectionResponsePromise } response
      */
-    getAll({
-      filter = null,
-      sort = null,
+    getAllTimelineMessages({
+      id,
       limit = null,
       offset = null,
-      q = null,
-      expand = null,
-    } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
-      return apiHandler.getAll(`subscriptions`, params);
-    },
-    /**
-     * @param { rebilly.CreateSubscriptionRequest } request
-     * @returns { rebilly.PostSubscriptionResponsePromise } response
-     */
-    create({id = '', data, expand = null}) {
-      const params = {expand};
-      return apiHandler.create(`subscriptions/${id}`, id, data, params);
-    },
-    /**
-     * @returns { rebilly.GetSubscriptionResponsePromise } response
-     */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`subscriptions/${id}`, params);
-    },
-    /**
-     * @returns { rebilly.PutSubscriptionResponsePromise } response
-     */
-    update({id, data, expand = null}) {
-      const params = {expand};
-      return apiHandler.put(`subscriptions/${id}`, data, params);
-    },
-    delete({id}) {
-      return apiHandler.delete(`subscriptions/${id}`);
-    },
-    void({id}) {
-      return apiHandler.post(`subscriptions/${id}/void`);
-    },
-    changeItems({id, data}) {
-      return apiHandler.post(`subscriptions/${id}/change-items`, data);
-    },
-    createInterimInvoice({id, data}) {
-      return apiHandler.post(`subscriptions/${id}/interim-invoice`, data);
-    },
-    /**
-     * @param { rebilly.GetSubscriptionUpcomingInvoiceCollectionRequest } request
-     * @returns { rebilly.GetSubscriptionUpcomingInvoiceCollectionResponsePromise } response
-     */
-    getAllUpcomingInvoices({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
-    },
-    issueUpcomingInvoice({id, invoiceId, data}) {
-      return apiHandler.post(
-        `subscriptions/${id}/upcoming-invoices/${invoiceId}/issue`,
-        data
-      );
-    },
-    downloadCSV({
-      limit = null,
-      offset = null,
-      sort = null,
-      expand = null,
       filter = null,
+      sort = null,
       q = null,
-    } = {}) {
-      const config = {
-        params: {
-          limit,
-          offset,
-          sort,
-          expand,
-          filter,
-          q,
-        },
-        headers: csvHeader,
-      };
-      return apiHandler.download('subscriptions', config);
+    }) {
+      const params = {limit, offset, filter, sort, q};
+      return apiHandler.getAll(`subscriptions/${id}/timeline`, params);
+    },
+    createTimelineComment({id, data}) {
+      return apiHandler.post(`subscriptions/${id}/timeline`, data);
+    },
+    /**
+     * @returns { rebilly.GetSubscriptionTimelineResponsePromise } response
+     */
+    getTimelineMessage({id, messageId}) {
+      return apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
+    },
+    deleteTimelineMessage({id, messageId}) {
+      return apiHandler.delete(`subscriptions/${id}/timeline/${messageId}`);
     },
   };
 }
