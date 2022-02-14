@@ -71,6 +71,33 @@ export default function SubscriptionsResource({apiHandler}) {
         data
       );
     },
+    /**
+     * @param { rebilly.GetSubscriptionTimelineCollectionRequest } request
+     * @returns { rebilly.GetSubscriptionTimelineCollectionResponsePromise } response
+     */
+    getAllTimelineMessages({
+      id,
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      q = null,
+    }) {
+      const params = {limit, offset, filter, sort, q};
+      return apiHandler.getAll(`subscriptions/${id}/timeline`, params);
+    },
+    createTimelineComment({id, data}) {
+      return apiHandler.post(`subscriptions/${id}/timeline`, data);
+    },
+    /**
+     * @returns { rebilly.GetSubscriptionTimelineResponsePromise } response
+     */
+    getTimelineMessage({id, messageId}) {
+      return apiHandler.get(`subscriptions/${id}/timeline/${messageId}`);
+    },
+    deleteTimelineMessage({id, messageId}) {
+      return apiHandler.delete(`subscriptions/${id}/timeline/${messageId}`);
+    },
     downloadCSV({
       limit = null,
       offset = null,
