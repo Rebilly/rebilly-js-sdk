@@ -48,6 +48,9 @@ export default function SubscriptionsResource({apiHandler}) {
     delete({id}) {
       return apiHandler.delete(`subscriptions/${id}`);
     },
+    void({id}) {
+      return apiHandler.post(`subscriptions/${id}/void`);
+    },
     changeItems({id, data}) {
       return apiHandler.post(`subscriptions/${id}/change-items`, data);
     },

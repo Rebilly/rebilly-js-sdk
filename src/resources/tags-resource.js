@@ -46,5 +46,17 @@ export default function TagsResource({apiHandler}) {
     untagCustomer({tag, customerId}) {
       return apiHandler.delete(`tags/${tag}/customers/${customerId}`);
     },
+    tagKycDocuments({tag, data}) {
+      return apiHandler.post(`tags/${tag}/kyc-documents`, data);
+    },
+    untagKycDocuments({tag, data}) {
+      return apiHandler.delete(`tags/${tag}/kyc-documents`, data);
+    },
+    tagKycDocument({tag, kycDocumentId}) {
+      return apiHandler.post(`tags/${tag}/kyc-documents/${kycDocumentId}`);
+    },
+    untagKycDocument({tag, kycDocumentId}) {
+      return apiHandler.delete(`tags/${tag}/kyc-documents/${kycDocumentId}`);
+    },
   };
 }

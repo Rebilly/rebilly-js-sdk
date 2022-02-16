@@ -50,9 +50,9 @@ import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
 import ShippingRatesResource from './shipping-rates-resource';
-import ShippingZonesResource from './shipping-zones-resource';
 import StatusResource from './status-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
+import SubscriptionPausesResource from './subscription-pauses-resource';
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
@@ -111,11 +111,11 @@ export class ApiInstance {
     this.segments = SegmentsResource({apiHandler});
     this.sendThroughAttribution = SendThroughAttributionResource({apiHandler});
     this.shippingRates = ShippingRatesResource({apiHandler});
-    this.shippingZones = ShippingZonesResource({apiHandler});
     this.status = StatusResource({apiHandler});
     this.subscriptionCancellations = SubscriptionCancellationsResource({
       apiHandler,
     });
+    this.subscriptionPauses = SubscriptionPausesResource({apiHandler});
     this.subscriptionReactivations = SubscriptionReactivationsResource({
       apiHandler,
     });
