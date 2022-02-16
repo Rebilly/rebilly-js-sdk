@@ -21,7 +21,7 @@
     "ts:compile": "npx tsc -p tsc-emit.json --typeRoots typings",
     "ts:compile-and-merge": "yarn ts:compile && yarn ts:merge-types",
     "ts:bundle-types-from-redocly": "yarn ts:generate-types && yarn ts:compile-and-merge",
-    "build-api-definitions": "cd ../api-definitions && yarn build --ext json",
+    "build-api-definitions": "cd ../api-definitions && yarn build-core --ext json && yarn build-users --ext json && yarn build-storefront --ext json",
     "ts:bundle-types-from-local": "yarn build-api-definitions && yarn ts:generate-types --local && yarn ts:compile-and-merge"
   },
   "repository": {
