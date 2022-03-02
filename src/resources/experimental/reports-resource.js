@@ -27,6 +27,17 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/cumulative-subscriptions`, params);
         },
 
+        getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+                tz,
+                segments,
+                metrics
+            };
+            return apiHandler.getAll(`reports/dashboard`, params);
+        },
+
         getDccMarkup({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, tz = null} = {}) {
             const params = {
                 aggregationField,
@@ -63,17 +74,6 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/events-triggered`, params);
         },
 
-        getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                limit,
-                offset,
-                tz
-            };
-            return apiHandler.get(`reports/events-triggered/${eventType}/rules`, params);
-        },
-
         getFutureRenewals({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
@@ -83,6 +83,25 @@ export default function ReportsResource({apiHandler}) {
                 tz
             };
             return apiHandler.get(`reports/future-renewals`, params);
+        },
+
+        getKycAcceptanceSummary({periodStart, periodEnd} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+            };
+            return apiHandler.get(`reports/kyc-acceptance-summary`, params);
+        },
+
+        getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+                limit,
+                offset,
+                tz
+            };
+            return apiHandler.get(`reports/events-triggered/${eventType}/rules`, params);
         },
 
         getRenewalSales({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
@@ -204,17 +223,6 @@ export default function ReportsResource({apiHandler}) {
                 tz
             };
             return apiHandler.get(`reports/transactions`, params);
-        },
-
-        getDashboardMetrics({periodStart = null, periodEnd = null, tz = null, metrics = null, segments = {}} = {}) {
-            const params = {
-                periodStart,
-                periodEnd,
-                tz,
-                segments,
-                metrics
-            };
-            return apiHandler.getAll(`reports/dashboard`, params);
         },
     };
 };
