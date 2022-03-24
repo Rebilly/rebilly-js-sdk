@@ -32,6 +32,7 @@ import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
 import KycRequestsResource from './kyc-requests-resource';
+import KycSettingsResource from './kyc-settings-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
 import OrganizationsResource from './organizations-resource';
@@ -93,6 +94,7 @@ export class ApiInstance {
     this.invoices = InvoicesResource({apiHandler});
     this.kycDocuments = KycDocumentsResource({apiHandler});
     this.kycRequests = KycRequestsResource({apiHandler});
+    this.kycSettings = KycSettingsResource({apiHandler});
     this.lists = ListsResource({apiHandler});
     this.memberships = MembershipsResource({apiHandler});
     this.organizations = OrganizationsResource({apiHandler});

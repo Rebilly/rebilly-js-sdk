@@ -52,6 +52,13 @@ export default function CustomersResource({apiHandler}) {
       );
     },
     /**
+1     * @param { rebilly.GetCustomerAmlEntryCollectionRequest } request
+     * @returns { rebilly.GetCustomerAmlEntryCollectionResponsePromise } response
+     */
+    getAml({id}) {
+      return apiHandler.getAll(`customers/${id}/aml`);
+    },
+    /**
      * @returns { rebilly.GetCustomerLeadSourceResponsePromise } response
      */
     getLeadSource({id}) {
