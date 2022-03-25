@@ -8,5 +8,8 @@ export default function DigitalWalletsResource({apiHandler}) {
     create({data}) {
       return apiHandler.post(`digital-wallets/onboarding/apple-pay`, data);
     },
+    validate({data}) {
+      return apiHandler.post(`digital-wallets/validation`, data);
+    },
   };
 }
