@@ -52,7 +52,7 @@ export default function CustomersResource({apiHandler}) {
       );
     },
     /**
-1     * @param { rebilly.GetCustomerAmlEntryCollectionRequest } request
+     * @param { rebilly.GetCustomerAmlEntryCollectionRequest } request
      * @returns { rebilly.GetCustomerAmlEntryCollectionResponsePromise } response
      */
     getAml({id}) {

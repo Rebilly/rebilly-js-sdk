@@ -14,5 +14,8 @@ export default function PreviewsResource({apiHandler}) {
     webhook({data}) {
       return apiHandler.post(`previews/webhooks`, data);
     },
+    order({data}) {
+      return apiHandler.post(`previews/orders`, data);
+    },
   };
 }
