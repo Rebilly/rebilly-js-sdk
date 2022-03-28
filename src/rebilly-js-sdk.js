@@ -23,11 +23,11 @@ const baseTimeoutMs = 6000;
  * Create an instance of the Rebilly API
  * @param {ApiParams} 
  */
-export default function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
-    if(!urls.live || !urls.sandbox) {
+function RebillyAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
+    if (!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
-    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+    if (typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
         throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
     }
     /**
@@ -53,10 +53,10 @@ export default function RebillyAPI({apiKey = null, sandbox = false, timeout = ba
  * @param {ApiParams} params
  */
 function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
-    if(!urls.live || !urls.sandbox) {
+    if (!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
-    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+    if (typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
         throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
     }
     /**
@@ -93,10 +93,10 @@ function RebillyExperimentalAPI({apiKey = null, sandbox = false, timeout = baseT
  *  @param {StorefrontApiParams} params
  */
 function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}) {
-    if(!urls.live || !urls.sandbox) {
+    if (!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
     }
-    if(typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
+    if (typeof urls.live !== 'string' || typeof urls.sandbox !== 'string') {
         throw new Error('RebillyAPI urls config `live` and `sandbox` must be strings');
     }
     /**
@@ -118,6 +118,6 @@ function RebillyStorefrontAPI({publishableKey = null, jwt = null, sandbox = fals
     apiHandler.setSessionToken(options.jwt);
 
     return createStorefrontApiInstance({apiHandler});
- }
+}
 
-export {Errors as RebillyErrors, RebillyExperimentalAPI, RebillyStorefrontAPI, cancellation};
+export {Errors as RebillyErrors, RebillyAPI, RebillyExperimentalAPI, RebillyStorefrontAPI, cancellation};

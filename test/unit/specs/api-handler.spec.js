@@ -117,7 +117,7 @@ describe('when I use an API handler', () => {
             });
             it('should call axios interceptorManager eject function on interceptor removal', () => {
                 const interceptor = apiHandler.addRequestInterceptor({thenDelegate: () => {}});
-                jest.spyOn(apiHandler.getInstance().interceptors.request, 'eject');
+                vi.spyOn(apiHandler.getInstance().interceptors.request, 'eject');
                 apiHandler.removeRequestInterceptor(interceptor);
                 expect(apiHandler.getInstance().interceptors.request.eject).toHaveBeenCalledWith(interceptor);
             });
@@ -129,7 +129,7 @@ describe('when I use an API handler', () => {
             });
             it('should call axios interceptorManager eject function on interceptor removal', () => {
                 const interceptor = apiHandler.addResponseInterceptor({thenDelegate: () => {}});
-                jest.spyOn(apiHandler.getInstance().interceptors.response, 'eject');
+                vi.spyOn(apiHandler.getInstance().interceptors.response, 'eject');
                 apiHandler.removeResponseInterceptor(interceptor);
                 expect(apiHandler.getInstance().interceptors.response.eject).toHaveBeenCalledWith(interceptor);
             });
@@ -155,20 +155,20 @@ describe('the #isInterceptorType function', () => {
     });
 });
 
-describe('when creating a member', ()=> {
+describe('when creating a member', () => {
     const options = {
         apiEndpoints: {live: '', sandbox: ''},
     };
     const apiHandler = createApiTestHandler({options});
     let axiosInstance;
-    beforeEach(()=> {
+    beforeEach(() => {
         axiosInstance = apiHandler.getInstance();
-        jest.spyOn(axiosInstance, 'post').mockReturnValue(Promise.resolve({statusText: 201, data: {}}));
-        jest.spyOn(axiosInstance, 'put').mockReturnValue(Promise.resolve({statusText: 200, data: {}}));
+        vi.spyOn(axiosInstance, 'post').mockReturnValue(Promise.resolve({statusText: 201, data: {}}));
+        vi.spyOn(axiosInstance, 'put').mockReturnValue(Promise.resolve({statusText: 200, data: {}}));
     });
-    afterEach(()=> {
-        jest.resetAllMocks();
-    })
+    afterEach(() => {
+        vi.resetAllMocks();
+    });
 
     it('should post a new entity when id is not passed to create method', async () => {
         const id = '';
@@ -178,7 +178,7 @@ describe('when creating a member', ()=> {
         await apiHandler.create(`customers/${id}`, id, data, params);
 
         expect(axiosInstance.post).toHaveBeenCalledTimes(1);
-        expect(axiosInstance.post).toHaveBeenCalledWith('customers/', data, {cancelToken: expect.anything()})
+        expect(axiosInstance.post).toHaveBeenCalledWith('customers/', data, {cancelToken: expect.anything()});
     });
 
     it('should put an existent entity when id is provided', async () => {

@@ -2,20 +2,26 @@
   "name": "rebilly-js-sdk",
   "version": "46.4.0",
   "description": "Official Rebilly API JS library for the browser and Node",
-  "browser": "./dist/rebilly-js-sdk.js",
-  "main": "./dist/rebilly-js-sdk.node.js",
   "types": "./dist/rebilly-js-sdk.d.ts",
+  "main": "./dist/rebilly-js-sdk.umd.js",
+  "module": "./dist/rebilly-js-sdk.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/rebilly-js-sdk.es.js",
+      "require": "./dist/rebilly-js-sdk.umd.js"
+    }
+  },
   "scripts": {
+    "build": "vite build",
+    "build:dev": "vite build --mode dev",
+    "build:prod": "npm run build",
     "clean": "rimraf dist && rimraf coverage",
-    "build:prod": "npm run clean && webpack --env=prod",
-    "build:dev": "npm run clean && webpack --env=dev",
     "prepublishOnly": "npm run build:prod && npm run ts:bundle-types-from-redocly",
-    "test:unit": "jest",
-    "test:unit:coverage": "jest --collect-coverage --no-cache",
-    "test:unit:debug": "node --inspect-brk jest --no-cache --runInBand",
-    "test:unit:watch": "jest --watchAll",
-    "test:check-build-types": "npx tsc -p ./test/check-build-types.tsconfig.json",
     "test": "npm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:unit:coverage": "vitest run --coverage",
+    "test:check-build-types": "npx tsc -p ./test/check-build-types.tsconfig.json",
     "ts:generate-types": "node ./scripts/type-generation/generate-ts-types.js",
     "ts:merge-types": "node ./scripts/merge-types.js",
     "ts:compile": "npx tsc -p tsc-emit.json --typeRoots typings",
@@ -36,55 +42,33 @@
     "node"
   ],
   "files": [
-    "index.js",
     "dist"
   ],
-  "author": "Andrei Moldoveanu",
+  "author": "Rebilly",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Rebilly/rebilly-js-sdk/issues"
   },
   "homepage": "https://github.com/Rebilly/rebilly-js-sdk#readme",
   "devDependencies": {
-    "@babel/core": "^7.12.17",
-    "@babel/plugin-transform-runtime": "^7.12.17",
-    "@babel/preset-env": "^7.12.17",
     "@types/jest": "^26.0.23",
     "axios-mock-adapter": "^1.9.0",
-    "babel-loader": "^8.2.2",
+    "c8": "^7.11.0",
     "clone-deep": "^1.0.0",
     "cross-env": "^5.0.1",
     "dotenv": "^4.0.0",
     "faker": "^4.1.0",
-    "jest": "^26.6.3",
     "minimist": "^1.2.5",
     "openapi-typescript": "3.3.1",
-    "rimraf": "^2.6.1",
-    "terser-webpack-plugin": "^1.4.1",
     "typescript": "^4.1.3",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vite": "^2.8.6",
+    "vitest": "^0.7.12",
     "webpack": "^4.39.3",
     "webpack-cli": "^3.3.7"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "babel-runtime": "^6.25.0",
+    "axios": "^0.26.1",
     "nanoid": "^3.1.25"
-  },
-  "nyc": {
-    "require": [
-      "babel-register"
-    ],
-    "reporter": [
-      "lcov",
-      "text"
-    ],
-    "sourceMap": false,
-    "instrument": false,
-    "exclude": [
-      "src/resources",
-      "test"
-    ]
   },
   "resolutions": {
     "glob-parent": "^5.1.2",
