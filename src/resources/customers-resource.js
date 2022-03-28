@@ -114,6 +114,39 @@ export default function CustomersResource({apiHandler}) {
       const params = {expand};
       return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
     },
+    /**
+     * @returns { rebilly.GetCustomerEddScoreResponsePromise } response
+     */
+    getCustomerEddScore({id}) {
+      return apiHandler.get(`customers/${id}/edd-score`);
+    },
+    patchCustomerEddScore({id, data}) {
+      return apiHandler.patch(`customers/${id}/edd-score`, data);
+    },
+    /**
+     * @param { rebilly.GetEddTimelineCollectionRequest } request
+     * @returns { rebilly.GetEddTimelineCollectionResponsePromise } response
+     */
+    getEddTimelineCollection({
+      id,
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      q = null,
+    }) {
+      const params = {limit, offset, filter, sort, q};
+      return apiHandler.getAll(`customers/${id}/edd-timeline`, params);
+    },
+    createEddTimelineComment({id, data}) {
+      return apiHandler.post(`customers/${id}/edd-timeline`, data);
+    },
+    /**
+     * @returns { rebilly.GetEddSearchResultsResponsePromise } response
+     */
+    GetEddSearchResults({id}) {
+      return apiHandler.get(`customers/${id}/edd-search-results`);
+    },
     downloadCSV({
       limit = null,
       offset = null,
