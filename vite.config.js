@@ -26,6 +26,11 @@ const config = defineConfig(({mode}) => {
             },
             minify: isDev ? false : 'esbuild',
             sourcemap: isDev,
+            rollupOptions: {
+                // This options avoid a rollup error when detecting than rebilly-js-sdk.js uses both default and named exports
+                // for backwards compatibility
+                output: {exports: 'named'}
+            }
         },
         resolve: {
             alias: buildAliases(mode),
