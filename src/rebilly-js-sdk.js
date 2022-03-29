@@ -23,8 +23,10 @@ const baseTimeoutMs = 6000;
  * Create an instance of the Rebilly API
  * @param {ApiParams} 
  */
-export default function RebillyAPI( // This default export is kept for backwards compatibility (better use RebillyAPI named export when consuming importing library)
-    {apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints} = {}
+// This default export is kept for backwards compatibility (better use RebillyAPI named export when consuming importing library)
+export default function RebillyAPI({
+    apiKey = null, sandbox = false, timeout = baseTimeoutMs, organizationId = null, urls = baseEndpoints
+} = {}
 ) {
     if (!urls.live || !urls.sandbox) {
         throw new Error('RebillyAPI urls config must include a key for both `live` and `sandbox`');
