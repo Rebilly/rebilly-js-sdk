@@ -9,8 +9,9 @@ jobs:
     name: Run unit tests
     steps:
       - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
       - run: yarn install --frozen-lockfile --non-interactive
       - run: yarn run test
 

@@ -15,7 +15,7 @@ describe('when I use an API handler', () => {
 
     it('Ignores get params when they are null', async () => {
         const instance = apiHandler.getInstance();
-        instance.get = jest.fn().mockImplementation(instance.get);
+        instance.get = vi.fn().mockImplementation(instance.get);
 
         api.customers.getAll({limit: null, filter: 'firstName:Kiko', q: 'Rivera'});
 
