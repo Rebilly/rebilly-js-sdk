@@ -13,7 +13,7 @@ jobs:
           token: ${{ secrets.MACHINE_USER_PAT }}
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: yarn install --frozen-lockfile
       # Setup git credentials used for committing to the Github Actions user
