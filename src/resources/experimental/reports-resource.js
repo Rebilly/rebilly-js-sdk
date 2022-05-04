@@ -101,6 +101,14 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/kyc-rejection-summary`, params);
         },
 
+        getKycRequestSummary({periodStart, periodEnd} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+            };
+            return apiHandler.get(`reports/kyc-request-summary`, params);
+        },
+
         getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
