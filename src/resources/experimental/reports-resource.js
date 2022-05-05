@@ -165,6 +165,18 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/retention-value`, params);
         },
 
+        getRevenueWaterfall({issuedFrom, issuedTo, recognizedTo, limit = null, offset = null, tz = null}) {
+            const params = {
+                issuedFrom,
+                issuedTo,
+                recognizedTo,
+                limit,
+                offset,
+                tz,
+            };
+            return apiHandler.get('reports/revenue-waterfall', params);
+        },
+
         getSubscriptionCancellation({aggregationField, periodStart, periodEnd, limit = null, offset = null, filter = null, criteria = null, tz = null} = {}) {
             const params = {
                 aggregationField,
