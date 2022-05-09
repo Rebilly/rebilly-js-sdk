@@ -1,6 +1,6 @@
 // @ts-nocheck
 import axios from 'axios';
-import {nanoid} from 'nanoid';
+import {nanoid} from 'nanoid/non-secure';
 import deepFreeze from './deep-freeze';
 
 /**
