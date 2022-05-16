@@ -165,8 +165,9 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/retention-value`, params);
         },
 
-        getRevenueWaterfall({issuedFrom, issuedTo, recognizedTo, limit = null, offset = null, tz = null}) {
+        getRevenueWaterfall({currency, issuedFrom, issuedTo, recognizedTo, limit = null, offset = null, tz = null}) {
             const params = {
+                currency,
                 issuedFrom,
                 issuedTo,
                 recognizedTo,
