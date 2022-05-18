@@ -109,6 +109,17 @@ export default function ReportsResource({apiHandler}) {
             return apiHandler.get(`reports/kyc-request-summary`, params);
         },
 
+        getMonthlyRecurringRevenue({periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
+            const params = {
+                periodStart,
+                periodEnd,
+                limit,
+                offset,
+                tz
+            };
+            return apiHandler.get(`reports/monthly-recurring-revenue`, params);
+        },
+
         getRulesMatchedSummary({eventType, periodStart, periodEnd, limit = null, offset = null, tz = null} = {}) {
             const params = {
                 periodStart,
