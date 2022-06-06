@@ -140,3 +140,22 @@ it("Generates TS types for collection query with parameters in pathName (but not
       type GetOauth2CredentialHashItemCollectionResponsePromise = Promise<{ items: {fields: GetOauth2CredentialHashItemCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
   `);
 });
+
+it("Generates TS types for response in reports schema", async () => {
+  const schema = {
+    paths: {
+      "/reports/transactions": {
+        get: {
+          operationId: "GetTransactionReport",
+          responses,
+        },
+      },
+    },
+  };
+
+  const types = generateSdkTypes(schema).trim();
+  expect(types).toEqual(
+      `type GetTransactionReportResponse = operations['GetTransactionReport']['responses']['200']['content']['application/json']
+  type GetTransactionReportResponsePromise = Promise<{fields: GetTransactionReportResponse}>`
+  );
+});
