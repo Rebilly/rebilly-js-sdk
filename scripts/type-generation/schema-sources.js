@@ -15,12 +15,16 @@ function getOnlineSchemas() {
     axios.get(
       'https://api.redoc.ly/registry/rebilly/users/users/bundle/main/openapi.json'
     ),
+    axios.get(
+      'https://api.redoc.ly/registry/rebilly/reports/reports/bundle/main/openapi.json'
+    ),
   ]).then((response) => {
-    const [coreResponse, storefrontResponse, usersResponse] = response;
+    const [coreResponse, storefrontResponse, usersResponse, reportsResponse] = response;
     return {
       coreSchema: coreResponse.data,
       storefrontSchema: storefrontResponse.data,
       usersSchema: usersResponse.data,
+      reportsSchema: reportsResponse.data,
     };
   });
 }
@@ -38,6 +42,7 @@ function readLocalSchemas() {
     coreSchema: readSchema('core.json'),
     usersSchema: readSchema('users.json'),
     storefrontSchema: readSchema('storefront.json'),
+    reportsSchema: readSchema('reports.json'),
   });
 }
 
