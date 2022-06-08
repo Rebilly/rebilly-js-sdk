@@ -9,6 +9,7 @@ const schemaTypes = {
   CORE: 'core',
   USERS: 'users',
   STOREFRONT: 'storefront',
+  REPORTS: 'reports',
 };
 
 function generateTypesFromSchemas(schemas) {
@@ -21,13 +22,16 @@ function generateTypesFromSchemas(schemas) {
     schemaTypes.STOREFRONT
   );
 
+  const reportsTypes = processSchema(schemas.reportsSchema, schemaTypes.REPORTS);
+
   const combinedApiTypes =
     coreTypes.openApiTypes +
     usersTypes.openApiTypes +
-    storefrontTypes.openApiTypes;
+    storefrontTypes.openApiTypes +
+    reportsTypes.openApiTypes;
 
   const combinedSDKTypes =
-    coreTypes.sdkTypes + usersTypes.sdkTypes + storefrontTypes.sdkTypes;
+    coreTypes.sdkTypes + usersTypes.sdkTypes + storefrontTypes.sdkTypes + reportsTypes.sdkTypes;
 
   console.log(
     '🍹 Mixing openapi-typescript types and custom SDK types into the same file (/typings/rebilly/index.d.ts)'
