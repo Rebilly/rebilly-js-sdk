@@ -127,6 +127,41 @@ export default function InvoicesResource({apiHandler}) {
     deleteTimelineMessage({id, messageId}) {
       return apiHandler.delete(`invoices/${id}/timeline/${messageId}`);
     },
+    /**
+     * @param { rebilly.GetInvoiceCreditMemoAllocationCollectionRequest } request
+     * @returns { rebilly.GetInvoiceCreditMemoAllocationCollectionResponsePromise } response
+     */
+    getAllCreditMemoAllocations({id, limit = null, offset = null}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(
+        `invoices/${id}/credit-memo-allocations`,
+        params
+      );
+    },
+    /**
+     * @returns { rebilly.GetInvoiceCreditMemoAllocationResponsePromise } response
+     */
+    getCreditMemoAllocation({id, creditMemoId, limit = null, offset = null}) {
+      const params = {limit, offset};
+      return apiHandler.get(
+        `invoices/${id}/credit-memo-allocations/${creditMemoId}`,
+        params
+      );
+    },
+    /**
+     * @returns { rebilly.PutInvoiceCreditMemoAllocationResponsePromise } response
+     */
+    applyCreditMemo({id, creditMemoId, data}) {
+      return apiHandler.put(
+        `invoices/${id}/credit-memo-allocations/${creditMemoId}`,
+        data
+      );
+    },
+    deleteCreditMemoAllocation({id, creditMemoId}) {
+      return apiHandler.delete(
+        `invoices/${id}/credit-memo-allocations/${creditMemoId}`
+      );
+    },
     downloadCSV({
       limit = null,
       offset = null,
