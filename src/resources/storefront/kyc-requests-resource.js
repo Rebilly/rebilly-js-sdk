@@ -8,8 +8,9 @@ export default function KycRequestsResource({apiHandler}) {
     /**
      * @returns { rebilly.StorefrontGetKycRequestResponsePromise } response
      */
-    get({id}) {
-      return apiHandler.get(`kyc-requests/${id}`);
+    get({id, expand = null}) {
+      const params = {expand};
+      return apiHandler.get(`kyc-requests/${id}`, params);
     },
   };
 }

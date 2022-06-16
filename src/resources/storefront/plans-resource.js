@@ -15,15 +15,17 @@ export default function PlansResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q};
+      const params = {filter, sort, limit, offset, q, expand};
       return apiHandler.getAll(`plans`, params);
     },
     /**
      * @returns { rebilly.StorefrontGetPlanResponsePromise } response
      */
-    get({id}) {
-      return apiHandler.get(`plans/${id}`);
+    get({id, expand = null}) {
+      const params = {expand};
+      return apiHandler.get(`plans/${id}`, params);
     },
   };
 }
