@@ -6,6 +6,12 @@
 export default function KycSettingsResource({apiHandler}) {
   return {
     /**
+     * @returns { rebilly.GetKycSettingsResponsePromise } response
+     */
+    getKycSettings() {
+      return apiHandler.get(`kyc-settings`);
+    },
+    /**
      * @returns { rebilly.PutKycSettingsResponsePromise } response
      */
     updateKycSettings({data}) {
