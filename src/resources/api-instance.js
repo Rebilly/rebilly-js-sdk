@@ -36,6 +36,7 @@ import KycRequestsResource from './kyc-requests-resource';
 import KycSettingsResource from './kyc-settings-resource';
 import ListsResource from './lists-resource';
 import MembershipsResource from './memberships-resource';
+import OrganizationExportsResource from './organization-exports-resource';
 import OrganizationsResource from './organizations-resource';
 import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
@@ -99,6 +100,7 @@ export class ApiInstance {
     this.kycSettings = KycSettingsResource({apiHandler});
     this.lists = ListsResource({apiHandler});
     this.memberships = MembershipsResource({apiHandler});
+    this.organizationExports = OrganizationExportsResource({apiHandler});
     this.organizations = OrganizationsResource({apiHandler});
     this.paymentCardsBankNames = PaymentCardsBankNamesResource({apiHandler});
     this.paymentInstruments = PaymentInstrumentsResource({apiHandler});
