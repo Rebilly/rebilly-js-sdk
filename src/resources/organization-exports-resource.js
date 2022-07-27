@@ -19,8 +19,8 @@ export default function OrganizationExportsResource({apiHandler}) {
       const params = {limit, offset, filter, q, sort};
       return apiHandler.getAll(`organization-exports`, params);
     },
-    create() {
-      return apiHandler.post(`organization-exports`);
+    create({data}) {
+      return apiHandler.post(`organization-exports`, data);
     },
     /**
      * @returns { rebilly.GetOrganizationExportResponsePromise } response
