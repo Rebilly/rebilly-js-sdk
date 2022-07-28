@@ -6,7 +6,7 @@
 export default function EmailDeliverySettingsResource({apiHandler}) {
   return {
     /**
-     * @returns { rebilly.VerifyEmailDeliverySettingsResponsePromise } response
+     * @returns { rebilly.PutEmailDeliverySettingsVerificationResponsePromise } response
      */
     verify({token}) {
       return apiHandler.put(`email-delivery-setting-verifications/${token}`);
