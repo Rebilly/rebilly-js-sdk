@@ -115,6 +115,31 @@ export default function ReportsResource({apiHandler}) {
       return apiHandler.get(`reports/future-renewals`, params);
     },
     /**
+     * @returns { rebilly.GetJournalReportResponsePromise } response
+     */
+    getJournal({
+      currency,
+      bookedFrom = null,
+      bookedTo = null,
+      recognizedAt,
+      aggregationField,
+      limit = null,
+      offset = null,
+      filter = null,
+    }) {
+      const params = {
+        currency,
+        bookedFrom,
+        bookedTo,
+        recognizedAt,
+        aggregationField,
+        limit,
+        offset,
+        filter,
+      };
+      return apiHandler.get(`reports/journal`, params);
+    },
+    /**
      * @returns { rebilly.GetKycAcceptanceSummaryReportResponsePromise } response
      */
     getKycAcceptanceSummary({periodStart, periodEnd}) {
