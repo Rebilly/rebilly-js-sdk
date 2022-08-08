@@ -246,6 +246,13 @@ export default function ReportsResource({apiHandler}) {
       return apiHandler.get(`reports/revenue-waterfall`, params);
     },
     /**
+     * @returns { rebilly.GetRevenueAuditReportResponsePromise } response
+     */
+    getRevenueAudit({filter = null, sort = null, limit = null, offset = null}) {
+      const params = {filter, sort, limit, offset};
+      return apiHandler.get(`reports/revenue-audit`, params);
+    },
+    /**
      * @returns { rebilly.GetSubscriptionCancellationReportResponsePromise } response
      */
     getSubscriptionCancellation({
