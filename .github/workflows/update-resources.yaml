@@ -36,7 +36,7 @@ jobs:
           token: ${{ secrets.MACHINE_USER_PAT }}
 
       - name: Executes sdk generation
-        working-directory: ./rebilly-sdk-generator
+        working-directory: ./rebilly-sdk-generator/js
         run: |
           yarn install --frozen-lockfile --non-interactive
           yarn update-sdk-from-local
