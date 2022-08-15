@@ -9,8 +9,14 @@ export default function KycDocumentsResource({apiHandler}) {
      * @param { rebilly.GetKycDocumentCollectionRequest } request
      * @returns { rebilly.GetKycDocumentCollectionResponsePromise } response
      */
-    getAll({limit = null, offset = null, filter = null, sort = null} = {}) {
-      const params = {limit, offset, filter, sort};
+    getAll({
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      expand = null,
+    } = {}) {
+      const params = {limit, offset, filter, sort, expand};
       return apiHandler.getAll(`kyc-documents`, params);
     },
     /**
