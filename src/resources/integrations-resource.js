@@ -9,8 +9,9 @@ export default function IntegrationsResource({apiHandler}) {
      * @param { rebilly.GetIntegrationCollectionRequest } request
      * @returns { rebilly.GetIntegrationCollectionResponsePromise } response
      */
-    getAll() {
-      return apiHandler.getAll(`integrations`);
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`integrations`, params);
     },
     /**
      * @returns { rebilly.GetIntegrationResponsePromise } response

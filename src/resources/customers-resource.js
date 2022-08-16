@@ -144,8 +144,9 @@ export default function CustomersResource({apiHandler}) {
     /**
      * @returns { rebilly.GetEddSearchResultsResponsePromise } response
      */
-    getAllEddSearchResults({id}) {
-      return apiHandler.get(`customers/${id}/edd-search-results`);
+    getAllEddSearchResults({id, limit = null, offset = null}) {
+      const params = {limit, offset};
+      return apiHandler.get(`customers/${id}/edd-search-results`, params);
     },
     downloadCSV({
       limit = null,

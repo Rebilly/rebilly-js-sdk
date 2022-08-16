@@ -9,8 +9,9 @@ export default function EmailNotificationsResource({apiHandler}) {
      * @param { rebilly.GetEmailNotificationCollectionRequest } request
      * @returns { rebilly.GetEmailNotificationCollectionResponsePromise } response
      */
-    getAll() {
-      return apiHandler.getAll(`email-notifications`);
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`email-notifications`, params);
     },
   };
 }

@@ -34,8 +34,9 @@ export default function ApplicationsResource({apiHandler}) {
      * @param { rebilly.GetApplicationInstanceCollectionRequest } request
      * @returns { rebilly.GetApplicationInstanceCollectionResponsePromise } response
      */
-    getInstances({id}) {
-      return apiHandler.getAll(`applications/${id}/instances`);
+    getInstances({id, limit = null, offset = null}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`applications/${id}/instances`, params);
     },
     /**
      * @returns { rebilly.GetApplicationInstanceByOrganizationResponsePromise } response
