@@ -9,8 +9,9 @@ export default function PaymentMethodsResource({apiHandler}) {
      * @param { rebilly.GetPaymentMethodCollectionRequest } request
      * @returns { rebilly.GetPaymentMethodCollectionResponsePromise } response
      */
-    getAll() {
-      return apiHandler.getAll(`payment-methods`);
+    getAll({limit = null, offset = null} = {}) {
+      const params = {limit, offset};
+      return apiHandler.getAll(`payment-methods`, params);
     },
     /**
      * @returns { rebilly.GetPaymentMethodResponsePromise } response
