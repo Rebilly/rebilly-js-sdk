@@ -25,8 +25,9 @@ export default function InvoicesResource({apiHandler}) {
     /**
      * @returns { rebilly.StorefrontGetInvoiceResponsePromise } response
      */
-    get({id}) {
-      return apiHandler.get(`invoices/${id}`);
+    get({id, expand = null}) {
+      const params = {expand};
+      return apiHandler.get(`invoices/${id}`, params);
     },
     downloadPDF({id}) {
       const config = {
