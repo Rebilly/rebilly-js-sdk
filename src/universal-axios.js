@@ -9,6 +9,7 @@
 import axios from 'axios';
 
 try {
+  // @ts-ignore
   if (require) axios.defaults.adapter = require('axios/lib/adapters/http.js');
 } catch {
   // Ignore error when require does not exist (browsers context)
