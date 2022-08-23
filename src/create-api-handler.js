@@ -1,5 +1,5 @@
 // @ts-nocheck
-import axios from 'axios';
+import axios from './universal-axios';
 import Member from './member';
 import Collection from './collection';
 import File from './file';
