@@ -29,7 +29,14 @@ const config = defineConfig(({mode}) => {
             rollupOptions: {
                 // This options avoid a rollup error when detecting than rebilly-js-sdk.js uses both default and named exports
                 // for backwards compatibility
-                output: {exports: 'named'}
+                output: {exports: 'named'},
+                // Vite is optimized for browser builds, and will respect the browser
+                // flag inside axios package.json even in node mode, which results in 
+                // the wrong network request adapter being selected.
+                // Make axios external so that it is not bundled in with our dist, and will
+                // be correctly handled when imported by any clients (node or browser).
+                // https://github.com/vitejs/vite/issues/8910
+                external: ['axios']
             }
         },
         resolve: {
