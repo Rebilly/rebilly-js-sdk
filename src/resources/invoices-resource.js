@@ -141,11 +141,9 @@ export default function InvoicesResource({apiHandler}) {
     /**
      * @returns { rebilly.GetInvoiceCreditMemoAllocationResponsePromise } response
      */
-    getCreditMemoAllocation({id, creditMemoId, limit = null, offset = null}) {
-      const params = {limit, offset};
+    getCreditMemoAllocation({id, creditMemoId}) {
       return apiHandler.get(
-        `invoices/${id}/credit-memo-allocations/${creditMemoId}`,
-        params
+        `invoices/${id}/credit-memo-allocations/${creditMemoId}`
       );
     },
     /**
