@@ -52,8 +52,8 @@ export default function CustomersResource({apiHandler}) {
       );
     },
     /**
-     * @param { rebilly.GetCustomerAmlEntryCollectionRequest } request
-     * @returns { rebilly.GetCustomerAmlEntryCollectionResponsePromise } response
+     * @param { rebilly.GetCustomerAmlHitCollectionRequest } request
+     * @returns { rebilly.GetCustomerAmlHitCollectionResponsePromise } response
      */
     getAml({id}) {
       return apiHandler.getAll(`customers/${id}/aml`);
@@ -105,14 +105,6 @@ export default function CustomersResource({apiHandler}) {
     },
     deleteTimelineMessage({id, messageId}) {
       return apiHandler.delete(`customers/${id}/timeline/${messageId}`);
-    },
-    /**
-     * @param { rebilly.GetCustomerUpcomingInvoiceCollectionRequest } request
-     * @returns { rebilly.GetCustomerUpcomingInvoiceCollectionResponsePromise } response
-     */
-    getAllUpcomingInvoices({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.getAll(`customers/${id}/upcoming-invoices`, params);
     },
     /**
      * @returns { rebilly.GetCustomerEddScoreResponsePromise } response

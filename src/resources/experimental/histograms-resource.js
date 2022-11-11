@@ -11,7 +11,6 @@ export default function HistogramsResource({apiHandler}) {
     getTransactionHistogramReport({
       periodStart,
       periodEnd,
-      aggregationField,
       aggregationPeriod,
       metric,
       filter = null,
@@ -19,7 +18,6 @@ export default function HistogramsResource({apiHandler}) {
       const params = {
         periodStart,
         periodEnd,
-        aggregationField,
         aggregationPeriod,
         metric,
         filter,

@@ -8,7 +8,7 @@ export default function AccountResource({apiHandler}) {
     /**
      * @returns { rebilly.StorefrontGetAccountResponsePromise } response
      */
-    get({expand = null}) {
+    get({expand = null} = {}) {
       const params = {expand};
       return apiHandler.get(`account`, params);
     },
