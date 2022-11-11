@@ -61,6 +61,7 @@ import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
+import UsagesResource from './usages-resource';
 import UsersResource from './users-resource';
 import WebhooksResource from './webhooks-resource';
 import WebsitesResource from './websites-resource';
@@ -129,6 +130,7 @@ export class ApiInstance {
     this.tags = TagsResource({apiHandler});
     this.tracking = TrackingResource({apiHandler});
     this.transactions = TransactionsResource({apiHandler});
+    this.usages = UsagesResource({apiHandler});
     this.users = UsersResource({apiHandler});
     this.webhooks = WebhooksResource({apiHandler});
     this.websites = WebsitesResource({apiHandler});

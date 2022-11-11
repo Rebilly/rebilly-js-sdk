@@ -40,6 +40,9 @@ export default function CreditMemosResource({apiHandler}) {
     update({id, data}) {
       return apiHandler.put(`credit-memos/${id}`, data);
     },
+    patch({id, data}) {
+      return apiHandler.patch(`credit-memos/${id}`, data);
+    },
     void({id}) {
       return apiHandler.post(`credit-memos/${id}/void`);
     },

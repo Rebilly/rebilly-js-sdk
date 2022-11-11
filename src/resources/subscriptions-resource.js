@@ -65,6 +65,13 @@ export default function SubscriptionsResource({apiHandler}) {
       const params = {expand};
       return apiHandler.getAll(`subscriptions/${id}/upcoming-invoices`, params);
     },
+    /**
+     * @returns { rebilly.GetSubscriptionUpcomingInvoiceResponsePromise } response
+     */
+    getUpcomingInvoice({id, expand = null}) {
+      const params = {expand};
+      return apiHandler.get(`subscriptions/${id}/upcoming-invoice`, params);
+    },
     issueUpcomingInvoice({id, invoiceId, data}) {
       return apiHandler.post(
         `subscriptions/${id}/upcoming-invoices/${invoiceId}/issue`,
