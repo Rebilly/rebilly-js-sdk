@@ -4,6 +4,7 @@
  */
 
 import AccountResource from './account-resource';
+import AmlChecksResource from './aml-checks-resource';
 import AmlResource from './aml-resource';
 import ApiKeysResource from './api-keys-resource';
 import ApplicationInstancesResource from './application-instances-resource';
@@ -69,6 +70,7 @@ import WebsitesResource from './websites-resource';
 export class ApiInstance {
   constructor({apiHandler}) {
     this.account = AccountResource({apiHandler});
+    this.amlChecks = AmlChecksResource({apiHandler});
     this.aml = AmlResource({apiHandler});
     this.apiKeys = ApiKeysResource({apiHandler});
     this.applicationInstances = ApplicationInstancesResource({apiHandler});
