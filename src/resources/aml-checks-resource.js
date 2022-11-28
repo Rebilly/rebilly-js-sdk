@@ -25,5 +25,8 @@ export default function AmlChecksResource({apiHandler}) {
     get({id}) {
       return apiHandler.get(`aml-checks/${id}`);
     },
+    review({id, data}) {
+      return apiHandler.post(`aml-checks/${id}/review`, data);
+    },
   };
 }
