@@ -6,6 +6,8 @@
 import AccountResource from './account-resource';
 import AuthorizationResource from './authorization-resource';
 import BillingPortalsResource from './billing-portals-resource';
+import CashierDepositResource from './cashier-deposit-resource';
+import CashierRequestsResource from './cashier-requests-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import InvoicesResource from './invoices-resource';
 import KycDocumentsResource from './kyc-documents-resource';
@@ -23,6 +25,8 @@ export class StorefrontApiInstance {
     this.account = AccountResource({apiHandler});
     this.authorization = AuthorizationResource({apiHandler});
     this.billingPortals = BillingPortalsResource({apiHandler});
+    this.cashierDeposit = CashierDepositResource({apiHandler});
+    this.cashierRequests = CashierRequestsResource({apiHandler});
     this.checkoutForms = CheckoutFormsResource({apiHandler});
     this.invoices = InvoicesResource({apiHandler});
     this.kycDocuments = KycDocumentsResource({apiHandler});
