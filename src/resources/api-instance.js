@@ -13,6 +13,8 @@ import BalanceTransactionsResource from './balance-transactions-resource';
 import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
+import CashierRequestsResource from './cashier-requests-resource';
+import CashierStrategiesResource from './cashier-strategies-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
 import CredentialHashesResource from './credential-hashes-resource';
@@ -79,6 +81,8 @@ export class ApiInstance {
     this.billingPortals = BillingPortalsResource({apiHandler});
     this.blocklists = BlocklistsResource({apiHandler});
     this.broadcastMessages = BroadcastMessagesResource({apiHandler});
+    this.cashierRequests = CashierRequestsResource({apiHandler});
+    this.cashierStrategies = CashierStrategiesResource({apiHandler});
     this.checkoutForms = CheckoutFormsResource({apiHandler});
     this.coupons = CouponsResource({apiHandler});
     this.credentialHashes = CredentialHashesResource({apiHandler});
