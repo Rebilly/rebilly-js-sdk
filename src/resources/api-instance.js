@@ -45,6 +45,7 @@ import PaymentCardsBankNamesResource from './payment-cards-bank-names-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
 import PaymentMethodsResource from './payment-methods-resource';
 import PaymentTokensResource from './payment-tokens-resource';
+import PayoutRequestsResource from './payout-requests-resource';
 import PayoutsResource from './payouts-resource';
 import PlansResource from './plans-resource';
 import PreviewsResource from './previews-resource';
@@ -113,6 +114,7 @@ export class ApiInstance {
     this.paymentInstruments = PaymentInstrumentsResource({apiHandler});
     this.paymentMethods = PaymentMethodsResource({apiHandler});
     this.paymentTokens = PaymentTokensResource({apiHandler});
+    this.payoutRequests = PayoutRequestsResource({apiHandler});
     this.payouts = PayoutsResource({apiHandler});
     this.plans = PlansResource({apiHandler});
     this.previews = PreviewsResource({apiHandler});

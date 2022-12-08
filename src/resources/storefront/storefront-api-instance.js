@@ -14,6 +14,7 @@ import KycDocumentsResource from './kyc-documents-resource';
 import KycRequestsResource from './kyc-requests-resource';
 import OrdersResource from './orders-resource';
 import PaymentInstrumentsResource from './payment-instruments-resource';
+import PayoutRequestsResource from './payout-requests-resource';
 import PlansResource from './plans-resource';
 import ProductsResource from './products-resource';
 import PurchaseResource from './purchase-resource';
@@ -33,6 +34,7 @@ export class StorefrontApiInstance {
     this.kycRequests = KycRequestsResource({apiHandler});
     this.orders = OrdersResource({apiHandler});
     this.paymentInstruments = PaymentInstrumentsResource({apiHandler});
+    this.payoutRequests = PayoutRequestsResource({apiHandler});
     this.plans = PlansResource({apiHandler});
     this.products = ProductsResource({apiHandler});
     this.purchase = PurchaseResource({apiHandler});
