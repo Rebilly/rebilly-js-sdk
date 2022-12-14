@@ -200,5 +200,31 @@ export default function CredentialHashesResource({apiHandler}) {
     updateTaxJarCredential({hash, data}) {
       return apiHandler.patch(`credential-hashes/taxjar/${hash}`, data);
     },
+    /**
+     * @param { rebilly.GetAvalaraCredentialHashCollectionRequest } request
+     * @returns { rebilly.GetAvalaraCredentialHashCollectionResponsePromise } response
+     */
+    getAllAvalaraCredentials({
+      filter = null,
+      limit = null,
+      offset = null,
+      sort = null,
+      q = null,
+    } = {}) {
+      const params = {filter, limit, offset, sort, q};
+      return apiHandler.getAll(`credential-hashes/avalara`, params);
+    },
+    createAvalaraCredential({data}) {
+      return apiHandler.post(`credential-hashes/avalara`, data);
+    },
+    /**
+     * @returns { rebilly.GetAvalaraCredentialHashResponsePromise } response
+     */
+    getAvalaraCredential({hash}) {
+      return apiHandler.get(`credential-hashes/avalara/${hash}`);
+    },
+    updateAvalaraCredential({hash, data}) {
+      return apiHandler.patch(`credential-hashes/avalara/${hash}`, data);
+    },
   };
 }
