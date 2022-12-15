@@ -34,6 +34,8 @@ import FilesResource from './files-resource';
 import GatewayAccountsResource from './gateway-accounts-resource';
 import IntegrationsResource from './integrations-resource';
 import InvoicesResource from './invoices-resource';
+import JournalAccountsResource from './journal-accounts-resource';
+import JournalEntriesResource from './journal-entries-resource';
 import KycDocumentsResource from './kyc-documents-resource';
 import KycRequestsResource from './kyc-requests-resource';
 import KycSettingsResource from './kyc-settings-resource';
@@ -103,6 +105,8 @@ export class ApiInstance {
     this.gatewayAccounts = GatewayAccountsResource({apiHandler});
     this.integrations = IntegrationsResource({apiHandler});
     this.invoices = InvoicesResource({apiHandler});
+    this.journalAccounts = JournalAccountsResource({apiHandler});
+    this.journalEntries = JournalEntriesResource({apiHandler});
     this.kycDocuments = KycDocumentsResource({apiHandler});
     this.kycRequests = KycRequestsResource({apiHandler});
     this.kycSettings = KycSettingsResource({apiHandler});
