@@ -73,16 +73,15 @@ export default function EventsResource({apiHandler}) {
       q = null,
       sort = null,
       fields = null,
-      expand = null,
     }) {
-      const params = {limit, offset, filter, q, sort, fields, expand};
+      const params = {limit, offset, filter, q, sort, fields};
       return apiHandler.getAll(`events/${eventType}/rules/history`, params);
     },
     /**
      * @returns { rebilly.GetEventRuleHistoryVersionResponsePromise } response
      */
-    getRulesVersionNumber({eventType, version, fields = null, expand = null}) {
-      const params = {fields, expand};
+    getRulesVersionNumber({eventType, version, fields = null}) {
+      const params = {fields};
       return apiHandler.get(
         `events/${eventType}/rules/history/${version}`,
         params
@@ -91,8 +90,8 @@ export default function EventsResource({apiHandler}) {
     /**
      * @returns { rebilly.GetEventRuleVersionResponsePromise } response
      */
-    getRulesVersionDetail({eventType, version, fields = null, expand = null}) {
-      const params = {fields, expand};
+    getRulesVersionDetail({eventType, version, fields = null}) {
+      const params = {fields};
       return apiHandler.get(
         `events/${eventType}/rules/versions/${version}`,
         params
@@ -109,9 +108,8 @@ export default function EventsResource({apiHandler}) {
       q = null,
       sort = null,
       fields = null,
-      expand = null,
     }) {
-      const params = {limit, offset, filter, q, sort, fields, expand};
+      const params = {limit, offset, filter, q, sort, fields};
       return apiHandler.getAll(`events/${eventType}/rules/drafts`, params);
     },
     createDraftRuleset({eventType, data}) {
@@ -120,8 +118,8 @@ export default function EventsResource({apiHandler}) {
     /**
      * @returns { rebilly.GetEventRuleSetDraftResponsePromise } response
      */
-    getDraftRuleset({eventType, id, fields = null, expand = null}) {
-      const params = {fields, expand};
+    getDraftRuleset({eventType, id, fields = null}) {
+      const params = {fields};
       return apiHandler.get(`events/${eventType}/rules/drafts/${id}`, params);
     },
     /**

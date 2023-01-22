@@ -15,9 +15,8 @@ export default function CreditMemosResource({apiHandler}) {
       limit = null,
       offset = null,
       q = null,
-      expand = null,
     } = {}) {
-      const params = {filter, sort, limit, offset, q, expand};
+      const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`credit-memos`, params);
     },
     /**
@@ -30,9 +29,8 @@ export default function CreditMemosResource({apiHandler}) {
     /**
      * @returns { rebilly.GetCreditMemoResponsePromise } response
      */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`credit-memos/${id}`, params);
+    get({id}) {
+      return apiHandler.get(`credit-memos/${id}`);
     },
     /**
      * @returns { rebilly.PutCreditMemoResponsePromise } response

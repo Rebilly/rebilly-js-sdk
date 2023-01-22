@@ -14,11 +14,10 @@ export default function ApplicationsResource({apiHandler}) {
       offset = null,
       filter = null,
       q = null,
-      expand = null,
       fields = null,
       sort = null,
     } = {}) {
-      const params = {limit, offset, filter, q, expand, fields, sort};
+      const params = {limit, offset, filter, q, fields, sort};
       return apiHandler.getAll(`applications`, params);
     },
     create({data}) {

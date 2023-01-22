@@ -13,35 +13,31 @@ export default function DataExportsResource({apiHandler}) {
       limit = null,
       offset = null,
       sort = null,
-      expand = null,
       filter = null,
       q = null,
       criteria = null,
     } = {}) {
-      const params = {limit, offset, sort, expand, filter, q, criteria};
+      const params = {limit, offset, sort, filter, q, criteria};
       return apiHandler.getAll(`data-exports`, params);
     },
     /**
      * @param { rebilly.CreateDataExportRequest } request
      * @returns { rebilly.PostDataExportResponsePromise } response
      */
-    queue({id = '', data, expand = null}) {
-      const params = {expand};
-      return apiHandler.create(`data-exports/${id}`, id, data, params);
+    queue({id = '', data}) {
+      return apiHandler.create(`data-exports/${id}`, id, data);
     },
     /**
      * @returns { rebilly.GetDataExportResponsePromise } response
      */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`data-exports/${id}`, params);
+    get({id}) {
+      return apiHandler.get(`data-exports/${id}`);
     },
     /**
      * @returns { rebilly.PutDataExportResponsePromise } response
      */
-    update({id, data, expand = null}) {
-      const params = {expand};
-      return apiHandler.put(`data-exports/${id}`, data, params);
+    update({id, data}) {
+      return apiHandler.put(`data-exports/${id}`, data);
     },
     delete({id}) {
       return apiHandler.delete(`data-exports/${id}`);

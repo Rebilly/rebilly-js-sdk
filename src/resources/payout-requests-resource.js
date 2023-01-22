@@ -14,17 +14,23 @@ export default function PayoutRequestsResource({apiHandler}) {
       return apiHandler.getAll(`payout-requests`, params);
     },
     /**
+     * @param { rebilly.CreatePayoutRequestRequest } request
+     * @returns { rebilly.PostPayoutRequestResponsePromise } response
+     */
+    create({id = '', data}) {
+      return apiHandler.create(`payout-requests/${id}`, id, data);
+    },
+    /**
      * @returns { rebilly.GetPayoutRequestResponsePromise } response
      */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`payout-requests/${id}`, params);
+    get({id}) {
+      return apiHandler.get(`payout-requests/${id}`);
     },
-    accept({id}) {
-      return apiHandler.post(`payout-requests/${id}/accept`);
-    },
-    reject({id, data}) {
-      return apiHandler.post(`payout-requests/${id}/reject`, data);
+    /**
+     * @returns { rebilly.PutPayoutRequestResponsePromise } response
+     */
+    update({id, data}) {
+      return apiHandler.put(`payout-requests/${id}`, data);
     },
     /**
      * @returns { rebilly.GetPayoutRequestPaymentInstrumentsResponsePromise } response
