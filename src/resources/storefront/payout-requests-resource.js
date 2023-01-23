@@ -19,18 +19,14 @@ export default function PayoutRequestsResource({apiHandler}) {
       const params = {filter, sort, limit, offset, q};
       return apiHandler.getAll(`payout-requests`, params);
     },
-    create({data}) {
-      return apiHandler.post(`payout-requests`, data);
-    },
     /**
      * @returns { rebilly.StorefrontGetPayoutRequestResponsePromise } response
      */
-    get({id, expand = null}) {
-      const params = {expand};
-      return apiHandler.get(`payout-requests/${id}`, params);
+    get({id}) {
+      return apiHandler.get(`payout-requests/${id}`);
     },
-    cancel({id, data}) {
-      return apiHandler.post(`payout-requests/${id}/cancel`, data);
+    update({id, data}) {
+      return apiHandler.patch(`payout-requests/${id}`, data);
     },
   };
 }
