@@ -52,11 +52,10 @@ export default function CustomersResource({apiHandler}) {
       );
     },
     /**
-     * @param { rebilly.GetCustomerAmlHitCollectionRequest } request
-     * @returns { rebilly.GetCustomerAmlHitCollectionResponsePromise } response
+     * @returns { rebilly.GetCustomerAmlHitResponsePromise } response
      */
     getAml({id}) {
-      return apiHandler.getAll(`customers/${id}/aml`);
+      return apiHandler.get(`customers/${id}/aml`);
     },
     /**
      * @returns { rebilly.GetCustomerLeadSourceResponsePromise } response
@@ -116,8 +115,8 @@ export default function CustomersResource({apiHandler}) {
       return apiHandler.patch(`customers/${id}/edd-score`, data);
     },
     /**
-     * @param { rebilly.GetEddTimelineCollectionRequest } request
-     * @returns { rebilly.GetEddTimelineCollectionResponsePromise } response
+     * @param { rebilly.GetCustomerEddTimelineCollectionRequest } request
+     * @returns { rebilly.GetCustomerEddTimelineCollectionResponsePromise } response
      */
     getEddTimelineCollection({
       id,
@@ -134,11 +133,29 @@ export default function CustomersResource({apiHandler}) {
       return apiHandler.post(`customers/${id}/edd-timeline`, data);
     },
     /**
-     * @returns { rebilly.GetEddSearchResultsResponsePromise } response
+     * @returns { rebilly.GetCustomerEddTimelineResponsePromise } response
+     */
+    getEddTimelineMessage({id, messageId}) {
+      return apiHandler.get(`customers/${id}/edd-timeline/${messageId}`);
+    },
+    deleteEddTimelineMessage({id, messageId}) {
+      return apiHandler.delete(`customers/${id}/edd-timeline/${messageId}`);
+    },
+    /**
+     * @param { rebilly.GetCustomerEddSearchResultCollectionRequest } request
+     * @returns { rebilly.GetCustomerEddSearchResultCollectionResponsePromise } response
      */
     getAllEddSearchResults({id, limit = null, offset = null}) {
       const params = {limit, offset};
-      return apiHandler.get(`customers/${id}/edd-search-results`, params);
+      return apiHandler.getAll(`customers/${id}/edd-search-results`, params);
+    },
+    /**
+     * @returns { rebilly.GetCustomerEddSearchResultResponsePromise } response
+     */
+    getEddSearchResult({id, searchResultId}) {
+      return apiHandler.get(
+        `customers/${id}/edd-search-results/${searchResultId}`
+      );
     },
     downloadCSV({
       limit = null,

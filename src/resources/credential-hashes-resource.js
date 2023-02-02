@@ -87,8 +87,8 @@ export default function CredentialHashesResource({apiHandler}) {
       );
     },
     /**
-     * @param { rebilly.GetPlaidCredentialCollectionRequest } request
-     * @returns { rebilly.GetPlaidCredentialCollectionResponsePromise } response
+     * @param { rebilly.GetPlaidCredentialHashCollectionRequest } request
+     * @returns { rebilly.GetPlaidCredentialHashCollectionResponsePromise } response
      */
     getAllPlaidCredentials({
       filter = null,

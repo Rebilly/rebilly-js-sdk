@@ -31,5 +31,8 @@ export default function OrdersResource({apiHandler}) {
     cancel({id, data}) {
       return apiHandler.post(`orders/${id}/cancellation`, data);
     },
+    pause({id, data}) {
+      return apiHandler.post(`orders/${id}/pause`, data);
+    },
   };
 }

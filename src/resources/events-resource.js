@@ -37,7 +37,8 @@ export default function EventsResource({apiHandler}) {
       return apiHandler.put(`events/${eventType}/rules`, data);
     },
     /**
-     * @returns { rebilly.GetRulesEngineTimelineCollectionResponsePromise } response
+     * @param { rebilly.GetRuleSetCollectionRequest } request
+     * @returns { rebilly.GetRuleSetCollectionResponsePromise } response
      */
     getAllTimelineMessages({
       eventType,
@@ -54,7 +55,7 @@ export default function EventsResource({apiHandler}) {
       return apiHandler.post(`events/${eventType}/timeline`, data);
     },
     /**
-     * @returns { rebilly.GetRulesEngineTimelineResponsePromise } response
+     * @returns { rebilly.GetRuleSetTimelineResponsePromise } response
      */
     getTimelineMessage({eventType, messageId}) {
       return apiHandler.get(`events/${eventType}/timeline/${messageId}`);
@@ -78,7 +79,7 @@ export default function EventsResource({apiHandler}) {
       return apiHandler.getAll(`events/${eventType}/rules/history`, params);
     },
     /**
-     * @returns { rebilly.GetEventRuleHistoryVersionResponsePromise } response
+     * @returns { rebilly.GetEventRuleHistoryResponsePromise } response
      */
     getRulesVersionNumber({eventType, version, fields = null}) {
       const params = {fields};
