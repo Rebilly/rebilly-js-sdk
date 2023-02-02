@@ -25,6 +25,12 @@ export default function TransactionsResource({apiHandler}) {
     get({id}) {
       return apiHandler.get(`transactions/${id}`);
     },
+    finishKyc({id, token}) {
+      return apiHandler.post(`transactions/${id}/${token}/continue`);
+    },
+    skipKyc({id, token}) {
+      return apiHandler.post(`transactions/${id}/${token}/bypass`);
+    },
     update({id, data}) {
       return apiHandler.patch(`transactions/${id}`, data);
     },
