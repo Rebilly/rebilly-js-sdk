@@ -54,6 +54,7 @@ import PreviewsResource from './previews-resource';
 import ProductsResource from './products-resource';
 import ProfileResource from './profile-resource';
 import PurchaseResource from './purchase-resource';
+import RiskScoreRulesResource from './risk-score-rules-resource';
 import RolesResource from './roles-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
@@ -125,6 +126,7 @@ export class ApiInstance {
     this.products = ProductsResource({apiHandler});
     this.profile = ProfileResource({apiHandler});
     this.purchase = PurchaseResource({apiHandler});
+    this.riskScoreRules = RiskScoreRulesResource({apiHandler});
     this.roles = RolesResource({apiHandler});
     this.search = SearchResource({apiHandler});
     this.segments = SegmentsResource({apiHandler});
