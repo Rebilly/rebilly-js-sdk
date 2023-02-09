@@ -66,6 +66,7 @@ import SubscriptionPausesResource from './subscription-pauses-resource';
 import SubscriptionReactivationsResource from './subscription-reactivations-resource';
 import SubscriptionsResource from './subscriptions-resource';
 import TagsResource from './tags-resource';
+import TagsRulesResource from './tags-rules-resource';
 import TrackingResource from './tracking-resource';
 import TransactionsResource from './transactions-resource';
 import UsagesResource from './usages-resource';
@@ -142,6 +143,7 @@ export class ApiInstance {
     });
     this.subscriptions = SubscriptionsResource({apiHandler});
     this.tags = TagsResource({apiHandler});
+    this.tagsRules = TagsRulesResource({apiHandler});
     this.tracking = TrackingResource({apiHandler});
     this.transactions = TransactionsResource({apiHandler});
     this.usages = UsagesResource({apiHandler});
