@@ -35,11 +35,5 @@ export default function ProfileResource({apiHandler}) {
     deleteMfa() {
       return apiHandler.delete(`profile/mfa`);
     },
-    updatePassword({data}) {
-      return apiHandler.post(`profile/password`, data);
-    },
-    resetTotp() {
-      return apiHandler.post(`profile/totp-reset`);
-    },
   };
 }

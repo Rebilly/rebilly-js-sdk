@@ -6,15 +6,6 @@
 export default function UsersResource({apiHandler}) {
   return {
     /**
-     * @returns { rebilly.GetPasswordResetTokenResponsePromise } response
-     */
-    getResetPasswordToken({token}) {
-      return apiHandler.get(`reset-password/${token}`);
-    },
-    resetPassword({token, data}) {
-      return apiHandler.post(`reset-password/${token}`, data);
-    },
-    /**
      * @param { rebilly.GetUserCollectionRequest } request
      * @returns { rebilly.GetUserCollectionResponsePromise } response
      */
@@ -52,12 +43,6 @@ export default function UsersResource({apiHandler}) {
      */
     getMfa({id}) {
       return apiHandler.get(`users/${id}/mfa`);
-    },
-    updatePassword({id, data}) {
-      return apiHandler.post(`users/${id}/password`, data);
-    },
-    resetTotp({id}) {
-      return apiHandler.post(`users/${id}/totp-reset`);
     },
   };
 }

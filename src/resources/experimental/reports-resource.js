@@ -288,8 +288,22 @@ export default function ReportsResource({apiHandler}) {
     /**
      * @returns { rebilly.GetTimeSeriesTransactionReportResponsePromise } response
      */
-    getTimeSeriesTransaction({type, subaggregate, periodStart, periodEnd}) {
-      const params = {type, subaggregate, periodStart, periodEnd};
+    getTimeSeriesTransaction({
+      type,
+      subaggregate,
+      periodStart,
+      periodEnd,
+      limit = null,
+      offset = null,
+    }) {
+      const params = {
+        type,
+        subaggregate,
+        periodStart,
+        periodEnd,
+        limit,
+        offset,
+      };
       return apiHandler.get(`reports/time-series-transaction`, params);
     },
     /**
