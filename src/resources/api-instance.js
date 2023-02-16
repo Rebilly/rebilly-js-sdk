@@ -13,6 +13,7 @@ import BalanceTransactionsResource from './balance-transactions-resource';
 import BillingPortalsResource from './billing-portals-resource';
 import BlocklistsResource from './blocklists-resource';
 import BroadcastMessagesResource from './broadcast-messages-resource';
+import CashierCustomPropertySetsResource from './cashier-custom-property-sets-resource';
 import CashierRequestsResource from './cashier-requests-resource';
 import CashierStrategiesResource from './cashier-strategies-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
@@ -86,6 +87,9 @@ export class ApiInstance {
     this.billingPortals = BillingPortalsResource({apiHandler});
     this.blocklists = BlocklistsResource({apiHandler});
     this.broadcastMessages = BroadcastMessagesResource({apiHandler});
+    this.cashierCustomPropertySets = CashierCustomPropertySetsResource({
+      apiHandler,
+    });
     this.cashierRequests = CashierRequestsResource({apiHandler});
     this.cashierStrategies = CashierStrategiesResource({apiHandler});
     this.checkoutForms = CheckoutFormsResource({apiHandler});
