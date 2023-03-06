@@ -60,6 +60,7 @@ import RolesResource from './roles-resource';
 import SearchResource from './search-resource';
 import SegmentsResource from './segments-resource';
 import SendThroughAttributionResource from './send-through-attribution-resource';
+import ServiceCredentialsResource from './service-credentials-resource';
 import ShippingRatesResource from './shipping-rates-resource';
 import StatusResource from './status-resource';
 import SubscriptionCancellationsResource from './subscription-cancellations-resource';
@@ -136,6 +137,7 @@ export class ApiInstance {
     this.search = SearchResource({apiHandler});
     this.segments = SegmentsResource({apiHandler});
     this.sendThroughAttribution = SendThroughAttributionResource({apiHandler});
+    this.serviceCredentials = ServiceCredentialsResource({apiHandler});
     this.shippingRates = ShippingRatesResource({apiHandler});
     this.status = StatusResource({apiHandler});
     this.subscriptionCancellations = SubscriptionCancellationsResource({
