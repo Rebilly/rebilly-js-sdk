@@ -18,8 +18,9 @@ export default function TrackingResource({apiHandler}) {
       sort = null,
       filter = null,
       q = null,
+      expand = null,
     } = {}) {
-      const params = {limit, offset, sort, filter, q};
+      const params = {limit, offset, sort, filter, q, expand};
       return apiHandler.getAll(`tracking/api`, params);
     },
     /**
