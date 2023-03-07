@@ -30,6 +30,26 @@ export default function TrackingResource({apiHandler}) {
       return apiHandler.get(`tracking/api/${id}`);
     },
     /**
+     * @param { rebilly.GetTrackingTaxCollectionRequest } request
+     * @returns { rebilly.GetTrackingTaxCollectionResponsePromise } response
+     */
+    getAllTaxTrackingLogs({
+      limit = null,
+      offset = null,
+      sort = null,
+      filter = null,
+      q = null,
+    } = {}) {
+      const params = {limit, offset, sort, filter, q};
+      return apiHandler.getAll(`tracking/taxes`, params);
+    },
+    /**
+     * @returns { rebilly.GetTrackingTaxResponsePromise } response
+     */
+    getTaxTrackingLog({id}) {
+      return apiHandler.get(`tracking/taxes/${id}`);
+    },
+    /**
      * @param { rebilly.GetTrackingListCollectionRequest } request
      * @returns { rebilly.GetTrackingListCollectionResponsePromise } response
      */
