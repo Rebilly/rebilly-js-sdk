@@ -50,8 +50,15 @@ export default function TransactionsResource({apiHandler}) {
      * @param { rebilly.GetTransactionTimelineCollectionRequest } request
      * @returns { rebilly.GetTransactionTimelineCollectionResponsePromise } response
      */
-    getAllTimelineMessages({id, limit = null, offset = null, filter = null}) {
-      const params = {limit, offset, filter};
+    getAllTimelineMessages({
+      id,
+      limit = null,
+      offset = null,
+      filter = null,
+      sort = null,
+      q = null,
+    }) {
+      const params = {limit, offset, filter, sort, q};
       return apiHandler.getAll(`transactions/${id}/timeline`, params);
     },
     createTimelineComment({id, data}) {
