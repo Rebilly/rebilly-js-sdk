@@ -1,6 +1,6 @@
 {
   "name": "rebilly-js-sdk",
-  "version": "48.8.0",
+  "version": "48.7.0",
   "description": "Official Rebilly API JS library for the browser and Node",
   "types": "./dist/rebilly-js-sdk.d.ts",
   "main": "./dist/rebilly-js-sdk.umd.js",
