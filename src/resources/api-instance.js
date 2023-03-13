@@ -18,7 +18,6 @@ import CashierRequestsResource from './cashier-requests-resource';
 import CashierStrategiesResource from './cashier-strategies-resource';
 import CheckoutFormsResource from './checkout-forms-resource';
 import CouponsResource from './coupons-resource';
-import CredentialHashesResource from './credential-hashes-resource';
 import CreditMemosResource from './credit-memos-resource';
 import CustomDomainsResource from './custom-domains-resource';
 import CustomFieldsResource from './custom-fields-resource';
@@ -95,7 +94,6 @@ export class ApiInstance {
     this.cashierStrategies = CashierStrategiesResource({apiHandler});
     this.checkoutForms = CheckoutFormsResource({apiHandler});
     this.coupons = CouponsResource({apiHandler});
-    this.credentialHashes = CredentialHashesResource({apiHandler});
     this.creditMemos = CreditMemosResource({apiHandler});
     this.customDomains = CustomDomainsResource({apiHandler});
     this.customFields = CustomFieldsResource({apiHandler});
