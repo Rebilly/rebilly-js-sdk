@@ -123,7 +123,7 @@ it("Generates TS types including request parameters and path parameters", async 
 it("Generates TS types for collection query with parameters in pathName (but not in schema)", async () => {
   const schema = {
     paths: {
-      "/credential-hashes/oauth2/{id}/items": {
+      "/service-credentials/oauth2/{id}/items": {
         get: {
           operationId: "GetServiceCredentialItemCollection",
           responses,
