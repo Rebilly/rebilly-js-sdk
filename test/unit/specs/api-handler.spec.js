@@ -84,8 +84,8 @@ describe('when I use an API handler', () => {
     });
 
     it('should return a promise when I make a PATCH request', () => {
-        const plaidCredential = api.credentialHashes.updatePlaidCredential({hash: '1234', data: {}});
-        expect(typeof plaidCredential.then).toBe('function');
+        const serviceCredential = api.serviceCredentials.update({type: 'plaid', id: '1234', data: {}});
+        expect(typeof serviceCredential.then).toBe('function');
     });
 
     it('should return a promise when I make a DELETE request', () => {

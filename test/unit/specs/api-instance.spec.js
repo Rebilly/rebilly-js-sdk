@@ -25,7 +25,7 @@ describe('when I create an API instance', () => {
         expect(typeof apiInstance.customers).toBe('object');
         expect(typeof apiInstance.customerAuthentication).toBe('object');
         expect(typeof apiInstance.customFields).toBe('object');
-        expect(typeof apiInstance.credentialHashes).toBe('object');
+        expect(typeof apiInstance.serviceCredentials).toBe('object');
         expect(typeof apiInstance.disputes).toBe('object');
         expect(typeof apiInstance.files).toBe('object');
         expect(typeof apiInstance.emailDeliverySettings).toBe('object');
