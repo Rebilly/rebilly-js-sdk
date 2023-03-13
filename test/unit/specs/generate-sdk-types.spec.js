@@ -99,9 +99,9 @@ it("Generates TS types for resource put response", async () => {
 it("Generates TS types including request parameters and path parameters", async () => {
   const schema = {
     paths: {
-      "/credential-hashes/plaid/{hash}": {
+      "/service-credentials/{type}": {
         get: {
-          operationId: "GetPlaidCredentialCollection",
+          operationId: "GetServiceCredentialCollection",
           parameters: {
             $ref: "../components/parameters/collectionFilter.yaml",
           },
@@ -113,19 +113,19 @@ it("Generates TS types including request parameters and path parameters", async 
 
   const types = generateSdkTypes(schema).trim();
   expect(types).toMatchInlineSnapshot(`
-    "type GetPlaidCredentialCollectionRequest = operations['GetPlaidCredentialCollection']['parameters'][\\"query\\"] & (operations['GetPlaidCredentialCollection']['parameters'] extends {path: {}} ? operations['GetPlaidCredentialCollection']['parameters'][\\"path\\"] : {}) & { hash : String }
+    "type GetServiceCredentialCollectionRequest = operations['GetServiceCredentialCollection']['parameters'][\\"query\\"] & (operations['GetServiceCredentialCollection']['parameters'] extends {path: {}} ? operations['GetServiceCredentialCollection']['parameters'][\\"path\\"] : {}) & { type : String }
       
-      type GetPlaidCredentialCollectionResponse = operations['GetPlaidCredentialCollection']['responses']['200']['content']['application/json'][0]
-      type GetPlaidCredentialCollectionResponsePromise = Promise<{ items: {fields: GetPlaidCredentialCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
+      type GetServiceCredentialCollectionResponse = operations['GetServiceCredentialCollection']['responses']['200']['content']['application/json'][0]
+      type GetServiceCredentialCollectionResponsePromise = Promise<{ items: {fields: GetServiceCredentialCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
   `);
 });
 
 it("Generates TS types for collection query with parameters in pathName (but not in schema)", async () => {
   const schema = {
     paths: {
-      "/credential-hashes/oauth2/{hash}/items": {
+      "/credential-hashes/oauth2/{id}/items": {
         get: {
-          operationId: "GetOauth2CredentialHashItemCollection",
+          operationId: "GetServiceCredentialItemCollection",
           responses,
         },
       },
@@ -134,10 +134,10 @@ it("Generates TS types for collection query with parameters in pathName (but not
 
   const types = generateSdkTypes(schema).trim();
   expect(types).toMatchInlineSnapshot(`
-    "type GetOauth2CredentialHashItemCollectionRequest = { hash : String }
+    "type GetServiceCredentialItemCollectionRequest = { id : String }
 
-      type GetOauth2CredentialHashItemCollectionResponse = operations['GetOauth2CredentialHashItemCollection']['responses']['200']['content']['application/json'][0]
-      type GetOauth2CredentialHashItemCollectionResponsePromise = Promise<{ items: {fields: GetOauth2CredentialHashItemCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
+      type GetServiceCredentialItemCollectionResponse = operations['GetServiceCredentialItemCollection']['responses']['200']['content']['application/json'][0]
+      type GetServiceCredentialItemCollectionResponsePromise = Promise<{ items: {fields: GetServiceCredentialItemCollectionResponse}[], getJSON: object, total?: number, offset?: number, limit?: number }>"
   `);
 });
 
