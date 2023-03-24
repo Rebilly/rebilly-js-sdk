@@ -1,3 +1,8 @@
+> **Note**
+> This project is still active, however this repository is archived and the source is
+> moved into a private repository. The unmangled source code is still available publically
+> and published as part of the npm package contents.
+
 # Rebilly JS SDK library 
 The Rebilly JS SDK library allows you to consume the Rebilly API using either Node or the browser.
 
